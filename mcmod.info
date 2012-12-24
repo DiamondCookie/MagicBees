@@ -1,0 +1,12 @@
+[
+{
+  "modid": "ThaumicBees",
+  "name": "ThaumicBees",
+  "description": "Forestry bees have become magical...",
+  "version": "0.0.0",
+  "mcversion": "1.4.5",
+  "requiredMods": [ "Forge", "Thaumcraft", "Forestry" ],
+  "dependencies": [ "Thaumcraft", "Forestry" ],
+  "useDependencyInformation": "true"
+}
+]
