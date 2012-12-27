@@ -1,4 +1,4 @@
-package thaumicbees.main.bees;
+package thaumicbees.bees;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

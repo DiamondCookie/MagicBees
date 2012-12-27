@@ -1,4 +1,4 @@
-package thaumicbees.main.bees;
+package thaumicbees.bees;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import forestry.api.apiculture.*;
@@ -9,6 +9,7 @@ import java.util.Random;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.item.ItemManager;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.item.Item;
@@ -52,6 +53,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		BeeSpecies.Esoteric = new BeeSpecies("Esoteric", "", "secretiore", BeeBranch.Arcane, 0,
 				0x001099, 0xcc763c, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
+		BeeSpecies.Esoteric.addProduct(new ItemStack(ItemManager.magicalComb), 5);
 		BeeSpecies.Esoteric.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
 		breedingMgr.registerBeeTemplate(BeeSpecies.Esoteric.getGenome());
 		
@@ -166,15 +168,15 @@ public class ThaumicBeesPlugin implements IPlugin
 
 	private void setupBeeMutations()
 	{
-		BeeMutation.Esoteric = new BeeMutation(BeeSpecies.getBaseSpecies("Modest"), BeeSpecies.getBaseSpecies("Wintry"), BeeSpecies.Esoteric.getGenome(), 10, false);
-		BeeMutation.Esoteric1 = new BeeMutation(BeeSpecies.getBaseSpecies("Marshy"), BeeSpecies.getBaseSpecies("Cultivated"), BeeSpecies.Esoteric.getGenome(), 20, false);
+		BeeMutation.Esoteric = new BeeMutation(BeeSpecies.getBaseSpecies("Imperial"), BeeSpecies.getBaseSpecies("Demonic"), BeeSpecies.Esoteric.getGenome(), 10, false);
+		BeeMutation.Esoteric1 = new BeeMutation(BeeSpecies.getBaseSpecies("Heroic"), BeeSpecies.getBaseSpecies("Demonic"), BeeSpecies.Esoteric.getGenome(), 20, false);
 		BeeMutation.Mysterious = new BeeMutation(BeeSpecies.Esoteric, BeeSpecies.getBaseSpecies("Ended"), BeeSpecies.Mysterious.getGenome(), 10, false);
 		BeeMutation.Arcane = new BeeMutation(BeeSpecies.Esoteric, BeeSpecies.Mysterious, BeeSpecies.Arcane.getGenome(), 8, false);
 		BeeMutation.Charmed = new BeeMutation(BeeSpecies.getBaseSpecies("Cultivated"), BeeSpecies.getBaseSpecies("Valiant"), BeeSpecies.Charmed.getGenome(), 20, false);
 		BeeMutation.Enchanted = new BeeMutation(BeeSpecies.Charmed, BeeSpecies.getBaseSpecies("Valiant"), BeeSpecies.Enchanted.getGenome(), 8, false);
 		BeeMutation.Supernatural = new BeeMutation(BeeSpecies.Charmed, BeeSpecies.Enchanted, BeeSpecies.Supernatural.getGenome(), 8, false);
-		BeeMutation.Pupil = new BeeMutation(BeeSpecies.Arcane, BeeSpecies.Enchanted, BeeSpecies.Pupil.getGenome(), 100, false);
-		BeeMutation.Scholarly = new BeeMutation(BeeSpecies.Pupil, BeeSpecies.Arcane, BeeSpecies.Scholarly.getGenome(), 10, false);
+		BeeMutation.Pupil = new BeeMutation(BeeSpecies.Arcane, BeeSpecies.Enchanted, BeeSpecies.Pupil.getGenome(), 10, false);
+		BeeMutation.Scholarly = new BeeMutation(BeeSpecies.Pupil, BeeSpecies.Arcane, BeeSpecies.Scholarly.getGenome(), 8, false);
 		BeeMutation.Savant = new BeeMutation(BeeSpecies.Pupil, BeeSpecies.Scholarly, BeeSpecies.Savant.getGenome(), 6, false);
 		BeeMutation.Stark = new BeeMutation(BeeSpecies.Arcane, BeeSpecies.Supernatural, BeeSpecies.Stark.getGenome(), 8, false);
 	}

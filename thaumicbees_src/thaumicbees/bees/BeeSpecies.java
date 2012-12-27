@@ -1,4 +1,4 @@
-package thaumicbees.main.bees;
+package thaumicbees.bees;
 
 import forestry.api.apiculture.*;
 import forestry.api.core.EnumHumidity;
@@ -200,7 +200,7 @@ public class BeeSpecies implements IAlleleBeeSpecies
 
 	public boolean isJubilant(World world, int biomeid, int x, int i, int j)
 	{
-		return false;
+		return true;
 	}
 
 	/**

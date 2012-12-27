@@ -1,4 +1,4 @@
-package thaumicbees.main.bees;
+package thaumicbees.bees;
 
 import forestry.api.apiculture.*;
 import forestry.api.genetics.IAllele;
@@ -20,10 +20,12 @@ public class BeeMutation implements IBeeMutation
 	public static BeeMutation Pupil;
 	public static BeeMutation Scholarly;
 	public static BeeMutation Savant;
+	
+	
 	private IAllele parent1;
 	private IAllele parent2;
 	private IAllele mutationTemplate[];
-	private int chance;
+	private int baseChance;
 	private boolean isSecret;
 
 	public BeeMutation(IAlleleBeeSpecies species0, IAlleleBeeSpecies species1, IAllele producesGenome[], int percentChance, boolean hide)
@@ -31,14 +33,23 @@ public class BeeMutation implements IBeeMutation
 		parent1 = species0;
 		parent2 = species1;
 		mutationTemplate = producesGenome;
-		chance = percentChance;
+		baseChance = percentChance;
 		isSecret = hide;
 		BeeManager.beeMutations.add(this);
 	}
 
 	public int getChance(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1)
 	{
-		return Math.round((float) chance * BeeManager.breedingManager.getBeekeepingMode(housing.getWorld()).getMutationModifier((IBeeGenome) genome0, (IBeeGenome) genome1));
+		int chance = 0;
+		
+		if ((this.parent1.getUID().equals(allele0.getUID())) && this.parent2.getUID().equals(allele1.getUID()) ||
+				this.parent1.getUID().equals(allele1.getUID()) && this.parent2.getUID().equals(allele0.getUID()))
+		{
+			// This mutation applies. Continue calculation.
+			chance = Math.round((float) this.baseChance * BeeManager.breedingManager.getBeekeepingMode(housing.getWorld()).getMutationModifier((IBeeGenome) genome0, (IBeeGenome) genome1));
+		}
+		
+		return chance;
 	}
 
 	public IAllele getAllele0()
@@ -58,7 +69,7 @@ public class BeeMutation implements IBeeMutation
 
 	public int getBaseChance()
 	{
-		return chance;
+		return baseChance;
 	}
 
 	public boolean isPartner(IAllele allele)

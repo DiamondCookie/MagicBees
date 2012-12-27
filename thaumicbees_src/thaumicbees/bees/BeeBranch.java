@@ -1,4 +1,4 @@
-package thaumicbees.main.bees;
+package thaumicbees.bees;
 
 import forestry.api.apiculture.IBeeBranch;
 import forestry.api.genetics.IAlleleSpecies;

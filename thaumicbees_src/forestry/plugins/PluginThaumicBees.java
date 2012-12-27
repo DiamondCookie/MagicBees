@@ -1,6 +1,6 @@
 package forestry.plugins;
 
-import thaumicbees.main.bees.ThaumicBeesPlugin;
+import thaumicbees.bees.ThaumicBeesPlugin;
 
 public class PluginThaumicBees extends ThaumicBeesPlugin
 {
