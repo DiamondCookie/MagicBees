@@ -22,7 +22,7 @@ public class ThaumicBeesPlugin implements IPlugin
 {
 
 	private static int defaultBodyColour = 0xFF6E0D;
-	private static boolean hideSpecies = false;
+	private static boolean hideSpecies = true;
 
 	public boolean isAvailable()
 	{

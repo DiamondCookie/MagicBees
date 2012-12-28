@@ -136,7 +136,7 @@
 	<!-- Package the jars -->
 	<target name="package" depends="setup,compile">
 		<echo message="Packaging basic jar..." />
-        <jar destfile="${jar.dir}/thaumicbees-${thaumicbees.version}.jar" basedir="${classes.dir}/client"/>
+        <jar destfile="${jar.dir}/thaumicbees-${thaumicbees.version}.${build.number}.jar" basedir="${classes.dir}/client"/>
 	</target>
 	
 	<!-- Deploy to private share -->
