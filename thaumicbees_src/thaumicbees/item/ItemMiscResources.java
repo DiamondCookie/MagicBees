@@ -4,7 +4,6 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import extrabiomes.utility.CreativeTab;
 import thaumicbees.item.ItemPropolis.PropolisType;
 import thaumicbees.item.ItemWax.WaxType;
 import thaumicbees.main.CommonProxy;
@@ -32,7 +31,7 @@ public class ItemMiscResources extends Item
 	{
 		super(ID);
 		this.setTextureFile(CommonProxy.TCBEES_ITEMSPNG);
-		this.setCreativeTab(CreativeTab.tabMaterials);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 		this.setHasSubtypes(true);
 	}
 	
