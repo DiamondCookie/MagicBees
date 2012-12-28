@@ -10,6 +10,8 @@ import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.item.ItemManager;
+import thaumicbees.item.ItemComb.CombType;
+import thaumicbees.item.ItemMiscResources.ResourceType;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.item.Item;
@@ -50,16 +52,20 @@ public class ThaumicBeesPlugin implements IPlugin
 		BeeBranch.Elemental = new BeeBranch("Elemental", "praecantatio");
 		BeeBranch.Scholarly = new BeeBranch("Scholarly", "scholasticus");
 		
+		AlleleFlower.alleleFlowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
+		AlleleFlower.alleleFlowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
+		
 		BeeSpecies.Esoteric = new BeeSpecies("Esoteric", "", "secretiore", BeeBranch.Arcane, 0,
 				0x001099, 0xcc763c, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		BeeSpecies.Esoteric.addProduct(new ItemStack(ItemManager.magicalComb), 5);
+		BeeSpecies.Esoteric.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 45);
 		BeeSpecies.Esoteric.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
 		breedingMgr.registerBeeTemplate(BeeSpecies.Esoteric.getGenome());
 		
 		BeeSpecies.Mysterious = new BeeSpecies("Mysterious", "", "mysticus", BeeBranch.Arcane, 0,
 				0x762bc2, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
-				false, hideSpecies, true, true);		
+				false, hideSpecies, true, true);
+		BeeSpecies.Mysterious.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 60);
 		BeeSpecies.Mysterious.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
 		BeeSpecies.Mysterious.setGene(EnumBeeChromosome.FERTILITY, AlleleManager.getAllele("fertilityNormal"));
 		BeeSpecies.Mysterious.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringMaximum"));
@@ -68,14 +74,16 @@ public class ThaumicBeesPlugin implements IPlugin
 		BeeSpecies.Arcane = new BeeSpecies("Arcane", "", "arcanus", BeeBranch.Arcane, 0,
 				0xd242df, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		BeeSpecies.Mysterious.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
-		BeeSpecies.Mysterious.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringMaximum"));
+		BeeSpecies.Arcane.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 80);
+		BeeSpecies.Arcane.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
+		BeeSpecies.Arcane.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringMaximum"));
 		BeeSpecies.Arcane.setGene(EnumBeeChromosome.FERTILITY, AlleleManager.getAllele("fertilityLow"));
 		breedingMgr.registerBeeTemplate(BeeSpecies.Arcane.getGenome());
 		
 		BeeSpecies.Charmed = new BeeSpecies("Charmed", "", "larvatus", BeeBranch.Supernatural, 0,
 				0x48EEEC, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
+		BeeSpecies.Charmed.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 40);
 		BeeSpecies.Charmed.setGene(EnumBeeChromosome.NOCTURNAL, AlleleManager.getAllele("boolTrue"));
 		BeeSpecies.Charmed.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
 		BeeSpecies.Charmed.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringSlowest"));
@@ -84,24 +92,60 @@ public class ThaumicBeesPlugin implements IPlugin
 		BeeSpecies.Enchanted = new BeeSpecies("Enchanted", "", "cantatus", BeeBranch.Supernatural, 0,
 				0x18e726, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.NOCTURNAL, AlleleManager.getAllele("boolTrue"));
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringSlowest"));
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth1"));
+		BeeSpecies.Enchanted.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 60);
+		BeeSpecies.Enchanted.setGene(EnumBeeChromosome.NOCTURNAL, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Enchanted.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
+		BeeSpecies.Enchanted.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringSlowest"));
+		BeeSpecies.Enchanted.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth1"));
 		breedingMgr.registerBeeTemplate(BeeSpecies.Enchanted.getGenome());
 		
 		BeeSpecies.Supernatural = new BeeSpecies("Supernatural", "", "coeleste", BeeBranch.Supernatural, 0,
 				0x005614, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.NOCTURNAL, AlleleManager.getAllele("boolTrue"));
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringSlowest"));
-		BeeSpecies.Charmed.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
+		BeeSpecies.Supernatural.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 80);
+		BeeSpecies.Supernatural.setGene(EnumBeeChromosome.NOCTURNAL, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Supernatural.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
+		BeeSpecies.Supernatural.setGene(EnumBeeChromosome.FLOWERING, AlleleManager.getAllele("floweringSlowest"));
+		BeeSpecies.Supernatural.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceBoth2"));
 		breedingMgr.registerBeeTemplate(BeeSpecies.Supernatural.getGenome());
+
+		BeeSpecies.Pupil = new BeeSpecies("Pupil", "", "disciplina", BeeBranch.Scholarly, 0,
+				0xFFFF00, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
+				false, hideSpecies, true, true);
+		BeeSpecies.Pupil.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 50);
+		BeeSpecies.Pupil.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedSlowest"));
+		BeeSpecies.Pupil.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
+		BeeSpecies.Pupil.setGene(EnumBeeChromosome.CAVE_DWELLING, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Pupil.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerBookshelf);
+		breedingMgr.registerBeeTemplate(BeeSpecies.Pupil.getGenome());
+
+		BeeSpecies.Scholarly = new BeeSpecies("Scholarly", "", "studiosis", BeeBranch.Scholarly, 0,
+				0x6E0000, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
+				false, hideSpecies, true, false);
+		BeeSpecies.Scholarly.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 60);
+		BeeSpecies.Scholarly.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT), 2);
+		BeeSpecies.Scholarly.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedSlower"));
+		BeeSpecies.Scholarly.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
+		BeeSpecies.Scholarly.setGene(EnumBeeChromosome.CAVE_DWELLING, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Scholarly.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerBookshelf);
+		breedingMgr.registerBeeTemplate(BeeSpecies.Scholarly.getGenome());
+
+		BeeSpecies.Savant = new BeeSpecies("Savant", "", "philologus", BeeBranch.Scholarly, 0,
+				0x6E1C6D, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
+				true, hideSpecies, true, false);
+		BeeSpecies.Savant.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 70);
+		BeeSpecies.Savant.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT), 5);
+		BeeSpecies.Savant.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
+		BeeSpecies.Savant.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
+		BeeSpecies.Savant.setGene(EnumBeeChromosome.CAVE_DWELLING, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Savant.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerBookshelf);
+		breedingMgr.registerBeeTemplate(BeeSpecies.Savant.getGenome());
 		
 		BeeSpecies.Stark = new BeeSpecies("Stark", "", "torridus", BeeBranch.Stark, 0,
 				0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
+		BeeSpecies.Stark.addProduct(ItemManager.combs.getStackForType(CombType.STARK), 75);
+		BeeSpecies.Stark.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerThaumcraft);
 		breedingMgr.registerBeeTemplate(BeeSpecies.Stark.getGenome());
 		
 		BeeSpecies.Air = new BeeSpecies("Aura", "", "ventosa", BeeBranch.Elemental, 0,
@@ -111,25 +155,8 @@ public class ThaumicBeesPlugin implements IPlugin
 		BeeSpecies.Air.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanShortened"));
 		BeeSpecies.Air.setGene(EnumBeeChromosome.TERRITORY, AlleleManager.getAllele("territoryLargest"));
 		BeeSpecies.Air.setGene(EnumBeeChromosome.TOLERANT_FLYER, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Air.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerThaumcraft);
 		breedingMgr.registerBeeTemplate(BeeSpecies.Air.getGenome());
-		
-		BeeSpecies.Water = new BeeSpecies("Aqua", "", "umidus", BeeBranch.Elemental, 0,
-				0x36CFD9, 0x1054A1, EnumTemperature.NORMAL, EnumHumidity.DAMP,
-				true, hideSpecies, true, true);
-		BeeSpecies.Water.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedFast"));
-		BeeSpecies.Water.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
-		BeeSpecies.Water.setGene(EnumBeeChromosome.HUMIDITY_TOLERANCE, AlleleManager.getAllele("toleranceUp2"));
-		BeeSpecies.Water.setGene(EnumBeeChromosome.TOLERANT_FLYER, AlleleManager.getAllele("boolTrue"));
-		breedingMgr.registerBeeTemplate(BeeSpecies.Water.getGenome());
-		
-		BeeSpecies.Earth = new BeeSpecies("Solum", "", "sordida", BeeBranch.Elemental, 0,
-				0xD9A136, 0x79450C, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
-				true, hideSpecies, true, true);
-		BeeSpecies.Earth.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedFast"));
-		BeeSpecies.Earth.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
-		BeeSpecies.Earth.setGene(EnumBeeChromosome.HUMIDITY_TOLERANCE, AlleleManager.getAllele("toleranceUp2"));
-		BeeSpecies.Earth.setGene(EnumBeeChromosome.TOLERANT_FLYER, AlleleManager.getAllele("boolTrue"));
-		breedingMgr.registerBeeTemplate(BeeSpecies.Earth.getGenome());
 		
 		BeeSpecies.Fire = new BeeSpecies("Ignis", "", "praefervidus", BeeBranch.Elemental, 0,
 				0xE50B0B, 0x95132F, EnumTemperature.HELLISH, EnumHumidity.ARID,
@@ -137,39 +164,36 @@ public class ThaumicBeesPlugin implements IPlugin
 		BeeSpecies.Fire.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedFaster"));
 		BeeSpecies.Fire.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanNormal"));
 		BeeSpecies.Fire.setGene(EnumBeeChromosome.TEMPERATURE_TOLERANCE, AlleleManager.getAllele("toleranceDown5"));
-		BeeSpecies.Fire.setGene(EnumBeeChromosome.HUMIDITY_TOLERANCE, AlleleManager.getAllele("toleranceDown2"));
+		BeeSpecies.Fire.setGene(EnumBeeChromosome.HUMIDITY_TOLERANCE, AlleleManager.getAllele("toleranceUp2"));
 		BeeSpecies.Fire.setGene(EnumBeeChromosome.TOLERANT_FLYER, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Fire.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerThaumcraft);
 		breedingMgr.registerBeeTemplate(BeeSpecies.Fire.getGenome());
 		
-		BeeSpecies.Pupil = new BeeSpecies("Pupil", "", "disciplina", BeeBranch.Scholarly, 0,
-				0xFFFF00, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
-				false, hideSpecies, true, true);
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedSlowest"));
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.CAVE_DWELLING, AlleleManager.getAllele("boolTrue"));
-		breedingMgr.registerBeeTemplate(BeeSpecies.Pupil.getGenome());
+		BeeSpecies.Water = new BeeSpecies("Aqua", "", "umidus", BeeBranch.Elemental, 0,
+				0x36CFD9, 0x1054A1, EnumTemperature.NORMAL, EnumHumidity.DAMP,
+				true, hideSpecies, true, true);
+		BeeSpecies.Water.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedFast"));
+		BeeSpecies.Water.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
+		BeeSpecies.Water.setGene(EnumBeeChromosome.HUMIDITY_TOLERANCE, AlleleManager.getAllele("toleranceDown2"));
+		BeeSpecies.Water.setGene(EnumBeeChromosome.TOLERANT_FLYER, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Water.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerThaumcraft);
+		breedingMgr.registerBeeTemplate(BeeSpecies.Water.getGenome());
 		
-		BeeSpecies.Scholarly = new BeeSpecies("Scholarly", "", "studiosis", BeeBranch.Scholarly, 0,
-				0x6E0000, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
-				false, hideSpecies, true, false);
-		BeeSpecies.Scholarly.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedSlower"));
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.CAVE_DWELLING, AlleleManager.getAllele("boolTrue"));
-		breedingMgr.registerBeeTemplate(BeeSpecies.Scholarly.getGenome());
-		
-		BeeSpecies.Savant = new BeeSpecies("Savant", "", "philologus", BeeBranch.Scholarly, 0,
-				0x6E1C6D, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
-				true, hideSpecies, true, false);
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedNorm"));
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
-		BeeSpecies.Pupil.setGene(EnumBeeChromosome.CAVE_DWELLING, AlleleManager.getAllele("boolTrue"));
-		breedingMgr.registerBeeTemplate(BeeSpecies.Savant.getGenome());
+		BeeSpecies.Earth = new BeeSpecies("Solum", "", "sordida", BeeBranch.Elemental, 0,
+				0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				true, hideSpecies, true, true);
+		BeeSpecies.Earth.setGene(EnumBeeChromosome.SPEED, AlleleManager.getAllele("speedFast"));
+		BeeSpecies.Earth.setGene(EnumBeeChromosome.LIFESPAN, AlleleManager.getAllele("lifespanElongated"));
+		BeeSpecies.Earth.setGene(EnumBeeChromosome.HUMIDITY_TOLERANCE, AlleleManager.getAllele("toleranceDown2"));
+		BeeSpecies.Earth.setGene(EnumBeeChromosome.TOLERANT_FLYER, AlleleManager.getAllele("boolTrue"));
+		BeeSpecies.Earth.setGene(EnumBeeChromosome.FLOWER_PROVIDER, AlleleFlower.alleleFlowerThaumcraft);
+		breedingMgr.registerBeeTemplate(BeeSpecies.Earth.getGenome());
 	}
 
 	private void setupBeeMutations()
 	{
 		BeeMutation.Esoteric = new BeeMutation(BeeSpecies.getBaseSpecies("Imperial"), BeeSpecies.getBaseSpecies("Demonic"), BeeSpecies.Esoteric.getGenome(), 10, false);
-		BeeMutation.Esoteric1 = new BeeMutation(BeeSpecies.getBaseSpecies("Heroic"), BeeSpecies.getBaseSpecies("Demonic"), BeeSpecies.Esoteric.getGenome(), 20, false);
+		BeeMutation.Esoteric1 = new BeeMutation(BeeSpecies.getBaseSpecies("Heroic"), BeeSpecies.getBaseSpecies("Demonic"), BeeSpecies.Esoteric.getGenome(), 25, false);
 		BeeMutation.Mysterious = new BeeMutation(BeeSpecies.Esoteric, BeeSpecies.getBaseSpecies("Ended"), BeeSpecies.Mysterious.getGenome(), 10, false);
 		BeeMutation.Arcane = new BeeMutation(BeeSpecies.Esoteric, BeeSpecies.Mysterious, BeeSpecies.Arcane.getGenome(), 8, false);
 		BeeMutation.Charmed = new BeeMutation(BeeSpecies.getBaseSpecies("Cultivated"), BeeSpecies.getBaseSpecies("Valiant"), BeeSpecies.Charmed.getGenome(), 20, false);

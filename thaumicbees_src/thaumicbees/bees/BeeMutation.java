@@ -35,7 +35,6 @@ public class BeeMutation implements IBeeMutation
 		mutationTemplate = producesGenome;
 		baseChance = percentChance;
 		isSecret = hide;
-		BeeManager.beeMutations.add(this);
 	}
 
 	public int getChance(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1)

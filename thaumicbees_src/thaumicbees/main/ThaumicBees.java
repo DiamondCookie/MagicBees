@@ -20,8 +20,9 @@ import net.minecraftforge.event.world.WorldEvent;
 import thaumcraft.api.*;
 import thaumicbees.bees.BeeSpecies;
 import thaumicbees.bees.ThaumicBeesPlugin;
+import thaumicbees.block.BlockManager;
 import thaumicbees.item.ItemComb;
-import thaumicbees.item.ItemMagicalWax;
+import thaumicbees.item.ItemWax;
 import thaumicbees.item.ItemManager;
 
 @Mod(modid="ThaumicBees", name="Thaumic Bees", version="0.0", dependencies="required-after:Forestry;required-after:Thaumcraft")
@@ -60,14 +61,14 @@ public class ThaumicBees
 		proxy.FORESTRY_GFX_ITEMS = ItemInterface.getItem("beeComb").getItem().getTextureFile();
 		
 		this.config.load();
+		BlockManager.setupBlocks(this.config);
 		ItemManager.setupItems(this.config);
 		this.config.save();
 		
 		ItemManager.setupCrafting();
-		ThaumcraftCompat.setupCrafting();
 		
 		ThaumcraftCompat.setupResearch();
-		
+		ThaumcraftCompat.setupAspects();
 	}
 
 	@Mod.PostInit

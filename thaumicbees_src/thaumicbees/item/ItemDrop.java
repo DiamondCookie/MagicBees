@@ -11,21 +11,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemComb extends Item
+public class ItemDrop extends Item
 {
-	public enum CombType
+	public enum DropType
 	{
-		OCCULT("Occult Comb", 0x6e1c6d, 0xff8fff),
-		OTHERWORLDLY("Otherworldy Comb", 0x000056, 0x765cc1),
-		PAPERY("Papery Comb", 0x503900, 0xbd9a30),
-		STARK("Stark Comb", 0xB0B0BC, 0x6e6e79),
-		AIRY("Airy Comb", 0xffff7e, 0x717600),
-		FIREY("Firey Comb", 0xff3C01, 0x740002),
-		WATERY("Watery Comb", 0x0090ff, 0x00308c),
-		EARTHY("Earthy Comb", 0x00a000, 0x005100),
+		ENCHANTED("Enchanting Drop", 0x6e1c6d, 0xff8fff),
 		;
 		
-		private CombType(String pName, int colourA, int colourB)
+		private DropType(String pName, int colourA, int colourB)
 		{
 			this.name = pName;
 			this.combColour[0] = colourA;
@@ -36,7 +29,7 @@ public class ItemComb extends Item
 		public int[] combColour = new int[2];
 	}
 	
-	public ItemComb(int itemID)
+	public ItemDrop(int itemID)
 	{
 		super(itemID);
 		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
@@ -44,12 +37,12 @@ public class ItemComb extends Item
 		this.setHasSubtypes(true);
 	}
 	
-	public ItemStack getStackForType(CombType type)
+	public ItemStack getStackForType(DropType type)
 	{
 		return new ItemStack(this, 1, type.ordinal());
 	}	
 	
-	public ItemStack getStackForType(CombType type, int count)
+	public ItemStack getStackForType(DropType type, int count)
 	{
 		return new ItemStack(this, count, type.ordinal());
 	}
@@ -59,7 +52,7 @@ public class ItemComb extends Item
 	public void getSubItems(int id, CreativeTabs tabs, List list)
 	{
 		super.getSubItems(id, tabs, list);
-		for (CombType type : CombType.values())
+		for (DropType type : DropType.values())
 		{
 			list.add(this.getStackForType(type));
 		}
@@ -81,8 +74,8 @@ public class ItemComb extends Item
 	@Override
 	public int getIconIndex(ItemStack stack, int pass)
 	{
-		// 107, 108 are the base forestry honeycomb textures.
-		return 107 + pass;
+		// 109, 110 are the base forestry drop textures.
+		return 109 + pass;
 	}
 
 	@Override
@@ -91,9 +84,9 @@ public class ItemComb extends Item
 	{
 		int colour = 0xffffff;
 		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < CombType.values().length)
+		if (meta >= 0 && meta < DropType.values().length)
 		{
-			colour = CombType.values()[meta].combColour[pass % 2];
+			colour = DropType.values()[meta].combColour[pass % 2];
 		}
 		return colour;
 	}
@@ -103,9 +96,9 @@ public class ItemComb extends Item
 	{
 		String result = "";
 		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < CombType.values().length)
+		if (meta >= 0 && meta < DropType.values().length)
 		{
-			result = CombType.values()[meta].name;
+			result = DropType.values()[meta].name;
 		}
 		return result;
 	}
