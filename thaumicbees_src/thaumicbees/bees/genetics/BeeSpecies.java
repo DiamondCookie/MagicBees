@@ -1,4 +1,4 @@
-package thaumicbees.bees;
+package thaumicbees.bees.genetics;
 
 import forestry.api.apiculture.*;
 import forestry.api.core.EnumHumidity;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
 
-public class BeeSpecies implements IAlleleBeeSpecies
+public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 {
 
 	public static BeeSpecies Esoteric;
@@ -27,7 +27,7 @@ public class BeeSpecies implements IAlleleBeeSpecies
 	public static BeeSpecies Water;
 	public static BeeSpecies Earth;
 	public static BeeSpecies Fire;
-	private String universalID;
+
 	private String name;
 	private String descripton;
 	private String binomial;
@@ -40,7 +40,6 @@ public class BeeSpecies implements IAlleleBeeSpecies
 	private boolean hasEffect;
 	private boolean isSecret;
 	private boolean isCounted;
-	private boolean isDominant;
 	private IBranch branch;
 	private HashMap products;
 	private HashMap specialty;
@@ -58,7 +57,7 @@ public class BeeSpecies implements IAlleleBeeSpecies
 
 	public BeeSpecies(String speciesName, String speciesDescription, String genusName, IBranch parentBranch, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
 	{
-		universalID = (new StringBuilder()).append("thaumicbees.species").append(speciesName).toString();
+		super("species" + speciesName, isSpeciesDominant);
 		name = speciesName;
 		descripton = speciesDescription;
 		binomial = genusName;
@@ -71,11 +70,9 @@ public class BeeSpecies implements IAlleleBeeSpecies
 		hasEffect = hasGlowEffect;
 		isSecret = isSpeciesSecret;
 		isCounted = isSpeciesCounted;
-		isDominant = isSpeciesDominant;
 		products = new HashMap();
 		specialty = new HashMap();
-		genomeTemplate = BeeManager.breedingManager.getDefaultBeeTemplate();
-		genomeTemplate[EnumBeeChromosome.SPECIES.ordinal()] = this;
+		this.genomeTemplate = new IAllele[EnumBeeChromosome.values().length];
 		AlleleManager.alleleRegistry.registerAllele(this);
 	}
 
@@ -176,16 +173,6 @@ public class BeeSpecies implements IAlleleBeeSpecies
 	public IBranch getBranch()
 	{
 		return branch;
-	}
-
-	public String getUID()
-	{
-		return universalID;
-	}
-
-	public boolean isDominant()
-	{
-		return isDominant;
 	}
 
 	public HashMap getProducts()

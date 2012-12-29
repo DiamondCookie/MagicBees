@@ -1,6 +1,7 @@
 package thaumicbees.bees;
 
 import thaumicbees.block.BlockManager;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBeeGenome;
@@ -36,10 +37,13 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	public boolean growFlower(World world, IBeeGenome genome, int x, int y, int z)
 	{
 		boolean flag = false;
-		if (world.isAirBlock(x, y, z))
+		int blockDown = world.getBlockId(x, y - 1, z);
+		if (world.isAirBlock(x, y, z) && (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID))
 		{
 			int rand = world.rand.nextInt(10);
-			world.setBlockAndMetadata(x, y, z, BlockManager.ThaumcraftPlant.blockID, (rand >= 5) ? 2 : 3);
+			world.setBlockAndMetadataWithNotify(x, y, z, BlockManager.ThaumcraftPlant.blockID, (rand >= 5) ? 2 : 3);
+			System.out.println(x + ", " + y + ", " + ", " + z + " set to flower.");
+			flag = true;
 		}
 		return flag;
 	}

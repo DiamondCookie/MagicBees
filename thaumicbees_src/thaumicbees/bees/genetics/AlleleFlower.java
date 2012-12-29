@@ -1,10 +1,10 @@
-package thaumicbees.bees;
+package thaumicbees.bees.genetics;
 
 import forestry.api.apiculture.IAlleleFlowers;
 import forestry.api.apiculture.IFlowerProvider;
 import forestry.api.genetics.AlleleManager;
 
-public class AlleleFlower implements IAlleleFlowers
+public class AlleleFlower extends Allele implements IAlleleFlowers
 {
 	
 	public static AlleleFlower alleleFlowerBookshelf;
@@ -12,27 +12,13 @@ public class AlleleFlower implements IAlleleFlowers
 
 	private String uid;
 	private IFlowerProvider provider;
-	private boolean dominant;
 	
 	public AlleleFlower(String uid, IFlowerProvider flowerProvider, boolean isDominant)
 	{
-		this.uid = "thaumicbees." + uid;
+		super("flower" + uid, isDominant);
 		this.provider = flowerProvider;
-		this.dominant = isDominant;
 		
 		AlleleManager.alleleRegistry.registerAllele(this);
-	}
-
-	@Override
-	public String getUID()
-	{
-		return this.uid;
-	}
-
-	@Override
-	public boolean isDominant()
-	{
-		return this.dominant;
 	}
 
 	@Override

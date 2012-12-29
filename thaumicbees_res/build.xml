@@ -28,29 +28,33 @@
 	
 		<!-- TARGETS -->
 	<target name="clean">
-		<delete dir="${build.dir}" />
+		<delete dir="${clientsrc.dir}/extrabiomes" />
+		<delete dir="${clientsrc.dir}/forestry" />
+		<delete dir="${clientsrc.dir}/thaumcraft" />
+		<delete dir="${clientsrc.dir}/thaumicbees" />
 	</target>
 
 	<target name="setup">
 		
-		<echo message="Unpacking Forge..." />
+		<!-- Unzip forge -->
+		<!--<echo message="Unpacking Forge..." />
         <unzip dest="${build.dir}">
             <fileset dir="${resource.dir}">
                 <include name="minecraftforge-src-${mc.version}-${forge.version}.zip"/>
             </fileset>
         </unzip>
         
-        <chmod file="${forge.dir}/install.sh" perm="+x"/>
+        <chmod file="${forge.dir}/install.sh" perm="+x"/> -->
 		
         <!-- Install forge -->
-		<echo message="Installing Forge..." />
+		<!--<echo message="Installing Forge..." />
         <exec dir="${forge.dir}" executable="cmd" osfamily="windows">
             <arg line="/c install.cmd"/>
         </exec>
         
         <exec dir="${forge.dir}" executable="sh" osfamily="unix">
             <arg value="install.sh" />
-        </exec>
+        </exec> -->
 		
 		<!-- Set build number -->
 		<buildnumber file="${src.dir}/thaumicbees_res/build.number"/>
@@ -146,7 +150,7 @@
             	<include name="thaumicbees-*.jar" />
             </fileset>
         </copy>
-        <copy todir="${share.dir}/${thaumicbees.version}">
+        <copy todir="${share.dir}/">
             <fileset dir="${jar.dir}">
             	<include name="thaumicbees-*.jar" />
             </fileset>
@@ -155,7 +159,7 @@
 	
 	<!-- Deploy to public share -->
 	<target name="deploy.public" depends="deploy.private">
-        <copy todir="${deploy.dir}/${thaumicbees.version}">
+        <copy todir="${deploy.dir}">
             <fileset dir="${jar.dir}">
             	<include name="thaumicbees-*.jar" />
             </fileset>
