@@ -30,7 +30,7 @@ import thaumicbees.item.ItemManager;
 		useMetadata=true,
 		acceptedMinecraftVersions="1.4.6",
 		version="@VERSION@-@BUILD_NUMBER@",
-		dependencies="required-after:Forestry@[1.6.5.4,);required-after:Thaumcraft@[3.0.1c,)"
+		dependencies="required-after:Forestry@[1.6.4.2,);required-after:Thaumcraft@[3.0.1c,)"
 )
 public class ThaumicBees
 {
