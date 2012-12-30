@@ -6,14 +6,14 @@ import net.minecraft.world.World;
 
 public class CommonProxy
 {
-	public static String TCBEES_GFX = "/gfx/thaumicbees/";
-	public static String TCBEES_RESEARCH = "/research/thaumicbees/";
-	public static String TCBEES_ITEMS = TCBEES_GFX + "items/";
+	public static final String TCBEES_GFX = "/gfx/thaumicbees/";
+	public static final String TCBEES_RESEARCH = "/research/thaumicbees/";
+	public static final String TCBEES_ITEMS = TCBEES_GFX + "items/";
 	
 	public static String FORESTRY_GFX_ITEMS;
 	public static String FORESTRY_GFX_BEEEFFECTS;
 	
-	public static String TCBEES_ITEMSPNG = TCBEES_ITEMS + "items.png";
+	public static final String TCBEES_ITEMSPNG = TCBEES_ITEMS + "items.png";
 
 	public CommonProxy() { }
 	

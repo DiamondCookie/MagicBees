@@ -9,7 +9,7 @@
 	
 	<property name="forge.dir"			value="${build.dir}/forge" />
 	<property name="mcp.dir"			value="${forge.dir}/mcp" />
-	<property name="forestry.dir"		value="Forestry" />
+	<property name="forestry.dir"		value="ForestryApi-1.6.4" />
 	<property name="thaumcraft.dir"		value="Thaumcraft" />
 	<property name="extrabiomes.dir"	value="ExtraBiomes" />
 	
@@ -65,7 +65,7 @@
 			<fileset dir="${extrabiomes.dir}">
 				<include name="**/api/**" />
 			</fileset>
-			<fileset dir="${forestry.dir}/forestry_common/core/">
+			<fileset dir="${forestry.dir}">
 				<include name="forestry/api/**" />
 			</fileset>
 			<fileset dir="${thaumcraft.dir}/">
@@ -80,13 +80,14 @@
 		
         <copy todir="${clientsrc.dir}" overwrite="true" failonerror="true">
            <fileset dir="${src.dir}/thaumicbees_src">
-                <include name="**/Version.java" />
+                <include name="**/VersionInfo.java" />
             </fileset>
            	<filterset>
 				<filter token="MCVERSION" value="${mc.version}" />
             	<filter token="VERSION" value="${thaumicbees.version}" />
            		<filter token="BUILD_NUMBER" value="${build.number}" />
            		<filter token="FINGERPRINT" value="${key.fingerprint}" />
+				<filter token="MODVERSION" value="${VERSION}-${BUILD_NUMBER}" />
            	</filterset>
          </copy>
 

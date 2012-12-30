@@ -37,7 +37,7 @@ public class FlowerProviderBookshelf implements IFlowerProvider
 		return new ItemStack[] { new ItemStack(Block.bookShelf) };
 	}
 
-	@Override
+	//@Override
 	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
 	{
 		// No idea what this is supposed to do.

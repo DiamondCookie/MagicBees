@@ -28,9 +28,9 @@ import thaumicbees.item.ItemManager;
 @Mod(
 		modid="ThaumicBees",
 		useMetadata=true,
-		acceptedMinecraftVersions="1.4.6",
-		version="@VERSION@-@BUILD_NUMBER@",
-		dependencies="required-after:Forestry@[1.6.4.2,);required-after:Thaumcraft@[3.0.1c,)"
+		acceptedMinecraftVersions=VersionInfo.MCVersion,
+		version=VersionInfo.Version,
+		dependencies=VersionInfo.Depends
 )
 public class ThaumicBees
 {

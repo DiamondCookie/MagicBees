@@ -5,8 +5,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.apiculture.render.EntityBeeFX;
-import forestry.core.proxy.Proxies;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy

@@ -38,7 +38,7 @@ public class Allele implements IAllele
 	
 	public static IAllele getBaseAllele(String name)
 	{
-		return AlleleManager.alleleRegistry.getAllele("forestry." + name);
+		return AlleleManager.getAllele(name);
 	}
 	
 	public Allele(String id, boolean isDominant)

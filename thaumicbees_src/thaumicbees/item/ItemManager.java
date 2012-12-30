@@ -54,10 +54,12 @@ public class ItemManager
 		output.stackSize = 8;
 		GameRegistry.addRecipe(output, new Object[]
 				{
-					" C ", "G G", " G ",
-					Character.valueOf('G'), ItemManager.wax,
-					Character.valueOf('C'), Item.clay
+					" C ", "GPG", "PGP",
+					'G', ItemManager.wax,
+					'C', Item.clay,
+					'P', Block.thinGlass
 				});
+		output = ItemManager.essentiaBottle.copy();
 		output.stackSize = 4;
 		GameRegistry.addRecipe(output, new Object[]
 			{

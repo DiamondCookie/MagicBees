@@ -28,12 +28,6 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	}
 
 	@Override
-	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
-	{
-		return false;
-	}
-
-	@Override
 	public boolean growFlower(World world, IBeeGenome genome, int x, int y, int z)
 	{
 		boolean flag = false;
@@ -64,6 +58,12 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	public ItemStack[] getItemStacks()
 	{
 		return this.flowers;
+	}
+
+	//@Override
+	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
+	{
+		return false;
 	}
 
 }
