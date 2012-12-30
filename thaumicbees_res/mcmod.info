@@ -1,9 +1,9 @@
-[{
+[
+{
   "modid": "ThaumicBees",
   "name": "ThaumicBees",
   "description": "Crossover mod for Forestry and Thaumcraft. Magic bees & more.",
-  "version": "0.0.2",
-  "mcversion": "1.4.6",
   "authors": [ "MysteriousAges" ],
-  "credits": "Written & Designed by MysteriousAges. BIG thanks to SirSengir for all the Forestry help!",
-}]
+  "credits": "Thanks to Sengir for the Forestry help!"
+}
+]

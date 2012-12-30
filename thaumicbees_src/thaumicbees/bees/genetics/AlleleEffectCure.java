@@ -2,30 +2,27 @@ package thaumicbees.bees.genetics;
 
 import java.util.List;
 
+import thaumicbees.bees.EffectData;
+import thaumicbees.main.ThaumicBees;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import thaumicbees.bees.EffectData;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 
-public class AlleleEffectPotion extends AlleleEffect
+public class AlleleEffectCure extends AlleleEffect
 {
-	private int potionId;
-	private int duration;
-	private String beealyzerId;
-	
-	public AlleleEffectPotion(String name, String readableName, Potion potionApplied, int effectDuration, boolean isDominant)
+
+	public AlleleEffectCure(String id, boolean isDominant)
 	{
-		super("effect" + name, isDominant);
-		this.beealyzerId = readableName;
-		this.potionId = potionApplied.id;
-		this.duration = 20 * effectDuration;
+		super(id, isDominant);
 	}
 
 	@Override
@@ -41,7 +38,7 @@ public class AlleleEffectPotion extends AlleleEffect
 	@Override
 	public String getIdentifier()
 	{
-		return this.beealyzerId;
+		return "Cleansing";
 	}
 
 	@Override
@@ -74,7 +71,7 @@ public class AlleleEffectPotion extends AlleleEffect
 				if (e instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)e;
-					player.addPotionEffect(new PotionEffect(this.potionId, this.duration, 0));
+					player.curePotionEffects(new ItemStack(Item.bucketMilk));
 				}
 			}
 			storedData.setInteger(0, 0);
@@ -85,18 +82,6 @@ public class AlleleEffectPotion extends AlleleEffect
 		}
 		
 		return storedData;
-	}
-
-	@Override
-	public String getIconTextureFile()
-	{
-		return null;
-	}
-
-	@Override
-	public int getIconIndex()
-	{
-		return -1;
 	}
 
 }

@@ -17,7 +17,7 @@
     
 	<property name="mc.version"			value="1.4.6"/>
     <property name="forge.version"		value="6.5.0.473"/>
-    <property name="thaumicbees.version"	value="0.0.6"/>
+    <property name="thaumicbees.version"	value="0.9"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />
@@ -83,6 +83,7 @@
                 <include name="**/Version.java" />
             </fileset>
            	<filterset>
+				<filter token="MCVERSION" value="${mc.version}" />
             	<filter token="VERSION" value="${thaumicbees.version}" />
            		<filter token="BUILD_NUMBER" value="${build.number}" />
            		<filter token="FINGERPRINT" value="${key.fingerprint}" />

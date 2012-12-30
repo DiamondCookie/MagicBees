@@ -25,7 +25,13 @@ import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.ItemManager;
 
-@Mod(modid="ThaumicBees", name="Thaumic Bees", version="0.0", dependencies="required-after:Forestry;required-after:Thaumcraft")
+@Mod(
+		modid="ThaumicBees",
+		useMetadata=true,
+		acceptedMinecraftVersions="1.4.6",
+		version="@VERSION@-@BUILD_NUMBER@",
+		dependencies="required-after:Forestry@[1.6.5.4,);required-after:Thaumcraft@[3.0.1c,)"
+)
 public class ThaumicBees
 {
 
@@ -37,18 +43,18 @@ public class ThaumicBees
 	
 	private boolean ThaumcraftRecipesAdded;
 	private Configuration config;
-	
+	public ConfigFlags configFlags;
 
 	public ThaumicBees()
 	{
 		ThaumcraftRecipesAdded = false;
+		this.configFlags = new ConfigFlags();
 	}
 
 	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		this.config = new Configuration(event.getSuggestedConfigurationFile());
-		this.proxy.preloadTextures();
 	}
 
 	@Mod.Init
@@ -56,6 +62,7 @@ public class ThaumicBees
 	{
 		// Give ThaumcraftCompat a chance to set itself up.
 		ThaumcraftCompat.init();
+		this.proxy.preloadTextures();
 		
 		// Grab Forestry graphics file path
 		proxy.FORESTRY_GFX_ITEMS = ItemInterface.getItem("beeComb").getItem().getTextureFile();

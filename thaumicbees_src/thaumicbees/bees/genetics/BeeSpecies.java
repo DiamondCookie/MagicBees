@@ -12,22 +12,6 @@ import net.minecraft.world.World;
 
 public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 {
-
-	public static BeeSpecies Esoteric;
-	public static BeeSpecies Mysterious;
-	public static BeeSpecies Arcane;
-	public static BeeSpecies Charmed;
-	public static BeeSpecies Enchanted;
-	public static BeeSpecies Supernatural;
-	public static BeeSpecies Pupil;
-	public static BeeSpecies Scholarly;
-	public static BeeSpecies Savant;
-	public static BeeSpecies Stark;
-	public static BeeSpecies Air;
-	public static BeeSpecies Water;
-	public static BeeSpecies Earth;
-	public static BeeSpecies Fire;
-
 	private String name;
 	private String descripton;
 	private String binomial;
@@ -44,11 +28,6 @@ public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 	private HashMap products;
 	private HashMap specialty;
 	private IAllele genomeTemplate[];
-
-	public static IAlleleBeeSpecies getBaseSpecies(String name)
-	{
-		return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("forestry.species").append(name).toString());
-	}
 
 	public BeeSpecies(String speciesName, String speciesDescription, String genusName, IBranch parentBranch, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
@@ -73,7 +52,6 @@ public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 		products = new HashMap();
 		specialty = new HashMap();
 		this.genomeTemplate = new IAllele[EnumBeeChromosome.values().length];
-		AlleleManager.alleleRegistry.registerAllele(this);
 	}
 
 	public BeeSpecies setGene(EnumBeeChromosome chromosome, IAllele allele)
