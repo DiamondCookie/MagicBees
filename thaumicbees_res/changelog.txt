@@ -1,0 +1,9 @@
+1.0.0-36 - Version for Forestry 1.6.5.x beta! Wooo!
+*Retooling some bee genome stuff to take advantage of new genes
+*Adding extra thaumcraft tags to some forestry items
+*Bees now all show up correctly in the Beealyzer Slot V
+
+0.9.0-35
+*Fixed problem with relative paths when reading Thaumcraft configs.
+
+0.9.0-34 : Initial Release.

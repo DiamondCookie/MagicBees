@@ -4,6 +4,8 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import forestry.api.apiculture.*;
 import forestry.api.core.*;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.IClassification.EnumClassLevel;
 
 import java.lang.reflect.Field;
 import java.util.Random;
@@ -50,7 +52,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		try
 		{
 			Field f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
-			ThaumicBees.object.configFlags.drawParticleEffects = f.getBoolean(null);
+			ThaumicBees.object.configFlags.DrawParticleEffects = f.getBoolean(null);
 			
 			f = Class.forName("forestry.core.config.Defaults").getField("TEXTURE_PARTICLES_BEE");
 			thaumicbees.main.CommonProxy.FORESTRY_GFX_BEEEFFECTS = (String)f.get(null);
@@ -71,12 +73,7 @@ public class ThaumicBeesPlugin implements IPlugin
 	private void setupBeeSpecies()
 	{
 		IBreedingManager breedingMgr = BeeManager.breedingManager;
-		BeeBranch.Arcane = new BeeBranch("Arcane", "arcanis");
-		BeeBranch.Supernatural = new BeeBranch("Supernatural", "coeleste");
-		BeeBranch.Stark = new BeeBranch("Stark", "torridus", "Nothing of the mundane world remains in these bees.");
 		
-		BeeBranch.Elemental = new BeeBranch("Elemental", "praecantatio");
-		BeeBranch.Scholarly = new BeeBranch("Scholarly", "scholasticus");
 		
 		Allele.flowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
 		Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
@@ -85,79 +82,115 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", "Mining", Potion.digSpeed, 7, false);
 		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", "Swiftness", Potion.moveSpeed, 5, false);
 		
-		Allele.Esoteric = new BeeSpecies("Esoteric", "", "secretiore", BeeBranch.Arcane, 0,
+		IClassification familyBee = AlleleManager.alleleRegistry.getClassification("family.apidae");
+		IClassification occult = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "occult", "Arcanus");
+		occult.setParent(familyBee);
+
+		Allele.Esoteric = new BeeSpecies("Esoteric", "An unusual crossbreed which seems to have magical properties.|Apinomicon",
+				"secretiore", occult, 0,
 				0x001099, 0xcc763c, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
 		Allele.Esoteric.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 20);
 		Allele.Esoteric.setGenome(BeeGenomeManager.getTemplateEsoteric());
+		occult.addMemberSpecies(Allele.Esoteric);
 		breedingMgr.registerBeeTemplate(Allele.Esoteric.getGenome());
 		
-		Allele.Mysterious = new BeeSpecies("Mysterious", "", "mysticus", BeeBranch.Arcane, 0,
+		Allele.Mysterious = new BeeSpecies("Mysterious", "<indecipherable scribblings>|Apinomicon",
+				"mysticus", occult, 0,
 				0x762bc2, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
 		Allele.Mysterious.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 25);
 		Allele.Mysterious.setGenome(BeeGenomeManager.getTemplateMysterious());
+		occult.addMemberSpecies(Allele.Mysterious);
 		breedingMgr.registerBeeTemplate(Allele.Mysterious.getGenome());
 		
-		Allele.Arcane = new BeeSpecies("Arcane", "", "arcanus", BeeBranch.Arcane, 0,
+		Allele.Arcane = new BeeSpecies("Arcane", "The pinnacle of magical bees. It is likely these lead to more powerful mutations...|Apinomicon",
+				"arcanus", occult, 0,
 				0xd242df, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Arcane.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 30);
 		Allele.Arcane.setGenome(BeeGenomeManager.getTemplateArcane());
+		occult.addMemberSpecies(Allele.Arcane);
 		breedingMgr.registerBeeTemplate(Allele.Arcane.getGenome());
 		
-		Allele.Charmed = new BeeSpecies("Charmed", "", "larvatus", BeeBranch.Supernatural, 0,
+		IClassification otherworldly = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "coeleste", "Coeleste");
+		otherworldly.setParent(familyBee);
+		
+		Allele.Charmed = new BeeSpecies("Charmed", "<indecipherable scribblings>|Apinomicon",
+				"larvatus", otherworldly, 0,
 				0x48EEEC, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
 		Allele.Charmed.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 20);
 		Allele.Charmed.setGenome(BeeGenomeManager.getTemplateCharmed());
+		otherworldly.addMemberSpecies(Allele.Charmed);
 		breedingMgr.registerBeeTemplate(Allele.Charmed.getGenome());
 		
-		Allele.Enchanted = new BeeSpecies("Enchanted", "", "cantatus", BeeBranch.Supernatural, 0,
+		Allele.Enchanted = new BeeSpecies("Enchanted", "<indecipherable scribblings>|Apinomicon",
+				"cantatus", otherworldly, 0,
 				0x18e726, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
 		Allele.Enchanted.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 30);
 		Allele.Enchanted.setGenome(BeeGenomeManager.getTemplateEnchanted());
+		otherworldly.addMemberSpecies(Allele.Enchanted);
 		breedingMgr.registerBeeTemplate(Allele.Enchanted.getGenome());
 		
-		Allele.Supernatural = new BeeSpecies("Supernatural", "", "coeleste", BeeBranch.Supernatural, 0,
+		Allele.Supernatural = new BeeSpecies("Supernatural", "<indecipherable scribblings>|Apinomicon",
+				"coeleste", otherworldly, 0,
 				0x005614, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Supernatural.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 40);
 		Allele.Supernatural.setGenome(BeeGenomeManager.getTemplateSupernatural());
+		otherworldly.addMemberSpecies(Allele.Supernatural);
 		breedingMgr.registerBeeTemplate(Allele.Supernatural.getGenome());
+		
+		IClassification learned = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "docto", "Docto");
+		learned.setParent(familyBee);
 
-		Allele.Pupil = new BeeSpecies("Pupil", "", "disciplina", BeeBranch.Scholarly, 0,
+		Allele.Pupil = new BeeSpecies("Pupil", "\"What does that bee want with my paper?!|Yorae, Librarian",
+				"disciplina", learned, 0,
 				0xFFFF00, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				false, hideSpecies, true, true);
 		Allele.Pupil.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 20);
 		Allele.Pupil.setGenome(BeeGenomeManager.getTemplatePupil());
+		learned.addMemberSpecies(Allele.Pupil);
 		breedingMgr.registerBeeTemplate(Allele.Pupil.getGenome());
 
-		Allele.Scholarly = new BeeSpecies("Scholarly", "", "studiosis", BeeBranch.Scholarly, 0,
+		Allele.Scholarly = new BeeSpecies("Scholarly", "\"I can't be sure, but I think they might be smarter than me...\"|Yorae, Librarian",
+				"studiosis", learned, 0,
 				0x6E0000, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				false, hideSpecies, true, false);
 		Allele.Scholarly.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 25);
 		Allele.Scholarly.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT), 2);
 		Allele.Scholarly.setGenome(BeeGenomeManager.getTemplateScholarly());
+		learned.addMemberSpecies(Allele.Scholarly);
 		breedingMgr.registerBeeTemplate(Allele.Scholarly.getGenome());
 
-		Allele.Savant = new BeeSpecies("Savant", "", "philologus", BeeBranch.Scholarly, 0,
+		Allele.Savant = new BeeSpecies("Savant", "lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). Solve for honey.|Note found on Yorae's desk",
+				"philologus", learned, 0,
 				0x6E1C6D, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				true, hideSpecies, true, false);
 		Allele.Savant.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 40);
 		Allele.Savant.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT), 5);
 		Allele.Savant.setGenome(BeeGenomeManager.getTemplateSavant());
+		learned.addMemberSpecies(Allele.Savant);
 		breedingMgr.registerBeeTemplate(Allele.Savant.getGenome());
 		
-		Allele.Stark = new BeeSpecies("Stark", "", "torridus", BeeBranch.Stark, 0,
+		IClassification stark = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "torridus", "Torridus");
+		stark.setParent(familyBee);
+		
+		Allele.Stark = new BeeSpecies("Stark", "\"These are unusually attracted to shards. This warrents further investigation.\"|Azanor, Thaumaturge",
+				"torridae", stark, 0,
 				0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
 		Allele.Stark.addProduct(ItemManager.combs.getStackForType(CombType.STARK), 5);
 		Allele.Stark.setGenome(BeeGenomeManager.getTemplateStark());
 		breedingMgr.registerBeeTemplate(Allele.Stark.getGenome());
+
+		IClassification magical = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "", "");
+		magical.setParent(familyBee);
 		
-		Allele.Air = new BeeSpecies("Aura", "", "ventosa", BeeBranch.Elemental, 0,
+		Allele.Air = new BeeSpecies("Aura", "They move like the wind itself, making observers feel like slackers.|Apinomicon",
+				"ventosa", magical, 0,
 				0xD9D636, 0xA19E10, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Air.addProduct(ItemManager.combs.getStackForType(CombType.AIRY), 20);
@@ -165,7 +198,8 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.Air.setGenome(BeeGenomeManager.getTemplateAir());
 		breedingMgr.registerBeeTemplate(Allele.Air.getGenome());
 		
-		Allele.Fire = new BeeSpecies("Ignis", "", "praefervidus", BeeBranch.Elemental, 0,
+		Allele.Fire = new BeeSpecies("Ignis", "Caution: Contents of hive extremely hot.|Warning label on Azanor's apiary",
+				"praefervidus", magical, 0,
 				0xE50B0B, 0x95132F, EnumTemperature.HOT, EnumHumidity.ARID,
 				true, hideSpecies, true, true);
 		Allele.Fire.addProduct(ItemManager.combs.getStackForType(CombType.FIREY), 20);
@@ -173,7 +207,8 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.Fire.setGenome(BeeGenomeManager.getTemplateFire());
 		breedingMgr.registerBeeTemplate(Allele.Fire.getGenome());
 		
-		Allele.Water = new BeeSpecies("Aqua", "", "umidus", BeeBranch.Elemental, 0,
+		Allele.Water = new BeeSpecies("Aqua", "The purity of their produce is unparalleled.|Apinomicon",
+				"umidus", magical, 0,
 				0x36CFD9, 0x1054A1, EnumTemperature.NORMAL, EnumHumidity.DAMP,
 				true, hideSpecies, true, true);
 		Allele.Water.addProduct(ItemManager.combs.getStackForType(CombType.WATERY), 20);
@@ -181,7 +216,8 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.Water.setGenome(BeeGenomeManager.getTemplateWater());
 		breedingMgr.registerBeeTemplate(Allele.Water.getGenome());
 		
-		Allele.Earth = new BeeSpecies("Solum", "", "sordida", BeeBranch.Elemental, 0,
+		Allele.Earth = new BeeSpecies("Solum", "<indecipherable scribblings>|Apinomicon",
+				"sordida", magical, 0,
 				0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Earth.addProduct(ItemManager.combs.getStackForType(CombType.EARTHY), 30);

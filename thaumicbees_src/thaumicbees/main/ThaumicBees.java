@@ -40,20 +40,22 @@ public class ThaumicBees
 	
 	@SidedProxy(serverSide="thaumicbees.main.CommonProxy", clientSide="thaumicbees.main.ClientProxy")
 	public static CommonProxy proxy;
-	
-	private boolean ThaumcraftRecipesAdded;
+
+	private String configsPath;
 	private Configuration config;
 	public ConfigFlags configFlags;
 
 	public ThaumicBees()
 	{
-		ThaumcraftRecipesAdded = false;
 		this.configFlags = new ConfigFlags();
+		
+		this.configFlags.ThaumcraftRecipesAdded = false;
 	}
 
 	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.config = new Configuration(event.getSuggestedConfigurationFile());
 	}
 
@@ -61,7 +63,7 @@ public class ThaumicBees
 	public void init(FMLInitializationEvent event)
 	{
 		// Give ThaumcraftCompat a chance to set itself up.
-		ThaumcraftCompat.init();
+		ThaumcraftCompat.init(configsPath);
 		this.proxy.preloadTextures();
 		
 		// Grab Forestry graphics file path
@@ -81,16 +83,17 @@ public class ThaumicBees
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		// Forestry has init'd by this point.
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@ForgeSubscribe
 	public void worldLoad(net.minecraftforge.event.world.WorldEvent.Load event)
 	{
-		if (!ThaumcraftRecipesAdded)
+		if (!this.configFlags.ThaumcraftRecipesAdded)
 		{
 			ThaumicBeesPlugin.setupBeeInfusions(event.world);
-			ThaumcraftRecipesAdded = true;
+			this.configFlags.ThaumcraftRecipesAdded = true;
 		}
 	}
 }

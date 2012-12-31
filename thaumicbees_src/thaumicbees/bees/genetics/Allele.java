@@ -36,6 +36,11 @@ public class Allele implements IAllele
 		return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("forestry.species").append(name).toString());
 	}
 	
+	public static IAlleleBeeSpecies getExtraSpecies(String name)
+	{
+		return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("extrabees.species.").append(name).toString());
+	}
+	
 	public static IAllele getBaseAllele(String name)
 	{
 		return AlleleManager.getAllele(name);

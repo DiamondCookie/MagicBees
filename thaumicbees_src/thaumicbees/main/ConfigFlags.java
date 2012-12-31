@@ -2,6 +2,8 @@ package thaumicbees.main;
 
 public class ConfigFlags
 {
-	public boolean drawParticleEffects;
+	public boolean DrawParticleEffects;	
+	public boolean ThaumcraftRecipesAdded;
+	public boolean ExtraBeesInstalled;
 
 }

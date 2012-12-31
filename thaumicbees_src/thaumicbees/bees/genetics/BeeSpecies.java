@@ -24,17 +24,17 @@ public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 	private boolean hasEffect;
 	private boolean isSecret;
 	private boolean isCounted;
-	private IBranch branch;
+	private IClassification branch;
 	private HashMap products;
 	private HashMap specialty;
 	private IAllele genomeTemplate[];
 
-	public BeeSpecies(String speciesName, String speciesDescription, String genusName, IBranch parentBranch, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
+	public BeeSpecies(String speciesName, String speciesDescription, String genusName, IClassification classification, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, speciesDescription, genusName, parentBranch, 0, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
+		this(speciesName, speciesDescription, genusName, classification, 0, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
 	}
 
-	public BeeSpecies(String speciesName, String speciesDescription, String genusName, IBranch parentBranch, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
+	public BeeSpecies(String speciesName, String speciesDescription, String genusName, IClassification classification, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
 	{
 		super("species" + speciesName, isSpeciesDominant);
 		name = speciesName;
@@ -51,6 +51,7 @@ public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 		isCounted = isSpeciesCounted;
 		products = new HashMap();
 		specialty = new HashMap();
+		this.branch = classification;
 		this.genomeTemplate = new IAllele[EnumBeeChromosome.values().length];
 	}
 
@@ -148,9 +149,9 @@ public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 		return authority;
 	}
 
-	public IBranch getBranch()
+	public IClassification getBranch()
 	{
-		return branch;
+		return this.branch;
 	}
 
 	public HashMap getProducts()
