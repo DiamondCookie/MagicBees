@@ -22,6 +22,7 @@ import thaumicbees.bees.genetics.BeeMutation;
 import thaumicbees.bees.genetics.BeeSpecies;
 import thaumicbees.item.ItemManager;
 import thaumicbees.item.ItemComb.CombType;
+import thaumicbees.item.ItemDrop.DropType;
 import thaumicbees.item.ItemMiscResources.ResourceType;
 import thaumicbees.main.ThaumicBees;
 
@@ -109,6 +110,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				0xd242df, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Arcane.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 30);
+		Allele.Arcane.addSpecialty(ItemManager.drops.getStackForType(DropType.ENCHANTED, 1), 5);
 		Allele.Arcane.setGenome(BeeGenomeManager.getTemplateArcane());
 		occult.addMemberSpecies(Allele.Arcane);
 		breedingMgr.registerBeeTemplate(Allele.Arcane.getGenome());
@@ -186,7 +188,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.Stark.setGenome(BeeGenomeManager.getTemplateStark());
 		breedingMgr.registerBeeTemplate(Allele.Stark.getGenome());
 
-		IClassification magical = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "", "");
+		IClassification magical = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "thaumis", "Thaumis");
 		magical.setParent(familyBee);
 		
 		Allele.Air = new BeeSpecies("Aura", "They move like the wind itself, making observers feel like slackers.|Apinomicon",

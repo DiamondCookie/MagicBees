@@ -35,7 +35,7 @@ public class ItemWax extends Item
 	public ItemWax(int itemID)
 	{
 		super(itemID);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMSPNG);
+		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setCreativeTab(CreativeTabs.tabMisc);
 		this.setHasSubtypes(true);
 	}

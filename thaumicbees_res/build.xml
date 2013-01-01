@@ -9,7 +9,7 @@
 	
 	<property name="forge.dir"			value="${build.dir}/forge" />
 	<property name="mcp.dir"			value="${forge.dir}/mcp" />
-	<property name="forestry.dir"		value="ForestryApi-1.6.4" />
+	<property name="forestry.dir"		value="Forestry/forestry_common/core" />
 	<property name="thaumcraft.dir"		value="Thaumcraft" />
 	<property name="extrabiomes.dir"	value="ExtraBiomes" />
 	
@@ -120,23 +120,24 @@
 				<include name="**/thaumicbees/**" />
 				<include name="**/forestry/api/**" />
 				<include name="**/forestry/plugins/**" />
+				
 				<exclude name="**/thaumcraft/**" />
 			</fileset>
 		</copy>
 		
-		<!-- Copy Forestry resources -->
+		<!-- Copy ThaumicBees resources -->
         <copy todir="${classes.dir}/client">
             <fileset dir="${src.dir}/thaumicbees_res">
                 <exclude name="build.xml"/>
             	<exclude name="build.number"/>
             </fileset>
         </copy>
-    	<!-- Copy localizations -->
-    	<copy todir="${classes.dir}/client">
+    	<!-- Copy localizations (We have none yet.) -->
+    	<!--<copy todir="${classes.dir}/client">
     		<fileset dir="${lang.dir}">
                 <exclude name="README.md"/>
     		</fileset>
-    	</copy>
+    	</copy>-->
 	</target>
 	
 	<!-- Package the jars -->

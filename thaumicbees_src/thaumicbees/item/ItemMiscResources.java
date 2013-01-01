@@ -16,6 +16,7 @@ public class ItemMiscResources extends Item
 	public enum ResourceType
 	{
 		KNOWLEDGE_FRAGMENT("Lore Fragment", 2),
+		AROMATIC_LUMP("Aromatic Lump", 3),
 		;
 		
 		private ResourceType(String n, int i)
@@ -30,7 +31,7 @@ public class ItemMiscResources extends Item
 	public ItemMiscResources(int ID)
 	{
 		super(ID);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMSPNG);
+		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 		this.setHasSubtypes(true);
 	}

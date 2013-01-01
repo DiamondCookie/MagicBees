@@ -112,5 +112,50 @@ public class ThaumcraftCompat
 		// 5: "iceShard";
 		tags = new ObjectTags().add(EnumTag.COLD, 1);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, 5, tags);
+		
+		itemStack = ItemInterface.getItem("apatite");
+		tags = new ObjectTags().add(EnumTag.CRYSTAL, 2);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("impregnatedCasing");
+		tags = new ObjectTags().add(EnumTag.WOOD, 58).add(EnumTag.PLANT, 8);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("stickImpregnated");
+		tags = new ObjectTags().add(EnumTag.WOOD, 8).add(EnumTag.PLANT, 2);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("peat");
+		tags = new ObjectTags().add(EnumTag.POWER, 2).add(EnumTag.PLANT, 1).add(EnumTag.EARTH, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("ash");
+		tags = new ObjectTags().add(EnumTag.DESTRUCTION, 1).add(EnumTag.EXCHANGE, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("honeyDrop");
+		tags = new ObjectTags().add(EnumTag.EXCHANGE, 2).add(EnumTag.LIFE, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("beeswax");
+		tags = new ObjectTags().add(EnumTag.INSECT, 1).add(EnumTag.CONTROL, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("beeComb");
+		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags); // ALL combs plox.
+		
+		// BEES!
+		itemStack = ItemInterface.getItem("beeDroneGE");
+		tags = new ObjectTags().add(EnumTag.INSECT, 1).add(EnumTag.FLIGHT, 2);
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); // All drones
+		
+		tags = new ObjectTags(itemStack.itemID, -1).add(EnumTag.VALUABLE, 4);
+		itemStack = ItemInterface.getItem("beePrincessGE");
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); // All princesses.
+		
+		tags = new ObjectTags().add(EnumTag.VALUABLE, 8).add(EnumTag.INSECT, 2).add(EnumTag.FLIGHT, 4);
+		itemStack = ItemInterface.getItem("beeQueenGE");
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); //All queens.
 	}
 }
