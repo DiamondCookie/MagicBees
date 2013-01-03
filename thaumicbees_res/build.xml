@@ -1,7 +1,7 @@
 <project name="ThaumicBees" basedir="../../" default="main">
 	<property name="build.dir"			value="build" />
 	<property name="classes.dir" 		value="${build.dir}/classes" />
-	<property name="resource.dir"		value="mc.devel" />
+	<property name="resource.dir"		value="${build.dir}/mc.devel" />
 	<property name="jar.dir"			value="${build.dir}/jar" />
 	
 	<property name="src.dir"			value="ThaumicBees" />
@@ -15,8 +15,8 @@
 	
 	<property name="clientsrc.dir"		value="${mcp.dir}/src/minecraft" />
     
-	<property name="mc.version"			value="1.4.6"/>
-    <property name="forge.version"		value="6.5.0.473"/>
+	<property name="mc.version"			value="1.4.7"/>
+    <property name="forge.version"		value="6.6.0.491"/>
     <property name="thaumicbees.version"	value="1.0.0"/>
 
 	<!-- for local deployment only, not used by main -->
@@ -33,29 +33,30 @@
 		<delete dir="${clientsrc.dir}/thaumcraft" />
 		<delete dir="${clientsrc.dir}/thaumicbees" />
 	</target>
-
-	<target name="setup">
-		
+	
+	<target name="forgeclean">
 		<!-- Unzip forge -->
-		<!--<echo message="Unpacking Forge..." />
+		<echo message="Unpacking Forge..." />
         <unzip dest="${build.dir}">
             <fileset dir="${resource.dir}">
                 <include name="minecraftforge-src-${mc.version}-${forge.version}.zip"/>
             </fileset>
         </unzip>
         
-        <chmod file="${forge.dir}/install.sh" perm="+x"/> -->
+        <chmod file="${forge.dir}/install.sh" perm="+x"/>
 		
         <!-- Install forge -->
-		<!--<echo message="Installing Forge..." />
+		<echo message="Installing Forge..." />
         <exec dir="${forge.dir}" executable="cmd" osfamily="windows">
             <arg line="/c install.cmd"/>
         </exec>
         
         <exec dir="${forge.dir}" executable="sh" osfamily="unix">
             <arg value="install.sh" />
-        </exec> -->
-		
+        </exec>
+	</target>
+
+	<target name="setup">
 		<!-- Set build number -->
 		<buildnumber file="${src.dir}/thaumicbees_res/build.number"/>
 		
@@ -118,9 +119,9 @@
         <copy todir="${classes.dir}/client">
 			<fileset dir="${mcp.dir}/reobf/minecraft">
 				<include name="**/thaumicbees/**" />
-				<include name="**/forestry/api/**" />
 				<include name="**/forestry/plugins/**" />
 				
+				<exclude name="**/forestry/api/**" />
 				<exclude name="**/thaumcraft/**" />
 			</fileset>
 		</copy>

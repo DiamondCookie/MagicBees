@@ -86,17 +86,17 @@ public class ThaumcraftCompat
 		ObjectTags tags;
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.wax.shiftedIndex, WaxType.MAGIC.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.wax.itemID, WaxType.MAGIC.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 3);
-		ThaumcraftApi.registerObjectTag(ItemManager.miscResources.shiftedIndex, ItemMiscResources.ResourceType.KNOWLEDGE_FRAGMENT.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.miscResources.itemID, ItemMiscResources.ResourceType.KNOWLEDGE_FRAGMENT.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 1).add(EnumTag.INSECT, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.shiftedIndex, ItemComb.CombType.STARK.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.shiftedIndex, ItemComb.CombType.AIRY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.shiftedIndex, ItemComb.CombType.FIREY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.shiftedIndex, ItemComb.CombType.WATERY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.shiftedIndex, ItemComb.CombType.EARTHY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.STARK.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.AIRY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.FIREY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.WATERY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.EARTHY.ordinal(), tags);
 		
 		// Tag some Forestry stuff.
 		ItemStack itemStack = ItemInterface.getItem("craftingMaterial");
