@@ -1,6 +1,7 @@
 package thaumicbees.main;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
@@ -9,10 +10,14 @@ import thaumicbees.block.BlockManager;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemManager;
 import thaumicbees.item.ItemMiscResources;
+import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.item.ItemWax.WaxType;
+import thaumicbees.storage.BackpackDefinition;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.ItemInterface;
+import forestry.api.storage.BackpackManager;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -23,23 +28,19 @@ import net.minecraftforge.common.Configuration;
 
 public class ThaumcraftCompat
 {
-	private static final int blockMetaSilverleaf = 2;
-	private static final int blockMetaCinderpearl = 3;
-
-	private static int itemResourceID;
-	private static final int itemResourceQuicksilverMeta = 3;
-	private static final int itemResourceAmberMeta = 6;
-	private static final int itemResourceFragmentMeta = 9;
-	
-	private static int itemShardID;
-	private static final int itemShardAirMeta = 0;
-	private static final int itemShardFireMeta = 1;
-	private static final int itemShardWaterMeta = 2;
-	private static final int itemShardEarthMeta = 3;
-	private static final int itemShardMagicMeta = 4;
-	private static final int itemShardDullMeta = 5;
-	
-	private static int itemEssentiaBottle;
+	public enum TCBlockPlant
+	{
+		GREATWOOD_SAPLING, SILVERWOOD_SAPLING, SILVERLEAF, CINDERPEARL;
+	}
+	public enum TCMiscResource
+	{
+		ALUMENTUM, NITOR, THAUMIUM, QUICKSILVER, MAGIC_TALLOW,
+		ZOMBIE_BRAIN, AMBER, ENCHANTED_FABRIC, FLUX_FILTER, KNOWLEDGE_FRAGMENT;
+	}
+	public enum TCShardType
+	{
+		AIR, FIRE, WATER, EARTH, MAGIC, DULL;
+	}
 	
 	public static void init(String configPath)
 	{
@@ -49,35 +50,78 @@ public class ThaumcraftCompat
 		tcConfig.load();
 		
 		// Load blocks out of the Thaumcraft config to get their IDs;
-		p = tcConfig.getBlock("BlockCustomPlant", 2403);
-		BlockManager.ThaumcraftPlant = Block.blocksList[p.getInt()];
-		
-		if (BlockManager.ThaumcraftPlant == null)
-		{
-			
-		}
+		p = tcConfig.getBlock("BlockCustomPlant", 0);
+		BlockManager.tcPlant = Block.blocksList[p.getInt()];
+		p = tcConfig.getBlock("BlockCandle", 0);
+		BlockManager.tcCandle = Block.blocksList[ p.getInt()];
+		p = tcConfig.getBlock("BlockCrystal", 0);
+		BlockManager.tcCrystal = Block.blocksList[p.getInt()];
+		p = tcConfig.getBlock("BlockMarker", 0);
+		BlockManager.tcMarker = Block.blocksList[p.getInt()];
+		p = tcConfig.getBlock("BlockJar", 0);
+		BlockManager.tcJar = Block.blocksList[p.getInt()];
+		p = tcConfig.getBlock("BlockMagicalLeaves", 0);
+		BlockManager.tcLeaf = Block.blocksList[p.getInt()];
+		p = tcConfig.getBlock("BlockMagicalLog", 0);
+		BlockManager.tcLog = Block.blocksList[p.getInt()];
+		p = tcConfig.getBlock("BlockSecure", 0);
+		BlockManager.tcWarded = Block.blocksList[p.getInt()];
 		
 		// Load items out of the Thaumcraft config to get their IDs.
-		p = tcConfig.getItem("ItemEssence", 25005);
-		itemEssentiaBottle = p.getInt() + 256;
-		ItemManager.essentiaBottle = new ItemStack(itemEssentiaBottle, 1, 0);
-		p = tcConfig.getItem("ItemResource", 25007);
-		itemResourceID = p.getInt() + 256;
-		ItemManager.quicksilver = new ItemStack(itemResourceID, 1, itemResourceQuicksilverMeta);
-		ItemManager.amber = new ItemStack(itemResourceID, 1, itemResourceAmberMeta);
-		ItemManager.fragment = new ItemStack(itemResourceID, 1, itemResourceFragmentMeta);
-		p = tcConfig.getItem("ItemShard", 25008);
-		itemShardID = p.getInt() + 256;
-		ItemManager.airShard = new ItemStack(itemShardID, 1, itemShardAirMeta);
-		ItemManager.fireShard = new ItemStack(itemShardID, 1, itemShardFireMeta);
-		ItemManager.waterShard = new ItemStack(itemShardID, 1, itemShardWaterMeta);
-		ItemManager.earthShard = new ItemStack(itemShardID, 1, itemShardEarthMeta);
-		ItemManager.magicShard = new ItemStack(itemShardID, 1, itemShardMagicMeta);
-		ItemManager.dullShard = new ItemStack(itemShardID, 1, itemShardDullMeta);
+		p = tcConfig.getItem("ItemEssence", 0);
+		ItemManager.tcEssentiaBottle = Item.itemsList[p.getInt() + 256];
+		p = tcConfig.getItem("ItemResource", 0);
+		ItemManager.tcMiscResource = Item.itemsList[p.getInt() + 256];
+		p = tcConfig.getItem("ItemShard", 0);
+		ItemManager.tcShard = Item.itemsList[p.getInt() + 256];
+		p = tcConfig.getItem("BlockJarFilledItem", 0);
+		ItemManager.tcFilledJar = Item.itemsList[p.getInt() + 256];
+		p = tcConfig.getItem("ItemGolemPlacer", 0);
+		ItemManager.tcGolem = Item.itemsList[p.getInt() + 256];
+		p = tcConfig.getItem("ItemEssence", 0);
+		ItemManager.tcWispEssence = Item.itemsList[p.getInt() + 256];
+		
+		// Registers TC items with Forestry's backpacks.
+		setupBackpacks();
+	}
+	
+	public static void setupBackpacks()
+	{
+		// Add all shards and Thaumium to miner's backpack
+		String ids = ItemManager.tcShard.itemID + ":" + -1 + ";"
+				+ ItemManager.tcMiscResource.itemID + ":" + TCMiscResource.THAUMIUM.ordinal();
+		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "miner@" + ids);
+		
+		// All resources go into Thaumaturge's backpack
+		ids = ItemManager.tcMiscResource.itemID + ":" + -1 + ";"
+				+ ItemManager.tcShard.itemID + ":" + -1 + ";"
+				+ ItemManager.tcFilledJar.itemID + ":" + -1 + ";"
+				+ BlockManager.tcCrystal.blockID + ":" + -1 + ";"
+				+ BlockManager.tcJar.blockID + ":" + -1 + ";"
+				+ ItemManager.tcGolem.itemID + ":" + -1;
+		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ids);
+		
+		// Add some plants & saplings to Forester's
+		ids = BlockManager.tcPlant.blockID + ":" + "-1" + ";"
+				+ BlockManager.tcLeaf.blockID + ":" + -1 + ";"
+				+ BlockManager.tcLog.blockID + ":" + "-1";
+		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "forester@" + ids);
+		
+		// Add Wisp & brains to Hunter's
+		ids = ItemManager.tcWispEssence.itemID + ":" + -1 + ";"
+				+ ItemManager.tcMiscResource.itemID + ":" + TCMiscResource.ZOMBIE_BRAIN.ordinal();
+		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "hunter@" + ids);
+		
+		// Add Marker, warded stone, candle to builder
+		ids = BlockManager.tcCandle.blockID + ":" + -1 + ";"
+				+ BlockManager.tcMarker.blockID + ":" + -1 + ";"
+				+ BlockManager.tcWarded.blockID + ":" + -1;
+		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "builder@" + ids);
 	}
 	
 	public static void setupResearch()
 	{
+		// TODO: Get the path correct.
 		//ThaumcraftApi.registerResearchXML(CommonProxy.TCBEES_RESEARCH + "/research.xml");
 	}
 	
@@ -89,7 +133,7 @@ public class ThaumcraftCompat
 		ThaumcraftApi.registerObjectTag(ItemManager.wax.itemID, WaxType.MAGIC.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 3);
-		ThaumcraftApi.registerObjectTag(ItemManager.miscResources.itemID, ItemMiscResources.ResourceType.KNOWLEDGE_FRAGMENT.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.miscResources.itemID, ItemMiscResources.ResourceType.LORE_FRAGMENT.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 1).add(EnumTag.INSECT, 2);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.STARK.ordinal(), tags);
@@ -144,6 +188,13 @@ public class ThaumcraftCompat
 		itemStack = ItemInterface.getItem("beeComb");
 		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags); // ALL combs plox.
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, -1, tags);
+		
+		itemStack = ItemManager.combs.getStackForType(CombType.OCCULT);
+		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2).add(EnumTag.MAGIC, 2);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemManager.combs.getStackForType(CombType.STARK);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		// BEES!
 		itemStack = ItemInterface.getItem("beeDroneGE");

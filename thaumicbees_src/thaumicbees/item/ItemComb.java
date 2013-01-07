@@ -82,7 +82,7 @@ public class ItemComb extends Item
 	public int getIconIndex(ItemStack stack, int pass)
 	{
 		// 107, 108 are the base forestry honeycomb textures.
-		return 107 + pass;
+		return (pass >= 1) ? 108 : 107;
 	}
 
 	@Override

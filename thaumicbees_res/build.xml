@@ -17,7 +17,7 @@
     
 	<property name="mc.version"			value="1.4.7"/>
     <property name="forge.version"		value="6.6.0.491"/>
-    <property name="thaumicbees.version"	value="1.0.0"/>
+    <property name="thaumicbees.version"	value="1.0.701"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />

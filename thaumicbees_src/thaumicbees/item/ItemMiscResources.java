@@ -15,7 +15,7 @@ public class ItemMiscResources extends Item
 {
 	public enum ResourceType
 	{
-		KNOWLEDGE_FRAGMENT("Lore Fragment", 2),
+		LORE_FRAGMENT("Lore Fragment", 2),
 		AROMATIC_LUMP("Aromatic Lump", 3),
 		;
 		

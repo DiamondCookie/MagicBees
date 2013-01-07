@@ -1,11 +1,14 @@
 package thaumicbees.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.item.ItemDrop.DropType;
 import thaumicbees.item.ItemMiscResources.ResourceType;
 import thaumicbees.item.ItemPropolis.PropolisType;
 import thaumicbees.item.ItemWax.WaxType;
+import thaumicbees.main.ThaumcraftCompat;
+import thaumicbees.storage.BackpackDefinition;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +19,8 @@ import forestry.api.apiculture.BeeManager;
 import forestry.api.core.BlockInterface;
 import forestry.api.core.ItemInterface;
 import forestry.api.recipes.*;
+import forestry.api.storage.BackpackManager;
+import forestry.api.storage.EnumBackpackType;
 
 public class ItemManager
 {
@@ -39,16 +44,18 @@ public class ItemManager
 	public static ItemCapsule magicCapsuleIce;
 
 	//----- Thaumcraft Items -------------------
-	public static ItemStack quicksilver;
-	public static ItemStack amber;
-	public static ItemStack fragment;
-	public static ItemStack airShard;
-	public static ItemStack fireShard;
-	public static ItemStack waterShard;
-	public static ItemStack earthShard;
-	public static ItemStack magicShard;
-	public static ItemStack dullShard;
-	public static ItemStack essentiaBottle;
+	public static Item tcFilledJar;
+	public static Item tcMiscResource;
+	public static Item tcEssentiaBottle;
+	public static Item tcShard;
+	public static Item tcGolem;
+	public static Item tcWispEssence;
+	
+	//----- Backpacks --------------------------
+	public static Item thaumaturgeBackpackT1;
+	public static Item thaumaturgeBackpackT2;
+	
+	public static BackpackDefinition thaumaturgeBackpackDef;
 	
 	public ItemManager() { }
 	
@@ -62,11 +69,20 @@ public class ItemManager
 		ItemManager.propolis = new ItemPropolis(configFile.getItem("propolis", itemIDBase++).getInt());
 		ItemManager.drops = new ItemDrop(configFile.getItem("drop", itemIDBase++).getInt());
 		ItemManager.miscResources = new ItemMiscResources(configFile.getItem("miscResources", itemIDBase++).getInt());
+		
+		BackpackDefinition def = new BackpackDefinition("thaumaturge", "Thaumaturge's Backpack", 0x8700C6);
+		ItemManager.thaumaturgeBackpackT1 = 
+				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack1", itemIDBase++).getInt(),
+				def, EnumBackpackType.T1);
+		ItemManager.thaumaturgeBackpackT2 = 
+				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack2", itemIDBase++).getInt(),
+				def, EnumBackpackType.T2);
 	}
 	
 	public static void setupCrafting()
 	{
-		ItemStack output = ItemManager.essentiaBottle.copy();
+		ItemStack inputStack; // Variable to hold forestry items
+		ItemStack output = new ItemStack(tcEssentiaBottle);
 		output.stackSize = 8;
 		GameRegistry.addRecipe(output, new Object[]
 				{
@@ -75,7 +91,7 @@ public class ItemManager
 					'C', Item.clay,
 					'P', Block.thinGlass
 				});
-		output = ItemManager.essentiaBottle.copy();
+		output = new ItemStack(tcEssentiaBottle);
 		output.stackSize = 4;
 		GameRegistry.addRecipe(output, new Object[]
 			{
@@ -83,14 +99,23 @@ public class ItemManager
 				'W', ItemManager.wax
 			});
 		
-		output = ItemManager.fragment.copy();
+		output = new ItemStack(tcMiscResource, 1, ThaumcraftCompat.TCMiscResource.KNOWLEDGE_FRAGMENT.ordinal());
 		GameRegistry.addShapelessRecipe(output, new Object[] 
 				{ 
-				ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT),
-				ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT),
-				ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT),
-				ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT)
+				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
+				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
+				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
+				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT)
 				});
+		
+		// T1 Thaumaturge's backpack
+		GameRegistry.addRecipe(new ItemStack(ItemManager.thaumaturgeBackpackT1), new Object[] {
+			"SWS", "NCN", "SWS",
+			'S', Item.silk,
+			'W', Block.cloth,
+			'N', Item.goldNugget,
+			'C', Block.chest
+			});
 		
 		// 20 is the 'average' time to centrifuge a comb.
 		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.OCCULT),
@@ -118,28 +143,39 @@ public class ItemManager
 				new ItemStack[] {ItemManager.wax.getStackForType(WaxType.MAGIC), ItemManager.propolis.getStackForType(PropolisType.EARTH) },
 				new int[] { 100, 65 });
 		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.STARK),
-				new ItemStack[] {ItemManager.dullShard},
+				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.DULL.ordinal())},
 				new int[] { 20 });
 		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.AIR),
-				new ItemStack[] {ItemManager.airShard},
+				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.AIR.ordinal())},
 				new int[] { 18 });
 		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.FIRE),
-				new ItemStack[] {ItemManager.fireShard},
+				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.FIRE.ordinal())},
 				new int[] { 18 });
 		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.WATER),
-				new ItemStack[] {ItemManager.waterShard},
+				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.WATER.ordinal())},
 				new int[] { 18 });
 		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.EARTH),
-				new ItemStack[] {ItemManager.earthShard},
+				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.EARTH.ordinal())},
 				new int[] { 18 });
 		
 		// Squeezer recipes
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {ItemManager.propolis.getStackForType(PropolisType.FIRE) },
-				new LiquidStack(Block.lavaStill, 250), ItemManager.fireShard, 15);
+				new LiquidStack(Block.lavaStill, 250),
+				new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.FIRE.ordinal()), 15);
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {ItemManager.propolis.getStackForType(PropolisType.WATER) },
-				new LiquidStack(Block.waterStill, 1000), ItemManager.waterShard, 25);
+				new LiquidStack(Block.waterStill, 500),
+				new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.WATER.ordinal()), 25);
 		
 		// Carpenter recipes
+		inputStack = ItemInterface.getItem("craftingMaterial");
+		inputStack.setItemDamage(3); // Set to Silk Mesh
+		output = new ItemStack(thaumaturgeBackpackT2);
+		RecipeManagers.carpenterManager.addRecipe(200, new LiquidStack(Block.waterStill.blockID, 1000), null, output, new Object[] {
+			"WXW", "WTW", "WWW",
+			'X', Item.diamond,
+			'W', inputStack,
+			'T', new ItemStack(ItemManager.thaumaturgeBackpackT1) });
+		
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 24;
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
@@ -148,7 +184,7 @@ public class ItemManager
 			'S', Item.silk });
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 6;
-		ItemStack inputStack = ItemInterface.getItem("craftingMaterial");
+		inputStack = ItemInterface.getItem("craftingMaterial");
 		inputStack.setItemDamage(2); // Set to Silk Wisp
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
 			"WSW",

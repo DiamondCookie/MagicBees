@@ -24,6 +24,8 @@ import thaumicbees.item.ItemManager;
 import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.item.ItemDrop.DropType;
 import thaumicbees.item.ItemMiscResources.ResourceType;
+import thaumicbees.main.ThaumcraftCompat;
+import thaumicbees.main.ThaumcraftCompat.TCMiscResource;
 import thaumicbees.main.ThaumicBees;
 
 import net.minecraft.block.Block;
@@ -61,7 +63,6 @@ public class ThaumicBeesPlugin implements IPlugin
 		catch (Exception e)
 		{
 			// Could not get Forestry config value.
-			
 		}
 	}
 
@@ -162,7 +163,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				0x6E0000, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				false, hideSpecies, true, false);
 		Allele.Scholarly.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 25);
-		Allele.Scholarly.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT), 2);
+		Allele.Scholarly.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 2);
 		Allele.Scholarly.setGenome(BeeGenomeManager.getTemplateScholarly());
 		learned.addMemberSpecies(Allele.Scholarly);
 		breedingMgr.registerBeeTemplate(Allele.Scholarly.getGenome());
@@ -172,7 +173,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				0x6E1C6D, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				true, hideSpecies, true, false);
 		Allele.Savant.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 40);
-		Allele.Savant.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.KNOWLEDGE_FRAGMENT), 5);
+		Allele.Savant.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 5);
 		Allele.Savant.setGenome(BeeGenomeManager.getTemplateSavant());
 		learned.addMemberSpecies(Allele.Savant);
 		breedingMgr.registerBeeTemplate(Allele.Savant.getGenome());
@@ -196,7 +197,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				0xD9D636, 0xA19E10, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Air.addProduct(ItemManager.combs.getStackForType(CombType.AIRY), 20);
-		Allele.Air.addSpecialty(ItemManager.quicksilver, 10);
+		Allele.Air.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.QUICKSILVER.ordinal()), 10);
 		Allele.Air.setGenome(BeeGenomeManager.getTemplateAir());
 		breedingMgr.registerBeeTemplate(Allele.Air.getGenome());
 		
@@ -223,7 +224,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Earth.addProduct(ItemManager.combs.getStackForType(CombType.EARTHY), 30);
-		Allele.Earth.addSpecialty(ItemManager.amber, 10);
+		Allele.Earth.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.AMBER.ordinal()), 10);
 		Allele.Earth.setGenome(BeeGenomeManager.getTemplateEarth());
 		breedingMgr.registerBeeTemplate(Allele.Earth.getGenome());
 	}
