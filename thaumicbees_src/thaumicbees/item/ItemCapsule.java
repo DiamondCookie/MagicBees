@@ -40,22 +40,34 @@ public class ItemCapsule extends Item
 	public enum Liquid
 	{  // Incidentally, Item meta is the liquid ID.
 		EMPTY("", "Empty",  16),
+		// Vanilla
 		WATER("water", "Water", 17),
 		LAVA("lava", "Lava", 18),
+		// Forestry
 		BIOMASS("biomass", "Biomass", 19),
 		BIOFUEL("biofuel", "Biofuel", 20),
+		// Buildcraft
 		OIL("Oil", "Oil", 21),
 		FUEL("Fuel", "Fuel", 22),
+		// More Forestry
 		SEEDOIL("seedoil", "Seed Oil", 23),
 		HONEY("honey", "Honey", 24),
 		JUICE("juice", "Juice", 25),
-		CRUSHEDICE("", "Crushed Ice", 26),
+		CRUSHEDICE("ice", "Crushed Ice", 26),
 		MILK("milk", "Milk", 27),
+		// ExtraBees liquids
+		ACID("acid", "Acid", 28),
+		POISON("poison", "Poison", 29),
+		LIQUIDNITROGEN("liquidNitrogen", "Liquid Nitrogen", 30),
+		DNA("liquidDNA", "Liquid DNA", 31),
+		// Railcraft
+		CREOSOTEOIL("Creosote Oil", "Creosote Oil", 32),
+		STEAM("Steam", "Steam", 33),
 		;
 		public String liquidID;
 		public String displayName;
 		public int iconIdx;
-		public boolean available = true;
+		public boolean available = false;
 		
 		private Liquid(String l, String display, int idx)
 		{
@@ -110,7 +122,7 @@ public class ItemCapsule extends Item
 					liquid = LiquidDictionary.getLiquid(l.liquidID, this.capsuleType.capacity);
 					break;
 			}
-			
+
 			if (liquid != null)
 			{
 				filled = new ItemStack(this, 1, l.ordinal());
@@ -120,12 +132,11 @@ public class ItemCapsule extends Item
 				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);
 				RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] {filled} , liquid,
 						ItemManager.wax.getStackForType(ItemWax.WaxType.MAGIC), 20);
-			}
-			else
-			{
-				l.available = false;
+				l.available = true;
 			}
 		}
+		// Empty will be set to unavailable. Obviously, it always is.
+		Liquid.EMPTY.available = true;
 	}
 
 	@Override

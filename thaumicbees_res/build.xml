@@ -32,6 +32,7 @@
 		<delete dir="${clientsrc.dir}/forestry" />
 		<delete dir="${clientsrc.dir}/thaumcraft" />
 		<delete dir="${clientsrc.dir}/thaumicbees" />
+		<delete dir="${classes.dir}" />
 	</target>
 	
 	<target name="forgeclean">

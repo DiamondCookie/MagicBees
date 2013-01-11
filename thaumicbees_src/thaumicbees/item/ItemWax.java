@@ -66,7 +66,6 @@ public class ItemWax extends Item
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int id, CreativeTabs tabs, List list)
 	{
-		super.getSubItems(id, tabs, list);
 		for (WaxType type : WaxType.values())
 		{
 			list.add(this.getStackForType(type));

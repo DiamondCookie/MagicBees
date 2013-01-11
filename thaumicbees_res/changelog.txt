@@ -1,9 +1,31 @@
-1.0.0-36 - Version for Forestry 1.6.5.x beta! Wooo!
-*Retooling some bee genome stuff to take advantage of new genes
-*Adding extra thaumcraft tags to some forestry items
-*Bees now all show up correctly in the Beealyzer Slot V
+1.1.702-67 - Replaced 1.1.702-62
+Additional Magic Capsules, featuring ExtraBees liquids, and RailCraft Creosote & Steam. (Yes, steam capsules. It's magic. That's how. :P)
+Tagged additional Forestry items with Thaumcraft aspects.
 
-0.9.0-35
-*Fixed problem with relative paths when reading Thaumcraft configs.
+1.1.702-62
+Added Magic Capsules!
+Compatible with BuildCraft and Forestry liquids, they function almost the same way as refactory capsules, except that they can store 2 buckets' worth of liquid. As such, you cannot right-click with them to scoop up water or lava, but you can use them in bottlers, carpenters, Railcraft's Iron Tanks, Thermal Expansion's liquid transposers, and other things that support the Forge Liquid Dictionary. They can be useful for storing larger amounts of liquids in chests and things. I am also able to add other liquids to them in the future, and liquids from mods that are not present will not appear in the Creative inventory or the NEI listings.
 
-0.9.0-34 : Initial Release.
+1.0.701-56
+Update to Forestry 1.7.0.1/1.7.0.2
+
+Added all kinds of backpack integration for Thaumcraft, including a new Thaumaturge's Backpack and Woven variety. These will suck up shards, Thaumcraft resources such as quicksilver, amber, zombie brains, research fragments and other goodies. Other TC items such as marker blocks, warded stone, candles, logs, leaves and plants also can fall into Forestry's default backpacks as appropriate. (I may have missed some other obvious items.)
+
+1.0.70-53
+Update to Forestry 1.7.0.0
+
+1.0.0-50
+-Added Thaumcraft aspects to some Forestry items, notably combs and bees. (Finally, something to use those extra drones for!)
+-Added another Swarmer inducer item - craftable via carpenter using liquid honey, Royal Jelly, Pollen and Enchanting Drops from Arcane bees. 8 times more effective than Royal Jelly alone!
+-Added carpenter recipe for candles using magic wax. Same patterns as with beeswax.
+
+1.0.0-48
+-Support for Forestry 1.6.5.5+
+-Extra alles for bee mutations!
+-Thaumcraft aspects associated with some Forestry items!
+
+1.0.0-35
+-Bugfix version to account for launcher jars located outside of expected folder. Replaced 1.0.0-34
+
+1.0.0-34
+-Initial Release

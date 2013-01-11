@@ -16,6 +16,7 @@ import thaumicbees.storage.BackpackDefinition;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.core.BlockInterface;
 import forestry.api.core.ItemInterface;
 import forestry.api.storage.BackpackManager;
 
@@ -142,6 +143,13 @@ public class ThaumcraftCompat
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.WATERY.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.EARTHY.ordinal(), tags);
 		
+		// Tagging capsules.
+		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
+		ThaumcraftApi.registerComplexObjectTag(ItemManager.magicCapsule.itemID, -1, tags);
+		
+		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.VOID, 2);
+		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, 0, tags);
+		
 		// Tag some Forestry stuff.
 		ItemStack itemStack = ItemInterface.getItem("craftingMaterial");
 		tags = new ObjectTags().add(EnumTag.ELDRITCH, 1).add(EnumTag.DESTRUCTION, 1);
@@ -182,7 +190,40 @@ public class ThaumcraftCompat
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("beeswax");
-		tags = new ObjectTags().add(EnumTag.INSECT, 1).add(EnumTag.CONTROL, 1);
+		tags = new ObjectTags().add(EnumTag.INSECT, 1).add(EnumTag.CONTROL, 2);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("refractoryWax");
+		tags = new ObjectTags().add(EnumTag.FIRE, 3);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("phosphor");
+		tags = new ObjectTags().add(EnumTag.FIRE, 2).add(EnumTag.DESTRUCTION, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+
+		itemStack = ItemInterface.getItem("waxCapsule");
+		tags = new ObjectTags().add(EnumTag.CONTROL, 1).add(EnumTag.VOID, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("waxCapsuleWater");
+		tags = new ObjectTags().add(EnumTag.CONTROL, 1).add(EnumTag.VOID, 1).add(EnumTag.WATER, 4);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		itemStack = ItemInterface.getItem("refractoryEmpty");
+		tags = new ObjectTags().add(EnumTag.FIRE, 1).add(EnumTag.CONTROL, 1).add(EnumTag.VOID, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("refractoryWater");
+		tags = new ObjectTags().add(EnumTag.FIRE, 1).add(EnumTag.VOID, 1).add(EnumTag.WATER, 4);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("refractoryLava");
+		tags = new ObjectTags().add(EnumTag.VOID, 1).add(EnumTag.FIRE, 7).add(EnumTag.WATER, 1).add(EnumTag.ROCK, 2);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+
+		itemStack = ItemInterface.getItem("canEmpty");
+		tags = new ObjectTags().add(EnumTag.METAL, 1).add(EnumTag.VOID, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("canWater");
+		tags = new ObjectTags().add(EnumTag.METAL, 1).add(EnumTag.VOID, 1).add(EnumTag.WATER, 4);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		itemStack = ItemInterface.getItem("canLava");
+		tags = new ObjectTags().add(EnumTag.METAL, 1).add(EnumTag.VOID, 1).add(EnumTag.FIRE, 6).add(EnumTag.WATER, 1).add(EnumTag.ROCK, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("beeComb");
@@ -195,6 +236,21 @@ public class ThaumcraftCompat
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		itemStack = ItemManager.combs.getStackForType(CombType.STARK);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
+		
+		// Forestry's wood		
+		itemStack = BlockInterface.getBlock("log1");		
+		tags = new ObjectTags().add(EnumTag.WOOD, 8);
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		itemStack = BlockInterface.getBlock("log2"); // Same tags
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		itemStack = BlockInterface.getBlock("log3"); // Same tags.
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		itemStack = BlockInterface.getBlock("log4"); // Still same tags.
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		
+		itemStack = ItemInterface.getItem("sapling");
+		tags = new ObjectTags().add(EnumTag.PLANT, 4).add(EnumTag.WOOD, 2);
+		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
 		
 		// BEES!
 		itemStack = ItemInterface.getItem("beeDroneGE");
