@@ -84,6 +84,9 @@ public class ThaumicBees
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		// Item Manager has a couple tasks left to it at this point...
+		ItemManager.postInit();
+		
 		// Forestry has init'd by this point.
 		MinecraftForge.EVENT_BUS.register(this);
 	}

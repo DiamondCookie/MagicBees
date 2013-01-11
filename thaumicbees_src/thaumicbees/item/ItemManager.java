@@ -32,16 +32,6 @@ public class ItemManager
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
-	public static ItemCapsule magicCapsuleWater;
-	public static ItemCapsule magicCapsuleLava;
-	public static ItemCapsule magicCapsuleBiomass;
-	public static ItemCapsule magicCapsuleBiofuel;
-	public static ItemCapsule magicCapsuleOil;
-	public static ItemCapsule magicCapsuleFuel;
-	public static ItemCapsule magicCapsuleSeedOil;
-	public static ItemCapsule magicCapsuleHoney;
-	public static ItemCapsule magicCapsuleJuice;
-	public static ItemCapsule magicCapsuleIce;
 
 	//----- Thaumcraft Items -------------------
 	public static Item tcFilledJar;
@@ -70,6 +60,7 @@ public class ItemManager
 		ItemManager.drops = new ItemDrop(configFile.getItem("drop", itemIDBase++).getInt());
 		ItemManager.miscResources = new ItemMiscResources(configFile.getItem("miscResources", itemIDBase++).getInt());
 		
+		// 0x8700C6 = purpleish.
 		BackpackDefinition def = new BackpackDefinition("thaumaturge", "Thaumaturge's Backpack", 0x8700C6);
 		ItemManager.thaumaturgeBackpackT1 = 
 				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack1", itemIDBase++).getInt(),
@@ -77,11 +68,15 @@ public class ItemManager
 		ItemManager.thaumaturgeBackpackT2 = 
 				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack2", itemIDBase++).getInt(),
 				def, EnumBackpackType.T2);
+		
+		ItemManager.magicCapsule = new ItemCapsule(ItemCapsule.Type.MAGIC, configFile.getItem("magicCapsule", itemIDBase++).getInt());
 	}
 	
 	public static void setupCrafting()
 	{
 		ItemStack inputStack; // Variable to hold forestry items
+		
+		// Essentia bottles
 		ItemStack output = new ItemStack(tcEssentiaBottle);
 		output.stackSize = 8;
 		GameRegistry.addRecipe(output, new Object[]
@@ -98,6 +93,14 @@ public class ItemManager
 				" W ", "W W", " W ",
 				'W', ItemManager.wax
 			});
+		
+		// Magic capsules
+		output = new ItemStack(magicCapsule); output.stackSize = 4;
+		GameRegistry.addRecipe(output, new Object[]
+				{
+				"WWW",
+				'W', ItemManager.wax.getStackForType(ItemWax.WaxType.MAGIC)
+				});
 		
 		output = new ItemStack(tcMiscResource, 1, ThaumcraftCompat.TCMiscResource.KNOWLEDGE_FRAGMENT.ordinal());
 		GameRegistry.addShapelessRecipe(output, new Object[] 
@@ -207,6 +210,12 @@ public class ItemManager
 		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
 		BeeManager.inducers.put(output, 80);
 
+	}
+	
+	public static void postInit()
+	{
+		// Forestry liquids aren't registered until PostInit, that's why we wait until now to register them.
+		ItemManager.magicCapsule.setUpLiquids();
 	}
 
 }

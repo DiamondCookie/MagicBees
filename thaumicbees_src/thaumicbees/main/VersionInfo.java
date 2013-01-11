@@ -9,6 +9,6 @@ public class VersionInfo
 	
 	public static final String Logo = "/gfx/thaumicbees/logo.png";
 	
-	public static final String Depends = "required-after:Forestry@[1.7.0.1,);required-after:Thaumcraft@[3.0.1c,)";
+	public static final String Depends = "required-after:Forestry@[1.7.0.2,);required-after:Thaumcraft@[3.0.1c,)";
 
 }
