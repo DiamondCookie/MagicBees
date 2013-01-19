@@ -1,4 +1,4 @@
-package thaumicbees.main;
+package thaumicbees.compat;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +10,9 @@ import thaumicbees.block.BlockManager;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemManager;
 import thaumicbees.item.ItemMiscResources;
+import thaumicbees.item.ItemCapsule.Liquid;
 import thaumicbees.item.ItemComb.CombType;
+import thaumicbees.item.ItemDrop.DropType;
 import thaumicbees.item.ItemWax.WaxType;
 import thaumicbees.storage.BackpackDefinition;
 
@@ -29,21 +31,8 @@ import net.minecraftforge.common.Configuration;
 
 public class ThaumcraftCompat
 {
-	public enum TCBlockPlant
-	{
-		GREATWOOD_SAPLING, SILVERWOOD_SAPLING, SILVERLEAF, CINDERPEARL;
-	}
-	public enum TCMiscResource
-	{
-		ALUMENTUM, NITOR, THAUMIUM, QUICKSILVER, MAGIC_TALLOW,
-		ZOMBIE_BRAIN, AMBER, ENCHANTED_FABRIC, FLUX_FILTER, KNOWLEDGE_FRAGMENT;
-	}
-	public enum TCShardType
-	{
-		AIR, FIRE, WATER, EARTH, MAGIC, DULL;
-	}
 	
-	public static void init(String configPath)
+	public static void parseThaumcraftConfig(String configPath)
 	{
 		Configuration tcConfig = new Configuration(new File(configPath + "/Thaumcraft.cfg"));
 		Property p;
@@ -81,9 +70,6 @@ public class ThaumcraftCompat
 		ItemManager.tcGolem = Item.itemsList[p.getInt() + 256];
 		p = tcConfig.getItem("ItemEssence", 0);
 		ItemManager.tcWispEssence = Item.itemsList[p.getInt() + 256];
-		
-		// Registers TC items with Forestry's backpacks.
-		setupBackpacks();
 	}
 	
 	public static void setupBackpacks()
@@ -129,32 +115,45 @@ public class ThaumcraftCompat
 	public static void setupAspects()
 	{
 		ObjectTags tags;
+		ItemStack itemStack;
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerObjectTag(ItemManager.wax.itemID, WaxType.MAGIC.ordinal(), tags);
 		
+		tags = new ObjectTags().add(EnumTag.MAGIC, 1);
+		ThaumcraftApi.registerObjectTag(ItemManager.drops.itemID, DropType.ENCHANTED.ordinal(), tags);
+		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 1);
+		ThaumcraftApi.registerObjectTag(ItemManager.drops.itemID, DropType.INTELLECT.ordinal(), tags);
+		
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 3);
 		ThaumcraftApi.registerObjectTag(ItemManager.miscResources.itemID, ItemMiscResources.ResourceType.LORE_FRAGMENT.ordinal(), tags);
 		
-		tags = new ObjectTags().add(EnumTag.MAGIC, 1).add(EnumTag.INSECT, 2);
+		tags = new ObjectTags().add(EnumTag.MAGIC, 1).add(EnumTag.INSECT, 2).add(EnumTag.CONTROL, 1);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.STARK.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.AIRY.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.FIREY.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.WATERY.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.EARTHY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, ItemComb.CombType.INFUSED.ordinal(), tags);
 		
 		// Tagging capsules.
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerComplexObjectTag(ItemManager.magicCapsule.itemID, -1, tags);
-		
+
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.VOID, 2);
 		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, 0, tags);
+		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.WATER, 2);
+		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, Liquid.WATER.ordinal(), tags);
+		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.FIRE, 2);
+		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, Liquid.LAVA.ordinal(), tags);
 		
 		// Tag some Forestry stuff.
-		ItemStack itemStack = ItemInterface.getItem("craftingMaterial");
-		tags = new ObjectTags().add(EnumTag.ELDRITCH, 1).add(EnumTag.DESTRUCTION, 1);
+		// Pulsating propolis
+		itemStack = ItemInterface.getItem("propolis");
+		tags = new ObjectTags().add(EnumTag.ELDRITCH, 1).add(EnumTag.CONTROL, 1);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, 2	, tags);
+		itemStack = ItemInterface.getItem("craftingMaterial");
 		// 0: pulsatingDust
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, 0, tags);
 		// 1: "pulsatingMesh";
 		tags = new ObjectTags().add(EnumTag.ELDRITCH, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, 1, tags);
@@ -257,7 +256,7 @@ public class ThaumcraftCompat
 		tags = new ObjectTags().add(EnumTag.INSECT, 1).add(EnumTag.FLIGHT, 2);
 		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); // All drones
 		
-		tags = new ObjectTags(itemStack.itemID, -1).add(EnumTag.VALUABLE, 4);
+		tags = new ObjectTags(itemStack.itemID, -1).add(EnumTag.VALUABLE, 4); // Get drone tags & add valuable
 		itemStack = ItemInterface.getItem("beePrincessGE");
 		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); // All princesses.
 		

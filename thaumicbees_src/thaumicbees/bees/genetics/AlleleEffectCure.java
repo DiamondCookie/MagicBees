@@ -2,7 +2,6 @@ package thaumicbees.bees.genetics;
 
 import java.util.List;
 
-import thaumicbees.bees.EffectData;
 import thaumicbees.main.ThaumicBees;
 
 import net.minecraft.entity.Entity;
@@ -22,7 +21,7 @@ public class AlleleEffectCure extends AlleleEffect
 
 	public AlleleEffectCure(String id, boolean isDominant)
 	{
-		super(id, isDominant);
+		super(id, isDominant, "Cleansing");
 	}
 
 	@Override
@@ -36,35 +35,13 @@ public class AlleleEffectCure extends AlleleEffect
 	}
 
 	@Override
-	public String getIdentifier()
-	{
-		return "Cleansing";
-	}
-
-	@Override
 	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
 		int count = storedData.getInteger(0);
 		
 		if (count == 200)
 		{
-			// Get the size of the affected area
-			int[] area = genome.getTerritory();
-			
-			// Calculate offset
-			int[] min = new int[3];
-			int[] max = new int[3];
-			min[0] = housing.getXCoord() - area[0] / 2;
-			max[0] = housing.getXCoord() + area[0] / 2;
-			
-			min[1] = housing.getYCoord() - area[1] / 2;
-			max[1] = housing.getYCoord() + area[1] / 2;
-			
-			min[2] = housing.getZCoord() - area[2] / 2;
-			max[2] = housing.getZCoord() + area[2] / 2;
-			
-			AxisAlignedBB bounds = AxisAlignedBB.getAABBPool().addOrModifyAABBInPool(min[0], min[1], min[2], max[0], max[1], max[2]);
-			List<Entity> entityList = housing.getWorld().getEntitiesWithinAABB(EntityPlayer.class, bounds);
+			List<Entity> entityList = this.getEntitiesWithinRange(genome, housing);
 			
 			for (Entity e : entityList)
 			{

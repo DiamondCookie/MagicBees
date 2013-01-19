@@ -16,16 +16,24 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.bees.genetics.Allele;
 import thaumicbees.bees.genetics.AlleleEffectCure;
 import thaumicbees.bees.genetics.AlleleEffectPotion;
+import thaumicbees.bees.genetics.AlleleEffectSpawnMob;
+import thaumicbees.bees.genetics.AlleleEffectSpawnWisp;
 import thaumicbees.bees.genetics.AlleleFlower;
+import thaumicbees.bees.genetics.AlleleInteger;
 import thaumicbees.bees.genetics.BeeGenomeManager;
 import thaumicbees.bees.genetics.BeeMutation;
 import thaumicbees.bees.genetics.BeeSpecies;
+import thaumicbees.bees.genetics.MoonPhase;
+import thaumicbees.compat.TCEntity;
+import thaumicbees.compat.TCShardType;
+import thaumicbees.compat.ThaumcraftCompat;
+import thaumicbees.compat.TCMiscResource;
+import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemManager;
 import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.item.ItemDrop.DropType;
 import thaumicbees.item.ItemMiscResources.ResourceType;
-import thaumicbees.main.ThaumcraftCompat;
-import thaumicbees.main.ThaumcraftCompat.TCMiscResource;
+import thaumicbees.item.ItemPollen.PollenType;
 import thaumicbees.main.ThaumicBees;
 
 import net.minecraft.block.Block;
@@ -37,8 +45,8 @@ import net.minecraft.world.World;
 
 public class ThaumicBeesPlugin implements IPlugin
 {
-
 	private static int defaultBodyColour = 0xFF6E0D;
+	private static int malevolentBodyColour = 0xe15236;
 	private static boolean hideSpecies = true;
 
 	public boolean isAvailable()
@@ -55,7 +63,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		try
 		{
 			Field f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
-			ThaumicBees.object.configFlags.DrawParticleEffects = f.getBoolean(null);
+			ThaumicBees.getInstanceConfig().DrawParticleEffects = f.getBoolean(null);
 			
 			f = Class.forName("forestry.core.config.Defaults").getField("TEXTURE_PARTICLES_BEE");
 			thaumicbees.main.CommonProxy.FORESTRY_GFX_BEEEFFECTS = (String)f.get(null);
@@ -68,21 +76,45 @@ public class ThaumicBeesPlugin implements IPlugin
 
 	public void postInit()
 	{
+		setupAdditionalAlleles();
 		setupBeeSpecies();
 		setupBeeMutations();
+	}
+	
+	private void setupAdditionalAlleles()
+	{
+		Allele.fertilityHighDominant = new AlleleInteger("fertilityHighDominant", 3, true);
+		
+		Allele.flowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
+		Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
+		// TODO: Once TC API is out, write new provider for aura nodes
+		Allele.flowerAuraNode = Allele.flowerThaumcraft;
+		// TODO: Onec TC API is out, write provider to purify node
+		Allele.flowerNodePurify = Allele.flowerThaumcraft;
+		// TODO: Once TC API is out, write provider to flux up node
+		Allele.flowerNodeFluxify = Allele.flowerThaumcraft;
+		
+		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
+		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", "Mining", Potion.digSpeed, 7, false);
+		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", "Swiftness", Potion.moveSpeed, 5, false);
+
+		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, "Brainy", TCEntity.BRAINY_ZOMBIE.entityID);
+		Allele.spawnBrainyZombie.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null);
+		
+		Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, "Batty", TCEntity.FIREBAT.entityID);
+		Allele.spawnBats.setThrottle(300).setSpawnsOnPlayerNear("Bat");
+		
+		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, "Wispy", TCEntity.WISP.entityID);
+		Allele.spawnWisp.setThrottle(1800);
+		
+		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghastly", "Ghast");
+		Allele.spawnGhast.setThrottle(840);
 	}
 
 	private void setupBeeSpecies()
 	{
 		IBreedingManager breedingMgr = BeeManager.breedingManager;
-		
-		
-		Allele.flowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
-		Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
-		
-		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
-		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", "Mining", Potion.digSpeed, 7, false);
-		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", "Swiftness", Potion.moveSpeed, 5, false);
+		ItemStack forestryItem;
 		
 		IClassification familyBee = AlleleManager.alleleRegistry.getClassification("family.apidae");
 		IClassification occult = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "occult", "Arcanus");
@@ -97,7 +129,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		occult.addMemberSpecies(Allele.Esoteric);
 		breedingMgr.registerBeeTemplate(Allele.Esoteric.getGenome());
 		
-		Allele.Mysterious = new BeeSpecies("Mysterious", "<indecipherable scribblings>|Apinomicon",
+		Allele.Mysterious = new BeeSpecies("Mysterious", "These bees have been to the end of the world and back, and their power has grown.|Apinomicon",
 				"mysticus", occult, 0,
 				0x762bc2, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
@@ -106,12 +138,12 @@ public class ThaumicBeesPlugin implements IPlugin
 		occult.addMemberSpecies(Allele.Mysterious);
 		breedingMgr.registerBeeTemplate(Allele.Mysterious.getGenome());
 		
-		Allele.Arcane = new BeeSpecies("Arcane", "The pinnacle of magical bees. It is likely these lead to more powerful mutations...|Apinomicon",
+		Allele.Arcane = new BeeSpecies("Arcane", "The pinnacle of magical bees. It is likely these lead to more powerful mutations...|Azanor, Master Thaumaturge",
 				"arcanus", occult, 0,
 				0xd242df, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Arcane.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 30);
-		Allele.Arcane.addSpecialty(ItemManager.drops.getStackForType(DropType.ENCHANTED, 1), 5);
+		Allele.Arcane.addSpecialty(ItemManager.drops.getStackForType(DropType.ENCHANTED, 1), 9);
 		Allele.Arcane.setGenome(BeeGenomeManager.getTemplateArcane());
 		occult.addMemberSpecies(Allele.Arcane);
 		breedingMgr.registerBeeTemplate(Allele.Arcane.getGenome());
@@ -119,7 +151,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		IClassification otherworldly = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "coeleste", "Coeleste");
 		otherworldly.setParent(familyBee);
 		
-		Allele.Charmed = new BeeSpecies("Charmed", "<indecipherable scribblings>|Apinomicon",
+		Allele.Charmed = new BeeSpecies("Charmed", "Your first experiments in Thaumaturgical Apiculture have yielded fruit. Buzzing fruit.|Apinomicon",
 				"larvatus", otherworldly, 0,
 				0x48EEEC, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
@@ -128,7 +160,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		otherworldly.addMemberSpecies(Allele.Charmed);
 		breedingMgr.registerBeeTemplate(Allele.Charmed.getGenome());
 		
-		Allele.Enchanted = new BeeSpecies("Enchanted", "<indecipherable scribblings>|Apinomicon",
+		Allele.Enchanted = new BeeSpecies("Enchanted", "Successive generations of Charmed bees have reinforced their connection to the unknown.|Apinomicon",
 				"cantatus", otherworldly, 0,
 				0x18e726, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
@@ -137,11 +169,12 @@ public class ThaumicBeesPlugin implements IPlugin
 		otherworldly.addMemberSpecies(Allele.Enchanted);
 		breedingMgr.registerBeeTemplate(Allele.Enchanted.getGenome());
 		
-		Allele.Supernatural = new BeeSpecies("Supernatural", "<indecipherable scribblings>|Apinomicon",
+		Allele.Supernatural = new BeeSpecies("Supernatural", "These bees walk the line between this world and the unseen.|Apinomicon",
 				"coeleste", otherworldly, 0,
 				0x005614, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Supernatural.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 40);
+		Allele.Supernatural.addSpecialty(ItemManager.pollen.getStackForType(PollenType.UNUSUAL), 8);
 		Allele.Supernatural.setGenome(BeeGenomeManager.getTemplateSupernatural());
 		otherworldly.addMemberSpecies(Allele.Supernatural);
 		breedingMgr.registerBeeTemplate(Allele.Supernatural.getGenome());
@@ -181,23 +214,23 @@ public class ThaumicBeesPlugin implements IPlugin
 		IClassification stark = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "torridus", "Torridus");
 		stark.setParent(familyBee);
 		
-		Allele.Stark = new BeeSpecies("Stark", "\"These are unusually attracted to shards. This warrents further investigation.\"|Azanor, Thaumaturge",
+		Allele.Stark = new BeeSpecies("Stark", "\"These are unusually attracted to shards. This warrents further investigation.\"|Azanor, Master Thaumaturge",
 				"torridae", stark, 0,
 				0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
-		Allele.Stark.addProduct(ItemManager.combs.getStackForType(CombType.STARK), 5);
+		Allele.Stark.addProduct(ItemManager.combs.getStackForType(CombType.STARK), 10);
 		Allele.Stark.setGenome(BeeGenomeManager.getTemplateStark());
 		breedingMgr.registerBeeTemplate(Allele.Stark.getGenome());
 
 		IClassification magical = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "thaumis", "Thaumis");
 		magical.setParent(familyBee);
 		
-		Allele.Air = new BeeSpecies("Aura", "They move like the wind itself, making observers feel like slackers.|Apinomicon",
+		Allele.Air = new BeeSpecies("Aura", "\"They work so fast it's breathtaking.\"|Sengir, Mad Apiarist",
 				"ventosa", magical, 0,
 				0xD9D636, 0xA19E10, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		Allele.Air.addProduct(ItemManager.combs.getStackForType(CombType.AIRY), 20);
-		Allele.Air.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.QUICKSILVER.ordinal()), 10);
+		Allele.Air.addProduct(ItemManager.combs.getStackForType(CombType.AIRY), 9);
+		Allele.Air.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.QUICKSILVER.ordinal()), 2);
 		Allele.Air.setGenome(BeeGenomeManager.getTemplateAir());
 		breedingMgr.registerBeeTemplate(Allele.Air.getGenome());
 		
@@ -205,92 +238,226 @@ public class ThaumicBeesPlugin implements IPlugin
 				"praefervidus", magical, 0,
 				0xE50B0B, 0x95132F, EnumTemperature.HOT, EnumHumidity.ARID,
 				true, hideSpecies, true, true);
-		Allele.Fire.addProduct(ItemManager.combs.getStackForType(CombType.FIREY), 20);
+		Allele.Fire.addProduct(ItemManager.combs.getStackForType(CombType.FIREY), 15);
 		Allele.Fire.addSpecialty(new ItemStack(Item.blazePowder), 8);
 		Allele.Fire.setGenome(BeeGenomeManager.getTemplateFire());
 		breedingMgr.registerBeeTemplate(Allele.Fire.getGenome());
 		
-		Allele.Water = new BeeSpecies("Aqua", "The purity of their produce is unparalleled.|Apinomicon",
+		// Grab the Crystalline Pollen
+		(forestryItem = ItemInterface.getItem("pollen")).setItemDamage(1);
+		
+		Allele.Water = new BeeSpecies("Aqua", "\"I tried to breed them once, but that was a wash.\"|MysteriousAges, Apprentice Thaumaturge",
 				"umidus", magical, 0,
 				0x36CFD9, 0x1054A1, EnumTemperature.NORMAL, EnumHumidity.DAMP,
 				true, hideSpecies, true, true);
 		Allele.Water.addProduct(ItemManager.combs.getStackForType(CombType.WATERY), 20);
-		Allele.Water.addSpecialty(new ItemStack(Block.ice), 8);
+		Allele.Water.addSpecialty(new ItemStack(Block.ice), 1).addSpecialty(forestryItem, 5);
 		Allele.Water.setGenome(BeeGenomeManager.getTemplateWater());
 		breedingMgr.registerBeeTemplate(Allele.Water.getGenome());
 		
-		Allele.Earth = new BeeSpecies("Solum", "<indecipherable scribblings>|Apinomicon",
+		Allele.Earth = new BeeSpecies("Solum", "\"You're really gonna dig these bees, but watch out - they bore quite easily.\"|MysteriousAges, Apprentice Comedian",
 				"sordida", magical, 0,
 				0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Earth.addProduct(ItemManager.combs.getStackForType(CombType.EARTHY), 30);
-		Allele.Earth.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.AMBER.ordinal()), 10);
+		Allele.Earth.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.AMBER.ordinal()), 6);
 		Allele.Earth.setGenome(BeeGenomeManager.getTemplateEarth());
 		breedingMgr.registerBeeTemplate(Allele.Earth.getGenome());
+		
+		Allele.Infused = new BeeSpecies("Praecantatio", "Beekeeping is magic!|Apinomicon, Preface",
+				"azanorius", magical, 0,
+				0xaa32fc, 0x7A489E, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				true, hideSpecies, true, true);
+		Allele.Infused.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.INFUSED), 20);
+		Allele.Infused.setGenome(BeeGenomeManager.getTemplateMagic());
+		breedingMgr.registerBeeTemplate(Allele.Infused.getGenome());
+		
+		IClassification aware = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "patibilis", "Patibilis");
+		aware.setParent(familyBee);
+		
+		Allele.Aware = new BeeSpecies("Aware", "\"They can see into your soul!\"|Florastar, Expert Beekeeper",
+				"sensibilis", aware, 0,
+				0xb0092e9, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, false);
+		Allele.Aware.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.INTELLECT), 18);
+		Allele.Aware.setGenome(BeeGenomeManager.getTemplateAware());
+		breedingMgr.registerBeeTemplate(Allele.Aware.getGenome());
+		
+		/*Allele.Vis = new BeeSpecies("Vis", "\"They can feel changes in the aura, but are not yet able to affect it...\"|Azanor, research notes",
+				"arcanus saecula", aware, 0,
+				0x004c99, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, false);
+		Allele.Vis.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.INTELLECT), 25);
+		Allele.Vis.setGenome(BeeGenomeManager.getTemplateVis());
+		breedingMgr.registerBeeTemplate(Allele.Vis.getGenome());
+		
+		Allele.Pure = new BeeSpecies("Pure", "\"It's like a bee janitor!\"|MysteriousAges, Thaumaturge",
+				"arcanus puritatem", aware, 0,
+				0xb0092e9, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				true, hideSpecies, false, false);
+		Allele.Pure.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.INTELLECT), 20);
+		Allele.Pure.setGenome(BeeGenomeManager.getTemplateAware());
+		breedingMgr.registerBeeTemplate(Allele.Pure.getGenome());
+		
+		Allele.Flux = new BeeSpecies("Flux", "\"I thought they would help clean up, but it only makes things worse!\"|Kreicus, Apprentice Thaumaturge",
+				"arcanus labe", aware, 0,
+				0x004c99, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				true, hideSpecies, false, false);
+		Allele.Flux.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.INTELLECT), 20);
+		Allele.Flux.setGenome(BeeGenomeManager.getTemplateVis());
+		breedingMgr.registerBeeTemplate(Allele.Flux.getGenome()); */
+		
+		IClassification malevolent = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "malevolens", "Malevolens");
+		malevolent.setParent(familyBee);
+		
+		Allele.Skulking = new BeeSpecies("Skulking", "These bees have become xenophobic and bad-tempered. Use caution.|Apinomicon",
+				"malevolens", malevolent, 0,
+				0x524827, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, true);
+		Allele.Skulking.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 10);
+		Allele.Skulking.setGenome(BeeGenomeManager.getTemplateSkulking());
+		breedingMgr.registerBeeTemplate(Allele.Skulking.getGenome());
+		
+		Allele.Brainy = new BeeSpecies("Brainy", "Their combs may be feotid and foul-smelling, but their intelligence is well-developed.|Apinomicon",
+				"cerebrum", malevolent, 0,
+				0x83FF70, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, true);
+		Allele.Brainy.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 10);
+		Allele.Brainy.addSpecialty(new ItemStack(ItemManager.tcMiscResource,  1, TCMiscResource.ZOMBIE_BRAIN.ordinal()), 2);
+		Allele.Brainy.setGenome(BeeGenomeManager.getTemplateBrainy());
+		breedingMgr.registerBeeTemplate(Allele.Brainy.getGenome());
+		
+		// Grab the Silky Comb.
+		(forestryItem = ItemInterface.getItem("beeComb")).setItemDamage(6);
+		
+		Allele.Gossamer = new BeeSpecies("Gossamer", "As they work, they seem to fade out from light for brief moments.|Apinomicon",
+				"perlucidus", malevolent, 0,
+				0x183f66, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, true);
+		Allele.Gossamer.addProduct(forestryItem, 15);
+		Allele.Gossamer.setGenome(BeeGenomeManager.getTemplateGossamer());
+		breedingMgr.registerBeeTemplate(Allele.Gossamer.getGenome());
+		
+		Allele.Wispy = new BeeSpecies("Wispy", "|Apinomicon",
+				"umbrabilis", malevolent, 0,
+				0x9cb8d5, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, false);
+		Allele.Wispy.addProduct(forestryItem, 22);
+		// Get silk wisp
+		(forestryItem = ItemInterface.getItem("craftingMaterial")).setItemDamage(2);
+		Allele.Wispy.addSpecialty(forestryItem, 4);
+		Allele.Wispy.setGenome(BeeGenomeManager.getTemplateWispy());
+		breedingMgr.registerBeeTemplate(Allele.Wispy.getGenome());
+		
+		Allele.Batty = new BeeSpecies("Batty", "They tend to attract bats to their hives through means unknown.|Apinomicon",
+				"chiroptera", malevolent, 0,
+				0x27350d, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				false, hideSpecies, true, true);
+		Allele.Batty.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 10);
+		Allele.Batty.addSpecialty(new ItemStack(Item.gunpowder), 4);
+		Allele.Batty.setGenome(BeeGenomeManager.getTemplateBatty());
+		breedingMgr.registerBeeTemplate(Allele.Batty.getGenome());
+		
+		Allele.Ghastly = new BeeSpecies("Ghastly", "\"*sigh*... Really, Myst?\"|Taveria",
+				"pallens", malevolent, 0,
+				0xccccee, 0xbf877c, EnumTemperature.WARM, EnumHumidity.NORMAL,
+				false, hideSpecies, true, false);
+		Allele.Ghastly.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 8);
+		Allele.Ghastly.addSpecialty(new ItemStack(Item.ghastTear), 2);
+		Allele.Ghastly.setGenome(BeeGenomeManager.getTemplateGhastly());
+		breedingMgr.registerBeeTemplate(Allele.Ghastly.getGenome());
 	}
 
 	private void setupBeeMutations()
 	{
 		// Mutations are registered with the BreedingManager in their constructor.
 		
-		BeeMutation.Esoteric = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Demonic"), Allele.Esoteric.getGenome(), 10, false);
-		BeeMutation.Esoteric1 = new BeeMutation(Allele.getBaseSpecies("Heroic"), Allele.getBaseSpecies("Demonic"), Allele.Esoteric.getGenome(), 25, false);
-		BeeMutation.Mysterious = new BeeMutation(Allele.Esoteric, Allele.getBaseSpecies("Ended"), Allele.Mysterious.getGenome(), 10, false);
-		BeeMutation.Arcane = new BeeMutation(Allele.Esoteric, Allele.Mysterious, Allele.Arcane.getGenome(), 8, false);
-		BeeMutation.Charmed = new BeeMutation(Allele.getBaseSpecies("Cultivated"), Allele.getBaseSpecies("Valiant"), Allele.Charmed.getGenome(), 20, false);
-		BeeMutation.Enchanted = new BeeMutation(Allele.Charmed, Allele.getBaseSpecies("Valiant"), Allele.Enchanted.getGenome(), 8, false);
-		BeeMutation.Supernatural = new BeeMutation(Allele.Charmed, Allele.Enchanted, Allele.Supernatural.getGenome(), 8, false);
-		BeeMutation.Pupil = new BeeMutation(Allele.Arcane, Allele.Enchanted, Allele.Pupil.getGenome(), 10, false);
-		BeeMutation.Scholarly = new BeeMutation(Allele.Pupil, Allele.Arcane, Allele.Scholarly.getGenome(), 8, false);
-		BeeMutation.Savant = new BeeMutation(Allele.Pupil, Allele.Scholarly, Allele.Savant.getGenome(), 6, false);
-		BeeMutation.Stark = new BeeMutation(Allele.Arcane, Allele.Supernatural, Allele.Stark.getGenome(), 8, false);
+		BeeMutation.Esoteric = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Demonic"), Allele.Esoteric, 10);
+		BeeMutation.Esoteric1 = new BeeMutation(Allele.getBaseSpecies("Heroic"), Allele.getBaseSpecies("Demonic"), Allele.Esoteric, 25);
+		BeeMutation.Mysterious = new BeeMutation(Allele.Esoteric, Allele.getBaseSpecies("Ended"), Allele.Mysterious, 10);
+		BeeMutation.Arcane = new BeeMutation(Allele.Esoteric, Allele.Mysterious, Allele.Arcane, 8)
+			.setMoonPhaseBonus(MoonPhase.WANING_CRESCENT, MoonPhase.WAXING_CRESCENT, 1.5f);
+		BeeMutation.Charmed = new BeeMutation(Allele.getBaseSpecies("Diligent"), Allele.getBaseSpecies("Valiant"), Allele.Charmed, 20);
+		BeeMutation.Enchanted = new BeeMutation(Allele.Charmed, Allele.getBaseSpecies("Valiant"), Allele.Enchanted, 8);
+		BeeMutation.Supernatural = new BeeMutation(Allele.Charmed, Allele.Enchanted, Allele.Supernatural, 8)
+			.setMoonPhaseBonus(MoonPhase.WAXING_GIBBOUS, MoonPhase.WANING_GIBBOUS, 1.1f);
+		BeeMutation.Pupil = new BeeMutation(Allele.Arcane, Allele.Enchanted, Allele.Pupil, 10);
+		BeeMutation.Scholarly = new BeeMutation(Allele.Pupil, Allele.Arcane, Allele.Scholarly, 8);
+		BeeMutation.Savant = new BeeMutation(Allele.Pupil, Allele.Scholarly, Allele.Savant, 6);
+		BeeMutation.Stark = new BeeMutation(Allele.Arcane, Allele.Supernatural, Allele.Stark, 8);
+		
+		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), Allele.Aware, 9);
+		/*BeeMutation.Vis = new BeeMutation(Allele.Aware, Allele.Arcane, Allele.Vis, 7, false);
+		
+		BeeMutation.Pure = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Pure, 5, false);
+		BeeMutation.Flux = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Flux, 5, false);*/
+		
+		// Now we get into a little bit of branching...
+		if (ThaumicBees.getInstanceConfig().ExtraBeesInstalled)
+		{
+			BeeMutation.Skulking = new BeeMutation(Allele.Mysterious, Allele.getExtraSpecies("Desolate"), Allele.Skulking, 10);
+			BeeMutation.Brainy = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Rotten"), Allele.Brainy, 12);
+			BeeMutation.Gossamer = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Ancient"), Allele.Gossamer, 10);
+			BeeMutation.Batty = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Rocky"), Allele.Batty, 14);
+			BeeMutation.Ghastly = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Creepy"), Allele.Ghastly, 13);
+		}
+		else
+		{
+			BeeMutation.Skulking = new BeeMutation(Allele.Mysterious, Allele.getBaseSpecies("Modest"), Allele.Skulking, 10);
+			BeeMutation.Brainy = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Sinister"), Allele.Brainy, 10);
+			BeeMutation.Gossamer = new BeeMutation(Allele.Skulking, Allele.Supernatural, Allele.Gossamer, 10);
+			BeeMutation.Batty = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Frugal"), Allele.Batty, 11);
+			BeeMutation.Ghastly = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Austere"), Allele.Ghastly, 13);
+		}
+		BeeMutation.Gossamer.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_CRESCENT);
+		BeeMutation.Wispy = new BeeMutation(Allele.Gossamer, Allele.getBaseSpecies("Cultivated"), Allele.Wispy, 8);
+		
 	}
 
 	public static void setupBeeInfusions(World world)
 	{
-		try
-		{
-			ItemStack starkDrone = Allele.Stark.getBeeItem(world, EnumBeeType.DRONE);
-			ItemStack starkPrincess = Allele.Stark.getBeeItem(world, EnumBeeType.PRINCESS);
-			ItemStack airDrone = Allele.Air.getBeeItem(world, EnumBeeType.DRONE);
-			ItemStack airPrincess = Allele.Air.getBeeItem(world, EnumBeeType.PRINCESS);
-			ItemStack waterDrone = Allele.Water.getBeeItem(world, EnumBeeType.DRONE);
-			ItemStack waterPrincess = Allele.Water.getBeeItem(world, EnumBeeType.PRINCESS);
-			ItemStack earthDrone = Allele.Earth.getBeeItem(world, EnumBeeType.DRONE);
-			ItemStack earthPrincess = Allele.Earth.getBeeItem(world, EnumBeeType.PRINCESS);
-			ItemStack fireDrone = Allele.Fire.getBeeItem(world, EnumBeeType.DRONE);
-			ItemStack firePrincess = Allele.Fire.getBeeItem(world, EnumBeeType.PRINCESS);
-			
-			Item shard = (Item) Class.forName("thaumcraft.common.Config").getDeclaredField("itemShard").get(null);
-			
-			ObjectTags tags = (new ObjectTags()).add(EnumTag.WIND, 40).add(EnumTag.MOTION, 20);
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, airDrone, new Object[]
-					{ starkDrone, new ItemStack(shard, 1, 0) });
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, airPrincess, new Object[] 
-					{ starkPrincess, new ItemStack(shard, 1, 0) });
-			
-			tags = (new ObjectTags()).add(EnumTag.FIRE, 40).add( EnumTag.POWER, 20);
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, fireDrone, new Object[] 
-					{ starkDrone, new ItemStack(shard, 1, 1) });
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, firePrincess, new Object[] 
-					{ starkDrone, new ItemStack(shard, 1, 1) }); 
-			
-			tags = (new ObjectTags()).add(EnumTag.WATER, 40).add( EnumTag.COLD, 20); 
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, waterDrone, new Object[] 
-					{ starkDrone, new ItemStack(shard, 1, 2) }); 
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, waterPrincess, new Object[] 
-					{ starkDrone, new ItemStack(shard, 1, 2) }); 
-			
-			tags = (new ObjectTags()).add(EnumTag.EARTH, 40).add( EnumTag.ROCK, 20);
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, earthDrone, new Object[] 
-					{ starkDrone, new ItemStack(shard, 1, 3) }); 
-			ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, earthPrincess, new Object[] 
-					{ starkDrone, new ItemStack(shard, 1, 3) });
-		}
-		catch (Exception ex)
-		{
-			System.out.println("Reflection failed. Could not get Thaumcraft shard. ):");
-		}
+		ItemStack starkDrone = Allele.Stark.getBeeItem(world, EnumBeeType.DRONE);
+		ItemStack starkPrincess = Allele.Stark.getBeeItem(world, EnumBeeType.PRINCESS);
+		ItemStack airDrone = Allele.Air.getBeeItem(world, EnumBeeType.DRONE);
+		ItemStack airPrincess = Allele.Air.getBeeItem(world, EnumBeeType.PRINCESS);
+		ItemStack waterDrone = Allele.Water.getBeeItem(world, EnumBeeType.DRONE);
+		ItemStack waterPrincess = Allele.Water.getBeeItem(world, EnumBeeType.PRINCESS);
+		ItemStack earthDrone = Allele.Earth.getBeeItem(world, EnumBeeType.DRONE);
+		ItemStack earthPrincess = Allele.Earth.getBeeItem(world, EnumBeeType.PRINCESS);
+		ItemStack fireDrone = Allele.Fire.getBeeItem(world, EnumBeeType.DRONE);
+		ItemStack firePrincess = Allele.Fire.getBeeItem(world, EnumBeeType.PRINCESS);
+		ItemStack magicDrone = Allele.Infused.getBeeItem(world, EnumBeeType.DRONE);
+		ItemStack magicPrincess = Allele.Infused.getBeeItem(world, EnumBeeType.PRINCESS);
+		
+		ObjectTags tags = (new ObjectTags()).add(EnumTag.WIND, 40).add(EnumTag.MOTION, 20);
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, airDrone, new Object[]
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.AIR.ordinal()) } );
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, airPrincess, new Object[] 
+				{ starkPrincess, new ItemStack(ItemManager.tcShard, 1, TCShardType.AIR.ordinal()) });
+		
+		tags = (new ObjectTags()).add(EnumTag.FIRE, 40).add( EnumTag.POWER, 20);
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, fireDrone, new Object[] 
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.FIRE.ordinal()) }  );
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, firePrincess, new Object[] 
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.FIRE.ordinal()) }  ); 
+		
+		tags = (new ObjectTags()).add(EnumTag.WATER, 40).add( EnumTag.COLD, 20); 
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, waterDrone, new Object[] 
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.WATER.ordinal()) }  ); 
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, waterPrincess, new Object[] 
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.WATER.ordinal()) }  ); 
+		
+		tags = (new ObjectTags()).add(EnumTag.EARTH, 40).add( EnumTag.ROCK, 20);
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, earthDrone, new Object[] 
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.EARTH.ordinal()) }  ); 
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, earthPrincess, new Object[] 
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.EARTH.ordinal()) }  );
+		
+		tags = new ObjectTags().add(EnumTag.MAGIC, 40).add(EnumTag.FLUX, 20);
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, magicDrone, new Object[]
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.MAGIC.ordinal()) } );
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("UTFT", 100, tags, magicPrincess, new Object[]
+				{ starkDrone, new ItemStack(ItemManager.tcShard, 1, TCShardType.MAGIC.ordinal()) } );
 	}
 	
 	public String getDescription()

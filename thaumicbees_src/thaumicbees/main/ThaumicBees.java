@@ -22,6 +22,7 @@ import thaumcraft.api.*;
 import thaumicbees.bees.ThaumicBeesPlugin;
 import thaumicbees.bees.genetics.BeeSpecies;
 import thaumicbees.block.BlockManager;
+import thaumicbees.compat.ThaumcraftCompat;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.ItemManager;
@@ -44,13 +45,13 @@ public class ThaumicBees
 
 	private String configsPath;
 	private Configuration config;
-	public ConfigFlags configFlags;
+	private ThaumicBeesConfiguration modConfig;
 
 	public ThaumicBees()
 	{
-		this.configFlags = new ConfigFlags();
+		this.modConfig = new ThaumicBeesConfiguration();
 		
-		this.configFlags.ThaumcraftRecipesAdded = false;
+		this.modConfig.ThaumcraftRecipesAdded = false;
 	}
 
 	@Mod.PreInit
@@ -58,25 +59,35 @@ public class ThaumicBees
 	{
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.config = new Configuration(event.getSuggestedConfigurationFile());
+		
+		this.config.load();
+		// Allow us to set up some extra stuff.
+		this.modConfig.doMiscConfig(this.config);
 	}
 
 	@Mod.Init
 	public void init(FMLInitializationEvent event)
 	{
+		// Check on ExtraBees & enable content. =D
+		this.modConfig.ExtraBeesInstalled = cpw.mods.fml.common.Loader.isModLoaded("ExtraBees");
+		
 		// Give ThaumcraftCompat a chance to set itself up.
-		ThaumcraftCompat.init(configsPath);
+		ThaumcraftCompat.parseThaumcraftConfig(configsPath);
 		this.proxy.preloadTextures();
 		
 		// Grab Forestry graphics file path
 		proxy.FORESTRY_GFX_ITEMS = ItemInterface.getItem("beeComb").getItem().getTextureFile();
 		
-		this.config.load();
 		BlockManager.setupBlocks(this.config);
 		ItemManager.setupItems(this.config);
 		this.config.save();
 		
 		ItemManager.setupCrafting();
 		
+		if (this.modConfig.AddThaumcraftItemsToBackpacks)
+		{
+			ThaumcraftCompat.setupBackpacks();
+		}
 		ThaumcraftCompat.setupResearch();
 		ThaumcraftCompat.setupAspects();
 	}
@@ -94,10 +105,15 @@ public class ThaumicBees
 	@ForgeSubscribe
 	public void worldLoad(net.minecraftforge.event.world.WorldEvent.Load event)
 	{
-		if (!this.configFlags.ThaumcraftRecipesAdded)
+		if (!this.modConfig.ThaumcraftRecipesAdded)
 		{
 			ThaumicBeesPlugin.setupBeeInfusions(event.world);
-			this.configFlags.ThaumcraftRecipesAdded = true;
+			this.modConfig.ThaumcraftRecipesAdded = true;
 		}
+	}
+	
+	public static ThaumicBeesConfiguration getInstanceConfig()
+	{
+		return object.modConfig;
 	}
 }

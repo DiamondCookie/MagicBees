@@ -2,6 +2,7 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.item.ItemPollen.PollenType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
@@ -16,6 +17,7 @@ public class ItemDrop extends Item
 	public enum DropType
 	{
 		ENCHANTED("Enchanting Drop", 0x6e1c6d, 0xff8fff),
+		INTELLECT("Intellect Drop", 0x25914D, 0x18E072),
 		;
 		
 		private DropType(String pName, int colourA, int colourB)
@@ -74,20 +76,27 @@ public class ItemDrop extends Item
 	@Override
 	public int getIconIndex(ItemStack stack, int pass)
 	{
+		int idx = 109;
 		// 109, 110 are the base forestry drop textures.
-		return 109 + pass;
+		if (pass >= 1)
+		{
+			idx = 110;
+		}
+		return idx;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
-		int colour = 0xffffff;
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < DropType.values().length)
+		int meta = Math.max(0, Math.min(DropType.values().length - 1, stack.getItemDamage()));
+		int colour = DropType.values()[meta].combColour[0];
+		
+		if (pass >= 1)
 		{
-			colour = DropType.values()[meta].combColour[pass % 2];
+			colour = DropType.values()[meta].combColour[1];
 		}
+		
 		return colour;
 	}
 

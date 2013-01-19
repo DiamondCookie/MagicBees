@@ -2,6 +2,7 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import cpw.mods.fml.relauncher.Side;
@@ -14,8 +15,7 @@ public class ItemPollen extends Item
 {
 	public enum PollenType
 	{
-		UNUSUAL("Unusual Pollen", 0x742700, 0xdbad40),
-		FIBEROUS("Fiberous Pollen", 0x503900, 0xbd9a30),
+		UNUSUAL("Unusual Pollen", 0xA03059, 0xD8417B),
 		;
 		
 		private PollenType(String pName, int colourA, int colourB)
@@ -73,20 +73,27 @@ public class ItemPollen extends Item
 	@Override
 	public int getIconIndex(ItemStack stack, int pass)
 	{
-		// 107, 108 are the base forestry honeycomb textures.
-		return 107 + pass;
+		int idx = 45;
+		// 45, 46 are the base forestry pollen textures.
+		if (pass >= 1)
+		{
+			idx = 46;
+		}
+		return idx;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
-		int colour = 0xffffff;
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < PollenType.values().length)
+		int meta = Math.max(0, Math.min(PollenType.values().length - 1, stack.getItemDamage()));
+		int colour = PollenType.values()[meta].combColour[0];
+		
+		if (pass >= 1)
 		{
-			colour = PollenType.values()[meta].combColour[pass % 2];
+			colour = PollenType.values()[meta].combColour[1];
 		}
+		
 		return colour;
 	}
 

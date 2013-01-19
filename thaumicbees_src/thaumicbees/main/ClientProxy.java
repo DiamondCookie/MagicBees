@@ -24,23 +24,23 @@ public class ClientProxy extends CommonProxy
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
 	{
 		// drawParticleEffects flag pulled from Forestry after configs
-		if (ThaumicBees.object.configFlags.DrawParticleEffects)
+		if (ThaumicBees.getInstanceConfig().DrawParticleEffects)
 		{
-			double spawnX = xPos;
-			double spawnY = yPos;
-			double spawnZ = zPos;
+			double spawnX;
+			double spawnY;
+			double spawnZ;
 			
 			if (world.rand.nextBoolean())
 			{
-				spawnX += 0.5;
-				spawnY += 0.5;
-				spawnZ += 0.5;
+				spawnX = xPos + 0.5;
+				spawnY = yPos + 0.75;
+				spawnZ = zPos + 0.5;
 			}
 			else
 			{
-				spawnX += world.rand.nextInt(rangeX * 2) - rangeX;
-				spawnY += world.rand.nextInt(rangeY);
-				spawnZ += world.rand.nextInt(rangeZ * 2) - rangeY;
+				spawnX = xPos + world.rand.nextInt(rangeX * 2) - rangeX;
+				spawnY = yPos + world.rand.nextInt(rangeY);
+				spawnZ = zPos + world.rand.nextInt(rangeZ * 2) - rangeZ;
 			}
 			
 			this.getClientInstance().effectRenderer.addEffect(new BeeRenderEffect(world, spawnX, spawnY, spawnZ, 0f, 0f, 0f, colour));

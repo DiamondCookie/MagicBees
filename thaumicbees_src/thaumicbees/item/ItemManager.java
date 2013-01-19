@@ -1,13 +1,17 @@
 package thaumicbees.item;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import thaumicbees.compat.TCMiscResource;
+import thaumicbees.compat.TCShardType;
+import thaumicbees.compat.ThaumcraftCompat;
 import thaumicbees.item.ItemComb.CombType;
 import thaumicbees.item.ItemDrop.DropType;
 import thaumicbees.item.ItemMiscResources.ResourceType;
 import thaumicbees.item.ItemPropolis.PropolisType;
 import thaumicbees.item.ItemWax.WaxType;
-import thaumicbees.main.ThaumcraftCompat;
+import thaumicbees.main.ThaumicBees;
 import thaumicbees.storage.BackpackDefinition;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -28,6 +32,7 @@ public class ItemManager
 	public static ItemWax wax;
 	public static ItemPropolis propolis;
 	public static ItemDrop drops;
+	public static ItemPollen pollen;
 	public static ItemMiscResources miscResources;
 	
 	//----- Liquid Capsules --------------------
@@ -68,8 +73,11 @@ public class ItemManager
 		ItemManager.thaumaturgeBackpackT2 = 
 				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack2", itemIDBase++).getInt(),
 				def, EnumBackpackType.T2);
+		// Add additional items from configs to backpack.
+		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems);
 		
 		ItemManager.magicCapsule = new ItemCapsule(ItemCapsule.Type.MAGIC, configFile.getItem("magicCapsule", itemIDBase++).getInt());
+		ItemManager.pollen = new ItemPollen(configFile.getItem("pollen", itemIDBase++).getInt());
 	}
 	
 	public static void setupCrafting()
@@ -102,7 +110,7 @@ public class ItemManager
 				'W', ItemManager.wax.getStackForType(ItemWax.WaxType.MAGIC)
 				});
 		
-		output = new ItemStack(tcMiscResource, 1, ThaumcraftCompat.TCMiscResource.KNOWLEDGE_FRAGMENT.ordinal());
+		output = new ItemStack(tcMiscResource, 1, TCMiscResource.KNOWLEDGE_FRAGMENT.ordinal());
 		GameRegistry.addShapelessRecipe(output, new Object[] 
 				{ 
 				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
@@ -120,13 +128,20 @@ public class ItemManager
 			'C', Block.chest
 			});
 		
+		// "bottling" Intellect drops
+		GameRegistry.addRecipe(new ItemStack(Item.expBottle), new Object[] {
+			"DDD", "DBD", "DDD",
+			'D', ItemManager.drops.getStackForType(DropType.INTELLECT),
+			'B', Item.glassBottle
+			});
+		
 		// 20 is the 'average' time to centrifuge a comb.
 		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.OCCULT),
 				new ItemStack[] {ItemManager.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeyDrop") },
 				new int[] { 100, 60 });
 		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.OTHERWORLDLY),
-				new ItemStack[] {ItemManager.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeyDrop") },
-				new int[] { 60, 100 });
+				new ItemStack[] {ItemInterface.getItem("beeswax"), ItemManager.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeyDrop") },
+				new int[] { 50, 20, 100 });
 		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.PAPERY),
 				new ItemStack[] {ItemInterface.getItem("beeswax"), ItemManager.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.paper) },
 				new int[] { 80, 20, 5 });
@@ -145,29 +160,42 @@ public class ItemManager
 		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.combs.getStackForType(CombType.EARTHY),
 				new ItemStack[] {ItemManager.wax.getStackForType(WaxType.MAGIC), ItemManager.propolis.getStackForType(PropolisType.EARTH) },
 				new int[] { 100, 65 });
-		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.STARK),
-				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.DULL.ordinal())},
-				new int[] { 20 });
-		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.AIR),
-				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.AIR.ordinal())},
-				new int[] { 18 });
-		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.FIRE),
-				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.FIRE.ordinal())},
-				new int[] { 18 });
-		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.WATER),
-				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.WATER.ordinal())},
-				new int[] { 18 });
-		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.propolis.getStackForType(PropolisType.EARTH),
-				new ItemStack[] {new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.EARTH.ordinal())},
-				new int[] { 18 });
+		RecipeManagers.centrifugeManager.addRecipe(25, ItemManager.combs.getStackForType(CombType.INFUSED),
+				new ItemStack[] {ItemManager.wax.getStackForType(WaxType.MAGIC), ItemManager.wax.getStackForType(WaxType.MAGIC), ItemManager.propolis.getStackForType(PropolisType.INFUSED) },
+				new int[] { 100, 50, 65 });
+		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.INTELLECT),
+				new ItemStack[] { ItemManager.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeydew"), ItemManager.drops.getStackForType(DropType.INTELLECT) },
+				new int[] { 90, 40, 2 });
+		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.SKULKING),
+				new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("propolis"), ItemInterface.getItem("honeydew") },
+				new int[] { 90, 20, 35 });
+		
+		RecipeManagers.centrifugeManager.addRecipe(8, ItemManager.propolis.getStackForType(PropolisType.STARK),
+				new ItemStack[] {new ItemStack(tcShard, 1, TCShardType.DULL.ordinal())},
+				new int[] { 13 });
+		RecipeManagers.centrifugeManager.addRecipe(8, ItemManager.propolis.getStackForType(PropolisType.AIR),
+				new ItemStack[] {new ItemStack(tcShard, 1, TCShardType.AIR.ordinal())},
+				new int[] { 10 });
+		RecipeManagers.centrifugeManager.addRecipe(8, ItemManager.propolis.getStackForType(PropolisType.FIRE),
+				new ItemStack[] {new ItemStack(tcShard, 1, TCShardType.FIRE.ordinal())},
+				new int[] { 10 });
+		RecipeManagers.centrifugeManager.addRecipe(8, ItemManager.propolis.getStackForType(PropolisType.WATER),
+				new ItemStack[] {new ItemStack(tcShard, 1, TCShardType.WATER.ordinal())},
+				new int[] { 10 });
+		RecipeManagers.centrifugeManager.addRecipe(8, ItemManager.propolis.getStackForType(PropolisType.EARTH),
+				new ItemStack[] {new ItemStack(tcShard, 1, TCShardType.EARTH.ordinal())},
+				new int[] { 10 });
+		RecipeManagers.centrifugeManager.addRecipe(8, ItemManager.propolis.getStackForType(PropolisType.INFUSED),
+				new ItemStack[] {new ItemStack(tcShard, 1, TCShardType.MAGIC.ordinal())},
+				new int[] { 10 });
 		
 		// Squeezer recipes
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {ItemManager.propolis.getStackForType(PropolisType.FIRE) },
 				new LiquidStack(Block.lavaStill, 250),
-				new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.FIRE.ordinal()), 15);
+				new ItemStack(tcShard, 1, TCShardType.FIRE.ordinal()), 18);
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {ItemManager.propolis.getStackForType(PropolisType.WATER) },
 				new LiquidStack(Block.waterStill, 500),
-				new ItemStack(tcShard, 1, ThaumcraftCompat.TCShardType.WATER.ordinal()), 25);
+				new ItemStack(tcShard, 1, TCShardType.WATER.ordinal()), 18);
 		
 		// Carpenter recipes
 		inputStack = ItemInterface.getItem("craftingMaterial");

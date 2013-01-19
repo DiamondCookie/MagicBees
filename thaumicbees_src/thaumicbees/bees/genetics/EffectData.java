@@ -1,4 +1,4 @@
-package thaumicbees.bees;
+package thaumicbees.bees.genetics;
 
 import net.minecraft.nbt.NBTTagCompound;
 import forestry.api.genetics.IEffectData;
