@@ -17,14 +17,14 @@
     
 	<property name="mc.version"			value="1.4.7"/>
     <property name="forge.version"		value="6.6.0.491"/>
-    <property name="thaumicbees.version"	value="1.1.702"/>
+    <property name="thaumicbees.version"	value="1.2.705"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />
 	<property name="deploy.root"		value="C:\Users\Marc\Dropbox\Public\ThaumicBees" />
 	<property name="deploy.dir"			value="${deploy.root}\${deploy.type}" />
 	<property name="share.dir"			value="C:\Users\Marc\Dropbox\Shared\ThaumicBees" />
-	<property name="local.dir"			value="D:\Games\Minecraft\MultiMC\instances\1.4.6test\minecraft\mods" />
+	<property name="local.dir"			value="D:\Games\Minecraft\MultiMC\instances\1.4.6 pure\minecraft\mods" />
 	
 		<!-- TARGETS -->
 	<target name="clean">

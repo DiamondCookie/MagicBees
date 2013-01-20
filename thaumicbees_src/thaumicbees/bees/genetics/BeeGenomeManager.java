@@ -169,6 +169,7 @@ public class BeeGenomeManager
 		IAllele[] genome = getTemplateBaseThaumic();
 
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = AlleleFlower.flowerThaumcraft;
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
 		
 		return genome;
 	}
@@ -178,6 +179,7 @@ public class BeeGenomeManager
 		IAllele[] genome = getTemplateBaseElemental();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Stark;
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityNormal");
 		
 		return genome;
 	}
@@ -243,13 +245,12 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
-	public static IAllele[] getTemplateMagic()
+	public static IAllele[] getTemplateInfused()
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Infused;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
-		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
 		
 		return genome;
@@ -262,7 +263,6 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
-		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 		
 		return genome;
 	}
@@ -285,6 +285,7 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Vis;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedSlow");
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("speedSlower");
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 
 		return genome;
 	}
@@ -388,9 +389,11 @@ public class BeeGenomeManager
 
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Ghastly;
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
-		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.Ghastly;
+		// Ghast spawning needs to be fixed. ):
+		//genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnGhast;
 		
 		return genome;
 	}

@@ -107,8 +107,8 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, "Wispy", TCEntity.WISP.entityID);
 		Allele.spawnWisp.setThrottle(1800);
 		
-		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghastly", "Ghast");
-		Allele.spawnGhast.setThrottle(840);
+		//Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghastly", "Ghast");
+		//Allele.spawnGhast.setThrottle(800);
 	}
 
 	private void setupBeeSpecies()
@@ -269,7 +269,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				0xaa32fc, 0x7A489E, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Infused.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.INFUSED), 20);
-		Allele.Infused.setGenome(BeeGenomeManager.getTemplateMagic());
+		Allele.Infused.setGenome(BeeGenomeManager.getTemplateInfused());
 		breedingMgr.registerBeeTemplate(Allele.Infused.getGenome());
 		
 		IClassification aware = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "patibilis", "Patibilis");
@@ -322,7 +322,7 @@ public class ThaumicBeesPlugin implements IPlugin
 				"cerebrum", malevolent, 0,
 				0x83FF70, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Brainy.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 10);
+		Allele.Brainy.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 10).addProduct(new ItemStack(Item.rottenFlesh), 6);
 		Allele.Brainy.addSpecialty(new ItemStack(ItemManager.tcMiscResource,  1, TCMiscResource.ZOMBIE_BRAIN.ordinal()), 2);
 		Allele.Brainy.setGenome(BeeGenomeManager.getTemplateBrainy());
 		breedingMgr.registerBeeTemplate(Allele.Brainy.getGenome());
@@ -338,7 +338,7 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.Gossamer.setGenome(BeeGenomeManager.getTemplateGossamer());
 		breedingMgr.registerBeeTemplate(Allele.Gossamer.getGenome());
 		
-		Allele.Wispy = new BeeSpecies("Wispy", "|Apinomicon",
+		Allele.Wispy = new BeeSpecies("Wispy", "Their language is garbled and unintelligible. It is probable they are speaking to unnatural beings.|Apinomicon",
 				"umbrabilis", malevolent, 0,
 				0x9cb8d5, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
@@ -358,14 +358,14 @@ public class ThaumicBeesPlugin implements IPlugin
 		Allele.Batty.setGenome(BeeGenomeManager.getTemplateBatty());
 		breedingMgr.registerBeeTemplate(Allele.Batty.getGenome());
 		
-		Allele.Ghastly = new BeeSpecies("Ghastly", "\"*sigh*... Really, Myst?\"|Taveria",
+		/*Allele.Ghastly = new BeeSpecies("Ghastly", "\"*sigh*... Really, Myst?\"|Taveria",
 				"pallens", malevolent, 0,
-				0xccccee, 0xbf877c, EnumTemperature.WARM, EnumHumidity.NORMAL,
+				0xccccee, 0xbf877c, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
 		Allele.Ghastly.addProduct(ItemManager.combs.getStackForType(ItemComb.CombType.SKULKING), 8);
 		Allele.Ghastly.addSpecialty(new ItemStack(Item.ghastTear), 2);
 		Allele.Ghastly.setGenome(BeeGenomeManager.getTemplateGhastly());
-		breedingMgr.registerBeeTemplate(Allele.Ghastly.getGenome());
+		breedingMgr.registerBeeTemplate(Allele.Ghastly.getGenome());*/
 	}
 
 	private void setupBeeMutations()
@@ -395,11 +395,11 @@ public class ThaumicBeesPlugin implements IPlugin
 		// Now we get into a little bit of branching...
 		if (ThaumicBees.getInstanceConfig().ExtraBeesInstalled)
 		{
-			BeeMutation.Skulking = new BeeMutation(Allele.Mysterious, Allele.getExtraSpecies("Desolate"), Allele.Skulking, 10);
-			BeeMutation.Brainy = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Rotten"), Allele.Brainy, 12);
-			BeeMutation.Gossamer = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Ancient"), Allele.Gossamer, 10);
-			BeeMutation.Batty = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Rocky"), Allele.Batty, 14);
-			BeeMutation.Ghastly = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("Creepy"), Allele.Ghastly, 13);
+			BeeMutation.Skulking = new BeeMutation(Allele.Mysterious, Allele.getExtraSpecies("desolate"), Allele.Skulking, 10);
+			BeeMutation.Brainy = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("rotten"), Allele.Brainy, 12);
+			BeeMutation.Gossamer = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("ancient"), Allele.Gossamer, 10);
+			BeeMutation.Batty = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("rock"), Allele.Batty, 14);
+			//BeeMutation.Ghastly = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("creeper"), Allele.Ghastly, 13);
 		}
 		else
 		{
@@ -407,7 +407,7 @@ public class ThaumicBeesPlugin implements IPlugin
 			BeeMutation.Brainy = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Sinister"), Allele.Brainy, 10);
 			BeeMutation.Gossamer = new BeeMutation(Allele.Skulking, Allele.Supernatural, Allele.Gossamer, 10);
 			BeeMutation.Batty = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Frugal"), Allele.Batty, 11);
-			BeeMutation.Ghastly = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Austere"), Allele.Ghastly, 13);
+			//BeeMutation.Ghastly = new BeeMutation(Allele.Skulking, Allele.getBaseSpecies("Austere"), Allele.Ghastly, 13);
 		}
 		BeeMutation.Gossamer.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_CRESCENT);
 		BeeMutation.Wispy = new BeeMutation(Allele.Gossamer, Allele.getBaseSpecies("Cultivated"), Allele.Wispy, 8);
