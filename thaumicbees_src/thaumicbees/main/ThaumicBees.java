@@ -1,5 +1,6 @@
 package thaumicbees.main;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
@@ -7,6 +8,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.core.ItemInterface;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
 
@@ -22,10 +24,10 @@ import thaumcraft.api.*;
 import thaumicbees.bees.ThaumicBeesPlugin;
 import thaumicbees.bees.genetics.BeeSpecies;
 import thaumicbees.block.BlockManager;
-import thaumicbees.compat.ThaumcraftCompat;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.ItemManager;
+import thaumicbees.thaumcraft.ThaumcraftCompat;
 
 @Mod(
 		modid="ThaumicBees",
@@ -46,12 +48,14 @@ public class ThaumicBees
 	private String configsPath;
 	private Configuration config;
 	private ThaumicBeesConfiguration modConfig;
+	private ThaumicBeesPlugin plugin;
 
 	public ThaumicBees()
 	{
 		this.modConfig = new ThaumicBeesConfiguration();
 		
 		this.modConfig.ThaumcraftRecipesAdded = false;
+		this.plugin = new ThaumicBeesPlugin();
 	}
 
 	@Mod.PreInit
@@ -63,6 +67,9 @@ public class ThaumicBees
 		this.config.load();
 		// Allow us to set up some extra stuff.
 		this.modConfig.doMiscConfig(this.config);
+		plugin.preInit();
+		
+		ThaumcraftCompat.registerResearch();
 	}
 
 	@Mod.Init
@@ -82,14 +89,16 @@ public class ThaumicBees
 		ItemManager.setupItems(this.config);
 		this.config.save();
 		
-		ItemManager.setupCrafting();
 		
-		if (this.modConfig.AddThaumcraftItemsToBackpacks)
-		{
-			ThaumcraftCompat.setupBackpacks();
-		}
-		ThaumcraftCompat.setupResearch();
-		ThaumcraftCompat.setupAspects();
+		// Vanilla & Forestry mechanics setup
+		ItemManager.setupCrafting();
+		// Thaumcraft-specific crafting (Infusions, & Vis-needing)
+		ThaumcraftCompat.setupCrafting();
+		
+		ThaumcraftCompat.setupBackpacks();
+		ThaumcraftCompat.setupItemAspects();
+		
+		plugin.doInit();
 	}
 
 	@Mod.PostInit
@@ -100,6 +109,10 @@ public class ThaumicBees
 		
 		// Forestry has init'd by this point.
 		MinecraftForge.EVENT_BUS.register(this);
+		
+		plugin.postInit();
+		
+		ThaumcraftCompat.setupResearch();
 	}
 
 	@ForgeSubscribe
@@ -107,7 +120,7 @@ public class ThaumicBees
 	{
 		if (!this.modConfig.ThaumcraftRecipesAdded)
 		{
-			ThaumicBeesPlugin.setupBeeInfusions(event.world);
+			ThaumcraftCompat.setupBeeInfusions(event.world);
 			this.modConfig.ThaumcraftRecipesAdded = true;
 		}
 	}

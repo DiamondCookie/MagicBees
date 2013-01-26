@@ -1,7 +1,12 @@
 package thaumicbees.bees.genetics;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.core.ItemInterface;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
@@ -277,14 +282,13 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
-	// Future bees, pending TC3 API release.
-	/*public static IAllele[] getTemplateVis()
+	public static IAllele[] getTemplateVis()
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Vis;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedSlow");
-		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("speedSlower");
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringSlower");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 
 		return genome;
@@ -297,6 +301,7 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Pure;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringAverage");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerNodePurify;
 		
 		return genome;
@@ -312,7 +317,7 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerNodeFluxify;
 		
 		return genome;
-	}*/
+	}
 	
 	private static IAllele[] getTemplateBaseMalevolent()
 	{
@@ -392,10 +397,51 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
-		// Ghast spawning needs to be fixed. ):
-		//genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnGhast;
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnGhast;
 		
 		return genome;
+	}
+
+	public static ItemStack getBeeNBTForSpecies(BeeSpecies species, EnumBeeType beeType)
+	{
+		ItemStack taggedBee;
+		switch (beeType)
+		{
+			case PRINCESS:
+				taggedBee = ItemInterface.getItem("beePrincessGE");
+				break;
+			case QUEEN:
+				taggedBee = ItemInterface.getItem("beeQueenGE");
+				break;
+			case DRONE:
+			default:
+				taggedBee = ItemInterface.getItem("beeDroneGE");
+				break;
+		}
+		
+		NBTTagCompound tags = new NBTTagCompound();
+		
+		addGeneToCompound(EnumBeeChromosome.SPECIES, species, tags);
+		
+		taggedBee.setTagCompound(tags);
+		
+		return taggedBee;
+	}
+	
+	private static void addGeneToCompound(EnumBeeChromosome gene, IAllele allele, NBTTagCompound compound)
+	{
+		NBTTagCompound geneRoot = new NBTTagCompound();
+		compound.setTag("Genome", geneRoot);
+		NBTTagList chromosomes = new NBTTagList();
+		geneRoot.setTag("Chromosomes", chromosomes);
+		
+		NBTTagCompound selectedGene = new NBTTagCompound();
+		chromosomes.appendTag(selectedGene);
+		
+		selectedGene.setByte("Slot", (byte)gene.ordinal());
+		selectedGene.setString("UID0", allele.getUID());
+		selectedGene.setString("UID1", allele.getUID());		
 	}
 	
 }

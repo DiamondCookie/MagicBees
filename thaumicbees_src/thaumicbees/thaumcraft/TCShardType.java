@@ -1,4 +1,4 @@
-package thaumicbees.compat;
+package thaumicbees.thaumcraft;
 
 public enum TCShardType
 {

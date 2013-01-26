@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
@@ -21,6 +22,8 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	protected String alternateMob;
 	protected String mobName;
 	protected int throttle;
+	protected int chanceToSpawn;
+	protected int maxMobsInArea;
 
 	public AlleleEffectSpawnMob(String id, boolean isDominant, String identifier, String mobToSpawn)
 	{
@@ -28,6 +31,8 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 		this.aggosOnPlayer = false;
 		this.mobName = mobToSpawn;
 		this.throttle = 200;
+		this.chanceToSpawn = 100;
+		this.maxMobsInArea = 6;
 	}
 
 	@Override
@@ -61,41 +66,50 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 		{
 			World w = housing.getWorld();
 			
-			if (this.spawnsWhilePlayerNear)
+			int roll = w.rand.nextInt(100);
+			
+			if (roll <= this.chanceToSpawn)
 			{
-				List<Entity> entities = this.getEntitiesWithinRange(genome, housing);
-				EntityPlayer target = null;
-				for (Entity e : entities)
+				if (this.spawnsWhilePlayerNear)
 				{
-					if (e instanceof EntityPlayer)
+					List<Entity> entities = this.getEntitiesWithinRange(genome, housing);
+					EntityPlayer target = null;
+					for (Entity e : entities)
 					{
-						target = (EntityPlayer)e;
-						// Check for wearing armor & cancel
-						if (ItemArmorApiarist.getNumberPiecesWorn(target) >= 4)
+						if (e instanceof EntityPlayer)
 						{
-							// Full armor suit is treated as "invisible."
-							target = null;
-						}
-						else
-						{
-							break;
+							target = (EntityPlayer)e;
+							// Check for wearing armor & cancel
+							if (ItemArmorApiarist.getNumberPiecesWorn(target) >= 4)
+							{
+								// Full armor suit is treated as "invisible."
+								target = null;
+							}
+							else
+							{
+								break;
+							}
 						}
 					}
+					
+					// Let's spawn a mob. =D
+					if (target != null)
+					{
+						storedData.setBoolean(0, !this.spawnMob(genome, target, w, housing, false));
+					}
+					else if (this.alternateMob != null)
+					{
+						storedData.setBoolean(0, !this.spawnMob(genome, null, w, housing, true));
+					}
 				}
-				
-				// Let's spawn a mob. =D
-				if (target != null)
-				{
-					storedData.setBoolean(0, !this.spawnMob(genome, target, w, housing, false));
-				}
-				else if (this.alternateMob != null)
+				else
 				{
 					storedData.setBoolean(0, !this.spawnMob(genome, null, w, housing, true));
 				}
 			}
 			else
 			{
-				storedData.setBoolean(0, !this.spawnMob(genome, null, w, housing, true));
+				storedData.setBoolean(0, true);
 			}
 		}
 		
@@ -105,6 +119,7 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	protected boolean spawnMob(IBeeGenome bee, EntityPlayer player, World world, IBeeHousing housing, boolean spawnAlternate)
 	{
 		boolean spawnedFlag = false;
+
 		
 		EntityLiving mob;
 		if (spawnAlternate && this.alternateMob != null)
@@ -115,23 +130,31 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 		{
 			mob = (EntityLiving) EntityList.createEntityByName(this.mobName, world);
 		}
-		
+
 		if (mob != null)
 		{
-			double pos[] = new double[3];
-			pos[0] = housing.getXCoord() + (world.rand.nextDouble() * (bee.getTerritory()[0] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[0] / 2);
-			pos[1] = housing.getYCoord() + world.rand.nextInt(3) - 1;
-			pos[2] = housing.getYCoord() + (world.rand.nextDouble() * (bee.getTerritory()[2] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[2] / 2);
+			double pos[] = this.randomMobSpawnCoords(world, bee, housing);			
+				
+			int entitiesCount = world.getEntitiesWithinAABB(mob.getClass(),
+					AxisAlignedBB.getBoundingBox((int)pos[0], (int)pos[1], (int)pos[2], (int)pos[0] + 1, (int)pos[1] + 1, (int)pos[2] + 1)
+							.expand(8.0D, 4.0D, 8.0D)).size();
 			
-			mob.setLocationAndAngles(pos[0], pos[1], pos[2], world.rand.nextFloat() * 360f, 0f);
-			// Success!
-			spawnedFlag = world.spawnEntityInWorld(mob);
-			if (this.aggosOnPlayer && player != null)
+				mob.setPosition(pos[0], pos[1], pos[2]);
+				mob.setAngles(world.rand.nextFloat() * 360f, 0f);
+				
+			if (entitiesCount < this.maxMobsInArea && mob.getCanSpawnHere())
 			{
-				if (ItemArmorApiarist.getNumberPiecesWorn(player) < 4)
+				if (mob.getCanSpawnHere())
 				{
-					// Protect fully suited player from initial murder intent.
-					mob.setAttackTarget(player);
+					spawnedFlag = world.spawnEntityInWorld(mob);
+					if (this.aggosOnPlayer && player != null)
+					{
+						if (ItemArmorApiarist.getNumberPiecesWorn(player) < 4)
+						{
+							// Protect fully suited player from initial murder intent.
+							mob.setAttackTarget(player);
+						}
+					}
 				}
 			}
 		}
@@ -159,5 +182,28 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 		this.throttle = val;
 		
 		return this;
+	}
+	
+	public AlleleEffectSpawnMob setChanceToSpawn(int value)
+	{
+		this.chanceToSpawn = value;
+		
+		return this;
+	}
+	
+	public AlleleEffectSpawnMob setMaxMobsInSpawnZone(int value)
+	{
+		this.maxMobsInArea = value;
+		
+		return this;
+	}
+
+	protected double[] randomMobSpawnCoords(World world, IBeeGenome bee, IBeeHousing housing)
+	{
+		double pos[] = new double[3];
+		pos[0] = housing.getXCoord() + (world.rand.nextDouble() * (bee.getTerritory()[0] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[0] / 2);
+		pos[1] = housing.getYCoord() + world.rand.nextInt(3) - 1;
+		pos[2] = housing.getZCoord() + (world.rand.nextDouble() * (bee.getTerritory()[2] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[2] / 2);
+		return pos;
 	}
 }

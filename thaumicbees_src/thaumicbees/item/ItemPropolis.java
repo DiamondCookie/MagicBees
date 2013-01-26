@@ -2,41 +2,22 @@ package thaumicbees.item;
 
 import java.util.List;
 
-import thaumicbees.item.ItemPollen.PollenType;
-import thaumicbees.item.ItemWax.WaxType;
+import thaumicbees.item.types.PropolisType;
 import thaumicbees.main.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemPropolis extends Item
 {
-	public enum PropolisType
-	{
-		STARK("Dull Propolis", 0xBBBBBB),
-		AIR("Air Propolis", 0xA19E10),
-		FIRE("Firey Propolis", 0x95132F),
-		WATER("Watery Propolis", 0x1054A1),
-		EARTH("Earthen Propolis", 0x00a000),
-		INFUSED("Infused Propolis", 0xaa32fc),
-		;
-		
-		private PropolisType(String pName, int overlayColour)
-		{
-			this.name = pName;
-			this.colour = overlayColour;
-		}
-		
-		public String name;
-		public int colour;
-	}
-
 	public ItemPropolis(int id)
 	{
 		super(id);
 		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
+		this.setCreativeTab(Tabs.tabApiculture);
 		this.setIconIndex(98);
 		this.setHasSubtypes(true);
 	}

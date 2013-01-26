@@ -2,41 +2,23 @@ package thaumicbees.item;
 
 import java.util.List;
 
-import thaumicbees.item.ItemComb.CombType;
-import thaumicbees.item.ItemDrop.DropType;
-import thaumicbees.item.ItemPollen.PollenType;
+import thaumicbees.item.types.WaxType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemWax extends Item
 {
-	public enum WaxType
-	{
-		MAGIC("Magic Wax", false, 0xd242df),
-		;
-		
-		private WaxType(String n, boolean sp, int c)
-		{
-			this.name = n;
-			this.sparkly = sp;
-			this.colour = c;
-		}
-		
-		public String name;
-		public boolean sparkly;
-		public int colour;
-	}
-	
 	public ItemWax(int itemID)
 	{
 		super(itemID);
 		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
 	

@@ -27,9 +27,8 @@ public class Allele implements IAllele
 	
 	public static BeeSpecies Aware;
 	public static BeeSpecies Vis;
-	/* Future bees pending TC3 API release.
 	public static BeeSpecies Pure;
-	public static BeeSpecies Flux; */
+	public static BeeSpecies Flux;
 	
 	public static BeeSpecies Skulking;
 	public static BeeSpecies Brainy;

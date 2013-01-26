@@ -5,6 +5,11 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import java.util.ArrayList;
 
+import thaumcraft.api.AuraNode;
+import thaumcraft.api.EnumNodeType;
+import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.bees.MoonPhase;
+
 public class BeeMutation implements IBeeMutation
 {
 
@@ -41,6 +46,9 @@ public class BeeMutation implements IBeeMutation
 	private MoonPhase moonPhaseStart;
 	private MoonPhase moonPhaseEnd;
 	private float moonPhaseMutationBonus;
+	private boolean nodeRequired;
+	private EnumNodeType nodeType;
+	private double nodeRange;
 
 	public BeeMutation(IAlleleBeeSpecies species0, IAlleleBeeSpecies species1, BeeSpecies resultSpecies, int percentChance)
 	{
@@ -51,6 +59,7 @@ public class BeeMutation implements IBeeMutation
 		this.isSecret = false;
 		this.isMoonRestricted = false;
 		this.moonPhaseMutationBonus = -1f;
+		this.nodeType = null;
 		
 		BeeManager.breedingManager.registerBeeMutation(this);
 	}
@@ -60,7 +69,7 @@ public class BeeMutation implements IBeeMutation
 		int finalChance = 0;
 		float chance = this.baseChance * 1f;
 		
-		if (this.isPartner(allele0) && this.isPartner(allele1))
+		if (this.arePartners(allele0, allele1))
 		{
 			// This mutation applies. Continue calculation.
 			if (this.moonPhaseStart != null && this.moonPhaseEnd != null)
@@ -77,6 +86,24 @@ public class BeeMutation implements IBeeMutation
 					{
 						chance = (int)(chance * this.moonPhaseMutationBonus);
 					}
+				}
+			}
+			
+			if (this.nodeRequired)
+			{
+				int nodeId = ThaumcraftApi.getClosestAuraWithinRange(housing.getWorld(),
+						housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), this.nodeRange);
+				if (nodeId >= 0 && this.nodeType != null)
+				{
+					AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
+					if (node.type != this.nodeType)
+					{
+						chance = 0;
+					}
+				}
+				else
+				{
+					chance = 0;
 				}
 			}
 			
@@ -119,6 +146,12 @@ public class BeeMutation implements IBeeMutation
 		return val;
 	}
 	
+	public boolean arePartners(IAllele alleleA, IAllele alleleB)
+	{
+		return (this.parent1.getUID().equals(alleleA.getUID())) && this.parent2.getUID().equals(alleleB.getUID()) ||
+				this.parent1.getUID().equals(alleleB.getUID()) && this.parent2.getUID().equals(alleleA.getUID());
+	}
+	
 	public BeeMutation setSecret()
 	{
 		this.isSecret = true;
@@ -147,5 +180,20 @@ public class BeeMutation implements IBeeMutation
 		this.moonPhaseEnd = end;
 		
 		return this;
+	}
+	
+	public BeeMutation setAuraNodeRequired(double range)
+	{
+		this.nodeRequired = true;
+		this.nodeRange = range;
+		
+		return this;
+	}
+	
+	public BeeMutation setAuraNodeTypeRequired(double range, EnumNodeType type)
+	{
+		this.nodeType = type;
+		
+		return this.setAuraNodeRequired(range);
 	}
 }

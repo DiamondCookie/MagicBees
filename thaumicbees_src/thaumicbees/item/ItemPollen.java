@@ -2,38 +2,23 @@ package thaumicbees.item;
 
 import java.util.List;
 
-import thaumicbees.item.ItemComb.CombType;
+import thaumicbees.item.types.PollenType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemPollen extends Item
 {
-	public enum PollenType
-	{
-		UNUSUAL("Unusual Pollen", 0xA03059, 0xD8417B),
-		;
-		
-		private PollenType(String pName, int colourA, int colourB)
-		{
-			this.name = pName;
-			this.combColour[0] = colourA;
-			this.combColour[1] = colourB;
-		}
-		
-		public final String name;
-		public int[] combColour = new int[2];
-	}
-	
 	public ItemPollen(int itemID)
 	{
 		super(itemID);
 		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
-		this.setCreativeTab(CreativeTabs.tabMaterials);
+		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
 	public ItemStack getStackForType(PollenType type)

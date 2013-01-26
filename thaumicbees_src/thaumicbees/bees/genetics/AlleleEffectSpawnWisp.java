@@ -2,12 +2,18 @@ package thaumicbees.bees.genetics;
 
 import java.lang.reflect.Field;
 
+import cpw.mods.fml.common.FMLLog;
+
+import thaumicbees.item.ItemArmorApiarist;
+import thaumicbees.thaumcraft.TCEntity;
+
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob
@@ -37,30 +43,39 @@ public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob
 		
 		if (mob != null)
 		{
-			double pos[] = new double[3];
-			pos[0] = housing.getXCoord() + (world.rand.nextDouble() * (bee.getTerritory()[0] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[0] / 2);
-			pos[1] = housing.getYCoord() + world.rand.nextInt(3) - 1;
-			pos[2] = housing.getYCoord() + (world.rand.nextDouble() * (bee.getTerritory()[2] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[2] / 2);
+			double pos[] = this.randomMobSpawnCoords(world, bee, housing);			
 			
-			mob.setLocationAndAngles(pos[0], pos[1], pos[2], world.rand.nextFloat() * 360f, 0f);
+			int entitiesCount = world.getEntitiesWithinAABB(mob.getClass(),
+					AxisAlignedBB.getBoundingBox((int)pos[0], (int)pos[1], (int)pos[2], (int)pos[0] + 1, (int)pos[1] + 1, (int)pos[2] + 1)
+							.expand(8.0D, 4.0D, 8.0D)).size();
 			
-			// Try some Reflection on TC code. This could be dangerous.
-			try
-			{
-				Class wispEntity = Class.forName("thaumcraft.common.entities.EntityWisp");
-				Field type = wispEntity.getDeclaredField("type");
-				type.setByte(mob, wispTypes[world.rand.nextInt(wispTypes.length)]);
-			}
-			catch (Exception e)
-			{
-				
-			}
+			mob.setPosition(pos[0], pos[1], pos[2]);
+			mob.setAngles(world.rand.nextFloat() * 360f, 0f);
 			
-			// Success!
-			spawnedFlag = world.spawnEntityInWorld(mob);
-			if (this.aggosOnPlayer && player != null)
+			if (entitiesCount < this.maxMobsInArea && mob.getCanSpawnHere())
 			{
-				mob.setAttackTarget(player);
+				// Try some Reflection on TC code. This could be dangerous.
+				try
+				{
+					Class wispEntity = Class.forName(TCEntity.WISP.getClassName());
+					Field type = wispEntity.getDeclaredField("type");
+					type.setByte(mob, wispTypes[world.rand.nextInt(wispTypes.length)]);
+				}
+				catch (Exception e)
+				{
+					FMLLog.info("ThaumicBees is using an invalid classname: " + TCEntity.WISP.getClassName() 
+							+ " Please report this error in the thread if you see it.", (Object[])null);
+				}
+
+				spawnedFlag = world.spawnEntityInWorld(mob);
+				if (this.aggosOnPlayer && player != null)
+				{
+					if (ItemArmorApiarist.getNumberPiecesWorn(player) < 4)
+					{
+						// Protect fully suited player from initial murder intent.
+						mob.setAttackTarget(player);
+					}
+				}
 			}
 		}
 		

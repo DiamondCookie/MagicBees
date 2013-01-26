@@ -1,23 +1,29 @@
 package thaumicbees.item;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import thaumicbees.compat.TCMiscResource;
-import thaumicbees.compat.TCShardType;
-import thaumicbees.compat.ThaumcraftCompat;
-import thaumicbees.item.ItemComb.CombType;
-import thaumicbees.item.ItemDrop.DropType;
-import thaumicbees.item.ItemMiscResources.ResourceType;
-import thaumicbees.item.ItemPropolis.PropolisType;
-import thaumicbees.item.ItemWax.WaxType;
+import thaumicbees.item.types.CapsuleType;
+import thaumicbees.item.types.CombType;
+import thaumicbees.item.types.DropType;
+import thaumicbees.item.types.HiveFrameType;
+import thaumicbees.item.types.PropolisType;
+import thaumicbees.item.types.ResourceType;
+import thaumicbees.item.types.WaxType;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.storage.BackpackDefinition;
+import thaumicbees.thaumcraft.TCMiscResource;
+import thaumicbees.thaumcraft.TCShardType;
+import thaumicbees.thaumcraft.ThaumcraftCompat;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import net.minecraftforge.liquids.LiquidContainerData;
+import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.core.BlockInterface;
@@ -33,10 +39,18 @@ public class ItemManager
 	public static ItemPropolis propolis;
 	public static ItemDrop drops;
 	public static ItemPollen pollen;
+	public static ItemSolidFlux solidFlux;
 	public static ItemMiscResources miscResources;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
+	
+	//----- Apiary Frames ----------------------
+	public static ItemMagicHiveFrame hiveFrameMagic;
+	public static ItemMagicHiveFrame hiveFrameResilient;
+	public static ItemMagicHiveFrame hiveFrameGentle;
+	public static ItemMagicHiveFrame hiveFrameMetabolic;
+	public static ItemMagicHiveFrame hiveFrameNecrotic;
 
 	//----- Thaumcraft Items -------------------
 	public static Item tcFilledJar;
@@ -74,10 +88,23 @@ public class ItemManager
 				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack2", itemIDBase++).getInt(),
 				def, EnumBackpackType.T2);
 		// Add additional items from configs to backpack.
-		FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems);
+		if (ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems.length() > 0)
+		{
+			FMLLog.info("Attempting to add extra items to Thaumaturge's backpack! If you get an error, check your ThaumicBees.conf.");
+			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems);
+		}
 		
-		ItemManager.magicCapsule = new ItemCapsule(ItemCapsule.Type.MAGIC, configFile.getItem("magicCapsule", itemIDBase++).getInt());
+		
+		ItemManager.magicCapsule = new ItemCapsule(CapsuleType.MAGIC, configFile.getItem("magicCapsule", itemIDBase++).getInt());
+		
 		ItemManager.pollen = new ItemPollen(configFile.getItem("pollen", itemIDBase++).getInt());
+		ItemManager.solidFlux = new ItemSolidFlux(configFile.getItem("fluxCrystal", itemIDBase++).getInt());
+		
+		ItemManager.hiveFrameMagic = new ItemMagicHiveFrame(configFile.getItem("frameMagic", itemIDBase++).getInt(), HiveFrameType.MAGIC);
+		ItemManager.hiveFrameResilient = new ItemMagicHiveFrame(configFile.getItem("frameResilient", itemIDBase++).getInt(), HiveFrameType.RESILIENT);
+		ItemManager.hiveFrameGentle = new ItemMagicHiveFrame(configFile.getItem("frameGentle", itemIDBase++).getInt(), HiveFrameType.GENTLE);
+		ItemManager.hiveFrameMetabolic = new ItemMagicHiveFrame(configFile.getItem("frameMetabolic", itemIDBase++).getInt(), HiveFrameType.METABOLIC);
+		ItemManager.hiveFrameNecrotic = new ItemMagicHiveFrame(configFile.getItem("frameNecrotic", itemIDBase++).getInt(), HiveFrameType.NECROTIC);
 	}
 	
 	public static void setupCrafting()
@@ -88,36 +115,32 @@ public class ItemManager
 		ItemStack output = new ItemStack(tcEssentiaBottle);
 		output.stackSize = 8;
 		GameRegistry.addRecipe(output, new Object[]
-				{
-					" C ", "GPG", "PGP",
-					'G', ItemManager.wax,
-					'C', Item.clay,
-					'P', Block.thinGlass
-				});
+			{
+				" C ", "GPG", "PGP",
+				'G', ItemManager.wax,
+				'C', Item.clay,
+				'P', Block.thinGlass
+			});
+		
 		output = new ItemStack(tcEssentiaBottle);
 		output.stackSize = 4;
-		GameRegistry.addRecipe(output, new Object[]
-			{
-				" W ", "W W", " W ",
-				'W', ItemManager.wax
-			});
+		GameRegistry.addRecipe(output, new Object[] {
+			" W ", "W W", " W ",
+			'W', ItemManager.wax
+		});
 		
 		// Magic capsules
 		output = new ItemStack(magicCapsule); output.stackSize = 4;
-		GameRegistry.addRecipe(output, new Object[]
-				{
-				"WWW",
-				'W', ItemManager.wax.getStackForType(ItemWax.WaxType.MAGIC)
-				});
+		GameRegistry.addRecipe(output, new Object[] {
+			"WWW",
+			'W', ItemManager.wax.getStackForType(WaxType.MAGIC)
+		});
 		
 		output = new ItemStack(tcMiscResource, 1, TCMiscResource.KNOWLEDGE_FRAGMENT.ordinal());
-		GameRegistry.addShapelessRecipe(output, new Object[] 
-				{ 
-				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
-				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
-				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT),
-				ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT)
-				});
+		GameRegistry.addRecipe(output, new Object[] {
+			"FF", "FF",
+			'F', ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT)
+		});
 		
 		// T1 Thaumaturge's backpack
 		GameRegistry.addRecipe(new ItemStack(ItemManager.thaumaturgeBackpackT1), new Object[] {
@@ -126,14 +149,37 @@ public class ItemManager
 			'W', Block.cloth,
 			'N', Item.goldNugget,
 			'C', Block.chest
-			});
+		});
+		
+		// Concentrated Fertilizer -> Forestry fertilizer
+		inputStack = ItemManager.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
+		output = ItemInterface.getItem("fertilizerCompound");
+		output.stackSize = 6;
+		GameRegistry.addRecipe(output, new Object[] {
+			" S ", " F ", " S ",
+			'F', inputStack,
+			'S', Block.sand
+		});
+		GameRegistry.addRecipe(output, new Object[] {
+			"   ", "SFS", "   ",
+			'F', inputStack,
+			'S', Block.sand
+		});
+		
+		output = output.copy();
+		output.stackSize = 12;
+		GameRegistry.addRecipe(output, new Object[] {
+			"aaa", "aFa", "aaa",
+			'F', inputStack,
+			'a', ItemInterface.getItem("ash")
+		});
 		
 		// "bottling" Intellect drops
 		GameRegistry.addRecipe(new ItemStack(Item.expBottle), new Object[] {
 			"DDD", "DBD", "DDD",
 			'D', ItemManager.drops.getStackForType(DropType.INTELLECT),
 			'B', Item.glassBottle
-			});
+		});
 		
 		// 20 is the 'average' time to centrifuge a comb.
 		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.OCCULT),
@@ -205,14 +251,17 @@ public class ItemManager
 			"WXW", "WTW", "WWW",
 			'X', Item.diamond,
 			'W', inputStack,
-			'T', new ItemStack(ItemManager.thaumaturgeBackpackT1) });
+			'T', new ItemStack(ItemManager.thaumaturgeBackpackT1)
+		});
 		
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 24;
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
 			" S ", "WWW", "WWW",
 			'W', ItemManager.wax,
-			'S', Item.silk });
+			'S', Item.silk
+		});
+		
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 6;
 		inputStack = ItemInterface.getItem("craftingMaterial");
@@ -220,7 +269,8 @@ public class ItemManager
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
 			"WSW",
 			'W', ItemManager.wax,
-			'S', inputStack });
+			'S', inputStack
+		});
 		
 		output = ItemManager.miscResources.getStackForType(ResourceType.AROMATIC_LUMP, 2);
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(ItemInterface.getItem("liquidHoney").itemID, 1000), null, output, new Object[] {
@@ -228,13 +278,14 @@ public class ItemManager
 			'P', ItemInterface.getItem("pollen"),
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', ItemManager.drops.getStackForType(DropType.ENCHANTED)
-			});
+		});
+		
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(ItemInterface.getItem("liquidHoney").itemID, 1000), null, output, new Object[] {
 			" J ", "PDP", " J ",
 			'P', ItemInterface.getItem("pollen"),
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', ItemManager.drops.getStackForType(DropType.ENCHANTED)
-			});
+		});
 		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
 		BeeManager.inducers.put(output, 80);
 
@@ -243,7 +294,42 @@ public class ItemManager
 	public static void postInit()
 	{
 		// Forestry liquids aren't registered until PostInit, that's why we wait until now to register them.
-		ItemManager.magicCapsule.setUpLiquids();
+		/*ItemStack empty = new ItemStack(this, 1, 0);
+		ItemStack filled;
+		LiquidStack liquid = null;
+		
+		for (Liquid l : Liquid.values())
+		{
+			switch (l)
+			{
+				case EMPTY:
+					liquid = null;
+					break;
+				case WATER:
+					liquid = new LiquidStack(Block.waterStill, this.capsuleType.capacity);
+					break;
+				case LAVA:
+					liquid = new LiquidStack(Block.lavaStill, this.capsuleType.capacity);
+					break;
+				default:
+					liquid = LiquidDictionary.getLiquid(l.liquidID, this.capsuleType.capacity);
+					break;
+			}
+
+			if (liquid != null)
+			{
+				filled = new ItemStack(this, 1, l.ordinal());
+				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(liquid, filled, empty));
+				
+				// Register with Squeezer/Bottler
+				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);
+				RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] {filled} , liquid,
+						ItemManager.wax.getStackForType(WaxType.MAGIC), 20);
+				l.available = true;
+			}
+		}
+		// Empty will be set to unavailable. Obviously, it always is.
+		Liquid.EMPTY.available = true;*/
 	}
 
 }

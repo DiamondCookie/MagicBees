@@ -2,40 +2,23 @@ package thaumicbees.item;
 
 import java.util.List;
 
-import thaumicbees.item.ItemComb.CombType;
-import thaumicbees.item.ItemPollen.PollenType;
+import thaumicbees.item.types.DropType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemDrop extends Item
 {
-	public enum DropType
-	{
-		ENCHANTED("Enchanting Drop", 0x6e1c6d, 0xff8fff),
-		INTELLECT("Intellect Drop", 0x25914D, 0x18E072),
-		;
-		
-		private DropType(String pName, int colourA, int colourB)
-		{
-			this.name = pName;
-			this.combColour[0] = colourA;
-			this.combColour[1] = colourB;
-		}
-		
-		public final String name;
-		public int[] combColour = new int[2];
-	}
-	
 	public ItemDrop(int itemID)
 	{
 		super(itemID);
 		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
-		this.setCreativeTab(CreativeTabs.tabMaterials);
+		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
 	

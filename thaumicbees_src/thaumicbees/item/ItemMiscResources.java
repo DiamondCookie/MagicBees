@@ -4,8 +4,8 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import thaumicbees.item.ItemPropolis.PropolisType;
-import thaumicbees.item.ItemWax.WaxType;
+import forestry.api.core.Tabs;
+import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -13,26 +13,11 @@ import net.minecraft.item.ItemStack;
 
 public class ItemMiscResources extends Item
 {
-	public enum ResourceType
-	{
-		LORE_FRAGMENT("Lore Fragment", 2),
-		AROMATIC_LUMP("Aromatic Lump", 3),
-		;
-		
-		private ResourceType(String n, int i)
-		{
-			this.name = n;
-			this.iconIdx = i;
-		}
-		public String name;
-		public int iconIdx;
-	}
-
 	public ItemMiscResources(int ID)
 	{
 		super(ID);
 		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setCreativeTab(CreativeTabs.tabMaterials);
+		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
 	
@@ -53,7 +38,10 @@ public class ItemMiscResources extends Item
 		super.getSubItems(id, tabs, list);
 		for (ResourceType type : ResourceType.values())
 		{
-			list.add(this.getStackForType(type));
+			if (type.showInList)
+			{
+				list.add(this.getStackForType(type));
+			}
 		}
 	}
 
