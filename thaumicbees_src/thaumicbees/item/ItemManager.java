@@ -4,6 +4,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import thaumcraft.api.EnumTag;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
@@ -79,19 +80,27 @@ public class ItemManager
 		ItemManager.drops = new ItemDrop(configFile.getItem("drop", itemIDBase++).getInt());
 		ItemManager.miscResources = new ItemMiscResources(configFile.getItem("miscResources", itemIDBase++).getInt());
 		
-		// 0x8700C6 = purpleish.
-		BackpackDefinition def = new BackpackDefinition("thaumaturge", "Thaumaturge's Backpack", 0x8700C6);
-		ItemManager.thaumaturgeBackpackT1 = 
-				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack1", itemIDBase++).getInt(),
-				def, EnumBackpackType.T1);
-		ItemManager.thaumaturgeBackpackT2 = 
-				BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack2", itemIDBase++).getInt(),
-				def, EnumBackpackType.T2);
-		// Add additional items from configs to backpack.
-		if (ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems.length() > 0)
+		try
 		{
-			FMLLog.info("Attempting to add extra items to Thaumaturge's backpack! If you get an error, check your ThaumicBees.conf.");
-			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems);
+			// 0x8700C6 = purpleish.
+			BackpackDefinition def = new BackpackDefinition("thaumaturge", "Thaumaturge's Backpack", 0x8700C6);
+			ItemManager.thaumaturgeBackpackT1 = 
+					BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack1", itemIDBase++).getInt(),
+					def, EnumBackpackType.T1);
+			ItemManager.thaumaturgeBackpackT2 = 
+					BackpackManager.backpackInterface.addBackpack(configFile.getItem("thaumaturgePack2", itemIDBase++).getInt(),
+					def, EnumBackpackType.T2);
+			// Add additional items from configs to backpack.
+			if (ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems.length() > 0)
+			{
+				FMLLog.info("Attempting to add extra items to Thaumaturge's backpack! If you get an error, check your ThaumicBees.conf.");
+				FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems);
+			}
+		}
+		catch (Exception e)
+		{
+			FMLLog.severe("ThaumicBees encountered an error during loading! Please ensure that Forestry did not fail to load.");
+			e.printStackTrace();
 		}
 		
 		
@@ -105,6 +114,19 @@ public class ItemManager
 		ItemManager.hiveFrameGentle = new ItemMagicHiveFrame(configFile.getItem("frameGentle", itemIDBase++).getInt(), HiveFrameType.GENTLE);
 		ItemManager.hiveFrameMetabolic = new ItemMagicHiveFrame(configFile.getItem("frameMetabolic", itemIDBase++).getInt(), HiveFrameType.METABOLIC);
 		ItemManager.hiveFrameNecrotic = new ItemMagicHiveFrame(configFile.getItem("frameNecrotic", itemIDBase++).getInt(), HiveFrameType.NECROTIC);
+		// Future frames, so they all are clumped together.
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		itemIDBase++;
+		
+		// New items here.
+		
 	}
 	
 	public static void setupCrafting()
@@ -180,6 +202,20 @@ public class ItemManager
 			'D', ItemManager.drops.getStackForType(DropType.INTELLECT),
 			'B', Item.glassBottle
 		});
+		
+		// "bottling" Crystal aspects.
+		for (EnumTag tag : EnumTag.values())
+		{
+			if (tag != EnumTag.UNKNOWN)
+			{
+				output = new ItemStack(ItemManager.tcEssentiaBottle, 1, tag.id + 1);
+				GameRegistry.addRecipe(output, new Object[] {
+						"ccc", "cxc", "ccc",
+						'c', new ItemStack(ItemManager.solidFlux, 1, tag.id),
+						'x', ItemManager.tcEssentiaBottle
+				});
+			}
+		}
 		
 		// 20 is the 'average' time to centrifuge a comb.
 		RecipeManagers.centrifugeManager.addRecipe(20, ItemManager.combs.getStackForType(CombType.OCCULT),

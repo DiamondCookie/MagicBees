@@ -89,8 +89,7 @@ public class ThaumicBeesPlugin
 		Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
 		Allele.flowerAuraNode = new AlleleFlower("flowerAuraNode", new FlowerProviderAuraNode(), true);
 		Allele.flowerNodePurify = new AlleleFlower("flowerAuraNodePurify", new FlowerProviderAuraNodePurify(), false);
-		// TODO: Once TC API is out, write provider to flux up node
-		Allele.flowerNodeFluxify = Allele.flowerThaumcraft;
+		Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", new FlowerProviderAuraNodeFlux(), false);
 		
 		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
 		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", "Mining", Potion.digSpeed, 7, false);
@@ -281,7 +280,7 @@ public class ThaumicBeesPlugin
 		Allele.Aware.setGenome(BeeGenomeManager.getTemplateAware());
 		breedingMgr.registerBeeTemplate(Allele.Aware.getGenome());
 		
-		/*Allele.Vis = new BeeSpecies("Vis", "\"They can feel changes in the aura, but are not yet able to affect it...\"|Azanor, research notes",
+		Allele.Vis = new BeeSpecies("Vis", "\"They can feel changes in the aura, but are not yet able to affect it...\"|Azanor, research notes",
 				"arcanus saecula", aware, 0,
 				0x004c99, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
@@ -303,7 +302,7 @@ public class ThaumicBeesPlugin
 				true, hideSpecies, true, false);
 		Allele.Flux.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 20);
 		Allele.Flux.setGenome(BeeGenomeManager.getTemplateFlux());
-		breedingMgr.registerBeeTemplate(Allele.Flux.getGenome());*/
+		breedingMgr.registerBeeTemplate(Allele.Flux.getGenome());
 		
 		IClassification malevolent = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "malevolens", "Malevolens");
 		malevolent.setParent(familyBee);

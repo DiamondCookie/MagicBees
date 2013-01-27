@@ -288,7 +288,7 @@ public class ThaumcraftCompat
 	public static void setupResearch()
 	{
 		ObjectTags tags = new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.INSECT, 2);
-		ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 0, Block.sapling)
+		ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 0, ItemManager.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.INSECT, 9).add(EnumTag.MAGIC, 2).add(EnumTag.FLUX, 2);
@@ -307,7 +307,7 @@ public class ThaumcraftCompat
 			.setParents(startNode)
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 15).add(EnumTag.BEAST, 2)
+		tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.TOOL, 6).add(EnumTag.INSECT, 15).add(EnumTag.BEAST, 2)
 				.add(EnumTag.MAGIC, 5);
 		ResearchItem  magicFrame = new ResearchItem("HIVEFRAME", tags, 10, -2, ItemManager.hiveFrameMagic)
 			.setParents(startNode)
@@ -319,14 +319,14 @@ public class ThaumcraftCompat
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 15).add(EnumTag.LIFE, 5).add(EnumTag.EXCHANGE, 6)
+		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 15).add(EnumTag.LIFE, 5).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.HEAL, 2).add(EnumTag.FLOWER, 6);
 		ResearchItem  gentleFrame = new ResearchItem("HIVEFRAMEGENTLE", tags, 12, -2, ItemManager.hiveFrameGentle)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 15).add(EnumTag.LIFE, 12).add(EnumTag.EXCHANGE, 6)
-				.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 5);
+		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 15).add(EnumTag.LIFE, 12).add(EnumTag.EXCHANGE, 6)
+				.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 5).add(EnumTag.FLESH, 3);
 		ResearchItem  metabolicFrame = new ResearchItem("HIVEFRAMEMETA", tags, 9, -3, ItemManager.hiveFrameMetabolic)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
@@ -386,7 +386,7 @@ public class ThaumcraftCompat
 		});
 		
 		output = new ItemStack(ItemManager.hiveFrameMetabolic);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.LIFE, 8).add(EnumTag.FLESH, 8)
+		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.LIFE, 8).add(EnumTag.MOTION, 8)
 				.add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAMEMETA", "FRAMEMETABOLIC", 50, tags, output, new Object[] {
 				Item.magmaCream,

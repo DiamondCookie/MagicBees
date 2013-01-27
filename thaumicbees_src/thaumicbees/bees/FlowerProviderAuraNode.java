@@ -82,4 +82,32 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 		return node;
 	}
 
+	protected ItemStack[] addItemToProducts(ItemStack[] products, ItemStack itemStack)
+	{
+		for (ItemStack stack : products)
+		{
+			if (stack.itemID == itemStack.itemID && stack.getItemDamage() == itemStack.getItemDamage())
+			{
+				if (stack.stackSize < stack.getItem().getItemStackLimit())
+				{
+					stack.stackSize += itemStack.stackSize;
+					itemStack.stackSize = Math.max(stack.stackSize - stack.getItem().getItemStackLimit(), 0);
+				}
+			}
+		}
+			
+		if (itemStack.stackSize > 0)
+		{
+			ItemStack[] newProducts = new ItemStack[products.length + 1];
+			for (int i = 0; i < products.length; ++i)
+			{
+				newProducts[i] = products[i];
+			}
+			newProducts[products.length] = itemStack;
+			products = newProducts;
+		}
+		
+		return products;
+	}
+
 }

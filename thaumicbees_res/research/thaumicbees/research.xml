@@ -75,11 +75,12 @@ Like the Magic Frame, the Gentle Frame also consumes small amounts of aura to ma
 <project id="HIVEFRAMEMETA">
 <name>Metabolic Frame</name>
 <popupText>And One! And Two!</popupText>
-<longText>Additional bee research has yelded additional insight into their body structure, metabolism and life cycle. It is possible that you could create a frame to enhance their body processes.</longText>
+<longText>Additional bee research has yielded insight into their body structure, metabolism, and life cycle. It is possible that you could create a frame to enhance their body processes.</longText>
 <page type="text">The Metabolic Frame enhances the rate at which bees metabolize food, resulting in a higher work speed. However, this makes their genetic structure somewhat unstable and prone to mutations. While this can be frustrating for some apiarists, other, more prepared beekeepers have been known to use the Metabolic Frames in their apiaries to encourage mutations in bee species.
 
-Like the Magic Frame, this frame consumes aura to maintain its enchantments, and has the negative side-effect of producing some flux in the surrounding aura now and again as the enchanted bees go about their work. The Metabolic Frame consumes significantly more aura, as its enchantments are much more complex, and is not quite as durable as the Magic Frame is known to be.</page>
+Like the Magic Frame, this frame consumes aura to maintain its enchantments, and has the negative side-effect of producing some flux in the surrounding aura now and again as the enchanted bees go about their work. The Metabolic Frame consumes significantly more aura, as its</page>
 <page type="infusioncrafting">FRAMEMETABOLIC</page>
+<page type="text">enchantments are much more complex, and is not quite as durable as the Magic Frame is known to be.</page>
 </project>
 
 <project id="HIVEFRAMENECRO">

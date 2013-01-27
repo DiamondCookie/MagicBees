@@ -7,6 +7,7 @@ public enum ResourceType
 	EXTENDED_FERTILIZER("Concentrated Compound", 4, true),
 	
 	// Dummy items for Thaumanomicon research icons.
+	RESEARCH_StartNode("Start Node", 241, false),
 	RESEARCH_BeeInfusion("Bee Infusion", 240, false),
 	;
 	

@@ -19,6 +19,7 @@ public class ItemSolidFlux extends Item
 		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setIconIndex(18);
 		this.setCreativeTab(Tabs.tabApiculture);
+		this.setHasSubtypes(true);
 	}
 	
 	@Override
@@ -39,7 +40,7 @@ public class ItemSolidFlux extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return "Crystalized " + EnumTag.get(stack.getItemDamage()).name;
+		return "Crystalized " + EnumTag.get(stack.getItemDamage()).name + " Aspect";
 	}
 
 	@Override

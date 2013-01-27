@@ -35,39 +35,14 @@ public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
 			if (aspectCount > 0)
 			{
 				EnumTag selectedTag = node.flux.getAspectsSorted()[world.rand.nextInt(node.flux.tags.size())];
-				node.flux.remove(selectedTag, 1);
-				ThaumcraftApi.queueNodeChanges(node.key, 0, 0, false, new ObjectTags().add(selectedTag, -1), 0, 0, 0);
-				products = addItemToProducts(products, new ItemStack(ItemManager.solidFlux, 1, selectedTag.id));
-			}
-		}
-		return products;
-	}
-
-	private ItemStack[] addItemToProducts(ItemStack[] products, ItemStack itemStack)
-	{
-		for (ItemStack stack : products)
-		{
-			if (stack.itemID == itemStack.itemID && stack.getItemDamage() == itemStack.getItemDamage())
-			{
-				if (stack.stackSize < stack.getItem().getItemStackLimit())
+				if (selectedTag != null)
 				{
-					stack.stackSize += itemStack.stackSize;
-					itemStack.stackSize = Math.max(stack.stackSize - stack.getItem().getItemStackLimit(), 0);
+					node.flux.remove(selectedTag, 1);
+					ThaumcraftApi.queueNodeChanges(node.key, 0, 0, false, new ObjectTags().add(selectedTag, -1), 0, 0, 0);
+					products = addItemToProducts(products, new ItemStack(ItemManager.solidFlux, 1, selectedTag.id));
 				}
 			}
 		}
-			
-		if (itemStack.stackSize > 0)
-		{
-			ItemStack[] newProducts = new ItemStack[products.length + 1];
-			for (int i = 0; i < products.length; ++i)
-			{
-				newProducts[i] = products[i];
-			}
-			newProducts[products.length] = itemStack;
-			products = newProducts;
-		}
-		
 		return products;
 	}
 }

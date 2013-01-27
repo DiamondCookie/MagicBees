@@ -8,13 +8,13 @@ public enum HiveFrameType
 	MAGIC("Magic Frame", 32, 240, 1f, 1f, 1f, 2f, 2,
 			null),
 	RESILIENT("Resilient Frame", 33, 840, 1f, 1f, 1f, 2f, 2,
-			new ObjectTags().add(EnumTag.ARMOR, 2)),
+			new ObjectTags().add(EnumTag.ARMOR, 1)),
 	GENTLE("Gentle Frame", 34, 200, 1f, 0.7f, 1.5f, 1.4f, 1,
 			new ObjectTags().add(EnumTag.HEAL, 1).add(EnumTag.LIFE, 1)),
 	METABOLIC("Metabolic Frame", 35, 120, 1f, 1.8f, 1f, 1.2f, 5,
-			new ObjectTags().add(EnumTag.EXCHANGE, 2).add(EnumTag.MOTION, 1).add(EnumTag.FLUX, 1)),
+			new ObjectTags().add(EnumTag.EXCHANGE, 1).add(EnumTag.MOTION, 1)),
 	NECROTIC("Necrotic Frame", 36, 270, 1f, 1f, 0.4f, 0.75f, 1,
-			new ObjectTags().add(EnumTag.DEATH, 6).add(EnumTag.POISON, 4)),
+			new ObjectTags().add(EnumTag.DEATH, 3).add(EnumTag.POISON, 2)),
 	;
 	
 	private HiveFrameType(String name, int icon, int damage,
