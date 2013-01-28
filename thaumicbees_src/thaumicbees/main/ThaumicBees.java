@@ -21,7 +21,7 @@ import net.minecraftforge.event.EventBus;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
 import thaumcraft.api.*;
-import thaumicbees.bees.ThaumicBeesPlugin;
+import thaumicbees.bees.TBBeeManager;
 import thaumicbees.bees.genetics.BeeSpecies;
 import thaumicbees.block.BlockManager;
 import thaumicbees.item.ItemComb;
@@ -48,14 +48,14 @@ public class ThaumicBees
 	private String configsPath;
 	private Configuration config;
 	private ThaumicBeesConfiguration modConfig;
-	private ThaumicBeesPlugin plugin;
+	private TBBeeManager plugin;
 
 	public ThaumicBees()
 	{
 		this.modConfig = new ThaumicBeesConfiguration();
 		
 		this.modConfig.ThaumcraftRecipesAdded = false;
-		this.plugin = new ThaumicBeesPlugin();
+		this.plugin = new TBBeeManager();
 	}
 
 	@Mod.PreInit
@@ -67,7 +67,6 @@ public class ThaumicBees
 		this.config.load();
 		// Allow us to set up some extra stuff.
 		this.modConfig.doMiscConfig(this.config);
-		plugin.preInit();
 		
 		ThaumcraftCompat.registerResearch();
 	}
@@ -81,13 +80,22 @@ public class ThaumicBees
 		// Give ThaumcraftCompat a chance to set itself up.
 		ThaumcraftCompat.parseThaumcraftConfig(configsPath);
 		this.proxy.preloadTextures();
-		
-		// Grab Forestry graphics file path
-		proxy.FORESTRY_GFX_ITEMS = ItemInterface.getItem("beeComb").getItem().getTextureFile();
+		try
+		{
+			FMLLog.info("[ThaumicBees] Attempting to get Forestry's item graphics file...");
+			// Grab Forestry graphics file path
+			proxy.FORESTRY_GFX_ITEMS = ItemInterface.getItem("beeComb").getItem().getTextureFile();
+		}
+		catch (Exception e)
+		{
+			FMLLog.severe("ThaumicBees encountered a problem while loading!");
+			throw new RuntimeException("Could not get the Forestry item texture file! Did Forestry load correctly?", e);
+		}
 		
 		BlockManager.setupBlocks(this.config);
 		ItemManager.setupItems(this.config);
 		this.config.save();
+		
 		
 		
 		// Vanilla & Forestry mechanics setup

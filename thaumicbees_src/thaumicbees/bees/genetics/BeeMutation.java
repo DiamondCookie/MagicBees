@@ -29,6 +29,8 @@ public class BeeMutation implements IBeeMutation
 	public static BeeMutation Vis;
 	public static BeeMutation Pure;
 	public static BeeMutation Flux;
+	public static BeeMutation Node;
+	public static BeeMutation Node1;
 	public static BeeMutation Skulking;
 	public static BeeMutation Brainy;
 	public static BeeMutation Gossamer;
@@ -107,7 +109,12 @@ public class BeeMutation implements IBeeMutation
 				}
 			}
 			
-			finalChance = Math.round(chance * BeeManager.breedingManager.getBeekeepingMode(housing.getWorld()).getMutationModifier((IBeeGenome) genome0, (IBeeGenome) genome1));
+			finalChance = Math.round(chance
+					* housing.getMutationModifier((IBeeGenome) genome0,
+							(IBeeGenome) genome1)
+					* BeeManager.breedingManager.getBeekeepingMode(housing.getWorld())
+							.getMutationModifier((IBeeGenome) genome0,
+									(IBeeGenome) genome1));
 		}
 		
 		return finalChance;

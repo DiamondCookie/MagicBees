@@ -99,8 +99,8 @@ public class ItemManager
 		}
 		catch (Exception e)
 		{
-			FMLLog.severe("ThaumicBees encountered an error during loading! Please ensure that Forestry did not fail to load.");
-			e.printStackTrace();
+			FMLLog.severe("ThaumicBees encountered a problem during loading!");
+			throw new RuntimeException("Could not register backpacks via Forestry. Did it fail to load?", e);
 		}
 		
 		

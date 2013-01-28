@@ -3,7 +3,7 @@ package thaumicbees.main;
 public class VersionInfo
 {
 
-	public static final String Version = "@VERSION@";
+	public static final String Version = "@MODVERSION@";
 	public static final String MCVersion = "@MCVERSION@";
 	public static final String Build = "@BUILD_NUMBER@";
 	

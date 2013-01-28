@@ -88,7 +88,7 @@
             	<filter token="VERSION" value="${thaumicbees.version}" />
            		<filter token="BUILD_NUMBER" value="${build.number}" />
            		<filter token="FINGERPRINT" value="${key.fingerprint}" />
-				<filter token="MODVERSION" value="${VERSION}-${BUILD_NUMBER}" />
+				<filter token="MODVERSION" value="${thaumicbees.version} - ${build.number}" />
            	</filterset>
          </copy>
 

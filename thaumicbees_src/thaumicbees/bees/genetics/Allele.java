@@ -29,6 +29,7 @@ public class Allele implements IAllele
 	public static BeeSpecies Vis;
 	public static BeeSpecies Pure;
 	public static BeeSpecies Flux;
+	public static BeeSpecies Node;
 	
 	public static BeeSpecies Skulking;
 	public static BeeSpecies Brainy;
@@ -52,6 +53,7 @@ public class Allele implements IAllele
 	public static AlleleEffectSpawnMob spawnWisp;
 	public static AlleleEffectSpawnMob spawnBats;
 	public static AlleleEffectSpawnMob spawnGhast;
+	public static AlleleEffectAuraNodeGrow nodeGen;
 	
 	private String uid;
 	private boolean dominant;

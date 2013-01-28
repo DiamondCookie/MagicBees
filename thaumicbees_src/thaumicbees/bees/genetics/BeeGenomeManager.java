@@ -319,6 +319,18 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	public static IAllele[] getTemplateNode()
+	{
+		IAllele[] genome = getTemplateBaseVis();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = Allele.Node;
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringSlowest");
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.nodeGen;
+		
+		return genome;
+	}
+	
 	private static IAllele[] getTemplateBaseMalevolent()
 	{
 		IAllele[] genome = getTemplateBaseThaumic();

@@ -15,6 +15,7 @@ import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.bees.genetics.Allele;
+import thaumicbees.bees.genetics.AlleleEffectAuraNodeGrow;
 import thaumicbees.bees.genetics.AlleleEffectCure;
 import thaumicbees.bees.genetics.AlleleEffectPotion;
 import thaumicbees.bees.genetics.AlleleEffectSpawnMob;
@@ -43,20 +44,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 
-public class ThaumicBeesPlugin
+public class TBBeeManager
 {
 	private static int defaultBodyColour = 0xFF6E0D;
 	private static int malevolentBodyColour = 0xe15236;
 	private static boolean hideSpecies = true;
-
-	public boolean isAvailable()
-	{
-		return true;
-	}
-
-	public void preInit()
-	{
-	}
 
 	public void doInit()
 	{
@@ -94,6 +86,8 @@ public class ThaumicBeesPlugin
 		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
 		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", "Mining", Potion.digSpeed, 7, false);
 		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", "Swiftness", Potion.moveSpeed, 5, false);
+		
+		Allele.nodeGen = new AlleleEffectAuraNodeGrow("effectNodeGeneration", "Nodeify", false, 800);
 
 		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, "Brainy", TCEntity.BRAINY_ZOMBIE.entityID);
 		Allele.spawnBrainyZombie.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);
@@ -135,7 +129,7 @@ public class ThaumicBeesPlugin
 		occult.addMemberSpecies(Allele.Mysterious);
 		breedingMgr.registerBeeTemplate(Allele.Mysterious.getGenome());
 		
-		Allele.Arcane = new BeeSpecies("Arcane", "The pinnacle of magical bees. It is likely these lead to more powerful mutations...|Azanor, Master Thaumaturge",
+		Allele.Arcane = new BeeSpecies("Arcane", "\"Their produce is charged with magic.\"|Azanor, Master Thaumaturge",
 				"arcanus", occult, 0,
 				0xd242df, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
@@ -280,7 +274,7 @@ public class ThaumicBeesPlugin
 		Allele.Aware.setGenome(BeeGenomeManager.getTemplateAware());
 		breedingMgr.registerBeeTemplate(Allele.Aware.getGenome());
 		
-		Allele.Vis = new BeeSpecies("Vis", "\"They can feel changes in the aura, but are not yet able to affect it...\"|Azanor, research notes",
+		Allele.Vis = new BeeSpecies("Vis", "\"They can feel changes in the aura, but are not yet able to affect it.\"|Azanor, research notes",
 				"arcanus saecula", aware, 0,
 				0x004c99, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
@@ -303,6 +297,14 @@ public class ThaumicBeesPlugin
 		Allele.Flux.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 20);
 		Allele.Flux.setGenome(BeeGenomeManager.getTemplateFlux());
 		breedingMgr.registerBeeTemplate(Allele.Flux.getGenome());
+		
+		Allele.Node = new BeeSpecies("Node", "Having undergone a freak mutation, these bees now attract magic to them.|Apinomicon",
+				"conficiens", aware, 0,
+				0xFFF266, 0xFF8CE9, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
+				true, hideSpecies, true, false);
+		Allele.Node.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 20);
+		Allele.Node.setGenome(BeeGenomeManager.getTemplateNode());
+		breedingMgr.registerBeeTemplate(Allele.Node.getGenome());
 		
 		IClassification malevolent = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "malevolens", "Malevolens");
 		malevolent.setParent(familyBee);
@@ -384,13 +386,18 @@ public class ThaumicBeesPlugin
 		BeeMutation.Stark = new BeeMutation(Allele.Arcane, Allele.Supernatural, Allele.Stark, 8);
 		
 		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), Allele.Aware, 9);
-		/*BeeMutation.Vis = new BeeMutation(Allele.Aware, Allele.Arcane, Allele.Vis, 7)
+		BeeMutation.Vis = new BeeMutation(Allele.Aware, Allele.Arcane, Allele.Vis, 7)
 			.setAuraNodeRequired(15);
 		
 		BeeMutation.Pure = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Pure, 5)
 			.setAuraNodeTypeRequired(5, EnumNodeType.PURE).setMoonPhaseBonus(MoonPhase.NEW, MoonPhase.NEW, 1.6f);
 		BeeMutation.Flux = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Flux, 5)
-			.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE).setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 1.6f);*/
+			.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE).setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 1.6f);
+				
+		BeeMutation.Node = new BeeMutation(Allele.Vis, Allele.Vis, Allele.Node, 2)
+			.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WANING_HALF, MoonPhase.WANING_HALF);
+		BeeMutation.Node1 = new BeeMutation(Allele.Vis, Allele.Vis, Allele.Node, 2)
+			.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WAXING_HALF);
 		
 		// Now we get into a little bit of branching...
 		if (ThaumicBees.getInstanceConfig().ExtraBeesInstalled)
@@ -413,49 +420,4 @@ public class ThaumicBeesPlugin
 		BeeMutation.Wispy = new BeeMutation(Allele.Gossamer, Allele.getBaseSpecies("Cultivated"), Allele.Wispy, 8);
 		
 	}
-	
-	public String getDescription()
-	{
-		return "ThaumicBees";
-	}
-
-	public void generateSurface(World world, Random random, int i, int j)
-	{
-	}
-
-	public IGuiHandler getGuiHandler()
-	{
-		return null;
-	}
-
-	public IPacketHandler getPacketHandler()
-	{
-		return null;
-	}
-
-	public IPickupHandler getPickupHandler()
-	{
-		return null;
-	}
-
-	public IResupplyHandler getResupplyHandler()
-	{
-		return null;
-	}
-
-	public ISaveEventHandler getSaveEventHandler()
-	{
-		return null;
-	}
-
-	public IOreDictionaryHandler getDictionaryHandler()
-	{
-		return null;
-	}
-
-	public ICommand[] getConsoleCommands()
-	{
-		return null;
-	}
-
 }
