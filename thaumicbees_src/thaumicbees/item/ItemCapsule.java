@@ -34,6 +34,11 @@ public class ItemCapsule extends Item
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
+	
+	public CapsuleType getType()
+	{
+		return this.capsuleType;
+	}
 
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)

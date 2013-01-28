@@ -36,7 +36,6 @@ public class ItemComb extends Item
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int id, CreativeTabs tabs, List list)
 	{
-		super.getSubItems(id, tabs, list);
 		for (CombType type : CombType.values())
 		{
 			if (type.showInList)

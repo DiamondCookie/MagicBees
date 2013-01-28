@@ -36,7 +36,6 @@ public class ItemDrop extends Item
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int id, CreativeTabs tabs, List list)
 	{
-		super.getSubItems(id, tabs, list);
 		for (DropType type : DropType.values())
 		{
 			list.add(this.getStackForType(type));

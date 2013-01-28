@@ -35,7 +35,6 @@ public class ItemPollen extends Item
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int id, CreativeTabs tabs, List list)
 	{
-		super.getSubItems(id, tabs, list);
 		for (PollenType type : PollenType.values())
 		{
 			list.add(this.getStackForType(type));

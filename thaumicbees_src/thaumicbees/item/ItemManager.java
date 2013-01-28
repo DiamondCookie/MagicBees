@@ -9,6 +9,7 @@ import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.HiveFrameType;
+import thaumicbees.item.types.LiquidType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
@@ -329,12 +330,17 @@ public class ItemManager
 	
 	public static void postInit()
 	{
+		registerLiquidContainer(ItemManager.magicCapsule);
+	}
+	
+	private static void registerLiquidContainer(ItemCapsule baseCapsule)
+	{
 		// Forestry liquids aren't registered until PostInit, that's why we wait until now to register them.
-		/*ItemStack empty = new ItemStack(this, 1, 0);
+		ItemStack empty = new ItemStack(baseCapsule, 1, 0);
 		ItemStack filled;
 		LiquidStack liquid = null;
 		
-		for (Liquid l : Liquid.values())
+		for (LiquidType l : LiquidType.values())
 		{
 			switch (l)
 			{
@@ -342,19 +348,19 @@ public class ItemManager
 					liquid = null;
 					break;
 				case WATER:
-					liquid = new LiquidStack(Block.waterStill, this.capsuleType.capacity);
+					liquid = new LiquidStack(Block.waterStill, baseCapsule.getType().capacity);
 					break;
 				case LAVA:
-					liquid = new LiquidStack(Block.lavaStill, this.capsuleType.capacity);
+					liquid = new LiquidStack(Block.lavaStill, baseCapsule.getType().capacity);
 					break;
 				default:
-					liquid = LiquidDictionary.getLiquid(l.liquidID, this.capsuleType.capacity);
+					liquid = LiquidDictionary.getLiquid(l.liquidID, baseCapsule.getType().capacity);
 					break;
 			}
 
 			if (liquid != null)
 			{
-				filled = new ItemStack(this, 1, l.ordinal());
+				filled = new ItemStack(baseCapsule, 1, l.ordinal());
 				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(liquid, filled, empty));
 				
 				// Register with Squeezer/Bottler
@@ -365,7 +371,7 @@ public class ItemManager
 			}
 		}
 		// Empty will be set to unavailable. Obviously, it always is.
-		Liquid.EMPTY.available = true;*/
+		LiquidType.EMPTY.available = true;
 	}
 
 }
