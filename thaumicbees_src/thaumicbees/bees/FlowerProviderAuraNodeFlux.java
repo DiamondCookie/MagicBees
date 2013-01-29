@@ -19,7 +19,7 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 		{
 			tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
 		}
-		while (tag == EnumTag.UNKNOWN);
+		while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
 		
 		int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
 		if (nodeId != -1)
