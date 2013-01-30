@@ -27,6 +27,7 @@ public class BeeMutation implements IBeeMutation
 	public static BeeMutation Savant;
 	public static BeeMutation Aware;
 	public static BeeMutation Vis;
+	public static BeeMutation Vis1;
 	public static BeeMutation Pure;
 	public static BeeMutation Flux;
 	public static BeeMutation Node;

@@ -385,9 +385,11 @@ public class TBBeeManager
 		BeeMutation.Savant = new BeeMutation(Allele.Pupil, Allele.Scholarly, Allele.Savant, 6);
 		BeeMutation.Stark = new BeeMutation(Allele.Arcane, Allele.Supernatural, Allele.Stark, 8);
 		
-		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), Allele.Aware, 9);
+		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), Allele.Aware, 12);
 		BeeMutation.Vis = new BeeMutation(Allele.Aware, Allele.Arcane, Allele.Vis, 7)
-			.setAuraNodeRequired(15);
+		.setAuraNodeRequired(40);
+		BeeMutation.Vis1 = new BeeMutation(Allele.Aware, Allele.Stark, Allele.Vis, 12)
+		.setAuraNodeRequired(80);
 		
 		BeeMutation.Pure = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Pure, 5)
 			.setAuraNodeTypeRequired(5, EnumNodeType.PURE).setMoonPhaseBonus(MoonPhase.NEW, MoonPhase.NEW, 1.6f);
