@@ -101,7 +101,7 @@ public class ItemManager
 		catch (Exception e)
 		{
 			FMLLog.severe("ThaumicBees encountered a problem during loading!");
-			throw new RuntimeException("Could not register backpacks via Forestry. Did it fail to load?", e);
+			throw new RuntimeException("Could not register backpacks via Forestry. Check your FML Client log and see if Forestry crashed silently.", e);
 		}
 		
 		

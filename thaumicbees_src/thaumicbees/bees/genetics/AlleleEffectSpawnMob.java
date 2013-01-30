@@ -139,8 +139,7 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 					AxisAlignedBB.getBoundingBox((int)pos[0], (int)pos[1], (int)pos[2], (int)pos[0] + 1, (int)pos[1] + 1, (int)pos[2] + 1)
 							.expand(8.0D, 4.0D, 8.0D)).size();
 			
-				mob.setPosition(pos[0], pos[1], pos[2]);
-				mob.setAngles(world.rand.nextFloat() * 360f, 0f);
+				mob.setPositionAndRotation(pos[0], pos[1], pos[2], world.rand.nextFloat() * 360f, 0f);
 				
 			if (entitiesCount < this.maxMobsInArea && mob.getCanSpawnHere())
 			{
