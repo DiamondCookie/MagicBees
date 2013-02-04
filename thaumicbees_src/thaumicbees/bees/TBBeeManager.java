@@ -201,20 +201,18 @@ public class TBBeeManager
 		Allele.Savant.setGenome(BeeGenomeManager.getTemplateSavant());
 		learned.addMemberSpecies(Allele.Savant);
 		breedingMgr.registerBeeTemplate(Allele.Savant.getGenome());
-		
-		IClassification stark = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "torridus", "Torridus");
-		stark.setParent(familyBee);
+
+		IClassification magical = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "thaumis", "Thaumis");
+		magical.setParent(familyBee);		
 		
 		Allele.Stark = new BeeSpecies("Stark", "\"These are unusually attracted to shards. This warrents further investigation.\"|Azanor, Master Thaumaturge",
-				"torridae", stark, 0,
+				"torridae", magical, 0,
 				0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
 		Allele.Stark.addProduct(ItemManager.combs.getStackForType(CombType.STARK), 10);
 		Allele.Stark.setGenome(BeeGenomeManager.getTemplateStark());
 		breedingMgr.registerBeeTemplate(Allele.Stark.getGenome());
 
-		IClassification magical = AlleleManager.alleleRegistry.createAndRegisterClassification(EnumClassLevel.GENUS, "thaumis", "Thaumis");
-		magical.setParent(familyBee);
 		
 		Allele.Air = new BeeSpecies("Aura", "\"They work so fast it's breathtaking.\"|Sengir, Mad Apiarist",
 				"ventosa", magical, 0,

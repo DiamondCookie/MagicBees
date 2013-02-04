@@ -145,7 +145,7 @@ public class ThaumcraftCompat
 		
 		// Tagging capsules.
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerComplexObjectTag(ItemManager.magicCapsule.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, -1, tags);
 
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.VOID, 2);
 		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, 0, tags);
@@ -259,39 +259,41 @@ public class ThaumcraftCompat
 		// Forestry's wood		
 		itemStack = BlockInterface.getBlock("log1");		
 		tags = new ObjectTags().add(EnumTag.WOOD, 8);
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		itemStack = BlockInterface.getBlock("log2"); // Same tags
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		itemStack = BlockInterface.getBlock("log3"); // Same tags.
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		itemStack = BlockInterface.getBlock("log4"); // Still same tags.
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		
 		itemStack = ItemInterface.getItem("sapling");
 		tags = new ObjectTags().add(EnumTag.PLANT, 4).add(EnumTag.WOOD, 2);
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		
 		// BEES!
 		itemStack = ItemInterface.getItem("beeDroneGE");
 		tags = new ObjectTags().add(EnumTag.INSECT, 1).add(EnumTag.FLIGHT, 2);
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); // All drones
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags); // All drones
 		
 		tags = new ObjectTags(itemStack.itemID, -1).add(EnumTag.VALUABLE, 4); // Get drone tags & add valuable
 		itemStack = ItemInterface.getItem("beePrincessGE");
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); // All princesses.
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags); // All princesses.
 		
 		tags = new ObjectTags().add(EnumTag.VALUABLE, 8).add(EnumTag.INSECT, 2).add(EnumTag.FLIGHT, 4);
 		itemStack = ItemInterface.getItem("beeQueenGE");
-		ThaumcraftApi.registerComplexObjectTag(itemStack.itemID, -1, tags); //All queens.
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags); //All queens.
 	}
 	
 	public static void setupResearch()
 	{
-		ObjectTags tags = new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.INSECT, 2);
-		ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 0, ItemManager.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
+		ObjectTags tags;
+		
+		ResearchItem startNode = new ResearchItem("TBSTARTNODE", null, 10, 0, ItemManager.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
+			.setAutoUnlock()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.INSECT, 9).add(EnumTag.MAGIC, 2).add(EnumTag.FLUX, 2);
+		tags = new ObjectTags().add(EnumTag.INSECT, 9).add(EnumTag.MAGIC, 4).add(EnumTag.FLUX, 4);
 		ResearchItem starkHint = new ResearchItem("STARKHINT", tags, 5, 2, ItemInterface.getItem("beeQueenGE"))
 			.setParents(startNode)
 			.registerResearchItem();
@@ -302,7 +304,7 @@ public class ThaumcraftCompat
 			.setParents(starkHint, ResearchList.getResearch("UTFT")).setHidden()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.CROP, 20).add(EnumTag.EARTH, 10).add(EnumTag.WATER, 2);
+		tags = new ObjectTags().add(EnumTag.CROP, 20).add(EnumTag.EARTH, 20).add(EnumTag.WATER, 5);
 		ResearchItem fertilizer = new ResearchItem("FERTILIZER", tags, 16, 0, ItemInterface.getItem("apatite"))
 			.setParents(startNode)
 			.registerResearchItem();
@@ -313,25 +315,25 @@ public class ThaumcraftCompat
 			.setParents(startNode)
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 15).add(EnumTag.ARMOR, 5).add(EnumTag.EXCHANGE, 6)
+		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 10).add(EnumTag.ARMOR, 5).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.MAGIC, 8);
 		ResearchItem  magicFrame2 = new ResearchItem("HIVEFRAME2", tags, 8, -2, ItemManager.hiveFrameResilient)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 15).add(EnumTag.LIFE, 5).add(EnumTag.EXCHANGE, 6)
+		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 10).add(EnumTag.LIFE, 5).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.HEAL, 2).add(EnumTag.FLOWER, 6);
 		ResearchItem  gentleFrame = new ResearchItem("HIVEFRAMEGENTLE", tags, 12, -2, ItemManager.hiveFrameGentle)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 15).add(EnumTag.LIFE, 12).add(EnumTag.EXCHANGE, 6)
-				.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 5).add(EnumTag.FLESH, 3);
+		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 10).add(EnumTag.LIFE, 6).add(EnumTag.EXCHANGE, 8)
+				.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 4).add(EnumTag.FLESH, 4);
 		ResearchItem  metabolicFrame = new ResearchItem("HIVEFRAMEMETA", tags, 9, -3, ItemManager.hiveFrameMetabolic)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 15).add(EnumTag.DEATH, 15).add(EnumTag.EXCHANGE, 6)
+		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 10).add(EnumTag.DEATH, 15).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.MAGIC, 8).add(EnumTag.POISON, 6);
 		ResearchItem  necroticFrame = new ResearchItem("HIVEFRAMENECRO", tags, 11, -3, ItemManager.hiveFrameNecrotic)
 			.setParents(magicFrame).setHidden()

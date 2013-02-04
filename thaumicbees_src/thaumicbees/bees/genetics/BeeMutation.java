@@ -96,12 +96,16 @@ public class BeeMutation implements IBeeMutation
 			{
 				int nodeId = ThaumcraftApi.getClosestAuraWithinRange(housing.getWorld(),
 						housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), this.nodeRange);
-				if (nodeId >= 0 && this.nodeType != null)
+				if (nodeId >= 0)
 				{
-					AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
-					if (node.type != this.nodeType)
+					if (this.nodeType != null)
 					{
-						chance = 0;
+						// Needs a _specific_ variety of node
+						AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
+						if (node.type != this.nodeType)
+						{
+							chance = 0;
+						}
 					}
 				}
 				else

@@ -13,19 +13,22 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 {
 	@Override
 	public ItemStack[] affectProducts(World world, IBeeGenome genome, int x, int y, int z, ItemStack[] products)
-	{		
-		EnumTag tag;
-		do
+	{
+		if (world.rand.nextInt(10) < 1)
 		{
-			tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
-		}
-		while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
-		
-		int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
-		if (nodeId != -1)
-		{
-			int quantity = world.rand.nextInt(2) + 1;
-			ThaumcraftApi.queueNodeChanges(nodeId, 0, 0, false, new ObjectTags().add(tag, quantity), 0f, 0f, 0f);
+			EnumTag tag;
+			do
+			{
+				tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
+			}
+			while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
+			
+			int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
+			if (nodeId != -1)
+			{
+				int quantity = world.rand.nextInt(2) + 1;
+				ThaumcraftApi.queueNodeChanges(nodeId, 0, 0, false, new ObjectTags().add(tag, quantity), 0f, 0f, 0f);
+			}
 		}
 		
 		return products;

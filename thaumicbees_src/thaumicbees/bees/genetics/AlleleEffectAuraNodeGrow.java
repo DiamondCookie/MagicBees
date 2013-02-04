@@ -39,27 +39,33 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 		if (value >= throttle)
 		{
 			World w = housing.getWorld();
-			float x = housing.getXCoord();
-			float y = housing.getYCoord();
-			float z = housing.getZCoord();
-			int nodeId = ThaumcraftApi.getClosestAuraWithinRange(w, x, y, z, 1800);
-			if (nodeId != -1)
+			if (w.rand.nextInt(20) < 1)
 			{
-				AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
-				x = (float)(x - node.xPos);
-				y = (float)(y - node.yPos);
-				z = (float)(z - node.zPos);
-				
-				float distance = (float)Math.sqrt(x * x + y * y + z * z);
-				x = x / distance;
-				y = y / distance;
-				z = z / distance;
-				
-				x *= 0.02f;
-				y *= 0.02f;
-				z *= 0.02f;
-				
-				ThaumcraftApi.queueNodeChanges(nodeId, 0, w.rand.nextInt(1), false, null, x, y, z);
+				float x = housing.getXCoord();
+				float y = housing.getYCoord();
+				float z = housing.getZCoord();
+				int nodeId = ThaumcraftApi.getClosestAuraWithinRange(w, x, y, z, 1800);
+				if (nodeId != -1)
+				{
+					AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
+					if (node.level >= node.baseLevel * 3 / 4)
+					{
+						x = (float)(x - node.xPos);
+						y = (float)(y - node.yPos);
+						z = (float)(z - node.zPos);
+						
+						float distance = (float)Math.sqrt(x * x + y * y + z * z);
+						x = x / distance;
+						y = y / distance;
+						z = z / distance;
+						
+						x *= 0.0125f;
+						y *= 0.0125f;
+						z *= 0.0125f;
+						
+						ThaumcraftApi.queueNodeChanges(nodeId, node.level * -3 / 8, w.rand.nextInt(1), false, null, x, y, z);
+					}
+				}
 			}
 			storedData.setInteger(0, 0);
 		}
