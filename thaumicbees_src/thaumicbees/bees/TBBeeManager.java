@@ -22,16 +22,21 @@ import thaumicbees.bees.genetics.AlleleEffectSpawnMob;
 import thaumicbees.bees.genetics.AlleleEffectSpawnWisp;
 import thaumicbees.bees.genetics.AlleleFlower;
 import thaumicbees.bees.genetics.AlleleInteger;
-import thaumicbees.bees.genetics.BeeGenomeManager;
 import thaumicbees.bees.genetics.BeeMutation;
 import thaumicbees.bees.genetics.BeeSpecies;
+import thaumicbees.bees.genetics.FlowerProviderAuraNode;
+import thaumicbees.bees.genetics.FlowerProviderAuraNodeFlux;
+import thaumicbees.bees.genetics.FlowerProviderAuraNodePurify;
+import thaumicbees.bees.genetics.FlowerProviderBookshelf;
+import thaumicbees.bees.genetics.FlowerProviderThaumcraftFlower;
 import thaumicbees.item.ItemComb;
-import thaumicbees.item.ItemManager;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
+import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.MoonPhase;
 import thaumicbees.thaumcraft.TCEntity;
 import thaumicbees.thaumcraft.TCMiscResource;
 import thaumicbees.thaumcraft.TCShardType;
@@ -115,7 +120,7 @@ public class TBBeeManager
 				"secretiore", occult, 0,
 				0x001099, 0xcc763c, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Esoteric.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 20);
+		Allele.Esoteric.addProduct(Config.combs.getStackForType(CombType.OCCULT), 20);
 		Allele.Esoteric.setGenome(BeeGenomeManager.getTemplateEsoteric());
 		occult.addMemberSpecies(Allele.Esoteric);
 		breedingMgr.registerBeeTemplate(Allele.Esoteric.getGenome());
@@ -124,7 +129,7 @@ public class TBBeeManager
 				"mysticus", occult, 0,
 				0x762bc2, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Mysterious.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 25);
+		Allele.Mysterious.addProduct(Config.combs.getStackForType(CombType.OCCULT), 25);
 		Allele.Mysterious.setGenome(BeeGenomeManager.getTemplateMysterious());
 		occult.addMemberSpecies(Allele.Mysterious);
 		breedingMgr.registerBeeTemplate(Allele.Mysterious.getGenome());
@@ -133,8 +138,8 @@ public class TBBeeManager
 				"arcanus", occult, 0,
 				0xd242df, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		Allele.Arcane.addProduct(ItemManager.combs.getStackForType(CombType.OCCULT), 30);
-		Allele.Arcane.addSpecialty(ItemManager.drops.getStackForType(DropType.ENCHANTED, 1), 9);
+		Allele.Arcane.addProduct(Config.combs.getStackForType(CombType.OCCULT), 30);
+		Allele.Arcane.addSpecialty(Config.drops.getStackForType(DropType.ENCHANTED, 1), 9);
 		Allele.Arcane.setGenome(BeeGenomeManager.getTemplateArcane());
 		occult.addMemberSpecies(Allele.Arcane);
 		breedingMgr.registerBeeTemplate(Allele.Arcane.getGenome());
@@ -146,7 +151,7 @@ public class TBBeeManager
 				"larvatus", otherworldly, 0,
 				0x48EEEC, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Charmed.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 20);
+		Allele.Charmed.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 20);
 		Allele.Charmed.setGenome(BeeGenomeManager.getTemplateCharmed());
 		otherworldly.addMemberSpecies(Allele.Charmed);
 		breedingMgr.registerBeeTemplate(Allele.Charmed.getGenome());
@@ -155,7 +160,7 @@ public class TBBeeManager
 				"cantatus", otherworldly, 0,
 				0x18e726, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Enchanted.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 30);
+		Allele.Enchanted.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 30);
 		Allele.Enchanted.setGenome(BeeGenomeManager.getTemplateEnchanted());
 		otherworldly.addMemberSpecies(Allele.Enchanted);
 		breedingMgr.registerBeeTemplate(Allele.Enchanted.getGenome());
@@ -164,8 +169,8 @@ public class TBBeeManager
 				"coeleste", otherworldly, 0,
 				0x005614, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		Allele.Supernatural.addProduct(ItemManager.combs.getStackForType(CombType.OTHERWORLDLY), 40);
-		Allele.Supernatural.addSpecialty(ItemManager.pollen.getStackForType(PollenType.UNUSUAL), 8);
+		Allele.Supernatural.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 40);
+		Allele.Supernatural.addSpecialty(Config.pollen.getStackForType(PollenType.UNUSUAL), 8);
 		Allele.Supernatural.setGenome(BeeGenomeManager.getTemplateSupernatural());
 		otherworldly.addMemberSpecies(Allele.Supernatural);
 		breedingMgr.registerBeeTemplate(Allele.Supernatural.getGenome());
@@ -177,7 +182,7 @@ public class TBBeeManager
 				"disciplina", learned, 0,
 				0xFFFF00, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				false, hideSpecies, true, true);
-		Allele.Pupil.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 20);
+		Allele.Pupil.addProduct(Config.combs.getStackForType(CombType.PAPERY), 20);
 		Allele.Pupil.setGenome(BeeGenomeManager.getTemplatePupil());
 		learned.addMemberSpecies(Allele.Pupil);
 		breedingMgr.registerBeeTemplate(Allele.Pupil.getGenome());
@@ -186,8 +191,8 @@ public class TBBeeManager
 				"studiosis", learned, 0,
 				0x6E0000, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				false, hideSpecies, true, false);
-		Allele.Scholarly.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 25);
-		Allele.Scholarly.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 2);
+		Allele.Scholarly.addProduct(Config.combs.getStackForType(CombType.PAPERY), 25);
+		Allele.Scholarly.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 2);
 		Allele.Scholarly.setGenome(BeeGenomeManager.getTemplateScholarly());
 		learned.addMemberSpecies(Allele.Scholarly);
 		breedingMgr.registerBeeTemplate(Allele.Scholarly.getGenome());
@@ -196,8 +201,8 @@ public class TBBeeManager
 				"philologus", learned, 0,
 				0x6E1C6D, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.ARID,
 				true, hideSpecies, true, false);
-		Allele.Savant.addProduct(ItemManager.combs.getStackForType(CombType.PAPERY), 40);
-		Allele.Savant.addSpecialty(ItemManager.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 5);
+		Allele.Savant.addProduct(Config.combs.getStackForType(CombType.PAPERY), 40);
+		Allele.Savant.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 5);
 		Allele.Savant.setGenome(BeeGenomeManager.getTemplateSavant());
 		learned.addMemberSpecies(Allele.Savant);
 		breedingMgr.registerBeeTemplate(Allele.Savant.getGenome());
@@ -209,7 +214,7 @@ public class TBBeeManager
 				"torridae", magical, 0,
 				0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
-		Allele.Stark.addProduct(ItemManager.combs.getStackForType(CombType.STARK), 10);
+		Allele.Stark.addProduct(Config.combs.getStackForType(CombType.STARK), 10);
 		Allele.Stark.setGenome(BeeGenomeManager.getTemplateStark());
 		breedingMgr.registerBeeTemplate(Allele.Stark.getGenome());
 
@@ -218,8 +223,8 @@ public class TBBeeManager
 				"ventosa", magical, 0,
 				0xD9D636, 0xA19E10, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		Allele.Air.addProduct(ItemManager.combs.getStackForType(CombType.AIRY), 9);
-		Allele.Air.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.QUICKSILVER.ordinal()), 2);
+		Allele.Air.addProduct(Config.combs.getStackForType(CombType.AIRY), 9);
+		Allele.Air.addSpecialty(new ItemStack(Config.tcMiscResource, 1, TCMiscResource.QUICKSILVER.ordinal()), 2);
 		Allele.Air.setGenome(BeeGenomeManager.getTemplateAir());
 		breedingMgr.registerBeeTemplate(Allele.Air.getGenome());
 		
@@ -227,7 +232,7 @@ public class TBBeeManager
 				"praefervidus", magical, 0,
 				0xE50B0B, 0x95132F, EnumTemperature.HOT, EnumHumidity.ARID,
 				true, hideSpecies, true, true);
-		Allele.Fire.addProduct(ItemManager.combs.getStackForType(CombType.FIREY), 15);
+		Allele.Fire.addProduct(Config.combs.getStackForType(CombType.FIREY), 15);
 		Allele.Fire.addSpecialty(new ItemStack(Item.blazePowder), 8);
 		Allele.Fire.setGenome(BeeGenomeManager.getTemplateFire());
 		breedingMgr.registerBeeTemplate(Allele.Fire.getGenome());
@@ -239,7 +244,7 @@ public class TBBeeManager
 				"umidus", magical, 0,
 				0x36CFD9, 0x1054A1, EnumTemperature.NORMAL, EnumHumidity.DAMP,
 				true, hideSpecies, true, true);
-		Allele.Water.addProduct(ItemManager.combs.getStackForType(CombType.WATERY), 20);
+		Allele.Water.addProduct(Config.combs.getStackForType(CombType.WATERY), 20);
 		Allele.Water.addSpecialty(new ItemStack(Block.ice), 1).addSpecialty(forestryItem, 5);
 		Allele.Water.setGenome(BeeGenomeManager.getTemplateWater());
 		breedingMgr.registerBeeTemplate(Allele.Water.getGenome());
@@ -248,8 +253,8 @@ public class TBBeeManager
 				"sordida", magical, 0,
 				0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		Allele.Earth.addProduct(ItemManager.combs.getStackForType(CombType.EARTHY), 30);
-		Allele.Earth.addSpecialty(new ItemStack(ItemManager.tcMiscResource, 1, TCMiscResource.AMBER.ordinal()), 6);
+		Allele.Earth.addProduct(Config.combs.getStackForType(CombType.EARTHY), 30);
+		Allele.Earth.addSpecialty(new ItemStack(Config.tcMiscResource, 1, TCMiscResource.AMBER.ordinal()), 6);
 		Allele.Earth.setGenome(BeeGenomeManager.getTemplateEarth());
 		breedingMgr.registerBeeTemplate(Allele.Earth.getGenome());
 		
@@ -257,7 +262,7 @@ public class TBBeeManager
 				"azanorius", magical, 0,
 				0xaa32fc, 0x7A489E, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
-		Allele.Infused.addProduct(ItemManager.combs.getStackForType(CombType.INFUSED), 20);
+		Allele.Infused.addProduct(Config.combs.getStackForType(CombType.INFUSED), 20);
 		Allele.Infused.setGenome(BeeGenomeManager.getTemplateInfused());
 		breedingMgr.registerBeeTemplate(Allele.Infused.getGenome());
 		
@@ -268,7 +273,7 @@ public class TBBeeManager
 				"sensibilis", aware, 0,
 				0xb0092e9, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
-		Allele.Aware.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 18);
+		Allele.Aware.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18);
 		Allele.Aware.setGenome(BeeGenomeManager.getTemplateAware());
 		breedingMgr.registerBeeTemplate(Allele.Aware.getGenome());
 		
@@ -276,7 +281,7 @@ public class TBBeeManager
 				"arcanus saecula", aware, 0,
 				0x004c99, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
-		Allele.Vis.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 25);
+		Allele.Vis.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 25);
 		Allele.Vis.setGenome(BeeGenomeManager.getTemplateVis());
 		breedingMgr.registerBeeTemplate(Allele.Vis.getGenome());
 		
@@ -284,7 +289,7 @@ public class TBBeeManager
 				"arcanus puritatem", aware, 0,
 				0xb0092e9, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
-		Allele.Pure.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 20);
+		Allele.Pure.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20);
 		Allele.Pure.setGenome(BeeGenomeManager.getTemplatePure());
 		breedingMgr.registerBeeTemplate(Allele.Pure.getGenome());
 		
@@ -292,7 +297,7 @@ public class TBBeeManager
 				"arcanus labe", aware, 0,
 				0x004c99, defaultBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
-		Allele.Flux.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 20);
+		Allele.Flux.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20);
 		Allele.Flux.setGenome(BeeGenomeManager.getTemplateFlux());
 		breedingMgr.registerBeeTemplate(Allele.Flux.getGenome());
 		
@@ -300,7 +305,7 @@ public class TBBeeManager
 				"conficiens", aware, 0,
 				0xFFF266, 0xFF8CE9, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, false);
-		Allele.Node.addProduct(ItemManager.combs.getStackForType(CombType.INTELLECT), 20);
+		Allele.Node.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20);
 		Allele.Node.setGenome(BeeGenomeManager.getTemplateNode());
 		breedingMgr.registerBeeTemplate(Allele.Node.getGenome());
 		
@@ -311,7 +316,7 @@ public class TBBeeManager
 				"malevolens", malevolent, 0,
 				0x524827, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Skulking.addProduct(ItemManager.combs.getStackForType(CombType.SKULKING), 10);
+		Allele.Skulking.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10);
 		Allele.Skulking.setGenome(BeeGenomeManager.getTemplateSkulking());
 		breedingMgr.registerBeeTemplate(Allele.Skulking.getGenome());
 		
@@ -319,8 +324,8 @@ public class TBBeeManager
 				"cerebrum", malevolent, 0,
 				0x83FF70, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Brainy.addProduct(ItemManager.combs.getStackForType(CombType.SKULKING), 10).addProduct(new ItemStack(Item.rottenFlesh), 6);
-		Allele.Brainy.addSpecialty(new ItemStack(ItemManager.tcMiscResource,  1, TCMiscResource.ZOMBIE_BRAIN.ordinal()), 2);
+		Allele.Brainy.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10).addProduct(new ItemStack(Item.rottenFlesh), 6);
+		Allele.Brainy.addSpecialty(new ItemStack(Config.tcMiscResource,  1, TCMiscResource.ZOMBIE_BRAIN.ordinal()), 2);
 		Allele.Brainy.setGenome(BeeGenomeManager.getTemplateBrainy());
 		breedingMgr.registerBeeTemplate(Allele.Brainy.getGenome());
 		
@@ -350,7 +355,7 @@ public class TBBeeManager
 				"chiroptera", malevolent, 0,
 				0x27350d, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
-		Allele.Batty.addProduct(ItemManager.combs.getStackForType(CombType.SKULKING), 10);
+		Allele.Batty.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10);
 		Allele.Batty.addSpecialty(new ItemStack(Item.gunpowder), 4);
 		Allele.Batty.setGenome(BeeGenomeManager.getTemplateBatty());
 		breedingMgr.registerBeeTemplate(Allele.Batty.getGenome());
@@ -359,7 +364,7 @@ public class TBBeeManager
 				"pallens", malevolent, 0,
 				0xccccee, 0xbf877c, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, false);
-		Allele.Ghastly.addProduct(ItemManager.combs.getStackForType(CombType.SKULKING), 8);
+		Allele.Ghastly.addProduct(Config.combs.getStackForType(CombType.SKULKING), 8);
 		Allele.Ghastly.addSpecialty(new ItemStack(Item.ghastTear), 2);
 		Allele.Ghastly.setGenome(BeeGenomeManager.getTemplateGhastly());
 		breedingMgr.registerBeeTemplate(Allele.Ghastly.getGenome());

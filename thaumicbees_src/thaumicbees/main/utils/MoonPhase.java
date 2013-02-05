@@ -1,4 +1,4 @@
-package thaumicbees.bees;
+package thaumicbees.main.utils;
 
 import net.minecraft.world.World;
 
@@ -37,6 +37,6 @@ public enum MoonPhase
 	
 	public static MoonPhase getMoonPhase(World w)
 	{
-		return MoonPhase.values()[(int)(w.getWorldTime() / 24000L) % 8];
+		return MoonPhase.values()[(int)((w.getWorldTime() + 6000) / 24000L) % 8];
 	}
 }

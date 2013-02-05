@@ -4,15 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 
 import thaumcraft.api.EnumTag;
+import thaumcraft.api.ItemApi;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchList;
+import thaumicbees.bees.BeeGenomeManager;
 import thaumicbees.bees.genetics.Allele;
-import thaumicbees.bees.genetics.BeeGenomeManager;
-import thaumicbees.block.BlockManager;
 import thaumicbees.item.ItemComb;
-import thaumicbees.item.ItemManager;
 import thaumicbees.item.ItemMiscResources;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
@@ -20,6 +19,7 @@ import thaumicbees.item.types.LiquidType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.storage.BackpackDefinition;
 
@@ -41,45 +41,26 @@ import net.minecraftforge.common.Configuration;
 
 public class ThaumcraftCompat
 {
-	
-	public static void parseThaumcraftConfig(String configPath)
+	public static void getThaumcraftBlocks()
 	{
-		Configuration tcConfig = new Configuration(new File(configPath + "/Thaumcraft.cfg"));
-		Property p;
-		
-		tcConfig.load();
-		
-		// Load blocks out of the Thaumcraft config to get their IDs;
-		p = tcConfig.getBlock("BlockCustomPlant", 0);
-		BlockManager.tcPlant = Block.blocksList[p.getInt()];
-		p = tcConfig.getBlock("BlockCandle", 0);
-		BlockManager.tcCandle = Block.blocksList[ p.getInt()];
-		p = tcConfig.getBlock("BlockCrystal", 0);
-		BlockManager.tcCrystal = Block.blocksList[p.getInt()];
-		p = tcConfig.getBlock("BlockMarker", 0);
-		BlockManager.tcMarker = Block.blocksList[p.getInt()];
-		p = tcConfig.getBlock("BlockJar", 0);
-		BlockManager.tcJar = Block.blocksList[p.getInt()];
-		p = tcConfig.getBlock("BlockMagicalLeaves", 0);
-		BlockManager.tcLeaf = Block.blocksList[p.getInt()];
-		p = tcConfig.getBlock("BlockMagicalLog", 0);
-		BlockManager.tcLog = Block.blocksList[p.getInt()];
-		p = tcConfig.getBlock("BlockSecure", 0);
-		BlockManager.tcWarded = Block.blocksList[p.getInt()];
-		
-		// Load items out of the Thaumcraft config to get their IDs.
-		p = tcConfig.getItem("ItemEssence", 0);
-		ItemManager.tcEssentiaBottle = Item.itemsList[p.getInt() + 256];
-		p = tcConfig.getItem("ItemResource", 0);
-		ItemManager.tcMiscResource = Item.itemsList[p.getInt() + 256];
-		p = tcConfig.getItem("ItemShard", 0);
-		ItemManager.tcShard = Item.itemsList[p.getInt() + 256];
-		p = tcConfig.getItem("BlockJarFilledItem", 0);
-		ItemManager.tcFilledJar = Item.itemsList[p.getInt() + 256];
-		p = tcConfig.getItem("ItemGolemPlacer", 0);
-		ItemManager.tcGolem = Item.itemsList[p.getInt() + 256];
-		p = tcConfig.getItem("ItemEssence", 0);
-		ItemManager.tcWispEssence = Item.itemsList[p.getInt() + 256];
+		Config.tcPlant = Block.blocksList[ItemApi.getItem("blockCustomPlant", 0).itemID];
+		Config.tcCandle = Block.blocksList[ItemApi.getItem("blockCandle", 0).itemID];
+		Config.tcCrystal = Block.blocksList[ItemApi.getItem("blockCrystal", 0).itemID];
+		Config.tcMarker = Block.blocksList[ItemApi.getItem("blockMarker", 0).itemID];
+		Config.tcJar = Block.blocksList[ItemApi.getItem("blockJar", 0).itemID];
+		Config.tcLog = Block.blocksList[ItemApi.getItem("blockMagicalLog", 0).itemID];
+		Config.tcLeaf = Block.blocksList[ItemApi.getItem("blockMagicalLeaves", 0).itemID];
+		Config.tcWarded = Block.blocksList[ItemApi.getItem("blockWarded", 0).itemID];
+	}
+	
+	public static void getThaumcraftItems()
+	{
+		Config.tcFilledJar = Item.itemsList[ItemApi.getItem("itemJarFilled", 0).itemID];
+		Config.tcMiscResource = Item.itemsList[ItemApi.getItem("itemResource", 0).itemID];
+		Config.tcEssentiaBottle = Item.itemsList[ItemApi.getItem("itemEssence", 0).itemID];
+		Config.tcShard = Item.itemsList[ItemApi.getItem("itemShard", 0).itemID];
+		Config.tcGolem = Item.itemsList[ItemApi.getItem("itemGolemPlacer", 0).itemID];
+		Config.tcWispEssence = Item.itemsList[ItemApi.getItem("itemWispEssence", 0).itemID];
 	}
 	
 	public static void setupBackpacks()
@@ -87,34 +68,35 @@ public class ThaumcraftCompat
 		if (ThaumicBees.getInstanceConfig().AddThaumcraftItemsToBackpacks)
 		{
 			// Add all shards and Thaumium to miner's backpack
-			String ids = ItemManager.tcShard.itemID + ":" + -1 + ";"
-					+ ItemManager.tcMiscResource.itemID + ":" + TCMiscResource.THAUMIUM.ordinal();
+			String ids = Config.tcShard.itemID + ":" + -1 + ";"
+					+ Config.tcMiscResource.itemID + ":" + TCMiscResource.THAUMIUM.ordinal();
 			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "miner@" + ids);
 			
 			// All resources go into Thaumaturge's backpack
-			ids = ItemManager.tcMiscResource.itemID + ":" + -1 + ";"
-					+ ItemManager.tcShard.itemID + ":" + -1 + ";"
-					+ ItemManager.tcFilledJar.itemID + ":" + -1 + ";"
-					+ BlockManager.tcCrystal.blockID + ":" + -1 + ";"
-					+ BlockManager.tcJar.blockID + ":" + -1 + ";"
-					+ ItemManager.tcGolem.itemID + ":" + -1;
+			ids = Config.tcMiscResource.itemID + ":" + -1 + ";"
+					+ Config.tcShard.itemID + ":" + -1 + ";"
+					+ Config.tcFilledJar.itemID + ":" + -1 + ";"
+					+ Config.tcCrystal.blockID + ":" + -1 + ";"
+					+ Config.tcJar.blockID + ":" + -1 + ";"
+					+ Config.tcGolem.itemID + ":" + -1 + ";"
+					+ Config.solidFlux.itemID + ":" + -1;
 			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ids);
 			
 			// Add some plants & saplings to Forester's
-			ids = BlockManager.tcPlant.blockID + ":" + "-1" + ";"
-					+ BlockManager.tcLeaf.blockID + ":" + -1 + ";"
-					+ BlockManager.tcLog.blockID + ":" + "-1";
+			ids = Config.tcPlant.blockID + ":" + "-1" + ";"
+					+ Config.tcLeaf.blockID + ":" + -1 + ";"
+					+ Config.tcLog.blockID + ":" + "-1";
 			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "forester@" + ids);
 			
 			// Add Wisp & brains to Hunter's
-			ids = ItemManager.tcWispEssence.itemID + ":" + -1 + ";"
-					+ ItemManager.tcMiscResource.itemID + ":" + TCMiscResource.ZOMBIE_BRAIN.ordinal();
+			ids = Config.tcWispEssence.itemID + ":" + -1 + ";"
+					+ Config.tcMiscResource.itemID + ":" + TCMiscResource.ZOMBIE_BRAIN.ordinal();
 			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "hunter@" + ids);
 			
 			// Add Marker, warded stone, candle to builder
-			ids = BlockManager.tcCandle.blockID + ":" + -1 + ";"
-					+ BlockManager.tcMarker.blockID + ":" + -1 + ";"
-					+ BlockManager.tcWarded.blockID + ":" + -1;
+			ids = Config.tcCandle.blockID + ":" + -1 + ";"
+					+ Config.tcMarker.blockID + ":" + -1 + ";"
+					+ Config.tcWarded.blockID + ":" + -1;
 			FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "builder@" + ids);
 		}
 	}
@@ -125,34 +107,34 @@ public class ThaumcraftCompat
 		ItemStack itemStack;
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.wax.itemID, WaxType.MAGIC.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 1);
-		ThaumcraftApi.registerObjectTag(ItemManager.drops.itemID, DropType.ENCHANTED.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.ENCHANTED.ordinal(), tags);
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 1);
-		ThaumcraftApi.registerObjectTag(ItemManager.drops.itemID, DropType.INTELLECT.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.INTELLECT.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 3);
-		ThaumcraftApi.registerObjectTag(ItemManager.miscResources.itemID, ResourceType.LORE_FRAGMENT.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.miscResources.itemID, ResourceType.LORE_FRAGMENT.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 1).add(EnumTag.INSECT, 2).add(EnumTag.CONTROL, 1);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, CombType.STARK.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, CombType.AIRY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, CombType.FIREY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, CombType.WATERY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, CombType.EARTHY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, CombType.INFUSED.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.STARK.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.AIRY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.FIREY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.WATERY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.EARTHY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.INFUSED.ordinal(), tags);
 		
 		// Tagging capsules.
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, -1, tags);
 
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.VOID, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, 0, tags);
+		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, 0, tags);
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.WATER, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, LiquidType.WATER.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, LiquidType.WATER.ordinal(), tags);
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2).add(EnumTag.FIRE, 2);
-		ThaumcraftApi.registerObjectTag(ItemManager.magicCapsule.itemID, LiquidType.LAVA.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, LiquidType.LAVA.ordinal(), tags);
 		
 		for (EnumTag tag : EnumTag.values())
 		{
@@ -161,7 +143,7 @@ public class ThaumcraftCompat
 				continue;
 			}
 			tags = new ObjectTags().add(tag, 1);
-			ThaumcraftApi.registerObjectTag(ItemManager.solidFlux.itemID, tag.id, tags);
+			ThaumcraftApi.registerObjectTag(Config.solidFlux.itemID, tag.id, tags);
 		}
 		
 		// Tag some Forestry stuff.
@@ -245,12 +227,12 @@ public class ThaumcraftCompat
 		itemStack = ItemInterface.getItem("beeComb");
 		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags); // ALL combs plox.
-		ThaumcraftApi.registerObjectTag(ItemManager.combs.itemID, -1, tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, -1, tags);
 		
-		itemStack = ItemManager.combs.getStackForType(CombType.OCCULT);
+		itemStack = Config.combs.getStackForType(CombType.OCCULT);
 		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2).add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
-		itemStack = ItemManager.combs.getStackForType(CombType.STARK);
+		itemStack = Config.combs.getStackForType(CombType.STARK);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("ambrosia");
@@ -289,7 +271,7 @@ public class ThaumcraftCompat
 	{
 		ObjectTags tags;
 		
-		ResearchItem startNode = new ResearchItem("TBSTARTNODE", null, 10, 0, ItemManager.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
+		ResearchItem startNode = new ResearchItem("TBSTARTNODE", null, 10, 0, Config.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
 			.setAutoUnlock()
 			.registerResearchItem();
 		
@@ -300,7 +282,7 @@ public class ThaumcraftCompat
 		
 		tags = new ObjectTags().add(EnumTag.INSECT, 15).add(EnumTag.MAGIC, 5).add(EnumTag.WATER, 5).add(EnumTag.EARTH, 5)
 				.add(EnumTag.WIND, 5).add(EnumTag.FIRE, 5);
-		ResearchItem beeInfusion = new ResearchItem("BEEINFUSION", tags, 5, 3, ItemManager.miscResources.getStackForType(ResourceType.RESEARCH_BeeInfusion))
+		ResearchItem beeInfusion = new ResearchItem("BEEINFUSION", tags, 5, 3, Config.miscResources.getStackForType(ResourceType.RESEARCH_BeeInfusion))
 			.setParents(starkHint, ResearchList.getResearch("UTFT")).setHidden()
 			.registerResearchItem();
 		
@@ -311,31 +293,31 @@ public class ThaumcraftCompat
 		
 		tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.TOOL, 6).add(EnumTag.INSECT, 15).add(EnumTag.BEAST, 2)
 				.add(EnumTag.MAGIC, 5);
-		ResearchItem  magicFrame = new ResearchItem("HIVEFRAME", tags, 10, -2, ItemManager.hiveFrameMagic)
+		ResearchItem  magicFrame = new ResearchItem("HIVEFRAME", tags, 10, -2, Config.hiveFrameMagic)
 			.setParents(startNode)
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 10).add(EnumTag.ARMOR, 5).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.MAGIC, 8);
-		ResearchItem  magicFrame2 = new ResearchItem("HIVEFRAME2", tags, 8, -2, ItemManager.hiveFrameResilient)
+		ResearchItem  magicFrame2 = new ResearchItem("HIVEFRAME2", tags, 8, -2, Config.hiveFrameResilient)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 10).add(EnumTag.LIFE, 5).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.HEAL, 2).add(EnumTag.FLOWER, 6);
-		ResearchItem  gentleFrame = new ResearchItem("HIVEFRAMEGENTLE", tags, 12, -2, ItemManager.hiveFrameGentle)
+		ResearchItem  gentleFrame = new ResearchItem("HIVEFRAMEGENTLE", tags, 12, -2, Config.hiveFrameGentle)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 10).add(EnumTag.LIFE, 6).add(EnumTag.EXCHANGE, 8)
 				.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 4).add(EnumTag.FLESH, 4);
-		ResearchItem  metabolicFrame = new ResearchItem("HIVEFRAMEMETA", tags, 9, -3, ItemManager.hiveFrameMetabolic)
+		ResearchItem  metabolicFrame = new ResearchItem("HIVEFRAMEMETA", tags, 9, -3, Config.hiveFrameMetabolic)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 10).add(EnumTag.DEATH, 15).add(EnumTag.EXCHANGE, 6)
 				.add(EnumTag.MAGIC, 8).add(EnumTag.POISON, 6);
-		ResearchItem  necroticFrame = new ResearchItem("HIVEFRAMENECRO", tags, 11, -3, ItemManager.hiveFrameNecrotic)
+		ResearchItem  necroticFrame = new ResearchItem("HIVEFRAMENECRO", tags, 11, -3, Config.hiveFrameNecrotic)
 			.setParents(magicFrame).setHidden()
 			.registerResearchItem();
 
@@ -351,116 +333,6 @@ public class ThaumcraftCompat
 		ResearchItem bogEarth = new ResearchItem("BOGEARTH", tags, 9, -1, iconStack)
 			.setParents(startNode)
 			.registerResearchItem();*/
-	}
-	
-	public static void setupCrafting()
-	{
-		ItemStack output = ItemManager.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
-		ItemStack inputA = ItemInterface.getItem("apatite");
-		ObjectTags tags = (new ObjectTags()).add(EnumTag.CROP, 12);
-		output.stackSize = 2;
-		ThaumcraftApi.addShapelessInfusionCraftingRecipe("FERTILIZER", "FERTILIZER", 5, tags, output, new Object[] {
-				inputA
-		});
-
-		output = new ItemStack(ItemManager.hiveFrameMagic);
-		inputA = ItemInterface.getItem("frameUntreated");
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8);
-		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAME", "FRAMEMAGIC", 50, tags, output, new Object[] {
-				inputA
-		});
-		
-		output = new ItemStack(ItemManager.hiveFrameResilient);
-		tags = new ObjectTags().add(EnumTag.WOOD, 12).add(EnumTag.INSECT, 8).add(EnumTag.EXCHANGE, 12);
-		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAME2", "FRAMERESILIENT", 50, tags, output, new Object[] {
-				" i ", "ifi", " i ",
-				'f', ItemManager.hiveFrameMagic,
-				'i', Item.ingotIron
-		});
-		
-		output = new ItemStack(ItemManager.hiveFrameGentle);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.HEAL, 12);
-		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMEGENTLE", "FRAMEGENTLE", 50, tags, output, new Object[] {
-				"www", "wFw", "www",
-				'F', inputA,
-				'w', ItemInterface.getItem("beeswax")
-				
-		});
-		
-		output = new ItemStack(ItemManager.hiveFrameMetabolic);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.LIFE, 8).add(EnumTag.MOTION, 8)
-				.add(EnumTag.EXCHANGE, 8);
-		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAMEMETA", "FRAMEMETABOLIC", 50, tags, output, new Object[] {
-				Item.magmaCream,
-				inputA
-		});
-		
-		output = new ItemStack(ItemManager.hiveFrameNecrotic);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.EXCHANGE, 12).add(EnumTag.DEATH, 10)
-				.add(EnumTag.POISON, 5);
-		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMENECRO", "FRAMENECROTIC", 50, tags, output, new Object[] {
-				" S ", "SxS", " S ",
-				'S', Item.rottenFlesh,
-				'x', inputA
-		});
-	}
-
-	public static void setupBeeInfusions(World world)
-	{
-		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(Allele.Stark, EnumBeeType.DRONE);
-		ItemStack princess = BeeGenomeManager.getBeeNBTForSpecies(Allele.Stark, EnumBeeType.PRINCESS);
-		ItemStack airDrone = Allele.Air.getBeeItem(world, EnumBeeType.DRONE);
-		ItemStack airPrincess = Allele.Air.getBeeItem(world, EnumBeeType.PRINCESS);
-		ItemStack waterDrone = Allele.Water.getBeeItem(world, EnumBeeType.DRONE);
-		ItemStack waterPrincess = Allele.Water.getBeeItem(world, EnumBeeType.PRINCESS);
-		ItemStack earthDrone = Allele.Earth.getBeeItem(world, EnumBeeType.DRONE);
-		ItemStack earthPrincess = Allele.Earth.getBeeItem(world, EnumBeeType.PRINCESS);
-		ItemStack fireDrone = Allele.Fire.getBeeItem(world, EnumBeeType.DRONE);
-		ItemStack firePrincess = Allele.Fire.getBeeItem(world, EnumBeeType.PRINCESS);
-		ItemStack magicDrone = Allele.Infused.getBeeItem(world, EnumBeeType.DRONE);
-		ItemStack magicPrincess = Allele.Infused.getBeeItem(world, EnumBeeType.PRINCESS);
-		
-		String researchKey = "BEEINFUSION";
-		
-		ObjectTags tags = (new ObjectTags()).add(EnumTag.WIND, 40).add(EnumTag.MOTION, 20);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION1", airDrone,
-				new ItemStack[] { drone, new ItemStack(ItemManager.tcShard, 1, TCShardType.AIR.ordinal())},
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION2", airPrincess,
-				new ItemStack[] { princess , new ItemStack(ItemManager.tcShard, 1, TCShardType.AIR.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		
-		tags = (new ObjectTags()).add(EnumTag.FIRE, 40).add( EnumTag.POWER, 20);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION3", fireDrone, new Object[] 
-				{ drone, new ItemStack(ItemManager.tcShard, 1, TCShardType.FIRE.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION4", firePrincess, new Object[] 
-				{ princess, new ItemStack(ItemManager.tcShard, 1, TCShardType.FIRE.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
-		
-		tags = (new ObjectTags()).add(EnumTag.WATER, 40).add( EnumTag.COLD, 20); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION5", waterDrone, new Object[] 
-				{ drone, new ItemStack(ItemManager.tcShard, 1, TCShardType.WATER.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION6", waterPrincess, new Object[] 
-				{ princess, new ItemStack(ItemManager.tcShard, 1, TCShardType.WATER.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
-		
-		tags = (new ObjectTags()).add(EnumTag.EARTH, 40).add( EnumTag.ROCK, 20);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION7", earthDrone, new Object[] 
-				{ drone, new ItemStack(ItemManager.tcShard, 1, TCShardType.EARTH.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION8", earthPrincess, new Object[] 
-				{ princess, new ItemStack(ItemManager.tcShard, 1, TCShardType.EARTH.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		
-		tags = new ObjectTags().add(EnumTag.MAGIC, 40).add(EnumTag.FLUX, 20);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", magicDrone, new Object[]
-				{ drone, new ItemStack(ItemManager.tcShard, 1, TCShardType.MAGIC.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", magicPrincess, new Object[]
-				{ princess, new ItemStack(ItemManager.tcShard, 1, TCShardType.MAGIC.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 	}
 
 	public static void registerResearch()

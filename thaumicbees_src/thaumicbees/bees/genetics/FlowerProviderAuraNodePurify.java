@@ -1,4 +1,4 @@
-package thaumicbees.bees;
+package thaumicbees.bees.genetics;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -7,8 +7,7 @@ import thaumcraft.api.AuraNode;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
-import thaumicbees.block.BlockManager;
-import thaumicbees.item.ItemManager;
+import thaumicbees.main.Config;
 import forestry.api.apiculture.IBeeGenome;
 
 public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
@@ -41,7 +40,7 @@ public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
 					{
 						node.flux.remove(selectedTag, 1);
 						ThaumcraftApi.queueNodeChanges(node.key, 0, 0, false, new ObjectTags().add(selectedTag, -1), 0, 0, 0);
-						products = addItemToProducts(products, new ItemStack(ItemManager.solidFlux, 1, selectedTag.id));
+						products = addItemToProducts(products, new ItemStack(Config.solidFlux, 1, selectedTag.id));
 					}
 				}
 			}

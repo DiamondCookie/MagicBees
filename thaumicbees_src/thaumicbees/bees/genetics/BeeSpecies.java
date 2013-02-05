@@ -84,9 +84,9 @@ public class BeeSpecies extends Allele implements IAlleleBeeSpecies
 		return this;
 	}
 
-	public ItemStack getBeeItem(World world, EnumBeeType beeType)
+	public ItemStack getBeeItem(EnumBeeType beeType)
 	{
-		return BeeManager.beeInterface.getBeeStack(BeeManager.beeInterface.getBee(world, BeeManager.beeInterface.templateAsGenome(genomeTemplate)), beeType);
+		return BeeManager.beeInterface.getBeeStack(BeeManager.beeInterface.getBee(null, BeeManager.beeInterface.templateAsGenome(genomeTemplate)), beeType);
 	}
 
 	public String getName()

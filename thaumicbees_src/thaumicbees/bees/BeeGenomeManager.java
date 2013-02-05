@@ -1,5 +1,8 @@
-package thaumicbees.bees.genetics;
+package thaumicbees.bees;
 
+import thaumicbees.bees.genetics.Allele;
+import thaumicbees.bees.genetics.AlleleFlower;
+import thaumicbees.bees.genetics.BeeSpecies;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

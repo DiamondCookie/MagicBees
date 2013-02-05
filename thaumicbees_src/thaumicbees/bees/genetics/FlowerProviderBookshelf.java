@@ -1,4 +1,4 @@
-package thaumicbees.bees;
+package thaumicbees.bees.genetics;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

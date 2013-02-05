@@ -1,6 +1,6 @@
-package thaumicbees.bees;
+package thaumicbees.bees.genetics;
 
-import thaumicbees.block.BlockManager;
+import thaumicbees.main.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -10,13 +10,13 @@ import forestry.api.genetics.IPollinatable;
 
 public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 {
-	private ItemStack[] flowers = {new ItemStack(BlockManager.tcPlant, 1, 2), new ItemStack(BlockManager.tcPlant, 1, 3) };
+	private ItemStack[] flowers = {new ItemStack(Config.tcPlant, 1, 2), new ItemStack(Config.tcPlant, 1, 3) };
 			
 	@Override
 	public boolean isAcceptedFlower(World world, IBeeGenome genome, int x, int y, int z)
 	{
 		boolean flag = false;
-		if (world.getBlockId(x, y, z) == BlockManager.tcPlant.blockID)
+		if (world.getBlockId(x, y, z) == Config.tcPlant.blockID)
 		{
 			int meta = world.getBlockMetadata(x, y, z);
 			if (meta == 2 || meta == 3)
@@ -35,7 +35,7 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 		if (world.isAirBlock(x, y, z) && (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID))
 		{
 			int rand = world.rand.nextInt(10);
-			world.setBlockAndMetadataWithNotify(x, y, z, BlockManager.tcPlant.blockID, (rand >= 5) ? 2 : 3);
+			world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, (rand >= 5) ? 2 : 3);
 			System.out.println(x + ", " + y + ", " + ", " + z + " set to flower.");
 			flag = true;
 		}

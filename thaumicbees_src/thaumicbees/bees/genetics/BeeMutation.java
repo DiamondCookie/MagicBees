@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import thaumcraft.api.AuraNode;
 import thaumcraft.api.EnumNodeType;
 import thaumcraft.api.ThaumcraftApi;
-import thaumicbees.bees.MoonPhase;
+import thaumicbees.main.utils.MoonPhase;
 
 public class BeeMutation implements IBeeMutation
 {

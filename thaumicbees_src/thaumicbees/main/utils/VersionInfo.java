@@ -1,4 +1,4 @@
-package thaumicbees.main;
+package thaumicbees.main.utils;
 
 public class VersionInfo
 {
