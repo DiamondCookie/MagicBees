@@ -4,9 +4,9 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import thaumicbees.bees.TBBeeManager;
+import thaumicbees.compat.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.VersionInfo;
-import thaumicbees.thaumcraft.ThaumcraftCompat;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -46,7 +46,7 @@ public class ThaumicBees
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		
-		ThaumcraftCompat.registerResearch();
+		CompatabilityManager.registerResearch();
 	}
 
 	@Mod.Init
@@ -69,11 +69,9 @@ public class ThaumicBees
 		}
 		
 		this.modConfig.setupBlocks();
-		this.modConfig.setupItems();		
+		this.modConfig.setupItems();
 		
-		
-		ThaumcraftCompat.setupBackpacks();
-		ThaumcraftCompat.setupItemAspects();
+		CompatabilityManager.setupBackpacks();
 		
 		plugin.doInit();
 	}
@@ -84,6 +82,8 @@ public class ThaumicBees
 		plugin.postInit();
 		this.modConfig.saveConfigs();
 		
+		CompatabilityManager.setupItemAspects();
+		
 		// Vanilla, Forestry & Thaumcraft crafting setup
 		CraftingManager.setupCrafting();
 		
@@ -91,20 +91,10 @@ public class ThaumicBees
 		MinecraftForge.EVENT_BUS.register(this);
 		
 		
-		ThaumcraftCompat.setupResearch();
+		CompatabilityManager.setupResearch();
 	}
-
-	/*@ForgeSubscribe
-	public void worldLoad(net.minecraftforge.event.world.WorldEvent.Load event)
-	{
-		if (!this.modConfig.BeeInfusionsAdded)
-		{
-			CraftingManager.setupBeeInfusions(event.world);
-			this.modConfig.BeeInfusionsAdded = true;
-		}
-	}*/
 	
-	public static Config getInstanceConfig()
+	public static Config getConfig()
 	{
 		return object.modConfig;
 	}

@@ -24,7 +24,7 @@ public class ClientProxy extends CommonProxy
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
 	{
 		// drawParticleEffects flag pulled from Forestry after configs
-		if (ThaumicBees.getInstanceConfig().DrawParticleEffects)
+		if (ThaumicBees.getConfig().DrawParticleEffects)
 		{
 			double spawnX;
 			double spawnY;

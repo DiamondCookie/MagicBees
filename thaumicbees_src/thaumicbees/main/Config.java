@@ -3,6 +3,8 @@ package thaumicbees.main;
 import java.io.File;
 
 import thaumicbees.block.BlockMagicApiary;
+import thaumicbees.compat.CompatabilityManager;
+import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemDrop;
@@ -15,7 +17,6 @@ import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.storage.BackpackDefinition;
-import thaumicbees.thaumcraft.ThaumcraftCompat;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -23,8 +24,10 @@ import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -81,6 +84,7 @@ public class Config
 	public static Item tcShard;
 	public static Item tcGolem;
 	public static Item tcWispEssence;
+	public static Item tcNuggets;
 	
 
 	//----- Config State info ----------------------------------
@@ -101,7 +105,7 @@ public class Config
 
 	public void setupBlocks()
 	{
-		ThaumcraftCompat.getThaumcraftBlocks();
+		ThaumcraftHelper.getThaumcraftBlocks();
 		
 		int blockIdBase = 1750;
 		
@@ -111,12 +115,14 @@ public class Config
 	
 	public void setupItems()
 	{
-		ThaumcraftCompat.getThaumcraftItems();
+		ThaumcraftHelper.getThaumcraftItems();
 		
 		int itemIDBase = 26090;
 		
 		Property p = tbConfig.getItem("combs", itemIDBase++);
 		combs= new ItemComb(p.getInt());
+		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, -1));
+		
 		wax = new ItemWax(tbConfig.getItem("wax", itemIDBase++).getInt());
 		propolis = new ItemPropolis(tbConfig.getItem("propolis", itemIDBase++).getInt());
 		drops = new ItemDrop(tbConfig.getItem("drop", itemIDBase++).getInt());
@@ -133,10 +139,10 @@ public class Config
 					BackpackManager.backpackInterface.addBackpack(tbConfig.getItem("thaumaturgePack2", itemIDBase++).getInt(),
 					def, EnumBackpackType.T2);
 			// Add additional items from configs to backpack.
-			if (ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems.length() > 0)
+			if (ThaumicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
 			{
 				FMLLog.info("Attempting to add extra items to Thaumaturge's backpack! If you get an error, check your ThaumicBees.conf.");
-				FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getInstanceConfig().ThaumaturgeExtraItems);
+				FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getConfig().ThaumaturgeExtraItems);
 			}
 		}
 		catch (Exception e)

@@ -3,13 +3,10 @@ package thaumicbees.bees.genetics;
 import java.lang.reflect.Field;
 
 import cpw.mods.fml.common.FMLLog;
-
+import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemArmorApiarist;
-import thaumicbees.thaumcraft.TCEntity;
-
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,13 +53,13 @@ public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob
 				// Try some Reflection on TC code. This could be dangerous.
 				try
 				{
-					Class wispEntity = Class.forName(TCEntity.WISP.getClassName());
+					Class wispEntity = Class.forName(ThaumcraftHelper.Entity.WISP.getClassName());
 					Field type = wispEntity.getDeclaredField("type");
 					type.setByte(mob, wispTypes[world.rand.nextInt(wispTypes.length)]);
 				}
 				catch (Exception e)
 				{
-					FMLLog.info("ThaumicBees is using an invalid classname: " + TCEntity.WISP.getClassName() 
+					FMLLog.info("ThaumicBees is using an invalid classname: " + ThaumcraftHelper.Entity.WISP.getClassName() 
 							+ " Please report this error in the thread if you see it.", (Object[])null);
 				}
 

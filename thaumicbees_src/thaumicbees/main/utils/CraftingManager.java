@@ -5,6 +5,8 @@ import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.bees.BeeGenomeManager;
 import thaumicbees.bees.genetics.Allele;
+import thaumicbees.compat.ShapelessBeeInfusionCraftingRecipe;
+import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
@@ -13,9 +15,6 @@ import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.Config;
-import thaumicbees.thaumcraft.ShapelessBeeInfusionCraftingRecipe;
-import thaumicbees.thaumcraft.TCMiscResource;
-import thaumicbees.thaumcraft.TCShardType;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -63,7 +62,7 @@ public class CraftingManager
 				'W', Config.wax.getStackForType(WaxType.MAGIC)
 		});
 
-		output = new ItemStack(Config.tcMiscResource, 1, TCMiscResource.KNOWLEDGE_FRAGMENT.ordinal());
+		output = new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.KNOWLEDGE_FRAGMENT.ordinal());
 		GameRegistry.addRecipe(output, new Object[] {
 				"FF", "FF",
 				'F', Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT)
@@ -100,7 +99,7 @@ public class CraftingManager
 				'F', inputStack,
 				'a', ItemInterface.getItem("ash")
 		});
-
+			
 		// "bottling" Intellect drops
 		GameRegistry.addRecipe(new ItemStack(Item.expBottle), new Object[] {
 			"DDD", "DBD", "DDD",
@@ -158,31 +157,31 @@ public class CraftingManager
 				new int[] { 90, 20, 35 });
 
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.STARK),
-				new ItemStack[] {new ItemStack(Config.tcShard, 1, TCShardType.DULL.ordinal())},
+				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.DULL.ordinal())},
 				new int[] { 13 });
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.AIR),
-				new ItemStack[] {new ItemStack(Config.tcShard, 1, TCShardType.AIR.ordinal())},
+				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal())},
 				new int[] { 10 });
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.FIRE),
-				new ItemStack[] {new ItemStack(Config.tcShard, 1, TCShardType.FIRE.ordinal())},
+				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal())},
 				new int[] { 10 });
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.WATER),
-				new ItemStack[] {new ItemStack(Config.tcShard, 1, TCShardType.WATER.ordinal())},
+				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal())},
 				new int[] { 10 });
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.EARTH),
-				new ItemStack[] {new ItemStack(Config.tcShard, 1, TCShardType.EARTH.ordinal())},
+				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal())},
 				new int[] { 10 });
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.INFUSED),
-				new ItemStack[] {new ItemStack(Config.tcShard, 1, TCShardType.MAGIC.ordinal())},
+				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal())},
 				new int[] { 10 });
 
 		// Squeezer recipes
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {Config.propolis.getStackForType(PropolisType.FIRE) },
 				new LiquidStack(Block.lavaStill, 250),
-				new ItemStack(Config.tcShard, 1, TCShardType.FIRE.ordinal()), 18);
+				new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()), 18);
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {Config.propolis.getStackForType(PropolisType.WATER) },
 				new LiquidStack(Block.waterStill, 500),
-				new ItemStack(Config.tcShard, 1, TCShardType.WATER.ordinal()), 18);
+				new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 18);
 
 		// Carpenter recipes
 		inputStack = ItemInterface.getItem("craftingMaterial");
@@ -297,42 +296,42 @@ public class CraftingManager
 		
 		tags = (new ObjectTags()).add(EnumTag.WIND, 40).add(EnumTag.MOTION, 24);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION1", airDrone,
-				new ItemStack[] { drone, new ItemStack(Config.tcShard, 1, TCShardType.AIR.ordinal())},
+				new ItemStack[] { drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal())},
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION2", airPrincess,
-				new ItemStack[] { princess , new ItemStack(Config.tcShard, 1, TCShardType.AIR.ordinal()) },
+				new ItemStack[] { princess , new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 		
 		tags = (new ObjectTags()).add(EnumTag.FIRE, 40).add( EnumTag.POWER, 24);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION3", fireDrone, new Object[] 
-				{ drone, new ItemStack(Config.tcShard, 1, TCShardType.FIRE.ordinal()) },
+				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION4", firePrincess, new Object[] 
-				{ princess, new ItemStack(Config.tcShard, 1, TCShardType.FIRE.ordinal()) },
+				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
 		
 		tags = (new ObjectTags()).add(EnumTag.WATER, 40).add( EnumTag.COLD, 24); 
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION5", waterDrone, new Object[] 
-				{ drone, new ItemStack(Config.tcShard, 1, TCShardType.WATER.ordinal()) },
+				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION6", waterPrincess, new Object[] 
-				{ princess, new ItemStack(Config.tcShard, 1, TCShardType.WATER.ordinal()) },
+				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
 		
 		tags = (new ObjectTags()).add(EnumTag.EARTH, 40).add( EnumTag.ROCK, 24);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION7", earthDrone, new Object[] 
-				{ drone, new ItemStack(Config.tcShard, 1, TCShardType.EARTH.ordinal()) },
+				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION8", earthPrincess, new Object[] 
-				{ princess, new ItemStack(Config.tcShard, 1, TCShardType.EARTH.ordinal()) },
+				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 40).add(EnumTag.FLUX, 24);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", magicDrone, new Object[]
-				{ drone, new ItemStack(Config.tcShard, 1, TCShardType.MAGIC.ordinal()) },
+				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", magicPrincess, new Object[]
-				{ princess, new ItemStack(Config.tcShard, 1, TCShardType.MAGIC.ordinal()) },
+				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
 				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
 		
 		

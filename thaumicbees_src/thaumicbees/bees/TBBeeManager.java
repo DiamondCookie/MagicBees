@@ -29,6 +29,8 @@ import thaumicbees.bees.genetics.FlowerProviderAuraNodeFlux;
 import thaumicbees.bees.genetics.FlowerProviderAuraNodePurify;
 import thaumicbees.bees.genetics.FlowerProviderBookshelf;
 import thaumicbees.bees.genetics.FlowerProviderThaumcraftFlower;
+import thaumicbees.compat.CompatabilityManager;
+import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
@@ -37,10 +39,6 @@ import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.MoonPhase;
-import thaumicbees.thaumcraft.TCEntity;
-import thaumicbees.thaumcraft.TCMiscResource;
-import thaumicbees.thaumcraft.TCShardType;
-import thaumicbees.thaumcraft.ThaumcraftCompat;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommand;
@@ -60,7 +58,7 @@ public class TBBeeManager
 		try
 		{
 			Field f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
-			ThaumicBees.getInstanceConfig().DrawParticleEffects = f.getBoolean(null);
+			ThaumicBees.getConfig().DrawParticleEffects = f.getBoolean(null);
 			
 			f = Class.forName("forestry.core.config.Defaults").getField("TEXTURE_PARTICLES_BEE");
 			thaumicbees.main.CommonProxy.FORESTRY_GFX_BEEEFFECTS = (String)f.get(null);
@@ -94,13 +92,13 @@ public class TBBeeManager
 		
 		Allele.nodeGen = new AlleleEffectAuraNodeGrow("effectNodeGeneration", "Nodeify", false, 800);
 
-		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, "Brainy", TCEntity.BRAINY_ZOMBIE.entityID);
+		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, "Brainy", ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID);
 		Allele.spawnBrainyZombie.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);
 		
-		Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, "Batty", TCEntity.FIREBAT.entityID);
+		Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, "Batty", ThaumcraftHelper.Entity.FIREBAT.entityID);
 		Allele.spawnBats.setThrottle(300).setSpawnsOnPlayerNear("Bat");
 		
-		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, "Wispy", TCEntity.WISP.entityID);
+		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, "Wispy", ThaumcraftHelper.Entity.WISP.entityID);
 		Allele.spawnWisp.setThrottle(1800);
 		
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghastly", "Ghast");
@@ -224,7 +222,7 @@ public class TBBeeManager
 				0xD9D636, 0xA19E10, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Air.addProduct(Config.combs.getStackForType(CombType.AIRY), 9);
-		Allele.Air.addSpecialty(new ItemStack(Config.tcMiscResource, 1, TCMiscResource.QUICKSILVER.ordinal()), 2);
+		Allele.Air.addSpecialty(new ItemStack(Config.tcNuggets, 1, ThaumcraftHelper.NuggetType.QUICKSILVER.ordinal()), 8);
 		Allele.Air.setGenome(BeeGenomeManager.getTemplateAir());
 		breedingMgr.registerBeeTemplate(Allele.Air.getGenome());
 		
@@ -254,7 +252,7 @@ public class TBBeeManager
 				0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				true, hideSpecies, true, true);
 		Allele.Earth.addProduct(Config.combs.getStackForType(CombType.EARTHY), 30);
-		Allele.Earth.addSpecialty(new ItemStack(Config.tcMiscResource, 1, TCMiscResource.AMBER.ordinal()), 6);
+		Allele.Earth.addSpecialty(new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.AMBER.ordinal()), 6);
 		Allele.Earth.setGenome(BeeGenomeManager.getTemplateEarth());
 		breedingMgr.registerBeeTemplate(Allele.Earth.getGenome());
 		
@@ -325,7 +323,7 @@ public class TBBeeManager
 				0x83FF70, malevolentBodyColour, EnumTemperature.NORMAL, EnumHumidity.NORMAL,
 				false, hideSpecies, true, true);
 		Allele.Brainy.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10).addProduct(new ItemStack(Item.rottenFlesh), 6);
-		Allele.Brainy.addSpecialty(new ItemStack(Config.tcMiscResource,  1, TCMiscResource.ZOMBIE_BRAIN.ordinal()), 2);
+		Allele.Brainy.addSpecialty(new ItemStack(Config.tcMiscResource,  1, ThaumcraftHelper.MiscResource.ZOMBIE_BRAIN.ordinal()), 2);
 		Allele.Brainy.setGenome(BeeGenomeManager.getTemplateBrainy());
 		breedingMgr.registerBeeTemplate(Allele.Brainy.getGenome());
 		
@@ -389,14 +387,14 @@ public class TBBeeManager
 		BeeMutation.Stark = new BeeMutation(Allele.Arcane, Allele.Supernatural, Allele.Stark, 8);
 		
 		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), Allele.Aware, 12);
-		BeeMutation.Vis = new BeeMutation(Allele.Aware, Allele.Arcane, Allele.Vis, 7)
+		BeeMutation.Vis = new BeeMutation(Allele.Aware, Allele.Arcane, Allele.Vis, 9)
 		.setAuraNodeRequired(40);
 		BeeMutation.Vis1 = new BeeMutation(Allele.Aware, Allele.Stark, Allele.Vis, 12)
 		.setAuraNodeRequired(80);
 		
-		BeeMutation.Pure = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Pure, 5)
+		BeeMutation.Pure = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Pure, 7)
 			.setAuraNodeTypeRequired(5, EnumNodeType.PURE).setMoonPhaseBonus(MoonPhase.NEW, MoonPhase.NEW, 1.6f);
-		BeeMutation.Flux = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Flux, 5)
+		BeeMutation.Flux = new BeeMutation(Allele.Vis, Allele.getBaseSpecies("Edenic"), Allele.Flux, 7)
 			.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE).setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 1.6f);
 				
 		BeeMutation.Node = new BeeMutation(Allele.Vis, Allele.Vis, Allele.Node, 2)
@@ -405,7 +403,7 @@ public class TBBeeManager
 			.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WAXING_HALF);
 		
 		// Now we get into a little bit of branching...
-		if (ThaumicBees.getInstanceConfig().ExtraBeesInstalled)
+		if (ThaumicBees.getConfig().ExtraBeesInstalled)
 		{
 			BeeMutation.Skulking = new BeeMutation(Allele.Mysterious, Allele.getExtraSpecies("desolate"), Allele.Skulking, 10);
 			BeeMutation.Brainy = new BeeMutation(Allele.Skulking, Allele.getExtraSpecies("rotten"), Allele.Brainy, 12);
