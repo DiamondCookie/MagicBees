@@ -1,5 +1,7 @@
 package thaumicbees.main;
 
+import java.lang.reflect.Field;
+
 import thaumicbees.main.render.BeeRenderEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -18,6 +20,20 @@ public class ClientProxy extends CommonProxy
 		// Preload the TCBees items file
 		MinecraftForgeClient.preloadTexture(TCBEES_ITEMS_IMAGE);
 		MinecraftForgeClient.preloadTexture(TCBEES_LIQUIDS_IMAGE);
+		
+		Field f;
+		try
+		{
+			f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
+			ThaumicBees.getConfig().DrawParticleEffects = f.getBoolean(null);
+			
+			f = Class.forName("forestry.core.config.Defaults").getField("TEXTURE_PARTICLES_BEE");
+			thaumicbees.main.CommonProxy.FORESTRY_GFX_BEEEFFECTS = (String)f.get(null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

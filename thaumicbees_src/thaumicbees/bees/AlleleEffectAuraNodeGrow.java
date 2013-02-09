@@ -1,4 +1,4 @@
-package thaumicbees.bees.genetics;
+package thaumicbees.bees;
 
 import java.lang.reflect.Method;
 
@@ -39,7 +39,7 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 		if (value >= throttle)
 		{
 			World w = housing.getWorld();
-			if (w.rand.nextInt(20) < 1)
+			if (w.rand.nextInt(15) < 1)
 			{
 				float x = housing.getXCoord();
 				float y = housing.getYCoord();
@@ -63,7 +63,7 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 						y *= 0.0125f;
 						z *= 0.0125f;
 						
-						ThaumcraftApi.queueNodeChanges(nodeId, node.level * -3 / 8, w.rand.nextInt(1), false, null, x, y, z);
+						ThaumcraftApi.queueNodeChanges(nodeId, node.baseLevel * -3 / 10, w.rand.nextInt(1), false, null, x, y, z);
 					}
 				}
 			}

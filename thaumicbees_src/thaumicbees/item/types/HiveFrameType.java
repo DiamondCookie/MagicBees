@@ -13,8 +13,10 @@ public enum HiveFrameType
 			new ObjectTags().add(EnumTag.HEAL, 1).add(EnumTag.LIFE, 1)),
 	METABOLIC("Metabolic Frame", 35, 120, 1f, 1.8f, 1f, 1.2f, 5,
 			new ObjectTags().add(EnumTag.EXCHANGE, 1).add(EnumTag.MOTION, 1)),
-	NECROTIC("Necrotic Frame", 36, 270, 1f, 1f, 0.4f, 0.75f, 1,
+	NECROTIC("Necrotic Frame", 36, 290, 1f, 1f, 0.3f, 0.75f, 1,
 			new ObjectTags().add(EnumTag.DEATH, 3).add(EnumTag.POISON, 2)),
+	TEMPORAL("Temporal Frame", 37, 300, 1f, 1f, 2.5f, 1f, 1,
+			new ObjectTags().add(EnumTag.TIME, 5)),
 	;
 	
 	private HiveFrameType(String name, int icon, int damage,

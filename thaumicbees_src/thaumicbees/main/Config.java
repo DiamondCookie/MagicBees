@@ -4,6 +4,7 @@ import java.io.File;
 
 import thaumicbees.block.BlockMagicApiary;
 import thaumicbees.compat.CompatabilityManager;
+import thaumicbees.compat.ForestryHelper;
 import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.ItemComb;
@@ -20,11 +21,14 @@ import thaumicbees.storage.BackpackDefinition;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
@@ -52,6 +56,7 @@ public class Config
 	public static ItemPollen pollen;
 	public static ItemSolidFlux solidFlux;
 	public static ItemMiscResources miscResources;
+	public static ItemFood jellyBaby;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
@@ -62,12 +67,18 @@ public class Config
 	public static ItemMagicHiveFrame hiveFrameGentle;
 	public static ItemMagicHiveFrame hiveFrameMetabolic;
 	public static ItemMagicHiveFrame hiveFrameNecrotic;
+	public static ItemMagicHiveFrame hiveFrameTemporal;
 	
 	//----- Backpacks ------------------------------------------
 	public static Item thaumaturgeBackpackT1;
 	public static Item thaumaturgeBackpackT2;
 	public static BackpackDefinition thaumaturgeBackpackDef;
 
+	//----- Forestry Blocks ------------------------------------
+	//----- Forestry Items -------------------------------------
+	public static Item fBeeComb;
+	public static Item fPollen;
+	public static Item fCraftingResource;
 	//----- Thaumcraft Blocks ----------------------------------
 	public static Block tcPlant;
 	public static Block tcCandle;
@@ -106,6 +117,7 @@ public class Config
 	public void setupBlocks()
 	{
 		ThaumcraftHelper.getThaumcraftBlocks();
+		ForestryHelper.getForestryBlocks();
 		
 		int blockIdBase = 1750;
 		
@@ -116,6 +128,7 @@ public class Config
 	public void setupItems()
 	{
 		ThaumcraftHelper.getThaumcraftItems();
+		ForestryHelper.getForestryItems();
 		
 		int itemIDBase = 26090;
 		
@@ -162,6 +175,7 @@ public class Config
 		hiveFrameGentle = new ItemMagicHiveFrame(tbConfig.getItem("frameGentle", itemIDBase++).getInt(), HiveFrameType.GENTLE);
 		hiveFrameMetabolic = new ItemMagicHiveFrame(tbConfig.getItem("frameMetabolic", itemIDBase++).getInt(), HiveFrameType.METABOLIC);
 		hiveFrameNecrotic = new ItemMagicHiveFrame(tbConfig.getItem("frameNecrotic", itemIDBase++).getInt(), HiveFrameType.NECROTIC);
+		hiveFrameTemporal = new ItemMagicHiveFrame(tbConfig.getItem("frameTemporal", itemIDBase++).getInt(), HiveFrameType.TEMPORAL);
 		// Future frames, so they all are clumped together.
 		itemIDBase++;
 		itemIDBase++;
@@ -174,6 +188,10 @@ public class Config
 		itemIDBase++;
 		
 		// New items here.
+		jellyBaby = new ItemFood(tbConfig.getItem("sugarSnack", itemIDBase++).getInt(), 1, false).setAlwaysEdible()
+				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
+		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("sugarSnack");
+		LanguageRegistry.addName(jellyBaby, "Jelly Baby");
 		
 	}
 	

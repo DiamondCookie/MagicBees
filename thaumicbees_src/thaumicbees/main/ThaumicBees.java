@@ -3,7 +3,6 @@ package thaumicbees.main;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
-import thaumicbees.bees.TBBeeManager;
 import thaumicbees.compat.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.VersionInfo;
@@ -17,6 +16,7 @@ import forestry.api.core.ItemInterface;
 
 @Mod(
 		modid="ThaumicBees",
+		name="Thaumic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
 		version=VersionInfo.Version,
@@ -33,11 +33,9 @@ public class ThaumicBees
 
 	private String configsPath;
 	private Config modConfig;
-	private TBBeeManager plugin;
 
 	public ThaumicBees()
 	{
-		this.plugin = new TBBeeManager();
 	}
 
 	@Mod.PreInit
@@ -72,14 +70,12 @@ public class ThaumicBees
 		this.modConfig.setupItems();
 		
 		CompatabilityManager.setupBackpacks();
-		
-		plugin.doInit();
 	}
 
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		plugin.postInit();
+		this.setupBees();
 		this.modConfig.saveConfigs();
 		
 		CompatabilityManager.setupItemAspects();
@@ -97,5 +93,12 @@ public class ThaumicBees
 	public static Config getConfig()
 	{
 		return object.modConfig;
+	}
+	
+	private void setupBees()
+	{
+		thaumicbees.bees.Allele.setupAdditionalAlleles();
+		thaumicbees.bees.BeeSpecies.setupBeeSpecies();
+		thaumicbees.bees.BeeMutation.setupMutations();
 	}
 }

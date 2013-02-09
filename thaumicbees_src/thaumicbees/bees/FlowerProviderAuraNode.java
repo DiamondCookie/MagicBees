@@ -1,4 +1,4 @@
-package thaumicbees.bees.genetics;
+package thaumicbees.bees;
 
 import thaumcraft.api.AuraNode;
 import thaumcraft.api.ThaumcraftApi;

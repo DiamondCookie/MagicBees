@@ -1,4 +1,4 @@
-package thaumicbees.bees.genetics;
+package thaumicbees.bees;
 
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;

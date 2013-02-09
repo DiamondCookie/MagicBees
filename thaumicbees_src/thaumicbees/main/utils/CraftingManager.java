@@ -3,13 +3,15 @@ package thaumicbees.main.utils;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.bees.Allele;
 import thaumicbees.bees.BeeGenomeManager;
-import thaumicbees.bees.genetics.Allele;
+import thaumicbees.bees.BeeSpecies;
 import thaumicbees.compat.ShapelessBeeInfusionCraftingRecipe;
 import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
+import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
@@ -40,13 +42,12 @@ public class CraftingManager
 		// Essentia bottles
 		ItemStack output = new ItemStack(Config.tcEssentiaBottle);
 		output.stackSize = 8;
-		GameRegistry.addRecipe(output, new Object[]
-				{
+		GameRegistry.addRecipe(output, new Object[] {
 				" C ", "GPG", "PGP",
 				'G', Config.wax,
 				'C', Item.clay,
 				'P', Block.thinGlass
-				});
+		});
 
 		output = new ItemStack(Config.tcEssentiaBottle);
 		output.stackSize = 4;
@@ -73,7 +74,7 @@ public class CraftingManager
 			"SWS", "NCN", "SWS",
 			'S', Item.silk,
 			'W', Block.cloth,
-			'N', Item.goldNugget,
+			'N', new ItemStack(Config.tcMiscResource.itemID, 1, ThaumcraftHelper.MiscResource.AMBER.ordinal()),
 			'C', Block.chest
 		});
 
@@ -228,7 +229,6 @@ public class CraftingManager
 		});
 		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
 		BeeManager.inducers.put(output, 80);
-
 		
 		output = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
 		ItemStack inputA = ItemInterface.getItem("apatite");
@@ -278,63 +278,60 @@ public class CraftingManager
 				'S', Item.rottenFlesh,
 				'x', inputA
 		});
+		
+		output = new ItemStack(Config.hiveFrameTemporal);
+		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.TIME, 2);
+		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMETIME", "FRAMETIME", 50, tags, output, new Object[] {
+			"tSt", "SFS", "tSt",
+			't', Item.stick,
+			'S', Block.sand,
+			'F', inputA
+		});
 
-		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(Allele.Stark, EnumBeeType.DRONE);
-		ItemStack princess = BeeGenomeManager.getBeeNBTForSpecies(Allele.Stark, EnumBeeType.PRINCESS);
-		ItemStack airDrone = Allele.Air.getBeeItem(EnumBeeType.DRONE);
-		ItemStack airPrincess = Allele.Air.getBeeItem(EnumBeeType.PRINCESS);
-		ItemStack waterDrone = Allele.Water.getBeeItem(EnumBeeType.DRONE);
-		ItemStack waterPrincess = Allele.Water.getBeeItem(EnumBeeType.PRINCESS);
-		ItemStack earthDrone = Allele.Earth.getBeeItem(EnumBeeType.DRONE);
-		ItemStack earthPrincess = Allele.Earth.getBeeItem(EnumBeeType.PRINCESS);
-		ItemStack fireDrone = Allele.Fire.getBeeItem(EnumBeeType.DRONE);
-		ItemStack firePrincess = Allele.Fire.getBeeItem(EnumBeeType.PRINCESS);
-		ItemStack magicDrone = Allele.Infused.getBeeItem(EnumBeeType.DRONE);
-		ItemStack magicPrincess = Allele.Infused.getBeeItem(EnumBeeType.PRINCESS);
+		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.DRONE);
+		ItemStack princess = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.PRINCESS);
 		
 		String researchKey = "BEEINFUSION";
 		
 		tags = (new ObjectTags()).add(EnumTag.WIND, 40).add(EnumTag.MOTION, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION1", airDrone,
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION1", BeeSpecies.AIR.getBeeItem(EnumBeeType.DRONE),
 				new ItemStack[] { drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal())},
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION2", airPrincess,
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION2", BeeSpecies.AIR.getBeeItem(EnumBeeType.PRINCESS),
 				new ItemStack[] { princess , new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
 		
 		tags = (new ObjectTags()).add(EnumTag.FIRE, 40).add( EnumTag.POWER, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION3", fireDrone, new Object[] 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION3", BeeSpecies.FIRE.getBeeItem(EnumBeeType.DRONE), new Object[] 
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION4", firePrincess, new Object[] 
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION4", BeeSpecies.FIRE.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
 		
 		tags = (new ObjectTags()).add(EnumTag.WATER, 40).add( EnumTag.COLD, 24); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION5", waterDrone, new Object[] 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION5", BeeSpecies.WATER.getBeeItem(EnumBeeType.DRONE), new Object[] 
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION6", waterPrincess, new Object[] 
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION6", BeeSpecies.WATER.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
 		
 		tags = (new ObjectTags()).add(EnumTag.EARTH, 40).add( EnumTag.ROCK, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION7", earthDrone, new Object[] 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION7", BeeSpecies.EARTH.getBeeItem(EnumBeeType.DRONE), new Object[] 
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION8", earthPrincess, new Object[] 
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION8", BeeSpecies.EARTH.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 40).add(EnumTag.FLUX, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", magicDrone, new Object[]
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", BeeSpecies.INFUSED.getBeeItem(EnumBeeType.DRONE), new Object[]
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", magicPrincess, new Object[]
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.INFUSED.getBeeItem(EnumBeeType.PRINCESS), new Object[]
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
-				100, tags, Allele.Stark, EnumBeeChromosome.SPECIES);
-		
-		
+				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
 		
 		registerLiquidContainer(Config.magicCapsule);
 	}
@@ -345,9 +342,9 @@ public class CraftingManager
 		ItemStack filled;
 		LiquidStack liquid = null;
 
-		for (LiquidType l : LiquidType.values())
+		for (LiquidType liquidType : LiquidType.values())
 		{
-			switch (l)
+			switch (liquidType)
 			{
 				case EMPTY:
 					liquid = null;
@@ -359,20 +356,20 @@ public class CraftingManager
 					liquid = new LiquidStack(Block.lavaStill, baseCapsule.getType().capacity);
 					break;
 				default:
-					liquid = LiquidDictionary.getLiquid(l.liquidID, baseCapsule.getType().capacity);
+					liquid = LiquidDictionary.getLiquid(liquidType.liquidID, baseCapsule.getType().capacity);
 					break;
 			}
 
 			if (liquid != null)
 			{
-				filled = new ItemStack(baseCapsule, 1, l.ordinal());
+				filled = new ItemStack(baseCapsule, 1, liquidType.ordinal());
 				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(liquid, filled, empty));
 
 				// Register with Squeezer/Bottler
 				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);
 				RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] {filled} , liquid,
 						Config.wax.getStackForType(WaxType.MAGIC), 20);
-				l.available = true;
+				liquidType.available = true;
 			}
 		}
 		// Empty will be set to unavailable. Obviously, it always is.

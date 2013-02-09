@@ -3,9 +3,11 @@ package thaumicbees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import thaumicbees.main.CommonProxy;
-import net.minecraft.block.Block;
+import thaumicbees.tile.TileEntityMagicApiary;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBee;
@@ -14,7 +16,7 @@ import forestry.api.apiculture.IBeeHousing;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 
-public class BlockMagicApiary extends Block
+public class BlockMagicApiary extends BlockContainer
 {
 	public BlockMagicApiary(int par1)
 	{
@@ -26,8 +28,29 @@ public class BlockMagicApiary extends Block
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getBlockTexture(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5)
+	public int getBlockTexture(IBlockAccess worldAccess, int x, int y, int z, int side)
 	{
-		return super.getBlockTexture(par1iBlockAccess, par2, par3, par4, par5);
+		int texture = 48;
+		if (side == 0 || side == 1)
+		{
+			texture = 50;
+		}
+		return texture;
+	}
+	
+    public int getBlockTextureFromSideAndMetadata(int side, int meta)
+    {
+		int texture = 48;
+		if (side == 0 || side == 1)
+		{
+			texture = 50;
+		}
+		return texture;
+    }
+
+	@Override
+	public TileEntity createNewTileEntity(World var1)
+	{
+		return new TileEntityMagicApiary();
 	}
 }
