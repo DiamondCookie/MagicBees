@@ -14,7 +14,7 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 	@Override
 	public ItemStack[] affectProducts(World world, IBeeGenome genome, int x, int y, int z, ItemStack[] products)
 	{
-		if (world.rand.nextInt(10) < 1)
+		if (world.rand.nextInt(20) < 1)
 		{
 			EnumTag tag;
 			do

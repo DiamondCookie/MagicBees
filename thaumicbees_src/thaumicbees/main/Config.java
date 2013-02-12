@@ -121,8 +121,8 @@ public class Config
 		
 		int blockIdBase = 1750;
 		
-		magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase).getInt());
-		GameRegistry.registerBlock(magicApiary, "Magic Apiary");
+		/*magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase).getInt());
+		GameRegistry.registerBlock(magicApiary, "Magic Apiary");*/
 	}
 	
 	public void setupItems()

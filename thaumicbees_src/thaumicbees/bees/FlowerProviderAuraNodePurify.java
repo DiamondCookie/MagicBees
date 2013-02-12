@@ -27,10 +27,10 @@ public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
 	@Override
 	public ItemStack[] affectProducts(World world, IBeeGenome genome, int x, int y, int z, ItemStack[] products)
 	{
-		if (world.rand.nextInt(10) < 1)
+		if (world.rand.nextInt(25) < 1)
 		{
 			AuraNode node = this.getNodeWithinRange(world, x, y, z);
-			if (node != null)
+			if (node != null && (1.0 * node.level) / node.baseLevel > 0.75)
 			{
 				int aspectCount = node.flux.tags.size();
 				if (aspectCount > 0)
@@ -39,7 +39,7 @@ public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
 					if (selectedTag != null)
 					{
 						node.flux.remove(selectedTag, 1);
-						ThaumcraftApi.queueNodeChanges(node.key, 0, 0, false, new ObjectTags().add(selectedTag, -1), 0, 0, 0);
+						ThaumcraftApi.queueNodeChanges(node.key, node.baseLevel / -16, 0, false, new ObjectTags().add(selectedTag, -1), 0, 0, 0);
 						products = addItemToProducts(products, new ItemStack(Config.solidFlux, 1, selectedTag.id));
 					}
 				}
