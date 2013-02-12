@@ -54,7 +54,7 @@ public class ThaumcraftHelper
 		TIN,
 		SILVER,
 		LEAD,
-		QUICKSILVER,						_6, _7, _8,_9,_10,_11,_12,_13,_14,_15,
+		QUICKSILVER,						_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,
 		NATIVE_IRON,
 		NATIVE_COPPER,
 		NATIVE_TIN,

@@ -357,8 +357,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 	{
 		return this.dominant;
 	}
-	
-	public boolean isJubilant(World world, int biomeid, int x, int i, int j)
+
+	@Override
+	public boolean isJubilant(World world, int biomeid, int x, int y, int z)
 	{
 		return true;
 	}

@@ -89,6 +89,7 @@ public class ForestryHelper
 		RUBBER,
 		EMERALD,
 		APATITE,
-		LAPIS
+		LAPIS,
+		;
 	}
 }
