@@ -35,7 +35,7 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)
 	{
-		return this.type.frameName;
+		return this.type.getName();
 	}
 	
 	// --------- IHiveFrame functions -----------------------------------------

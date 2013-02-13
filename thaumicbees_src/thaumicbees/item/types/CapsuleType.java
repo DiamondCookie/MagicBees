@@ -1,10 +1,12 @@
 package thaumicbees.item.types;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
 public enum CapsuleType
 {
-	MAGIC("Magic Capsule", 2000, 0),
+	MAGIC("magic", 2000, 0),
 	;
-	public String name; 
+	private String name; 
 	public int capacity;
 	public int iconIdx;
 	
@@ -13,5 +15,10 @@ public enum CapsuleType
 		this.name = n;
 		this.capacity = c;
 		this.iconIdx = idx;
+	}
+	
+	public String getName()
+	{
+		return LanguageRegistry.instance().getStringLocalization("tb.capsule." + name);
 	}
 }

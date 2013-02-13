@@ -1,5 +1,6 @@
 package thaumicbees.main.utils;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.world.World;
 
 /**
@@ -7,14 +8,20 @@ import net.minecraft.world.World;
  */
 public enum MoonPhase
 {
-	FULL,
-	WANING_GIBBOUS,
-	WANING_HALF,
-	WANING_CRESCENT,
-	NEW,
-	WAXING_CRESCENT,
-	WAXING_HALF,
-	WAXING_GIBBOUS;
+	FULL("full"),
+	WANING_GIBBOUS("gibbousWaning"),
+	WANING_HALF("halfWaning"),
+	WANING_CRESCENT("crescentWaning"),
+	NEW("new"),
+	WAXING_CRESCENT("crecentWaxing"),
+	WAXING_HALF("halfWaxing"),
+	WAXING_GIBBOUS("gibbousWaxing");
+	
+	private String phaseName;
+	private MoonPhase(String name)
+	{
+		this.phaseName = name;
+	}
 	
 	public boolean isBetween(MoonPhase first, MoonPhase second)
 	{
@@ -33,6 +40,11 @@ public enum MoonPhase
 		}
 		
 		return flag;
+	}
+	
+	public String getName()
+	{
+		return LanguageRegistry.instance().getStringLocalization("tb.moon." + this.phaseName);
 	}
 	
 	public static MoonPhase getMoonPhase(World w)

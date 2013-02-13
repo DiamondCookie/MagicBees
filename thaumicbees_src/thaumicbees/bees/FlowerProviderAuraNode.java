@@ -1,5 +1,6 @@
 package thaumicbees.bees;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumcraft.api.AuraNode;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.main.Config;
@@ -44,7 +45,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return "Node";
+		return LanguageRegistry.instance().getStringLocalization("tb.bees.flower.node");
 	}
 
 	@Override

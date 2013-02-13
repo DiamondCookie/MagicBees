@@ -144,7 +144,8 @@ public class Config
 		try
 		{
 			// 0x8700C6 = purpleish.
-			BackpackDefinition def = new BackpackDefinition("thaumaturge", "Thaumaturge's Backpack", 0x8700C6);
+			String backpackName = LanguageRegistry.instance().getStringLocalization("tb.backpack.thaumaturge");
+			BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
 			thaumaturgeBackpackT1 = 
 					BackpackManager.backpackInterface.addBackpack(tbConfig.getItem("thaumaturgePack1", itemIDBase++).getInt(),
 					def, EnumBackpackType.T1);
@@ -187,11 +188,10 @@ public class Config
 		itemIDBase++;
 		itemIDBase++;
 		
-		// New items here.
-		jellyBaby = new ItemFood(tbConfig.getItem("sugarSnack", itemIDBase++).getInt(), 1, false).setAlwaysEdible()
+		// Jelly babies for Dr. Whoniversary.
+		jellyBaby = new ItemFood(tbConfig.getItem("jellyBabies", itemIDBase++).getInt(), 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("sugarSnack");
-		LanguageRegistry.addName(jellyBaby, "Jelly Baby");
+		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("jellyBabies");
 		
 	}
 	

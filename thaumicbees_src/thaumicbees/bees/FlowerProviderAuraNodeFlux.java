@@ -1,5 +1,6 @@
 package thaumicbees.bees;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
@@ -37,6 +38,6 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 	@Override
 	public String getDescription()
 	{
-		return "Node Flux";
+		return LanguageRegistry.instance().getStringLocalization("tb.bees.flower.nodeFlux");
 	}
 }

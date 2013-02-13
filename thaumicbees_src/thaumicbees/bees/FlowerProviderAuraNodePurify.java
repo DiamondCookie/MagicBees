@@ -1,5 +1,6 @@
 package thaumicbees.bees;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -21,7 +22,7 @@ public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
 	@Override
 	public String getDescription()
 	{
-		return "Node Purify";
+		return LanguageRegistry.instance().getStringLocalization("tb.bees.flower.nodePure");
 	}
 
 	@Override

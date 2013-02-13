@@ -5,6 +5,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import thaumicbees.compat.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
+import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.VersionInfo;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -41,6 +42,8 @@ public class ThaumicBees
 	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		LocalizationManager.setupLocalizationInfo();
+		
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		
@@ -85,7 +88,6 @@ public class ThaumicBees
 		
 		// Forestry has init'd by this point.
 		MinecraftForge.EVENT_BUS.register(this);
-		
 		
 		CompatabilityManager.setupResearch();
 	}

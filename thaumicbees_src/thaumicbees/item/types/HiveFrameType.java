@@ -1,21 +1,22 @@
 package thaumicbees.item.types;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 
 public enum HiveFrameType
 {
-	MAGIC("Magic Frame", 32, 240, 1f, 1f, 1f, 2f, 2,
+	MAGIC("magic", 32, 240, 1f, 1f, 1f, 2f, 2,
 			null),
-	RESILIENT("Resilient Frame", 33, 840, 1f, 1f, 1f, 2f, 2,
+	RESILIENT("resillient", 33, 840, 1f, 1f, 1f, 2f, 2,
 			new ObjectTags().add(EnumTag.ARMOR, 1)),
-	GENTLE("Gentle Frame", 34, 200, 1f, 0.7f, 1.5f, 1.4f, 1,
+	GENTLE("gentle", 34, 200, 1f, 0.7f, 1.5f, 1.4f, 1,
 			new ObjectTags().add(EnumTag.HEAL, 1).add(EnumTag.LIFE, 1)),
-	METABOLIC("Metabolic Frame", 35, 120, 1f, 1.8f, 1f, 1.2f, 5,
+	METABOLIC("metabolic", 35, 120, 1f, 1.8f, 1f, 1.2f, 5,
 			new ObjectTags().add(EnumTag.EXCHANGE, 1).add(EnumTag.MOTION, 1)),
-	NECROTIC("Necrotic Frame", 36, 290, 1f, 1f, 0.3f, 0.75f, 1,
+	NECROTIC("necrotic", 36, 290, 1f, 1f, 0.3f, 0.75f, 1,
 			new ObjectTags().add(EnumTag.DEATH, 3).add(EnumTag.POISON, 2)),
-	TEMPORAL("Temporal Frame", 37, 300, 1f, 1f, 2.5f, 1f, 1,
+	TEMPORAL("temporal", 37, 300, 1f, 1f, 2.5f, 1f, 1,
 			new ObjectTags().add(EnumTag.TIME, 5)),
 	;
 	
@@ -49,7 +50,7 @@ public enum HiveFrameType
 		this.flux = fluxTags;
 	}
 	
-	public String frameName;
+	private String frameName;
 	public int iconIdx;
 	public int maxDamage;
 	
@@ -65,4 +66,9 @@ public enum HiveFrameType
 	
 	public ObjectTags flux;
 	public int auraPerUse;
+	
+	public String getName()
+	{
+		return LanguageRegistry.instance().getStringLocalization("tb.frame." + this.frameName);
+	}
 }

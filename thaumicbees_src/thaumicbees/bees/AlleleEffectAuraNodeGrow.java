@@ -16,9 +16,9 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 
 	private int throttle;
 	
-	public AlleleEffectAuraNodeGrow(String id, String identifier, boolean isDominant, int timeout)
+	public AlleleEffectAuraNodeGrow(String id, boolean isDominant, int timeout)
 	{
-		super(id, isDominant, identifier);
+		super(id, isDominant);
 		this.throttle = timeout;
 	}
 

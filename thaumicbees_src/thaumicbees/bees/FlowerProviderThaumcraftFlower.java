@@ -1,5 +1,6 @@
 package thaumicbees.bees;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumicbees.main.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -36,7 +37,6 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 		{
 			int rand = world.rand.nextInt(10);
 			world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, (rand >= 5) ? 2 : 3);
-			System.out.println(x + ", " + y + ", " + ", " + z + " set to flower.");
 			flag = true;
 		}
 		return flag;
@@ -45,7 +45,7 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return "Magic Flowers";
+		return LanguageRegistry.instance().getStringLocalization("tb.bees.flower.magic");
 	}
 
 	@Override
