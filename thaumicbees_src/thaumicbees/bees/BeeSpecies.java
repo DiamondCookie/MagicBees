@@ -359,7 +359,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 	}
 
 	@Override
-	public boolean isJubilant(World world, int biomeid, int x, int y, int z)
+	public boolean isJubilant(IBeeGenome genome, IBeeHousing housing)
 	{
 		return true;
 	}
