@@ -1,5 +1,6 @@
 package thaumicbees.item.types;
 
+import thaumicbees.main.utils.LocalizationManager;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 
@@ -51,6 +52,6 @@ public enum LiquidType
 
 	public String getDisplayName()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.liquid." + liquidID);
+		return LocalizationManager.getLocalizedString("tb.liquid." + liquidID);
 	}
 }

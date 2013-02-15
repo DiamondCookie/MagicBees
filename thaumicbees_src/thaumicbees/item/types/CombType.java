@@ -1,5 +1,6 @@
 package thaumicbees.item.types;
 
+import thaumicbees.main.utils.LocalizationManager;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum CombType
@@ -33,6 +34,6 @@ public enum CombType
 	
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.comb." + this.name);
+		return LocalizationManager.getLocalizedString("tb.comb." + this.name);
 	}
 }

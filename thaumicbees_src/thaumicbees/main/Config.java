@@ -17,6 +17,7 @@ import thaumicbees.item.ItemSolidFlux;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.HiveFrameType;
+import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.storage.BackpackDefinition;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -144,7 +145,7 @@ public class Config
 		try
 		{
 			// 0x8700C6 = purpleish.
-			String backpackName = LanguageRegistry.instance().getStringLocalization("tb.backpack.thaumaturge");
+			String backpackName = LocalizationManager.getLocalizedString("tb.backpack.thaumaturge");
 			BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
 			thaumaturgeBackpackT1 = 
 					BackpackManager.backpackInterface.addBackpack(tbConfig.getItem("thaumaturgePack1", itemIDBase++).getInt(),

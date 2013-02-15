@@ -2,6 +2,8 @@ package thaumicbees.bees;
 
 import java.util.ArrayList;
 
+import thaumicbees.main.utils.LocalizationManager;
+
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 import forestry.api.genetics.AlleleManager;
@@ -10,23 +12,25 @@ import forestry.api.genetics.IClassification;
 
 public enum BeeClassification implements IClassification
 {
-	ARCANE("Arcane"),
-	SUPERNATURAL("Supernatural"),
-	SCHOLARLY("Scholarly"),
-	THAUMIC("Thaumic"),
-	SKULKING("Skulking"),
-	VIS("Vis"),
-	TIME("Time"),
+	ARCANE("Arcane", "Arcanus"),
+	SUPERNATURAL("Supernatural", ""),
+	SCHOLARLY("Scholarly", ""),
+	THAUMIC("Thaumic", ""),
+	SKULKING("Skulking", ""),
+	VIS("Vis", ""),
+	TIME("Time", ""),
 	;
 	
 	private String uID;
+	private String latin;
 	private ArrayList<IAlleleSpecies> species;
 	private IClassification parent;
 	private EnumClassLevel level;
 	
-	private BeeClassification(String name)
+	private BeeClassification(String name, String scientific)
 	{
 		this.uID = "classification." + name.toLowerCase();
+		this.latin = scientific;
 		this.level = EnumClassLevel.GENUS;
 		this.species = new ArrayList();
 		this.parent = AlleleManager.alleleRegistry.getClassification("family.apidae");
@@ -48,19 +52,19 @@ public enum BeeClassification implements IClassification
 	@Override
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization(getUID());
+		return LocalizationManager.getLocalizedString(getUID());
 	}
 
 	@Override
 	public String getScientific()
 	{
-		return LanguageRegistry.instance().getStringLocalization(getUID() + ".latin");
+		return this.latin;
 	}
 
 	@Override
 	public String getDescription()
 	{
-		return LanguageRegistry.instance().getStringLocalization(getUID() + ".description");
+		return LocalizationManager.getLocalizedString(getUID() + ".description");
 	}
 
 	@Override

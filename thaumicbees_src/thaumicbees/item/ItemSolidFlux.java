@@ -41,7 +41,7 @@ public class ItemSolidFlux extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return String.format(LanguageRegistry.instance().getStringLocalization("tb.resource.crystalFlux"), EnumTag.get(stack.getItemDamage()).name);
+		return String.format(LocalizationManager.getLocalizedString("tb.resource.crystalFlux"), EnumTag.get(stack.getItemDamage()).name);
 	}
 
 	@Override

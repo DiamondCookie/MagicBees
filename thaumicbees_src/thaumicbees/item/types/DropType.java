@@ -1,5 +1,6 @@
 package thaumicbees.item.types;
 
+import thaumicbees.main.utils.LocalizationManager;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum DropType
@@ -20,6 +21,6 @@ public enum DropType
 	
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.drop." + this.name);
+		return LocalizationManager.getLocalizedString("tb.drop." + this.name);
 	}
 }

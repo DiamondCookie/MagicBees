@@ -9,6 +9,7 @@ import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.main.Config;
+import thaumicbees.main.utils.LocalizationManager;
 import forestry.api.apiculture.IBeeGenome;
 
 public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
@@ -22,7 +23,7 @@ public class FlowerProviderAuraNodePurify extends FlowerProviderAuraNode
 	@Override
 	public String getDescription()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.bees.flower.nodePure");
+		return LocalizationManager.getLocalizedString("tb.bees.flower.nodePure");
 	}
 
 	@Override

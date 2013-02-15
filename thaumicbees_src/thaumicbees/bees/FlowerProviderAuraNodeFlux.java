@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.main.utils.LocalizationManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBeeGenome;
@@ -38,6 +39,6 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 	@Override
 	public String getDescription()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.bees.flower.nodeFlux");
+		return LocalizationManager.getLocalizedString("tb.bees.flower.nodeFlux");
 	}
 }

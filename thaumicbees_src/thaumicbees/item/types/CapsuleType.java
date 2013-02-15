@@ -1,5 +1,6 @@
 package thaumicbees.item.types;
 
+import thaumicbees.main.utils.LocalizationManager;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum CapsuleType
@@ -19,6 +20,6 @@ public enum CapsuleType
 	
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.capsule." + name);
+		return LocalizationManager.getLocalizedString("tb.capsule." + name);
 	}
 }

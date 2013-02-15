@@ -3,6 +3,7 @@ package thaumicbees.item.types;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
+import thaumicbees.main.utils.LocalizationManager;
 
 public enum HiveFrameType
 {
@@ -69,6 +70,6 @@ public enum HiveFrameType
 	
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.frame." + this.frameName);
+		return LocalizationManager.getLocalizedString("tb.frame." + this.frameName);
 	}
 }

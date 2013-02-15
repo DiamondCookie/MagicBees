@@ -1,5 +1,6 @@
 package thaumicbees.main.utils;
 
+import net.minecraft.util.StringTranslate;
 import thaumicbees.main.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -25,4 +26,13 @@ public class LocalizationManager
 		}
 	}
 
+	public static String getLocalizedString(String key)
+	{
+		String result = LanguageRegistry.instance().getStringLocalization(key);
+		if (result.isEmpty())
+		{
+			result = LanguageRegistry.instance().getStringLocalization(key, "en_US");
+		}
+		return result;
+	}
 }
