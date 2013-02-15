@@ -165,25 +165,18 @@
 	
 	<!-- Classifications -->
 	<entry key="classification.arcane">Arcane</entry>
-	<entry key="classification.arcane.latin">Arcanus</entry>
 	<entry key="classification.arcane.description"></entry>
 	<entry key="classification.supernatural">Supernatural</entry>
-	<entry key="classification.supernatural.latin">Coeleste</entry>
 	<entry key="classification.supernatural.description"></entry>
 	<entry key="classification.scholarly">Scholarly</entry>
-	<entry key="classification.scholarly.latin">Docto</entry>
 	<entry key="classification.scholarly.description"></entry>
 	<entry key="classification.thaumic">Thaumic</entry>
-	<entry key="classification.thaumic.latin">Thaumis</entry>
 	<entry key="classification.thaumic.description"></entry>
 	<entry key="classification.skulking">Skulking</entry>
-	<entry key="classification.skulking.latin">Malevolens</entry>
 	<entry key="classification.skulking.description"></entry>
 	<entry key="classification.vis">Vis</entry>
-	<entry key="classification.vis.latin">Patabilis</entry>
 	<entry key="classification.vis.description"></entry>
 	<entry key="classification.time">Time</entry>
-	<entry key="classification.time.latin">Sempiternus</entry>
 	<entry key="classification.time.description"></entry>
 	
     

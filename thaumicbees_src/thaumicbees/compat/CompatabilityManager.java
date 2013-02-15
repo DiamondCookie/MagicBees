@@ -58,7 +58,8 @@ public class CompatabilityManager
 		}
 		catch (Exception e)
 		{
-			FMLLog.warning("Could not get Extra Bees item: " + field + ". If you notice this, please report the issue on the Thaumic Bees thread.");
+			FMLLog.warning("Could not get Extra Bees item: " + field + ". If you notice this, please report this on the Thaumic Bees thread with the following trace:");
+			e.printStackTrace();
 		}
 		return value;
 	}

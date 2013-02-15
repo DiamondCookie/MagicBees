@@ -80,7 +80,7 @@ public class ItemPollen extends Item
 		
 		return colour;
 	}
-
+	
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{

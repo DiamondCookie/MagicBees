@@ -18,6 +18,7 @@ import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.Config;
+import thaumicbees.main.utils.LocalizationManager;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -273,12 +274,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization(getUID());
+		return LocalizationManager.getLocalizedString(getUID());
 	}
 
 	public String getDescription()
 	{
-		return LanguageRegistry.instance().getStringLocalization(getUID() + ".description");
+		return LocalizationManager.getLocalizedString(getUID() + ".description");
 	}
 
 	public int getBodyType()

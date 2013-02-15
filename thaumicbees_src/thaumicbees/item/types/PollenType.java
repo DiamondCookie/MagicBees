@@ -1,5 +1,6 @@
 package thaumicbees.item.types;
 
+import thaumicbees.main.utils.LocalizationManager;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum PollenType
@@ -19,6 +20,6 @@ public enum PollenType
 	
 	public String getName()
 	{
-		return LanguageRegistry.instance().getStringLocalization("tb.pollen." + this.name);
+		return LocalizationManager.getLocalizedString("tb.pollen." + this.name);
 	}
 }

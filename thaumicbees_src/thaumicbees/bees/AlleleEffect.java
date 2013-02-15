@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.LocalizationManager;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -34,7 +35,7 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 	@Override
 	public String getIdentifier()
 	{
-		return LanguageRegistry.instance().getStringLocalization(getUID());
+		return LocalizationManager.getLocalizedString(getUID());
 	}
 
 	@Override
