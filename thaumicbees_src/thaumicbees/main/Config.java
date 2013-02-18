@@ -3,9 +3,8 @@ package thaumicbees.main;
 import java.io.File;
 
 import thaumicbees.block.BlockMagicApiary;
-import thaumicbees.compat.CompatabilityManager;
-import thaumicbees.compat.ForestryHelper;
-import thaumicbees.compat.ThaumcraftHelper;
+import thaumicbees.block.BlockPlanks;
+import thaumicbees.block.BlockWoodSlab;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemDrop;
@@ -17,8 +16,12 @@ import thaumicbees.item.ItemSolidFlux;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.HiveFrameType;
+import thaumicbees.item.types.PlankType;
+import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.storage.BackpackDefinition;
+import thaumicbees.utils.compat.ForestryHelper;
+import thaumicbees.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -26,8 +29,11 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemMultiTextureTile;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.Configuration;
@@ -47,7 +53,9 @@ public class Config
 	public boolean AddThaumcraftItemsToBackpacks;
 	public String ThaumaturgeExtraItems;
 
-	
+	public static BlockPlanks planksWood;
+	public static BlockWoodSlab slabWoodHalf;
+	public static BlockWoodSlab slabWoodFull;
 	public static BlockMagicApiary magicApiary;
 	
 	public static ItemComb combs;
@@ -121,6 +129,29 @@ public class Config
 		ForestryHelper.getForestryBlocks();
 		
 		int blockIdBase = 1750;
+		
+		planksWood = new BlockPlanks(tbConfig.getBlock("planksTC", blockIdBase++).getInt());
+
+		Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames())
+			.setItemName(planksWood.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+        Item.itemsList[planksWood.blockID] = item;
+        
+        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
+        
+        slabWoodFull = new BlockWoodSlab(tbConfig.getBlock("slabFull", blockIdBase++).getInt(), true);
+        slabWoodHalf = new BlockWoodSlab(tbConfig.getBlock("slabHalf", blockIdBase++).getInt(), false);
+        
+        item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false)
+    	.setItemName(slabWoodHalf.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+	    Item.itemsList[slabWoodHalf.blockID] = item;
+	    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true)
+		.setItemName(slabWoodFull.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+	    Item.itemsList[slabWoodFull.blockID] = item;
+	    
+	    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
+        
+
+        blockIdBase++; // Stair
 		
 		/*magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase).getInt());
 		GameRegistry.registerBlock(magicApiary, "Magic Apiary");*/

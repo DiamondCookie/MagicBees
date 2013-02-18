@@ -11,14 +11,14 @@ import java.util.HashMap;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-import thaumicbees.compat.ForestryHelper;
-import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.Config;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.utils.compat.ForestryHelper;
+import thaumicbees.utils.compat.ThaumcraftHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -183,15 +183,18 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 			.setGenome(BeeGenomeManager.getTemplateGhastly())
 			.register();		
 		TIMELY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
+			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 10)
 			.setGenome(BeeGenomeManager.getTemplateTimely())
 			.register();		
 		LORDLY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 5)
 			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
+			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 15)
 			.setGenome(BeeGenomeManager.getTemplateLordly())
 			.register();		
 		DOCTORAL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 10)
-			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 30)
-			.addSpecialty(new ItemStack(Config.jellyBaby), 4)
+			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
+			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 19)
+			.addSpecialty(new ItemStack(Config.jellyBaby), 7)
 			.setGenome(BeeGenomeManager.getTemplateDoctoral())
 			.register();
 	}
