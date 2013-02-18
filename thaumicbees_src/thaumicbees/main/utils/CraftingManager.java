@@ -6,17 +6,18 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.bees.Allele;
 import thaumicbees.bees.BeeGenomeManager;
 import thaumicbees.bees.BeeSpecies;
-import thaumicbees.compat.ShapelessBeeInfusionCraftingRecipe;
-import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
+import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.Config;
+import thaumicbees.utils.compat.ShapelessBeeInfusionCraftingRecipe;
+import thaumicbees.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -37,10 +38,22 @@ public class CraftingManager
 {
 	public static void setupCrafting()
 	{
-		ItemStack inputStack; // Variable to hold forestry items
+		ItemStack input;
+		ItemStack output;
+		
+		// Slabs
+		for (int i = 0; i < PlankType.values().length; ++i)
+		{
+			input = new ItemStack(Config.planksWood, 1, i);
+			output = new ItemStack(Config.slabWoodHalf, 6, i);
+			GameRegistry.addRecipe(output, new Object[] {
+				"PPP",
+				'P', input
+			});
+		}
 
 		// Essentia bottles
-		ItemStack output = new ItemStack(Config.tcEssentiaBottle);
+		output = new ItemStack(Config.tcEssentiaBottle);
 		output.stackSize = 8;
 		GameRegistry.addRecipe(output, new Object[] {
 				" C ", "GPG", "PGP",
@@ -79,17 +92,17 @@ public class CraftingManager
 		});
 
 		// Concentrated Fertilizer -> Forestry fertilizer
-		inputStack = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
+		input = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
 		output = ItemInterface.getItem("fertilizerCompound");
 		output.stackSize = 6;
 		GameRegistry.addRecipe(output, new Object[] {
 				" S ", " F ", " S ",
-				'F', inputStack,
+				'F', input,
 				'S', Block.sand
 		});
 		GameRegistry.addRecipe(output, new Object[] {
 				"   ", "SFS", "   ",
-				'F', inputStack,
+				'F', input,
 				'S', Block.sand
 		});
 
@@ -97,7 +110,7 @@ public class CraftingManager
 		output.stackSize = 12;
 		GameRegistry.addRecipe(output, new Object[] {
 				"aaa", "aFa", "aaa",
-				'F', inputStack,
+				'F', input,
 				'a', ItemInterface.getItem("ash")
 		});
 			
@@ -152,7 +165,7 @@ public class CraftingManager
 				new int[] { 100, 50, 65 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.INTELLECT),
 				new ItemStack[] { Config.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeydew"), Config.drops.getStackForType(DropType.INTELLECT) },
-				new int[] { 90, 40, 2 });
+				new int[] { 90, 40, 10 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.SKULKING),
 				new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("propolis"), ItemInterface.getItem("honeydew") },
 				new int[] { 90, 20, 35 });
@@ -185,13 +198,13 @@ public class CraftingManager
 				new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 18);
 
 		// Carpenter recipes
-		inputStack = ItemInterface.getItem("craftingMaterial");
-		inputStack.setItemDamage(3); // Set to Silk Mesh
+		input = ItemInterface.getItem("craftingMaterial");
+		input.setItemDamage(3); // Set to Silk Mesh
 		output = new ItemStack(Config.thaumaturgeBackpackT2);
 		RecipeManagers.carpenterManager.addRecipe(200, new LiquidStack(Block.waterStill.blockID, 1000), null, output, new Object[] {
 			"WXW", "WTW", "WWW",
 			'X', Item.diamond,
-			'W', inputStack,
+			'W', input,
 			'T', new ItemStack(Config.thaumaturgeBackpackT1)
 		});
 
@@ -205,12 +218,12 @@ public class CraftingManager
 
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 6;
-		inputStack = ItemInterface.getItem("craftingMaterial");
-		inputStack.setItemDamage(2); // Set to Silk Wisp
+		input = ItemInterface.getItem("craftingMaterial");
+		input.setItemDamage(2); // Set to Silk Wisp
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
 			"WSW",
 			'W', Config.wax,
-			'S', inputStack
+			'S', input
 		});
 
 		output = Config.miscResources.getStackForType(ResourceType.AROMATIC_LUMP, 2);
@@ -227,6 +240,19 @@ public class CraftingManager
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
 		});
+		
+		output = new ItemStack(Config.planksWood, 6, 0);
+		RecipeManagers.carpenterManager.addRecipe(8, new LiquidStack(Block.waterStill, 500), null, output, new Object[] {
+			"B",
+			'B', new ItemStack(Config.tcLog, 1, 0)
+		});
+		
+		output = new ItemStack(Config.planksWood, 8, 1);
+		RecipeManagers.carpenterManager.addRecipe(8, new LiquidStack(Block.waterStill, 500), null, output, new Object[] {
+			"B",
+			'B', new ItemStack(Config.tcLog, 1, 1)
+		});
+		
 		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
 		BeeManager.inducers.put(output, 80);
 		

@@ -1,4 +1,4 @@
-package thaumicbees.compat;
+package thaumicbees.utils.compat;
 
 import net.minecraft.item.Item;
 import forestry.api.core.ItemInterface;

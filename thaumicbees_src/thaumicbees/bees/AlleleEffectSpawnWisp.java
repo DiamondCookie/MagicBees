@@ -3,8 +3,8 @@ package thaumicbees.bees;
 import java.lang.reflect.Field;
 
 import cpw.mods.fml.common.FMLLog;
-import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemArmorApiarist;
+import thaumicbees.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import net.minecraft.entity.EntityList;

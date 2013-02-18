@@ -5,6 +5,10 @@
     <entry key="item.jellyBabies.name">Handful of Jelly Babies</entry>
     
     <!-- Block names -->
+	<entry key="tile.tb.planks.greatwood.name">Greatwood Planks</entry>
+	<entry key="tile.tb.slab.wood.greatwood.name">Greatwood Slab</entry>
+	<entry key="tile.tb.planks.silverwood.name">Silverwood Planks</entry>
+	<entry key="tile.tb.slab.wood.silverwood.name">Silverwood Slab</entry>
     
     <!-- Comb names -->
     <entry key="tb.comb.occult">Occult Comb</entry>
@@ -28,6 +32,7 @@
     
     <!-- Pollen names -->
     <entry key="tb.pollen.unusual">Unusual Pollen</entry>
+	<entry key="tb.pollen.phased">Phased Pollen</entry>
     
     <!-- Propolis names -->
     <entry key="tb.propolis.dull">Dull Propolis</entry>

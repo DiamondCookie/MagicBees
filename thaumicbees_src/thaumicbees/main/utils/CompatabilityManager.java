@@ -1,4 +1,4 @@
-package thaumicbees.compat;
+package thaumicbees.main.utils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -25,6 +25,15 @@ import thaumicbees.main.CommonProxy;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.storage.BackpackDefinition;
+import thaumicbees.utils.compat.ForestryHelper;
+import thaumicbees.utils.compat.ThaumcraftHelper;
+import thaumicbees.utils.compat.ForestryHelper.CircuitBoard;
+import thaumicbees.utils.compat.ForestryHelper.Comb;
+import thaumicbees.utils.compat.ForestryHelper.CraftingMaterial;
+import thaumicbees.utils.compat.ForestryHelper.Pollen;
+import thaumicbees.utils.compat.ForestryHelper.Propolis;
+import thaumicbees.utils.compat.ForestryHelper.Tube;
+import thaumicbees.utils.compat.ThaumcraftHelper.MiscResource;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -117,6 +126,9 @@ public class CompatabilityManager
 		ObjectTags tags;
 		ItemStack itemStack;
 		
+		tags = new ObjectTags().add(EnumTag.WOOD, 2);
+		ThaumcraftApi.registerObjectTag(Config.planksWood.blockID, -1, tags);
+		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), tags);
 		
@@ -125,8 +137,10 @@ public class CompatabilityManager
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 1);
 		ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.INTELLECT.ordinal(), tags);
 		
-		tags = new ObjectTags().add(EnumTag.ELDRITCH, 1);
+		tags = new ObjectTags().add(EnumTag.ELDRITCH, 2);
 		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.UNUSUAL.ordinal(), tags);
+		tags = new ObjectTags().add(EnumTag.TIME, 2);
+		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.PHASED.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.CONTROL, 1);
 		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, -1, tags);

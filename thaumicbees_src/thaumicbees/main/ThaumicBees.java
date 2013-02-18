@@ -3,7 +3,7 @@ package thaumicbees.main;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
-import thaumicbees.compat.CompatabilityManager;
+import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.VersionInfo;

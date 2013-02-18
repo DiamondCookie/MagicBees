@@ -5,7 +5,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum PollenType
 {
-	UNUSUAL("unusual", 0xA03059, 0xD8417B),
+	UNUSUAL("unusual",	0xA03059, 0xD8417B),
+	PHASED("phased",	0x456BA5, 0x4974B4),
 	;
 	
 	private PollenType(String pName, int colourA, int colourB)
