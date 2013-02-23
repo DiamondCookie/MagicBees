@@ -58,6 +58,7 @@
     
     <!-- Capsule names -->
     <entry key="tb.capsule.magic">Magic Capsule</entry>
+    <entry key="tb.capsule.void">Void Capsule</entry>
     
     <!-- Liquids -->
     <entry key="tb.liquid.">Empty</entry>

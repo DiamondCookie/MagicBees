@@ -1,7 +1,7 @@
 package thaumicbees.bees;
 
 import net.minecraft.potion.Potion;
-import thaumicbees.utils.compat.ThaumcraftHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;

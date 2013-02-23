@@ -1,4 +1,4 @@
-package thaumicbees.utils.compat;
+package thaumicbees.main.utils.compat;
 
 import java.util.ArrayList;
 import java.util.Arrays;

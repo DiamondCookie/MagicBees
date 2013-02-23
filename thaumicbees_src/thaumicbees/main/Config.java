@@ -19,9 +19,9 @@ import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import thaumicbees.storage.BackpackDefinition;
-import thaumicbees.utils.compat.ForestryHelper;
-import thaumicbees.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -52,6 +52,7 @@ public class Config
 	public boolean ExtraBeesInstalled;
 	public boolean AddThaumcraftItemsToBackpacks;
 	public String ThaumaturgeExtraItems;
+	public int capsuleStackSizeMax;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -69,6 +70,7 @@ public class Config
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
+	public static ItemCapsule voidCapsule;
 	
 	//----- Apiary Frames ----------------------
 	public static ItemMagicHiveFrame hiveFrameMagic;
@@ -198,7 +200,7 @@ public class Config
 		}
 		
 		
-		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, tbConfig.getItem("magicCapsule", itemIDBase++).getInt());
+		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, tbConfig.getItem("magicCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
 		
 		pollen = new ItemPollen(tbConfig.getItem("pollen", itemIDBase++).getInt());
 		solidFlux = new ItemSolidFlux(tbConfig.getItem("fluxCrystal", itemIDBase++).getInt());
@@ -225,6 +227,7 @@ public class Config
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
 		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("jellyBabies");
 		
+		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
 	}
 	
 	private void doMiscConfig()
@@ -240,6 +243,11 @@ public class Config
 		p.comment = "Set to true if you want ThaumicBees to add several Thaumcraft blocks & items to Forestry backpacks." +
 				"\n Set to false to disable.";
 		this.AddThaumcraftItemsToBackpacks = p.getBoolean(true);
+		
+		p = tbConfig.get("general", "capsuleStackSize", 64);
+		p.comment = "Allows you to edit the stack size of the capsules in ThaumicBees if using GregTech, \n" +
+				"or the reduced capsule size in Forestry & Railcraft. Default: 64";
+		this.capsuleStackSizeMax = p.getInt();
 	}
 
 }

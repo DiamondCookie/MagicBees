@@ -1,3 +1,11 @@
+1.4.2
+Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding!
+Fix: Added Greatwood & Silverwood slabs to the ore dictionary so they should work as normal.
+
+1.4.1
+Added Greatwood and Silverwood planks. Since Greatwood and Silverwood are tougher than other trees, you'll need some extra machinery. To obtain these, jam a log of the appropriate tree into a Forestry carpenter and provide a half bucket of water.
+Added slabs for the new planks also.
+
 1.4.0a
 Fixed some issues with the Node bee's effect. 
 

@@ -6,6 +6,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public enum CapsuleType
 {
 	MAGIC("magic", 2000, 0),
+	VOID("void", 8000, 1),
 	;
 	private String name; 
 	public int capacity;

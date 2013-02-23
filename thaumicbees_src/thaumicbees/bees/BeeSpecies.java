@@ -17,8 +17,8 @@ import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.Config;
 import thaumicbees.main.utils.LocalizationManager;
-import thaumicbees.utils.compat.ForestryHelper;
-import thaumicbees.utils.compat.ThaumcraftHelper;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

@@ -16,8 +16,8 @@ import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.Config;
-import thaumicbees.utils.compat.ShapelessBeeInfusionCraftingRecipe;
-import thaumicbees.utils.compat.ThaumcraftHelper;
+import thaumicbees.main.utils.compat.ShapelessBeeInfusionCraftingRecipe;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -313,6 +313,16 @@ public class CraftingManager
 			'S', Block.sand,
 			'F', inputA
 		});
+		
+		output = Config.voidCapsule.getCapsuleForLiquid(LiquidType.EMPTY);
+		output.stackSize = 4;
+		tags = new ObjectTags().add(EnumTag.VOID, 16).add(EnumTag.ELDRITCH, 4).add(EnumTag.EXCHANGE, 8);
+		ThaumcraftApi.addInfusionCraftingRecipe("VOIDCAPSULE", "VOIDCAPSULE", 10, tags, output, new Object[] {
+			" G ", "GPG", "TGT",
+			'G', Block.thinGlass,
+			'P', Item.enderPearl,
+			'T', Item.ingotIron
+		});
 
 		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.DRONE);
 		ItemStack princess = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.PRINCESS);
@@ -360,6 +370,7 @@ public class CraftingManager
 				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
 		
 		registerLiquidContainer(Config.magicCapsule);
+		registerLiquidContainer(Config.voidCapsule);
 	}
 
 	private static void registerLiquidContainer(ItemCapsule baseCapsule)

@@ -24,16 +24,16 @@ import thaumicbees.item.types.WaxType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
+import thaumicbees.main.utils.compat.ForestryHelper.CircuitBoard;
+import thaumicbees.main.utils.compat.ForestryHelper.Comb;
+import thaumicbees.main.utils.compat.ForestryHelper.CraftingMaterial;
+import thaumicbees.main.utils.compat.ForestryHelper.Pollen;
+import thaumicbees.main.utils.compat.ForestryHelper.Propolis;
+import thaumicbees.main.utils.compat.ForestryHelper.Tube;
+import thaumicbees.main.utils.compat.ThaumcraftHelper.MiscResource;
 import thaumicbees.storage.BackpackDefinition;
-import thaumicbees.utils.compat.ForestryHelper;
-import thaumicbees.utils.compat.ThaumcraftHelper;
-import thaumicbees.utils.compat.ForestryHelper.CircuitBoard;
-import thaumicbees.utils.compat.ForestryHelper.Comb;
-import thaumicbees.utils.compat.ForestryHelper.CraftingMaterial;
-import thaumicbees.utils.compat.ForestryHelper.Pollen;
-import thaumicbees.utils.compat.ForestryHelper.Propolis;
-import thaumicbees.utils.compat.ForestryHelper.Tube;
-import thaumicbees.utils.compat.ThaumcraftHelper.MiscResource;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -65,11 +65,7 @@ public class CompatabilityManager
 			Item i = (Item) f.get(null);
 			value = new ItemStack(i);
 		}
-		catch (Exception e)
-		{
-			FMLLog.warning("Could not get Extra Bees item: " + field + ". If you notice this, please report this on the Thaumic Bees thread with the following trace:");
-			e.printStackTrace();
-		}
+		catch (Exception e) { }
 		return value;
 	}
 	
@@ -378,11 +374,11 @@ public class CompatabilityManager
 		
 		itemStack = ItemInterface.getItem("tubes");
 		tags = new ObjectTags(ItemInterface.getItem("ingotCopper").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.COPPER.ordinal(), tags);
+		//ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.COPPER.ordinal(), tags);
 		tags = new ObjectTags(ItemInterface.getItem("ingotTin").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.TIN.ordinal(), tags);
+		//ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.TIN.ordinal(), tags);
 		tags = new ObjectTags(ItemInterface.getItem("ingotBronze").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.BRONZE.ordinal(), tags);
+		//ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.BRONZE.ordinal(), tags);
 		tags = new ObjectTags(Item.ingotIron.itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.IRON.ordinal(), tags);
 		tags = new ObjectTags(Item.ingotGold.itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
@@ -407,12 +403,11 @@ public class CompatabilityManager
 	{
 		ItemStack itemStack;
 		ObjectTags tags;
+	}
+	
+	private static void setupItemAspectsOreDict()
+	{
 		
-		if ((itemStack = getExtraBeeItem("comb")) != null)
-		{
-			tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
-			ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
-		}
 	}
 	
 	public static void setupResearch()
@@ -473,6 +468,11 @@ public class CompatabilityManager
 		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 10).add(EnumTag.TIME, 4);
 		ResearchItem temporalFrame = new ResearchItem("HIVEFRAMETIME", tags, 9, -5, Config.hiveFrameTemporal)
 			.setParents(magicFrame).setHidden()
+			.registerResearchItem();
+		
+		tags = new ObjectTags().add(EnumTag.VOID, 15).add(EnumTag.CRYSTAL, 8).add(EnumTag.ELDRITCH, 8).add(EnumTag.EXCHANGE, 15);
+		ResearchItem voidCapsule = new ResearchItem("VOIDCAPSULE", tags, 10, 9, Config.voidCapsule)
+			.setParents(startNode, ResearchList.getResearch("PORTABLEHOLE")).setHidden()
 			.registerResearchItem();
 	}
 
