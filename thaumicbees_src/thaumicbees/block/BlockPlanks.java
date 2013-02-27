@@ -28,7 +28,12 @@ public class BlockPlanks extends Block
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
-		return PlankType.getType(meta).textureIdx;
+		int tx = 256;
+		if (PlankType.getType(meta) != null)
+		{
+			tx = PlankType.getType(meta).textureIdx;
+		}		
+		return tx;
 	}
 
 	@Override

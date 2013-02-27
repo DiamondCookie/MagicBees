@@ -28,7 +28,7 @@ Fixed the issue with certain items appearing twice in Creative Mode tabs.
 
 1.3.0a
 Some bug fixes, including uncommenting some mutation-related code, research tweaking.
-Added the last bee for a long while, probably. Good luck getting it. Posted Image
+Added the last bee for a long while, probably. Good luck getting it.
 
 Common TB crashes stemming from Forestry issues should now be reported a little better, especially the backpack registration & item texture file related things. Errors should appear in your log, so make sure you read the log before you report the error here. It could be something silly on your end that is causing the crash.
 

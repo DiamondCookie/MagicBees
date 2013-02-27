@@ -1,6 +1,8 @@
 package thaumicbees.main.utils.compat;
 
 import net.minecraft.item.Item;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
 import forestry.api.core.ItemInterface;
 import thaumicbees.main.Config;
 
@@ -91,5 +93,45 @@ public class ForestryHelper
 		APATITE,
 		LAPIS,
 		;
+	}
+	
+	public static EnumTemperature getEnumTemperatureFromValue(float rawTemp)
+	{
+		EnumTemperature value = EnumTemperature.ICY;
+		
+		if (rawTemp >= 2.0f)
+		{
+			value = EnumTemperature.HOT;
+		}
+		else if (rawTemp >= 1.2f)
+		{
+			value = EnumTemperature.WARM;
+		}
+		else if (rawTemp >= 0.2f)
+		{
+			value = EnumTemperature.NORMAL;
+		}
+		else if (rawTemp >= 0.05f)
+		{
+			value = EnumTemperature.COLD;
+		}
+
+		return value;
+	}
+	
+	public static EnumHumidity getEnumHumidityFromValue(float rawHumidity)
+	{
+		EnumHumidity value = EnumHumidity.ARID;
+		
+		if (rawHumidity >= 0.9f)
+		{
+			value = EnumHumidity.DAMP;
+		}
+		else if (rawHumidity >= 0.3f)
+		{
+			value = EnumHumidity.NORMAL;
+		}
+
+		return value;
 	}
 }

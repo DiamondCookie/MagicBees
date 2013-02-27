@@ -32,7 +32,12 @@ public class BlockWoodSlab extends BlockHalfSlab
 	@Override
 	public int getBlockTextureFromSideAndMetadata(int side, int meta)
 	{
-		return PlankType.getType(meta & 7).textureIdx;
+		int tx = 256;
+		if (PlankType.getType(meta & 7) != null)
+		{
+			tx = PlankType.getType(meta & 7).textureIdx;
+		}		
+		return tx;
 	}
 
     public int idDropped(int id, Random rand, int par3)

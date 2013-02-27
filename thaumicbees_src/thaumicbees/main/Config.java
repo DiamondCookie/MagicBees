@@ -5,6 +5,7 @@ import java.io.File;
 import thaumicbees.block.BlockMagicApiary;
 import thaumicbees.block.BlockPlanks;
 import thaumicbees.block.BlockWoodSlab;
+import thaumicbees.block.TileEntityMagicApiary;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemDrop;
@@ -17,6 +18,7 @@ import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.PlankType;
+import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.compat.ForestryHelper;
@@ -26,6 +28,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
 import net.minecraft.block.Block;
@@ -36,6 +39,7 @@ import net.minecraft.item.ItemMultiTextureTile;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
@@ -144,19 +148,23 @@ public class Config
         slabWoodHalf = new BlockWoodSlab(tbConfig.getBlock("slabHalf", blockIdBase++).getInt(), false);
         
         item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false)
-    	.setItemName(slabWoodHalf.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+    		.setItemName(slabWoodHalf.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 	    Item.itemsList[slabWoodHalf.blockID] = item;
 	    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true)
-		.setItemName(slabWoodFull.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+			.setItemName(slabWoodFull.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 	    Item.itemsList[slabWoodFull.blockID] = item;
 	    
 	    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
-        
 
         blockIdBase++; // Stair
-		
-		/*magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase).getInt());
-		GameRegistry.registerBlock(magicApiary, "Magic Apiary");*/
+        
+		magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase++).getInt());
+		GameRegistry.registerBlock(magicApiary, "tb.magicApiary");
+	}
+	
+	public void registerTileEntities()
+	{
+		TileEntity.addMapping(TileEntityMagicApiary.class, "MagicApiary");
 	}
 	
 	public void setupItems()
@@ -174,6 +182,10 @@ public class Config
 		propolis = new ItemPropolis(tbConfig.getItem("propolis", itemIDBase++).getInt());
 		drops = new ItemDrop(tbConfig.getItem("drop", itemIDBase++).getInt());
 		miscResources = new ItemMiscResources(tbConfig.getItem("miscResources", itemIDBase++).getInt());
+		
+
+		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
+		BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), 80);
 		
 		try
 		{

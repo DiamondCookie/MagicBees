@@ -70,6 +70,7 @@ public class ThaumicBees
 		}
 		
 		this.modConfig.setupBlocks();
+		this.modConfig.registerTileEntities();
 		this.modConfig.setupItems();
 		
 		CompatabilityManager.setupBackpacks();
