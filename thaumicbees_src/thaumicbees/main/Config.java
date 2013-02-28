@@ -13,6 +13,7 @@ import thaumicbees.item.ItemMagicHiveFrame;
 import thaumicbees.item.ItemMiscResources;
 import thaumicbees.item.ItemPollen;
 import thaumicbees.item.ItemPropolis;
+import thaumicbees.item.ItemReinforcedScoop;
 import thaumicbees.item.ItemSolidFlux;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
@@ -41,6 +42,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -71,6 +73,7 @@ public class Config
 	public static ItemSolidFlux solidFlux;
 	public static ItemMiscResources miscResources;
 	public static ItemFood jellyBaby;
+	public static ItemReinforcedScoop thaumiumScoop;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
@@ -240,6 +243,9 @@ public class Config
 		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("jellyBabies");
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
+
+		thaumiumScoop = new ItemReinforcedScoop(tbConfig.getItem("reinforcedScoop", itemIDBase++).getInt());
+		MinecraftForge.setToolClass(thaumiumScoop, "scoop", 3);
 	}
 	
 	private void doMiscConfig()
