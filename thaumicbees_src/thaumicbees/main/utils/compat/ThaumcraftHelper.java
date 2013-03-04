@@ -107,4 +107,11 @@ public class ThaumcraftHelper
 		SHIMMERLEAF,
 		CINDERPEARL;
 	}
+	
+	public enum TreeType
+	{
+		GREATWOOD,
+		SILVERWOOD,
+		;
+	}
 }

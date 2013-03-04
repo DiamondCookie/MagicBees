@@ -13,7 +13,8 @@ import thaumicbees.item.ItemMagicHiveFrame;
 import thaumicbees.item.ItemMiscResources;
 import thaumicbees.item.ItemPollen;
 import thaumicbees.item.ItemPropolis;
-import thaumicbees.item.ItemReinforcedScoop;
+import thaumicbees.item.ItemThaumiumGrafter;
+import thaumicbees.item.ItemThaumiumScoop;
 import thaumicbees.item.ItemSolidFlux;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
@@ -73,7 +74,8 @@ public class Config
 	public static ItemSolidFlux solidFlux;
 	public static ItemMiscResources miscResources;
 	public static ItemFood jellyBaby;
-	public static ItemReinforcedScoop thaumiumScoop;
+	public static ItemThaumiumScoop thaumiumScoop;
+	public static ItemThaumiumGrafter thaumiumGrafter;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
@@ -244,8 +246,10 @@ public class Config
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
 
-		thaumiumScoop = new ItemReinforcedScoop(tbConfig.getItem("reinforcedScoop", itemIDBase++).getInt());
+		thaumiumScoop = new ItemThaumiumScoop(tbConfig.getItem("thaumiumScoop", itemIDBase++).getInt());
 		MinecraftForge.setToolClass(thaumiumScoop, "scoop", 3);
+		
+		thaumiumGrafter = new ItemThaumiumGrafter(tbConfig.getItem("thaumiumGrafter", itemIDBase++).getInt());
 	}
 	
 	private void doMiscConfig()

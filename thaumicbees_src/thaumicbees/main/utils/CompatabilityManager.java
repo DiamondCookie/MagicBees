@@ -415,7 +415,7 @@ public class CompatabilityManager
 		ObjectTags tags;
 		
 		tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.PLANT, 10).add(EnumTag.INSECT, 10);
-		ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 0, Config.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
+		ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
 			.setParents(ResearchList.getResearch("UTFT"))
 			.registerResearchItem();
 		
@@ -473,6 +473,16 @@ public class CompatabilityManager
 		tags = new ObjectTags().add(EnumTag.VOID, 15).add(EnumTag.CRYSTAL, 8).add(EnumTag.ELDRITCH, 8).add(EnumTag.EXCHANGE, 15);
 		ResearchItem voidCapsule = new ResearchItem("VOIDCAPSULE", tags, 10, 9, Config.voidCapsule)
 			.setParents(startNode, ResearchList.getResearch("PORTABLEHOLE")).setHidden()
+			.registerResearchItem();
+		
+		tags = new ObjectTags().add(EnumTag.WOOD, 8).add(EnumTag.INSECT, 10).add(EnumTag.TOOL, 6).add(EnumTag.MAGIC, 6);
+		ResearchItem scoop = new ResearchItem("THAUMIUMSCOOP", tags, 0, -3, Config.thaumiumScoop)
+			.setParents(ResearchList.getResearch("THAUMIUM"))
+			.registerResearchItem();
+		
+		tags = new ObjectTags().add(EnumTag.WOOD, 16).add(EnumTag.PLANT, 20).add(EnumTag.TOOL, 6).add(EnumTag.MAGIC, 6);
+		ResearchItem grafter = new ResearchItem("THAUMIUMGRAFTER", tags, 0, -4, Config.thaumiumGrafter)
+			.setParents(scoop)
 			.registerResearchItem();
 	}
 

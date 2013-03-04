@@ -3,6 +3,7 @@
 <properties version="1.0">    
     <!-- Item names -->
     <entry key="item.jellyBabies.name">Handful of Jelly Babies</entry>
+    <entry key="item.tb.thaumiumScoop.name">Thaumium Scoop</entry>
     
     <!-- Block names -->
 	<entry key="tile.tb.planks.greatwood.name">Greatwood Planks</entry>

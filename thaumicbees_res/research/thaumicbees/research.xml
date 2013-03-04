@@ -113,4 +113,24 @@ Like other capsules, they are fragile and are typically single-use. They have pr
 <page type="infusioncrafting">VOIDCAPSULE</page>
 </project>
 
+<project id="THAUMIUMSCOOP">
+<name>Thaumium Scoop</name>
+<popupText>Stronger, Faster, Bee-tter</popupText>
+<longText>It is possible to improve the durability of the scoop by creating them out of sterner materials. While you're at it, it may be helpful to enable them to be enchanted with restorative magics.</longText>
+<page type="text">This improved scoop is more durable than the plain one your non-magical beekeeping friends are liable to use. It is good for three times as long as the average scoop at the cost of using some thaumium instead.
+
+Because the thaumium present in its construction, it is possible to enchant the scoop with a Repairing spell in the usual manner.</page>
+<page type="arcanecrafting">THAUMIUMSCOOP</page>
+</project>
+
+<project id="THAUMIUMGRAFTER">
+<name>Thaumium Grafter</name>
+<popupText>The Treesnipper</popupText>
+<longText>This improved grafter is more durable than the plain one your non-magical arborist acquaintances tend to use in their exploits. It should be possible to allow them to be enchanted with repairing magic to make them last indefinitely.</longText>
+<page type="text">Adding Thaumium to your grafter design has increased its durability significantly - up to two times longer than regular grafters.
+
+It is also possible to enchant them with the Repair enchant, given sufficient experience.</page>
+<page type="arcanecrafting">THAUMIUMGRAFTER</page>
+</project>
+
 </research>

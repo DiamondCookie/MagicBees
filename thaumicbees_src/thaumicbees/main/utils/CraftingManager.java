@@ -43,7 +43,7 @@ public class CraftingManager
 		setupCentrifugeRecipes();
 		setupSqueezerRecipes();
 		setupCarpenterRecipes();
-		setupThaumcraftInfusions();
+		setupThaumcraftCrafting();
 
 		registerLiquidContainer(Config.magicCapsule);
 		registerLiquidContainer(Config.voidCapsule);
@@ -279,10 +279,23 @@ public class CraftingManager
 		});
 	}
 	
-	private static void setupThaumcraftInfusions()
+	private static void setupThaumcraftCrafting()
 	{
 		ItemStack input;
 		ItemStack output;
+		
+		ThaumcraftApi.addArcaneCraftingRecipe("THAUMIUMSCOOP", "THAUMIUMSCOOP", 45, new ItemStack(Config.thaumiumScoop), new Object[] {
+			"sWs", "sTs", " T ",
+			's', Item.stick,
+			'W', Block.cloth,
+			'T', new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.THAUMIUM.ordinal())
+		});
+		
+		ThaumcraftApi.addArcaneCraftingRecipe("THAUMIUMGRAFTER", "THAUMIUMGRAFTER", 160, new ItemStack(Config.thaumiumGrafter), new Object[] {
+			"  T", " T ", "s  ",
+			's', Item.stick,
+			'T', new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.THAUMIUM.ordinal())
+		});
 		
 		output = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
 		input = ItemInterface.getItem("apatite");
@@ -326,7 +339,7 @@ public class CraftingManager
 		
 		output = new ItemStack(Config.hiveFrameNecrotic);
 		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.EXCHANGE, 12).add(EnumTag.DEATH, 16)
-				.add(EnumTag.POISON, 4);
+				.add(EnumTag.POISON, 1);
 		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMENECRO", "FRAMENECROTIC", 50, tags, output, new Object[] {
 				" S ", "SxS", " S ",
 				'S', Item.rottenFlesh,
