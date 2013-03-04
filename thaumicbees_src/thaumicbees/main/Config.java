@@ -163,8 +163,8 @@ public class Config
 
         blockIdBase++; // Stair
         
-		/*magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase++).getInt());
-		GameRegistry.registerBlock(magicApiary, "tb.magicApiary");*/
+		magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase++).getInt());
+		GameRegistry.registerBlock(magicApiary, "tb.magicApiary");
 	}
 	
 	public void registerTileEntities()
