@@ -1,6 +1,7 @@
 [
 {
   "modid": "ThaumicBees",
+  "version": @MODVERSION@
   "name": "ThaumicBees",
   "url": "http://bit.ly/XFDvLY",
   "description": "Crossover mod for Forestry and Thaumcraft. Magic bees & more.",

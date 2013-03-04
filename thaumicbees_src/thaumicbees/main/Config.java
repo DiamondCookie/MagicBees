@@ -2,10 +2,8 @@ package thaumicbees.main;
 
 import java.io.File;
 
-import thaumicbees.block.BlockMagicApiary;
 import thaumicbees.block.BlockPlanks;
 import thaumicbees.block.BlockWoodSlab;
-import thaumicbees.block.TileEntityMagicApiary;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemDrop;
@@ -64,7 +62,6 @@ public class Config
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
 	public static BlockWoodSlab slabWoodFull;
-	public static BlockMagicApiary magicApiary;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -162,14 +159,11 @@ public class Config
 	    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
 
         blockIdBase++; // Stair
-        
-		/*magicApiary = new BlockMagicApiary(tbConfig.getBlock("magicApiary", blockIdBase++).getInt());
-		GameRegistry.registerBlock(magicApiary, "tb.magicApiary");*/
 	}
 	
 	public void registerTileEntities()
 	{
-		TileEntity.addMapping(TileEntityMagicApiary.class, "MagicApiary");
+
 	}
 	
 	public void setupItems()
