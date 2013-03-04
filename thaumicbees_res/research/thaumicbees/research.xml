@@ -99,8 +99,38 @@ Like the Magic Frame, this frame consumes aura to maintain its enchantments. Thi
 <longText>You have been seeking a way to significantly extend bee life. It should be possible by adding a frame enchanted with the essence of time to the hive.</longText>
 <page type="text">Keeping bees has been frustrating, as the insects' short lives requires you to manually intervene far too often.
 
-A new variation of your frame design, this version involving some Time magic, should help extend their lives significantly.</page>
+A new variation of your frame design, this version involving some Time magic, should help extend their lives significantly. Like the Magic frame, this one too requires aura to run, and will produce flux now and again.</page>
 <page type="infusioncrafting">FRAMETIME</page>
+</project>
+
+<project id="VOIDCAPSULE">
+<name>Void Capsule</name>
+<popupText>Another Dimension of Liquid Storage</popupText>
+<longText>It seems reasonable that if you can shift blocks and other matter into an alternate dimension temporarily, you should be able to do something similar with liquids.</longText>
+<page type="text">These new capsules can hold the equivalent of 8 buckets' worth of liquid by syphoning off a large quantity into a pocket dimension temporarily.
+
+Like other capsules, they are fragile and are typically single-use. They have proven popular for long-term storage.</page>
+<page type="infusioncrafting">VOIDCAPSULE</page>
+</project>
+
+<project id="THAUMIUMSCOOP">
+<name>Thaumium Scoop</name>
+<popupText>Stronger, Faster, Bee-ter</popupText>
+<longText>It is possible to improve the durability of the scoop by creating them out of sterner materials. While you're at it, it may be helpful to enable them to be enchanted with restorative magics.</longText>
+<page type="text">This improved scoop is more durable than the plain one your non-magical beekeeping friends are liable to use. It is good for three times as long as the average scoop at the cost of using some thaumium instead.
+
+Because the thaumium present in its construction, it is possible to enchant the scoop with a Repairing spell in the usual manner.</page>
+<page type="arcanecrafting">THAUMIUMSCOOP</page>
+</project>
+
+<project id="THAUMIUMGRAFTER">
+<name>Thaumium Grafter</name>
+<popupText>The Treesnipper</popupText>
+<longText>This improved grafter is more durable than the plain one your non-magical arborist acquaintances tend to use in their exploits. It should be possible to allow them to be enchanted with repairing magic to make them last indefinitely.</longText>
+<page type="text">Adding Thaumium to your grafter design has increased its durability significantly - up to two times longer than regular grafters.
+
+It is also possible to enchant them with the Repair enchant, given sufficient experience.</page>
+<page type="arcanecrafting">THAUMIUMGRAFTER</page>
 </project>
 
 </research>

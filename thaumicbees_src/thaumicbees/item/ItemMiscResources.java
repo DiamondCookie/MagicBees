@@ -59,13 +59,7 @@ public class ItemMiscResources extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		String result = "";
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < ResourceType.values().length)
-		{
-			result = ResourceType.values()[meta].name;
-		}
-		return result;
+		return ResourceType.values()[stack.getItemDamage()].getName();
 	}
 
 }

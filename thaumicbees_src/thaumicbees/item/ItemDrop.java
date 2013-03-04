@@ -3,8 +3,10 @@ package thaumicbees.item;
 import java.util.List;
 
 import thaumicbees.item.types.DropType;
+import thaumicbees.item.types.PropolisType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -85,13 +87,7 @@ public class ItemDrop extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		String result = "";
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < DropType.values().length)
-		{
-			result = DropType.values()[meta].name;
-		}
-		return result;
+		return DropType.values()[stack.getItemDamage()].getName();
 	}
 
 }

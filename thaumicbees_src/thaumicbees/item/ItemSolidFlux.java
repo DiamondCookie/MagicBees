@@ -2,11 +2,13 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import thaumcraft.api.EnumTag;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.LocalizationManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,7 +34,6 @@ public class ItemSolidFlux extends Item
 			{
 				continue;
 			}
-			
 			list.add(new ItemStack(this.itemID, 1, tag.id));
 		}
 	}
@@ -40,7 +41,7 @@ public class ItemSolidFlux extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return "Crystalized " + EnumTag.get(stack.getItemDamage()).name + " Aspect";
+		return String.format(LocalizationManager.getLocalizedString("tb.resource.crystalFlux"), EnumTag.get(stack.getItemDamage()).name);
 	}
 
 	@Override

@@ -1,8 +1,10 @@
 package thaumicbees.bees;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.main.utils.LocalizationManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBeeGenome;
@@ -14,7 +16,7 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 	@Override
 	public ItemStack[] affectProducts(World world, IBeeGenome genome, int x, int y, int z, ItemStack[] products)
 	{
-		if (world.rand.nextInt(10) < 1)
+		if (world.rand.nextInt(20) < 1)
 		{
 			EnumTag tag;
 			do
@@ -37,6 +39,6 @@ public class FlowerProviderAuraNodeFlux extends FlowerProviderAuraNode
 	@Override
 	public String getDescription()
 	{
-		return "Node Flux";
+		return LocalizationManager.getLocalizedString("tb.bees.flower.nodeFlux");
 	}
 }

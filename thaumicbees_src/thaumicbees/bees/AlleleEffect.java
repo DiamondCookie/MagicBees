@@ -2,11 +2,14 @@ package thaumicbees.bees;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.LocalizationManager;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -14,12 +17,10 @@ import forestry.api.genetics.IEffectData;
 
 public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 {
-	protected String readableName;
 
-	public AlleleEffect(String id, boolean isDominant, String identifier)
+	public AlleleEffect(String id, boolean isDominant)
 	{
 		super(id, isDominant);
-		this.readableName = identifier;
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 	@Override
 	public String getIdentifier()
 	{
-		return this.readableName;
+		return LocalizationManager.getLocalizedString(getUID());
 	}
 
 	@Override
