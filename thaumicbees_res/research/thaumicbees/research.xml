@@ -115,7 +115,7 @@ Like other capsules, they are fragile and are typically single-use. They have pr
 
 <project id="THAUMIUMSCOOP">
 <name>Thaumium Scoop</name>
-<popupText>Stronger, Faster, Bee-tter</popupText>
+<popupText>Stronger, Faster, Bee-ter</popupText>
 <longText>It is possible to improve the durability of the scoop by creating them out of sterner materials. While you're at it, it may be helpful to enable them to be enchanted with restorative magics.</longText>
 <page type="text">This improved scoop is more durable than the plain one your non-magical beekeeping friends are liable to use. It is good for three times as long as the average scoop at the cost of using some thaumium instead.
 

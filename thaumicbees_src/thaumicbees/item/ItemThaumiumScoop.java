@@ -34,7 +34,7 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable
 	@Override
 	public float getStrVsBlock(ItemStack itemStack, Block block, int metadata)
 	{
-		return ForgeHooks.isToolEffective(itemStack, block, metadata) ? 4f : getStrVsBlock(itemStack, block);
+		return ForgeHooks.isToolEffective(itemStack, block, metadata) ? 4.8f : getStrVsBlock(itemStack, block);
 	}
 
 	@Override
