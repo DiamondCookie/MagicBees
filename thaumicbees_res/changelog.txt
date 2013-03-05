@@ -1,3 +1,7 @@
+1.4.3
+Added automatic version-checking for ThaumicBees! From this version on, when a new version becomes available, it will notify you in-game. Notifications can be switched off via a config file option.
+Fixed missing aspects on Extra Bees combs.
+
 1.4.2
 Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding! Plus stacking.
 Fix: Added Greatwood & Silverwood slabs to the ore dictionary so they should work as normal.
