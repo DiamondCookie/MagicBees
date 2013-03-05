@@ -56,6 +56,7 @@ public class Config
 	public boolean BeeInfusionsAdded;
 	public boolean ExtraBeesInstalled;
 	public boolean AddThaumcraftItemsToBackpacks;
+	public boolean SkipUpdateCheck;
 	public String ThaumaturgeExtraItems;
 	public int capsuleStackSizeMax;
 
@@ -264,6 +265,10 @@ public class Config
 		p.comment = "Allows you to edit the stack size of the capsules in ThaumicBees if using GregTech, \n" +
 				"or the reduced capsule size in Forestry & Railcraft. Default: 64";
 		this.capsuleStackSizeMax = p.getInt();
+		
+		p = tbConfig.get("general", "disableVersionCheck", false);
+		p.comment = "Set to true to stop ThaumicBees from checking for updates.";
+		this.SkipUpdateCheck = p.getBoolean(false);
 	}
 
 }

@@ -91,6 +91,8 @@ public class ThaumicBees
 		MinecraftForge.EVENT_BUS.register(this);
 		
 		CompatabilityManager.setupResearch();
+		
+		VersionInfo.doVersionCheck();
 	}
 	
 	public static Config getConfig()

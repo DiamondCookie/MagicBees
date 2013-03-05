@@ -1,6 +1,8 @@
 1.4.2
-Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding!
+Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding! Plus stacking.
 Fix: Added Greatwood & Silverwood slabs to the ore dictionary so they should work as normal.
+Added Thaumium Scoop - 30 uses, can be enchanted with Repair.
+Added Thaumium Grafter - 15 uses, can be enchanted with Repair.
 
 1.4.1
 Added Greatwood and Silverwood planks. Since Greatwood and Silverwood are tougher than other trees, you'll need some extra machinery. To obtain these, jam a log of the appropriate tree into a Forestry carpenter and provide a half bucket of water.
@@ -15,6 +17,7 @@ Thaumaturge's Backpack now require Amber rather than Gold Nuggets.
 Due to popular complaint, the Bees & Magic node now requires Unified Thaumic Field Theory to unlock.
 Moving all kinds of string contstants out of code into Localization files.
 Also fixed crazy aspects showing up on things that shouldn't have those aspects.
+ACTUALLY fixed issue with untyped node mutations failing.
 
 1.3.0d
 Fixed an issue with mutations requiring a non-specific type of node to fail.
