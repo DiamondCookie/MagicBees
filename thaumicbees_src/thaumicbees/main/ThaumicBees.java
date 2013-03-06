@@ -20,7 +20,7 @@ import forestry.api.core.ItemInterface;
 		name="Thaumic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
-		version=VersionInfo.Version,
+		version=VersionInfo.Version + " - " + VersionInfo.Build,
 		dependencies=VersionInfo.Depends
 )
 public class ThaumicBees
