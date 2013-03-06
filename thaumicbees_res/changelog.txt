@@ -1,3 +1,5 @@
+Changed Version info embedded in mod to match format supported by Version checking.
+
 1.4.3
 Added automatic version-checking for ThaumicBees! From this version on, when a new version becomes available, it will notify you in-game. Notifications can be switched off via a config file option.
 Fixed missing aspects on Extra Bees combs.
