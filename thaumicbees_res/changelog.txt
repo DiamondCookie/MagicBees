@@ -1,4 +1,6 @@
-Changed Version info embedded in mod to match format supported by Version checking.
+1.4.3a
+Changed Version info embedded in mod to match format supported by Version checking. Will need to make this more robust in the future.
+Fixed bug with Thaumium Grafter not being enchantable.
 
 1.4.3
 Added automatic version-checking for ThaumicBees! From this version on, when a new version becomes available, it will notify you in-game. Notifications can be switched off via a config file option.

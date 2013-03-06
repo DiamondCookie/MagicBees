@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.Side;
 public class VersionInfo
 {
 
-	public static final String Version = "@VERSION@";
+	public static final String Version = "1.4.3";
 	public static final String Build = "@BUILD_NUMBER@";
 	public static final String MCVersion = "@MCVERSION@";
 	public static final String VersionURL = "http://bit.ly/thaumicbeeversion";
@@ -52,18 +52,20 @@ public class VersionInfo
 
 		for (int i = 0; i < tokens.length; ++i)
 		{
-			if (tokens[i].matches("[0-9]+[a-z]"))
+			tokens[i] = tokens[i].trim();
+			if (tokens[i].matches("[0-9]+"))
+			{
+				versionTokens.add(Integer.valueOf(tokens[i]));
+			}
+			else if (tokens[i].matches("[0-9]+[a-z]"))
 			{
 				String numberString = tokens[i].substring(0, tokens[i].length()-1);
 				versionTokens.add(Integer.valueOf(numberString));
 				versionTokens.add(Character.getNumericValue(tokens[i].charAt(tokens[i].length()-1)));
 			}
-			else
-			{
-				versionTokens.add(Integer.valueOf(tokens[i]));
-			}
 		}    	
 
+		// Can't use versionTokens.toArray 'cause that returns an Integer[], not int[]
 		int[] value = new int[versionTokens.size()];
 		for (int i = 0; i < value.length; ++i)
 		{
@@ -90,6 +92,13 @@ public class VersionInfo
 			{
 				result = false;
 				break;
+			}
+		
+			if (i == versionTokens.length-1 && versionTokens.length < targetTokens.length)
+			{
+				// If the versions compared are the same, but target has an extra token, it's probably a "letter" build
+				//  and is ahead of this one.
+				result = true;
 			}
 		}
 
@@ -181,7 +190,6 @@ public class VersionInfo
 		@Override
 		public void run()
 		{
-
 			try
 			{
 				String location = VersionURL;

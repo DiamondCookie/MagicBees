@@ -16,15 +16,15 @@ import net.minecraftforge.common.ForgeHooks;
 
 public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGrafter
 {
-
 	public ItemThaumiumGrafter(int id)
 	{
 		super(id);
-		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
+		this.setMaxStackSize(1);
 		this.setMaxDamage(15);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setIconIndex(21);
+		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setItemName("tb.thaumiumGrafter");
+		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
 	}
 
 	@Override
