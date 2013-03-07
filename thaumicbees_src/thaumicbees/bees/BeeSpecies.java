@@ -9,13 +9,16 @@ import forestry.api.genetics.IClassification.EnumClassLevel;
 
 import java.util.HashMap;
 
-import thaumicbees.compat.ForestryHelper;
-import thaumicbees.compat.ThaumcraftHelper;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.Config;
+import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -25,63 +28,63 @@ import net.minecraft.world.World;
 
 public enum BeeSpecies implements IAlleleBeeSpecies
 {
-	ESOTERIC("Esoteric", "An unusual crossbreed which seems to have magical properties.|Apinomicon", "secretiore",
+	ESOTERIC("Esoteric", "secretiore",
 			BeeClassification.ARCANE, 0x001099, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	MYSTERIOUS("Mysterious", "These bees have been to the end of the world and back, and their power has grown.|Apinomicon", "mysticus",
+	MYSTERIOUS("Mysterious", "mysticus",
 			BeeClassification.ARCANE, 0x762bc2, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	ARCANE("Arcane", "\"Their produce is charged with magic.\"|Azanor, Master Thaumaturge", "arcanus",
+	ARCANE("Arcane", "arcanus",
 			BeeClassification.ARCANE, 0xd242df, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	CHARMED("Charmed", "Your first experiments in Thaumaturgical Apiculture have yielded fruit. Buzzing fruit.|Apinomicon", "larvatus",
+	CHARMED("Charmed", "larvatus",
 			BeeClassification.SUPERNATURAL, 0x48EEEC, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	ENCHANTED("Enchanted", "Successive generations of Charmed bees have reinforced their connection to the unknown.|Apinomicon", "cantatus",
+	ENCHANTED("Enchanted", "cantatus",
 			BeeClassification.SUPERNATURAL, 0x18e726, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	SUPERNATURAL("Supernatural", "These bees walk the line between this world and the unseen.|Apinomicon", "coeleste",
+	SUPERNATURAL("Supernatural", "coeleste",
 			BeeClassification.SUPERNATURAL, 0x005614, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	PUPIL("Pupil", "\"What does that bee want with my paper?!|Yorae, Librarian", "disciplina",
+	PUPIL("Pupil", "disciplina",
 				BeeClassification.SCHOLARLY, 0xFFFF00, EnumTemperature.NORMAL, EnumHumidity.ARID, false, true),
-	SCHOLARLY("Scholarly", "\"I can't be sure, but I think they might be smarter than me...\"|Yorae, Librarian", "studiosis",
+	SCHOLARLY("Scholarly", "studiosis",
 			BeeClassification.SCHOLARLY, 0x6E0000, EnumTemperature.NORMAL, EnumHumidity.ARID, false, false),
-	SAVANT("Savant", "lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). Solve for honey.|Note found on Yorae's desk", "philologus",
+	SAVANT("Savant", "philologus",
 			BeeClassification.SCHOLARLY, 0x6E1C6D, EnumTemperature.NORMAL, EnumHumidity.ARID, true, false),
-	STARK("Stark", "\"These are unusually attracted to shards. This warrents further investigation.\"|Azanor, Master Thaumaturge", "torridae",
+	STARK("Stark", "torridae",
 			BeeClassification.THAUMIC, 0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	AIR("Aura", "\"They work so fast it's breathtaking.\"|Sengir, Mad Apiarist", "ventosa",
+	AIR("Aura", "ventosa",
 			BeeClassification.THAUMIC, 0xD9D636, 0xA19E10, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	FIRE("Ignis", "Caution: Contents of hive extremely hot.|Warning label on Azanor's apiary", "praefervidus",
+	FIRE("Ignis", "praefervidus",
 			BeeClassification.THAUMIC, 0xE50B0B, 0x95132F, EnumTemperature.HOT, EnumHumidity.ARID, true, true),
-	WATER("Aqua", "\"I tried to breed them once, but that was a wash.\"|MysteriousAges, Apprentice Thaumaturge", "umidus",
+	WATER("Aqua", "umidus",
 			BeeClassification.THAUMIC, 0x36CFD9, 0x1054A1, EnumTemperature.NORMAL, EnumHumidity.DAMP, true, true),
-	EARTH("Solum", "\"You're really gonna dig these bees, but watch out - they bore quite easily.\"|MysteriousAges, Apprentice Comedian", "sordida",
+	EARTH("Solum", "sordida",
 			BeeClassification.THAUMIC, 0x005100, 0x00a000, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	INFUSED("Praecantatio", "Beekeeping is magic!|Apinomicon, Preface", "azanorius",
+	INFUSED("Praecantatio", "azanorius",
 			BeeClassification.THAUMIC, 0xaa32fc, 0x7A489E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	AWARE("Aware", "\"They can see into your soul!\"|Florastar, Expert Beekeeper", "sensibilis",
+	AWARE("Aware", "sensibilis",
 			BeeClassification.VIS, 0xb0092e9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	VIS("Vis", "\"They can feel changes in the aura, but are not yet able to affect it.\"|Azanor, research notes", "arcanus saecula",
+	VIS("Vis", "arcanus saecula",
 			BeeClassification.VIS, 0x004c99, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	PURE("Pure", "\"It's like a bee janitor!\"|MysteriousAges, Thaumaturge", "arcanus puritatem",
+	PURE("Pure", "arcanus puritatem",
 			BeeClassification.VIS, 0xb0092e9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	FLUX("Flux", "\"I thought they would help clean up, but it only makes things worse!\"|Kreicus, Apprentice Thaumaturge", "arcanus labe",
+	FLUX("Flux", "arcanus labe",
 			BeeClassification.VIS, 0x004c99, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	NODE("Node", "Having undergone a freak mutation, these bees now attract magic to them.|Apinomicon", "conficiens",
+	NODE("Node", "conficiens",
 			BeeClassification.VIS, 0xFFF266, 0xFF8CE9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	SKULKING("Skulking", "These bees have become xenophobic and bad-tempered. Use caution.|Apinomicon", "malevolens",
+	SKULKING("Skulking", "malevolens",
 			BeeClassification.SKULKING, 0x524827, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	BRAINY("Brainy", "Their combs may be fetid and foul-smelling, but their intelligence is well-developed.|Apinomicon", "cerebrum",
+	BRAINY("Brainy", "cerebrum",
 			BeeClassification.SKULKING, 0x83FF70, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	GOSSAMER("Gossamer", "As they work, they seem to fade out from light for brief moments.|Apinomicon", "perlucidus",
+	GOSSAMER("Gossamer", "perlucidus",
 			BeeClassification.SKULKING, 0x183f66, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	WISPY("Wispy", "Their language is garbled and unintelligible. It is probable they are speaking to unnatural beings.|Apinomicon", "umbrabilis",
+	WISPY("Wispy", "umbrabilis",
 			BeeClassification.SKULKING, 0x9cb8d5, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	BATTY("Batty", "They tend to attract bats to their hives through means unknown.|Apinomicon", "chiroptera",
+	BATTY("Batty", "chiroptera",
 			BeeClassification.SKULKING, 0x27350d, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false,true),
-	GHASTLY("Ghastly", "\"*sigh*... Really, Myst?\"|Taveria", "pallens",
+	GHASTLY("Ghastly", "pallens",
 			BeeClassification.SKULKING, 0xccccee, 0xbf877c, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TIMELY("Timely", "\"An apiarist is never late. He arrives precicely when he means to!\"|Sengir, Mad Apiarist", "gallifreis",
+	TIMELY("Timely", "gallifreis",
 			BeeClassification.TIME, 0xC6AF86, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	LORDLY("Lordly", "", "rassilonis",
+	LORDLY("Lordly", "rassilonis",
 			BeeClassification.TIME, 0xC6AF86, 0x8E0213, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	DOCTORAL("Doctoral", "\"Would you like a Jelly Baby?\"", "medicus qui",
+	DOCTORAL("Doctoral", "medicus qui",
 			BeeClassification.TIME, 0xDDE5FC, 0x4B6E8C, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	;
 	
@@ -180,19 +183,22 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 			.setGenome(BeeGenomeManager.getTemplateGhastly())
 			.register();		
 		TIMELY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
+			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 10)
 			.setGenome(BeeGenomeManager.getTemplateTimely())
 			.register();		
-		LORDLY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 30)
+		LORDLY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 5)
+			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
+			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 15)
 			.setGenome(BeeGenomeManager.getTemplateLordly())
 			.register();		
-		DOCTORAL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 35)
-			.addSpecialty(new ItemStack(Config.jellyBaby), 5)
+		DOCTORAL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 10)
+			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
+			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 19)
+			.addSpecialty(new ItemStack(Config.jellyBaby), 7)
 			.setGenome(BeeGenomeManager.getTemplateDoctoral())
 			.register();
 	}
 	
-	private String name;
-	private String descripton;
 	private String binomial;
 	private String authority;
 	private int bodyType;
@@ -210,23 +216,21 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 	private String uid;
 	private boolean dominant;
 	
-	private BeeSpecies(String speciesName, String speciesDescription, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, speciesDescription, genusName, classification, 0, firstColour, 0xFF6E0D, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, 0, firstColour, 0xFF6E0D, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
 	}
 
-	private BeeSpecies(String speciesName, String speciesDescription, String genusName, IClassification classification, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, speciesDescription, genusName, classification, 0, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, 0, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
 	}
 
-	private BeeSpecies(String speciesName, String speciesDescription, String genusName, IClassification classification, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
 	{
 		this.uid = "thaumicbees.species" + speciesName;
 		this.dominant = isSpeciesDominant;
 		AlleleManager.alleleRegistry.registerAllele(this);
-		name = speciesName;
-		descripton = speciesDescription;
 		binomial = genusName;
 		authority = "MysteriousAges";
 		bodyType = body;
@@ -273,12 +277,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 
 	public String getName()
 	{
-		return name;
+		return LocalizationManager.getLocalizedString(getUID());
 	}
 
 	public String getDescription()
 	{
-		return descripton;
+		return LocalizationManager.getLocalizedString(getUID() + ".description");
 	}
 
 	public int getBodyType()

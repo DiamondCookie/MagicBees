@@ -1,7 +1,7 @@
 package thaumicbees.bees;
 
 import net.minecraft.potion.Potion;
-import thaumicbees.compat.ThaumcraftHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -37,22 +37,22 @@ public class Allele implements IAllele
 		Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", new FlowerProviderAuraNodeFlux(), false);
 		
 		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
-		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", "Mining", Potion.digSpeed, 7, false);
-		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", "Swiftness", Potion.moveSpeed, 5, false);
-		Allele.slowSpeed = new AlleleEffectPotion("effectSlowSpeed", "Time Warp", Potion.moveSlowdown, 3, false);
+		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", Potion.digSpeed, 7, false);
+		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", Potion.moveSpeed, 5, false);
+		Allele.slowSpeed = new AlleleEffectPotion("effectSlowSpeed", Potion.moveSlowdown, 3, false);
 		
-		Allele.nodeGen = new AlleleEffectAuraNodeGrow("effectNodeGeneration", "Nodeify", false, 400);
+		Allele.nodeGen = new AlleleEffectAuraNodeGrow("effectNodeGeneration", false, 400);
 
-		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, "Brainy", ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID);
+		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID);
 		Allele.spawnBrainyZombie.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);
 		
-		Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, "Batty", ThaumcraftHelper.Entity.FIREBAT.entityID);
+		Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, ThaumcraftHelper.Entity.FIREBAT.entityID);
 		Allele.spawnBats.setThrottle(300).setSpawnsOnPlayerNear("Bat");
 		
-		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, "Wispy", ThaumcraftHelper.Entity.WISP.entityID);
+		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, ThaumcraftHelper.Entity.WISP.entityID);
 		Allele.spawnWisp.setThrottle(1800);
 		
-		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghastly", "Ghast");
+		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghast");
 		Allele.spawnGhast.setThrottle(2000).setChanceToSpawn(20).setMaxMobsInSpawnZone(1);
 	}
 	

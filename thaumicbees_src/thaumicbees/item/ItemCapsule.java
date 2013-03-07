@@ -26,13 +26,14 @@ public class ItemCapsule extends Item
 {
 	private CapsuleType capsuleType;
 	
-	public ItemCapsule(CapsuleType type, int itemId)
+	public ItemCapsule(CapsuleType type, int itemId, int maxStackSize)
 	{
 		super(itemId);
 		this.capsuleType = type;
 		this.setTextureFile(CommonProxy.TCBEES_LIQUIDS_IMAGE);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setMaxStackSize(maxStackSize);
 	}
 	
 	public CapsuleType getType()
@@ -43,7 +44,7 @@ public class ItemCapsule extends Item
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)
 	{
-		return LiquidType.values()[itemStack.getItemDamage()].displayName + " " + this.capsuleType.name;
+		return LiquidType.values()[itemStack.getItemDamage()].getDisplayName() + " " + this.capsuleType.getName();
 	}
 
 	public ItemStack getCapsuleForLiquid(LiquidType l)

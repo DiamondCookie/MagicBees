@@ -18,9 +18,9 @@ public class AlleleEffectPotion extends AlleleEffect
 	private int potionId;
 	private int duration;
 	
-	public AlleleEffectPotion(String name, String readableName, Potion potionApplied, int effectDuration, boolean isDominant)
+	public AlleleEffectPotion(String name, Potion potionApplied, int effectDuration, boolean isDominant)
 	{
-		super("effect" + name, isDominant, readableName);
+		super("effect" + name, isDominant);
 		this.potionId = potionApplied.id;
 		this.duration = 20 * effectDuration;
 	}

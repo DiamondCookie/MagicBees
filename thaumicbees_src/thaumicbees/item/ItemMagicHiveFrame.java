@@ -12,6 +12,7 @@ import thaumicbees.main.CommonProxy;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -35,7 +36,7 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)
 	{
-		return this.type.frameName;
+		return this.type.getName();
 	}
 	
 	// --------- IHiveFrame functions -----------------------------------------
@@ -43,10 +44,7 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 	@Override
 	public ItemStack frameUsed(IBeeHousing housing, ItemStack frame, IBee queen, int wear)
 	{
-		this.doFluxEffect(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord());
-		frame = this.doWear(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), frame, wear);
-		
-		return frame;
+		return this.doWear(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), frame, wear);
 	}
 	
 	private void doFluxEffect(World w, int x, int y, int z)
@@ -60,22 +58,50 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 	private ItemStack doWear(World w, int x, int y, int z, ItemStack frame, int wear)
 	{
 		int damage = wear;
+		int fluxMod = 1;
 		
+		// This throttles back the amount of aura consumed by the frame by storing a smidge of data on the item stack.
 		if (this.type.auraPerUse > 0)
 		{
-			// Attempt to use aura for the frame.
-			if (!ThaumcraftApi.decreaseClosestAura(w, x, y, z, this.type.auraPerUse, true))
+			NBTTagCompound tag;
+			if (frame.hasTagCompound())
 			{
-				// Insufficient aura, or no nearby node.
-				damage = wear + this.type.auraPerUse;
+				tag = frame.getTagCompound();
 			}
+			else
+			{
+				tag = new NBTTagCompound();
+				tag.setByte("wearTicks", (byte)0);
+				frame.setTagCompound(tag);
+			}
+			
+			int wearTicks = tag.getByte("wearTicks") + 1;
+			
+			if (wearTicks == this.type.wearTicksPerAura)
+			{
+				// Attempt to use aura for the frame.
+				if (!ThaumcraftApi.decreaseClosestAura(w, x, y, z, this.type.auraPerUse, true))
+				{
+					// Insufficient aura, or no nearby node.
+					damage = wear + this.type.auraPerUse * this.type.wearTicksPerAura;
+					fluxMod = 1 + w.rand.nextInt(this.type.wearTicksPerAura);
+				}
+				wearTicks = 0;				
+			}
+			
+			tag.setByte("wearTicks", (byte)wearTicks);
 		}
 		
 		frame.setItemDamage(frame.getItemDamage() + damage);
 		
+		for (int i = 0; i < fluxMod; ++i)
+		{
+			this.doFluxEffect(w, x, y, z);
+		}
+		
 		if (frame.getItemDamage() >= frame.getMaxDamage())
 		{
-			// Break!
+			// Break the frame.
 			frame = null;
 		}
 		

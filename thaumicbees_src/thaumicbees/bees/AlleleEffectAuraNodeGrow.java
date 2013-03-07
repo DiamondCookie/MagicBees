@@ -16,9 +16,9 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 
 	private int throttle;
 	
-	public AlleleEffectAuraNodeGrow(String id, String identifier, boolean isDominant, int timeout)
+	public AlleleEffectAuraNodeGrow(String id, boolean isDominant, int timeout)
 	{
-		super(id, isDominant, identifier);
+		super(id, isDominant);
 		this.throttle = timeout;
 	}
 
@@ -39,7 +39,7 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 		if (value >= throttle)
 		{
 			World w = housing.getWorld();
-			if (w.rand.nextInt(15) < 1)
+			if (w.rand.nextInt(10) < 1)
 			{
 				float x = housing.getXCoord();
 				float y = housing.getYCoord();
@@ -48,7 +48,7 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 				if (nodeId != -1)
 				{
 					AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
-					if (node.level >= node.baseLevel * 3 / 4)
+					if (node.level >= node.baseLevel * 4 / 5)
 					{
 						x = (float)(x - node.xPos);
 						y = (float)(y - node.yPos);
@@ -59,11 +59,11 @@ public class AlleleEffectAuraNodeGrow extends AlleleEffect
 						y = y / distance;
 						z = z / distance;
 						
-						x *= 0.0125f;
-						y *= 0.0125f;
-						z *= 0.0125f;
+						x *= 0.05f;
+						y *= 0.05f;
+						z *= 0.05f;
 						
-						ThaumcraftApi.queueNodeChanges(nodeId, node.baseLevel * -3 / 10, w.rand.nextInt(1), false, null, x, y, z);
+						ThaumcraftApi.queueNodeChanges(nodeId, node.baseLevel * -1 / 13, w.rand.nextInt(2), false, null, x, y, z);
 					}
 				}
 			}

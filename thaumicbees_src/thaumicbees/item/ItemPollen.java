@@ -80,17 +80,11 @@ public class ItemPollen extends Item
 		
 		return colour;
 	}
-
+	
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		String result = "";
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < PollenType.values().length)
-		{
-			result = PollenType.values()[meta].name;
-		}
-		return result;
+		return PollenType.values()[stack.getItemDamage()].getName();
 	}
 
 }

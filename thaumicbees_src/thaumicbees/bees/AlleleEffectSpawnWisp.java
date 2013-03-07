@@ -3,8 +3,8 @@ package thaumicbees.bees;
 import java.lang.reflect.Field;
 
 import cpw.mods.fml.common.FMLLog;
-import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemArmorApiarist;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import net.minecraft.entity.EntityList;
@@ -18,9 +18,9 @@ public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob
 	
 	private byte[] wispTypes = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 };
 
-	public AlleleEffectSpawnWisp(String id, boolean isDominant, String identifier, String mobToSpawn)
+	public AlleleEffectSpawnWisp(String id, boolean isDominant, String mobToSpawn)
 	{
-		super(id, isDominant, identifier, mobToSpawn);
+		super(id, isDominant, mobToSpawn);
 	}
 
 	@Override

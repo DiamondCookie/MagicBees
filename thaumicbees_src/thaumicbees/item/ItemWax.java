@@ -70,12 +70,6 @@ public class ItemWax extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		String result = "";
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < WaxType.values().length)
-		{
-			result = WaxType.values()[meta].name;
-		}
-		return result;
+		return WaxType.values()[stack.getItemDamage()].getName();
 	}
 }

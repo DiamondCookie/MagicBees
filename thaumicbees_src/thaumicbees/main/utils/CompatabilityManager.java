@@ -1,4 +1,4 @@
-package thaumicbees.compat;
+package thaumicbees.main.utils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -24,8 +24,18 @@ import thaumicbees.item.types.WaxType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
+import thaumicbees.main.utils.compat.ForestryHelper.CircuitBoard;
+import thaumicbees.main.utils.compat.ForestryHelper.Comb;
+import thaumicbees.main.utils.compat.ForestryHelper.CraftingMaterial;
+import thaumicbees.main.utils.compat.ForestryHelper.Pollen;
+import thaumicbees.main.utils.compat.ForestryHelper.Propolis;
+import thaumicbees.main.utils.compat.ForestryHelper.Tube;
+import thaumicbees.main.utils.compat.ThaumcraftHelper.MiscResource;
 import thaumicbees.storage.BackpackDefinition;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -55,10 +65,7 @@ public class CompatabilityManager
 			Item i = (Item) f.get(null);
 			value = new ItemStack(i);
 		}
-		catch (Exception e)
-		{
-			
-		}
+		catch (Exception e) { }
 		return value;
 	}
 	
@@ -115,6 +122,9 @@ public class CompatabilityManager
 		ObjectTags tags;
 		ItemStack itemStack;
 		
+		tags = new ObjectTags().add(EnumTag.WOOD, 2);
+		ThaumcraftApi.registerObjectTag(Config.planksWood.blockID, -1, tags);
+		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), tags);
 		
@@ -123,8 +133,10 @@ public class CompatabilityManager
 		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 1);
 		ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.INTELLECT.ordinal(), tags);
 		
-		tags = new ObjectTags().add(EnumTag.ELDRITCH, 1);
+		tags = new ObjectTags().add(EnumTag.ELDRITCH, 2);
 		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.UNUSUAL.ordinal(), tags);
+		tags = new ObjectTags().add(EnumTag.TIME, 2);
+		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.PHASED.ordinal(), tags);
 		
 		tags = new ObjectTags().add(EnumTag.CONTROL, 1);
 		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, -1, tags);
@@ -221,12 +233,12 @@ public class CompatabilityManager
 		
 		itemStack = ItemInterface.getItem("beealyzer");
 		tags = new ObjectTags().add(EnumTag.VALUABLE, 3).add(EnumTag.MECHANISM, 3).add(EnumTag.METAL, 19)
-				.add(EnumTag.POWER, 8).add(EnumTag.CRYSTAL, 18);
+				.add(EnumTag.POWER, 8).add(EnumTag.TOOL, 18);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("treealyzer");
 		tags = new ObjectTags().add(EnumTag.POWER, 3).add(EnumTag.PURE, 3).add(EnumTag.LIFE, 6)
-				.add(EnumTag.CRYSTAL, 12).add(EnumTag.METAL, 19);
+				.add(EnumTag.TOOL, 12).add(EnumTag.METAL, 19);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("apatite");
@@ -234,11 +246,11 @@ public class CompatabilityManager
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("impregnatedCasing");
-		tags = new ObjectTags().add(EnumTag.WOOD, 58).add(EnumTag.PLANT, 8);
+		tags = new ObjectTags().add(EnumTag.WOOD, 56).add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("stickImpregnated");
-		tags = new ObjectTags().add(EnumTag.WOOD, 8).add(EnumTag.PLANT, 2);
+		tags = new ObjectTags().add(EnumTag.WOOD, 6).add(EnumTag.EXCHANGE, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("peat");
@@ -362,11 +374,11 @@ public class CompatabilityManager
 		
 		itemStack = ItemInterface.getItem("tubes");
 		tags = new ObjectTags(ItemInterface.getItem("ingotCopper").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.COPPER.ordinal(), tags);
+		//ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.COPPER.ordinal(), tags);
 		tags = new ObjectTags(ItemInterface.getItem("ingotTin").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.TIN.ordinal(), tags);
+		//ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.TIN.ordinal(), tags);
 		tags = new ObjectTags(ItemInterface.getItem("ingotBronze").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.BRONZE.ordinal(), tags);
+		//ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.BRONZE.ordinal(), tags);
 		tags = new ObjectTags(Item.ingotIron.itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.IRON.ordinal(), tags);
 		tags = new ObjectTags(Item.ingotGold.itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
@@ -391,20 +403,20 @@ public class CompatabilityManager
 	{
 		ItemStack itemStack;
 		ObjectTags tags;
+	}
+	
+	private static void setupItemAspectsOreDict()
+	{
 		
-		if ((itemStack = getExtraBeeItem("comb")) != null)
-		{
-			tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
-			ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
-		}
 	}
 	
 	public static void setupResearch()
 	{
 		ObjectTags tags;
 		
-		ResearchItem startNode = new ResearchItem("TBSTARTNODE", null, 10, 0, Config.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
-			.setAutoUnlock()
+		tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.PLANT, 10).add(EnumTag.INSECT, 10);
+		ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
+			.setParents(ResearchList.getResearch("UTFT"))
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.INSECT, 9).add(EnumTag.MAGIC, 4).add(EnumTag.FLUX, 4);
@@ -415,7 +427,7 @@ public class CompatabilityManager
 		tags = new ObjectTags().add(EnumTag.INSECT, 15).add(EnumTag.MAGIC, 5).add(EnumTag.WATER, 5).add(EnumTag.EARTH, 5)
 				.add(EnumTag.WIND, 5).add(EnumTag.FIRE, 5);
 		ResearchItem beeInfusion = new ResearchItem("BEEINFUSION", tags, 5, 3, Config.miscResources.getStackForType(ResourceType.RESEARCH_BeeInfusion))
-			.setParents(starkHint, ResearchList.getResearch("UTFT")).setHidden()
+			.setParents(starkHint).setHidden()
 			.registerResearchItem();
 		
 		tags = new ObjectTags().add(EnumTag.CROP, 20).add(EnumTag.EARTH, 20).add(EnumTag.WATER, 5);
@@ -423,7 +435,7 @@ public class CompatabilityManager
 			.setParents(startNode)
 			.registerResearchItem();
 		
-		tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.TOOL, 6).add(EnumTag.INSECT, 15).add(EnumTag.BEAST, 2)
+		tags = new ObjectTags().add(EnumTag.TOOL, 6).add(EnumTag.INSECT, 15).add(EnumTag.BEAST, 2)
 				.add(EnumTag.MAGIC, 5);
 		ResearchItem  magicFrame = new ResearchItem("HIVEFRAME", tags, 10, -2, Config.hiveFrameMagic)
 			.setParents(startNode)
@@ -456,6 +468,21 @@ public class CompatabilityManager
 		tags = new ObjectTags().add(EnumTag.TOOL, 5).add(EnumTag.INSECT, 10).add(EnumTag.TIME, 4);
 		ResearchItem temporalFrame = new ResearchItem("HIVEFRAMETIME", tags, 9, -5, Config.hiveFrameTemporal)
 			.setParents(magicFrame).setHidden()
+			.registerResearchItem();
+		
+		tags = new ObjectTags().add(EnumTag.VOID, 15).add(EnumTag.CRYSTAL, 8).add(EnumTag.ELDRITCH, 8).add(EnumTag.EXCHANGE, 15);
+		ResearchItem voidCapsule = new ResearchItem("VOIDCAPSULE", tags, 10, 9, Config.voidCapsule)
+			.setParents(startNode, ResearchList.getResearch("PORTABLEHOLE")).setHidden()
+			.registerResearchItem();
+		
+		tags = new ObjectTags().add(EnumTag.WOOD, 8).add(EnumTag.INSECT, 10).add(EnumTag.TOOL, 6).add(EnumTag.MAGIC, 6);
+		ResearchItem scoop = new ResearchItem("THAUMIUMSCOOP", tags, 0, -3, Config.thaumiumScoop)
+			.setParents(ResearchList.getResearch("THAUMIUM"))
+			.registerResearchItem();
+		
+		tags = new ObjectTags().add(EnumTag.WOOD, 16).add(EnumTag.PLANT, 20).add(EnumTag.TOOL, 6).add(EnumTag.MAGIC, 6);
+		ResearchItem grafter = new ResearchItem("THAUMIUMGRAFTER", tags, 0, -4, Config.thaumiumGrafter)
+			.setParents(scoop)
 			.registerResearchItem();
 	}
 
