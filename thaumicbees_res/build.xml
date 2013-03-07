@@ -17,7 +17,7 @@
     
 	<property name="mc.version"			value="1.4.7"/>
     <property name="forge.version"		value="6.6.0.507"/>
-    <property name="thaumicbees.version"	value="1.4.2"/>
+    <property name="thaumicbees.version"	value="1.4.3"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />
@@ -74,13 +74,14 @@
 				<include name="thaumcraft/**" />
 			</fileset>
             <fileset dir="${src.dir}/thaumicbees_src">
+				<include name="**/net/mysteriousages/**" />
                 <include name="**/thaumicbees/**" />
 				<include name="**/forestry/**" />
             </fileset>
 		</copy>
 		
         <copy todir="${clientsrc.dir}" overwrite="true" failonerror="true">
-           <fileset dir="${src.dir}/thaumicbees_src">
+			<fileset dir="${src.dir}/thaumicbees_src">
                 <include name="**/VersionInfo.java" />
             </fileset>
            	<filterset>
@@ -88,7 +89,6 @@
             	<filter token="VERSION" value="${thaumicbees.version}" />
            		<filter token="BUILD_NUMBER" value="${build.number}" />
            		<filter token="FINGERPRINT" value="${key.fingerprint}" />
-				<filter token="MODVERSION" value="${thaumicbees.version} - ${build.number}" />
            	</filterset>
          </copy>
 
@@ -120,6 +120,7 @@
 			<fileset dir="${mcp.dir}/reobf/minecraft">
 				<include name="**/thaumicbees/**" />
 				<include name="**/forestry/plugins/**" />
+				<include name="**/net/mysteriousages/**" />
 				
 				<exclude name="forestry/api/**" />
 				<exclude name="thaumcraft/**" />
@@ -134,12 +135,15 @@
             	<exclude name="build.number"/>
             </fileset>
         </copy>
-    	<!-- Copy localizations (We have none yet.) -->
-    	<!--<copy todir="${classes.dir}/client">
-    		<fileset dir="${lang.dir}">
-                <exclude name="README.md"/>
-    		</fileset>
-    	</copy>-->
+		
+		<copy todir="${classes.dir}/client" overwrite="true" failonerror="true">
+			<fileset dir="${src.dir}/thaumicbees_res">
+				<include name="**/mcmod.info" />
+			</fileset>
+			<filterset>
+				<filter token="MODVERSION" value="${thaumicbees.version} - ${build.number}" />
+			</filterset>
+		 </copy>
 	</target>
 	
 	<!-- Package the jars -->

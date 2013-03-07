@@ -1,11 +1,12 @@
 [
 {
   "modid": "ThaumicBees",
+  "version": "@VERSION@ - @BUILD_NUMBER",
   "name": "ThaumicBees",
   "url": "http://bit.ly/XFDvLY",
   "description": "Crossover mod for Forestry and Thaumcraft. Magic bees & more.",
   "authors": [ "MysteriousAges" ],
-  "credits": "Thanks to Sengir and Azanor for awesome mods! Also thanks to Binnie and Florastar. (:",
+  "credits": "SirSengir, Azanor, Binnie & the Forestry Dev peeps",
   "logoFile": "/gfx/thaumicbees/logo.png"
 }
 ]
