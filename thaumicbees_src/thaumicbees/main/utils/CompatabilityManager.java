@@ -24,6 +24,7 @@ import thaumicbees.item.types.WaxType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.compat.ExtraBeesHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import thaumicbees.main.utils.compat.ForestryHelper.CircuitBoard;
@@ -51,6 +52,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class CompatabilityManager
 {
@@ -158,17 +160,20 @@ public class CompatabilityManager
 		
 		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, -1, tags);
-		
-		itemStack = Config.combs.getStackForType(CombType.OCCULT);
-		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2).add(EnumTag.MAGIC, 2);
+		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OCCULT.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OTHERWORLDLY.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.STARK.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.AIRY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.FIREY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.WATERY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.EARTHY.ordinal(), tags);
+		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 4);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.INFUSED.ordinal(), tags);
+		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.MOTION, 2);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.AIRY.ordinal(), tags);
+		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.POWER, 2);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.FIREY.ordinal(), tags);
+		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.COLD, 2);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.WATERY.ordinal(), tags);
+		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.ROCK, 2);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.EARTHY.ordinal(), tags);
 		
 		// Tagging capsules.
 		tags = new ObjectTags().add(EnumTag.VOID, 2).add(EnumTag.MAGIC, 2);
@@ -403,6 +408,31 @@ public class CompatabilityManager
 	{
 		ItemStack itemStack;
 		ObjectTags tags;
+		
+		try // One try block suffices. If we can't get one item, it's probably safe to assume we can't get any others.
+		{
+			itemStack = getExtraBeeItem("comb");
+			tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
+			tags = new ObjectTags(itemStack.itemID, -1).add(EnumTag.POWER, 2);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.OIL.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.COAL.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.FUEL.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.ALCOHOL.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.REDSTONE.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.URANIUM.ordinal(), tags);
+			tags = new ObjectTags(itemStack.itemID, -1).add(EnumTag.POISON, 2);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, ExtraBeesHelper.CombType.VENOMOUS.ordinal(), tags);
+			
+			itemStack = getExtraBeeItem("propolis");
+			tags = new ObjectTags().add(EnumTag.CONTROL, 1);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
+			
+			itemStack = getExtraBeeItem("honeyDrop");
+			tags = new ObjectTags().add(EnumTag.EXCHANGE, 2).add(EnumTag.LIFE, 1);
+			ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
+		}
+		catch (NullPointerException e) { }
 	}
 	
 	private static void setupItemAspectsOreDict()
