@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.Side;
 public class VersionInfo
 {
 
-	public static final String Version = "1.4.3";
+	public static final String Version = "@VERSION@";
 	public static final String Build = "@BUILD_NUMBER@";
 	public static final String MCVersion = "@MCVERSION@";
 	public static final String VersionURL = "http://bit.ly/thaumicbeeversion";
