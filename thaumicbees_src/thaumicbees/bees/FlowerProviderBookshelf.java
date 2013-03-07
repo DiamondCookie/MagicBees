@@ -1,7 +1,5 @@
 package thaumicbees.bees;
 
-import thaumicbees.main.utils.LocalizationManager;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -48,6 +46,6 @@ public class FlowerProviderBookshelf implements IFlowerProvider
 
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.book");
+		return "Books";
 	}
 }

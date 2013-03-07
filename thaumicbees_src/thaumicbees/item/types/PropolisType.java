@@ -1,16 +1,13 @@
 package thaumicbees.item.types;
 
-import thaumicbees.main.utils.LocalizationManager;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
 public enum PropolisType
 {
-	STARK("dull", 0xBBBBBB),
-	AIR("air", 0xA19E10),
-	FIRE("fire", 0x95132F),
-	WATER("water", 0x1054A1),
-	EARTH("earth", 0x00a000),
-	INFUSED("magic", 0xaa32fc),
+	STARK("Dull Propolis", 0xBBBBBB),
+	AIR("Air Propolis", 0xA19E10),
+	FIRE("Firey Propolis", 0x95132F),
+	WATER("Watery Propolis", 0x1054A1),
+	EARTH("Earthen Propolis", 0x00a000),
+	INFUSED("Infused Propolis", 0xaa32fc),
 	;
 	
 	private PropolisType(String pName, int overlayColour)
@@ -19,11 +16,6 @@ public enum PropolisType
 		this.colour = overlayColour;
 	}
 	
-	private String name;
+	public String name;
 	public int colour;
-	
-	public String getName()
-	{
-		return LocalizationManager.getLocalizedString("tb.propolis." + this.name);
-	}
 }

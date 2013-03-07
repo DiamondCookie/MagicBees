@@ -25,9 +25,9 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	protected int chanceToSpawn;
 	protected int maxMobsInArea;
 
-	public AlleleEffectSpawnMob(String id, boolean isDominant, String mobToSpawn)
+	public AlleleEffectSpawnMob(String id, boolean isDominant, String identifier, String mobToSpawn)
 	{
-		super(id, isDominant);
+		super(id, isDominant, identifier);
 		this.aggosOnPlayer = false;
 		this.mobName = mobToSpawn;
 		this.throttle = 200;

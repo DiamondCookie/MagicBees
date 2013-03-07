@@ -89,7 +89,13 @@ public class ItemComb extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return CombType.values()[stack.getItemDamage()].getName();
+		String result = "";
+		int meta = stack.getItemDamage();
+		if (meta >= 0 && meta < CombType.values().length)
+		{
+			result = CombType.values()[meta].name;
+		}
+		return result;
 	}
 
 }

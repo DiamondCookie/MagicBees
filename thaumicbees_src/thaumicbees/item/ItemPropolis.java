@@ -57,7 +57,13 @@ public class ItemPropolis extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return PropolisType.values()[stack.getItemDamage()].getName();
+		String result = "";
+		int meta = stack.getItemDamage();
+		if (meta >= 0 && meta < PropolisType.values().length)
+		{
+			result = PropolisType.values()[meta].name;
+		}
+		return result;
 	}
 
 }

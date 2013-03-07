@@ -1,9 +1,6 @@
 package thaumicbees.bees;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumicbees.main.Config;
-import thaumicbees.main.utils.LocalizationManager;
-import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -35,18 +32,12 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	{
 		boolean flag = false;
 		int blockDown = world.getBlockId(x, y - 1, z);
-		if (world.isAirBlock(x, y, z))
+		if (world.isAirBlock(x, y, z) && (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID))
 		{
-			if (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID)
-			{
-				world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.SHIMMERLEAF.ordinal());
-				flag = true;
-			}
-			else if (blockDown == Block.sand.blockID)
-			{
-				world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.CINDERPEARL.ordinal());
-				flag = true;
-			}
+			int rand = world.rand.nextInt(10);
+			world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, (rand >= 5) ? 2 : 3);
+			System.out.println(x + ", " + y + ", " + ", " + z + " set to flower.");
+			flag = true;
 		}
 		return flag;
 	}
@@ -54,7 +45,7 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.magic");
+		return "Magic Flowers";
 	}
 
 	@Override

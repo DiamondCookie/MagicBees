@@ -8,7 +8,6 @@ public class CommonProxy
 {
 	public static final String TCBEES_GFX = "/gfx/thaumicbees/";
 	public static final String TCBEES_RESEARCH = "/research/thaumicbees/";
-	public static final String TCBEES_LOCDIR = "/lang/thaumicbees/";
 	public static final String TCBEES_ITEM_GFX = TCBEES_GFX + "items/";
 	
 	public static String FORESTRY_GFX_ITEMS;

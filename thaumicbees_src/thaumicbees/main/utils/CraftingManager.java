@@ -6,18 +6,17 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.bees.Allele;
 import thaumicbees.bees.BeeGenomeManager;
 import thaumicbees.bees.BeeSpecies;
+import thaumicbees.compat.ShapelessBeeInfusionCraftingRecipe;
+import thaumicbees.compat.ThaumcraftHelper;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
-import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.Config;
-import thaumicbees.main.utils.compat.ShapelessBeeInfusionCraftingRecipe;
-import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -38,35 +37,10 @@ public class CraftingManager
 {
 	public static void setupCrafting()
 	{
-		// Broken up into seperate sections to make things a bit easier to find.
-		setupVanillaCrafting();
-		setupCentrifugeRecipes();
-		setupSqueezerRecipes();
-		setupCarpenterRecipes();
-		setupThaumcraftCrafting();
-
-		registerLiquidContainer(Config.magicCapsule);
-		registerLiquidContainer(Config.voidCapsule);
-	}
-	
-	private static void setupVanillaCrafting()
-	{
-		ItemStack input;
-		ItemStack output;
-		
-		// Slabs
-		for (int i = 0; i < PlankType.values().length; ++i)
-		{
-			input = new ItemStack(Config.planksWood, 1, i);
-			output = new ItemStack(Config.slabWoodHalf, 6, i);
-			GameRegistry.addRecipe(output, new Object[] {
-				"PPP",
-				'P', input
-			});
-		}
+		ItemStack inputStack; // Variable to hold forestry items
 
 		// Essentia bottles
-		output = new ItemStack(Config.tcEssentiaBottle);
+		ItemStack output = new ItemStack(Config.tcEssentiaBottle);
 		output.stackSize = 8;
 		GameRegistry.addRecipe(output, new Object[] {
 				" C ", "GPG", "PGP",
@@ -105,17 +79,17 @@ public class CraftingManager
 		});
 
 		// Concentrated Fertilizer -> Forestry fertilizer
-		input = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
+		inputStack = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
 		output = ItemInterface.getItem("fertilizerCompound");
 		output.stackSize = 6;
 		GameRegistry.addRecipe(output, new Object[] {
 				" S ", " F ", " S ",
-				'F', input,
+				'F', inputStack,
 				'S', Block.sand
 		});
 		GameRegistry.addRecipe(output, new Object[] {
 				"   ", "SFS", "   ",
-				'F', input,
+				'F', inputStack,
 				'S', Block.sand
 		});
 
@@ -123,7 +97,7 @@ public class CraftingManager
 		output.stackSize = 12;
 		GameRegistry.addRecipe(output, new Object[] {
 				"aaa", "aFa", "aaa",
-				'F', input,
+				'F', inputStack,
 				'a', ItemInterface.getItem("ash")
 		});
 			
@@ -147,10 +121,7 @@ public class CraftingManager
 				});
 			}
 		}
-	}
-	
-	private static void setupCentrifugeRecipes()
-	{
+
 		// 20 is the 'average' time to centrifuge a comb.
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.OCCULT),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeyDrop") },
@@ -181,7 +152,7 @@ public class CraftingManager
 				new int[] { 100, 50, 65 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.INTELLECT),
 				new ItemStack[] { Config.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItem("honeydew"), Config.drops.getStackForType(DropType.INTELLECT) },
-				new int[] { 90, 40, 10 });
+				new int[] { 90, 40, 2 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.SKULKING),
 				new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("propolis"), ItemInterface.getItem("honeydew") },
 				new int[] { 90, 20, 35 });
@@ -204,10 +175,7 @@ public class CraftingManager
 		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.INFUSED),
 				new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal())},
 				new int[] { 10 });
-	}
-	
-	private static void setupSqueezerRecipes()
-	{
+
 		// Squeezer recipes
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {Config.propolis.getStackForType(PropolisType.FIRE) },
 				new LiquidStack(Block.lavaStill, 250),
@@ -215,21 +183,15 @@ public class CraftingManager
 		RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {Config.propolis.getStackForType(PropolisType.WATER) },
 				new LiquidStack(Block.waterStill, 500),
 				new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 18);
-	}
 
-	private static void setupCarpenterRecipes()
-	{
-		ItemStack input;
-		ItemStack output;
-		
 		// Carpenter recipes
-		input = ItemInterface.getItem("craftingMaterial");
-		input.setItemDamage(3); // Set to Silk Mesh
+		inputStack = ItemInterface.getItem("craftingMaterial");
+		inputStack.setItemDamage(3); // Set to Silk Mesh
 		output = new ItemStack(Config.thaumaturgeBackpackT2);
 		RecipeManagers.carpenterManager.addRecipe(200, new LiquidStack(Block.waterStill.blockID, 1000), null, output, new Object[] {
 			"WXW", "WTW", "WWW",
 			'X', Item.diamond,
-			'W', input,
+			'W', inputStack,
 			'T', new ItemStack(Config.thaumaturgeBackpackT1)
 		});
 
@@ -243,12 +205,12 @@ public class CraftingManager
 
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 6;
-		input = ItemInterface.getItem("craftingMaterial");
-		input.setItemDamage(2); // Set to Silk Wisp
+		inputStack = ItemInterface.getItem("craftingMaterial");
+		inputStack.setItemDamage(2); // Set to Silk Wisp
 		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
 			"WSW",
 			'W', Config.wax,
-			'S', input
+			'S', inputStack
 		});
 
 		output = Config.miscResources.getStackForType(ResourceType.AROMATIC_LUMP, 2);
@@ -265,51 +227,22 @@ public class CraftingManager
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
 		});
-		
-		output = new ItemStack(Config.planksWood, 4, 0);
-		RecipeManagers.carpenterManager.addRecipe(8, new LiquidStack(Block.waterStill, 500), null, output, new Object[] {
-			"B",
-			'B', new ItemStack(Config.tcLog, 1, 0)
-		});
-		
-		output = new ItemStack(Config.planksWood, 6, 1);
-		RecipeManagers.carpenterManager.addRecipe(8, new LiquidStack(Block.waterStill, 500), null, output, new Object[] {
-			"B",
-			'B', new ItemStack(Config.tcLog, 1, 1)
-		});
-	}
-	
-	private static void setupThaumcraftCrafting()
-	{
-		ItemStack input;
-		ItemStack output;
-		
-		ThaumcraftApi.addArcaneCraftingRecipe("THAUMIUMSCOOP", "THAUMIUMSCOOP", 45, new ItemStack(Config.thaumiumScoop), new Object[] {
-			"sWs", "sTs", " T ",
-			's', Item.stick,
-			'W', Block.cloth,
-			'T', new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.THAUMIUM.ordinal())
-		});
-		
-		ThaumcraftApi.addArcaneCraftingRecipe("THAUMIUMGRAFTER", "THAUMIUMGRAFTER", 160, new ItemStack(Config.thaumiumGrafter), new Object[] {
-			"  T", " T ", "s  ",
-			's', Item.stick,
-			'T', new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.THAUMIUM.ordinal())
-		});
+		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
+		BeeManager.inducers.put(output, 80);
 		
 		output = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
-		input = ItemInterface.getItem("apatite");
+		ItemStack inputA = ItemInterface.getItem("apatite");
 		ObjectTags tags = (new ObjectTags()).add(EnumTag.CROP, 12);
 		output.stackSize = 2;
 		ThaumcraftApi.addShapelessInfusionCraftingRecipe("FERTILIZER", "FERTILIZER", 5, tags, output, new Object[] {
-				input
+				inputA
 		});
 
 		output = new ItemStack(Config.hiveFrameMagic);
-		input = ItemInterface.getItem("frameUntreated");
+		inputA = ItemInterface.getItem("frameUntreated");
 		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8);
 		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAME", "FRAMEMAGIC", 50, tags, output, new Object[] {
-				input
+				inputA
 		});
 		
 		output = new ItemStack(Config.hiveFrameResilient);
@@ -324,7 +257,7 @@ public class CraftingManager
 		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.HEAL, 12);
 		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMEGENTLE", "FRAMEGENTLE", 50, tags, output, new Object[] {
 				"www", "wFw", "www",
-				'F', input,
+				'F', inputA,
 				'w', ItemInterface.getItem("beeswax")
 				
 		});
@@ -334,16 +267,16 @@ public class CraftingManager
 				.add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAMEMETA", "FRAMEMETABOLIC", 50, tags, output, new Object[] {
 				Item.magmaCream,
-				input
+				inputA
 		});
 		
 		output = new ItemStack(Config.hiveFrameNecrotic);
 		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.EXCHANGE, 12).add(EnumTag.DEATH, 16)
-				.add(EnumTag.POISON, 1);
+				.add(EnumTag.POISON, 4);
 		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMENECRO", "FRAMENECROTIC", 50, tags, output, new Object[] {
 				" S ", "SxS", " S ",
 				'S', Item.rottenFlesh,
-				'x', input
+				'x', inputA
 		});
 		
 		output = new ItemStack(Config.hiveFrameTemporal);
@@ -352,17 +285,7 @@ public class CraftingManager
 			"tSt", "SFS", "tSt",
 			't', Item.stick,
 			'S', Block.sand,
-			'F', input
-		});
-		
-		output = Config.voidCapsule.getCapsuleForLiquid(LiquidType.EMPTY);
-		output.stackSize = 4;
-		tags = new ObjectTags().add(EnumTag.VOID, 16).add(EnumTag.ELDRITCH, 4).add(EnumTag.EXCHANGE, 8);
-		ThaumcraftApi.addInfusionCraftingRecipe("VOIDCAPSULE", "VOIDCAPSULE", 10, tags, output, new Object[] {
-			" G ", "GPG", "TGT",
-			'G', Block.thinGlass,
-			'P', Item.enderPearl,
-			'T', Item.ingotIron
+			'F', inputA
 		});
 
 		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.DRONE);
@@ -409,6 +332,8 @@ public class CraftingManager
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.INFUSED.getBeeItem(EnumBeeType.PRINCESS), new Object[]
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
 				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+		
+		registerLiquidContainer(Config.magicCapsule);
 	}
 
 	private static void registerLiquidContainer(ItemCapsule baseCapsule)

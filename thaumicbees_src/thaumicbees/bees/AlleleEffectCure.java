@@ -21,7 +21,7 @@ public class AlleleEffectCure extends AlleleEffect
 
 	public AlleleEffectCure(String id, boolean isDominant)
 	{
-		super(id, isDominant);
+		super(id, isDominant, "Cleansing");
 	}
 
 	@Override

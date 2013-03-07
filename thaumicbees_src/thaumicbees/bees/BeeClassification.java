@@ -2,36 +2,36 @@ package thaumicbees.bees;
 
 import java.util.ArrayList;
 
-import thaumicbees.main.utils.LocalizationManager;
-
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
 public enum BeeClassification implements IClassification
 {
-	ARCANE("Arcane", "Arcanus"),
-	SUPERNATURAL("Supernatural", ""),
-	SCHOLARLY("Scholarly", ""),
-	THAUMIC("Thaumic", ""),
-	SKULKING("Skulking", ""),
-	VIS("Vis", ""),
-	TIME("Time", ""),
+	ARCANE("Arcane", "Arcanus", ""),
+	SUPERNATURAL("Supernatural", "Coeleste", ""),
+	SCHOLARLY("Scholarly", "Docto", ""),
+	THAUMIC("Thaumic", "Thaumis", ""),
+	SKULKING("Skulking", "Malevolens", ""),
+	VIS("Vis", "Patabilis", ""),
+	TIME("Time", "Sempiternus", ""),
 	;
 	
 	private String uID;
-	private String latin;
+	private String name;
+	private String scientific;
+	private String description;
 	private ArrayList<IAlleleSpecies> species;
 	private IClassification parent;
 	private EnumClassLevel level;
 	
-	private BeeClassification(String name, String scientific)
+	private BeeClassification(String name, String latin, String desc)
 	{
 		this.uID = "classification." + name.toLowerCase();
-		this.latin = scientific;
+		this.name = name;
+		this.scientific = latin;
 		this.level = EnumClassLevel.GENUS;
+		this.description = desc;
 		this.species = new ArrayList();
 		this.parent = AlleleManager.alleleRegistry.getClassification("family.apidae");
 		AlleleManager.alleleRegistry.registerClassification(this);
@@ -52,19 +52,19 @@ public enum BeeClassification implements IClassification
 	@Override
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString(getUID());
+		return this.name;
 	}
 
 	@Override
 	public String getScientific()
 	{
-		return this.latin;
+		return this.scientific;
 	}
 
 	@Override
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString(getUID() + ".description");
+		return this.description;
 	}
 
 	@Override

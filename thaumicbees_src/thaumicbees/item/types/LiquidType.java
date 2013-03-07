@@ -1,57 +1,50 @@
 package thaumicbees.item.types;
 
-import thaumicbees.main.utils.LocalizationManager;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraftforge.liquids.LiquidDictionary;
-
 public enum LiquidType
 {
 	// Incidentally, Item meta is the liquid ID.
 	
 	// Args are: forgeLiquidID, Display Name, Icon idx
-	EMPTY("", 16),
+	EMPTY("", "Empty",  16),
 	
 	// Vanilla
-	WATER("water", 17),
-	LAVA("lava", 18),
+	WATER("water", "Water", 17),
+	LAVA("lava", "Lava", 18),
 	
 	// Forestry
-	BIOMASS("biomass", 19),
-	BIOFUEL("biofuel", 20),
+	BIOMASS("biomass", "Biomass", 19),
+	BIOFUEL("biofuel", "Biofuel", 20),
 	
 	// Buildcraft
-	OIL("Oil", 21),
-	FUEL("Fuel", 22),
+	OIL("Oil", "Oil", 21),
+	FUEL("Fuel", "Fuel", 22),
 	
 	// More Forestry
-	SEEDOIL("seedoil", 23),
-	HONEY("honey", 24),
-	JUICE("juice", 25),
-	CRUSHEDICE("ice", 26),
-	MILK("milk", 27),
+	SEEDOIL("seedoil", "Seed Oil", 23),
+	HONEY("honey", "Honey", 24),
+	JUICE("juice", "Juice", 25),
+	CRUSHEDICE("ice", "Crushed Ice", 26),
+	MILK("milk", "Milk", 27),
 	
 	// ExtraBees liquids
-	ACID("acid", 28),
-	POISON("poison", 29),
-	LIQUIDNITROGEN("liquidNitrogen", 30),
-	DNA("liquidDNA", 31),
+	ACID("acid", "Acid", 28),
+	POISON("poison", "Poison", 29),
+	LIQUIDNITROGEN("liquidNitrogen", "Liquid Nitrogen", 30),
+	DNA("liquidDNA", "Liquid DNA", 31),
 	
 	// Railcraft
-	CREOSOTEOIL("Creosote Oil", 32),
-	STEAM("Steam", 33),
+	CREOSOTEOIL("Creosote Oil", "Creosote Oil", 32),
+	STEAM("Steam", "Steam", 33),
 	;
 	public String liquidID;
+	public String displayName;
 	public int iconIdx;
 	public boolean available = false;
 	
-	private LiquidType(String l, int idx)
+	private LiquidType(String l, String display, int idx)
 	{
 		this.liquidID = l;
+		this.displayName = display;
 		this.iconIdx = idx;
-	}
-
-	public String getDisplayName()
-	{
-		return LocalizationManager.getLocalizedString("tb.liquid." + liquidID);
 	}
 }

@@ -1,4 +1,4 @@
-package thaumicbees.main.utils.compat;
+package thaumicbees.compat;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -104,14 +104,7 @@ public class ThaumcraftHelper
 	{
 		GREATWOOD_SAPLING,
 		SILVERWOOD_SAPLING,
-		SHIMMERLEAF,
+		SILVERLEAF,
 		CINDERPEARL;
-	}
-	
-	public enum TreeType
-	{
-		GREATWOOD,
-		SILVERWOOD,
-		;
 	}
 }
