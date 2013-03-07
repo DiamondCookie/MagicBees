@@ -1,16 +1,6 @@
-1.4.3a
-Changed Version info embedded in mod to match format supported by Version checking. Will need to make this more robust in the future.
-Fixed bug with Thaumium Grafter not being enchantable.
-
-1.4.3
-Added automatic version-checking for ThaumicBees! From this version on, when a new version becomes available, it will notify you in-game. Notifications can be switched off via a config file option.
-Fixed missing aspects on Extra Bees combs.
-
 1.4.2
-Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding! Plus stacking.
+Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding!
 Fix: Added Greatwood & Silverwood slabs to the ore dictionary so they should work as normal.
-Added Thaumium Scoop - 30 uses, can be enchanted with Repair.
-Added Thaumium Grafter - 15 uses, can be enchanted with Repair.
 
 1.4.1
 Added Greatwood and Silverwood planks. Since Greatwood and Silverwood are tougher than other trees, you'll need some extra machinery. To obtain these, jam a log of the appropriate tree into a Forestry carpenter and provide a half bucket of water.
@@ -25,7 +15,6 @@ Thaumaturge's Backpack now require Amber rather than Gold Nuggets.
 Due to popular complaint, the Bees & Magic node now requires Unified Thaumic Field Theory to unlock.
 Moving all kinds of string contstants out of code into Localization files.
 Also fixed crazy aspects showing up on things that shouldn't have those aspects.
-ACTUALLY fixed issue with untyped node mutations failing.
 
 1.3.0d
 Fixed an issue with mutations requiring a non-specific type of node to fail.

@@ -20,7 +20,7 @@ import forestry.api.core.ItemInterface;
 		name="Thaumic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
-		version=VersionInfo.Version + " - " + VersionInfo.Build,
+		version=VersionInfo.Version,
 		dependencies=VersionInfo.Depends
 )
 public class ThaumicBees
@@ -91,8 +91,6 @@ public class ThaumicBees
 		MinecraftForge.EVENT_BUS.register(this);
 		
 		CompatabilityManager.setupResearch();
-		
-		VersionInfo.doVersionCheck();
 	}
 	
 	public static Config getConfig()
