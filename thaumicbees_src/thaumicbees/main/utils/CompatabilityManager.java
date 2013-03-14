@@ -17,6 +17,7 @@ import thaumicbees.item.ItemMiscResources;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.LiquidType;
+import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
@@ -438,6 +439,12 @@ public class CompatabilityManager
 	private static void setupItemAspectsOreDict()
 	{
 		
+	}
+	
+	public static void setupBuildCraftFacades()
+	{
+		FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.GREATWOOD.ordinal());
+		FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.SILVERWOOD.ordinal());
 	}
 	
 	public static void setupResearch()

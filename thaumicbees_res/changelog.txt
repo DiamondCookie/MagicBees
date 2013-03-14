@@ -1,3 +1,8 @@
+1.4.3b
+Greatwood & Silverwood planks support BuildCraft facades.
+Tweaking Aura cost for Repair on Thaumium Grafters and other balance.
+Turns out I can't get the version crap to work properly. More fixes.
+
 1.4.3a
 Changed Version info embedded in mod to match format supported by Version checking. Will need to make this more robust in the future.
 Fixed bug with Thaumium Grafter not being enchantable.

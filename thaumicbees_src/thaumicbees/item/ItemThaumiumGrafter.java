@@ -9,6 +9,7 @@ import forestry.api.arboriculture.IToolGrafter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -80,8 +81,13 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 	{
 		if (stack.getItemDamage() > 0)
 		{
-			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 1, true))
+			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 2, true))
 			{
+				if (e instanceof EntityPlayer)
+				{
+					EntityPlayer p = (EntityPlayer)e;
+					p.addExhaustion(0.12f);
+				}
 				stack.damageItem(-1, (EntityLiving)e);
 			}
 		}

@@ -37,8 +37,8 @@ public class Allele implements IAllele
 		Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", new FlowerProviderAuraNodeFlux(), false);
 		
 		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
-		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", Potion.digSpeed, 7, false);
-		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", Potion.moveSpeed, 5, false);
+		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", Potion.digSpeed, 15, false);
+		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", Potion.moveSpeed, 10, false);
 		Allele.slowSpeed = new AlleleEffectPotion("effectSlowSpeed", Potion.moveSlowdown, 3, false);
 		
 		Allele.nodeGen = new AlleleEffectAuraNodeGrow("effectNodeGeneration", false, 400);

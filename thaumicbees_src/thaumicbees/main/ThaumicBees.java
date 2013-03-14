@@ -73,6 +73,7 @@ public class ThaumicBees
 		this.modConfig.registerTileEntities();
 		this.modConfig.setupItems();
 		
+		CompatabilityManager.setupBuildCraftFacades();
 		CompatabilityManager.setupBackpacks();
 	}
 

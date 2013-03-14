@@ -81,7 +81,7 @@ public class VersionInfo
 		int[] versionTokens = parseVersion(version);
 		int[] targetTokens = parseVersion(target);
 
-		for (int i = 0; i < versionTokens.length; ++i)
+		for (int i = 0; i < versionTokens.length && i < targetTokens.length; ++i)
 		{
 			if (versionTokens[i] < targetTokens[i])
 			{
@@ -111,7 +111,7 @@ public class VersionInfo
 		int[] versionTokens = parseVersion(version);
 		int[] targetTokens = parseVersion(target);
 
-		for (int i = 0; i < versionTokens.length; ++i)
+		for (int i = 0; i < versionTokens.length && i < targetTokens.length; ++i)
 		{
 			if (versionTokens[i] > targetTokens[i])
 			{
