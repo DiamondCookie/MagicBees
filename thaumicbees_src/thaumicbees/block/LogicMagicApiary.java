@@ -1,6 +1,8 @@
 package thaumicbees.block;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,7 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.apiculture.IHiveFrame;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import thaumicbees.main.utils.compat.ForestryHelper;
@@ -25,7 +28,7 @@ public class LogicMagicApiary implements IBeeHousing
 	private BiomeGenBase biome;
 	private IBeekeepingLogic beeLogic;
 	private GenericInventory tileInventory;
-	private ArrayList<ItemStack> inventoryOverflow;
+	private LinkedList<ItemStack> inventoryOverflow;
 	
 	private static final int SLOT_ID_QUEEN = 0;
 	private static final int SLOT_ID_DRONE = 1;
@@ -39,6 +42,7 @@ public class LogicMagicApiary implements IBeeHousing
 		this.parent = master;
 		this.beeLogic = BeeManager.breedingManager.createBeekeepingLogic(this);
 		this.tileInventory = new GenericInventory("MagicApiary", 11);
+		this.inventoryOverflow = new LinkedList<ItemStack>();
 	}
 	
 	public TileEntityMagicApiary getParent()
@@ -141,30 +145,33 @@ public class LogicMagicApiary implements IBeeHousing
 	@Override
 	public void onQueenChange(ItemStack queen)
 	{
-		// TODO Auto-generated method stub
-
+		// TODO Requires Network shenanegans.
 	}
 
 	@Override
 	public void wearOutEquipment(int amount)
 	{
-		// TODO Auto-generated method stub
+		for (int i = SLOT_ID_FRAME; i < SLOT_ID_FRAME + SLOT_LENGTH_FRAME; ++i)
+		{
+			ItemStack e = this.tileInventory.getStackInSlot(i);
+			if (e != null && e.getItem() instanceof IHiveFrame)
+			{
+				this.tileInventory.setInventorySlotContents(i,
+						((IHiveFrame) e.getItem()).frameUsed(this, e,
+								BeeManager.beeInterface.getBee(this.tileInventory.getStackInSlot(SLOT_ID_QUEEN)),
+								amount));
+			}
+		}
 
 	}
 
+	// Does nothing in Forestry.
 	@Override
-	public void onQueenDeath(IBee queen)
-	{
-		// TODO Auto-generated method stub
+	public void onQueenDeath(IBee queen) { }
 
-	}
-
+	// Does nothing in Forestry.
 	@Override
-	public void onPostQueenDeath(IBee queen)
-	{
-		// TODO Auto-generated method stub
-
-	}
+	public void onPostQueenDeath(IBee queen) { }
 
 	@Override
 	public int getXCoord()
@@ -187,29 +194,25 @@ public class LogicMagicApiary implements IBeeHousing
 	@Override
 	public ItemStack getQueen()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.tileInventory.getStackInSlot(SLOT_ID_QUEEN);
 	}
 
 	@Override
 	public ItemStack getDrone()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.tileInventory.getStackInSlot(SLOT_ID_DRONE);
 	}
 
 	@Override
-	public void setQueen(ItemStack itemstack)
+	public void setQueen(ItemStack itemStack)
 	{
-		// TODO Auto-generated method stub
-
+		this.tileInventory.setInventorySlotContents(SLOT_ID_QUEEN, itemStack);
 	}
 
 	@Override
-	public void setDrone(ItemStack itemstack)
+	public void setDrone(ItemStack itemStack)
 	{
-		// TODO Auto-generated method stub
-
+		this.tileInventory.setInventorySlotContents(SLOT_ID_DRONE, itemStack);
 	}
 
 	@Override
@@ -259,8 +262,7 @@ public class LogicMagicApiary implements IBeeHousing
 	@Override
 	public boolean canBreed()
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
