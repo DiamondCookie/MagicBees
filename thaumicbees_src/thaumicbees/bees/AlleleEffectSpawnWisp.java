@@ -18,9 +18,9 @@ public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob
 	
 	private byte[] wispTypes = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 };
 
-	public AlleleEffectSpawnWisp(String id, boolean isDominant, String mobToSpawn)
+	public AlleleEffectSpawnWisp(String id, boolean isDominant, String mobToSpawn, String soundToPlay)
 	{
-		super(id, isDominant, mobToSpawn);
+		super(id, isDominant, mobToSpawn, soundToPlay);
 	}
 
 	@Override
@@ -57,11 +57,7 @@ public class AlleleEffectSpawnWisp extends AlleleEffectSpawnMob
 					Field type = wispEntity.getDeclaredField("type");
 					type.setByte(mob, wispTypes[world.rand.nextInt(wispTypes.length)]);
 				}
-				catch (Exception e)
-				{
-					FMLLog.info("ThaumicBees is using an invalid classname: " + ThaumcraftHelper.Entity.WISP.getClassName() 
-							+ " Please report this error in the thread if you see it.", (Object[])null);
-				}
+				catch (Exception e) { /*Last time I had a request to post error messages, I regretted it.*/ }
 
 				spawnedFlag = world.spawnEntityInWorld(mob);
 				if (this.aggosOnPlayer && player != null)

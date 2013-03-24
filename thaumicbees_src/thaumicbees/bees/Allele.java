@@ -49,11 +49,11 @@ public class Allele implements IAllele
 		Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, ThaumcraftHelper.Entity.FIREBAT.entityID);
 		Allele.spawnBats.setThrottle(300).setSpawnsOnPlayerNear("Bat");
 		
-		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, ThaumcraftHelper.Entity.WISP.entityID);
-		Allele.spawnWisp.setThrottle(1800);
+		Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, ThaumcraftHelper.Entity.WISP.entityID, "thaumcraft.wisplive");
+		Allele.spawnWisp.setThrottle(1800).setChanceToSpawn(79);
 		
-		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghast");
-		Allele.spawnGhast.setThrottle(2000).setChanceToSpawn(20).setMaxMobsInSpawnZone(1);
+		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghast", "mob.ghast.moan");
+		Allele.spawnGhast.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);
 	}
 	
 	private String uid;

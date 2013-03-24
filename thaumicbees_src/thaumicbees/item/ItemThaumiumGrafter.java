@@ -48,7 +48,22 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 
 	@Override
 	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLiving entityliving) {
-		itemstack.damageItem(1, entityliving);
+		int damage = 1;
+		if (id == Config.tcLeaf.blockID)
+		{
+			Block block = Block.blocksList[id];
+			int meta = world.getBlockMetadata(x, y, z) & 1;
+			block.dropBlockAsItemWithChance(world, x, y, z, meta, 0, 0);
+			if (meta == ThaumcraftHelper.TreeType.GREATWOOD.ordinal())
+			{
+				damage = 2;
+			}
+			else if (meta == ThaumcraftHelper.TreeType.SILVERWOOD.ordinal())
+			{
+				damage = 4;
+			}
+		}
+		itemstack.damageItem(damage, entityliving);
 		return true;
 	}
 	
@@ -86,7 +101,7 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 				if (e instanceof EntityPlayer)
 				{
 					EntityPlayer p = (EntityPlayer)e;
-					p.addExhaustion(0.12f);
+					p.addExhaustion(0.19f);
 				}
 				stack.damageItem(-1, (EntityLiving)e);
 			}

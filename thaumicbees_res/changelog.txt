@@ -1,3 +1,9 @@
+1.4.3c
+Thaumium Grafter now doubles your chance to get Greatwood & Silverwood saplings.
+Thaumium Grafter now takes extra damage when trying to break Greatwood & Silverwood leaves.
+Thaumium Grafter now has a balancing feature when repairing.
+Extra... uh. "Enhancements". =D
+
 1.4.3b
 Greatwood & Silverwood planks support BuildCraft facades.
 Tweaking Aura cost for Repair on Thaumium Grafters and other balance.

@@ -21,11 +21,17 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	protected boolean spawnsWhilePlayerNear;
 	protected String alternateMob;
 	protected String mobName;
+	protected String mobSound;
 	protected int throttle;
 	protected int chanceToSpawn;
 	protected int maxMobsInArea;
 
 	public AlleleEffectSpawnMob(String id, boolean isDominant, String mobToSpawn)
+	{
+		this(id, isDominant, mobToSpawn, null);
+	}
+	
+	public AlleleEffectSpawnMob(String id, boolean isDominant, String mobToSpawn, String mobSoundFx)
 	{
 		super(id, isDominant);
 		this.aggosOnPlayer = false;
@@ -33,6 +39,7 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 		this.throttle = 200;
 		this.chanceToSpawn = 100;
 		this.maxMobsInArea = 6;
+		this.mobSound = mobSoundFx;
 	}
 
 	@Override
@@ -109,6 +116,17 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 			}
 			else
 			{
+				if (this.mobSound != null && w.rand.nextInt(100) < 35)
+				{
+					int range = genome.getTerritory()[0];
+					double x = housing.getXCoord() + w.rand.nextDouble() * (range * 2) - range;
+					range = genome.getTerritory()[1];
+					double y = housing.getYCoord() + w.rand.nextDouble() * (range * 2) - range;
+					range = genome.getTerritory()[2];
+					double z = housing.getZCoord() + w.rand.nextDouble() * (range * 2) - range;
+					w.playSoundEffect(x, y, z, this.mobSound, 0.5f,
+							(w.rand.nextFloat() - w.rand.nextFloat()) * 0.2f + 1.0f);
+				}
 				storedData.setBoolean(0, true);
 			}
 		}
