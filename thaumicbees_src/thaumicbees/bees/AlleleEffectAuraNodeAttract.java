@@ -11,12 +11,12 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;
 
-public class AlleleEffectAuraNodeGrow extends AlleleEffect
+public class AlleleEffectAuraNodeAttract extends AlleleEffect
 {
 
 	private int throttle;
 	
-	public AlleleEffectAuraNodeGrow(String id, boolean isDominant, int timeout)
+	public AlleleEffectAuraNodeAttract(String id, boolean isDominant, int timeout)
 	{
 		super(id, isDominant);
 		this.throttle = timeout;

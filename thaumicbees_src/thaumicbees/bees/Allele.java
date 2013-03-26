@@ -13,7 +13,9 @@ public class Allele implements IAllele
 	public static AlleleFlower flowerBookshelf;
 	public static AlleleFlower flowerThaumcraft;
 	public static AlleleFlower flowerAuraNode;
+	@Deprecated
 	public static AlleleFlower flowerNodePurify;
+	@Deprecated
 	public static AlleleFlower flowerNodeFluxify;
 	
 	public static AlleleEffectCure cleansingEffect;
@@ -24,7 +26,9 @@ public class Allele implements IAllele
 	public static AlleleEffectSpawnMob spawnWisp;
 	public static AlleleEffectSpawnMob spawnBats;
 	public static AlleleEffectSpawnMob spawnGhast;
-	public static AlleleEffectAuraNodeGrow nodeGen;
+	public static AlleleEffectAuraNodeAttract effectNodeAttract;
+	public static AlleleEffectAuraNodePurify effectNodePurify;
+	public static AlleleEffectAuraNodeFlux effectNodeFlux;
 	
 	public static void setupAdditionalAlleles()
 	{
@@ -33,15 +37,17 @@ public class Allele implements IAllele
 		Allele.flowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
 		Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
 		Allele.flowerAuraNode = new AlleleFlower("flowerAuraNode", new FlowerProviderAuraNode(), true);
-		Allele.flowerNodePurify = new AlleleFlower("flowerAuraNodePurify", new FlowerProviderAuraNodePurify(), false);
-		Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", new FlowerProviderAuraNodeFlux(), false);
+		Allele.flowerNodePurify = new AlleleFlower("flowerAuraNodePurify", new FlowerProviderAuraNode(), false);
+		Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", new FlowerProviderAuraNode(), false);
 		
 		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
 		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", Potion.digSpeed, 15, false);
 		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", Potion.moveSpeed, 10, false);
 		Allele.slowSpeed = new AlleleEffectPotion("effectSlowSpeed", Potion.moveSlowdown, 3, false);
 		
-		Allele.nodeGen = new AlleleEffectAuraNodeGrow("effectNodeGeneration", false, 400);
+		Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("effectNodeGeneration", false, 400);
+		Allele.effectNodePurify = new AlleleEffectAuraNodePurify("effectNodePurify", false, 600, 150);
+		Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("effectNodeFlux", true, 300, 300);
 
 		Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID);
 		Allele.spawnBrainyZombie.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);

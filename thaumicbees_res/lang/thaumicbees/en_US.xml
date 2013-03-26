@@ -160,7 +160,9 @@
 	<entry key="thaumicbees.effecteffectDigSpeed">Mining</entry>
 	<entry key="thaumicbees.effecteffectMoveSpeed">Swiftness</entry>
 	<entry key="thaumicbees.effecteffectSlowSpeed">Time Warp</entry>
-	<entry key="thaumicbees.effectNodeGeneration">Aura Attract</entry>
+    <entry key="thaumicbees.effectNodeGeneration">Aura Attract</entry>
+    <entry key="thaumicbees.effectNodePurify">Purify Aura</entry>
+    <entry key="thaumicbees.effectNodeFlux">Aura Flux</entry>
 	<entry key="thaumicbees.effectBrainy">Brainy</entry>
 	<entry key="thaumicbees.effectBatty">Batty</entry>
 	<entry key="thaumicbees.effectWispy">Wispy</entry>
@@ -168,8 +170,6 @@
 	<entry key="tb.bees.flower.book">Books</entry>
 	<entry key="tb.bees.flower.magic">Magic Flowers</entry>
 	<entry key="tb.bees.flower.node">Node</entry>
-	<entry key="tb.bees.flower.nodePure">Purify Node</entry>
-	<entry key="tb.bees.flower.nodeFlux">Fluxify Node</entry>
 	
 	<!-- Classifications -->
 	<entry key="classification.arcane">Arcane</entry>
