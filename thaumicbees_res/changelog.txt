@@ -1,3 +1,5 @@
+Made greatwood & silverwood planks fireproof by default - added a config option to toggle it.
+
 1.4.3c
 Thaumium Grafter now doubles your chance to get Greatwood & Silverwood saplings.
 Thaumium Grafter now takes extra damage when trying to break Greatwood & Silverwood leaves.

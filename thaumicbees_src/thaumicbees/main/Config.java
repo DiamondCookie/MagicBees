@@ -57,6 +57,7 @@ public class Config
 	public boolean ExtraBeesInstalled;
 	public boolean AddThaumcraftItemsToBackpacks;
 	public boolean SkipUpdateCheck;
+	public boolean AreMagicPlanksFlammable;
 	public String ThaumaturgeExtraItems;
 	public int capsuleStackSizeMax;
 
@@ -269,6 +270,10 @@ public class Config
 		p = tbConfig.get("general", "disableVersionCheck", false);
 		p.comment = "Set to true to stop ThaumicBees from checking for updates.";
 		this.SkipUpdateCheck = p.getBoolean(false);
+		
+		p = tbConfig.get("general", "areMagicPlanksFlammable", false);
+		p.comment = "Set to true to allow Greatwood & Silverwood planks to burn in a fire.";
+		this.AreMagicPlanksFlammable = p.getBoolean(false);
 	}
 
 }

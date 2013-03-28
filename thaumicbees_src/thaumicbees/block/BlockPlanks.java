@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.ThaumicBees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWood;
 import net.minecraft.block.material.Material;
@@ -22,7 +23,10 @@ public class BlockPlanks extends Block
 		this.setBlockName("tb.planks");
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		Block.setBurnProperties(id, 5, 20);
+		if (ThaumicBees.getConfig().AreMagicPlanksFlammable)
+		{
+			Block.setBurnProperties(id, 5, 20);
+		}
 	}
 
 	@Override

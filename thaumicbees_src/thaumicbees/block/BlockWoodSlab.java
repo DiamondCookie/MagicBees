@@ -6,6 +6,7 @@ import java.util.Random;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.Config;
+import thaumicbees.main.ThaumicBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -26,7 +27,10 @@ public class BlockWoodSlab extends BlockHalfSlab
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setLightOpacity(doubleSlab ? 255 : 0);
-		Block.setBurnProperties(id, 5, 20);
+		if (ThaumicBees.getConfig().AreMagicPlanksFlammable)
+		{
+			Block.setBurnProperties(id, 5, 20);
+		}
 	}
 
 	@Override
