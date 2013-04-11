@@ -21,7 +21,7 @@ public class BlockEffectJar extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World w)
 	{
-		return new TileEntityEffectJar(w);
+		return new TileEntityEffectJar();
 	}
 
 }

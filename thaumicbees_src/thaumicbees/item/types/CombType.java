@@ -16,6 +16,7 @@ public enum CombType
 	INFUSED("magic", 0xaa32fc, 0x7A489E, false),
 	INTELLECT("aware", 0x618fff, 0xb0092e9, false),
 	SKULKING("furtive", 0x545454, 0xcda6cd, true),
+	SOUL("soul", 0x3C1E00, 0x8A4500, true),
 	;
 	
 	private CombType(String pName, int colourA, int colourB, boolean show)

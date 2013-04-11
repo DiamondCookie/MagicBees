@@ -3,14 +3,19 @@ package thaumicbees.main;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
+import thaumicbees.item.types.PlankType;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
+import thaumicbees.main.utils.compat.ExtraBeesHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import forestry.api.core.ItemInterface;
@@ -47,14 +52,15 @@ public class ThaumicBees
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		
-		CompatabilityManager.registerResearch();
+		// Compatibility Helpers setup time.
+		ThaumcraftHelper.init();
+		ExtraBeesHelper.init();
+		EquivalentExchangeHelper.init();
 	}
 
 	@Mod.Init
 	public void init(FMLInitializationEvent event)
 	{
-		// Check on ExtraBees & enable content. =D
-		this.modConfig.ExtraBeesInstalled = cpw.mods.fml.common.Loader.isModLoaded("ExtraBees");
 		
 		this.proxy.preloadTextures();
 		try
@@ -73,25 +79,24 @@ public class ThaumicBees
 		this.modConfig.registerTileEntities();
 		this.modConfig.setupItems();
 		
-		CompatabilityManager.setupBuildCraftFacades();
 		CompatabilityManager.setupBackpacks();
 	}
 
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		this.setupBees();
+		thaumicbees.bees.Allele.setupAdditionalAlleles();
+		thaumicbees.bees.BeeSpecies.setupBeeSpecies();
+		thaumicbees.bees.BeeMutation.setupMutations();
+		
 		this.modConfig.saveConfigs();
 		
-		CompatabilityManager.setupItemAspects();
+		ThaumcraftHelper.setupItemAspects();
 		
 		// Vanilla, Forestry & Thaumcraft crafting setup
 		CraftingManager.setupCrafting();
 		
-		// Forestry has init'd by this point.
-		MinecraftForge.EVENT_BUS.register(this);
-		
-		CompatabilityManager.setupResearch();
+		ThaumcraftHelper.setupResearch();
 		
 		VersionInfo.doVersionCheck();
 	}
@@ -99,12 +104,5 @@ public class ThaumicBees
 	public static Config getConfig()
 	{
 		return object.modConfig;
-	}
-	
-	private void setupBees()
-	{
-		thaumicbees.bees.Allele.setupAdditionalAlleles();
-		thaumicbees.bees.BeeSpecies.setupBeeSpecies();
-		thaumicbees.bees.BeeMutation.setupMutations();
 	}
 }

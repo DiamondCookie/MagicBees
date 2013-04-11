@@ -7,19 +7,7 @@ import forestry.api.core.ItemInterface;
 import thaumicbees.main.Config;
 
 public class ForestryHelper
-{
-	public static void getForestryBlocks()
-	{
-		
-	}
-	
-	public static void getForestryItems()
-	{
-		Config.fBeeComb = Item.itemsList[ItemInterface.getItem("beeComb").itemID];
-		Config.fPollen = Item.itemsList[ItemInterface.getItem("pollen").itemID];
-		Config.fCraftingResource = Item.itemsList[ItemInterface.getItem("craftingMaterial").itemID];
-	}
-	
+{	
 	public enum CraftingMaterial
 	{
 		PULSATING_DUST, // unused
@@ -93,6 +81,18 @@ public class ForestryHelper
 		APATITE,
 		LAPIS,
 		;
+	}
+	
+	public static void getBlocks()
+	{
+		
+	}
+	
+	public static void getItems()
+	{
+		Config.fBeeComb = Item.itemsList[ItemInterface.getItem("beeComb").itemID];
+		Config.fPollen = Item.itemsList[ItemInterface.getItem("pollen").itemID];
+		Config.fCraftingResource = Item.itemsList[ItemInterface.getItem("craftingMaterial").itemID];
 	}
 	
 	public static EnumTemperature getEnumTemperatureFromValue(float rawTemp)

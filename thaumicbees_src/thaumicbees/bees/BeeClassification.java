@@ -13,12 +13,17 @@ import forestry.api.genetics.IClassification;
 public enum BeeClassification implements IClassification
 {
 	ARCANE("Arcane", "Arcanus"),
-	SUPERNATURAL("Supernatural", ""),
-	SCHOLARLY("Scholarly", ""),
-	THAUMIC("Thaumic", ""),
+	SUPERNATURAL("Supernatural", "Occultus"),
+	SCHOLARLY("Scholarly", "Docto"),
+	THAUMIC("Thaumic", "Thaumis"),
 	SKULKING("Skulking", ""),
-	VIS("Vis", ""),
-	TIME("Time", ""),
+	VIS("Vis", "Vis"),
+	TIME("Time", "Tempestivus"),
+	SOUL("Soul", "Animus"),
+	ALCHEMICAL("Alchemical", "Alchimia"),
+	METALLIC("Metallic", "Metallicis"),
+	GEM("Gem", "Lapidi"),
+	FLESHY("Fleshy", "Carnosa"),
 	;
 	
 	private String uID;

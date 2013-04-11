@@ -12,43 +12,70 @@ import thaumcraft.api.EnumNodeType;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.MoonPhase;
+import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
+import thaumicbees.main.utils.compat.ExtraBeesHelper;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 
 public class BeeMutation implements IBeeMutation
 {
-	public static BeeMutation Esoteric;
-	public static BeeMutation Esoteric1;
-	public static BeeMutation Mysterious;
-	public static BeeMutation Mysterious1;
-	public static BeeMutation Arcane;
-	public static BeeMutation Charmed;
-	public static BeeMutation Enchanted;
-	public static BeeMutation Supernatural;
-	public static BeeMutation Stark;
-	public static BeeMutation Pupil;
-	public static BeeMutation Scholarly;
-	public static BeeMutation Savant;
-	public static BeeMutation Aware;
-	public static BeeMutation Vis;
-	public static BeeMutation Vis1;
-	public static BeeMutation Pure;
-	public static BeeMutation Flux;
-	public static BeeMutation Node;
-	public static BeeMutation Node1;
-	public static BeeMutation Skulking;
-	public static BeeMutation Brainy;
-	public static BeeMutation Gossamer;
-	public static BeeMutation Wispy;
-	public static BeeMutation Batty;
-	public static BeeMutation Ghastly;
-	public static BeeMutation Timely;
-	public static BeeMutation Lordly;
-	public static BeeMutation Doctoral;
+	private static BeeMutation Esoteric;
+	private static BeeMutation Esoteric1;
+	private static BeeMutation Mysterious;
+	private static BeeMutation Mysterious1;
+	private static BeeMutation Arcane;
+	private static BeeMutation Charmed;
+	private static BeeMutation Enchanted;
+	private static BeeMutation Supernatural;
+	private static BeeMutation Stark;
+	private static BeeMutation Fire;
+	private static BeeMutation Water;
+	private static BeeMutation Pupil;
+	private static BeeMutation Scholarly;
+	private static BeeMutation Savant;
+	private static BeeMutation Aware;
+	private static BeeMutation Vis;
+	private static BeeMutation Vis1;
+	private static BeeMutation Pure;
+	private static BeeMutation Flux;
+	private static BeeMutation Node;
+	private static BeeMutation Node1;
+	private static BeeMutation Skulking;
+	private static BeeMutation Brainy;
+	private static BeeMutation Gossamer;
+	private static BeeMutation Wispy;
+	private static BeeMutation Batty;
+	private static BeeMutation Ghastly;
+	private static BeeMutation Timely;
+	private static BeeMutation Lordly;
+	private static BeeMutation Doctoral;
+	private static BeeMutation Spirit;
+	private static BeeMutation Spirit1;
+	private static BeeMutation Soul;
+	private static BeeMutation Minium;
+	private static BeeMutation Iron;
+	private static BeeMutation Gold;
+	private static BeeMutation Copper;
+	private static BeeMutation Tin;
+	private static BeeMutation Silver;
+	private static BeeMutation Lead;
+	private static BeeMutation Diamond;
+	private static BeeMutation Emerald;
+	private static BeeMutation Lead1;
+	private static BeeMutation Lead2;
+	private static BeeMutation Beef;
+	private static BeeMutation Chicken;
+	private static BeeMutation Pork;
+	private static BeeMutation Aura;
+	private static BeeMutation Aura1;
 	
 	public static void setupMutations()
 	{
+		IAlleleBeeSpecies baseA, baseB;
+		
 		BeeMutation.Esoteric = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, 10);
 		BeeMutation.Esoteric1 = new BeeMutation(Allele.getBaseSpecies("Heroic"), Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, 25);
-		BeeMutation.Mysterious = new BeeMutation(BeeSpecies.ESOTERIC, Allele.getBaseSpecies("Ended"), BeeSpecies.MYSTERIOUS, 10);
+		BeeMutation.Mysterious = new BeeMutation(Allele.getBaseSpecies("Ended"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 15);
+		BeeMutation.Mysterious1 = new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 4);
 		BeeMutation.Arcane = new BeeMutation(BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, BeeSpecies.ARCANE, 8)
 			.setMoonPhaseBonus(MoonPhase.WANING_CRESCENT, MoonPhase.WAXING_CRESCENT, 1.5f);
 		BeeMutation.Charmed = new BeeMutation(Allele.getBaseSpecies("Diligent"), Allele.getBaseSpecies("Valiant"), BeeSpecies.CHARMED, 20);
@@ -56,68 +83,137 @@ public class BeeMutation implements IBeeMutation
 		BeeMutation.Supernatural = new BeeMutation(BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, BeeSpecies.SUPERNATURAL, 10)
 			.setMoonPhaseBonus(MoonPhase.WAXING_GIBBOUS, MoonPhase.WANING_GIBBOUS, 1.5f);
 		BeeMutation.Pupil = new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.ENCHANTED, BeeSpecies.PUPIL, 10);
-		BeeMutation.Scholarly = new BeeMutation(BeeSpecies.PUPIL, BeeSpecies.ARCANE, BeeSpecies.SCHOLARLY, 8);
-		BeeMutation.Savant = new BeeMutation(BeeSpecies.PUPIL, BeeSpecies.SCHOLARLY, BeeSpecies.SAVANT, 6);
 		BeeMutation.Stark = new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.SUPERNATURAL, BeeSpecies.STARK, 8);
-		
-		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), BeeSpecies.AWARE, 12);
-		BeeMutation.Vis = new BeeMutation(BeeSpecies.AWARE, BeeSpecies.ARCANE, BeeSpecies.VIS, 9)
-		.setAuraNodeRequired(40);
-		BeeMutation.Vis1 = new BeeMutation(BeeSpecies.AWARE, BeeSpecies.STARK, BeeSpecies.VIS, 12)
-		.setAuraNodeRequired(80);
-		
-		BeeMutation.Pure = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Edenic"), BeeSpecies.PURE, 7)
-			.setAuraNodeTypeRequired(5, EnumNodeType.PURE).setMoonPhaseBonus(MoonPhase.NEW, MoonPhase.NEW, 1.6f);
-		BeeMutation.Flux = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Edenic"), BeeSpecies.FLUX, 7)
-			.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE).setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 1.6f);
-				
-		BeeMutation.Node = new BeeMutation(BeeSpecies.VIS, BeeSpecies.VIS, BeeSpecies.NODE, 2)
-			.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WANING_HALF, MoonPhase.WANING_HALF);
-		BeeMutation.Node1 = new BeeMutation(BeeSpecies.VIS, BeeSpecies.VIS, BeeSpecies.NODE, 2)
-			.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WAXING_HALF);
-		
-		// Now we get into a little bit of branching...
-		if (ThaumicBees.getConfig().ExtraBeesInstalled)
-		{
-			setupMutationsExtraBeesBase();
-		}
-		else
-		{
-			setupMutationsForestryBase();
-		}
-		BeeMutation.Gossamer.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_CRESCENT);
-		BeeMutation.Wispy = new BeeMutation(BeeSpecies.GOSSAMER, Allele.getBaseSpecies("Cultivated"), BeeSpecies.WISPY, 8);
 		
 		BeeMutation.Timely = new BeeMutation(Allele.getBaseSpecies("Industrious"), BeeSpecies.ENCHANTED, BeeSpecies.TIMELY, 10);
 		BeeMutation.Lordly = new BeeMutation(BeeSpecies.TIMELY, Allele.getBaseSpecies("Imperial"), BeeSpecies.LORDLY, 9);
 		BeeMutation.Doctoral = new BeeMutation(BeeSpecies.TIMELY, BeeSpecies.LORDLY, BeeSpecies.DOCTORAL, 7);
-	}
-	
-	private static void setupMutationsExtraBeesBase()
-	{
-		try
+		
+		BeeMutation.Minium = new BeeMutation(Allele.getBaseSpecies("Sinister"), BeeSpecies.MYSTERIOUS, BeeSpecies.MINIUM, 11);
+		
+		BeeMutation.Spirit = new BeeMutation(Allele.getBaseSpecies("Fiendish"), BeeSpecies.ENCHANTED, BeeSpecies.SPIRIT, 12);
+		BeeMutation.Spirit1 = new BeeMutation(Allele.getBaseSpecies("Fiendish"), Allele.getBaseSpecies("Ended"), BeeSpecies.SPIRIT, 20);
+		BeeMutation.Soul = new BeeMutation(Allele.getBaseSpecies("Fiendish"), BeeSpecies.SPIRIT, BeeSpecies.SOUL, 11);
+		
+		BeeMutation.Iron = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Diligent"), BeeSpecies.IRON, 10);
+		
+		baseA = (BeeSpecies.MINIUM.isActive()) ? BeeSpecies.MINIUM : Allele.getBaseSpecies("Imperial");
+		baseB = (BeeSpecies.LEAD.isActive()) ? BeeSpecies.LEAD : BeeSpecies.IRON;
+		BeeMutation.Gold = new BeeMutation(baseA, baseB, BeeSpecies.GOLD, 8);
+		
+		if (BeeSpecies.COPPER.isActive())
+		{
+			BeeMutation.Copper = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Meadows"), BeeSpecies.COPPER, 12);
+		}
+		if (BeeSpecies.TIN.isActive())
+		{
+			BeeMutation.Tin = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Forest"), BeeSpecies.TIN, 12);
+		}
+		if (BeeSpecies.SILVER.isActive())
+		{
+			BeeMutation.Silver = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Modest"), BeeSpecies.SILVER, 10);
+		}
+		if (BeeSpecies.LEAD.isActive())
+		{
+			if (BeeSpecies.COPPER.isActive())
+			{
+				BeeMutation.Lead = new BeeMutation(Allele.getBaseSpecies("Industrious"), BeeSpecies.COPPER, BeeSpecies.LEAD, 13);
+			}
+			if (BeeSpecies.TIN.isActive())
+			{
+				BeeMutation.Lead1 = new BeeMutation(Allele.getBaseSpecies("Industrious"), BeeSpecies.TIN, BeeSpecies.LEAD, 13);
+			}
+			BeeMutation.Lead2 = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Common"), BeeSpecies.LEAD, 9);
+		}
+		
+		BeeMutation.Diamond = new BeeMutation(Allele.getBaseSpecies("Austere"), BeeSpecies.GOLD, BeeSpecies.DIAMOND, 6);
+		baseA = (BeeSpecies.SILVER.isActive()) ? BeeSpecies.SILVER : Allele.getBaseSpecies("Imperial");
+		BeeMutation.Emerald = new BeeMutation(Allele.getBaseSpecies("Austere"), baseA, BeeSpecies.EMERALD, 6);
+		
+		if (BeeSpecies.BEEF.isActive())
+		{
+			BeeMutation.Beef = new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.SKULKING, BeeSpecies.BEEF, 10);
+		}
+		if (BeeSpecies.CHICKEN.isActive())
+		{
+			BeeMutation.Chicken = new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.SKULKING, BeeSpecies.CHICKEN, 10);
+		}
+		if (BeeSpecies.PORK.isActive())
+		{
+			BeeMutation.Pork = new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.SKULKING, BeeSpecies.PORK, 10);
+		}
+		
+		// Now we get into a little bit of branching...
+		if (ExtraBeesHelper.isActive())
 		{
 			BeeMutation.Skulking = new BeeMutation(BeeSpecies.MYSTERIOUS, Allele.getExtraSpecies("desolate"), BeeSpecies.SKULKING, 10);
-			BeeMutation.Brainy = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("rotten"), BeeSpecies.BRAINY, 12);
-			BeeMutation.Gossamer = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("ancient"), BeeSpecies.GOSSAMER, 10);
-			BeeMutation.Batty = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("rock"), BeeSpecies.BATTY, 14);
 			BeeMutation.Ghastly = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("creeper"), BeeSpecies.GHASTLY, 13);
 		}
-		catch (Exception e)
+		else
 		{
-			FMLLog.warning("ThaumicBees encountered an error attempting to register mutations using Extra Bees species! Ensure Extra Bees was able to initialize correctly!");
-			FMLLog.info("Could not use Extra Bees species for mutations. Falling back to Forestry defaults.");
-			setupMutationsForestryBase();
+			BeeMutation.Skulking = new BeeMutation(BeeSpecies.MYSTERIOUS, Allele.getBaseSpecies("Modest"), BeeSpecies.SKULKING, 10);
+			BeeMutation.Ghastly = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Austere"), BeeSpecies.GHASTLY, 13);
 		}
-	}
-	
-	private static void setupMutationsForestryBase()
-	{
-		BeeMutation.Skulking = new BeeMutation(BeeSpecies.MYSTERIOUS, Allele.getBaseSpecies("Modest"), BeeSpecies.SKULKING, 10);
-		BeeMutation.Brainy = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Sinister"), BeeSpecies.BRAINY, 10);
-		BeeMutation.Gossamer = new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.SUPERNATURAL, BeeSpecies.GOSSAMER, 10);
-		BeeMutation.Batty = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Frugal"), BeeSpecies.BATTY, 11);
-		BeeMutation.Ghastly = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Austere"), BeeSpecies.GHASTLY, 13);
+		
+		if (ThaumcraftHelper.isActive())
+		{
+			BeeMutation.Scholarly = new BeeMutation(BeeSpecies.PUPIL, BeeSpecies.ARCANE, BeeSpecies.SCHOLARLY, 8);
+			BeeMutation.Savant = new BeeMutation(BeeSpecies.PUPIL, BeeSpecies.SCHOLARLY, BeeSpecies.SAVANT, 6);
+			
+			BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), BeeSpecies.AWARE, 12);
+			BeeMutation.Vis = new BeeMutation(BeeSpecies.AWARE, BeeSpecies.ARCANE, BeeSpecies.VIS, 9)
+			.setAuraNodeRequired(40);
+			BeeMutation.Vis1 = new BeeMutation(BeeSpecies.AWARE, BeeSpecies.STARK, BeeSpecies.VIS, 12)
+			.setAuraNodeRequired(80);
+			BeeMutation.Pure = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Edenic"), BeeSpecies.PURE, 7)
+				.setAuraNodeTypeRequired(5, EnumNodeType.PURE).setMoonPhaseBonus(MoonPhase.NEW, MoonPhase.NEW, 1.6f);
+			BeeMutation.Flux = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Edenic"), BeeSpecies.FLUX, 7)
+				.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE).setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 1.6f);
+					
+			BeeMutation.Node = new BeeMutation(BeeSpecies.PURE, BeeSpecies.FLUX, BeeSpecies.NODE, 2)
+				.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WANING_HALF, MoonPhase.WANING_HALF);
+			BeeMutation.Node1 = new BeeMutation(BeeSpecies.PURE, BeeSpecies.FLUX, BeeSpecies.NODE, 2)
+				.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WAXING_HALF);
+			
+			BeeMutation.Aura = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Industrious"), BeeSpecies.AURA, 3)
+				.setMoonPhaseRestricted(MoonPhase.WANING_CRESCENT, MoonPhase.WANING_CRESCENT);
+			BeeMutation.Aura1 = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Industrious"), BeeSpecies.AURA, 3)
+				.setMoonPhaseRestricted(MoonPhase.WAXING_CRESCENT, MoonPhase.WAXING_CRESCENT);
+			
+			if (ExtraBeesHelper.isActive())
+			{
+				BeeMutation.Brainy = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("rotten"), BeeSpecies.BRAINY, 12);
+				BeeMutation.Gossamer = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("ancient"), BeeSpecies.GOSSAMER, 10);
+				BeeMutation.Batty = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("rock"), BeeSpecies.BATTY, 14);
+			}
+			else
+			{
+				BeeMutation.Brainy = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Sinister"), BeeSpecies.BRAINY, 10);
+				BeeMutation.Gossamer = new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.SUPERNATURAL, BeeSpecies.GOSSAMER, 10);
+				BeeMutation.Batty = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Frugal"), BeeSpecies.BATTY, 11);
+			}
+				
+			BeeMutation.Gossamer.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_CRESCENT);
+			BeeMutation.Wispy = new BeeMutation(BeeSpecies.GOSSAMER, Allele.getBaseSpecies("Cultivated"), BeeSpecies.WISPY, 8);
+		}
+		else
+		{
+			BeeMutation.Fire = new BeeMutation(BeeSpecies.STARK, Allele.getBaseSpecies("Fiendish"), BeeSpecies.FIRE, 10);
+			if (ExtraBeesHelper.isActive())
+			{
+				BeeMutation.Water = new BeeMutation(BeeSpecies.STARK, Allele.getExtraSpecies("ocean"), BeeSpecies.WATER, 12);
+				BeeMutation.Water = new BeeMutation(BeeSpecies.STARK, Allele.getExtraSpecies("river"), BeeSpecies.WATER, 8);
+			}
+			else
+			{
+				BeeMutation.Water = new BeeMutation(BeeSpecies.STARK, Allele.getBaseSpecies("Marshy"), BeeSpecies.WATER, 10);
+			}
+		}
+		
+		if (EquivalentExchangeHelper.isActive())
+		{
+			BeeMutation.Minium = new BeeMutation(Allele.getBaseSpecies("Frugal"), BeeSpecies.PUPIL, BeeSpecies.MINIUM, 10);
+		}
 	}
 	
 	private IAllele parent1;

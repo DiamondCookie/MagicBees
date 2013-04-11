@@ -19,6 +19,8 @@ public enum HiveFrameType
 			new ObjectTags().add(EnumTag.DEATH, 3).add(EnumTag.POISON, 2)),
 	TEMPORAL("temporal", 37, 300, 1f, 1f, 2.5f, 1f, 1, 5,
 			new ObjectTags().add(EnumTag.TIME, 5)),
+	OBLIVION("oblivion", 38, 60, 1f, 1f, 0.0001f, 0f, 15, 1,
+			new ObjectTags().add(EnumTag.TIME, 5).add(EnumTag.DEATH, 5)),
 	;
 	
 	private HiveFrameType(String name, int icon, int damage,

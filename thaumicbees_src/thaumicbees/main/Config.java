@@ -9,6 +9,7 @@ import thaumicbees.item.ItemComb;
 import thaumicbees.item.ItemDrop;
 import thaumicbees.item.ItemMagicHiveFrame;
 import thaumicbees.item.ItemMiscResources;
+import thaumicbees.item.ItemNugget;
 import thaumicbees.item.ItemPollen;
 import thaumicbees.item.ItemPropolis;
 import thaumicbees.item.ItemThaumiumGrafter;
@@ -17,10 +18,12 @@ import thaumicbees.item.ItemSolidFlux;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.HiveFrameType;
+import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import thaumicbees.storage.BackpackDefinition;
@@ -40,6 +43,8 @@ import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
@@ -54,10 +59,10 @@ public class Config
 {
 	public boolean DrawParticleEffects;	
 	public boolean BeeInfusionsAdded;
-	public boolean ExtraBeesInstalled;
 	public boolean AddThaumcraftItemsToBackpacks;
 	public boolean SkipUpdateCheck;
 	public boolean AreMagicPlanksFlammable;
+	public boolean UseImpregnatedStickInTools;
 	public String ThaumaturgeExtraItems;
 	public int capsuleStackSizeMax;
 
@@ -75,6 +80,7 @@ public class Config
 	public static ItemFood jellyBaby;
 	public static ItemThaumiumScoop thaumiumScoop;
 	public static ItemThaumiumGrafter thaumiumGrafter;
+	public static ItemNugget nuggets;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
@@ -87,6 +93,7 @@ public class Config
 	public static ItemMagicHiveFrame hiveFrameMetabolic;
 	public static ItemMagicHiveFrame hiveFrameNecrotic;
 	public static ItemMagicHiveFrame hiveFrameTemporal;
+	public static ItemMagicHiveFrame hiveFrameOblivion;
 	
 	//----- Backpacks ------------------------------------------
 	public static Item thaumaturgeBackpackT1;
@@ -115,6 +122,11 @@ public class Config
 	public static Item tcGolem;
 	public static Item tcWispEssence;
 	public static Item tcNuggets;
+	public static Item tcNuggetChicken;
+	public static Item tcNuggetBeef;
+	public static Item tcNuggetPork;
+	//----- Equivalent Exchange Items --------------------------
+	public static Item eeMinuimShard;
 	
 
 	//----- Config State info ----------------------------------
@@ -135,32 +147,43 @@ public class Config
 
 	public void setupBlocks()
 	{
-		ThaumcraftHelper.getThaumcraftBlocks();
-		ForestryHelper.getForestryBlocks();
+		ThaumcraftHelper.getBlocks();
+		ForestryHelper.getBlocks();
+		EquivalentExchangeHelper.getBlocks();
 		
 		int blockIdBase = 1750;
 		
-		planksWood = new BlockPlanks(tbConfig.getBlock("planksTC", blockIdBase++).getInt());
-
-		Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames())
-			.setItemName(planksWood.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-        Item.itemsList[planksWood.blockID] = item;
-        
-        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
-        
-        slabWoodFull = new BlockWoodSlab(tbConfig.getBlock("slabFull", blockIdBase++).getInt(), true);
-        slabWoodHalf = new BlockWoodSlab(tbConfig.getBlock("slabHalf", blockIdBase++).getInt(), false);
-        
-        item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false)
-    		.setItemName(slabWoodHalf.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-	    Item.itemsList[slabWoodHalf.blockID] = item;
-	    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true)
-			.setItemName(slabWoodFull.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-	    Item.itemsList[slabWoodFull.blockID] = item;
-	    
-	    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
-
-        blockIdBase++; // Stair
+		{
+			int plankId = tbConfig.getBlock("planksTC", blockIdBase++).getInt();
+			int slabFullId = tbConfig.getBlock("slabFull", blockIdBase++).getInt();
+			int slabHalfId = tbConfig.getBlock("slabHalf", blockIdBase++).getInt();
+			
+			if (ThaumcraftHelper.isActive())
+			{
+				planksWood = new BlockPlanks(plankId);
+		
+				Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames())
+					.setItemName(planksWood.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+		        Item.itemsList[planksWood.blockID] = item;
+		        
+		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
+				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.GREATWOOD.ordinal());
+				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.SILVERWOOD.ordinal());
+		        
+		        slabWoodFull = new BlockWoodSlab(slabFullId, true);
+		        slabWoodHalf = new BlockWoodSlab(slabHalfId, false);
+		        
+		        item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false)
+		    		.setItemName(slabWoodHalf.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+			    Item.itemsList[slabWoodHalf.blockID] = item;
+			    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true)
+					.setItemName(slabWoodFull.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+			    Item.itemsList[slabWoodFull.blockID] = item;
+			    
+			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
+			}
+		}
+		
 	}
 	
 	public void registerTileEntities()
@@ -170,8 +193,9 @@ public class Config
 	
 	public void setupItems()
 	{
-		ThaumcraftHelper.getThaumcraftItems();
-		ForestryHelper.getForestryItems();
+		ThaumcraftHelper.getItems();
+		ForestryHelper.getItems();
+		EquivalentExchangeHelper.getItems();
 		
 		int itemIDBase = 26090;
 		
@@ -188,35 +212,45 @@ public class Config
 		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
 		BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), 80);
 		
-		try
 		{
-			// 0x8700C6 = purpleish.
-			String backpackName = LocalizationManager.getLocalizedString("tb.backpack.thaumaturge");
-			BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
-			thaumaturgeBackpackT1 = 
-					BackpackManager.backpackInterface.addBackpack(tbConfig.getItem("thaumaturgePack1", itemIDBase++).getInt(),
-					def, EnumBackpackType.T1);
-			thaumaturgeBackpackT2 = 
-					BackpackManager.backpackInterface.addBackpack(tbConfig.getItem("thaumaturgePack2", itemIDBase++).getInt(),
-					def, EnumBackpackType.T2);
-			// Add additional items from configs to backpack.
-			if (ThaumicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
+			int tier1 = tbConfig.getItem("thaumaturgePack1", itemIDBase++).getInt();
+			int tier2 = tbConfig.getItem("thaumaturgePack2", itemIDBase++).getInt();
+			
+			if (ThaumcraftHelper.isActive())
 			{
-				FMLLog.info("Attempting to add extra items to Thaumaturge's backpack! If you get an error, check your ThaumicBees.conf.");
-				FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getConfig().ThaumaturgeExtraItems);
+				try
+				{
+					// 0x8700C6 = purpleish.
+					String backpackName = LocalizationManager.getLocalizedString("tb.backpack.thaumaturge");
+					BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
+					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(tier1, def, EnumBackpackType.T1);
+					thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(tier2, def, EnumBackpackType.T2);
+					// Add additional items from configs to backpack.
+					if (ThaumicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
+					{
+						FMLLog.info("Attempting to add extra items to Thaumaturge's backpack! If you get an error, check your ThaumicBees.conf.");
+						FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumicBees.getConfig().ThaumaturgeExtraItems);
+					}
+				}
+				catch (Exception e)
+				{
+					FMLLog.severe("ThaumicBees encountered a problem during loading!");
+					FMLLog.severe("Could not register backpacks via Forestry. Check your FML Client log and see if Forestry crashed silently.");
+				}
 			}
 		}
-		catch (Exception e)
-		{
-			FMLLog.severe("ThaumicBees encountered a problem during loading!");
-			FMLLog.severe("Could not register backpacks via Forestry. Check your FML Client log and see if Forestry crashed silently.");
-		}
-		
 		
 		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, tbConfig.getItem("magicCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
 		
 		pollen = new ItemPollen(tbConfig.getItem("pollen", itemIDBase++).getInt());
-		solidFlux = new ItemSolidFlux(tbConfig.getItem("fluxCrystal", itemIDBase++).getInt());
+		
+		{
+			int crystalId = tbConfig.getItem("fluxCrystal", itemIDBase++).getInt();
+			if (ThaumcraftHelper.isActive())
+			{
+				solidFlux = new ItemSolidFlux(crystalId);
+			}
+		}
 		
 		hiveFrameMagic = new ItemMagicHiveFrame(tbConfig.getItem("frameMagic", itemIDBase++).getInt(), HiveFrameType.MAGIC);
 		hiveFrameResilient = new ItemMagicHiveFrame(tbConfig.getItem("frameResilient", itemIDBase++).getInt(), HiveFrameType.RESILIENT);
@@ -224,6 +258,7 @@ public class Config
 		hiveFrameMetabolic = new ItemMagicHiveFrame(tbConfig.getItem("frameMetabolic", itemIDBase++).getInt(), HiveFrameType.METABOLIC);
 		hiveFrameNecrotic = new ItemMagicHiveFrame(tbConfig.getItem("frameNecrotic", itemIDBase++).getInt(), HiveFrameType.NECROTIC);
 		hiveFrameTemporal = new ItemMagicHiveFrame(tbConfig.getItem("frameTemporal", itemIDBase++).getInt(), HiveFrameType.TEMPORAL);
+		hiveFrameOblivion = new ItemMagicHiveFrame(tbConfig.getItem("frameOblivion", itemIDBase++).getInt(), HiveFrameType.OBLIVION);
 		// Future frames, so they all are clumped together.
 		itemIDBase++;
 		itemIDBase++;
@@ -233,19 +268,42 @@ public class Config
 		itemIDBase++;
 		itemIDBase++;
 		itemIDBase++;
-		itemIDBase++;
 		
-		// Jelly babies for Dr. Whoniversary.
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(hiveFrameOblivion), 1, 1, 18));
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(hiveFrameOblivion), 1, 3, 23));
+
 		jellyBaby = new ItemFood(tbConfig.getItem("jellyBabies", itemIDBase++).getInt(), 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
 		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("jellyBabies");
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
 
-		thaumiumScoop = new ItemThaumiumScoop(tbConfig.getItem("thaumiumScoop", itemIDBase++).getInt());
-		MinecraftForge.setToolClass(thaumiumScoop, "scoop", 3);
+		{
+			int scoopID = tbConfig.getItem("thaumiumScoop", itemIDBase++).getInt();
+			int grafterID = tbConfig.getItem("thaumiumGrafter", itemIDBase++).getInt();
+			if (ThaumcraftHelper.isActive())
+			{
+				thaumiumScoop = new ItemThaumiumScoop(scoopID);
+				MinecraftForge.setToolClass(thaumiumScoop, "scoop", 3);
+				
+				thaumiumGrafter = new ItemThaumiumGrafter(grafterID);
+				MinecraftForge.setToolClass(thaumiumGrafter, "grafter", 3);
+			}
+		}
 		
-		thaumiumGrafter = new ItemThaumiumGrafter(tbConfig.getItem("thaumiumGrafter", itemIDBase++).getInt());
+		// Other tools I might need in the future
+		itemIDBase++;
+		itemIDBase++;
+		
+		nuggets = new ItemNugget(tbConfig.getItem("beeNuggets", itemIDBase++).getInt());
+		
+		OreDictionary.registerOre("nuggetIron", nuggets.getStackForType(NuggetType.IRON));
+		OreDictionary.registerOre("nuggetCopper", nuggets.getStackForType(NuggetType.COPPER));
+		OreDictionary.registerOre("nuggetTin", nuggets.getStackForType(NuggetType.TIN));
+		OreDictionary.registerOre("nuggetSilver", nuggets.getStackForType(NuggetType.SILVER));
+		OreDictionary.registerOre("nuggetLead", nuggets.getStackForType(NuggetType.LEAD));
+		OreDictionary.registerOre("shardDiamond", nuggets.getStackForType(NuggetType.DIAMOND));
+		OreDictionary.registerOre("shardEmerald", nuggets.getStackForType(NuggetType.EMERALD));
 	}
 	
 	private void doMiscConfig()
@@ -274,6 +332,10 @@ public class Config
 		p = tbConfig.get("general", "areMagicPlanksFlammable", false);
 		p.comment = "Set to true to allow Greatwood & Silverwood planks to burn in a fire.";
 		this.AreMagicPlanksFlammable = p.getBoolean(false);
+		
+		p = tbConfig.get("general", "useImpregnatedStickInTools", false);
+		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
+		this.UseImpregnatedStickInTools = p.getBoolean(false);
 	}
 
 }

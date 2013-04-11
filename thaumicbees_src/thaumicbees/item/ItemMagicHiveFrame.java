@@ -9,6 +9,7 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -60,36 +61,43 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		int damage = wear;
 		int fluxMod = 1;
 		
-		// This throttles back the amount of aura consumed by the frame by storing a smidge of data on the item stack.
-		if (this.type.auraPerUse > 0)
+		if (ThaumcraftHelper.isActive())
 		{
-			NBTTagCompound tag;
-			if (frame.hasTagCompound())
+			// This throttles back the amount of aura consumed by the frame by storing a smidge of data on the item stack.
+			if (this.type.auraPerUse > 0)
 			{
-				tag = frame.getTagCompound();
-			}
-			else
-			{
-				tag = new NBTTagCompound();
-				tag.setByte("wearTicks", (byte)0);
-				frame.setTagCompound(tag);
-			}
-			
-			int wearTicks = tag.getByte("wearTicks") + 1;
-			
-			if (wearTicks == this.type.wearTicksPerAura)
-			{
-				// Attempt to use aura for the frame.
-				if (!ThaumcraftApi.decreaseClosestAura(w, x, y, z, this.type.auraPerUse, true))
+				NBTTagCompound tag;
+				if (frame.hasTagCompound())
 				{
-					// Insufficient aura, or no nearby node.
-					damage = wear + this.type.auraPerUse * this.type.wearTicksPerAura;
-					fluxMod = 1 + w.rand.nextInt(this.type.wearTicksPerAura);
+					tag = frame.getTagCompound();
 				}
-				wearTicks = 0;				
+				else
+				{
+					tag = new NBTTagCompound();
+					tag.setByte("wearTicks", (byte)0);
+					frame.setTagCompound(tag);
+				}
+				
+				int wearTicks = tag.getByte("wearTicks") + 1;
+				
+				if (wearTicks == this.type.wearTicksPerAura)
+				{
+					// Attempt to use aura for the frame.
+					if (!ThaumcraftApi.decreaseClosestAura(w, x, y, z, this.type.auraPerUse, true))
+					{
+						// Insufficient aura, or no nearby node.
+						damage = wear + this.type.auraPerUse * this.type.wearTicksPerAura;
+						fluxMod = 1 + w.rand.nextInt(this.type.wearTicksPerAura);
+					}
+					wearTicks = 0;				
+				}
+				
+				tag.setByte("wearTicks", (byte)wearTicks);
 			}
-			
-			tag.setByte("wearTicks", (byte)wearTicks);
+		}
+		else
+		{
+			damage += 2;
 		}
 		
 		frame.setItemDamage(frame.getItemDamage() + damage);
