@@ -1,3 +1,4 @@
+1.4.4
 Made greatwood & silverwood planks fireproof by default - added a config option to toggle it.
 Added Nuggets - Iron, Copper, Tin, Silver, Lead. Should craft into 1st ore dictionary ingot of appropriate type.
 Added Shards - Diamond, Emerald.
