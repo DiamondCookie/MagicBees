@@ -68,6 +68,7 @@
     <entry key="tb.frame.metabolic">Metabolic Frame</entry>
     <entry key="tb.frame.necrotic">Necrotic Frame</entry>
     <entry key="tb.frame.temporal">Temporal Frame</entry>
+    <entry key="tb.frame.oblivion">Oblivion Frame</entry>
 
     <!-- Capsule names -->
     <entry key="tb.capsule.magic">Magic Capsule</entry>
@@ -147,8 +148,8 @@
     <entry key="thaumicbees.speciesFlux.description">"I thought they would help clean up, but it only makes things worse!"|Kreicus, Apprentice Thaumaturge</entry>
     <entry key="thaumicbees.speciesNode">Node</entry>
     <entry key="thaumicbees.speciesNode.description">Having undergone a freak mutation, these bees now attract magic to them.|Apinomicon</entry>
-    <entry key="thaumicbees.speciesAura">Aura</entry>
-    <entry key="thaumicbees.speciesAura.description">The hum of the hive is magical, and over time is absorbed by nearby nodes.</entry>
+    <entry key="thaumicbees.speciesRejuvenating">Rejuvenating</entry>
+    <entry key="thaumicbees.speciesRejuvenating.description">The hum of the hive is magical, and over time is absorbed by nearby nodes.|Apinomicon</entry>
     <entry key="thaumicbees.speciesSkulking">Skulking</entry>
     <entry key="thaumicbees.speciesSkulking.description">These bees have become xenophobic and bad-tempered. Use caution.|Apinomicon</entry>
     <entry key="thaumicbees.speciesBrainy">Brainy</entry>
@@ -170,7 +171,7 @@
     <entry key="thaumicbees.speciesMinium">Minium</entry>
     <entry key="thaumicbees.speciesMinium.description">"They're the least of your concern. Like, the Minium concern! ... get it?"|MysteriousAges, Former Comedian</entry>
     <entry key="thaumicbees.speciesSpirit">Spirit</entry>
-    <entry key="thaumicbees.speciesSpirit.description"></entry>
+    <entry key="thaumicbees.speciesSpirit.description">It is said these bees are able to contact the dead.|Apinomicon</entry>
     <entry key="thaumicbees.speciesSoul">Soul</entry>
     <entry key="thaumicbees.speciesSoul.description">"The Dread Pirate Roberts has come for your SOOOOOOULS!"|Dread Pirate Roberts</entry>
     <entry key="thaumicbees.speciesIron">Iron</entry>

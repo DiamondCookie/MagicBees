@@ -17,7 +17,7 @@
     
 	<property name="mc.version"			value="1.4.7"/>
     <property name="forge.version"		value="6.6.0.507"/>
-    <property name="thaumicbees.version"	value="1.4.3c"/>
+    <property name="thaumicbees.version"	value="1.4.4"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />
@@ -118,13 +118,14 @@
 		<!-- Copy classes -->
         <copy todir="${classes.dir}/client">
 			<fileset dir="${mcp.dir}/reobf/minecraft">
-				<include name="**/thaumicbees/**" />
-				<include name="**/forestry/plugins/**" />
-				<include name="**/net/mysteriousages/**" />
-				
 				<exclude name="forestry/api/**" />
-				<exclude name="thaumcraft/**" />
 				
+				<include name="**/thaumicbees/**" />
+				<include name="**/net/mysteriousages/**" />
+
+                <include name="**/thaumcraft/api/IVisRepairable.class" />
+                <include name="**/thaumcraft/api/EnumTag.class" />
+                <include name="**/thaumcraft/api/ObjectTags.class" />
 			</fileset>
 		</copy>
 		

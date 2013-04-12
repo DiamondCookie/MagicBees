@@ -1,4 +1,9 @@
 Made greatwood & silverwood planks fireproof by default - added a config option to toggle it.
+Added Nuggets - Iron, Copper, Tin, Silver, Lead. Should craft into 1st ore dictionary ingot of appropriate type.
+Added Shards - Diamond, Emerald.
+Added 15 new bees. Have fun~ <3
+Added Equivalent Exchange 3 compatability! (It's 1 thing, don't get terribly excited.)
+New frame type! Search Strongholds for them.
 
 1.4.3c
 Thaumium Grafter now doubles your chance to get Greatwood & Silverwood saplings.
