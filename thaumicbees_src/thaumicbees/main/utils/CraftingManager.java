@@ -1,5 +1,7 @@
 package thaumicbees.main.utils;
 
+import java.util.ArrayList;
+
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
@@ -12,11 +14,13 @@ import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
+import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.Config;
+import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ShapelessBeeInfusionCraftingRecipe;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -35,6 +39,9 @@ import net.minecraftforge.liquids.LiquidContainerData;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class CraftingManager
 {
@@ -113,7 +120,68 @@ public class CraftingManager
 			'D', Block.dirt,
 			'w', Config.wax.getStackForType(WaxType.SOUL)
 		});
+
+		if (OreDictionary.getOres("ingotCopper").size() <= 0)
+		{
+			NuggetType.COPPER.setActive(false);
+		}
+		if (OreDictionary.getOres("ingotTin").size() <= 0)
+		{
+			NuggetType.TIN.setActive(false);
+		}
+		if (OreDictionary.getOres("ingotSilver").size() <= 0)
+		{
+			NuggetType.SILVER.setActive(false);
+		}
+		if (OreDictionary.getOres("ingotLead").size() <= 0)
+		{
+			NuggetType.LEAD.setActive(false);
+		}
+
+		if (NuggetType.COPPER.isActive())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotCopper").get(0), new Object[] {
+				"xxx", "xxx", "xxx",
+				'x', "nuggetCopper"
+			}));
+		}
+		if (NuggetType.TIN.isActive())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotTin").get(0), new Object[] {
+				"xxx", "xxx", "xxx",
+				'x', "nuggetTin"
+			}));
+		}
+		if (NuggetType.SILVER.isActive())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotSilver").get(0), new Object[] {
+				"xxx", "xxx", "xxx",
+				'x', "nuggetSilver"
+			}));
+		}
+		if (NuggetType.LEAD.isActive())
+		{
+			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotLead").get(0), new Object[] {
+				"xxx", "xxx", "xxx",
+				'x', "nuggetLead"
+			}));
+		}
 		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.ingotIron), new Object[] {
+			"xxx", "xxx", "xxx",
+			'x', "nuggetIron"
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.diamond), new Object[] {
+			"xxx", "xxx", "xxx",
+			'x', "shardDiamond"
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.emerald), new Object[] {
+			"xxx", "xxx", "xxx",
+			'x', "shardEmerald"
+		}));
+
 		if (ThaumcraftHelper.isActive())
 		{
 			// Slabs

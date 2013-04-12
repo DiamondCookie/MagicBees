@@ -16,7 +16,7 @@ public enum BeeClassification implements IClassification
 	SUPERNATURAL("Supernatural", "Occultus"),
 	SCHOLARLY("Scholarly", "Docto"),
 	THAUMIC("Thaumic", "Thaumis"),
-	SKULKING("Skulking", ""),
+	SKULKING("Skulking", "Malevolens"),
 	VIS("Vis", "Vis"),
 	TIME("Time", "Tempestivus"),
 	SOUL("Soul", "Animus"),

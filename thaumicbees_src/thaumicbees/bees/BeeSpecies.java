@@ -71,7 +71,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 			BeeClassification.VIS, 0x004c99, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	NODE("Node", "conficiens",
 			BeeClassification.VIS, 0xFFF266, 0xFF8CE9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	AURA("Aura", "arcanus vitae",
+	REJUVENATING("Rejuvenating", "arcanus vitae",
 			BeeClassification.VIS, 0x91D0D9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	SKULKING("Skulking", "malevolens",
 			BeeClassification.SKULKING, 0x524827, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -143,7 +143,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 			PURE.setInactive();
 			FLUX.setInactive();
 			NODE.setInactive();
-			AURA.setInactive();
+			REJUVENATING.setInactive();
 			BRAINY.setInactive();
 			GOSSAMER.setInactive();
 			WISPY.setInactive();
@@ -247,8 +247,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 		NODE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
 			.setGenome(BeeGenomeManager.getTemplateNode())
 			.register();
-		AURA.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
-			.setGenome(BeeGenomeManager.getTemplateNode())
+		REJUVENATING.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
+			.setGenome(BeeGenomeManager.getTemplateRejuvinating())
 			.register();
 		SKULKING.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
 			.setGenome(BeeGenomeManager.getTemplateSkulking())
@@ -357,7 +357,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 	private String uid;
 	private boolean dominant;
 	
-	private final static boolean defaultSecretSetting = false;
+	private final static boolean defaultSecretSetting = true;
 	
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{

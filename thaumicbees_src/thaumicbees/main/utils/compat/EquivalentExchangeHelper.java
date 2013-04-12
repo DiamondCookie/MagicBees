@@ -1,8 +1,9 @@
 package thaumicbees.main.utils.compat;
 
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.FMLLog;
 import thaumicbees.main.Config;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 
 public class EquivalentExchangeHelper
 {
@@ -15,7 +16,7 @@ public class EquivalentExchangeHelper
 	
 	public static void init()
 	{
-		if (cpw.mods.fml.common.Loader.isModLoaded("Thaumcraft"))
+		if (Loader.isModLoaded("EE3"))
 		{
 			isEquivalentExchangePresent = true;
 		}

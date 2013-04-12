@@ -174,27 +174,28 @@ public class BeeMutation implements IBeeMutation
 				.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WANING_HALF, MoonPhase.WANING_HALF);
 			BeeMutation.Node1 = new BeeMutation(BeeSpecies.PURE, BeeSpecies.FLUX, BeeSpecies.NODE, 2)
 				.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WAXING_HALF);
-			
-			BeeMutation.Aura = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Industrious"), BeeSpecies.AURA, 3)
-				.setMoonPhaseRestricted(MoonPhase.WANING_CRESCENT, MoonPhase.WANING_CRESCENT);
-			BeeMutation.Aura1 = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Industrious"), BeeSpecies.AURA, 3)
-				.setMoonPhaseRestricted(MoonPhase.WAXING_CRESCENT, MoonPhase.WAXING_CRESCENT);
-			
+
 			if (ExtraBeesHelper.isActive())
 			{
 				BeeMutation.Brainy = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("rotten"), BeeSpecies.BRAINY, 12);
 				BeeMutation.Gossamer = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("ancient"), BeeSpecies.GOSSAMER, 10);
 				BeeMutation.Batty = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("rock"), BeeSpecies.BATTY, 14);
+				BeeMutation.Aura = new BeeMutation(BeeSpecies.VIS, Allele.getExtraSpecies("energetic"), BeeSpecies.REJUVENATING, 3);
+				BeeMutation.Aura1 = new BeeMutation(BeeSpecies.VIS, Allele.getExtraSpecies("energetic"), BeeSpecies.REJUVENATING, 3);
 			}
 			else
 			{
 				BeeMutation.Brainy = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Sinister"), BeeSpecies.BRAINY, 10);
 				BeeMutation.Gossamer = new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.SUPERNATURAL, BeeSpecies.GOSSAMER, 10);
 				BeeMutation.Batty = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Frugal"), BeeSpecies.BATTY, 11);
+				BeeMutation.Aura = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Industrious"), BeeSpecies.REJUVENATING, 3);
+				BeeMutation.Aura1 = new BeeMutation(BeeSpecies.VIS, Allele.getBaseSpecies("Industrious"), BeeSpecies.REJUVENATING, 3);
 			}
-				
+
 			BeeMutation.Gossamer.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_CRESCENT);
 			BeeMutation.Wispy = new BeeMutation(BeeSpecies.GOSSAMER, Allele.getBaseSpecies("Cultivated"), BeeSpecies.WISPY, 8);
+			BeeMutation.Aura.setMoonPhaseRestricted(MoonPhase.WANING_CRESCENT, MoonPhase.WANING_CRESCENT);
+			BeeMutation.Aura1.setMoonPhaseRestricted(MoonPhase.WAXING_CRESCENT, MoonPhase.WAXING_CRESCENT);
 		}
 		else
 		{

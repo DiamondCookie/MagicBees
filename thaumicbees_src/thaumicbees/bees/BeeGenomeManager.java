@@ -333,11 +333,11 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
-	public static IAllele[] getTemplateAura()
+	public static IAllele[] getTemplateRejuvinating()
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AURA;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.REJUVENATING;
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeCharge;
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");

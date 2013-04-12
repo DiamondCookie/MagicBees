@@ -39,7 +39,10 @@ public class ItemNugget extends Item
 	{
 		for (NuggetType type : NuggetType.values())
 		{
-			list.add(new ItemStack(this.itemID, 1, type.ordinal()));
+			if (type.isActive())
+			{
+				list.add(new ItemStack(this.itemID, 1, type.ordinal()));
+			}
 		}
 	}
 	

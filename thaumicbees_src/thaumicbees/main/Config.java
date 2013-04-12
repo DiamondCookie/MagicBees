@@ -49,6 +49,7 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -64,7 +65,7 @@ public class Config
 	public boolean AreMagicPlanksFlammable;
 	public boolean UseImpregnatedStickInTools;
 	public String ThaumaturgeExtraItems;
-	public int capsuleStackSizeMax;
+	public int CapsuleStackSizeMax;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -240,7 +241,7 @@ public class Config
 			}
 		}
 		
-		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, tbConfig.getItem("magicCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
+		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, tbConfig.getItem("magicCapsule", itemIDBase++).getInt(), this.CapsuleStackSizeMax);
 		
 		pollen = new ItemPollen(tbConfig.getItem("pollen", itemIDBase++).getInt());
 		
@@ -276,7 +277,7 @@ public class Config
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
 		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("jellyBabies");
 		
-		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.capsuleStackSizeMax);
+		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.CapsuleStackSizeMax);
 
 		{
 			int scoopID = tbConfig.getItem("thaumiumScoop", itemIDBase++).getInt();
@@ -323,7 +324,7 @@ public class Config
 		p = tbConfig.get("general", "capsuleStackSize", 64);
 		p.comment = "Allows you to edit the stack size of the capsules in ThaumicBees if using GregTech, \n" +
 				"or the reduced capsule size in Forestry & Railcraft. Default: 64";
-		this.capsuleStackSizeMax = p.getInt();
+		this.CapsuleStackSizeMax = p.getInt();
 		
 		p = tbConfig.get("general", "disableVersionCheck", false);
 		p.comment = "Set to true to stop ThaumicBees from checking for updates.";
