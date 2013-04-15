@@ -1,3 +1,7 @@
+1.4.5
+Added the Jade Moon Dial - tells you what moon phase it currently is for breeding purposes.
+Added a creative menu tab for certain Thaumic Bees items - misc resources, capsules, tools.
+
 1.4.4b
 Ported to 1.5! Wooo!
 

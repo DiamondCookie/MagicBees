@@ -120,6 +120,13 @@ public class CraftingManager
 			'D', Block.dirt,
 			'w', Config.wax.getStackForType(WaxType.SOUL)
 		});
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Config.moonDial), new Object[] {
+			"rqr", "qDq", "rqr",
+			'r', Item.redstone,
+			'q', Item.netherQuartz,
+			'D', "dyeGreen"
+		}));
 
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
 		{

@@ -42,13 +42,18 @@ public enum MoonPhase
 		return flag;
 	}
 	
-	public String getName()
+	public String getLocalizedName()
 	{
 		return LocalizationManager.getLocalizedString("tb.moon." + this.phaseName);
 	}
 	
 	public static MoonPhase getMoonPhase(World w)
 	{
-		return MoonPhase.values()[(int)((w.getWorldTime() - 0) / 24000L) % 8];
+		return getMoonPhaseFromTime(w.getWorldTime());
+	}
+	
+	public static MoonPhase getMoonPhaseFromTime(long time)
+	{
+		return MoonPhase.values()[(int)((time - 6000) / 24000L) % 8];
 	}
 }

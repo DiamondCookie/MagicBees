@@ -5,6 +5,7 @@
     <entry key="item.thaumicbees:jellyBabies.name">Handful of Jelly Babies</entry>
     <entry key="item.thaumicbees:thaumiumScoop.name">Thaumium Scoop</entry>
     <entry key="item.thaumicbees:thaumiumGrafter.name">Thaumium Grafter</entry>
+    <entry key="item.moonDial.name">Jade Moon Dial</entry>
 
     <!-- Block names -->
 	<entry key="tile.tb.planks.greatwood.name">Greatwood Planks</entry>
@@ -99,7 +100,7 @@
     <!-- Moon Phases -->
     <entry key="tb.moon.full">Full Moon</entry>
     <entry key="tb.moon.gibbousWaning">Waning Gibbous</entry>
-    <entry key="tb.moon.gibousWaxing">Waxing Gibbous</entry>
+    <entry key="tb.moon.gibbousWaxing">Waxing Gibbous</entry>
     <entry key="tb.moon.halfWaning">Waning Half</entry>
     <entry key="tb.moon.halfWaxing">Waxing Half</entry>
     <entry key="tb.moon.crescentWaning">Waning Crescent</entry>
@@ -108,6 +109,7 @@
 
     <!-- Miscellaneous names -->
     <entry key="tb.backpack.thaumaturge">Thaumaturge's Backpack</entry>
+    <entry key="itemGroup.thaumicBees">Thaumic Bees</entry>
 
     <!-- Species names -->
     <entry key="thaumicbees.speciesEsoteric">Esoteric</entry>

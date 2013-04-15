@@ -537,7 +537,7 @@ public class ThaumcraftHelper
 			ObjectTags tags;
 			
 			tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.PLANT, 10).add(EnumTag.INSECT, 10);
-			ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_StartNode))
+			ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_STARTNODE))
 				.setParents(ResearchList.getResearch("UTFT"))
 				.registerResearchItem();
 			
@@ -548,7 +548,7 @@ public class ThaumcraftHelper
 			
 			tags = new ObjectTags().add(EnumTag.INSECT, 15).add(EnumTag.MAGIC, 5).add(EnumTag.WATER, 5).add(EnumTag.EARTH, 5)
 					.add(EnumTag.WIND, 5).add(EnumTag.FIRE, 5);
-			ResearchItem beeInfusion = new ResearchItem("BEEINFUSION", tags, 5, 3, Config.miscResources.getStackForType(ResourceType.RESEARCH_BeeInfusion))
+			ResearchItem beeInfusion = new ResearchItem("BEEINFUSION", tags, 5, 3, Config.miscResources.getStackForType(ResourceType.RESEARCH_BEEINFUSION))
 				.setParents(starkHint).setHidden()
 				.registerResearchItem();
 			

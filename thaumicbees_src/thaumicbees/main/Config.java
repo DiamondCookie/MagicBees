@@ -23,6 +23,7 @@ import thaumicbees.item.ItemCrystalAspect;
 import thaumicbees.item.ItemDrop;
 import thaumicbees.item.ItemMagicHiveFrame;
 import thaumicbees.item.ItemMiscResources;
+import thaumicbees.item.ItemMoonDial;
 import thaumicbees.item.ItemNugget;
 import thaumicbees.item.ItemPollen;
 import thaumicbees.item.ItemPropolis;
@@ -35,6 +36,7 @@ import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.TabThaumicBees;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -76,6 +78,7 @@ public class Config
 	public static ItemThaumiumScoop thaumiumScoop;
 	public static ItemThaumiumGrafter thaumiumGrafter;
 	public static ItemNugget nuggets;
+	public static ItemMoonDial moonDial;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
@@ -285,8 +288,9 @@ public class Config
 			}
 		}
 		
+		moonDial = new ItemMoonDial(tbConfig.getItem("moonDial", itemIDBase++).getInt());
+		
 		// Other tools I might need in the future
-		itemIDBase++;
 		itemIDBase++;
 		
 		nuggets = new ItemNugget(tbConfig.getItem("beeNuggets", itemIDBase++).getInt());

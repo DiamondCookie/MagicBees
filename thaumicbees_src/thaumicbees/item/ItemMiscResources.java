@@ -7,6 +7,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.TabThaumicBees;
 import thaumicbees.main.utils.VersionInfo;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -23,7 +25,7 @@ public class ItemMiscResources extends Item
 	{
 		super(ID);
 		this.setUnlocalizedName("tb.miscResources");
-		this.setCreativeTab(CreativeTabs.tabMaterials);
+		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setHasSubtypes(true);
 	}
 	

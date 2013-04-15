@@ -10,6 +10,8 @@ import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.LiquidType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.TabThaumicBees;
 import thaumicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -34,7 +36,7 @@ public class ItemCapsule extends Item
 	{
 		super(itemId);
 		this.capsuleType = type;
-		this.setCreativeTab(Tabs.tabApiculture);
+		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(maxStackSize);
 	}

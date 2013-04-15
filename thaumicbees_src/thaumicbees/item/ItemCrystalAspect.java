@@ -8,7 +8,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import thaumcraft.api.EnumTag;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.TabThaumicBees;
 import thaumicbees.main.utils.VersionInfo;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -21,7 +23,7 @@ public class ItemCrystalAspect extends Item
 	public ItemCrystalAspect(int itemId)
 	{
 		super(itemId);
-		this.setCreativeTab(Tabs.tabApiculture);
+		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("crystalAspect");
 	}

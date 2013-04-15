@@ -11,8 +11,8 @@ public enum ResourceType
 	
 	// Dummy items for Thaumanomicon research icons.
 	//   These won't ever actually exist in-game, and so 
-	RESEARCH_StartNode("startNode", false),
-	RESEARCH_BeeInfusion("beeInfusion", false),
+	RESEARCH_STARTNODE("startNode", false),
+	RESEARCH_BEEINFUSION("beeInfusion", false),
 	;
 	
 	private ResourceType(String n, boolean show)
