@@ -2,10 +2,24 @@ package thaumicbees.main;
 
 import java.io.File;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemMultiTextureTile;
+import net.minecraft.item.ItemSlab;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Property;
+import net.minecraftforge.oredict.OreDictionary;
 import thaumicbees.block.BlockPlanks;
 import thaumicbees.block.BlockWoodSlab;
 import thaumicbees.item.ItemCapsule;
 import thaumicbees.item.ItemComb;
+import thaumicbees.item.ItemCrystalAspect;
 import thaumicbees.item.ItemDrop;
 import thaumicbees.item.ItemMagicHiveFrame;
 import thaumicbees.item.ItemMiscResources;
@@ -14,14 +28,12 @@ import thaumicbees.item.ItemPollen;
 import thaumicbees.item.ItemPropolis;
 import thaumicbees.item.ItemThaumiumGrafter;
 import thaumicbees.item.ItemThaumiumScoop;
-import thaumicbees.item.ItemSolidFlux;
 import thaumicbees.item.ItemWax;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.ResourceType;
-import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
@@ -29,27 +41,9 @@ import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import thaumicbees.storage.BackpackDefinition;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemMultiTextureTile;
-import net.minecraft.item.ItemSlab;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Property;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 /**
  * A class to hold some data related to mod state & functions.
@@ -76,7 +70,7 @@ public class Config
 	public static ItemPropolis propolis;
 	public static ItemDrop drops;
 	public static ItemPollen pollen;
-	public static ItemSolidFlux solidFlux;
+	public static ItemCrystalAspect solidFlux;
 	public static ItemMiscResources miscResources;
 	public static ItemFood jellyBaby;
 	public static ItemThaumiumScoop thaumiumScoop;
@@ -164,7 +158,7 @@ public class Config
 				planksWood = new BlockPlanks(plankId);
 		
 				Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames())
-					.setItemName(planksWood.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+					.setUnlocalizedName(planksWood.getUnlocalizedName2());
 		        Item.itemsList[planksWood.blockID] = item;
 		        
 		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
@@ -175,10 +169,10 @@ public class Config
 		        slabWoodHalf = new BlockWoodSlab(slabHalfId, false);
 		        
 		        item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false)
-		    		.setItemName(slabWoodHalf.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+		    		.setUnlocalizedName(slabWoodHalf.getUnlocalizedName2());
 			    Item.itemsList[slabWoodHalf.blockID] = item;
 			    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true)
-					.setItemName(slabWoodFull.getBlockName()).setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
+					.setUnlocalizedName(slabWoodFull.getUnlocalizedName2());
 			    Item.itemsList[slabWoodFull.blockID] = item;
 			    
 			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
@@ -209,7 +203,6 @@ public class Config
 		drops = new ItemDrop(tbConfig.getItem("drop", itemIDBase++).getInt());
 		miscResources = new ItemMiscResources(tbConfig.getItem("miscResources", itemIDBase++).getInt());
 		
-
 		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
 		BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), 80);
 		
@@ -249,7 +242,7 @@ public class Config
 			int crystalId = tbConfig.getItem("fluxCrystal", itemIDBase++).getInt();
 			if (ThaumcraftHelper.isActive())
 			{
-				solidFlux = new ItemSolidFlux(crystalId);
+				solidFlux = new ItemCrystalAspect(crystalId);
 			}
 		}
 		
@@ -275,7 +268,7 @@ public class Config
 
 		jellyBaby = new ItemFood(tbConfig.getItem("jellyBabies", itemIDBase++).getInt(), 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE).setIconIndex(19).setItemName("jellyBabies");
+		jellyBaby.setUnlocalizedName("thaumicbees:jellyBabies");
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.CapsuleStackSizeMax);
 
@@ -297,6 +290,7 @@ public class Config
 		itemIDBase++;
 		
 		nuggets = new ItemNugget(tbConfig.getItem("beeNuggets", itemIDBase++).getInt());
+		nuggets.setUnlocalizedName("beeNuggets");
 		
 		OreDictionary.registerOre("nuggetIron", nuggets.getStackForType(NuggetType.IRON));
 		OreDictionary.registerOre("nuggetCopper", nuggets.getStackForType(NuggetType.COPPER));
@@ -314,7 +308,7 @@ public class Config
 		p = tbConfig.get("general", "backpack.thaumaturge.additionalItems", "");
 		p.comment = "Add additional items to the Thaumaturge's Backpack." +
 				"\n Format is the same as Forestry's: id:meta;id;id:meta (etc)";
-		this.ThaumaturgeExtraItems = p.value;
+		this.ThaumaturgeExtraItems = p.getString();
 		
 		p = tbConfig.get("general", "backpack.forestry.addThaumcraftItems", true);
 		p.comment = "Set to true if you want ThaumicBees to add several Thaumcraft blocks & items to Forestry backpacks." +

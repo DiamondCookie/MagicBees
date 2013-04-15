@@ -8,13 +8,17 @@ import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
 import thaumicbees.item.types.CapsuleType;
 import thaumicbees.item.types.LiquidType;
+import thaumicbees.item.types.PlankType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.LiquidContainerData;
@@ -30,7 +34,6 @@ public class ItemCapsule extends Item
 	{
 		super(itemId);
 		this.capsuleType = type;
-		this.setTextureFile(CommonProxy.TCBEES_LIQUIDS_IMAGE);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(maxStackSize);
@@ -44,7 +47,7 @@ public class ItemCapsule extends Item
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)
 	{
-		return LiquidType.values()[itemStack.getItemDamage()].getDisplayName() + " " + this.capsuleType.getName();
+		return LiquidType.values()[itemStack.getItemDamage()].getDisplayName() + " " + this.capsuleType.getLocalizedName();
 	}
 
 	public ItemStack getCapsuleForLiquid(LiquidType l)
@@ -71,26 +74,36 @@ public class ItemCapsule extends Item
 	{
 		return true;
 	}
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":capsule" + this.capsuleType.getName().substring(0, 1).toUpperCase() 
+    			+ this.capsuleType.getName().substring(1));
+    	for (LiquidType t : LiquidType.values())
+    	{
+    		if (t != LiquidType.EMPTY && t.liquidIcon == null)
+    		{
+    			t.liquidIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":liquids/" + t.liquidID);
+    		}
+    	}
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getIconFromDamageForRenderPass(int metadata, int pass)
+	public Icon getIconFromDamageForRenderPass(int metadata, int pass)
 	{
-		int index = 0;
-		if (pass == 0)
+		Icon i = this.itemIcon;
+		if (metadata != 0 && pass == 0)
 		{
-			index = LiquidType.values()[metadata].iconIdx;
+			i = LiquidType.values()[Math.max(0, Math.min(metadata, LiquidType.values().length - 1))].liquidIcon;
 		}
-		else
-		{
-			index = capsuleType.iconIdx;
-		}
-		return index;
+		return i;
 	}
 
 	@Override
 	public int getRenderPasses(int metadata)
 	{
-		return 2;
+		return (metadata == 0) ? 1 : 2;
 	}
 }

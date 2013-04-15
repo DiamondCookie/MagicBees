@@ -5,19 +5,22 @@ import java.util.List;
 import thaumicbees.item.types.CombType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.ForestryHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ItemComb extends Item
 {
 	public ItemComb(int itemID)
 	{
 		super(itemID);
-		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
@@ -55,20 +58,23 @@ public class ItemComb extends Item
 	@Override
 	public int getRenderPasses(int meta)
 	{
-		int passes = 2;
-		return passes;
+		return 2;
 	}
+	
+	@SideOnly(Side.CLIENT)
+	private Icon secondIcon;
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":beeCombs.0");
+        this.secondIcon= par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":beeCombs.1");
+    }
 
 	@Override
-	public int getIconIndex(ItemStack stack, int pass)
+	public Icon getIcon(ItemStack stack, int pass)
 	{
-		int idx = 107;
-		// 107, 108 are the base forestry honeycomb textures.
-		if (pass >= 1)
-		{
-			idx = 108;
-		}
-		return idx;
+		return (pass == 0) ? itemIcon : secondIcon;
 	}
 
 	@Override

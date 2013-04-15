@@ -2,6 +2,8 @@ package thaumicbees.main.render;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
+
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 
@@ -70,7 +72,7 @@ public class BeeRenderEffect extends EntityFX
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, blendmode);
 
-		ForgeHooksClient.bindTexture(texture, 0);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 

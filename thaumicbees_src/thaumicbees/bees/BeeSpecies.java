@@ -1,16 +1,14 @@
 package thaumicbees.bees;
 
-import forestry.api.apiculture.*;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.core.ItemInterface;
-import forestry.api.genetics.*;
-import forestry.api.genetics.IClassification.EnumClassLevel;
-
 import java.util.HashMap;
+import java.util.Locale;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
+import net.minecraftforge.oredict.OreDictionary;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.NuggetType;
@@ -21,15 +19,21 @@ import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IIconProvider;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IClassification;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
-
-public enum BeeSpecies implements IAlleleBeeSpecies
+public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 {
 	ESOTERIC("Esoteric", "secretiore",
 			BeeClassification.ARCANE, 0x001099, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -357,6 +361,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 	private String uid;
 	private boolean dominant;
 	
+	@SideOnly(Side.CLIENT)
+	private Icon[][] icons;
+	
 	private final static boolean defaultSecretSetting = true;
 	
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
@@ -419,87 +426,84 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 		return BeeManager.beeInterface.getBeeStack(BeeManager.beeInterface.getBee(null, BeeManager.beeInterface.templateAsGenome(genomeTemplate)), beeType);
 	}
 
+	@Override
 	public String getName()
 	{
 		return LocalizationManager.getLocalizedString(getUID());
 	}
 
+	@Override
 	public String getDescription()
 	{
 		return LocalizationManager.getLocalizedString(getUID() + ".description");
 	}
 
-	public int getBodyType()
-	{
-		return bodyType;
-	}
-
-	public int getPrimaryColor()
-	{
-		return primaryColour;
-	}
-
-	public int getSecondaryColor()
-	{
-		return secondaryColour;
-	}
-
+	@Override
 	public EnumTemperature getTemperature()
 	{
 		return temperature;
 	}
 
+	@Override
 	public EnumHumidity getHumidity()
 	{
 		return humidity;
 	}
 
+	@Override
 	public boolean hasEffect()
 	{
 		return hasEffect;
 	}
-	
+
 	public BeeSpecies setInactive()
 	{
 		this.isActive = false;
 		return this;
 	}
-	
+
 	public boolean isActive()
 	{
 		return this.isActive;
 	}
 
+	@Override
 	public boolean isSecret()
 	{
 		return isSecret;
 	}
 
+	@Override
 	public boolean isCounted()
 	{
 		return isCounted;
 	}
 
+	@Override
 	public String getBinomial()
 	{
 		return binomial;
 	}
 
+	@Override
 	public String getAuthority()
 	{
 		return authority;
 	}
 
+	@Override
 	public IClassification getBranch()
 	{
 		return this.branch;
 	}
 
+	@Override
 	public HashMap getProducts()
 	{
 		return products;
 	}
 
+	@Override
 	public HashMap getSpecialty()
 	{
 		return specialty;
@@ -518,11 +522,11 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 	}
 
 	@Override
-	public boolean isJubilant(World world, int biomeid, int x, int y, int z)
+	public boolean isJubilant(IBeeGenome genome, IBeeHousing housing)
 	{
 		return true;
 	}
-	
+
 	private BeeSpecies register()
 	{
 		BeeManager.breedingManager.registerBeeTemplate(this.getGenome());
@@ -533,12 +537,59 @@ public enum BeeSpecies implements IAlleleBeeSpecies
 		return this;
 	}
 
-	/**
-	 * @deprecated Method getAchievement is deprecated
-	 */
+	@Override
+	public int getIconColour(int renderPass)
+	{
+		int value = 0xffffff;
+		if (renderPass == 0) {
+			value = this.primaryColour;
+		}
+		else if (renderPass == 1) {
+			value = this.secondaryColour;
+		}
+		return value;
+	}
 
-	public Achievement getAchievement()
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIconProvider getIconProvider()
+	{
+		return this;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIcon(EnumBeeType type, int renderPass)
+	{
+		return icons[type.ordinal()][Math.min(renderPass, 2)];
+	}
+
+	public void registerItemIcons(IconRegister itemMap)
+	{
+		this.icons = new Icon[EnumBeeType.values().length][3];
+		Icon outline = itemMap.registerIcon(ForestryHelper.Name + ":bees/outline");
+		Icon body1 = itemMap.registerIcon(ForestryHelper.Name + ":bees/outline");
+
+		for (int i = 0; i < EnumBeeType.values().length; i++) {
+			if(EnumBeeType.values()[i] == EnumBeeType.NONE)
+				continue;
+			
+			icons[i][0] = outline;
+			icons[i][1] = body1;
+			icons[i][2] = itemMap.registerIcon(ForestryHelper.Name + ":bees/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
+		}
+	}
+
+	/// --------- Unused Functions ---------------------------------------------
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIcon(short texUID)
 	{
 		return null;
 	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerTerrainIcons(IconRegister terrainMap) { }
 }

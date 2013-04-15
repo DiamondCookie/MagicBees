@@ -115,6 +115,7 @@ public class ThaumcraftHelper
 	}
 	
 	private static boolean isThaumcraftPresent = false;
+	public static final String Name = "Thaumcraft";
 	
 	public static boolean isActive()
 	{
@@ -123,7 +124,7 @@ public class ThaumcraftHelper
 	
 	public static void init()
 	{
-		if (cpw.mods.fml.common.Loader.isModLoaded("Thaumcraft"))
+		if (cpw.mods.fml.common.Loader.isModLoaded(Name))
 		{
 			isThaumcraftPresent = true;
 			
@@ -165,7 +166,7 @@ public class ThaumcraftHelper
 
 	public static void addItemsToBackpack()
 	{
-		if (ThaumicBees.getConfig().AddThaumcraftItemsToBackpacks)
+		if (isActive() && ThaumicBees.getConfig().AddThaumcraftItemsToBackpacks)
 		{
 			// Add all shards and Thaumium to miner's backpack
 			String ids = Config.tcShard.itemID + ":" + -1 + ";"

@@ -2,6 +2,9 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import thaumcraft.api.AuraNode;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
@@ -9,8 +12,11 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,16 +35,15 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		super(itemID);
 		this.type = frameType;
 		this.setMaxDamage(this.type.maxDamage);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setIconIndex(this.type.iconIdx);
 		this.setMaxStackSize(1);
+		this.setUnlocalizedName("frame" + frameType.getName());
 	}
-
-	@Override
-	public String getItemDisplayName(ItemStack itemStack)
-	{
-		return this.type.getName();
-	}
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":frame" + type.getName());
+    }
 	
 	// --------- IHiveFrame functions -----------------------------------------
 	
@@ -117,31 +122,31 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 	}
 	
 	@Override
-	public float getTerritoryModifier(IBeeGenome genome)
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier)
 	{
 		return this.type.territoryMod;
 	}
 
 	@Override
-	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate)
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier)
 	{
 		return this.type.mutationMod;
 	}
 
 	@Override
-	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate)
+	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier)
 	{
 		return this.type.lifespanMod;
 	}
 
 	@Override
-	public float getProductionModifier(IBeeGenome genome)
+	public float getProductionModifier(IBeeGenome genome, float currentModifier)
 	{
 		return this.type.productionMod;
 	}
 
 	@Override
-	public float getFloweringModifier(IBeeGenome genome)
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier)
 	{
 		return this.type.floweringMod;
 	}

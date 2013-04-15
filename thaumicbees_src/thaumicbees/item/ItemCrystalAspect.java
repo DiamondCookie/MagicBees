@@ -9,19 +9,21 @@ import forestry.api.core.Tabs;
 import thaumcraft.api.EnumTag;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemSolidFlux extends Item
+public class ItemCrystalAspect extends Item
 {
-	public ItemSolidFlux(int itemId)
+	public ItemCrystalAspect(int itemId)
 	{
 		super(itemId);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setIconIndex(18);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("crystalAspect");
 	}
 	
 	@Override
@@ -37,12 +39,12 @@ public class ItemSolidFlux extends Item
 			list.add(new ItemStack(this.itemID, 1, tag.id));
 		}
 	}
-
-	@Override
-	public String getItemDisplayName(ItemStack stack)
-	{
-		return String.format(LocalizationManager.getLocalizedString("tb.resource.crystalFlux"), EnumTag.get(stack.getItemDamage()).name);
-	}
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName + ":crystalAspect");
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -51,4 +53,9 @@ public class ItemSolidFlux extends Item
 		return EnumTag.get(stack.getItemDamage()).color;
 	}
 
+	@Override
+	public String getItemDisplayName(ItemStack stack)
+	{
+		return String.format(LocalizationManager.getLocalizedString("tb.resource.crystalAspect"), EnumTag.get(stack.getItemDamage()).name);
+	}
 }

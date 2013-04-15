@@ -7,17 +7,23 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.ForestryHelper;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ItemMiscResources extends Item
 {
+	private Icon[] icons = new Icon[ResourceType.values().length];
+	
 	public ItemMiscResources(int ID)
 	{
 		super(ID);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setCreativeTab(Tabs.tabApiculture);
+		this.setUnlocalizedName("tb.miscResources");
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 		this.setHasSubtypes(true);
 	}
 	
@@ -43,23 +49,27 @@ public class ItemMiscResources extends Item
 			}
 		}
 	}
-
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	for (int i = 0; i < ResourceType.values().length; i++)
+    	{
+    		this.icons[i] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":" + ResourceType.values()[i].getName());
+    	}
+    }
+    
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getIconFromDamage(int meta)
+	public Icon getIconFromDamage(int meta)
 	{
-		int iconIdx = 0;
-		if (meta >= 0 && meta < ResourceType.values().length)
-		{
-			iconIdx = ResourceType.values()[meta].iconIdx;
-		}
-		return iconIdx;
+		return icons[meta];
 	}
 
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return ResourceType.values()[stack.getItemDamage()].getName();
+		return ResourceType.values()[stack.getItemDamage()].getLocalizedName();
 	}
 
 }

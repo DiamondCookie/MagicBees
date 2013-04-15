@@ -19,9 +19,7 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable
 		super(itemID);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(30);
-		this.setIconIndex(20);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setItemName("tb.thaumiumScoop");
+		this.setUnlocalizedName("thaumicbees:thaumiumScoop");
 		this.setCreativeTab(forestry.api.core.Tabs.tabApiculture);
 	}
 

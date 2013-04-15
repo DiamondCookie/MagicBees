@@ -244,9 +244,9 @@ public class BeeMutation implements IBeeMutation
 		BeeManager.breedingManager.registerBeeMutation(this);
 	}
 
-	public int getChance(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1)
+	public float getChance(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1)
 	{
-		int finalChance = 0;
+		float finalChance = 0f;
 		float chance = this.baseChance * 1f;
 		
 		if (this.arePartners(allele0, allele1))
@@ -293,10 +293,10 @@ public class BeeMutation implements IBeeMutation
 			
 			finalChance = Math.round(chance
 					* housing.getMutationModifier((IBeeGenome) genome0,
-							(IBeeGenome) genome1)
+							(IBeeGenome) genome1, chance)
 					* BeeManager.breedingManager.getBeekeepingMode(housing.getWorld())
 							.getMutationModifier((IBeeGenome) genome0,
-									(IBeeGenome) genome1));
+									(IBeeGenome) genome1, chance));
 		}
 		
 		return finalChance;
@@ -317,7 +317,7 @@ public class BeeMutation implements IBeeMutation
 		return mutationTemplate;
 	}
 
-	public int getBaseChance()
+	public float getBaseChance()
 	{
 		return baseChance;
 	}

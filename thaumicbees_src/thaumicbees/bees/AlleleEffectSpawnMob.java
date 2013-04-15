@@ -218,9 +218,9 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	protected double[] randomMobSpawnCoords(World world, IBeeGenome bee, IBeeHousing housing)
 	{
 		double pos[] = new double[3];
-		pos[0] = housing.getXCoord() + (world.rand.nextDouble() * (bee.getTerritory()[0] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[0] / 2);
+		pos[0] = housing.getXCoord() + (world.rand.nextDouble() * (bee.getTerritory()[0] * housing.getTerritoryModifier(bee, 1f)) - bee.getTerritory()[0] / 2);
 		pos[1] = housing.getYCoord() + world.rand.nextInt(3) - 1;
-		pos[2] = housing.getZCoord() + (world.rand.nextDouble() * (bee.getTerritory()[2] * housing.getTerritoryModifier(bee)) - bee.getTerritory()[2] / 2);
+		pos[2] = housing.getZCoord() + (world.rand.nextDouble() * (bee.getTerritory()[2] * housing.getTerritoryModifier(bee, 1f)) - bee.getTerritory()[2] / 2);
 		return pos;
 	}
 }

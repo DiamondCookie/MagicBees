@@ -39,12 +39,12 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 		{
 			if (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID)
 			{
-				world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.SHIMMERLEAF.ordinal());
+				world.setBlockMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.SHIMMERLEAF.ordinal());
 				flag = true;
 			}
 			else if (blockDown == Block.sand.blockID)
 			{
-				world.setBlockAndMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.CINDERPEARL.ordinal());
+				world.setBlockMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.CINDERPEARL.ordinal());
 				flag = true;
 			}
 		}

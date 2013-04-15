@@ -2,9 +2,9 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">    
     <!-- Item names -->
-    <entry key="item.jellyBabies.name">Handful of Jelly Babies</entry>
-    <entry key="item.tb.thaumiumScoop.name">Thaumium Scoop</entry>
-    <entry key="item.tb.thaumiumGrafter.name">Thaumium Grafter</entry>
+    <entry key="item.thaumicbees:jellyBabies.name">Handful of Jelly Babies</entry>
+    <entry key="item.thaumicbees:thaumiumScoop.name">Thaumium Scoop</entry>
+    <entry key="item.thaumicbees:thaumiumGrafter.name">Thaumium Grafter</entry>
 
     <!-- Block names -->
 	<entry key="tile.tb.planks.greatwood.name">Greatwood Planks</entry>
@@ -59,16 +59,18 @@
     <entry key="tb.resource.fragment">Lore Fragment</entry>
     <entry key="tb.resource.lump">Aromatic Lump</entry>
     <entry key="tb.resource.fertilizer">Concentrated Compound</entry>
+    <entry key="tb.resource.startNode">Bees and Magic</entry>
+    <entry key="tb.resource.beeEnchant">Stark Infusion</entry>
     <entry key="tb.resource.crystalFlux">Crystalized %s Aspect</entry>
 
     <!-- Frames -->
-    <entry key="tb.frame.magic">Magic Frame</entry>
-    <entry key="tb.frame.resillient">Resilient Frame</entry>
-    <entry key="tb.frame.gentle">Gentle Frame</entry>
-    <entry key="tb.frame.metabolic">Metabolic Frame</entry>
-    <entry key="tb.frame.necrotic">Necrotic Frame</entry>
-    <entry key="tb.frame.temporal">Temporal Frame</entry>
-    <entry key="tb.frame.oblivion">Oblivion Frame</entry>
+    <entry key="item.frameMagic.name">Magic Frame</entry>
+    <entry key="item.frameResilient.name">Resilient Frame</entry>
+    <entry key="item.frameGentle.name">Gentle Frame</entry>
+    <entry key="item.frameMetabolic.name">Metabolic Frame</entry>
+    <entry key="item.frameNecrotic.name">Necrotic Frame</entry>
+    <entry key="item.frameTemporal.name">Temporal Frame</entry>
+    <entry key="item.frameOblivion.name">Oblivion Frame</entry>
 
     <!-- Capsule names -->
     <entry key="tb.capsule.magic">Magic Capsule</entry>

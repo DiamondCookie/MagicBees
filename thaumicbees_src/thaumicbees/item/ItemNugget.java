@@ -9,18 +9,24 @@ import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.VersionInfo;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ItemNugget extends Item
 {
+	@SideOnly(Side.CLIENT)
+	private Icon[] icons;
+	
 	public ItemNugget(int itemID)
 	{
 		super(itemID);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("beeNugget");
 	}
 	
 	public ItemStack getStackForType(NuggetType type)
@@ -46,16 +52,23 @@ public class ItemNugget extends Item
 		}
 	}
 	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	this.icons = new Icon[NuggetType.values().length];
+    	for (int i = 0; i < NuggetType.values().length; i++)
+    	{
+    		this.icons[i] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":nugget" 
+    				+ NuggetType.values()[i].name().substring(0, 1) 
+    				+ NuggetType.values()[i].name().substring(1).toLowerCase());
+    	}
+    }
+    
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getIconFromDamage(int meta)
+	public Icon getIconFromDamage(int meta)
 	{
-		int iconIdx = 0;
-		if (meta >= 0 && meta < NuggetType.values().length)
-		{
-			iconIdx = NuggetType.values()[meta].iconIdx;
-		}
-		return iconIdx;
+		return icons[meta];
 	}
 	
 	@Override

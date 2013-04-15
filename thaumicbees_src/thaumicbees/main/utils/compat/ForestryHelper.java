@@ -83,6 +83,8 @@ public class ForestryHelper
 		;
 	}
 	
+	public static final String Name = "Forestry";
+	
 	public static void getBlocks()
 	{
 		

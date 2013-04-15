@@ -5,22 +5,20 @@ import thaumicbees.main.utils.LocalizationManager;
 
 public enum NuggetType
 {
-	IRON(5),
-	COPPER(6),
-	TIN(7),
-	SILVER(8),
-	LEAD(9),
-	DIAMOND(10),
-	EMERALD(11),
+	IRON,
+	COPPER,
+	TIN,
+	SILVER,
+	LEAD,
+	DIAMOND,
+	EMERALD,
 	;
 	
 	private Item targetIngot;
-	public int iconIdx;
 	private boolean active; 
 	
-	private NuggetType(int idx)
+	private NuggetType()
 	{
-		this.iconIdx = idx;
 		this.active = true;
 	}
 	

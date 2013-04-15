@@ -1,3 +1,9 @@
+1.4.4b
+Ported to 1.5! Wooo!
+
+1.4.4a
+Fixed an isuse that caused GregTech to crash.
+
 1.4.4
 Made greatwood & silverwood planks fireproof by default - added a config option to toggle it.
 Added Nuggets - Iron, Copper, Tin, Silver, Lead. Should craft into 1st ore dictionary ingot of appropriate type.

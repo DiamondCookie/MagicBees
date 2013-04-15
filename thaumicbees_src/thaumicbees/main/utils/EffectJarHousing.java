@@ -19,15 +19,33 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public float getTerritoryModifier(IBeeGenome genome)
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier)
 	{
-		return 1;
+		return 0f;
 	}
 
 	@Override
-	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate)
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier)
+	{
+		return 0f;
+	}
+
+	@Override
+	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier)
 	{
 		return 0.5f;
+	}
+
+	@Override
+	public float getProductionModifier(IBeeGenome genome, float currentModifier)
+	{
+		return 0f;
+	}
+
+	@Override
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier)
+	{
+		return 0f;
 	}
 
 	@Override
@@ -46,24 +64,6 @@ public class EffectJarHousing implements IBeeHousing
 	public int getZCoord()
 	{
 		return this.jarEntity.zCoord;
-	}
-
-	@Override
-	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate)
-	{
-		return 0;
-	}
-
-	@Override
-	public float getProductionModifier(IBeeGenome genome)
-	{
-		return 0;
-	}
-
-	@Override
-	public float getFloweringModifier(IBeeGenome genome)
-	{
-		return 0;
 	}
 
 	@Override

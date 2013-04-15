@@ -4,21 +4,22 @@ import java.util.List;
 
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.main.CommonProxy;
+import thaumicbees.main.utils.compat.ForestryHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ItemPropolis extends Item
 {
 	public ItemPropolis(int id)
 	{
 		super(id);
-		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setIconIndex(98);
 		this.setHasSubtypes(true);
 	}
 	
@@ -41,6 +42,12 @@ public class ItemPropolis extends Item
 			list.add(this.getStackForType(type));
 		}
 	}
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":propolis.0");
+    }
 	
 	@Override
 	public int getColorFromItemStack(ItemStack stack, int pass)

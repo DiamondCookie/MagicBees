@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.Side;
  */
 public class VersionInfo
 {
-
+	public static final String ModName = "ThaumicBees";
 	public static final String Version = "@VERSION@";
 	public static final String Build = "@BUILD_NUMBER@";
 	public static final String MCVersion = "@MCVERSION@";

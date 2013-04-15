@@ -59,6 +59,6 @@ public class CompatabilityManager
 {	
 	public static void setupBackpacks()
 	{
-
+		ThaumcraftHelper.addItemsToBackpack();
 	}
 }

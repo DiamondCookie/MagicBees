@@ -6,20 +6,22 @@ import thaumicbees.item.types.DropType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.compat.ForestryHelper;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ItemDrop extends Item
 {
 	public ItemDrop(int itemID)
 	{
 		super(itemID);
-		this.setTextureFile(CommonProxy.FORESTRY_GFX_ITEMS);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
@@ -56,17 +58,21 @@ public class ItemDrop extends Item
 	{
 		return 2;
 	}
-
+	
+	@SideOnly(Side.CLIENT)
+	private Icon secondIcon;
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":honeyDrop.0");
+        this.secondIcon= par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":honeyDrop.1");
+    }
+    
 	@Override
-	public int getIconIndex(ItemStack stack, int pass)
+	public Icon getIcon(ItemStack stack, int pass)
 	{
-		int idx = 109;
-		// 109, 110 are the base forestry drop textures.
-		if (pass >= 1)
-		{
-			idx = 110;
-		}
-		return idx;
+		return (pass == 0) ? this.itemIcon : this.secondIcon;
 	}
 
 	@Override

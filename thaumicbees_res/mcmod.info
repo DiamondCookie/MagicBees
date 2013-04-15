@@ -4,9 +4,9 @@
   "version": "@MODVERSION@",
   "name": "ThaumicBees",
   "url": "http://bit.ly/XFDvLY",
-  "description": "Crossover mod for Forestry and Thaumcraft. Magic bees & more.",
+  "description": "Magic bees & more. Supports Thaumcraft, Equivalent Exchange 3",
   "authors": [ "MysteriousAges" ],
   "credits": "SirSengir, Azanor, Binnie & the Forestry Dev peeps",
-  "logoFile": "/gfx/thaumicbees/logo.png"
+  "logoFile": "/mods/thaumicbees/textures/logo.png"
 }
 ]

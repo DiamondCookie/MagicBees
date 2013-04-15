@@ -22,9 +22,7 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 		super(id);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(15);
-		this.setIconIndex(21);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
-		this.setItemName("tb.thaumiumGrafter");
+		this.setUnlocalizedName("thaumicbees:thaumiumGrafter");
 		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
 	}
 

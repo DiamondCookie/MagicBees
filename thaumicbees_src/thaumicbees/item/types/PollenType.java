@@ -5,19 +5,19 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum PollenType
 {
-	UNUSUAL("unusual",	0xA03059, 0xD8417B),
-	PHASED("phased",	0x456BA5, 0x4974B4),
+	UNUSUAL("unusual", 0xD8417B, 0xA03059),
+	PHASED("phased", 0x4974B4, 0x456BA5),
 	;
 	
 	private PollenType(String pName, int colourA, int colourB)
 	{
 		this.name = pName;
-		this.combColour[0] = colourA;
-		this.combColour[1] = colourB;
+		this.colour[0] = colourA;
+		this.colour[1] = colourB;
 	}
 	
 	private String name;
-	public int[] combColour = new int[2];
+	public int[] colour = new int[2];
 	
 	public String getName()
 	{

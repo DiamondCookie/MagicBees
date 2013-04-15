@@ -56,4 +56,10 @@ public class ItemArmorApiarist extends Item implements IArmorApiarist
 		ItemStack armorItem = player.inventory.armorInventory[0];
 		return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
 	}
+
+	@Override
+	public boolean protectPlayer(EntityPlayer player, ItemStack armor, String cause, boolean doProtect)
+	{
+		return false;
+	}
 }

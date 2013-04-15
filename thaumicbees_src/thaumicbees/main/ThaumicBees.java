@@ -21,7 +21,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import forestry.api.core.ItemInterface;
 
 @Mod(
-		modid="ThaumicBees",
+		modid=VersionInfo.ModName,
 		name="Thaumic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
@@ -39,10 +39,6 @@ public class ThaumicBees
 
 	private String configsPath;
 	private Config modConfig;
-
-	public ThaumicBees()
-	{
-	}
 
 	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -66,8 +62,6 @@ public class ThaumicBees
 		try
 		{
 			FMLLog.info("[ThaumicBees] Attempting to get Forestry's item graphics file...");
-			// Grab Forestry graphics file path
-			proxy.FORESTRY_GFX_ITEMS = ItemInterface.getItem("beeComb").getItem().getTextureFile();
 		}
 		catch (Exception e)
 		{

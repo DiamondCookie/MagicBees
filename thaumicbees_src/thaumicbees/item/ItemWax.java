@@ -2,22 +2,28 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.VersionInfo;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ItemWax extends Item
 {
+	@SideOnly(Side.CLIENT)
+	private Icon secondaryIcon;
+	
 	public ItemWax(int itemID)
 	{
 		super(itemID);
-		this.setTextureFile(CommonProxy.TCBEES_ITEMS_IMAGE);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
 	}
@@ -31,17 +37,19 @@ public class ItemWax extends Item
 	{
 		return new ItemStack(this, count, type.ordinal());
 	}
-
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":wax.0");
+    	this.secondaryIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":wax.1");
+    }
+    
 	@Override
-	public int getIconIndex(ItemStack stack, int pass)
+	@SideOnly(Side.CLIENT)
+	public Icon getIconFromDamage(int meta)
 	{
-		int idx = 1;
-		int meta = stack.getItemDamage();
-		if (meta >= 0 && meta < WaxType.values().length)
-		{
-			idx = (WaxType.values()[meta].sparkly) ? 0 : 1;
-		}
-		return idx;
+		return (WaxType.values()[meta].sparkly) ? this.secondaryIcon : this.itemIcon;
 	}
 	
 	@Override
