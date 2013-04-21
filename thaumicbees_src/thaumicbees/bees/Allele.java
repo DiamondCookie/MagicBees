@@ -39,10 +39,11 @@ public class Allele implements IAllele
 		Allele.flowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
 		if (ThaumcraftHelper.isActive())
 		{
+			FlowerProviderAuraNode provider = new FlowerProviderAuraNode();
 			Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
-			Allele.flowerAuraNode = new AlleleFlower("flowerAuraNode", new FlowerProviderAuraNode(), true);
-			Allele.flowerNodePurify = new AlleleFlower("flowerAuraNodePurify", new FlowerProviderAuraNode(), false);
-			Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", new FlowerProviderAuraNode(), false);
+			Allele.flowerAuraNode = new AlleleFlower("flowerAuraNode", provider, true);
+			Allele.flowerNodePurify = new AlleleFlower("flowerAuraNodePurify", provider, false);
+			Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", provider, false);
 		}
 		else
 		{

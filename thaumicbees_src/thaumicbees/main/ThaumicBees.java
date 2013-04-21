@@ -1,9 +1,5 @@
 package thaumicbees.main;
 
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
-import thaumicbees.item.types.PlankType;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.LocalizationManager;
@@ -15,10 +11,9 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import forestry.api.core.ItemInterface;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(
 		modid=VersionInfo.ModName,
@@ -37,6 +32,7 @@ public class ThaumicBees
 	@SidedProxy(serverSide="thaumicbees.main.CommonProxy", clientSide="thaumicbees.main.ClientProxy")
 	public static CommonProxy proxy;
 
+	//public GUIHandler guiHandler;
 	private String configsPath;
 	private Config modConfig;
 
@@ -79,6 +75,9 @@ public class ThaumicBees
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		/*this.guiHandler = new GUIHandler();
+		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);*/
+		
 		thaumicbees.bees.Allele.setupAdditionalAlleles();
 		thaumicbees.bees.BeeSpecies.setupBeeSpecies();
 		thaumicbees.bees.BeeMutation.setupMutations();

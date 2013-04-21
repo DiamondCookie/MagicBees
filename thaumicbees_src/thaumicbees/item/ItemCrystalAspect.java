@@ -45,7 +45,7 @@ public class ItemCrystalAspect extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName + ":crystalAspect");
+        this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":crystalAspect");
     }
 
 	@Override

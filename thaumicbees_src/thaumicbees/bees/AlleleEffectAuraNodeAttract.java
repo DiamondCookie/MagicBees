@@ -2,10 +2,9 @@ package thaumicbees.bees;
 
 import java.lang.reflect.Method;
 
-import thaumcraft.api.AuraNode;
-import thaumcraft.api.EnumNodeType;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aura.AuraNode;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;

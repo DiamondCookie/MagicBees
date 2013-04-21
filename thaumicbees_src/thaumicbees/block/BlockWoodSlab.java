@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockWoodSlab extends BlockHalfSlab
 {
 	@SideOnly(Side.CLIENT)
-	private Icon[] icons = new Icon[PlankType.values().length];
+	private Icon[] icons;
 	
 	public BlockWoodSlab(int id, boolean doubleSlab)
 	{
@@ -72,6 +72,7 @@ public class BlockWoodSlab extends BlockHalfSlab
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
+		this.icons = new Icon[PlankType.values().length];
     	for (PlankType t : PlankType.values())
     	{
     		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName + ":" + t.name);

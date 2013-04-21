@@ -5,6 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import thaumicbees.item.types.PollenType;
+import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.MoonPhase;
 import thaumicbees.main.utils.TabThaumicBees;
@@ -40,16 +41,27 @@ public class ItemMoonDial extends Item
     	this.itemIcon = this.icons[0];
     }
 	
+    @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
     {
-    	par3List.add("\u00A77" 
-    		+ MoonPhase.getMoonPhaseFromTime(MinecraftServer.getServer().worldServers[0].getWorldTime()).getLocalizedName());
+		return this.icons[MoonPhase.getMoonPhaseFromTime(player.worldObj.getWorldTime()).ordinal()];
+	}
+
+    @Override
+	@SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List infoList, boolean par4)
+    {
+		if (ThaumicBees.getConfig().MoonDialShowsPhaseInText)
+		{
+			infoList.add("\u00A77" + MoonPhase.getMoonPhaseFromTime(entityPlayer.worldObj.getWorldTime()).getLocalizedName());
+		}
     }
 	
 	@Override
+	@SideOnly(Side.CLIENT)
     public Icon getIconFromDamage(int damage)
     {
-        return this.icons[MoonPhase.getMoonPhaseFromTime(MinecraftServer.getServer().worldServers[0].getWorldTime()).ordinal()];
+        return this.icons[5];
     }
 }

@@ -36,7 +36,6 @@ import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.utils.LocalizationManager;
-import thaumicbees.main.utils.TabThaumicBees;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -60,12 +59,14 @@ public class Config
 	public boolean SkipUpdateCheck;
 	public boolean AreMagicPlanksFlammable;
 	public boolean UseImpregnatedStickInTools;
+	public boolean MoonDialShowsPhaseInText;
 	public String ThaumaturgeExtraItems;
 	public int CapsuleStackSizeMax;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
 	public static BlockWoodSlab slabWoodFull;
+	//public static BlockEffectJar effectJar;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -159,9 +160,9 @@ public class Config
 			if (ThaumcraftHelper.isActive())
 			{
 				planksWood = new BlockPlanks(plankId);
+				planksWood.setUnlocalizedName("tb.planks");
 		
-				Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames())
-					.setUnlocalizedName(planksWood.getUnlocalizedName2());
+				Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames());
 		        Item.itemsList[planksWood.blockID] = item;
 		        
 		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
@@ -171,22 +172,26 @@ public class Config
 		        slabWoodFull = new BlockWoodSlab(slabFullId, true);
 		        slabWoodHalf = new BlockWoodSlab(slabHalfId, false);
 		        
-		        item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false)
-		    		.setUnlocalizedName(slabWoodHalf.getUnlocalizedName2());
+		        slabWoodFull.setUnlocalizedName("tb.planks");
+		        slabWoodHalf.setUnlocalizedName("tb.planks");
+		        
+		        item = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false);
 			    Item.itemsList[slabWoodHalf.blockID] = item;
-			    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true)
-					.setUnlocalizedName(slabWoodFull.getUnlocalizedName2());
+			    item = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true);
 			    Item.itemsList[slabWoodFull.blockID] = item;
 			    
 			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
 			}
 		}
 		
+/*		effectJar = new BlockEffectJar(tbConfig.getBlock("effectJar", blockIdBase++).getInt());
+		
+		GameRegistry.registerBlock(effectJar, "tb.effectJar");*/
 	}
 	
 	public void registerTileEntities()
 	{
-
+		//GameRegistry.registerTileEntity(TileEntityEffectJar.class, "tb.entity.effectJar");
 	}
 	
 	public void setupItems()
@@ -335,6 +340,10 @@ public class Config
 		p = tbConfig.get("general", "useImpregnatedStickInTools", false);
 		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
 		this.UseImpregnatedStickInTools = p.getBoolean(false);
+		
+		p = tbConfig.get("general", "moonDialShowText", false);
+		p.comment = "set to true to show the current moon phase in mouse-over text.";
+		this.MoonDialShowsPhaseInText = p.getBoolean(false);
 	}
 
 }

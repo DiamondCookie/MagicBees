@@ -1,3 +1,8 @@
+1.4.5a
+Repaired Thaumcraft 3 integration for 3.0.4a.
+Fixed Biofuel capsules being shown as "Empty x Capsule"
+Fixed missing texture for oil & fuel capsules
+
 1.4.5
 Added the Jade Moon Dial - tells you what moon phase it currently is for breeding purposes.
 Added a creative menu tab for certain Thaumic Bees items - misc resources, capsules, tools.

@@ -62,7 +62,7 @@
     <entry key="tb.resource.fertilizer">Concentrated Compound</entry>
     <entry key="tb.resource.startNode">Bees and Magic</entry>
     <entry key="tb.resource.beeEnchant">Stark Infusion</entry>
-    <entry key="tb.resource.crystalFlux">Crystalized %s Aspect</entry>
+    <entry key="tb.resource.crystalAspect">Crystalized %s Aspect</entry>
 
     <!-- Frames -->
     <entry key="item.frameMagic.name">Magic Frame</entry>
@@ -82,7 +82,7 @@
     <entry key="tb.liquid.water">Water</entry>
     <entry key="tb.liquid.lava">Lava</entry>
     <entry key="tb.liquid.biomass">Biomass</entry>
-    <entry key="tb.liquid.biofuel">Empty</entry>
+    <entry key="tb.liquid.biofuel">Biofuel</entry>
     <entry key="tb.liquid.Oil">Oil</entry>
     <entry key="tb.liquid.Fuel">Fuel</entry>
     <entry key="tb.liquid.seedoil">Seed Oil</entry>

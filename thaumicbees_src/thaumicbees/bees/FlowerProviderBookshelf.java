@@ -1,10 +1,13 @@
 package thaumicbees.bees;
 
+import java.util.EnumSet;
+
 import thaumicbees.main.utils.LocalizationManager;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IFlowerProvider;
 import forestry.api.genetics.IPollinatable;
@@ -39,11 +42,11 @@ public class FlowerProviderBookshelf implements IFlowerProvider
 		return new ItemStack[] { new ItemStack(Block.bookShelf) };
 	}
 
-	//@Override
+	@Override
 	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
 	{
-		// No idea what this is supposed to do.
-		return false;
+		EnumSet<EnumPlantType> types = pollinatable.getPlantType();
+		return types.size() > 0 && !types.contains(EnumPlantType.Nether) && !types.contains(EnumPlantType.Water) ;
 	}
 
 	public String getDescription()

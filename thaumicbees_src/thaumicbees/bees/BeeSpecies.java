@@ -567,8 +567,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	public void registerItemIcons(IconRegister itemMap)
 	{
 		this.icons = new Icon[EnumBeeType.values().length][3];
-		Icon outline = itemMap.registerIcon(ForestryHelper.Name + ":bees/outline");
-		Icon body1 = itemMap.registerIcon(ForestryHelper.Name + ":bees/outline");
+		Icon outline = itemMap.registerIcon(ForestryHelper.Name.toLowerCase() + ":bees/outline");
+		Icon body1 = itemMap.registerIcon(ForestryHelper.Name.toLowerCase() + ":bees/outline");
 
 		for (int i = 0; i < EnumBeeType.values().length; i++) {
 			if(EnumBeeType.values()[i] == EnumBeeType.NONE)
@@ -576,7 +576,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			
 			icons[i][0] = outline;
 			icons[i][1] = body1;
-			icons[i][2] = itemMap.registerIcon(ForestryHelper.Name + ":bees/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
+			icons[i][2] = itemMap.registerIcon(ForestryHelper.Name.toLowerCase() + ":bees/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
 		}
 	}
 

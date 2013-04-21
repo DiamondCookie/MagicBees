@@ -2,10 +2,10 @@ package thaumicbees.bees;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import thaumcraft.api.AuraNode;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aura.AuraNode;
 import thaumicbees.main.Config;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;

@@ -17,14 +17,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockPlanks extends Block
 {
 	@SideOnly(Side.CLIENT)
-	private Icon[] icons = new Icon[PlankType.values().length];
+	private Icon[] icons;
 	
 	public BlockPlanks(int id)
 	{
 		super(id, Material.wood);
 		this.setHardness(2.5f);
 		this.setResistance(6.0f);
-		this.setUnlocalizedName("tb.planks");
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		if (ThaumicBees.getConfig().AreMagicPlanksFlammable)
 		{
@@ -58,6 +57,7 @@ public class BlockPlanks extends Block
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
+		this.icons = new Icon[PlankType.values().length];
     	for (PlankType t : PlankType.values())
     	{
     		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName + ":" + t.name);

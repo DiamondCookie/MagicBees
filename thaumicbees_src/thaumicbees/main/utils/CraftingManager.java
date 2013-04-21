@@ -122,7 +122,7 @@ public class CraftingManager
 		});
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Config.moonDial), new Object[] {
-			"rqr", "qDq", "rqr",
+			"DqD", "qrq", "DqD",
 			'r', Item.redstone,
 			'q', Item.netherQuartz,
 			'D', "dyeGreen"

@@ -16,11 +16,7 @@ public class ClientProxy extends CommonProxy
 	
 	@Override
 	public void preloadTextures()
-	{
-		// Preload the TCBees items file
-		MinecraftForgeClient.preloadTexture(TCBEES_ITEMS_IMAGE);
-		MinecraftForgeClient.preloadTexture(TCBEES_LIQUIDS_IMAGE);
-		
+	{		
 		Field f;
 		try
 		{

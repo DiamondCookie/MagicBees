@@ -1,13 +1,12 @@
 package thaumicbees.bees;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import thaumcraft.api.AuraNode;
-import thaumcraft.api.ThaumcraftApi;
-import thaumicbees.main.Config;
-import thaumicbees.main.utils.LocalizationManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aura.AuraNode;
+import thaumicbees.main.Config;
+import thaumicbees.main.utils.LocalizationManager;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IFlowerProvider;
 import forestry.api.genetics.IPollinatable;
@@ -25,7 +24,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	@Override
 	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
 	{
-		return true;
+		return pollinatable.getPlantType().size() > 0;
 	}
 
 	@Override

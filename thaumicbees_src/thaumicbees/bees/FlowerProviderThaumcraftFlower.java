@@ -1,5 +1,7 @@
 package thaumicbees.bees;
 
+import java.util.EnumSet;
+
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumicbees.main.Config;
 import thaumicbees.main.utils.LocalizationManager;
@@ -7,6 +9,7 @@ import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IFlowerProvider;
 import forestry.api.genetics.IPollinatable;
@@ -69,10 +72,10 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 		return this.flowers;
 	}
 
-	//@Override
+	@Override
 	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
 	{
-		return false;
+		return pollinatable.getPlantType().size() > 1;
 	}
 
 }

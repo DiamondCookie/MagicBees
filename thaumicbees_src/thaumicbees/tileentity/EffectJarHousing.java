@@ -1,6 +1,5 @@
-package thaumicbees.main.utils;
+package thaumicbees.tileentity;
 
-import thaumicbees.block.TileEntityEffectJar;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.IBee;

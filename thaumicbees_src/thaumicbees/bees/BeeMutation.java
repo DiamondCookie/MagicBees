@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 import cpw.mods.fml.common.FMLLog;
 
-import thaumcraft.api.AuraNode;
-import thaumcraft.api.EnumNodeType;
 import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aura.AuraNode;
+import thaumcraft.api.aura.EnumNodeType;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.MoonPhase;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
@@ -39,6 +39,7 @@ public class BeeMutation implements IBeeMutation
 	private static BeeMutation Flux;
 	private static BeeMutation Node;
 	private static BeeMutation Node1;
+	private static BeeMutation Rejuvination;
 	private static BeeMutation Skulking;
 	private static BeeMutation Brainy;
 	private static BeeMutation Gossamer;
@@ -174,6 +175,10 @@ public class BeeMutation implements IBeeMutation
 				.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WANING_HALF, MoonPhase.WANING_HALF);
 			BeeMutation.Node1 = new BeeMutation(BeeSpecies.PURE, BeeSpecies.FLUX, BeeSpecies.NODE, 2)
 				.setAuraNodeRequired(4).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WAXING_HALF);
+			
+			BeeMutation.Rejuvination = new BeeMutation(BeeSpecies.VIS, BeeSpecies.AWARE, BeeSpecies.REJUVENATING, 1)
+				.setAuraNodeRequired(15).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WANING_HALF)
+				.setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 6);
 
 			if (ExtraBeesHelper.isActive())
 			{
