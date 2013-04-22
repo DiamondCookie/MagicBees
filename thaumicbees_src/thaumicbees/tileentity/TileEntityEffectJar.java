@@ -1,6 +1,7 @@
 package thaumicbees.tileentity;
 
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.core.ItemInterface;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -13,8 +14,8 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	private String ownerName;
 	private EffectJarHousing housingLogic;
 	
-	private ItemStack droneSlot;
-	private ItemStack queenSlot;
+	private ItemStack[] droneSlots;
+	protected ItemStack queenSlot;
 	
 	private int lifeTicksRemaining;
 	private static final int lifeTicks = 135;
@@ -22,6 +23,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	public TileEntityEffectJar()
 	{
 		super();
+		this.droneSlots = new ItemStack[1];
 	}
 	
 	public void setOwner(EntityPlayer player)
@@ -37,60 +39,106 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	@Override
 	public int getSizeInventory()
 	{
-		return 1;
+		return this.droneSlots.length;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int i)
+	public ItemStack getStackInSlot(int slot)
 	{
-		return null;
+		return droneSlots[slot];
 	}
 
 	@Override
-	public ItemStack decrStackSize(int i, int j)
+	public ItemStack decrStackSize(int slot, int count)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		ItemStack value = null;
+		if (this.droneSlots[slot] != null)
+		{
+			value = this.droneSlots[slot].copy();
+			value.stackSize = Math.min(count, this.droneSlots[slot].stackSize);
+			this.droneSlots[slot].stackSize -= value.stackSize;
+			if (this.droneSlots[slot].stackSize == 0)
+			{
+				this.droneSlots[slot] = null;
+			}
+		}
+		onInventoryChanged();
+		return value;
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int i)
+	public ItemStack getStackInSlotOnClosing(int slot)
 	{
-		return null;
+		ItemStack value = null;
+		if (this.droneSlots[slot] != null)
+		{
+			value = this.droneSlots[slot];
+			this.droneSlots[slot] = null;
+		}
+		onInventoryChanged();
+		return value;
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
-		super.readFromNBT(par1nbtTagCompound);
-	}
-
-	@Override
-	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
-		super.writeToNBT(par1nbtTagCompound);
-	}
-
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack)
+	public void readFromNBT(NBTTagCompound tagRoot)
 	{
+		super.readFromNBT(tagRoot);
+		
+		if (tagRoot.hasKey("drones"))
+		{
+			this.droneSlots[0] = ItemStack.loadItemStackFromNBT((NBTTagCompound)tagRoot.getTag("drones"));
+		}
+		if (tagRoot.hasKey("queen"))
+		{
+			this.queenSlot = ItemStack.loadItemStackFromNBT((NBTTagCompound)tagRoot.getTag("queen"));
+		}
+		this.lifeTicksRemaining = tagRoot.getInteger("lifeTicksRemaining");
 		
 	}
 
 	@Override
-	public String getInvName() {
-		// TODO Auto-generated method stub
-		return null;
+	public void writeToNBT(NBTTagCompound tagRoot)
+	{
+		super.writeToNBT(tagRoot);
+		
+		if (this.droneSlots[0] != null)
+		{
+			tagRoot.setTag("drones", this.droneSlots[0].writeToNBT(new NBTTagCompound()));
+		}
+		if (this.queenSlot != null)
+		{
+			tagRoot.setTag("queen", this.queenSlot.writeToNBT(new NBTTagCompound()));
+		}
+		tagRoot.setInteger("lifeTicksRemaining", this.lifeTicksRemaining);
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
-		// TODO Auto-generated method stub
+	public void setInventorySlotContents(int slot, ItemStack itemStack)
+	{
+		this.droneSlots[slot] = itemStack;
+		if (this.droneSlots[slot] != null)
+		{
+			this.droneSlots[slot].stackSize = Math.min(this.droneSlots[slot].stackSize, this.droneSlots[slot].getItem().getItemStackLimit());
+		}
+		onInventoryChanged();
+	}
+
+	@Override
+	public String getInvName()
+	{
+		return "container.effectJar";
+	}
+
+	@Override
+	public boolean isInvNameLocalized()
+	{
 		return false;
 	}
 
 	@Override
-	public int getInventoryStackLimit() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getInventoryStackLimit()
+	{
+		return 64;
 	}
 
 	@Override
@@ -100,13 +148,13 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack)
+	public boolean isStackValidForSlot(int i, ItemStack itemStack)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
-	public void openChest() {}
+	public void openChest() { }
 
 	@Override
 	public void closeChest() { }

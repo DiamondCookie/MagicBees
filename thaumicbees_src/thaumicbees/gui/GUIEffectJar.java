@@ -36,7 +36,7 @@ public class GUIEffectJar extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
-		fontRenderer.drawString("Inve", 9, 63, 0);
+		fontRenderer.drawString("Inventory", 9, 63, 0);
 	}
 
 	@Override

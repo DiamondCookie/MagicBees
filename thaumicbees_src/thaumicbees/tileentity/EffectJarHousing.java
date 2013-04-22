@@ -2,6 +2,7 @@ package thaumicbees.tileentity;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -90,13 +91,19 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void onQueenChange(ItemStack queen) { }
+	public void onQueenChange(ItemStack queen)
+	{
+		
+	}
 
 	@Override
 	public void wearOutEquipment(int amount) { }
 
 	@Override
-	public void onQueenDeath(IBee queen) { }
+	public void onQueenDeath(IBee queen)
+	{
+		
+	}
 
 	@Override
 	public void onPostQueenDeath(IBee queen) { }
@@ -104,7 +111,7 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public ItemStack getQueen()
 	{
-		return null;
+		return this.jarEntity.queenSlot;
 	}
 
 	@Override
@@ -114,7 +121,10 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void setQueen(ItemStack itemstack) { }
+	public void setQueen(ItemStack itemStack)
+	{
+		this.jarEntity.queenSlot = itemStack;
+	}
 
 	@Override
 	public void setDrone(ItemStack itemstack) { }
@@ -128,13 +138,27 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public EnumTemperature getTemperature()
 	{
-		return EnumTemperature.NORMAL;
+		EnumTemperature temp = EnumTemperature.NORMAL;
+		ItemStack stack = this.jarEntity.queenSlot;
+		if (stack != null)
+		{
+			IBee queen = BeeManager.beeInterface.getBee(stack);
+			temp = queen.getGenome().getPrimary().getTemperature();
+		}
+		return temp;
 	}
 
 	@Override
 	public EnumHumidity getHumidity()
 	{
-		return EnumHumidity.NORMAL;
+		EnumHumidity humid = EnumHumidity.NORMAL;
+		ItemStack stack = this.jarEntity.queenSlot;
+		if (stack != null)
+		{
+			IBee queen = BeeManager.beeInterface.getBee(stack);
+			humid = queen.getGenome().getPrimary().getHumidity();
+		}
+		return humid;
 	}
 
 	@Override

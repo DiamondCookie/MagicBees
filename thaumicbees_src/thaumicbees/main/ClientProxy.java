@@ -15,24 +15,6 @@ public class ClientProxy extends CommonProxy
 	public ClientProxy() { }
 	
 	@Override
-	public void preloadTextures()
-	{		
-		Field f;
-		try
-		{
-			f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
-			ThaumicBees.getConfig().DrawParticleEffects = f.getBoolean(null);
-			
-			f = Class.forName("forestry.core.config.Defaults").getField("TEXTURE_PARTICLES_BEE");
-			thaumicbees.main.CommonProxy.FORESTRY_GFX_BEEEFFECTS = (String)f.get(null);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	@Override
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
 	{
 		// drawParticleEffects flag pulled from Forestry after configs

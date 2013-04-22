@@ -1,6 +1,7 @@
 package thaumicbees.main;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -15,6 +16,7 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 import net.minecraftforge.oredict.OreDictionary;
+import thaumicbees.block.BlockEffectJar;
 import thaumicbees.block.BlockPlanks;
 import thaumicbees.block.BlockWoodSlab;
 import thaumicbees.item.ItemCapsule;
@@ -40,8 +42,10 @@ import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import thaumicbees.storage.BackpackDefinition;
+import thaumicbees.tileentity.TileEntityEffectJar;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
@@ -66,7 +70,7 @@ public class Config
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
 	public static BlockWoodSlab slabWoodFull;
-	//public static BlockEffectJar effectJar;
+	public static BlockEffectJar effectJar;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -184,14 +188,14 @@ public class Config
 			}
 		}
 		
-/*		effectJar = new BlockEffectJar(tbConfig.getBlock("effectJar", blockIdBase++).getInt());
+		effectJar = new BlockEffectJar(tbConfig.getBlock("effectJar", blockIdBase++).getInt());
 		
-		GameRegistry.registerBlock(effectJar, "tb.effectJar");*/
+		GameRegistry.registerBlock(effectJar, "tb.effectJar");
 	}
 	
 	public void registerTileEntities()
 	{
-		//GameRegistry.registerTileEntity(TileEntityEffectJar.class, "tb.entity.effectJar");
+		GameRegistry.registerTileEntity(TileEntityEffectJar.class, "tb.entity.effectJar");
 	}
 	
 	public void setupItems()
@@ -313,6 +317,18 @@ public class Config
 	private void doMiscConfig()
 	{
 		Property p;
+		
+		// Pull config from Forestry via reflection
+		Field f;
+		try
+		{
+			f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
+			this.DrawParticleEffects = f.getBoolean(null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 		p = tbConfig.get("general", "backpack.thaumaturge.additionalItems", "");
 		p.comment = "Add additional items to the Thaumaturge's Backpack." +

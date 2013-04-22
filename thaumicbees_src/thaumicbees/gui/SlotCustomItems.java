@@ -94,10 +94,12 @@ public class SlotCustomItems extends Slot
 				if (this.items.get(i).getItemDamage() == itemStack.getItemDamage())
 				{
 					flag = true;
+					break;
 				}
 				else
 				{
 					flag = this.items.get(i).getItemDamage() == -1;
+					break;
 				}
 			}
 		}

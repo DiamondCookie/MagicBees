@@ -18,7 +18,7 @@ import net.minecraftforge.client.ForgeHooksClient;
 public class BeeRenderEffect extends EntityFX
 {
 	public int blendmode = 1;
-	private String texture = CommonProxy.FORESTRY_GFX_BEEEFFECTS;
+	private static final String texture = "forestry:particles/swarm_bee";
 
 	public BeeRenderEffect(World world, double x, double y, double z, float motionScaleX, float motionScaleY, float motionScaleZ, int color)
 	{

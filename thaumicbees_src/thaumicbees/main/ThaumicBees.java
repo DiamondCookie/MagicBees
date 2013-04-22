@@ -1,5 +1,6 @@
 package thaumicbees.main;
 
+import thaumicbees.gui.GUIHandler;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.LocalizationManager;
@@ -32,7 +33,7 @@ public class ThaumicBees
 	@SidedProxy(serverSide="thaumicbees.main.CommonProxy", clientSide="thaumicbees.main.ClientProxy")
 	public static CommonProxy proxy;
 
-	//public GUIHandler guiHandler;
+	public GUIHandler guiHandler;
 	private String configsPath;
 	private Config modConfig;
 
@@ -52,19 +53,7 @@ public class ThaumicBees
 
 	@Mod.Init
 	public void init(FMLInitializationEvent event)
-	{
-		
-		this.proxy.preloadTextures();
-		try
-		{
-			FMLLog.info("[ThaumicBees] Attempting to get Forestry's item graphics file...");
-		}
-		catch (Exception e)
-		{
-			FMLLog.severe("ThaumicBees encountered a problem while loading!");
-			throw new RuntimeException("Could not get the Forestry item texture file! Did Forestry load correctly?", e);
-		}
-		
+	{		
 		this.modConfig.setupBlocks();
 		this.modConfig.registerTileEntities();
 		this.modConfig.setupItems();
@@ -75,8 +64,8 @@ public class ThaumicBees
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		/*this.guiHandler = new GUIHandler();
-		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);*/
+		this.guiHandler = new GUIHandler();
+		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);
 		
 		thaumicbees.bees.Allele.setupAdditionalAlleles();
 		thaumicbees.bees.BeeSpecies.setupBeeSpecies();

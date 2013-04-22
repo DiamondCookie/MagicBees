@@ -60,7 +60,7 @@ public class BlockPlanks extends Block
 		this.icons = new Icon[PlankType.values().length];
     	for (PlankType t : PlankType.values())
     	{
-    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName + ":" + t.name);
+    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":" + t.name);
     	}
     }
 }

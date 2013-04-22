@@ -17,11 +17,6 @@ public class CommonProxy
 
 	public CommonProxy() { }
 	
-	public void preloadTextures()
-	{
-		// Does nothing here.
-	}
-	
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
 	{
 		// Does nothing in common.
