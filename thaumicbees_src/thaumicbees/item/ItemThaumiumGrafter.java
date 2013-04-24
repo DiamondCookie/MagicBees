@@ -27,7 +27,7 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 	}
 
 	@Override
-	public float getSaplingModifier(ItemStack stack, World world, int x, int y, int z)
+	public float getSaplingModifier(ItemStack stack, World world, EntityPlayer player, int x, int y, int z)
 	{
 		return 100f;
 	}

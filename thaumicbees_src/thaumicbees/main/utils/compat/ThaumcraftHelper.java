@@ -219,7 +219,7 @@ public class ThaumcraftHelper
 		ObjectTags tags;
 		ItemStack itemStack;
 		
-		tags = new ObjectTags().add(EnumTag.WOOD, 2);
+		tags = new ObjectTags().add(EnumTag.WOOD, 1);
 		ThaumcraftApi.registerObjectTag(Config.planksWood.blockID, -1, tags);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
@@ -328,7 +328,7 @@ public class ThaumcraftHelper
 		tags = new ObjectTags().add(EnumTag.COLD, 1);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.CraftingMaterial.ICE_SHARD.ordinal(), tags);
 		tags = new ObjectTags().add(EnumTag.VALUABLE, 1).add(EnumTag.PLANT, 1).add(EnumTag.INSECT, 2)
-				.add(EnumTag.CONTROL, 2).add(EnumTag.WOOD, 5);
+				.add(EnumTag.CONTROL, 2).add(EnumTag.WOOD, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.CraftingMaterial.SCENTED_PANELING.ordinal(), tags);
 		
 		itemStack = ItemInterface.getItem("beealyzer");
@@ -346,11 +346,11 @@ public class ThaumcraftHelper
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("impregnatedCasing");
-		tags = new ObjectTags().add(EnumTag.WOOD, 56).add(EnumTag.EXCHANGE, 8);
+		tags = new ObjectTags().add(EnumTag.WOOD, 28).add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("stickImpregnated");
-		tags = new ObjectTags().add(EnumTag.WOOD, 6).add(EnumTag.EXCHANGE, 2);
+		tags = new ObjectTags().add(EnumTag.WOOD, 3).add(EnumTag.EXCHANGE, 2);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, itemStack.getItemDamage(), tags);
 		
 		itemStack = ItemInterface.getItem("peat");
@@ -433,7 +433,7 @@ public class ThaumcraftHelper
 		
 		// Forestry's wood		
 		itemStack = BlockInterface.getBlock("log1");		
-		tags = new ObjectTags().add(EnumTag.WOOD, 8);
+		tags = new ObjectTags().add(EnumTag.WOOD, 4);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		itemStack = BlockInterface.getBlock("log2"); // Same tags
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
@@ -443,7 +443,7 @@ public class ThaumcraftHelper
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		
 		itemStack = ItemInterface.getItem("sapling");
-		tags = new ObjectTags().add(EnumTag.PLANT, 4).add(EnumTag.WOOD, 2);
+		tags = new ObjectTags().add(EnumTag.PLANT, 4).add(EnumTag.WOOD, 1);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		
 		// BEES!

@@ -4,6 +4,7 @@ import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ExtraBeesHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -32,7 +33,6 @@ public class ThaumicBees
 	@SidedProxy(serverSide="thaumicbees.main.CommonProxy", clientSide="thaumicbees.main.ClientProxy")
 	public static CommonProxy proxy;
 
-	//public GUIHandler guiHandler;
 	private String configsPath;
 	private Config modConfig;
 
@@ -48,13 +48,12 @@ public class ThaumicBees
 		ThaumcraftHelper.init();
 		ExtraBeesHelper.init();
 		EquivalentExchangeHelper.init();
+		ArsMagicaHelper.init();
 	}
 
 	@Mod.Init
 	public void init(FMLInitializationEvent event)
 	{
-		
-		this.proxy.preloadTextures();
 		try
 		{
 			FMLLog.info("[ThaumicBees] Attempting to get Forestry's item graphics file...");
@@ -75,8 +74,6 @@ public class ThaumicBees
 	@Mod.PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		/*this.guiHandler = new GUIHandler();
-		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);*/
 		
 		thaumicbees.bees.Allele.setupAdditionalAlleles();
 		thaumicbees.bees.BeeSpecies.setupBeeSpecies();

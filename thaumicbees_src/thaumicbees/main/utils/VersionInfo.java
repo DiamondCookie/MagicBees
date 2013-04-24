@@ -29,7 +29,7 @@ public class VersionInfo
 
 	public static final String Logo = "/gfx/thaumicbees/logo.png";
 
-	public static final String Depends = "required-after:Forestry;after:Thaumcraft@[3.0.3,);after:ExtraBees";
+	public static final String Depends = "required-after:Forestry;after:Thaumcraft@[3.0.3,);after:ExtraBees;after:EE3;after:ArsMagica";
 
 	boolean criticalUpdate;
 	boolean newVersion;

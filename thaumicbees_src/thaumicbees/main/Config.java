@@ -36,6 +36,7 @@ import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -66,7 +67,6 @@ public class Config
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
 	public static BlockWoodSlab slabWoodFull;
-	//public static BlockEffectJar effectJar;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -124,8 +124,24 @@ public class Config
 	public static Item tcNuggetChicken;
 	public static Item tcNuggetBeef;
 	public static Item tcNuggetPork;
+	//----- Equivalent Exchange Blocks -------------------------
 	//----- Equivalent Exchange Items --------------------------
 	public static Item eeMinuimShard;
+	//----- Ars Magica Blocks ----------------------------------
+	public static Block amBlackOrchid;
+	public static Block amDesertNova;
+	//----- Ars Magica Items -----------------------------------
+	public static Item amVinteumDust;
+	public static Item amArcaneCompound;
+	public static Item amEssenceArcane;
+	public static Item amEssenceEarth;
+	public static Item amEssenceWater;
+	public static Item amEssenceFire;
+	public static Item amEssenceAir;
+	public static Item amEssenceMagma;
+	public static Item amEssencePlant;
+	public static Item amEssenceIce;
+	public static Item amEssenceLightning;
 	
 
 	//----- Config State info ----------------------------------
@@ -149,6 +165,7 @@ public class Config
 		ThaumcraftHelper.getBlocks();
 		ForestryHelper.getBlocks();
 		EquivalentExchangeHelper.getBlocks();
+		ArsMagicaHelper.getBlocks();
 		
 		int blockIdBase = 1750;
 		
@@ -183,15 +200,10 @@ public class Config
 			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
 			}
 		}
-		
-/*		effectJar = new BlockEffectJar(tbConfig.getBlock("effectJar", blockIdBase++).getInt());
-		
-		GameRegistry.registerBlock(effectJar, "tb.effectJar");*/
 	}
 	
 	public void registerTileEntities()
 	{
-		//GameRegistry.registerTileEntity(TileEntityEffectJar.class, "tb.entity.effectJar");
 	}
 	
 	public void setupItems()
@@ -199,6 +211,7 @@ public class Config
 		ThaumcraftHelper.getItems();
 		ForestryHelper.getItems();
 		EquivalentExchangeHelper.getItems();
+		ArsMagicaHelper.getItems();
 		
 		int itemIDBase = 26090;
 		

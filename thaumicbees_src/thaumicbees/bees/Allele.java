@@ -1,6 +1,7 @@
 package thaumicbees.bees;
 
 import net.minecraft.potion.Potion;
+import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IAlleleFlowers;
@@ -13,6 +14,7 @@ public class Allele implements IAllele
 	
 	public static IAlleleFlowers flowerBookshelf;
 	public static IAlleleFlowers flowerThaumcraft;
+	public static IAlleleFlowers flowerArsMagica;
 	public static IAlleleFlowers flowerAuraNode;
 	@Deprecated
 	public static IAlleleFlowers flowerNodePurify;
@@ -51,6 +53,15 @@ public class Allele implements IAllele
 			Allele.flowerAuraNode = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
 			Allele.flowerNodePurify = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
 			Allele.flowerNodeFluxify = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
+		}
+		
+		if (ArsMagicaHelper.isActive())
+		{
+			Allele.flowerArsMagica = new AlleleFlower("flowerArsMagicaPlant", new FlowerProviderArsMagicaFlower(), false);
+		}
+		else
+		{
+			Allele.flowerArsMagica = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
 		}
 
 		Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("effectNodeGeneration", false, 400);

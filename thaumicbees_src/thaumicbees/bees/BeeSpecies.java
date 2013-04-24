@@ -16,6 +16,7 @@ import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.Config;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.VersionInfo;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -364,7 +365,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@SideOnly(Side.CLIENT)
 	private Icon[][] icons;
 	
-	private final static boolean defaultSecretSetting = true;
+	private final static boolean defaultSecretSetting = false;
 	
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
@@ -567,16 +568,22 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	public void registerItemIcons(IconRegister itemMap)
 	{
 		this.icons = new Icon[EnumBeeType.values().length][3];
-		Icon outline = itemMap.registerIcon(ForestryHelper.Name.toLowerCase() + ":bees/outline");
-		Icon body1 = itemMap.registerIcon(ForestryHelper.Name.toLowerCase() + ":bees/outline");
+		
+		String root = ForestryHelper.Name.toLowerCase() + ":bees/default/";
+		if (this.branch instanceof BeeClassification && (BeeClassification)(this.branch) == BeeClassification.SKULKING)
+		{
+			root = VersionInfo.ModName.toLowerCase() + ":bees/skulking/";
+		}
+		Icon body1 = itemMap.registerIcon(root + "body1");
 
-		for (int i = 0; i < EnumBeeType.values().length; i++) {
+		for (int i = 0; i < EnumBeeType.values().length; i++)
+		{
 			if(EnumBeeType.values()[i] == EnumBeeType.NONE)
 				continue;
 			
-			icons[i][0] = outline;
+			icons[i][0] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".outline");
 			icons[i][1] = body1;
-			icons[i][2] = itemMap.registerIcon(ForestryHelper.Name.toLowerCase() + ":bees/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
+			icons[i][2] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
 		}
 	}
 
