@@ -161,16 +161,13 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 				
 			if (entitiesCount < this.maxMobsInArea && mob.getCanSpawnHere())
 			{
-				if (mob.getCanSpawnHere())
+				spawnedFlag = world.spawnEntityInWorld(mob);
+				if (this.aggosOnPlayer && player != null)
 				{
-					spawnedFlag = world.spawnEntityInWorld(mob);
-					if (this.aggosOnPlayer && player != null)
+					if (ItemArmorApiarist.getNumberPiecesWorn(player) < 4)
 					{
-						if (ItemArmorApiarist.getNumberPiecesWorn(player) < 4)
-						{
-							// Protect fully suited player from initial murder intent.
-							mob.setAttackTarget(player);
-						}
+						// Protect fully suited player from initial murder intent.
+						mob.setAttackTarget(player);
 					}
 				}
 			}

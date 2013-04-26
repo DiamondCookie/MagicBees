@@ -55,8 +55,8 @@ public class ArsMagicaHelper
 				Config.amEssenceIce = (Item)(clazz.getField("iceEssence").get(null));
 				Config.amEssenceLightning = (Item)(clazz.getField("lightningEssence").get(null));
 				Config.amEssenceMagma = (Item)(clazz.getField("magmaEssence").get(null));
-				Config.amEssencePlant = (Item)(clazz.getField("PlantEssence").get(null));
-				Config.amEssenceWater = (Item)(clazz.getField("WaterEssence").get(null));
+				Config.amEssencePlant = (Item)(clazz.getField("plantEssence").get(null));
+				Config.amEssenceWater = (Item)(clazz.getField("waterEssence").get(null));
 			}
 			catch (Exception e)
 			{

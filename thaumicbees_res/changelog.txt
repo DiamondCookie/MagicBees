@@ -1,5 +1,7 @@
-Ars Magica integration! X new bee species to help you research & cast spells.
+1.4.6
+Ars Magica integration! 13 new bee species to help you research & cast spells.
 Changing mutations around, because I'm still not happy with them. (Again.)
+Many icon & texture fixes. (derp!)
 
 1.4.5a
 Repaired Thaumcraft 3 integration for 3.0.4a.

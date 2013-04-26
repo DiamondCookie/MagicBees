@@ -240,7 +240,7 @@ public class VersionInfo
 
 	public static void doVersionCheck()
 	{
-		if (!ThaumicBees.getConfig().SkipUpdateCheck)
+		if (!ThaumicBees.getConfig().DisableUpdateCheck)
 		{
 			VersionInfo main = new VersionInfo("ThaumicBees", Version, VersionURL);
 			TickHandlerVersion.registerModVersionInfo(main);

@@ -1,5 +1,6 @@
 package thaumicbees.bees;
 
+import thaumicbees.main.utils.compat.ExtraBeesHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -429,6 +430,19 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	public static IAllele[] getTemplateSpidery()
+	{
+		IAllele[] genome = getTemplateBaseMalevolent();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.SPIDERY;
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryLarger");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnSpider;
+		
+		return genome;
+	}
+	
 	private static IAllele[] getTemplateBaseTemporal()
 	{
 		IAllele[] genome = getTemplateBaseThaumic();
@@ -636,6 +650,194 @@ public class BeeGenomeManager
 		IAllele[] genome = getTemplateBaseMetallic();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.PORK;
+		
+		return genome;
+	}
+	
+	private static IAllele[] getTemplateBaseMagica()
+	{
+		IAllele[] genome = getTemplateBaseThaumic();
+		
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerArsMagica;
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateEssence()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ESSENCE;
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringSlow");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateQuintessence()
+	{
+		IAllele[] genome = getTemplateEssence();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.QUINTESSENCE;
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanElongated");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringAverage");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectMisanthrope");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateEarthAM()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.EARTH_AM;
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFaster");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLongest");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateAirAM()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AIR_AM;
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");
+		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryMaximum");
+		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateFireAM()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.FIRE_AM;
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFast");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectIgnition");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateWaterAM()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WATER_AM;
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown1");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanElongated");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateLightning()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.LIGHTNING;
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanShortest");
+		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryMaximum");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.speedBlinding;
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
+		
+		if (ExtraBeesHelper.isActive())
+		{
+			genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getAllele("extrabees.effect.lightning");
+		}
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplatePlant()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.PLANT;
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFastest");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateIce()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ICE;
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceUp2");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
+		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedSlowest");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLongest");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectGlacial");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateMagma()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.MAGMA;
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
+		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanElongated");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectIgnition");
+		
+		return genome;
+	}
+
+	public static IAllele[] getTemplateArcaneAM()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ARCANE_AM;
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateVortex()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.VORTEX;
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLonger");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryLarger");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnManaDrainer;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateWight()
+	{
+		IAllele[] genome = getTemplateBaseMagica();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WIGHT;
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnWispOrHecate;
 		
 		return genome;
 	}

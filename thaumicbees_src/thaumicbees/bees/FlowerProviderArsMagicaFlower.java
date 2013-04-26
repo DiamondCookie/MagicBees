@@ -31,7 +31,7 @@ public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 	{
 		boolean flag = false;
 		int blockDown = world.getBlockId(x, y - 1, z);
-		if (world.isAirBlock(x, y, z))
+		if (world.getBlockId(x, y, z) == 0)
 		{
 			if (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID)
 			{

@@ -17,6 +17,8 @@ public enum CombType
 	INTELLECT("aware", 0xb0092e9, 0x618fff, false),
 	SKULKING("furtive", 0xcda6cd, 0x545454, true),
 	SOUL("soul", 0x8A4500, 0x3C1E00, true),
+	ESSENCE("essence", 0x03E1DE, 0x015352, false),
+	POTENT("potent", 0xBFA330, 0x41046F, false),
 	;
 	
 	private CombType(String pName, int colourA, int colourB, boolean show)
