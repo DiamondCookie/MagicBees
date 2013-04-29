@@ -48,8 +48,9 @@
     <entry key="tb.nugget.tin">Tin Nugget</entry>
     <entry key="tb.nugget.silver">Silver Nugget</entry>
     <entry key="tb.nugget.lead">Lead Nugget</entry>
-    <entry key="tb.nugget.diamond">Diamond Nugget</entry>
-    <entry key="tb.nugget.emerald">Emerald Nugget</entry>
+    <entry key="tb.nugget.diamond">Diamond Shard</entry>
+    <entry key="tb.nugget.emerald">Emerald Shard</entry>
+    <entry key="tb.nugget.apatite">Apatite Shard</entry>
 
     <!-- Propolis names -->
     <entry key="tb.propolis.dull">Dull Propolis</entry>
@@ -173,6 +174,8 @@
     <entry key="thaumicbees.speciesDiamond.description">Crystalline, glittering, and harder than dragon's teeth. These bees are none of those.|Apinomicon</entry>
     <entry key="thaumicbees.speciesEmerald">Esmeraldi</entry>
     <entry key="thaumicbees.speciesEmerald.description">It is said they have been to a land ruled by a Great Wizard, and have taken the aspect of his city.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesApatite">Apatine</entry>
+    <entry key="thaumicbees.speciesApatite.description">Day and night the whining droned on. I barricaded the windows and hid in the cellar, but everywhere the high-pitched noise of the apatine bees penetrated the walls and drove me to distraction.|Beekeeping 101</entry>
     
     <entry key="thaumicbees.speciesScholarly">Scholarly</entry>
     <entry key="thaumicbees.speciesScholarly.description">"I can't be sure, but I think they might be smarter than me..."|Yorae, Librarian</entry>

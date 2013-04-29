@@ -189,6 +189,11 @@ public class CraftingManager
 			"xxx", "xxx", "xxx",
 			'x', "shardEmerald"
 		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemInterface.getItem("apatite"), new Object[] {
+			"xxx", "xxx", "xxx",
+			'x', Config.nuggets.getStackForType(NuggetType.APATITE)
+		}));
 
 		if (ThaumcraftHelper.isActive())
 		{
@@ -248,6 +253,16 @@ public class CraftingManager
 					});
 				}
 			}
+		}
+		
+		if (ArsMagicaHelper.isActive())
+		{
+			input = ItemInterface.getItem("apatite");
+			output = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER, 4);
+			GameRegistry.addShapelessRecipe(output, new Object[] {
+					new ItemStack(Config.amEssenceEarth), new ItemStack(Config.amEssencePlant),
+					input, input
+			});
 		}
 	}
 	

@@ -627,6 +627,17 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	public static IAllele[] getTemplateApatite()
+	{
+		IAllele[] genome = getTemplateBaseMetallic();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.APATITE;
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
+		
+		return genome;
+	}
+	
 	public static IAllele[] getTemplateChicken()
 	{
 		IAllele[] genome = getTemplateBaseMetallic();

@@ -1,9 +1,15 @@
 package thaumicbees.bees;
 
 import forestry.api.apiculture.*;
+import forestry.api.core.BlockInterface;
+import forestry.api.core.ItemInterface;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import java.util.ArrayList;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.FMLLog;
 
@@ -15,6 +21,7 @@ import thaumicbees.main.utils.MoonPhase;
 import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ExtraBeesHelper;
+import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 
 public class BeeMutation implements IBeeMutation
@@ -54,8 +61,7 @@ public class BeeMutation implements IBeeMutation
 	private static BeeMutation Lead;
 	private static BeeMutation Diamond;
 	private static BeeMutation Emerald;
-	private static BeeMutation Lead1;
-	private static BeeMutation Lead2;
+	private static BeeMutation Apatite;
 	
 	private static BeeMutation Vis;
 	private static BeeMutation Vis1;
@@ -101,18 +107,18 @@ public class BeeMutation implements IBeeMutation
 		BeeMutation.Arcane = new BeeMutation(BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, BeeSpecies.ARCANE, 8)
 			.setMoonPhaseBonus(MoonPhase.WANING_CRESCENT, MoonPhase.WAXING_CRESCENT, 1.5f);
 		
-		BeeMutation.Charmed = new BeeMutation(Allele.getBaseSpecies("Diligent"), Allele.getBaseSpecies("Valiant"), BeeSpecies.CHARMED, 20);
-		BeeMutation.Charmed1 = new BeeMutation(Allele.getBaseSpecies("Diligent"), Allele.getBaseSpecies("Monastic"), BeeSpecies.CHARMED, 20);
+		BeeMutation.Charmed = new BeeMutation(Allele.getBaseSpecies("Diligent"), Allele.getBaseSpecies("Valiant"), BeeSpecies.CHARMED, 12);
+		BeeMutation.Charmed1 = new BeeMutation(Allele.getBaseSpecies("Diligent"), Allele.getBaseSpecies("Monastic"), BeeSpecies.CHARMED, 18);
 		BeeMutation.Enchanted = new BeeMutation(BeeSpecies.CHARMED, Allele.getBaseSpecies("Valiant"), BeeSpecies.ENCHANTED, 8);
 		BeeMutation.Enchanted1 = new BeeMutation(BeeSpecies.CHARMED, Allele.getBaseSpecies("Monastic"), BeeSpecies.ENCHANTED, 8);
-		BeeMutation.Supernatural = new BeeMutation(BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, BeeSpecies.SUPERNATURAL, 10)
+		BeeMutation.Supernatural = new BeeMutation(BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, BeeSpecies.SUPERNATURAL, 6)
 			.setMoonPhaseBonus(MoonPhase.WAXING_GIBBOUS, MoonPhase.WANING_GIBBOUS, 1.5f);
 		
 		BeeMutation.Pupil = new BeeMutation(Allele.getBaseSpecies("Hermitic"), BeeSpecies.ENCHANTED, BeeSpecies.PUPIL, 10);
 		
 		BeeMutation.Stark = new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.SUPERNATURAL, BeeSpecies.STARK, 8);
 
-		BeeMutation.Spidery = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Tropical"), BeeSpecies.SPIDERY, 13);
+		BeeMutation.Spidery = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Tropical"), BeeSpecies.SPIDERY, 10);
 		
 		BeeMutation.Aware = new BeeMutation(Allele.getBaseSpecies("Demonic"), Allele.getBaseSpecies("Edenic"), BeeSpecies.AWARE, 12);
 		
@@ -120,44 +126,73 @@ public class BeeMutation implements IBeeMutation
 		BeeMutation.Lordly = new BeeMutation(BeeSpecies.TIMELY, Allele.getBaseSpecies("Imperial"), BeeSpecies.LORDLY, 9);
 		BeeMutation.Doctoral = new BeeMutation(BeeSpecies.TIMELY, BeeSpecies.LORDLY, BeeSpecies.DOCTORAL, 7);
 		
-		BeeMutation.Spirit = new BeeMutation(Allele.getBaseSpecies("Fiendish"), BeeSpecies.ENCHANTED, BeeSpecies.SPIRIT, 12);
-		BeeMutation.Spirit1 = new BeeMutation(Allele.getBaseSpecies("Fiendish"), Allele.getBaseSpecies("Ended"), BeeSpecies.SPIRIT, 20);
+		BeeMutation.Spirit = new BeeMutation(Allele.getBaseSpecies("Fiendish"), BeeSpecies.ENCHANTED, BeeSpecies.SPIRIT, 8);
+		BeeMutation.Spirit1 = new BeeMutation(Allele.getBaseSpecies("Fiendish"), Allele.getBaseSpecies("Ended"), BeeSpecies.SPIRIT, 13);
 		BeeMutation.Soul = new BeeMutation(Allele.getBaseSpecies("Fiendish"), BeeSpecies.SPIRIT, BeeSpecies.SOUL, 11);
 		
-		BeeMutation.Iron = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Common"), BeeSpecies.IRON, 10);
+		BeeMutation.Iron = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Common"), BeeSpecies.IRON, 8)
+			.setBlockRequired(Block.blockIron);
 		
 		baseA = (BeeSpecies.MINIUM.isActive()) ? BeeSpecies.MINIUM : Allele.getBaseSpecies("Imperial");
 		baseB = (BeeSpecies.LEAD.isActive()) ? BeeSpecies.LEAD : BeeSpecies.IRON;
-		BeeMutation.Gold = new BeeMutation(baseA, baseB, BeeSpecies.GOLD, 8);
+		BeeMutation.Gold = new BeeMutation(baseA, baseB, BeeSpecies.GOLD, 5)
+			.setBlockRequired(Block.blockGold);
 		
 		if (BeeSpecies.COPPER.isActive())
 		{
-			BeeMutation.Copper = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Meadows"), BeeSpecies.COPPER, 12);
+			BeeMutation.Copper = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Meadows"), BeeSpecies.COPPER, 10);
+			if (OreDictionary.getOres("blockCopper").size() > 0)
+			{
+				Copper.setBlockRequired("blockCopper");
+			}
 		}
 		if (BeeSpecies.TIN.isActive())
 		{
-			BeeMutation.Tin = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Forest"), BeeSpecies.TIN, 12);
+			BeeMutation.Tin = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Forest"), BeeSpecies.TIN, 9);
+			if (OreDictionary.getOres("blockTin").size() > 0)
+			{
+				Tin.setBlockRequired("blockTin");
+			}
 		}
 		if (BeeSpecies.SILVER.isActive())
 		{
-			BeeMutation.Silver = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Modest"), BeeSpecies.SILVER, 10);
+			BeeMutation.Silver = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Modest"), BeeSpecies.SILVER, 8);
+			if (OreDictionary.getOres("blockSilver").size() > 0)
+			{
+				Silver.setBlockRequired("blockSilver");
+			}
 		}
 		if (BeeSpecies.LEAD.isActive())
 		{
-			if (BeeSpecies.COPPER.isActive())
-			{
-				BeeMutation.Lead = new BeeMutation(Allele.getBaseSpecies("Industrious"), BeeSpecies.COPPER, BeeSpecies.LEAD, 13);
-			}
 			if (BeeSpecies.TIN.isActive())
 			{
-				BeeMutation.Lead1 = new BeeMutation(Allele.getBaseSpecies("Industrious"), BeeSpecies.TIN, BeeSpecies.LEAD, 13);
+				baseA = BeeSpecies.TIN;
 			}
-			BeeMutation.Lead2 = new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Common"), BeeSpecies.LEAD, 9);
+			else if (BeeSpecies.COPPER.isActive())
+			{
+				baseA = BeeSpecies.COPPER;
+			}
+			else
+			{
+				baseA = BeeSpecies.IRON;
+			}
+			BeeMutation.Lead = new BeeMutation(baseA, Allele.getBaseSpecies("Common"), BeeSpecies.LEAD, 8);
+			
+			if (OreDictionary.getOres("blockLead").size() > 0)
+			{
+				Lead.setBlockRequired("blockLead");
+			}
 		}
 		
-		BeeMutation.Diamond = new BeeMutation(Allele.getBaseSpecies("Austere"), BeeSpecies.GOLD, BeeSpecies.DIAMOND, 6);
+		BeeMutation.Diamond = new BeeMutation(Allele.getBaseSpecies("Austere"), BeeSpecies.GOLD, BeeSpecies.DIAMOND, 4)
+			.setBlockRequired(Block.blockDiamond);
+		
 		baseA = (BeeSpecies.SILVER.isActive()) ? BeeSpecies.SILVER : Allele.getBaseSpecies("Imperial");
-		BeeMutation.Emerald = new BeeMutation(Allele.getBaseSpecies("Austere"), baseA, BeeSpecies.EMERALD, 6);
+		BeeMutation.Emerald = new BeeMutation(Allele.getBaseSpecies("Austere"), baseA, BeeSpecies.EMERALD, 4)
+			.setBlockRequired(Block.blockEmerald);
+		
+		BeeMutation.Apatite = new BeeMutation(BeeSpecies.EARTH, Allele.getBaseSpecies("Rural"), BeeSpecies.APATITE, 6)
+			.setBlockAndMetaRequired(BlockInterface.getBlock("resources").itemID, ForestryHelper.BlockResource.APATITE.ordinal());
 		
 		// Now we get into a little bit of branching...
 		if (ExtraBeesHelper.isActive())
@@ -258,7 +293,7 @@ public class BeeMutation implements IBeeMutation
 			
 			if (ExtraBeesHelper.isActive())
 			{
-				BeeMutation.Vortex = new BeeMutation(BeeSpecies.QUINTESSENCE, Allele.getExtraSpecies("creepy"), BeeSpecies.VORTEX, 12);
+				BeeMutation.Vortex = new BeeMutation(BeeSpecies.QUINTESSENCE, Allele.getExtraSpecies("creeper"), BeeSpecies.VORTEX, 12);
 			}
 			else
 			{
@@ -279,6 +314,10 @@ public class BeeMutation implements IBeeMutation
 	private boolean nodeRequired;
 	private EnumNodeType nodeType;
 	private double nodeRange;
+	private boolean requiresBlock;
+	private int requiredBlockId;
+	private int requiredBlockMeta;
+	private String requiredBlockOreDictEntry;
 
 	public BeeMutation(IAlleleBeeSpecies species0, IAlleleBeeSpecies species1, BeeSpecies resultSpecies, int percentChance)
 	{
@@ -290,6 +329,9 @@ public class BeeMutation implements IBeeMutation
 		this.isMoonRestricted = false;
 		this.moonPhaseMutationBonus = -1f;
 		this.nodeType = null;
+		this.requiresBlock = false;
+		this.requiredBlockMeta = OreDictionary.WILDCARD_VALUE;
+		this.requiredBlockOreDictEntry = null;
 		
 		BeeManager.breedingManager.registerBeeMutation(this);
 	}
@@ -336,6 +378,32 @@ public class BeeMutation implements IBeeMutation
 					}
 				}
 				else
+				{
+					chance = 0;
+				}
+			}
+			
+			if (this.requiresBlock)
+			{
+				int blockId = housing.getWorld().getBlockId(housing.getXCoord(), housing.getYCoord() - 1, housing.getZCoord());
+				int blockMeta = housing.getWorld().getBlockMetadata(housing.getXCoord(), housing.getYCoord() - 1, housing.getZCoord());
+				
+				if (this.requiredBlockOreDictEntry != null)
+				{
+					int dicId = OreDictionary.getOreID(new ItemStack(blockId, 1, blockMeta));
+					if (dicId != -1)
+					{
+						if (!OreDictionary.getOreName(dicId).equals(this.requiredBlockOreDictEntry))
+						{
+							chance = 0;
+						}
+					}
+					else
+					{
+						chance = 0;
+					}
+				}
+				else if (this.requiredBlockId != blockId || (this.requiredBlockMeta != OreDictionary.WILDCARD_VALUE && this.requiredBlockMeta != blockMeta))
 				{
 					chance = 0;
 				}
@@ -401,6 +469,48 @@ public class BeeMutation implements IBeeMutation
 	public boolean isSecret()
 	{
 		return isSecret;
+	}
+	
+	public BeeMutation setBlockRequired(int blockId)
+	{
+		this.requiresBlock = true;
+		this.requiredBlockId = blockId;
+		
+		return this;
+	}
+	
+	public BeeMutation setBlockRequired(Block block)
+	{
+		this.requiresBlock = true;
+		this.requiredBlockId = block.blockID;
+		
+		return this;
+	}
+	
+	public BeeMutation setBlockAndMetaRequired(int blockId, int meta)
+	{
+		this.requiresBlock = true;
+		this.requiredBlockId = blockId;
+		this.requiredBlockMeta = meta;
+		
+		return this;
+	}
+	
+	public BeeMutation setBlockAndMetaRequired(Block block, int meta)
+	{
+		this.requiresBlock = true;
+		this.requiredBlockId = block.blockID;
+		this.requiredBlockMeta = meta;
+		
+		return this;
+	}
+	
+	public BeeMutation setBlockRequired(String oreDictEntry)
+	{
+		this.requiresBlock = true;
+		this.requiredBlockOreDictEntry = oreDictEntry;
+		
+		return this;
 	}
 	
 	public BeeMutation setMoonPhaseRestricted(MoonPhase begin, MoonPhase end)

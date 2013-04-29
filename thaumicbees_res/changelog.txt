@@ -1,3 +1,5 @@
+Adding Apatite bees.
+
 1.4.6
 Ars Magica integration! 13 new bee species to help you research & cast spells.
 Changing mutations around, because I'm still not happy with them. (Again.)

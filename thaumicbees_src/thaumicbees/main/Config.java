@@ -181,7 +181,7 @@ public class Config
 		
 				Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames());
 		        Item.itemsList[planksWood.blockID] = item;
-		        
+
 		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
 				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.GREATWOOD.ordinal());
 				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.SILVERWOOD.ordinal());

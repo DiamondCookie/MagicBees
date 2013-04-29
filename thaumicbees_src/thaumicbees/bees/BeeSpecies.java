@@ -95,7 +95,10 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.GEM, 0x209581, 0x8DF5E3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	EMERALD("Emerald", "prasinus",
 			BeeClassification.GEM, 0x005300, 0x17DD62, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
+	APATITE("Apatite", "apatite",
+			BeeClassification.GEM, 0x2EA7EC, 0x001D51, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
+	// --------- Thaumcraft Bees ---------------------------------------------------------------------------------------
 	SCHOLARLY("Scholarly", "studiosis",
 			BeeClassification.SCHOLARLY, 0x6E0000, EnumTemperature.NORMAL, EnumHumidity.ARID, false, false),
 	SAVANT("Savant", "philologus",
@@ -126,10 +129,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.FLESHY, 0x40221A, 0xAC6753, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	PORK("Pork", "porcina",
 			BeeClassification.FLESHY, 0x725D2F, 0xD2BF93, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-			
+	
+	// --------- Equivalent Exchange Bees -----------------------------------------------------------------------------	
 	MINIUM("Minium", "mutabilis",
 			BeeClassification.ALCHEMICAL, 0xac0921, 0x3a030b, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 			
+	// --------- Ars Magica Bees --------------------------------------------------------------------------------------	
 	ESSENCE("Essence", "essentia",
 			BeeClassification.ESSENTIAL, 0x86BBC5, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	QUINTESSENCE("Quintessence", "cor essentia",
@@ -364,6 +369,10 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		EMERALD.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.addSpecialty(Config.nuggets.getStackForType(NuggetType.EMERALD), 2)
 			.setGenome(BeeGenomeManager.getTemplateEmerald())
+			.register();
+		APATITE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.APATITE), 2)
+			.setGenome(BeeGenomeManager.getTemplateApatite())
 			.register();
 
 		INFUSED.addProduct(Config.combs.getStackForType(CombType.INFUSED), 20)
