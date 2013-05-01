@@ -115,7 +115,8 @@ public class BeeMutation implements IBeeMutation
 			.setMoonPhaseBonus(MoonPhase.WAXING_GIBBOUS, MoonPhase.WANING_GIBBOUS, 1.5f);
 		
 		BeeMutation.Pupil = new BeeMutation(Allele.getBaseSpecies("Hermitic"), BeeSpecies.ENCHANTED, BeeSpecies.PUPIL, 10);
-		
+
+		BeeMutation.Ghastly = new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.SOUL, BeeSpecies.GHASTLY, 13);
 		BeeMutation.Stark = new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.SUPERNATURAL, BeeSpecies.STARK, 8);
 
 		BeeMutation.Spidery = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Tropical"), BeeSpecies.SPIDERY, 10);
@@ -194,17 +195,8 @@ public class BeeMutation implements IBeeMutation
 		BeeMutation.Apatite = new BeeMutation(BeeSpecies.EARTH, Allele.getBaseSpecies("Rural"), BeeSpecies.APATITE, 6)
 			.setBlockAndMetaRequired(BlockInterface.getBlock("resources").itemID, ForestryHelper.BlockResource.APATITE.ordinal());
 		
-		// Now we get into a little bit of branching...
-		if (ExtraBeesHelper.isActive())
-		{
-			BeeMutation.Skulking = new BeeMutation(BeeSpecies.MYSTERIOUS, Allele.getExtraSpecies("desolate"), BeeSpecies.SKULKING, 10);
-			BeeMutation.Ghastly = new BeeMutation(BeeSpecies.SKULKING, Allele.getExtraSpecies("creeper"), BeeSpecies.GHASTLY, 13);
-		}
-		else
-		{
-			BeeMutation.Skulking = new BeeMutation(BeeSpecies.MYSTERIOUS, Allele.getBaseSpecies("Modest"), BeeSpecies.SKULKING, 10);
-			BeeMutation.Ghastly = new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Austere"), BeeSpecies.GHASTLY, 13);
-		}
+		baseA = (ExtraBeesHelper.isActive()) ? Allele.getExtraSpecies("desolate") : Allele.getBaseSpecies("Modest");
+		BeeMutation.Skulking = new BeeMutation(BeeSpecies.MYSTERIOUS, baseA, BeeSpecies.SKULKING, 10);
 		
 		if (ThaumcraftHelper.isActive())
 		{
@@ -247,7 +239,7 @@ public class BeeMutation implements IBeeMutation
 			}
 
 			BeeMutation.Gossamer.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_CRESCENT);
-			BeeMutation.Wispy = new BeeMutation(BeeSpecies.GOSSAMER, Allele.getBaseSpecies("Cultivated"), BeeSpecies.WISPY, 8);
+			BeeMutation.Wispy = new BeeMutation(BeeSpecies.GOSSAMER, BeeSpecies.SOUL, BeeSpecies.WISPY, 8);
 			BeeMutation.Rejuvination.setAuraNodeRequired(15).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WANING_HALF)
 				.setMoonPhaseBonus(MoonPhase.FULL, MoonPhase.FULL, 6);
 			BeeMutation.Rejuvination1.setAuraNodeRequired(15).setMoonPhaseRestricted(MoonPhase.WAXING_HALF, MoonPhase.WANING_HALF)

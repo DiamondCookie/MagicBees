@@ -485,7 +485,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@SideOnly(Side.CLIENT)
 	private Icon[][] icons;
 	
-	private final static boolean defaultSecretSetting = false;
+	private final static boolean defaultSecretSetting = true;
 	
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
