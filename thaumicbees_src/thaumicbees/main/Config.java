@@ -38,6 +38,7 @@ import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.main.utils.LocalizationManager;
+import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -60,7 +61,7 @@ public class Config
 	public boolean DrawParticleEffects;	
 	public boolean BeeInfusionsAdded;
 	public boolean AddThaumcraftItemsToBackpacks;
-	public boolean SkipUpdateCheck;
+	public boolean DisableUpdateCheck;
 	public boolean AreMagicPlanksFlammable;
 	public boolean UseImpregnatedStickInTools;
 	public boolean MoonDialShowsPhaseInText;
@@ -128,8 +129,24 @@ public class Config
 	public static Item tcNuggetChicken;
 	public static Item tcNuggetBeef;
 	public static Item tcNuggetPork;
+	//----- Equivalent Exchange Blocks -------------------------
 	//----- Equivalent Exchange Items --------------------------
 	public static Item eeMinuimShard;
+	//----- Ars Magica Blocks ----------------------------------
+	public static Block amBlackOrchid;
+	public static Block amDesertNova;
+	//----- Ars Magica Items -----------------------------------
+	public static Item amVinteumDust;
+	public static Item amArcaneCompound;
+	public static Item amEssenceArcane;
+	public static Item amEssenceEarth;
+	public static Item amEssenceWater;
+	public static Item amEssenceFire;
+	public static Item amEssenceAir;
+	public static Item amEssenceMagma;
+	public static Item amEssencePlant;
+	public static Item amEssenceIce;
+	public static Item amEssenceLightning;
 	
 
 	//----- Config State info ----------------------------------
@@ -153,6 +170,7 @@ public class Config
 		ThaumcraftHelper.getBlocks();
 		ForestryHelper.getBlocks();
 		EquivalentExchangeHelper.getBlocks();
+		ArsMagicaHelper.getBlocks();
 		
 		int blockIdBase = 1750;
 		
@@ -168,7 +186,7 @@ public class Config
 		
 				Item item = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames());
 		        Item.itemsList[planksWood.blockID] = item;
-		        
+
 		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
 				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.GREATWOOD.ordinal());
 				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", ThaumicBees.getConfig().planksWood.blockID + "@" + PlankType.SILVERWOOD.ordinal());
@@ -203,6 +221,7 @@ public class Config
 		ThaumcraftHelper.getItems();
 		ForestryHelper.getItems();
 		EquivalentExchangeHelper.getItems();
+		ArsMagicaHelper.getItems();
 		
 		int itemIDBase = 26090;
 		
@@ -347,7 +366,7 @@ public class Config
 		
 		p = tbConfig.get("general", "disableVersionCheck", false);
 		p.comment = "Set to true to stop ThaumicBees from checking for updates.";
-		this.SkipUpdateCheck = p.getBoolean(false);
+		this.DisableUpdateCheck = p.getBoolean(false);
 		
 		p = tbConfig.get("general", "areMagicPlanksFlammable", false);
 		p.comment = "Set to true to allow Greatwood & Silverwood planks to burn in a fire.";

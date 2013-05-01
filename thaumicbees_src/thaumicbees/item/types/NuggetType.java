@@ -12,6 +12,7 @@ public enum NuggetType
 	LEAD,
 	DIAMOND,
 	EMERALD,
+	APATITE,
 	;
 	
 	private Item targetIngot;

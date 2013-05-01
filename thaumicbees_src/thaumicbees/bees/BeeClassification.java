@@ -15,15 +15,16 @@ public enum BeeClassification implements IClassification
 	ARCANE("Arcane", "Arcanus"),
 	SUPERNATURAL("Supernatural", "Occultus"),
 	SCHOLARLY("Scholarly", "Docto"),
-	THAUMIC("Thaumic", "Thaumis"),
 	SKULKING("Skulking", "Malevolens"),
-	VIS("Vis", "Vis"),
+	MAGICAL("Magic", "Magica"),
 	TIME("Time", "Tempestivus"),
 	SOUL("Soul", "Animus"),
-	ALCHEMICAL("Alchemical", "Alchimia"),
 	METALLIC("Metallic", "Metallicis"),
 	GEM("Gem", "Lapidi"),
+	THAUMIC("Thaumic", "Thaumis"),
 	FLESHY("Fleshy", "Carnosa"),
+	ALCHEMICAL("Alchemical", "Alchimia"),
+	ESSENTIAL("Essential", "Essentia"),
 	;
 	
 	private String uID;

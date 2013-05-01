@@ -1,3 +1,10 @@
+Adding Apatite bees.
+
+1.4.6
+Ars Magica integration! 13 new bee species to help you research & cast spells.
+Changing mutations around, because I'm still not happy with them. (Again.)
+Many icon & texture fixes. (derp!)
+
 1.4.5a
 Repaired Thaumcraft 3 integration for 3.0.4a.
 Fixed Biofuel capsules being shown as "Empty x Capsule"

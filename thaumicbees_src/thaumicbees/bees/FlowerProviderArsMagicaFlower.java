@@ -1,34 +1,27 @@
 package thaumicbees.bees;
 
-import java.util.EnumSet;
-
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import thaumicbees.main.Config;
 import thaumicbees.main.utils.LocalizationManager;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IFlowerProvider;
 import forestry.api.genetics.IPollinatable;
 
-public class FlowerProviderThaumcraftFlower implements IFlowerProvider
+public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 {
-	private ItemStack[] flowers = {new ItemStack(Config.tcPlant, 1, 2), new ItemStack(Config.tcPlant, 1, 3) };
-			
+	private ItemStack[] flowers = {new ItemStack(Config.amBlackOrchid), new ItemStack(Config.amDesertNova) };
+	
 	@Override
 	public boolean isAcceptedFlower(World world, IBeeGenome genome, int x, int y, int z)
 	{
 		boolean flag = false;
-		if (world.getBlockId(x, y, z) == Config.tcPlant.blockID)
+		int id = world.getBlockId(x, y, z);
+		if (id == Config.amBlackOrchid.blockID || id == Config.amDesertNova.blockID)
 		{
-			int meta = world.getBlockMetadata(x, y, z);
-			if (meta == 2 || meta == 3)
-			{
-				flag = true;
-			}
+			flag = true;
 		}
 		return flag;
 	}
@@ -42,12 +35,12 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 		{
 			if (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.SHIMMERLEAF.ordinal());
+				world.setBlock(x, y, z, Config.amBlackOrchid.blockID);
 				flag = true;
 			}
 			else if (blockDown == Block.sand.blockID)
 			{
-				world.setBlockMetadataWithNotify(x, y, z, Config.tcPlant.blockID, ThaumcraftHelper.BlockPlant.CINDERPEARL.ordinal());
+				world.setBlock(x, y, z, Config.amDesertNova.blockID);
 				flag = true;
 			}
 		}
@@ -57,7 +50,7 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.magic");
+		return LocalizationManager.getLocalizedString("tb.bees.flower.arsmagica");
 	}
 
 	@Override

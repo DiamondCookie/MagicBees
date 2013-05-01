@@ -38,7 +38,7 @@ public class ItemMoonDial extends Item
     	{
     		this.icons[i] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":moonDial." + i);
     	}
-    	this.itemIcon = this.icons[0];
+    	this.itemIcon = this.icons[4];
     }
 	
     @Override
@@ -52,16 +52,9 @@ public class ItemMoonDial extends Item
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List infoList, boolean par4)
     {
-		if (ThaumicBees.getConfig().MoonDialShowsPhaseInText)
+		if (ThaumicBees.getConfig().MoonDialShowsPhaseInText && entityPlayer.getCurrentEquippedItem().getItem() == this)
 		{
 			infoList.add("\u00A77" + MoonPhase.getMoonPhaseFromTime(entityPlayer.worldObj.getWorldTime()).getLocalizedName());
 		}
-    }
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int damage)
-    {
-        return this.icons[5];
     }
 }

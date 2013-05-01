@@ -21,6 +21,7 @@ import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
+import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ShapelessBeeInfusionCraftingRecipe;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -188,6 +189,11 @@ public class CraftingManager
 			"xxx", "xxx", "xxx",
 			'x', "shardEmerald"
 		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemInterface.getItem("apatite"), new Object[] {
+			"xxx", "xxx", "xxx",
+			'x', Config.nuggets.getStackForType(NuggetType.APATITE)
+		}));
 
 		if (ThaumcraftHelper.isActive())
 		{
@@ -247,6 +253,16 @@ public class CraftingManager
 					});
 				}
 			}
+		}
+		
+		if (ArsMagicaHelper.isActive())
+		{
+			input = ItemInterface.getItem("apatite");
+			output = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER, 4);
+			GameRegistry.addShapelessRecipe(output, new Object[] {
+					new ItemStack(Config.amEssenceEarth), new ItemStack(Config.amEssencePlant),
+					input, input
+			});
 		}
 	}
 	
@@ -312,6 +328,16 @@ public class CraftingManager
 					new ItemStack[] {new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal())},
 					new int[] { 10 });
 		}
+		
+		if (ArsMagicaHelper.isActive())
+		{
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.ESSENCE), 
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Config.amVinteumDust), new ItemStack(Config.amVinteumDust) },
+					new int[] { 85, 10, 2 } );
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.POTENT),
+					new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("refractoryWax"), ItemInterface.getItem("honeydew") },
+					new int[] { 50, 50, 65 } );
+		}
 	}
 	
 	private static void setupSqueezerRecipes()
@@ -321,10 +347,10 @@ public class CraftingManager
 		{
 			RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {Config.propolis.getStackForType(PropolisType.FIRE) },
 					new LiquidStack(Block.lavaStill, 250),
-					new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()), 10);
+					new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()), 8);
 			RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {Config.propolis.getStackForType(PropolisType.WATER) },
 					new LiquidStack(Block.waterStill, 500),
-					new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 10);
+					new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 8);
 		}
 	}
 

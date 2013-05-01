@@ -29,7 +29,7 @@ public class VersionInfo
 
 	public static final String Logo = "/gfx/thaumicbees/logo.png";
 
-	public static final String Depends = "required-after:Forestry;after:Thaumcraft@[3.0.3,);after:ExtraBees";
+	public static final String Depends = "required-after:Forestry;after:Thaumcraft;after:ExtraBees;after:EE3;after:ArsMagica";
 
 	boolean criticalUpdate;
 	boolean newVersion;
@@ -240,7 +240,7 @@ public class VersionInfo
 
 	public static void doVersionCheck()
 	{
-		if (!ThaumicBees.getConfig().SkipUpdateCheck)
+		if (!ThaumicBees.getConfig().DisableUpdateCheck)
 		{
 			VersionInfo main = new VersionInfo("ThaumicBees", Version, VersionURL);
 			TickHandlerVersion.registerModVersionInfo(main);

@@ -219,7 +219,7 @@ public class ThaumcraftHelper
 		ObjectTags tags;
 		ItemStack itemStack;
 		
-		tags = new ObjectTags().add(EnumTag.WOOD, 2);
+		tags = new ObjectTags().add(EnumTag.WOOD, 1);
 		ThaumcraftApi.registerObjectTag(Config.planksWood.blockID, -1, tags);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 2);

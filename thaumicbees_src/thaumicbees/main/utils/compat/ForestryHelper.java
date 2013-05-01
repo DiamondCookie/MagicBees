@@ -7,7 +7,15 @@ import forestry.api.core.ItemInterface;
 import thaumicbees.main.Config;
 
 public class ForestryHelper
-{	
+{
+	public enum BlockResource
+	{
+		APATITE,
+		COPPER,
+		TIN,
+		;
+	}
+	
 	public enum CraftingMaterial
 	{
 		PULSATING_DUST, // unused
