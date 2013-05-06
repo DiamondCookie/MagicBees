@@ -1,10 +1,12 @@
 package thaumicbees.main;
 
-import java.lang.reflect.Field;
-
-import thaumicbees.main.render.BeeRenderEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
+import thaumicbees.client.render.EffectJarRenderer;
+import thaumicbees.main.render.BeeRenderEffect;
+import thaumicbees.tileentity.TileEntityEffectJar;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -13,6 +15,16 @@ public class ClientProxy extends CommonProxy
 {
 
 	public ClientProxy() { }
+	
+	@Override
+	public void registerTileEntities()
+	{
+		super.registerTileEntities();
+		
+		RenderIdEffectJar = RenderingRegistry.getNextAvailableRenderId();
+		MinecraftForgeClient.registerItemRenderer(Config.effectJar.blockID, EffectJarRenderer.instance);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEffectJar.class, EffectJarRenderer.instance);
+	}
 	
 	@Override
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)

@@ -30,16 +30,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	@Override
 	public boolean growFlower(World world, IBeeGenome genome, int x, int y, int z)
 	{
-		boolean flag = false;
-		int blockDown = world.getBlockId(x, y - 1, z);
-		if (world.isAirBlock(x, y, z) && (blockDown == Block.dirt.blockID || blockDown == Block.grass.blockID))
-		{
-			int rand = world.rand.nextInt(10);
-			world.setBlockMetadataWithNotify(x, y, z, Config.tcPlant.blockID, (rand >= 5) ? 2 : 3);
-			System.out.println(x + ", " + y + ", " + ", " + z + " set to flower.");
-			flag = true;
-		}
-		return flag;
+		return true;
 	}
 
 	@Override

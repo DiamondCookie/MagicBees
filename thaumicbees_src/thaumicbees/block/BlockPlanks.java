@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.VersionInfo;

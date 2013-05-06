@@ -1,19 +1,22 @@
 package thaumicbees.item;
 
-import thaumcraft.api.IVisRepairable;
-import thaumcraft.api.ThaumcraftApi;
-import thaumicbees.main.CommonProxy;
-import thaumicbees.main.Config;
-import thaumicbees.main.utils.compat.ThaumcraftHelper;
-import forestry.api.arboriculture.IToolGrafter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import thaumcraft.api.EnumTag;
+import thaumcraft.api.IVisRepairable;
+import thaumcraft.api.ObjectTags;
+import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.main.Config;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
+import forestry.api.arboriculture.IToolGrafter;
 
 public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGrafter
 {
@@ -45,7 +48,7 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLiving entityliving) {
+	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLiving entityLiving) {
 		int damage = 1;
 		if (id == Config.tcLeaf.blockID)
 		{
@@ -61,7 +64,13 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 				damage = 4;
 			}
 		}
-		itemstack.damageItem(damage, entityliving);
+		itemstack.damageItem(damage, entityLiving);
+		
+		if (entityLiving instanceof EntityPlayer)
+		{
+			EntityPlayer p = (EntityPlayer)entityLiving;
+			p.addExhaustion(8f);
+		}
 		return true;
 	}
 	
@@ -94,14 +103,14 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 	{
 		if (stack.getItemDamage() > 0)
 		{
-			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 2, true))
+			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 5, true))
 			{
-				if (e instanceof EntityPlayer)
-				{
-					EntityPlayer p = (EntityPlayer)e;
-					p.addExhaustion(0.19f);
-				}
 				stack.damageItem(-1, (EntityLiving)e);
+			}
+			if (e instanceof EntityPlayer)
+			{
+				EntityPlayer p = (EntityPlayer)e;
+				p.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 600));
 			}
 		}
 	}

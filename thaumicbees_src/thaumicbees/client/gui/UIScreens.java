@@ -1,4 +1,4 @@
-package thaumicbees.gui;
+package thaumicbees.client.gui;
 
 public enum UIScreens
 {

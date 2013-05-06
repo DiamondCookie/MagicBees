@@ -1,10 +1,13 @@
-package thaumicbees.gui;
+package thaumicbees.client.gui;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
 import thaumicbees.main.CommonProxy;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
+import thaumicbees.tileentity.TileEntityEffectJar;
 
 public class GUIEffectJar extends GuiContainer
 {
@@ -26,9 +29,9 @@ public class GUIEffectJar extends GuiContainer
 	private static final int BAR_WIDTH = 10;
 	private static final int BAR_HEIGHT = 40;
 	
-	public GUIEffectJar(ContainerEffectJar container)
+	public GUIEffectJar(TileEntityEffectJar jar, EntityPlayer player)
 	{
-		super(container);
+		super(new ContainerEffectJar(jar, player));
 		this.xSize = WIDTH;
 		this.ySize = HEIGHT;
 	}
@@ -42,18 +45,22 @@ public class GUIEffectJar extends GuiContainer
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
 	{
-		int texture = this.mc.renderEngine.getTexture(CommonProxy.TCBEES_GUI_PATH + BACKGROUND_FILE);
+		int texture = this.mc.renderEngine.getTexture(CommonProxy.GUI_PATH + BACKGROUND_FILE);
 		
-		GL11.glColor4f(1f, 1f, 1f, 0.2f);
+		GL11.glColor4f(1f, 1f, 1f, 1f);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture);
 		
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, xSize, ySize);
 		
-		GL11.glColor4f(1f, 1f, 1f, 1f);
+		TileEntityEffectJar jar = ((ContainerEffectJar)this.inventorySlots).jar;
+		float r = ((jar.currentBeeColour >> 16) & 255) / 255f;
+		float g = ((jar.currentBeeColour >> 8) & 255) / 255f;
+		float b = (jar.currentBeeColour & 255) / 255f;
 		
-		float percent = 0.0f;
-		int value = BAR_HEIGHT - (int)(percent * BAR_HEIGHT);
+		GL11.glColor3f(r, g, b);
+		
+		int value = BAR_HEIGHT - (jar.currentBeeHealth * BAR_HEIGHT) / 100;
 		this.drawTexturedModalRect(this.guiLeft + BAR_DEST_X, this.guiTop + value + BAR_DEST_Y, BAR_SRC_X, BAR_SRC_Y, BAR_WIDTH, BAR_HEIGHT - value);
 	}
 

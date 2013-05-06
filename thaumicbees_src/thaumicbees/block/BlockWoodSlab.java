@@ -8,8 +8,11 @@ import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import thaumicbees.item.types.PlankType;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
@@ -43,7 +46,7 @@ public class BlockWoodSlab extends BlockHalfSlab
 
     protected ItemStack createStackedBlock(int meta)
     {
-        return new ItemStack(Config.slabWoodHalf.blockID, 2, meta & 7);
+        return new ItemStack(Config.planksWood.blockID, 1, meta & 7);
     }
 
 	@Override
@@ -78,4 +81,23 @@ public class BlockWoodSlab extends BlockHalfSlab
     		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":" + t.name);
     	}
     }
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
+	{
+		int id = world.getBlockId(x, y, z);
+
+	    if (id == 0)
+	    {
+	        return null;
+	    }
+	
+	    Item item = Item.itemsList[id];
+	    if (item == null)
+	    {
+	        return null;
+	    }
+	
+	    return new ItemStack(id, 1, getDamageValue(world, x, y, z) & 7);
+	}
 }

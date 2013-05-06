@@ -1,6 +1,6 @@
 package thaumicbees.main;
 
-import thaumicbees.gui.GUIHandler;
+import thaumicbees.client.gui.GUIHandler;
 import thaumicbees.main.utils.CompatabilityManager;
 import thaumicbees.main.utils.CraftingManager;
 import thaumicbees.main.utils.LocalizationManager;
@@ -15,6 +15,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(
@@ -25,6 +26,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 		version=VersionInfo.Version + " - " + VersionInfo.Build,
 		dependencies=VersionInfo.Depends
 )
+@NetworkMod(serverSideRequired=false, clientSideRequired=true)
 public class ThaumicBees
 {
 
@@ -57,7 +59,7 @@ public class ThaumicBees
 	public void init(FMLInitializationEvent event)
 	{		
 		this.modConfig.setupBlocks();
-		this.modConfig.registerTileEntities();
+		this.proxy.registerTileEntities();
 		this.modConfig.setupItems();
 		
 		CompatabilityManager.setupBackpacks();

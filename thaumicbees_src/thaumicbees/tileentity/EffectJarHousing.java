@@ -9,19 +9,29 @@ import forestry.api.apiculture.IBeeHousing;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 
+/**
+ * 
+ * Singleton object to simulate enough of a bee house to fire the bee effects. =D
+ * 
+ * @author MysteriousAges
+ *
+ */
 public class EffectJarHousing implements IBeeHousing
 {
+	private static EffectJarHousing instance = new EffectJarHousing();
+	
 	TileEntityEffectJar jarEntity;
 	
-	public EffectJarHousing(TileEntityEffectJar entity)
+	public static EffectJarHousing getFor(TileEntityEffectJar entity)
 	{
-		this.jarEntity = entity;
+		instance.jarEntity = entity;
+		return instance;
 	}
 
 	@Override
 	public float getTerritoryModifier(IBeeGenome genome, float currentModifier)
 	{
-		return 0f;
+		return 0.9f;
 	}
 
 	@Override
@@ -33,7 +43,7 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier)
 	{
-		return 0.5f;
+		return 0f;
 	}
 
 	@Override
@@ -69,19 +79,19 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public boolean isSealed()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isSelfLighted()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isSunlightSimulated()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
@@ -91,19 +101,13 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void onQueenChange(ItemStack queen)
-	{
-		
-	}
+	public void onQueenChange(ItemStack queen) { }
 
 	@Override
 	public void wearOutEquipment(int amount) { }
 
 	@Override
-	public void onQueenDeath(IBee queen)
-	{
-		
-	}
+	public void onQueenDeath(IBee queen) { }
 
 	@Override
 	public void onPostQueenDeath(IBee queen) { }
@@ -111,7 +115,7 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public ItemStack getQueen()
 	{
-		return this.jarEntity.queenSlot;
+		return this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 	}
 
 	@Override
@@ -123,7 +127,7 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public void setQueen(ItemStack itemStack)
 	{
-		this.jarEntity.queenSlot = itemStack;
+		this.jarEntity.setInventorySlotContents(TileEntityEffectJar.QUEEN_SLOT, itemStack);
 	}
 
 	@Override
@@ -139,7 +143,7 @@ public class EffectJarHousing implements IBeeHousing
 	public EnumTemperature getTemperature()
 	{
 		EnumTemperature temp = EnumTemperature.NORMAL;
-		ItemStack stack = this.jarEntity.queenSlot;
+		ItemStack stack = this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 		if (stack != null)
 		{
 			IBee queen = BeeManager.beeInterface.getBee(stack);
@@ -152,7 +156,7 @@ public class EffectJarHousing implements IBeeHousing
 	public EnumHumidity getHumidity()
 	{
 		EnumHumidity humid = EnumHumidity.NORMAL;
-		ItemStack stack = this.jarEntity.queenSlot;
+		ItemStack stack = this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 		if (stack != null)
 		{
 			IBee queen = BeeManager.beeInterface.getBee(stack);
@@ -179,7 +183,7 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public int getErrorOrdinal()
 	{
-		return 0;
+		return 1; // EnumErrorCode.OK.ordinal() value.
 	}
 
 	@Override

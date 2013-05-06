@@ -1,4 +1,4 @@
-package thaumicbees.gui;
+package net.mysteriousages.utils.gui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,13 @@ import java.util.List;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
+/**
+ * 
+ * @author MysteriousAges
+ *
+ */
 public class SlotCustomItems extends Slot
 {
 	private List<ItemStack> items;
@@ -27,6 +33,10 @@ public class SlotCustomItems extends Slot
 		}
 	}
 	
+	/**
+	 * 
+	 * @return List of valid ItemStacks
+	 */
 	public List<ItemStack> getValidItems()
 	{
 		return this.items;
@@ -40,7 +50,7 @@ public class SlotCustomItems extends Slot
 			ItemStack s = this.items.get(i);
 			if (s.itemID == newItem.itemID)
 			{
-				if (s.getItemDamage() == -1)
+				if (s.getItemDamage() == OreDictionary.WILDCARD_VALUE)
 				{
 					contains = true;
 					break;
@@ -69,7 +79,7 @@ public class SlotCustomItems extends Slot
 			ItemStack s = this.items.get(i);
 			if (s.itemID == removeItem.itemID)
 			{
-				if (s.getItemDamage() == -1)
+				if (s.getItemDamage() == OreDictionary.WILDCARD_VALUE)
 				{
 					this.items.remove(i);
 					break;
@@ -98,7 +108,7 @@ public class SlotCustomItems extends Slot
 				}
 				else
 				{
-					flag = this.items.get(i).getItemDamage() == -1;
+					flag = this.items.get(i).getItemDamage() ==OreDictionary.WILDCARD_VALUE;
 					break;
 				}
 			}

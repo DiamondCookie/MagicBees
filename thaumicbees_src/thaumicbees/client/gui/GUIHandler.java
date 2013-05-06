@@ -1,4 +1,4 @@
-package thaumicbees.gui;
+package thaumicbees.client.gui;
 
 import thaumicbees.tileentity.TileEntityEffectJar;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +15,7 @@ public class GUIHandler implements IGuiHandler
 		
 		if (ID == UIScreens.EFFECT_JAR.ordinal())
 		{
-			value = new ContainerEffectJar((TileEntityEffectJar)(world.getBlockTileEntity(x, y, z)), player);
+			value = new ContainerEffectJar((TileEntityEffectJar)world.getBlockTileEntity(x, y, z), player);
 		}
 		
 		return value;
@@ -28,7 +28,7 @@ public class GUIHandler implements IGuiHandler
 		
 		if (ID == UIScreens.EFFECT_JAR.ordinal())
 		{
-			value = new GUIEffectJar(new ContainerEffectJar((TileEntityEffectJar)(world.getBlockTileEntity(x, y, z)), player));
+			value = new GUIEffectJar((TileEntityEffectJar)world.getBlockTileEntity(x, y, z), player);
 		}
 		
 		return value;

@@ -16,6 +16,7 @@ import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
 import thaumicbees.item.types.NuggetType;
 import thaumicbees.item.types.PlankType;
+import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.item.types.ResourceType;
 import thaumicbees.item.types.WaxType;
@@ -121,6 +122,21 @@ public class CraftingManager
 			'D', Block.dirt,
 			'w', Config.wax.getStackForType(WaxType.SOUL)
 		});
+		
+		GameRegistry.addRecipe(new ItemStack(Config.hiveFrameTemporal), new Object[] {
+			"sPs", "PfP", "sPs",
+			's', Block.sand,
+			'P', Config.pollen.getStackForType(PollenType.PHASED),
+			'f', Config.hiveFrameMagic
+		});
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Config.effectJar), new Object[] {
+			"GSG", "QPQ", "GGG",
+			'G', Block.glass,
+			'S', "slabWood",
+			'P', Config.pollen.getStackForType(PollenType.UNUSUAL),
+			'Q', Item.netherQuartz
+		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Config.moonDial), new Object[] {
 			"DqD", "qrq", "DqD",
@@ -509,14 +525,14 @@ public class CraftingManager
 				"wSt", "wFw", "tSw",
 				't', Item.stick,
 				'S', Block.sand,
-				'F', input,
+				'F', Config.hiveFrameMagic,
 				'w', Config.wax.getStackForType(WaxType.MAGIC)
 		});
 		GameRegistry.addRecipe(output, new Object[] {
 				"tSw", "wFw", "wSt",
 				't', Item.stick,
 				'S', Block.sand,
-				'F', input,
+				'F', Config.hiveFrameMagic,
 				'w', Config.wax.getStackForType(WaxType.MAGIC)
 		});
 		

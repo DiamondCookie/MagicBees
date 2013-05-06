@@ -1,3 +1,8 @@
+Added the Bee Collector's Jar.
+Created an alternate recipe for the Temporal Frame that is always active.
+Adjusted TC3 alternate recipe for the Temporal Frame.
+Fixed an issue with the "Pick Block" function on the Greatwood & Silverwood planks. Should also stop NEI from providing incorrect block info on them.
+Fixed the Node flower growing flowers.
 Adding Apatite bees.
 
 1.4.6

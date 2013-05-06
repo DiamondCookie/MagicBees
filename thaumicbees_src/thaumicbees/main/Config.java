@@ -211,11 +211,6 @@ public class Config
 		GameRegistry.registerBlock(effectJar, "tb.effectJar");
 	}
 	
-	public void registerTileEntities()
-	{
-		GameRegistry.registerTileEntity(TileEntityEffectJar.class, "tb.entity.effectJar");
-	}
-	
 	public void setupItems()
 	{
 		ThaumcraftHelper.getItems();
