@@ -1,25 +1,19 @@
 package thaumicbees.item;
 
-import java.util.List;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import thaumcraft.api.EnumTag;
-import thaumcraft.api.ObjectTags;
-import thaumcraft.api.ThaumcraftApi;
-import thaumicbees.item.types.HiveFrameType;
-import thaumicbees.item.types.LiquidType;
-import thaumicbees.main.CommonProxy;
-import thaumicbees.main.utils.VersionInfo;
-import thaumicbees.main.utils.compat.ForestryHelper;
-import thaumicbees.main.utils.compat.ThaumcraftHelper;
-
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import thaumcraft.api.ThaumcraftApi;
+import thaumicbees.item.types.HiveFrameType;
+import thaumicbees.main.Config;
+import thaumicbees.main.utils.TabThaumicBees;
+import thaumicbees.main.utils.VersionInfo;
+import thaumicbees.main.utils.compat.ThaumcraftHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -35,7 +29,9 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		this.type = frameType;
 		this.setMaxDamage(this.type.maxDamage);
 		this.setMaxStackSize(1);
+		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setUnlocalizedName("frame" + frameType.getName());
+		GameRegistry.registerItem(this, "frame" + frameType.getName());
 	}
 	
     @SideOnly(Side.CLIENT)
@@ -52,21 +48,13 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		return this.doWear(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), frame, wear);
 	}
 	
-	private void doFluxEffect(World w, int x, int y, int z)
-	{
-		if (this.type.flux != null && w.rand.nextInt(5) <= 1)
-		{			
-			ThaumcraftApi.addFluxToClosest(w, x, y, z, this.type.flux);
-		}
-	}
-	
 	private ItemStack doWear(World w, int x, int y, int z, ItemStack frame, int wear)
 	{
 		int damage = wear;
-		int fluxMod = 1;
 		
 		if (ThaumcraftHelper.isActive())
 		{
+			int fluxMod = 1;
 			// This throttles back the amount of aura consumed by the frame by storing a smidge of data on the item stack.
 			if (this.type.auraPerUse > 0)
 			{
@@ -93,7 +81,12 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 						damage = wear + this.type.auraPerUse * this.type.wearTicksPerAura;
 						fluxMod = 1 + w.rand.nextInt(this.type.wearTicksPerAura);
 					}
-					wearTicks = 0;				
+					wearTicks = 0;
+							
+					for (int i = 0; i < fluxMod; ++i)
+					{
+						ThaumcraftHelper.doFluxEffect(this.type, w, x, y, z);
+					}		
 				}
 				
 				tag.setByte("wearTicks", (byte)wearTicks);
@@ -105,11 +98,6 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		}
 		
 		frame.setItemDamage(frame.getItemDamage() + damage);
-		
-		for (int i = 0; i < fluxMod; ++i)
-		{
-			this.doFluxEffect(w, x, y, z);
-		}
 		
 		if (frame.getItemDamage() >= frame.getMaxDamage())
 		{

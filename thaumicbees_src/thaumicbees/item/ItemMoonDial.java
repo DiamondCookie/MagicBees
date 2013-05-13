@@ -2,6 +2,7 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import thaumicbees.item.types.PollenType;
@@ -27,7 +28,8 @@ public class ItemMoonDial extends Item
 	{
 		super(id);
 		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
-		this.setUnlocalizedName("moonDial");
+		this.setUnlocalizedName("tb.moonDial");
+		GameRegistry.registerItem(this, "tb.moonDial");
 	}
 
     @SideOnly(Side.CLIENT)

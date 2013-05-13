@@ -1,8 +1,11 @@
 package thaumicbees.main.utils.compat;
 
+import java.util.HashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ItemApi;
 import thaumcraft.api.ObjectTags;
@@ -11,8 +14,11 @@ import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchList;
 import thaumicbees.bees.BeeGenomeManager;
 import thaumicbees.bees.BeeSpecies;
+import thaumicbees.item.ItemThaumiumGrafter;
+import thaumicbees.item.ItemThaumiumScoop;
 import thaumicbees.item.types.CombType;
 import thaumicbees.item.types.DropType;
+import thaumicbees.item.types.HiveFrameType;
 import thaumicbees.item.types.LiquidType;
 import thaumicbees.item.types.PollenType;
 import thaumicbees.item.types.PropolisType;
@@ -22,7 +28,6 @@ import thaumicbees.main.CommonProxy;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.core.BlockInterface;
@@ -116,6 +121,8 @@ public class ThaumcraftHelper
 	
 	private static boolean isThaumcraftPresent = false;
 	public static final String Name = "Thaumcraft";
+
+	private static HashMap<HiveFrameType, Object> fluxData;
 	
 	public static boolean isActive()
 	{
@@ -129,6 +136,15 @@ public class ThaumcraftHelper
 			isThaumcraftPresent = true;
 			
 			registerResearchXML();
+			
+			fluxData = new HashMap<HiveFrameType, Object>();
+			fluxData.put(HiveFrameType.MAGIC, null);
+			fluxData.put(HiveFrameType.RESILIENT, new ObjectTags().add(EnumTag.ARMOR, 1));
+			fluxData.put(HiveFrameType.GENTLE, new ObjectTags().add(EnumTag.HEAL, 1).add(EnumTag.LIFE, 1));
+			fluxData.put(HiveFrameType.METABOLIC, new ObjectTags().add(EnumTag.EXCHANGE, 1).add(EnumTag.MOTION, 1));
+			fluxData.put(HiveFrameType.NECROTIC, new ObjectTags().add(EnumTag.DEATH, 3).add(EnumTag.POISON, 2));
+			fluxData.put(HiveFrameType.TEMPORAL, new ObjectTags().add(EnumTag.TIME, 5));
+			fluxData.put(HiveFrameType.OBLIVION, new ObjectTags().add(EnumTag.TIME, 5).add(EnumTag.ELDRITCH, 5));
 		}
 	}
 	
@@ -756,5 +772,14 @@ public class ThaumcraftHelper
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.INFUSED.getBeeItem(EnumBeeType.PRINCESS), new Object[]
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
 				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+	}
+	
+	public static void doFluxEffect(HiveFrameType frameType, World w, int x, int y, int z)
+	{
+		ObjectTags flux = (ObjectTags)(fluxData.get(frameType));
+		if (flux != null && w.rand.nextInt(5) <= 1)
+		{			
+			ThaumcraftApi.addFluxToClosest(w, x, y, z, flux);
+		}
 	}
 }

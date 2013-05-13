@@ -123,9 +123,9 @@
 				<include name="**/thaumicbees/**" />
 				<include name="**/net/mysteriousages/**" />
 
-                <include name="**/thaumcraft/api/IVisRepairable.class" />
+                <!--<include name="**/thaumcraft/api/IVisRepairable.class" />
                 <include name="**/thaumcraft/api/EnumTag.class" />
-                <include name="**/thaumcraft/api/ObjectTags.class" />
+                <include name="**/thaumcraft/api/ObjectTags.class" /> -->
 			</fileset>
 		</copy>
 		

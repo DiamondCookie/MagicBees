@@ -1,8 +1,11 @@
 package thaumicbees.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,8 +22,6 @@ public class BlockEffectJar extends BlockContainer
 	public BlockEffectJar(int id)
 	{
 		super(id, Material.glass);
-		// Copy glass's block icon for the breaking & running textures.
-		this.blockIcon = Block.glass.getIcon(0, 0);
 		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setUnlocalizedName("tb.effectJar");
 		this.setBlockBounds(0.25f, 0f, 0.25f, 0.75f, 0.81f, 0.74f);
@@ -100,5 +101,12 @@ public class BlockEffectJar extends BlockContainer
 				stack.stackSize = 0;
 			}
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister par1IconRegister)
+	{
+		this.blockIcon = Block.glass.getIcon(0, 0);
 	}
 }

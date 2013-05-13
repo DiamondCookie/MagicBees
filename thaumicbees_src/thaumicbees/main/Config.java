@@ -1,6 +1,7 @@
 package thaumicbees.main;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
 import net.minecraft.block.Block;
@@ -43,7 +44,6 @@ import thaumicbees.main.utils.compat.EquivalentExchangeHelper;
 import thaumicbees.main.utils.compat.ForestryHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import thaumicbees.storage.BackpackDefinition;
-import thaumicbees.tileentity.TileEntityEffectJar;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -81,8 +81,8 @@ public class Config
 	public static ItemCrystalAspect solidFlux;
 	public static ItemMiscResources miscResources;
 	public static ItemFood jellyBaby;
-	public static ItemThaumiumScoop thaumiumScoop;
-	public static ItemThaumiumGrafter thaumiumGrafter;
+	public static Item thaumiumScoop;
+	public static Item thaumiumGrafter;
 	public static ItemNugget nuggets;
 	public static ItemMoonDial moonDial;
 	
@@ -219,11 +219,8 @@ public class Config
 		ArsMagicaHelper.getItems();
 		
 		int itemIDBase = 26090;
-		
-		Property p = tbConfig.getItem("combs", itemIDBase++);
-		combs= new ItemComb(p.getInt());
-		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, -1));
-		
+
+		combs= new ItemComb(tbConfig.getItem("combs", itemIDBase++).getInt());
 		wax = new ItemWax(tbConfig.getItem("wax", itemIDBase++).getInt());
 		propolis = new ItemPropolis(tbConfig.getItem("propolis", itemIDBase++).getInt());
 		drops = new ItemDrop(tbConfig.getItem("drop", itemIDBase++).getInt());
@@ -243,7 +240,7 @@ public class Config
 					// 0x8700C6 = purpleish.
 					String backpackName = LocalizationManager.getLocalizedString("tb.backpack.thaumaturge");
 					BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
-					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(tier1, def, EnumBackpackType.T1);
+					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(tier1, def, EnumBackpackType.T1);					
 					thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(tier2, def, EnumBackpackType.T2);
 					// Add additional items from configs to backpack.
 					if (ThaumicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
@@ -261,7 +258,6 @@ public class Config
 		}
 		
 		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, tbConfig.getItem("magicCapsule", itemIDBase++).getInt(), this.CapsuleStackSizeMax);
-		
 		pollen = new ItemPollen(tbConfig.getItem("pollen", itemIDBase++).getInt());
 		
 		{
@@ -295,6 +291,8 @@ public class Config
 		jellyBaby = new ItemFood(tbConfig.getItem("jellyBabies", itemIDBase++).getInt(), 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
 		jellyBaby.setUnlocalizedName("thaumicbees:jellyBabies");
+		GameRegistry.registerItem(jellyBaby, "thaumicbees:jellyBabies");
+		
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, tbConfig.getItem("voidCapsule", itemIDBase++).getInt(), this.CapsuleStackSizeMax);
 
@@ -303,11 +301,18 @@ public class Config
 			int grafterID = tbConfig.getItem("thaumiumGrafter", itemIDBase++).getInt();
 			if (ThaumcraftHelper.isActive())
 			{
-				thaumiumScoop = new ItemThaumiumScoop(scoopID);
-				MinecraftForge.setToolClass(thaumiumScoop, "scoop", 3);
-				
-				thaumiumGrafter = new ItemThaumiumGrafter(grafterID);
-				MinecraftForge.setToolClass(thaumiumGrafter, "grafter", 3);
+				try {
+					// Reflecting avoids the need to directly include the Thaumcraft API in the jar. BAM!
+					Constructor ctor1 = Class.forName("thaumicbees.item.ItemThaumiumScoop").getConstructor(int.class);
+					thaumiumScoop = (Item)ctor1.newInstance(scoopID);
+					MinecraftForge.setToolClass(thaumiumScoop, "scoop", 3);
+					GameRegistry.registerItem(thaumiumScoop, thaumiumScoop.getUnlocalizedName());
+					
+					Constructor ctor2 = Class.forName("thaumicbees.item.ItemThaumiumGrafter").getConstructor(int.class);
+					thaumiumGrafter = (Item)ctor2.newInstance(grafterID);
+					MinecraftForge.setToolClass(thaumiumGrafter, "grafter", 3);
+					GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName());
+				} catch (Exception e) { } 
 			}
 		}
 		
@@ -317,8 +322,9 @@ public class Config
 		itemIDBase++;
 		
 		nuggets = new ItemNugget(tbConfig.getItem("beeNuggets", itemIDBase++).getInt());
-		nuggets.setUnlocalizedName("beeNuggets");
 		
+
+		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, -1));
 		OreDictionary.registerOre("nuggetIron", nuggets.getStackForType(NuggetType.IRON));
 		OreDictionary.registerOre("nuggetCopper", nuggets.getStackForType(NuggetType.COPPER));
 		OreDictionary.registerOre("nuggetTin", nuggets.getStackForType(NuggetType.TIN));

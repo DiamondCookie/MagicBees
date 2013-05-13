@@ -7,6 +7,7 @@ import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.VersionInfo;
 import thaumicbees.main.utils.compat.ForestryHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -23,6 +24,8 @@ public class ItemComb extends Item
 		super(itemID);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tb.comb");
+		GameRegistry.registerItem(this, "tb.comb");
 	}
 	
 	public ItemStack getStackForType(CombType type)

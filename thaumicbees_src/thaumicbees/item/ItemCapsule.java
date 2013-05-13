@@ -2,6 +2,7 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -39,6 +40,8 @@ public class ItemCapsule extends Item
 		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(maxStackSize);
+		this.setUnlocalizedName("tb.capsule." + type.toString().toLowerCase());
+		GameRegistry.registerItem(this, "tb.capsule." + type.toString().toLowerCase());
 	}
 	
 	public CapsuleType getType()

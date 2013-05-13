@@ -2,6 +2,7 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,6 +27,7 @@ public class ItemCrystalAspect extends Item
 		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("crystalAspect");
+		GameRegistry.registerItem(this, "crystalAspect");
 	}
 	
 	@Override

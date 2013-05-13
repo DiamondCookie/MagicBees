@@ -2,19 +2,17 @@ package thaumicbees.item;
 
 import java.util.List;
 
-import thaumicbees.item.types.ResourceType;
-import thaumicbees.item.types.WaxType;
-import thaumicbees.main.CommonProxy;
-import thaumicbees.main.ThaumicBees;
-import thaumicbees.main.utils.VersionInfo;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import thaumicbees.item.types.WaxType;
+import thaumicbees.main.utils.VersionInfo;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 
 public class ItemWax extends Item
 {
@@ -26,6 +24,8 @@ public class ItemWax extends Item
 		super(itemID);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tb.wax");
+		GameRegistry.registerItem(this, "tb.wax");
 	}
 	
 	public ItemStack getStackForType(WaxType type)

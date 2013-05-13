@@ -1,5 +1,6 @@
 package thaumicbees.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -10,9 +11,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import thaumcraft.api.EnumTag;
 import thaumcraft.api.IVisRepairable;
-import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.main.Config;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
@@ -25,8 +24,9 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 		super(id);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(15);
-		this.setUnlocalizedName("thaumicbees:thaumiumGrafter");
 		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
+		this.setUnlocalizedName("thaumicbees:thaumiumGrafter");
+		GameRegistry.registerItem(this, "thaumicbees:thaumiumGrafter");
 	}
 
 	@Override

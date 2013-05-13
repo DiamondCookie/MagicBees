@@ -6,6 +6,7 @@ import thaumicbees.item.types.PollenType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.compat.ForestryHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -22,6 +23,8 @@ public class ItemPollen extends Item
 		super(itemID);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tb.pollen");
+		GameRegistry.registerItem(this, "tb.pollen");
 	}
 	public ItemStack getStackForType(PollenType type)
 	{

@@ -1,5 +1,6 @@
 package thaumicbees.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import thaumcraft.api.IVisRepairable;
 import thaumcraft.api.ThaumcraftApi;
 import thaumicbees.main.CommonProxy;
@@ -19,8 +20,9 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable
 		super(itemID);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(30);
-		this.setUnlocalizedName("thaumicbees:thaumiumScoop");
 		this.setCreativeTab(forestry.api.core.Tabs.tabApiculture);
+		this.setUnlocalizedName("thaumicbees:thaumiumScoop");
+		GameRegistry.registerItem(this, "thaumicbees:thaumiumScoop");
 	}
 
 	@Override

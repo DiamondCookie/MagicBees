@@ -2,6 +2,7 @@ package thaumicbees.item;
 
 import java.util.List;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -24,9 +25,10 @@ public class ItemMiscResources extends Item
 	public ItemMiscResources(int ID)
 	{
 		super(ID);
-		this.setUnlocalizedName("tb.miscResources");
 		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tb.miscResources");
+		GameRegistry.registerItem(this, "tb.miscResources");
 	}
 	
 	public ItemStack getStackForType(ResourceType type)

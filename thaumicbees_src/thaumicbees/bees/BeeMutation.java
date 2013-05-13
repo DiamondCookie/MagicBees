@@ -101,8 +101,8 @@ public class BeeMutation implements IBeeMutation
 		
 		BeeMutation.Esoteric = new BeeMutation(Allele.getBaseSpecies("Imperial"), Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, 10);
 		BeeMutation.Esoteric1 = new BeeMutation(Allele.getBaseSpecies("Heroic"), Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, 25);
-		BeeMutation.Mysterious = new BeeMutation(Allele.getBaseSpecies("Ended"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 15);
-		BeeMutation.Mysterious1 = new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 4);
+		BeeMutation.Mysterious = new BeeMutation(Allele.getBaseSpecies("Ended"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 8);
+		BeeMutation.Mysterious1 = new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 11);
 		BeeMutation.Mysterious2 = new BeeMutation(Allele.getBaseSpecies("Monastic"), BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 9);
 		BeeMutation.Arcane = new BeeMutation(BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, BeeSpecies.ARCANE, 8)
 			.setMoonPhaseBonus(MoonPhase.WANING_CRESCENT, MoonPhase.WAXING_CRESCENT, 1.5f);

@@ -7,6 +7,7 @@ import thaumicbees.item.types.PropolisType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.compat.ForestryHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,6 +25,8 @@ public class ItemDrop extends Item
 		super(itemID);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tb.drop");
+		GameRegistry.registerItem(this, "tb.drop");
 	}
 	
 	public ItemStack getStackForType(DropType type)

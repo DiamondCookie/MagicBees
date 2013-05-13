@@ -5,6 +5,7 @@ import java.util.List;
 import thaumicbees.item.types.PropolisType;
 import thaumicbees.main.CommonProxy;
 import thaumicbees.main.utils.compat.ForestryHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -21,6 +22,8 @@ public class ItemPropolis extends Item
 		super(id);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tb.propolis");
+		GameRegistry.registerItem(this, "tb.propolis");
 	}
 	
 	public ItemStack getStackForType(PropolisType type)

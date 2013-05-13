@@ -5,7 +5,9 @@
     <entry key="item.thaumicbees:jellyBabies.name">Handful of Jelly Babies</entry>
     <entry key="item.thaumicbees:thaumiumScoop.name">Thaumium Scoop</entry>
     <entry key="item.thaumicbees:thaumiumGrafter.name">Thaumium Grafter</entry>
-    <entry key="item.moonDial.name">Jade Moon Dial</entry>
+    
+    <!-- Specially handled Item names -->
+    <entry key="item.tb.moonDial.name">Jade Moon Dial</entry>
 
     <!-- Block names -->
 	<entry key="tile.tb.planks.greatwood.name">Greatwood Planks</entry>
@@ -130,7 +132,7 @@
     <entry key="thaumicbees.speciesSupernatural">Supernatural</entry>
     <entry key="thaumicbees.speciesSupernatural.description">These bees walk the line between this world and the unseen.|Apinomicon</entry>
     <entry key="thaumicbees.speciesPupil">Pupil</entry>
-    <entry key="thaumicbees.speciesPupil.description">"What does that bee want with my paper?!|Yorae, Librarian</entry>
+    <entry key="thaumicbees.speciesPupil.description">"What does that bee want with my paper?!"|Yorae, Librarian</entry>
     <entry key="thaumicbees.speciesStark">Stark</entry>
     <entry key="thaumicbees.speciesStark.description">"These are unusually attracted to shards. This warrents further investigation."|Azanor, Master Thaumaturge</entry>
     <entry key="thaumicbees.speciesAura">Aura</entry>
