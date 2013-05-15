@@ -38,6 +38,12 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 		this.ownerName = player.username;
 	}
 	
+	@Override
+	public boolean shouldRenderInPass(int pass)
+	{
+		return pass == 1;
+	}
+
 	public String getOwner()
 	{
 		return this.ownerName;
