@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import thaumicbees.item.types.PlankType;
+import thaumicbees.block.types.PlankType;
 import thaumicbees.main.Config;
 import thaumicbees.main.ThaumicBees;
 import thaumicbees.main.utils.VersionInfo;

@@ -1,4 +1,4 @@
-package thaumicbees.item.types;
+package thaumicbees.block.types;
 
 public enum PlankType
 {

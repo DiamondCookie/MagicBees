@@ -1,5 +1,6 @@
 package thaumicbees.tileentity;
 
+import thaumicbees.bees.Allele;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.BeeManager;
@@ -8,6 +9,7 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.IIndividual;
 
 /**
  * 
@@ -146,7 +148,7 @@ public class EffectJarHousing implements IBeeHousing
 		ItemStack stack = this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 		if (stack != null)
 		{
-			IBee queen = BeeManager.beeInterface.getBee(stack);
+			IBee queen = Allele.beeRoot.getMember(stack);
 			temp = queen.getGenome().getPrimary().getTemperature();
 		}
 		return temp;
@@ -159,7 +161,7 @@ public class EffectJarHousing implements IBeeHousing
 		ItemStack stack = this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 		if (stack != null)
 		{
-			IBee queen = BeeManager.beeInterface.getBee(stack);
+			IBee queen = Allele.beeRoot.getMember(stack);
 			humid = queen.getGenome().getPrimary().getHumidity();
 		}
 		return humid;
@@ -196,6 +198,12 @@ public class EffectJarHousing implements IBeeHousing
 	public boolean addProduct(ItemStack product, boolean all)
 	{
 		return true;
+	}
+
+	@Override
+	public boolean onPollenRetrieved(IBee queen, IIndividual pollen, boolean isHandled)
+	{
+		return false;
 	}
 
 }

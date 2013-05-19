@@ -184,7 +184,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.STARK;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_STARK;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityNormal");
 		
 		return genome;
@@ -194,7 +194,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AIR;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_AIR;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFastest");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanShortened");
 		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryLargest");
@@ -209,7 +209,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.FIRE;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_FIRE;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFaster");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown3");
@@ -224,7 +224,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WATER;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_WATER;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLong");
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
@@ -239,7 +239,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.EARTH;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_EARTH;
 		genome[EnumBeeChromosome.SPEED.ordinal()] =  Allele.getBaseAllele("speedSlow");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLonger");
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown1");
@@ -255,7 +255,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseElemental();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.INFUSED;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_INFUSED;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
 		
@@ -287,7 +287,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.VIS;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_VIS;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedSlow");
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringSlower");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
@@ -299,7 +299,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.PURE;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_PURE;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringAverage");
@@ -313,7 +313,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.FLUX;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_FLUX;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
@@ -326,7 +326,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.NODE;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_NODE;
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringSlowest");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeAttract;
@@ -338,7 +338,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseVis();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.REJUVENATING;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_REJUVENATING;
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeCharge;
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
@@ -373,7 +373,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMalevolent();
 
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.BRAINY;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_BRAINY;
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnBrainyZombie;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
 		
@@ -384,7 +384,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMalevolent();
 
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.GOSSAMER;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_GOSSAMER;
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerThaumcraft;
 		
@@ -395,7 +395,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMalevolent();
 
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WISPY;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_WISPY;
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnWisp;
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
@@ -408,7 +408,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMalevolent();
 
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.BATTY;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_BATTY;
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.spawnBats;
 		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryLarge");
 		
@@ -508,7 +508,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseAlchemical();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.MINIUM;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.EE_MINIUM;
 		
 		return genome;
 	}
@@ -642,7 +642,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMetallic();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.CHICKEN;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_CHICKEN;
 		
 		return genome;
 	}
@@ -651,7 +651,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMetallic();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.BEEF;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_BEEF;
 		
 		return genome;
 	}
@@ -660,7 +660,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMetallic();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.PORK;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_PORK;
 		
 		return genome;
 	}
@@ -678,7 +678,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ESSENCE;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_ESSENCE;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
@@ -691,7 +691,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateEssence();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.QUINTESSENCE;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_QUINTESSENCE;
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanElongated");
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringAverage");
@@ -704,7 +704,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.EARTH_AM;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_EARTH;
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFaster");
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLongest");
@@ -717,7 +717,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AIR_AM;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_AIR;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");
 		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryMaximum");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
@@ -730,7 +730,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.FIRE_AM;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_FIRE;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
@@ -744,7 +744,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WATER_AM;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_WATER;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown1");
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
@@ -757,7 +757,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.LIGHTNING;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_LIGHTNING;
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanShortest");
 		genome[EnumBeeChromosome.TERRITORY.ordinal()] = Allele.getBaseAllele("territoryMaximum");
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.speedBlinding;
@@ -775,7 +775,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.PLANT;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_PLANT;
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFastest");
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
@@ -788,7 +788,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ICE;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_ICE;
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceUp2");
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
@@ -803,7 +803,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.MAGMA;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_MAGMA;
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
@@ -817,7 +817,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ARCANE_AM;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_ARCANE;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
@@ -830,7 +830,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.VORTEX;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_VORTEX;
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLonger");
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
@@ -844,7 +844,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateBaseMagica();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WIGHT;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_WIGHT;
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");

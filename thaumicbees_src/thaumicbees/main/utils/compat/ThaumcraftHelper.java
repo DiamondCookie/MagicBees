@@ -728,50 +728,50 @@ public class ThaumcraftHelper
 			'T', Item.ingotIron
 		});
 
-		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.DRONE);
-		ItemStack princess = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.STARK, EnumBeeType.PRINCESS);
+		ItemStack drone = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.TC_STARK, EnumBeeType.DRONE);
+		ItemStack princess = BeeGenomeManager.getBeeNBTForSpecies(BeeSpecies.TC_STARK, EnumBeeType.PRINCESS);
 		
 		String researchKey = "BEEINFUSION";
 		
 		tags = (new ObjectTags()).add(EnumTag.WIND, 40).add(EnumTag.MOTION, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION1", BeeSpecies.AIR.getBeeItem(EnumBeeType.DRONE),
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION1", BeeSpecies.TC_AIR.getBeeItem(EnumBeeType.DRONE),
 				new ItemStack[] { drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal())},
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION2", BeeSpecies.AIR.getBeeItem(EnumBeeType.PRINCESS),
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION2", BeeSpecies.TC_AIR.getBeeItem(EnumBeeType.PRINCESS),
 				new ItemStack[] { princess , new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
 		
 		tags = (new ObjectTags()).add(EnumTag.FIRE, 40).add( EnumTag.POWER, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION3", BeeSpecies.FIRE.getBeeItem(EnumBeeType.DRONE), new Object[] 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION3", BeeSpecies.TC_FIRE.getBeeItem(EnumBeeType.DRONE), new Object[] 
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION4", BeeSpecies.FIRE.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION4", BeeSpecies.TC_FIRE.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES); 
 		
 		tags = (new ObjectTags()).add(EnumTag.WATER, 40).add( EnumTag.COLD, 24); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION5", BeeSpecies.WATER.getBeeItem(EnumBeeType.DRONE), new Object[] 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION5", BeeSpecies.TC_WATER.getBeeItem(EnumBeeType.DRONE), new Object[] 
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION6", BeeSpecies.WATER.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES); 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION6", BeeSpecies.TC_WATER.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES); 
 		
 		tags = (new ObjectTags()).add(EnumTag.EARTH, 40).add( EnumTag.ROCK, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION7", BeeSpecies.EARTH.getBeeItem(EnumBeeType.DRONE), new Object[] 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION7", BeeSpecies.TC_EARTH.getBeeItem(EnumBeeType.DRONE), new Object[] 
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES); 
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION8", BeeSpecies.EARTH.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES); 
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION8", BeeSpecies.TC_EARTH.getBeeItem(EnumBeeType.PRINCESS), new Object[] 
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 40).add(EnumTag.FLUX, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", BeeSpecies.INFUSED.getBeeItem(EnumBeeType.DRONE), new Object[]
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", BeeSpecies.TC_INFUSED.getBeeItem(EnumBeeType.DRONE), new Object[]
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.INFUSED.getBeeItem(EnumBeeType.PRINCESS), new Object[]
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.TC_INFUSED.getBeeItem(EnumBeeType.PRINCESS), new Object[]
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
-				100, tags, BeeSpecies.STARK, EnumBeeChromosome.SPECIES);
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
 	}
 	
 	public static void doFluxEffect(HiveFrameType frameType, World w, int x, int y, int z)

@@ -5,12 +5,15 @@ import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IAlleleFlowers;
+import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
 
 public class Allele implements IAllele
 {
+	public static IBeeRoot beeRoot;
+	
 	public static AlleleInteger fertilityHighDominant;
 	public static AlleleFloat speedBlinding;
 	
@@ -43,6 +46,8 @@ public class Allele implements IAllele
 	
 	public static void setupAdditionalAlleles()
 	{
+		beeRoot = (IBeeRoot)AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");
+		
 		Allele.fertilityHighDominant = new AlleleInteger("fertilityHighDominant", 3, true);
 		Allele.speedBlinding = new AlleleFloat("speedBlinding", 2f, false);
 		

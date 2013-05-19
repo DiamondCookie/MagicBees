@@ -12,6 +12,7 @@ import forestry.api.genetics.IClassification;
 
 public enum BeeClassification implements IClassification
 {
+	VEILED("Veiled", "velata"),
 	ARCANE("Arcane", "Arcanus"),
 	SUPERNATURAL("Supernatural", "Occultus"),
 	SCHOLARLY("Scholarly", "Docto"),
@@ -19,11 +20,15 @@ public enum BeeClassification implements IClassification
 	MAGICAL("Magic", "Magica"),
 	TIME("Time", "Tempestivus"),
 	SOUL("Soul", "Animus"),
+	
 	METALLIC("Metallic", "Metallicis"),
 	GEM("Gem", "Lapidi"),
+	
 	THAUMIC("Thaumic", "Thaumis"),
 	FLESHY("Fleshy", "Carnosa"),
+	
 	ALCHEMICAL("Alchemical", "Alchimia"),
+	
 	ESSENTIAL("Essential", "Essentia"),
 	;
 	
