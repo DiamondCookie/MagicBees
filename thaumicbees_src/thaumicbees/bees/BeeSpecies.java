@@ -790,12 +790,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		return value;
 	}
 
-	@Override
-	public ISpeciesRoot getRoot()
-	{
-		return Allele.beeRoot;
-	}
-
 	/// --------- Unused Functions ---------------------------------------------
 	
 	@Override
