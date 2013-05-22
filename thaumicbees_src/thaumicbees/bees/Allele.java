@@ -4,11 +4,11 @@ import net.minecraft.potion.Potion;
 import thaumicbees.main.utils.compat.ArsMagicaHelper;
 import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IAlleleFlowers;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
+import forestry.api.genetics.IAlleleFlowers;
 
 public class Allele implements IAllele
 {

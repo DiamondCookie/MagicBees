@@ -1,14 +1,12 @@
 package thaumicbees.bees;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aura.AuraNode;
-import thaumicbees.main.Config;
 import thaumicbees.main.utils.LocalizationManager;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IFlowerProvider;
+import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 
 public class FlowerProviderAuraNode implements IFlowerProvider
@@ -16,7 +14,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	protected int nodeRange = 70;
 	
 	@Override
-	public boolean isAcceptedFlower(World world, IBeeGenome genome, int x, int y, int z)
+	public boolean isAcceptedFlower(World world, IIndividual genome, int x, int y, int z)
 	{
 		return this.isNodeWithinRange(world, x, y, z);
 	}
@@ -28,7 +26,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	}
 
 	@Override
-	public boolean growFlower(World world, IBeeGenome genome, int x, int y, int z)
+	public boolean growFlower(World world, IIndividual genome, int x, int y, int z)
 	{
 		return true;
 	}
@@ -40,7 +38,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	}
 
 	@Override
-	public ItemStack[] affectProducts(World world, IBeeGenome genome, int x, int y, int z, ItemStack[] products)
+	public ItemStack[] affectProducts(World world, IIndividual genome, int x, int y, int z, ItemStack[] products)
 	{
 		return products;
 	}

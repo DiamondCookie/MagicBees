@@ -24,10 +24,12 @@ import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeRoot;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
@@ -690,6 +692,18 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	public boolean isDominant()
 	{
 		return this.dominant;
+	}
+
+	@Override
+	public IBeeRoot getRoot()
+	{
+		return Allele.beeRoot;
+	}
+
+	@Override
+	public boolean isNocturnal()
+	{
+		return this.genomeTemplate[EnumBeeChromosome.NOCTURNAL.ordinal()].equals(Allele.getBaseAllele("boolTrue"));
 	}
 
 	@Override

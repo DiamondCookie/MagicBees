@@ -55,18 +55,6 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 				genome.getPrimary().getIconColour(0), area[0], area[1], area[2]);
 		return storedData;
 	}
-
-	@Override
-	public String getIconTextureFile()
-	{
-		return null;
-	}
-
-	@Override
-	public int getIconIndex()
-	{
-		return -1;
-	}
 	
 	protected List<Entity> getEntitiesWithinRange(IBeeGenome genome, IBeeHousing housing)
 	{
