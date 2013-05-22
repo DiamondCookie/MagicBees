@@ -61,17 +61,4 @@ public class AlleleEffectPotion extends AlleleEffect
 		
 		return storedData;
 	}
-
-	@Override
-	public String getIconTextureFile()
-	{
-		return null;
-	}
-
-	@Override
-	public int getIconIndex()
-	{
-		return -1;
-	}
-
 }

@@ -1,3 +1,7 @@
+1.4.7a
+Update for Forestry Beta.
+
+1.4.7
 Added the Bee Collector's Jar.
 Created an alternate recipe for the Temporal Frame that is always active.
 Adjusted TC3 alternate recipe for the Temporal Frame.

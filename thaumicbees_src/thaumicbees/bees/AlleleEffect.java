@@ -52,20 +52,8 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 		area[2] = Math.max((int)(area[2] * mod), 1);
 		
 		ThaumicBees.proxy.drawBeeEffects(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(),
-				genome.getPrimaryAsBee().getIconColour(0), area[0], area[1], area[2]);
+				genome.getPrimary().getIconColour(0), area[0], area[1], area[2]);
 		return storedData;
-	}
-
-	@Override
-	public String getIconTextureFile()
-	{
-		return null;
-	}
-
-	@Override
-	public int getIconIndex()
-	{
-		return -1;
 	}
 	
 	protected List<Entity> getEntitiesWithinRange(IBeeGenome genome, IBeeHousing housing)

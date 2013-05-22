@@ -325,7 +325,7 @@ public class BeeMutation implements IBeeMutation
 		this.requiredBlockMeta = OreDictionary.WILDCARD_VALUE;
 		this.requiredBlockOreDictEntry = null;
 		
-		BeeManager.breedingManager.registerBeeMutation(this);
+		Allele.beeRoot.registerMutation(this);
 	}
 
 	public float getChance(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1)
@@ -404,7 +404,7 @@ public class BeeMutation implements IBeeMutation
 			finalChance = Math.round(chance
 					* housing.getMutationModifier((IBeeGenome) genome0,
 							(IBeeGenome) genome1, chance)
-					* BeeManager.breedingManager.getBeekeepingMode(housing.getWorld())
+					* Allele.beeRoot.getBeekeepingMode(housing.getWorld())
 							.getMutationModifier((IBeeGenome) genome0,
 									(IBeeGenome) genome1, chance));
 		}

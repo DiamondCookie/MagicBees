@@ -1,8 +1,8 @@
 package thaumicbees.bees;
 
-import forestry.api.apiculture.IAlleleFlowers;
-import forestry.api.apiculture.IFlowerProvider;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.IFlowerProvider;
 
 public class AlleleFlower extends Allele implements IAlleleFlowers
 {

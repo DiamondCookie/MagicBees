@@ -1,23 +1,22 @@
-<project name="ThaumicBees" basedir="../../" default="main">
+<project name="ThaumicBees" basedir="../../../" default="main">
 	<property name="build.dir"			value="build" />
 	<property name="classes.dir" 		value="${build.dir}/classes" />
-	<property name="resource.dir"		value="${build.dir}/mc.devel" />
+	<property name="resource.dir"		value="${build.dir}/mc.dev" />
 	<property name="jar.dir"			value="${build.dir}/jar" />
 	
-	<property name="src.dir"			value="ThaumicBees" />
-	<property name="lang.dir"			value="ThaumicBees/thaumicbees_res/lang" />
+	<property name="src.dir"			value="Sources/ThaumicBees" />
+	<property name="lang.dir"			value="Sources/ThaumicBees/thaumicbees_res/lang" />
 	
 	<property name="forge.dir"			value="${build.dir}/forge" />
 	<property name="mcp.dir"			value="${forge.dir}/mcp" />
-	<property name="forestry.dir"		value="Forestry/forestry_common/core" />
-	<property name="thaumcraft.dir"		value="Thaumcraft" />
-	<property name="extrabiomes.dir"	value="ExtraBiomes" />
+	<property name="forestry.dir"		value="Sources/Forestry/forestry_common/core" />
+	<property name="thaumcraft.dir"		value="Sources/Thaumcraft" />
 	
 	<property name="clientsrc.dir"		value="${mcp.dir}/src/minecraft" />
     
-	<property name="mc.version"			value="1.5.1"/>
-    <property name="forge.version"		value="7.7.1.661"/>
-    <property name="thaumicbees.version"	value="1.4.7"/>
+	<property name="mc.version"			value="1.5.2"/>
+    <property name="forge.version"		value="7.8.0.700"/>
+    <property name="thaumicbees.version"	value="1.4.7a"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />
@@ -28,7 +27,6 @@
 	
 		<!-- TARGETS -->
 	<target name="clean">
-		<delete dir="${clientsrc.dir}/extrabiomes" />
 		<delete dir="${clientsrc.dir}/forestry" />
 		<delete dir="${clientsrc.dir}/thaumcraft" />
 		<delete dir="${clientsrc.dir}/thaumicbees" />
@@ -64,9 +62,6 @@
 		<!-- Copy source -->
 		<echo message="Copying Source" />
         <copy todir="${clientsrc.dir}">
-			<fileset dir="${extrabiomes.dir}">
-				<include name="**/api/**" />
-			</fileset>
 			<fileset dir="${forestry.dir}">
 				<include name="forestry/api/**" />
 			</fileset>
@@ -122,10 +117,6 @@
 				
 				<include name="**/thaumicbees/**" />
 				<include name="**/net/mysteriousages/**" />
-
-                <!--<include name="**/thaumcraft/api/IVisRepairable.class" />
-                <include name="**/thaumcraft/api/EnumTag.class" />
-                <include name="**/thaumcraft/api/ObjectTags.class" /> -->
 			</fileset>
 		</copy>
 		
@@ -142,7 +133,7 @@
 				<include name="**/mcmod.info" />
 			</fileset>
 			<filterset>
-				<filter token="MODVERSION" value="${thaumicbees.version} - ${build.number}" />
+				<filter token="MODVERSION" value="${thaumicbees.version}" />
 			</filterset>
 		 </copy>
 	</target>

@@ -1,5 +1,6 @@
 package thaumicbees.tileentity;
 
+import thaumicbees.bees.Allele;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -67,7 +68,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	{
 		if (this.beeSlots[QUEEN_SLOT] != null)
 		{
-			IBee queen = BeeManager.beeInterface.getBee(this.beeSlots[QUEEN_SLOT]);
+			IBee queen = Allele.beeRoot.getMember(this.beeSlots[QUEEN_SLOT]);
 
 			currentBeeHealth = (queen.getHealth() * 100) / queen.getMaxHealth();
 			currentBeeColour = ((IAlleleBeeSpecies)queen.getGenome().getPrimary()).getIconColour(0);
@@ -108,7 +109,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 			ItemStack droneStack = this.beeSlots[DRONE_SLOT];
 			if (BeeManager.beeInterface.isDrone(droneStack))
 			{
-				IBee bee = BeeManager.beeInterface.getBee(droneStack);
+				IBee bee = Allele.beeRoot.getMember(droneStack);
 				if (droneStack.stackSize == 1)
 				{
 					this.beeSlots[DRONE_SLOT] = null;

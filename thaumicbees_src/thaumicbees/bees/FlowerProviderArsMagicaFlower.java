@@ -1,13 +1,12 @@
 package thaumicbees.bees;
 
-import thaumicbees.main.Config;
-import thaumicbees.main.utils.LocalizationManager;
-import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IFlowerProvider;
+import thaumicbees.main.Config;
+import thaumicbees.main.utils.LocalizationManager;
+import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 
 public class FlowerProviderArsMagicaFlower implements IFlowerProvider
@@ -15,7 +14,7 @@ public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 	private ItemStack[] flowers = {new ItemStack(Config.amBlackOrchid), new ItemStack(Config.amDesertNova) };
 	
 	@Override
-	public boolean isAcceptedFlower(World world, IBeeGenome genome, int x, int y, int z)
+	public boolean isAcceptedFlower(World world, IIndividual genome, int x, int y, int z)
 	{
 		boolean flag = false;
 		int id = world.getBlockId(x, y, z);
@@ -27,7 +26,7 @@ public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 	}
 
 	@Override
-	public boolean growFlower(World world, IBeeGenome genome, int x, int y, int z)
+	public boolean growFlower(World world, IIndividual genome, int x, int y, int z)
 	{
 		boolean flag = false;
 		int blockDown = world.getBlockId(x, y - 1, z);
@@ -54,7 +53,7 @@ public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 	}
 
 	@Override
-	public ItemStack[] affectProducts(World world, IBeeGenome genome, int x, int y, int z, ItemStack[] products)
+	public ItemStack[] affectProducts(World world, IIndividual genome, int x, int y, int z, ItemStack[] products)
 	{
 		return products;
 	}

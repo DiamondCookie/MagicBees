@@ -24,10 +24,12 @@ import thaumicbees.main.utils.compat.ThaumcraftHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeRoot;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
@@ -544,7 +546,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 
 	public ItemStack getBeeItem(EnumBeeType beeType)
 	{
-		return BeeManager.beeInterface.getBeeStack(BeeManager.beeInterface.getBee(null, BeeManager.beeInterface.templateAsGenome(genomeTemplate)), beeType);
+		return Allele.beeRoot.getMemberStack(Allele.beeRoot.getBee(null, Allele.beeRoot.templateAsGenome(genomeTemplate)), beeType.ordinal());
 	}
 
 	@Override
@@ -643,6 +645,18 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	}
 
 	@Override
+	public IBeeRoot getRoot()
+	{
+		return Allele.beeRoot;
+	}
+
+	@Override
+	public boolean isNocturnal()
+	{
+		return this.genomeTemplate[EnumBeeChromosome.NOCTURNAL.ordinal()].equals(Allele.getBaseAllele("boolTrue"));
+	}
+
+	@Override
 	public boolean isJubilant(IBeeGenome genome, IBeeHousing housing)
 	{
 		return true;
@@ -650,7 +664,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 
 	private BeeSpecies register()
 	{
-		BeeManager.breedingManager.registerBeeTemplate(this.getGenome());
+		Allele.beeRoot.registerTemplate(this.getGenome());
 		if (!this.isActive)
 		{
 			AlleleManager.alleleRegistry.blacklistAllele(this.getUID());
