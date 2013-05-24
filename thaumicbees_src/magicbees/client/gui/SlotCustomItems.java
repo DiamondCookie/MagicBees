@@ -1,4 +1,4 @@
-package net.mysteriousages.utils.gui;
+package magicbees.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
