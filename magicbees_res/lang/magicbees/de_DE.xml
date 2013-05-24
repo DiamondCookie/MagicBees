@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+  <!-- Item names -->
+  <entry key="item.jellyBabies.name">Handvoll Gummibärchen</entry>
+  <entry key="item.tb.thaumiumScoop.name">Thaumium-Kescher</entry>
+  <entry key="item.tb.thaumiumGrafter.name">Thaumium-Gartenschere</entry>
+
+  <!-- Block names -->
+  <entry key="tile.tb.planks.greatwood.name">Großholz-Planken</entry>
+  <entry key="tile.tb.slab.wood.greatwood.name">Großholz-Stufe</entry>
+  <entry key="tile.tb.planks.silverwood.name">Silberholz-Planken</entry>
+  <entry key="tile.tb.slab.wood.silverwood.name">Silberholz-Stufe</entry>
+
+  <!-- Comb names -->
+  <entry key="tb.comb.occult">Okkultistische Wabe</entry>
+  <entry key="tb.comb.otherworldly">Jenseitige Wabe</entry>
+  <entry key="tb.comb.papery">Papierwabe</entry>
+  <entry key="tb.comb.stark">Extreme Wabe</entry>
+  <entry key="tb.comb.air">Luftige Wabe</entry>
+  <entry key="tb.comb.fire">Feurige Wabe</entry>
+  <entry key="tb.comb.water">Wässrige Wabe</entry>
+  <entry key="tb.comb.earth">Irdene Wabe</entry>
+  <entry key="tb.comb.magic">Magische Wabe</entry>
+  <entry key="tb.comb.aware">Gedächniswabe</entry>
+  <entry key="tb.comb.futive">Verstohlene Wabe</entry>
+  
+  <!-- Wax names -->
+  <entry key="tb.wax.magic">Magisches Wachs</entry>
+  
+  <!-- Drop names -->
+  <entry key="tb.drop.enchanting">Bezaubernder Tropfen</entry>
+  <entry key="tb.drop.intellect">Verstandestropfen</entry>
+
+  <!-- Pollen names -->
+  <entry key="tb.pollen.unusual">Ungewöhnliche Pollen</entry>
+  <entry key="tb.pollen.phased">Geschichtete Pollen</entry>
+
+  <!-- Propolis names -->
+  <entry key="tb.propolis.dull">Trübe Propolis</entry>
+  <entry key="tb.propolis.air">Hauchige Propolis</entry>
+  <entry key="tb.propolis.fire">Brennende Propolis</entry>
+  <entry key="tb.propolis.water">Fließende Propolis</entry>
+  <entry key="tb.propolis.earth">Steinige Propolis</entry>
+  <entry key="tb.propolis.magic">Durchdrungene Propolis</entry>
+  
+  <!-- Misc Resources -->
+  <entry key="tb.resource.fragment">Wissensfragment</entry>
+  <entry key="tb.resource.lump">Aromatischer Klumpen</entry>
+  <entry key="tb.resource.fertilizer">Konzentriertes Gemisch</entry>
+  <entry key="tb.resource.crystalFlux">Kristallisierter %s - Aspekt</entry>
+  
+  <!-- Frames -->
+  <entry key="tb.frame.magic">Magisches Rähmchen</entry>
+  <entry key="tb.frame.resilient">Elastisches Rähmchen</entry>
+  <entry key="tb.frame.gentle">Behutsames Rähmchen</entry>
+  <entry key="tb.frame.metabolic">Metabolisches Rähmchen</entry>
+  <entry key="tb.frame.necrotic">Nekrotisches Rähmchen</entry>
+  <entry key="tb.frame.temporal">Zeiträhmchen</entry>
+
+  <!-- Capsule names -->
+  <entry key="tb.capsule.magic">Magische Kapsel</entry>
+  <entry key="tb.capsule.void">Kapsel der Leere</entry>
+
+  <!-- Liquids -->
+  <entry key="tb.liquid.">Leere</entry>
+  <entry key="tb.liquid.water">Wasser</entry>
+  <entry key="tb.liquid.lava">Lava</entry>
+  <entry key="tb.liquid.biomass">Biomasse</entry>
+  <entry key="tb.liquid.biofuel">Biodiesel</entry>
+  <entry key="tb.liquid.Oil">Öl</entry>
+  <entry key="tb.liquid.Fuel">Diesel</entry>
+  <entry key="tb.liquid.seedoil">Samenkernöl</entry>
+  <entry key="tb.liquid.honey">Honig</entry>
+  <entry key="tb.liquid.juice">Saft</entry>
+  <entry key="tb.liquid.ice">Eis</entry>   
+  <entry key="tb.liquid.milk">Milch</entry>
+  <entry key="tb.liquid.acid">Säure</entry>
+  <entry key="tb.liquid.poison">Gift</entry>
+  <entry key="tb.liquid.liquidNitrogen">Flüssiger Stickstoff</entry>
+  <entry key="tb.liquid.liquidDNA">DNA</entry>
+  <entry key="tb.liquid.Creosote Oil">Kreosot</entry>
+  <entry key="tb.liquid.Steam">Dampf</entry>
+
+  <!-- Moon Phases -->
+  <entry key="tb.moon.full">Vollmond</entry>
+  <entry key="tb.moon.gibbousWaning">Abnehmender Dreiviertelmond</entry>
+  <entry key="tb.moon.gibbousWaxing">Zunehmender Dreiviertelmond</entry>
+  <entry key="tb.moon.halfWaning">Abnehmender Halbmond</entry>
+  <entry key="tb.moon.halfWaxing">Zunehmender Halbmond</entry>
+  <entry key="tb.moon.crescentWaning">Abnehmender Sichelmond</entry>
+  <entry key="tb.moon.crescentWaxing">Zunehmender Sichelmond</entry>
+  <entry key="tb.moon.new">Neumond</entry>
+
+  <!-- Miscellaneous names -->
+  <entry key="tb.backpack.thaumaturge">Rucksack des Wundertäters</entry>
+
+  <!-- Species names -->
+ <entry key="thaumicbees.speciesEsoteric">Esoterisch</entry>
+    <entry key="thaumicbees.speciesEsoteric.description">Eine ungewöhnliche Kreuzung, welche magische Eigenschaften zu haben scheint.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesMysterious">Mysteriös</entry>
+    <entry key="thaumicbees.speciesMysterious.description">Diese Bienen sind zum Ender der Welt und wieder zurück geflogen, ihre Macht ist dabei gestiegen.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesArcane">Geheimnisvoll</entry>
+    <entry key="thaumicbees.speciesArcane.description">"Ihre Erzeugnisse sind mit Energie geladen."|Azanor, Master Thaumaturge</entry>
+    <entry key="thaumicbees.speciesCharmed">Bezaubert</entry>
+    <entry key="thaumicbees.speciesCharmed.description">Deine ersten Versuche in der Thaumcraft-Bienenzucht haben Früchte getragen. Summende Früchte.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesEnchanted">Verzaubert</entry>
+    <entry key="thaumicbees.speciesEnchanted.description">Erfolgreiche Generationen bezauberter Bienen haben ihre Verbindungen zum Unbekannten verstärkt.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesSupernatural">Übernatürlich</entry>
+    <entry key="thaumicbees.speciesSupernatural.description">Diese Bienen markieren die Linie zwischen dieser Welt und dem Jenseits.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesPupil">Schülerhaft</entry>
+    <entry key="thaumicbees.speciesPupil.description">"Was will die Biene mit meinem Papier?!"|Yorae, Biblothekar</entry>
+    <entry key="thaumicbees.speciesScholarly">Schulisch</entry>
+    <entry key="thaumicbees.speciesScholarly.description">"Ich bin mir nicht sicher, aber ich glaube sie sind schlauer als ich..."|Yorae, Bibliothekar</entry>
+    <entry key="thaumicbees.speciesSavant">Gelehrt</entry>
+    <entry key="thaumicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). Löse nach Honig auf.|Notiz, gefunden auf Yoraes Schreibtisch</entry>
+    <entry key="thaumicbees.speciesStark">Extrem</entry>
+    <entry key="thaumicbees.speciesStark.description">"Diese fühlen sich ungewönlich zu Scherben hingezogen. Das verlangt weitere Untersuchungen."|Azanor, Meister-Thaumaturg</entry>
+    <entry key="thaumicbees.speciesAura">Aura</entry>
+    <entry key="thaumicbees.speciesAura.description">"Sie arbeiten so atemberaubend schnell."|Sengir, verrückter Imker</entry>
+    <entry key="thaumicbees.speciesIgnis">Ignis</entry>
+    <entry key="thaumicbees.speciesIgnis.description">Achtung: Inhalt des Bienenkorbs extrem heiß.|Warnschild auf Azanors Bienenkorb</entry>
+    <entry key="thaumicbees.speciesAqua">Aqua</entry>
+    <entry key="thaumicbees.speciesAqua.description">"Ich habe mal versucht, die zu züchten, aber es lief nicht alles so gut."|MysteriousAges, Fortgeschrittener Thaumaturge</entry>
+    <entry key="thaumicbees.speciesSolum">Solum</entry>
+    <entry key="thaumicbees.speciesSolum.description">"Ich muss noch mal das Rezept für diese Bienen ausgraben, aber Achtung, ihre Stacheln boren sich in deine Haut."|MysteriousAges, Anfänger in der Comedy</entry>
+    <entry key="thaumicbees.speciesPraecantatio">Praecantatio</entry>
+    <entry key="thaumicbees.speciesPraecantatio.description">Bienenzucht ist Magie!|Apinomicon, Preface</entry>
+    <entry key="thaumicbees.speciesAware">Bewusst</entry>
+    <entry key="thaumicbees.speciesAware.description">"Sie können in deine Seele sehen!"|Florastar, Bienenzucht-Expertin</entry>
+    <entry key="thaumicbees.speciesVis">Vis</entry>
+    <entry key="thaumicbees.speciesVis.description">"Sie können Veränderungen in der Aura wahrnehmen, aber noch nicht verändern."|Azanors Mitschriften</entry>
+    <entry key="thaumicbees.speciesPure">Pur</entry>
+    <entry key="thaumicbees.speciesPure.description">"Es ist wie ein Bienenwächter!"|MysteriousAges, Thaumaturg</entry>
+    <entry key="thaumicbees.speciesFlux">Flux</entry>
+    <entry key="thaumicbees.speciesFlux.description">"Ich dachte, sie würden mit beim Aufräumen helfen, aber sie haben es noch dreckiger gemacht!"|Kreicus, Fortgeschrittener Thaumaturg</entry>
+    <entry key="thaumicbees.speciesNode">Knotenhaft</entry>
+    <entry key="thaumicbees.speciesNode.description">Nachdem sie eine irre Verwandlung hinter sich gebracht haben, wirken diese Bienen nun anziehend auf Magie.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesSkulking">Schleichend</entry>
+    <entry key="thaumicbees.speciesSkulking.description">Diese Bienen wurden xenophob und schlecht gelaunt, lass Vorsicht walten!|Apinomicon</entry>
+    <entry key="thaumicbees.speciesBrainy">Intelligent</entry>
+    <entry key="thaumicbees.speciesBrainy.description">Ihre Waben mögen zwar übel riechen und stinken, aber ihr Geist ist weit entwickelt.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesGossamer">Hauchdünn</entry>
+    <entry key="thaumicbees.speciesGossamer.description">Während sie arbeiten werden sie immer wieder für kurze Zeit unsichtbar.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesWispy">Dünn</entry>
+    <entry key="thaumicbees.speciesWispy.description">Ihre Sprache ist entstellt und unverständlich. Es ist möglich, dass sie zu unnatürlichen Wesen sprechen.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesBatty">Verrückt</entry>
+    <entry key="thaumicbees.speciesBatty.description">Sie scheinen auf unerklärliche Art und Weise Fledermäuse anzuziehen.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesGhastly">Gespenstisch</entry>
+    <entry key="thaumicbees.speciesGhastly.description">"*seufz*... Ernsthaft?"|Taveria</entry>
+    <entry key="thaumicbees.speciesTimely">Rechtzeitig</entry>
+    <entry key="thaumicbees.speciesTimely.description">"Ein Imker ist nie zu spät. Er kommt immer dann an, wenn er er es geplant hat!"|Sengir, Verrückter Imker</entry>
+    <entry key="thaumicbees.speciesLordly">Stolz</entry>
+    <entry key="thaumicbees.speciesLordly.description">Sie leben in Frieden innerhalb des Sichtfelds des Auges der Harmonie|Ramponierte überreste des antiken Apinomicons</entry>
+    <entry key="thaumicbees.speciesDoctoral">Doktorisch</entry>
+    <entry key="thaumicbees.speciesDoctoral.description">"Willst du ein Gummibärchen haben?"|Vorbeigehender Unbekannter mit großem Schal und blauer Box</entry>
+
+    <!-- Bee Alleles -->
+    <entry key="thaumicbees.effectCurative">Reinigend</entry>
+    <entry key="thaumicbees.effecteffectDigSpeed">Abbaugeschwindigkeit</entry>
+    <entry key="thaumicbees.effecteffectMoveSpeed">Schnelligkeit</entry>
+    <entry key="thaumicbees.effecteffectSlowSpeed">Langsamkeit</entry>
+    <entry key="thaumicbees.effectNodeGeneration">Aura-Anziehungskraft</entry>
+    <entry key="thaumicbees.effectBrainy">Intelligent</entry>
+    <entry key="thaumicbees.effectBatty">Verrückt</entry>
+    <entry key="thaumicbees.effectWispy">Dünn</entry>
+    <entry key="thaumicbees.Ghast">Gespenstisch</entry>
+    <entry key="tb.bees.flower.book">Bücher</entry>
+    <entry key="tb.bees.flower.magic">Magische Blumen</entry>
+    <entry key="tb.bees.flower.node">Knotenpunkt</entry>
+    <entry key="tb.bees.flower.nodePure">Knotenreinigung</entry>
+    <entry key="tb.bees.flower.nodeFlux">Knotenverschmutzung</entry>
+
+    <!-- Classification -->
+    <entry key="classification.arcane">Geheimnisvoll</entry>
+    <entry key="classification.arcane.description"></entry>
+    <entry key="classification.supernatural">Übernatürlich</entry>
+    <entry key="classification.supernatural.description"></entry>
+    <entry key="classification.scholarly">Gelehrt</entry>
+    <entry key="classification.scholarly.description"></entry>
+    <entry key="classification.thaumic">Thaumisch</entry>
+    <entry key="classification.thaumic.description"></entry>
+    <entry key="classification.skulking">Schleichend</entry>
+    <entry key="classification.skulking.description"></entry>
+    <entry key="classification.vis">Kraft</entry>
+    <entry key="classification.vis.description"></entry>
+    <entry key="classification.time">Zwit</entry>
+    <entry key="classification.time.description"></entry>
+
+</properties>

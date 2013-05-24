@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    <!-- Item names -->
+    <entry key="item.jellyBabies.name">Горсть Маленького Желе</entry>
+    <entry key="item.tb.thaumiumScoop.name">Таумический Сачок</entry>
+    <entry key="item.tb.thaumiumGrafter.name">Таумический Садовый Нож</entry>
+    
+    <!-- Block names -->
+<entry key="tile.tb.planks.greatwood.name">Доски Великого Дерева</entry>
+<entry key="tile.tb.slab.wood.greatwood.name">Плита Великого Дерева</entry>
+<entry key="tile.tb.planks.silverwood.name">Доски Сильвервуда</entry>
+<entry key="tile.tb.slab.wood.silverwood.name">Плиты Сильвервуда</entry>
+    
+    <!-- Comb names -->
+    <entry key="tb.comb.occult">Оккультические Соты</entry>
+    <entry key="tb.comb.otherworldly">Потусторонние Соты</entry>
+    <entry key="tb.comb.paper">Бумажные Соты</entry>
+    <entry key="tb.comb.stark">Абсолютные Соты</entry>
+    <entry key="tb.comb.air">Воздушные Соты</entry>
+    <entry key="tb.comb.fire">Огненные Соты</entry>
+    <entry key="tb.comb.water">Водяные Соты</entry>
+    <entry key="tb.comb.earth">Земляные Соты</entry>
+    <entry key="tb.comb.magic">Зраяженные Соты</entry>
+    <entry key="tb.comb.aware">Памятные Соты</entry>
+    <entry key="tb.comb.furtive">Незаметные Соты</entry>
+    
+    <!-- Wax names -->
+    <entry key="tb.wax.magic">Магичнский Воск</entry>
+    
+    <!-- Drop names -->
+    <entry key="tb.drop.enchanting">Зачарованая Капля</entry>
+    <entry key="tb.drop.intellect">Интеллектуальная Капля</entry>
+    
+    <!-- Pollen names -->
+    <entry key="tb.pollen.unusual">Необычная Пыльца</entry>
+<entry key="tb.pollen.phased">Поэтепная Пыльца</entry>
+    
+    <!-- Propolis names -->
+    <entry key="tb.propolis.dull">Тупой Прополис</entry>
+    <entry key="tb.propolis.air">Прохладный Пропорлис</entry>
+    <entry key="tb.propolis.fire">Горящий Прополис</entry>
+    <entry key="tb.propolis.water">Текущий Прополис</entry>
+    <entry key="tb.propolis.earth">Каменный Прополис</entry>
+    <entry key="tb.propolis.magic">Заряженный Прополис</entry>
+    
+    <!-- Misc Resources -->
+    <entry key="tb.resource.fragment">Фрагмент Знаний</entry>
+    <entry key="tb.resource.lump">Ароматическая Лампа</entry>
+    <entry key="tb.resource.fertilizer">Концентрированные соединения</entry>
+    <entry key="tb.resource.crystalFlux">Кристаллизованный %s Аспект</entry>
+    
+    <!-- Frames -->
+    <entry key="tb.frame.magic">Магическая Рамка</entry>
+    <entry key="tb.frame.resillient">Эластичная Рамка</entry>
+    <entry key="tb.frame.gentle">Нежная Рамка</entry>
+    <entry key="tb.frame.metabolic">Метобалическая Рамка</entry>
+    <entry key="tb.frame.necrotic">Некротическая Рамка</entry>
+    <entry key="tb.frame.temporal">Временная Рамка</entry>
+    
+    <!-- Capsule names -->
+    <entry key="tb.capsule.magic">Магическая Капсула</entry>
+    <entry key="tb.capsule.void">Пустотная Капсула</entry>
+    
+    <!-- Liquids -->
+    <entry key="tb.liquid.">Пустая</entry>
+    <entry key="tb.liquid.water">Вода</entry>
+    <entry key="tb.liquid.lava">Лава</entry>
+    <entry key="tb.liquid.biomass">Биомасса</entry>
+    <entry key="tb.liquid.biofuel">Биотопливная</entry>
+    <entry key="tb.liquid.Oil">Нефтяная</entry>
+    <entry key="tb.liquid.Fuel">Дизельно Топливная</entry>
+    <entry key="tb.liquid.seedoil">Подсолнечная</entry>
+    <entry key="tb.liquid.honey">Медная/entry>
+    <entry key="tb.liquid.juice">Фруктовая</entry>
+    <entry key="tb.liquid.ice">Ледяная</entry>
+    <entry key="tb.liquid.milk">Молочная</entry>
+    <entry key="tb.liquid.acid">Кислотная</entry>
+    <entry key="tb.liquid.poison">Ядовитая</entry>
+    <entry key="tb.liquid.liquidNitrogen">Жидкий Азот</entry>
+    <entry key="tb.liquid.liquidDNA">Жидкий ДНК</entry>
+    <entry key="tb.liquid.Creosote Oil">Креозотное Масло</entry>
+    <entry key="tb.liquid.Steam">Пар</entry>
+    
+    <!-- Moon Phases -->
+    <entry key="tb.moon.full">Полная Луна</entry>
+    <entry key="tb.moon.gibbousWaning">Убывающая луна</entry>
+    <entry key="tb.moon.gibousWaxing">Растущая луна</entry>
+    <entry key="tb.moon.halfWaning">Убывающая половина</entry>
+    <entry key="tb.moon.halfWaxing">Растущая половина</entry>
+    <entry key="tb.moon.crescentWaning">Убывающая луна</entry>
+    <entry key="tb.moon.crescentWaxing">Растущая луна</entry>
+    <entry key="tb.moon.new">Новая Луна</entry>
+    
+    <!-- Miscellaneous names -->
+    <entry key="tb.backpack.thaumaturge">Таумотургический Рюкзак</entry>
+    
+    <!-- Species names -->
+    <entry key="thaumicbees.speciesEsoteric">Esoteric</entry>
+    <entry key="thaumicbees.speciesEsoteric.description">An unusual crossbreed which seems to have magical properties.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesMysterious">Mysterious</entry>
+    <entry key="thaumicbees.speciesMysterious.description">These bees have been to the end of the world and back, and their power has grown.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesArcane">Arcane</entry>
+    <entry key="thaumicbees.speciesArcane.description">"Their produce is charged with magic."|Azanor, Master Thaumaturge</entry>
+    <entry key="thaumicbees.speciesCharmed">Charmed</entry>
+    <entry key="thaumicbees.speciesCharmed.description">Your first experiments in Thaumaturgical Apiculture have yielded fruit. Buzzing fruit.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesEnchanted">Enchanted</entry>
+    <entry key="thaumicbees.speciesEnchanted.description">Successive generations of Charmed bees have reinforced their connection to the unknown.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesSupernatural">Supernatural</entry>
+    <entry key="thaumicbees.speciesSupernatural.description">These bees walk the line between this world and the unseen.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesPupil">Pupil</entry>
+    <entry key="thaumicbees.speciesPupil.description">"What does that bee want with my paper?!|Yorae, Librarian</entry>
+    <entry key="thaumicbees.speciesScholarly">Scholarly</entry>
+    <entry key="thaumicbees.speciesScholarly.description">"I can't be sure, but I think they might be smarter than me..."|Yorae, Librarian</entry>
+    <entry key="thaumicbees.speciesSavant">Savant</entry>
+    <entry key="thaumicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). Solve for honey.|Note found on Yorae's desk</entry>
+    <entry key="thaumicbees.speciesStark">Stark</entry>
+    <entry key="thaumicbees.speciesStark.description">"These are unusually attracted to shards. This warrents further investigation."|Azanor, Master Thaumaturge</entry>
+    <entry key="thaumicbees.speciesAura">Aura</entry>
+    <entry key="thaumicbees.speciesAura.description">"They work so fast it's breathtaking."|Sengir, Mad Apiarist</entry>
+    <entry key="thaumicbees.speciesIgnis">Ignis</entry>
+    <entry key="thaumicbees.speciesIgnis.description">Caution: Contents of hive extremely hot.|Warning label on Azanor's apiary</entry>
+    <entry key="thaumicbees.speciesAqua">Aqua</entry>
+    <entry key="thaumicbees.speciesAqua.description">"I tried to breed them once, but that was a wash."|MysteriousAges, Apprentice Thaumaturge</entry>
+    <entry key="thaumicbees.speciesSolum">Solum</entry>
+    <entry key="thaumicbees.speciesSolum.description">"You're really gonna dig these bees, but watch out - they bore quite easily."|MysteriousAges, Apprentice Comedian</entry>
+    <entry key="thaumicbees.speciesPraecantatio">Praecantatio</entry>
+    <entry key="thaumicbees.speciesPraecantatio.description">Beekeeping is magic!|Apinomicon, Preface</entry>
+    <entry key="thaumicbees.speciesAware">Aware</entry>
+    <entry key="thaumicbees.speciesAware.description">"They can see into your soul!"|Florastar, Expert Beekeeper</entry>
+    <entry key="thaumicbees.speciesVis">Vis</entry>
+    <entry key="thaumicbees.speciesVis.description">"They can feel changes in the aura, but are not yet able to affect it."|Azanor, research notes</entry>
+    <entry key="thaumicbees.speciesPure">Pure</entry>
+    <entry key="thaumicbees.speciesPure.description">"It's like a bee janitor!"|MysteriousAges, Thaumaturge</entry>
+    <entry key="thaumicbees.speciesFlux">Flux</entry>
+    <entry key="thaumicbees.speciesFlux.description">"I thought they would help clean up, but it only makes things worse!"|Kreicus, Apprentice Thaumaturge</entry>
+    <entry key="thaumicbees.speciesNode">Node</entry>
+    <entry key="thaumicbees.speciesNode.description">Having undergone a freak mutation, these bees now attract magic to them.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesSkulking">Skulking</entry>
+    <entry key="thaumicbees.speciesSkulking.description">These bees have become xenophobic and bad-tempered. Use caution.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesBrainy">Brainy</entry>
+    <entry key="thaumicbees.speciesBrainy.description">Their combs may be fetid and foul-smelling, but their intelligence is well-developed.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesGossamer">Gossamer</entry>
+    <entry key="thaumicbees.speciesGossamer.description">As they work, they seem to fade out from light for brief moments.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesWispy">Wispy</entry>
+    <entry key="thaumicbees.speciesWispy.description">Their language is garbled and unintelligible. It is probable they are speaking to unnatural beings.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesBatty">Batty</entry>
+    <entry key="thaumicbees.speciesBatty.description">They tend to attract bats to their hives through means unknown.|Apinomicon</entry>
+    <entry key="thaumicbees.speciesGhastly">Ghastly</entry>
+    <entry key="thaumicbees.speciesGhastly.description">"*sigh*... Really, Myst?"|Taveria</entry>
+    <entry key="thaumicbees.speciesTimely">Timely</entry>
+    <entry key="thaumicbees.speciesTimely.description">"An apiarist is never late. He arrives precicely when he means to!"|Sengir, Mad Apiarist</entry>
+    <entry key="thaumicbees.speciesLordly">Lordly</entry>
+    <entry key="thaumicbees.speciesLordly.description">They live in peace, within the sight of the Eye of Harmony|Tattered Remains of ancient Apinomicon</entry>
+    <entry key="thaumicbees.speciesDoctoral">Doctoral</entry>
+    <entry key="thaumicbees.speciesDoctoral.description">"Would you like a Jelly Baby?"|Passing stranger with a great scarf and a blue box</entry>
+
+<!-- Bee Alleles -->
+<entry key="thaumicbees.effectCurative">Очищающая</entry>
+<entry key="thaumicbees.effecteffectDigSpeed">Добывающая</entry>
+<entry key="thaumicbees.effecteffectMoveSpeed">Ускоряющая</entry>
+<entry key="thaumicbees.effecteffectSlowSpeed">Искревляющая Время</entry>
+<entry key="thaumicbees.effectNodeGeneration">Привлеченная Аурой</entry>
+<entry key="thaumicbees.effectBrainy">Умная</entry>
+<entry key="thaumicbees.effectBatty">Сумашедшая</entry>
+<entry key="thaumicbees.effectWispy">Призрачная</entry>
+<entry key="thaumicbees.Ghast">Ужасная</entry>
+<entry key="tb.bees.flower.book">Книги</entry>
+<entry key="tb.bees.flower.magic">Магические Цветы</entry>
+<entry key="tb.bees.flower.node">Узел</entry>
+<entry key="tb.bees.flower.nodePure">Очищающая Узел</entry>
+<entry key="tb.bees.flower.nodeFlux">Загрезняющая Узел</entry>
+
+<!-- Classifications -->
+<entry key="classification.arcane">Тайныее</entry>
+<entry key="classification.arcane.description"></entry>
+<entry key="classification.supernatural">Сверхестественные</entry>
+<entry key="classification.supernatural.description"></entry>
+<entry key="classification.scholarly">Научные</entry>
+<entry key="classification.scholarly.description"></entry>
+<entry key="classification.thaumic">Таумические</entry>
+<entry key="classification.thaumic.description"></entry>
+<entry key="classification.skulking">Прячующиеся</entry>
+<entry key="classification.skulking.description"></entry>
+<entry key="classification.vis">Vis</entry>
+<entry key="classification.vis.description"></entry>
+<entry key="classification.time">Временные</entry>
+<entry key="classification.time.description"></entry>
+
+    
+</properties>
