@@ -16,7 +16,7 @@ import magicbees.item.types.ResourceType;
 import magicbees.item.types.WaxType;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -121,8 +121,6 @@ public class ThaumcraftHelper
 	
 	private static boolean isThaumcraftPresent = false;
 	public static final String Name = "Thaumcraft";
-
-	private static HashMap<HiveFrameType, Object> fluxData;
 	
 	public static boolean isActive()
 	{
@@ -136,15 +134,6 @@ public class ThaumcraftHelper
 			isThaumcraftPresent = true;
 			
 			registerResearchXML();
-			
-			fluxData = new HashMap<HiveFrameType, Object>();
-			fluxData.put(HiveFrameType.MAGIC, null);
-			fluxData.put(HiveFrameType.RESILIENT, new ObjectTags().add(EnumTag.ARMOR, 1));
-			fluxData.put(HiveFrameType.GENTLE, new ObjectTags().add(EnumTag.HEAL, 1).add(EnumTag.LIFE, 1));
-			fluxData.put(HiveFrameType.METABOLIC, new ObjectTags().add(EnumTag.EXCHANGE, 1).add(EnumTag.MOTION, 1));
-			fluxData.put(HiveFrameType.NECROTIC, new ObjectTags().add(EnumTag.DEATH, 3).add(EnumTag.POISON, 2));
-			fluxData.put(HiveFrameType.TEMPORAL, new ObjectTags().add(EnumTag.TIME, 5));
-			fluxData.put(HiveFrameType.OBLIVION, new ObjectTags().add(EnumTag.TIME, 5).add(EnumTag.ELDRITCH, 5));
 		}
 	}
 	
@@ -182,7 +171,7 @@ public class ThaumcraftHelper
 
 	public static void addItemsToBackpack()
 	{
-		if (isActive() && ThaumicBees.getConfig().AddThaumcraftItemsToBackpacks)
+		if (isActive() && MagicBees.getConfig().AddThaumcraftItemsToBackpacks)
 		{
 			// Add all shards and Thaumium to miner's backpack
 			String ids = Config.tcShard.itemID + ":" + -1 + ";"
@@ -638,7 +627,7 @@ public class ThaumcraftHelper
 		ItemStack input;
 		ItemStack output;
 		
-		if (ThaumicBees.getConfig().UseImpregnatedStickInTools)
+		if (MagicBees.getConfig().UseImpregnatedStickInTools)
 		{
 			input = ItemInterface.getItem("stickImpregnated");
 		}
@@ -766,20 +755,11 @@ public class ThaumcraftHelper
 				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
 		
 		tags = new ObjectTags().add(EnumTag.MAGIC, 40).add(EnumTag.FLUX, 24);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", BeeSpecies.TC_INFUSED.getBeeItem(EnumBeeType.DRONE), new Object[]
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION9", BeeSpecies.TC_MAGIC.getBeeItem(EnumBeeType.DRONE), new Object[]
 				{ drone, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
 				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
-		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.TC_INFUSED.getBeeItem(EnumBeeType.PRINCESS), new Object[]
+		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.TC_MAGIC.getBeeItem(EnumBeeType.PRINCESS), new Object[]
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
 				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
-	}
-	
-	public static void doFluxEffect(HiveFrameType frameType, World w, int x, int y, int z)
-	{
-		ObjectTags flux = (ObjectTags)(fluxData.get(frameType));
-		if (flux != null && w.rand.nextInt(5) <= 1)
-		{			
-			ThaumcraftApi.addFluxToClosest(w, x, y, z, flux);
-		}
 	}
 }

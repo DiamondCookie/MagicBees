@@ -11,8 +11,8 @@ import magicbees.block.types.PlankType;
 import magicbees.item.types.CapsuleType;
 import magicbees.item.types.LiquidType;
 import magicbees.main.CommonProxy;
-import magicbees.main.ThaumicBees;
-import magicbees.main.utils.TabThaumicBees;
+import magicbees.main.MagicBees;
+import magicbees.main.utils.TabMagicBees;
 import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -37,11 +37,11 @@ public class ItemCapsule extends Item
 	{
 		super(itemId);
 		this.capsuleType = type;
-		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(maxStackSize);
-		this.setUnlocalizedName("tb.capsule." + type.toString().toLowerCase());
-		GameRegistry.registerItem(this, "tb.capsule." + type.toString().toLowerCase());
+		this.setUnlocalizedName("capsule." + type.toString().toLowerCase());
+		GameRegistry.registerItem(this, "capsule." + type.toString().toLowerCase());
 	}
 	
 	public CapsuleType getType()

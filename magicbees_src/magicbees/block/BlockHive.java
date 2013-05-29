@@ -15,9 +15,11 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import forestry.core.config.ForestryBlock;
 
 public class BlockHive extends Block
 {	
@@ -27,7 +29,7 @@ public class BlockHive extends Block
 		this.setLightValue(0.8f);
 		setHardness(1f);
 		setCreativeTab(Tabs.tabApiculture);
-		setUnlocalizedName("tb.hive");
+		setUnlocalizedName("hive");
 	}
 
 	@Override
@@ -68,17 +70,8 @@ public class BlockHive extends Block
 
 	@Override
 	public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
-	{
-		ArrayList<ItemStack> toDrop = new ArrayList<ItemStack>();
-		
-		// Grab a princess
-		
-		
-		// Maybe grab a drone
-		
-		// Maybe grab an item
-		
-		return toDrop;
+	{		
+		return HiveType.getHiveFromMeta(metadata).getDrops(world, x, y, z, fortune);
 	}
 	
 	@Override

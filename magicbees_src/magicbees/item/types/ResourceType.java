@@ -30,6 +30,6 @@ public enum ResourceType
 	
 	public String getLocalizedName()
 	{
-		return LocalizationManager.getLocalizedString("tb.resource." + this.name);
+		return LocalizationManager.getLocalizedString("resource." + this.name);
 	}
 }

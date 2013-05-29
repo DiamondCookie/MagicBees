@@ -4,29 +4,26 @@ import magicbees.main.utils.LocalizationManager;
 
 public enum HiveFrameType
 {
-	MAGIC("Magic", 32, 240, 1f, 1f, 1f, 2f, 2, 5),
-	RESILIENT("Resilient", 33, 840, 1f, 1f, 1f, 2f, 2, 5),
-	GENTLE("Gentle", 34, 200, 1f, 0.7f, 1.5f, 1.4f, 1, 5),
-	METABOLIC("Metabolic", 35, 120, 1f, 1.8f, 1f, 1.2f, 5, 5),
-	NECROTIC("Necrotic", 36, 290, 1f, 1f, 0.3f, 0.75f, 1, 5),
-	TEMPORAL("Temporal", 37, 300, 1f, 1f, 2.5f, 1f, 1, 5 ),
-	OBLIVION("Oblivion", 38, 60, 1f, 1f, 0.0001f, 0f, 15, 1),
+	MAGIC("Magic", 240, 1f, 1f, 1f, 2f),
+	RESILIENT("Resilient", 800, 1f, 1f, 1f, 2f),
+	GENTLE("Gentle", 200, 1f, 0.7f, 1.5f, 1.4f),
+	METABOLIC("Metabolic", 120, 1f, 1.8f, 1f, 1.2f),
+	NECROTIC("Necrotic", 290, 1f, 1f, 0.3f, 0.75f),
+	TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f),
+	OBLIVION("Oblivion", 60, 1f, 1f, 0.0001f, 0f),
 	;
 	
-	private HiveFrameType(String name, int icon, int damage,
-			float territory, float mutation, float lifespan, float production,
-			int auraUse, int wearTicks)
+	private HiveFrameType(String name, int damage,
+			float territory, float mutation, float lifespan, float production)
 	{
-		this(name, icon, damage, territory, mutation, lifespan, production, 1f, false, false, false, false, auraUse, wearTicks);
+		this(name, damage, territory, mutation, lifespan, production, 1f, false, false, false, false);
 	}
 	
-	private HiveFrameType(String name, int icon, int damage,
+	private HiveFrameType(String name, int damage,
 			float territory, float mutation, float lifespan, float production, float flowering,
-			boolean sealed, boolean lit, boolean sunlit, boolean hellish,
-			int auraUse, int wearTicks)
+			boolean sealed, boolean lit, boolean sunlit, boolean hellish)
 	{
 		this.frameName = name;
-		this.iconIdx = icon;
 		this.maxDamage = damage;
 		
 		this.territoryMod = territory;
@@ -38,13 +35,9 @@ public enum HiveFrameType
 		this.isLit = lit;
 		this.isSunlit = sunlit;
 		this.isHellish = hellish;
-		
-		this.auraPerUse = auraUse;
-		this.wearTicksPerAura = wearTicks;
 	}
 	
 	private String frameName;
-	public int iconIdx;
 	public int maxDamage;
 	
 	public float territoryMod;
@@ -57,9 +50,6 @@ public enum HiveFrameType
 	public boolean isSunlit;
 	public boolean isHellish;
 	
-	public int auraPerUse;
-	public int wearTicksPerAura;
-	
 	public String getName()
 	{
 		return this.frameName;
@@ -67,6 +57,6 @@ public enum HiveFrameType
 	
 	public String getLocalizedName()
 	{
-		return LocalizationManager.getLocalizedString("tb.frame." + this.frameName);
+		return LocalizationManager.getLocalizedString("frame." + this.frameName);
 	}
 }

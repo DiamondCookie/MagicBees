@@ -3,6 +3,7 @@ package magicbees.main.utils;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+import magicbees.main.MagicBees;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
@@ -54,7 +55,7 @@ public class TickHandlerVersion implements IScheduledTickHandler
         {
             VersionInfo anInfo = modVersionInfo.get(modIndex);
 
-            if (anInfo.isNewVersionAvailable())
+            if ((!MagicBees.getConfig().DisableUpdateNotification || anInfo.isCriticalUpdate()) && anInfo.isNewVersionAvailable())
             {
                 EntityPlayer player = (EntityPlayer) tickData[0];
                 player.sendChatToPlayer("[" + anInfo.modName + "] A new version is available: " + anInfo.getLatestVersion());

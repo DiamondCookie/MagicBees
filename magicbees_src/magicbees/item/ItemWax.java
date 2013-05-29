@@ -24,8 +24,8 @@ public class ItemWax extends Item
 		super(itemID);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("tb.wax");
-		GameRegistry.registerItem(this, "tb.wax");
+		this.setUnlocalizedName("wax");
+		GameRegistry.registerItem(this, "wax");
 	}
 	
 	public ItemStack getStackForType(WaxType type)

@@ -1,19 +1,18 @@
 package magicbees.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import thaumcraft.api.IVisRepairable;
-import thaumcraft.api.ThaumcraftApi;
-import magicbees.main.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import thaumcraft.api.IVisRepairable;
+import thaumcraft.api.ThaumcraftApi;
+import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.core.IToolScoop;
 
-public class ItemThaumiumScoop extends Item implements IVisRepairable
+public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoop
 {
 	public ItemThaumiumScoop(int itemID)
 	{

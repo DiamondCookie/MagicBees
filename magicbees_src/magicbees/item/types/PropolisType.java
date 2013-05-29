@@ -24,6 +24,6 @@ public enum PropolisType
 	
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString("tb.propolis." + this.name);
+		return LocalizationManager.getLocalizedString("propolis." + this.name);
 	}
 }

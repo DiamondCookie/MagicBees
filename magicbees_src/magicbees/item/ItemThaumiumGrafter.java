@@ -103,14 +103,9 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 	{
 		if (stack.getItemDamage() > 0)
 		{
-			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 5, true))
+			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 2, true))
 			{
 				stack.damageItem(-1, (EntityLiving)e);
-			}
-			if (e instanceof EntityPlayer)
-			{
-				EntityPlayer p = (EntityPlayer)e;
-				p.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 600));
 			}
 		}
 	}

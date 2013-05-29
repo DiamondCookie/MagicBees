@@ -22,6 +22,6 @@ public enum WaxType
 	
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString("tb.wax." + this.name);
+		return LocalizationManager.getLocalizedString("wax." + this.name);
 	}
 }

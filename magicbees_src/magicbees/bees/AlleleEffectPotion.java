@@ -20,7 +20,7 @@ public class AlleleEffectPotion extends AlleleEffect
 	
 	public AlleleEffectPotion(String name, Potion potionApplied, int effectDuration, boolean isDominant)
 	{
-		super("effect" + name, isDominant);
+		super(name, isDominant);
 		this.potionId = potionApplied.id;
 		this.duration = 20 * effectDuration;
 	}

@@ -1,5 +1,6 @@
 package magicbees.main;
 
+import magicbees.bees.BeeManager;
 import magicbees.client.gui.GUIHandler;
 import magicbees.main.utils.CompatabilityManager;
 import magicbees.main.utils.CraftingManager;
@@ -9,7 +10,7 @@ import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
-import cpw.mods.fml.common.FMLLog;
+import magicbees.world.WorldHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -17,28 +18,30 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(
 		modid=VersionInfo.ModName,
-		name="Thaumic Bees",
+		name="Magic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
 		version=VersionInfo.Version + " - " + VersionInfo.Build,
 		dependencies=VersionInfo.Depends
 )
 @NetworkMod(serverSideRequired=false, clientSideRequired=true)
-public class ThaumicBees
+public class MagicBees
 {
 
-	@Mod.Instance(value="ThaumicBees")
-	public static ThaumicBees object;
+	@Mod.Instance(VersionInfo.ModName)
+	public static MagicBees object;
 	
-	@SidedProxy(serverSide="thaumicbees.main.CommonProxy", clientSide="thaumicbees.main.ClientProxy")
+	@SidedProxy(serverSide="magicbees.main.CommonProxy", clientSide="magicbees.main.ClientProxy")
 	public static CommonProxy proxy;
 
 	public GUIHandler guiHandler;
 	private String configsPath;
 	private Config modConfig;
+	private WorldHandler worldHandler;
 
 	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -59,10 +62,11 @@ public class ThaumicBees
 	public void init(FMLInitializationEvent event)
 	{		
 		this.modConfig.setupBlocks();
-		this.proxy.registerTileEntities();
 		this.modConfig.setupItems();
 		
 		CompatabilityManager.setupBackpacks();
+		
+		GameRegistry.registerWorldGenerator(worldHandler = new WorldHandler());
 	}
 
 	@Mod.PostInit
@@ -70,10 +74,8 @@ public class ThaumicBees
 	{
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);
-		
-		magicbees.bees.Allele.setupAdditionalAlleles();
-		magicbees.bees.BeeSpecies.setupBeeSpecies();
-		magicbees.bees.BeeMutation.setupMutations();
+
+		BeeManager.ititializeBees();
 		
 		this.modConfig.saveConfigs();
 		

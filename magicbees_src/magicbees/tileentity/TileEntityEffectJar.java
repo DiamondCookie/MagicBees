@@ -14,6 +14,8 @@ import forestry.api.genetics.IEffectData;
 
 public class TileEntityEffectJar extends TileEntity implements IInventory
 {
+	public static final String entityName = "tileEntity.effectJar";
+	
 	private String ownerName;
 	private EffectJarHousing housingLogic;
 	

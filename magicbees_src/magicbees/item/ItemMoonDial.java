@@ -7,9 +7,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.item.types.PollenType;
 import magicbees.main.Config;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.MoonPhase;
-import magicbees.main.utils.TabThaumicBees;
+import magicbees.main.utils.TabMagicBees;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -27,9 +27,9 @@ public class ItemMoonDial extends Item
 	public ItemMoonDial(int id)
 	{
 		super(id);
-		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
-		this.setUnlocalizedName("tb.moonDial");
-		GameRegistry.registerItem(this, "tb.moonDial");
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
+		this.setUnlocalizedName("moonDial");
+		GameRegistry.registerItem(this, "moonDial");
 	}
 
     @SideOnly(Side.CLIENT)
@@ -54,7 +54,9 @@ public class ItemMoonDial extends Item
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List infoList, boolean par4)
     {
-		if (ThaumicBees.getConfig().MoonDialShowsPhaseInText && entityPlayer.getCurrentEquippedItem().getItem() == this)
+		if (MagicBees.getConfig().MoonDialShowsPhaseInText &&
+				entityPlayer.getCurrentEquippedItem() != null &&
+				entityPlayer.getCurrentEquippedItem().getItem() == this)
 		{
 			infoList.add("\u00A77" + MoonPhase.getMoonPhaseFromTime(entityPlayer.worldObj.getWorldTime()).getLocalizedName());
 		}

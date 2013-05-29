@@ -10,7 +10,7 @@ import forestry.api.core.Tabs;
 import magicbees.item.types.DropType;
 import magicbees.item.types.PropolisType;
 import magicbees.main.CommonProxy;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,8 +25,8 @@ public class ItemDrop extends Item
 		super(itemID);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("tb.drop");
-		GameRegistry.registerItem(this, "tb.drop");
+		this.setUnlocalizedName("drop");
+		GameRegistry.registerItem(this, "drop");
 	}
 	
 	public ItemStack getStackForType(DropType type)

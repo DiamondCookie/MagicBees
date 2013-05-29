@@ -6,8 +6,9 @@ import forestry.api.core.ItemInterface;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import java.util.ArrayList;
+import java.util.Collection;
 
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.MoonPhase;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
@@ -272,5 +273,12 @@ public class BeeMutation implements IBeeMutation
 		this.nodeType = type;
 		
 		return this.setAuraNodeRequired(range);
+	}
+
+	@Override
+	public Collection<String> getSpecialConditions()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -36,6 +37,7 @@ import forestry.api.core.IIconProvider;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
+import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
@@ -50,7 +52,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.VEILED, 0x0086A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	
 	ELDRITCH("Eldritch", "prodigiosus",
-			BeeClassification.VEILED, 0x0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+			BeeClassification.VEILED, 0x8D75A0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	
 	ESOTERIC("Esoteric", "secretiore",
 			BeeClassification.ARCANE, 0x001099, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -127,83 +129,83 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.GEM, 0x2EA7EC, 0x001D51, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	// --------- Thaumcraft Bees ---------------------------------------------------------------------------------------
-	TC_STARK("Stark", "torridae",
+	TC_STARK("TCStark", "torridae", // Stark
 			BeeClassification.THAUMIC, 0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	TC_AIR("Aura", "aether",
+	TC_AIR("TCAir", "aether",	// Aura
 			BeeClassification.THAUMIC, 0xD9D636, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	TC_FIRE("Ignis", "praefervidus",
+	TC_FIRE("TCFire", "praefervidus",	// Ignis
 			BeeClassification.THAUMIC, 0xE50B0B, 0x999999, EnumTemperature.HOT, EnumHumidity.ARID, true, true),
-	TC_WATER("Aqua", "umidus",
+	TC_WATER("TCWater", "umidus",	// Aqua
 			BeeClassification.THAUMIC, 0x36CFD9, 0x999999, EnumTemperature.NORMAL, EnumHumidity.DAMP, true, true),
-	TC_EARTH("Solum", "sordida",
+	TC_EARTH("TCEarth", "sordida", // Solum
 			BeeClassification.THAUMIC, 0x005100, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	TC_INFUSED("Praecantatio", "azanorius",
+	TC_MAGIC("TCMagic", "azanorius", //Praecantatio
 			BeeClassification.THAUMIC, 0xaa32fc, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 			
-	TC_VIS("Vis", "arcanus saecula",
+	TC_VIS("TCVis", "arcanus saecula",
 			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TC_FLUX("Flux", "arcanus labe",
+	TC_FLUX("TCFlux", "arcanus labe",
 			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TC_ATTRACT("Attractive", "",
+	TC_ATTRACT("TCAttractive", "",
 			BeeClassification.THAUMIC, 0x0, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	TC_REJUVENATING("Rejuvenating", "arcanus vitae",
+	TC_REJUVENATING("TCRejuvenating", "arcanus vitae",
 			BeeClassification.THAUMIC, 0x91D0D9, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TC_PURE("Pure", "arcanus puritatem",
+	TC_PURE("TCPure", "arcanus puritatem",
 			BeeClassification.THAUMIC, 0xb0092e, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 			
-	TC_BRAINY("Brainy", "cerebrum",
+	TC_BRAINY("TCBrainy", "cerebrum",
 			BeeClassification.THAUMIC, 0x83FF70, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	TC_WISPY("Wispy", "umbrabilis",
+	TC_WISPY("TCWispy", "umbrabilis",
 			BeeClassification.THAUMIC, 0x9cb8d5, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TC_BATTY("Batty", "chiroptera",
+	TC_BATTY("TCBatty", "chiroptera",
 			BeeClassification.THAUMIC, 0x27350d, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 			
-	TC_CHICKEN("Chicken", "pullus",
+	TC_CHICKEN("TCChicken", "pullus",
 			BeeClassification.FLESHY, 0x7D431E, 0xE0905E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	TC_BEEF("Beef", "bubulae",
+	TC_BEEF("TCBeef", "bubulae",
 			BeeClassification.FLESHY, 0x40221A, 0xAC6753, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	TC_PORK("Pork", "porcina",
+	TC_PORK("TCPork", "porcina",
 			BeeClassification.FLESHY, 0x725D2F, 0xD2BF93, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 			
-	@Deprecated		
-	TC_NODE("Node", "conficiens",
+/*	@Deprecated		
+	TC_NODE("TCNode", "conficiens",
 			BeeClassification.THAUMIC, 0xFFF266, 0xFF8CE9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	@Deprecated
-	TC_GOSSAMER("Gossamer", "perlucidus",
+	TC_GOSSAMER("TCGossamer", "perlucidus",
 			BeeClassification.THAUMIC, 0x183f66, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	
+*/	
 	// --------- Equivalent Exchange Bees -----------------------------------------------------------------------------	
-	EE_MINIUM("Minium", "mutabilis",
+	EE_MINIUM("EEMinium", "mutabilis",
 			BeeClassification.ALCHEMICAL, 0xac0921, 0x3a030b, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 			
 	// --------- Ars Magica Bees --------------------------------------------------------------------------------------	
-	AM_ESSENCE("Essence", "essentia",
+	AM_ESSENCE("AMEssence", "essentia",
 			BeeClassification.ESSENTIAL, 0x86BBC5, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	AM_QUINTESSENCE("Quintessence", "cor essentia",
+	AM_QUINTESSENCE("AMQuintessence", "cor essentia",
 			BeeClassification.ESSENTIAL, 0xE3A45B, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 			
-	AM_EARTH("Erde", "magica terra",
+	AM_EARTH("AMEarth", "magica terra",
 			BeeClassification.ESSENTIAL, 0xAA875E, 0xE3A55B, EnumTemperature.WARM, EnumHumidity.ARID, false, false),
-	AM_AIR("Luft", "magica aer",
+	AM_AIR("AMAir", "magica aer",
 			BeeClassification.ESSENTIAL, 0xD5EB9D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	AM_FIRE("Feuer", "magica ignis",
+	AM_FIRE("AMFire", "magica ignis",
 			BeeClassification.ESSENTIAL, 0x93451E, 0xE3A55B, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
-	AM_WATER("Wasser", "magica aqua",
+	AM_WATER("AMWater", "magica aqua",
 			BeeClassification.ESSENTIAL, 0x3B7D8C, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.DAMP, false, false),
-	AM_LIGHTNING("Blitz", "magica fulgur",
+	AM_LIGHTNING("AMLightning", "magica fulgur",
 			BeeClassification.ESSENTIAL, 0xEBEFA1, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	AM_PLANT("Staude", "magica herba",
+	AM_PLANT("AMPlant", "magica herba",
 			BeeClassification.ESSENTIAL, 0x49B549, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	AM_ICE("Eis", "magica glacium",
+	AM_ICE("AMIce", "magica glacium",
 			BeeClassification.ESSENTIAL, 0x86BAC6, 0xE3A55B, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
-	AM_MAGMA("Magma", "magica torrens igneus",
+	AM_MAGMA("AMMagma", "magica torrens igneus",
 			BeeClassification.ESSENTIAL, 0x932B1E, 0xE3A55B, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
-	AM_ARCANE("Arkanen", "magica arcanum",
+	AM_ARCANE("AMArcane", "magica arcanum",
 			BeeClassification.ESSENTIAL, 0x76184D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 			
-	AM_VORTEX("Vortex", "gurges",
+	AM_VORTEX("AMVortex", "gurges",
 			BeeClassification.ESSENTIAL, 0x71BBE2, 0x0B35A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-	AM_WIGHT("Wight", "vectem",
+	AM_WIGHT("AMWight", "vectem",
 			BeeClassification.ESSENTIAL, 0xB50000, 0x4C4837, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	;
 	
@@ -221,21 +223,21 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		}
 		else
 		{
-			TC_INFUSED.setInactive();
+			TC_MAGIC.setInactive();
 			TC_VIS.setInactive();
 			TC_PURE.setInactive();
 			TC_FLUX.setInactive();
 			TC_REJUVENATING.setInactive();
 			TC_BRAINY.setInactive();
-			TC_GOSSAMER.setInactive();
 			TC_WISPY.setInactive();
 			TC_BATTY.setInactive();
 			TC_CHICKEN.setInactive();
 			TC_BEEF.setInactive();
 			TC_PORK.setInactive();
 		}
+		/*TC_GOSSAMER.setInactive();
 		// Node bee is getting phased out.
-		TC_NODE.setInactive();
+		TC_NODE.setInactive();*/
 		
 		if (EquivalentExchangeHelper.isActive())
 		{
@@ -277,6 +279,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			AM_VORTEX.setInactive();
 			AM_WIGHT.setInactive();
 		}
+		AlleleManager.alleleRegistry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBlitz", AM_LIGHTNING);
 		
 		// Oredict bees
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
@@ -351,25 +354,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplateSavant())
 			.register();
 		
-		TC_STARK.addProduct(Config.combs.getStackForType(CombType.TC_STARK), 10)
-			.setGenome(BeeGenomeManager.getTemplateStark())
-			.register();
-		TC_AIR.addProduct(Config.combs.getStackForType(CombType.TC_AIRY), 9)
-			.addSpecialty(new ItemStack(Item.feather), 4)
-			.setGenome(BeeGenomeManager.getTemplateAir())
-			.register();
-		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.TC_FIREY), 15)
-			.addSpecialty(new ItemStack(Item.blazePowder), 4).setGenome(BeeGenomeManager.getTemplateFire())
-			.register();
-		TC_WATER.addProduct(Config.combs.getStackForType(CombType.TC_WATERY), 20)
-			.addSpecialty(new ItemStack(Block.ice), 1)
-			.setGenome(BeeGenomeManager.getTemplateWater())
-			.register();
-		TC_EARTH.addProduct(Config.combs.getStackForType(CombType.TC_EARTHY), 30)
-			.addSpecialty(new ItemStack(Block.obsidian), 4)
-			.setGenome(BeeGenomeManager.getTemplateEarth())
-			.register();
-		
 		AWARE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18)
 			.setGenome(BeeGenomeManager.getTemplateAware())
 			.register();
@@ -408,6 +392,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.addSpecialty(new ItemStack(Config.jellyBaby), 7)
 			.setGenome(BeeGenomeManager.getTemplateDoctoral())
 			.register();
+		
 		IRON.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.addSpecialty(Config.nuggets.getStackForType(NuggetType.IRON), 8)
 			.setGenome(BeeGenomeManager.getTemplateIron())
@@ -444,93 +429,111 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.addSpecialty(Config.nuggets.getStackForType(NuggetType.APATITE), 2)
 			.setGenome(BeeGenomeManager.getTemplateApatite())
 			.register();
-
-		TC_INFUSED.addProduct(Config.combs.getStackForType(CombType.TC_INFUSED), 20)
-			.setGenome(BeeGenomeManager.getTemplateInfused())
+		
+		
+		TC_STARK.addProduct(Config.combs.getStackForType(CombType.TC_STARK), 10)
+			.setGenome(BeeGenomeManager.getTemplateTCStark())
 			.register();
-		TC_VIS.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 25)
-			.setGenome(BeeGenomeManager.getTemplateVis())
+		TC_AIR.addProduct(Config.combs.getStackForType(CombType.TC_AIRY), 9)
+			.addSpecialty(new ItemStack(Item.feather), 4)
+			.setGenome(BeeGenomeManager.getTemplateTCAir())
 			.register();
-		TC_PURE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
-			.setGenome(BeeGenomeManager.getTemplatePure())
+		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.TC_FIREY), 15)
+			.addSpecialty(new ItemStack(Item.blazePowder), 4)
+			.setGenome(BeeGenomeManager.getTemplateTCFire())
 			.register();
-		TC_FLUX.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
-			.setGenome(BeeGenomeManager.getTemplateFlux())
+		TC_WATER.addProduct(Config.combs.getStackForType(CombType.TC_WATERY), 20)
+			.addSpecialty(new ItemStack(Block.ice), 1)
+			.setGenome(BeeGenomeManager.getTemplateTCWater())
 			.register();
-		TC_NODE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
-			.setGenome(BeeGenomeManager.getTemplateNode())
+		TC_EARTH.addProduct(Config.combs.getStackForType(CombType.TC_EARTHY), 30)
+			.addSpecialty(new ItemStack(Block.obsidian), 4)
+			.setGenome(BeeGenomeManager.getTemplateTCEarth())
 			.register();
-		TC_REJUVENATING.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
-			.setGenome(BeeGenomeManager.getTemplateRejuvinating())
-			.register();
-		TC_BRAINY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
-			.addProduct(new ItemStack(Item.rottenFlesh), 6)
-			.setGenome(BeeGenomeManager.getTemplateBrainy())
-			.register();		
-		TC_BATTY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
-			.addSpecialty(new ItemStack(Item.gunpowder), 4)
-			.setGenome(BeeGenomeManager.getTemplateBatty())
-			.register();	
-		TC_GOSSAMER.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SILKY.ordinal()), 15)
-			.setGenome(BeeGenomeManager.getTemplateGossamer())
-			.register();		
-		TC_WISPY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SILKY.ordinal()), 22)
-			.addSpecialty(new ItemStack(Config.fCraftingResource, 1, ForestryHelper.CraftingMaterial.SILK_WISP.ordinal()), 4)
-			.setGenome(BeeGenomeManager.getTemplateWispy())
-			.register();
-		TC_CHICKEN.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.setGenome(BeeGenomeManager.getTemplateChicken())
-			.register();
-		TC_BEEF.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.setGenome(BeeGenomeManager.getTemplateBeef())
-			.register();
-		TC_PORK.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.setGenome(BeeGenomeManager.getTemplatePork())
-			.register();
-
-		EE_MINIUM.addProduct(Config.combs.getStackForType(CombType.OCCULT), 16)
-			.setGenome(BeeGenomeManager.getTemplateMinium())
+		TC_MAGIC.addProduct(Config.combs.getStackForType(CombType.TC_INFUSED), 20)
+			.setGenome(BeeGenomeManager.getTemplateTCMagic())
 			.register();
 		
+		TC_VIS.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 25)
+			.setGenome(BeeGenomeManager.getTemplateTCVis())
+			.register();
+		TC_PURE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
+			.setGenome(BeeGenomeManager.getTemplateTCPure())
+			.register();
+		TC_FLUX.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
+			.setGenome(BeeGenomeManager.getTemplateTCFlux())
+			.register();
+		TC_REJUVENATING.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
+			.setGenome(BeeGenomeManager.getTemplateTCRejuvinating())
+			.register();
+		
+		TC_BRAINY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
+			.addProduct(new ItemStack(Item.rottenFlesh), 6)
+			.setGenome(BeeGenomeManager.getTemplateTCBrainy())
+			.register();
+		TC_BATTY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
+			.addSpecialty(new ItemStack(Item.gunpowder), 4)
+			.setGenome(BeeGenomeManager.getTemplateTCBatty())
+			.register();	
+		TC_WISPY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SILKY.ordinal()), 22)
+			.addSpecialty(new ItemStack(Config.fCraftingResource, 1, ForestryHelper.CraftingMaterial.SILK_WISP.ordinal()), 4)
+			.setGenome(BeeGenomeManager.getTemplateTCWispy())
+			.register();
+		TC_CHICKEN.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateTCChicken())
+			.register();
+		TC_BEEF.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateTCBeef())
+			.register();
+		TC_PORK.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateTCPork())
+			.register();
+
+		
+		EE_MINIUM.addProduct(Config.combs.getStackForType(CombType.OCCULT), 16)
+			.setGenome(BeeGenomeManager.getTemplateEEMinium())
+			.register();
+		
+		
 		AM_ESSENCE.addProduct(Config.combs.getStackForType(CombType.AM_ESSENCE), 12)
-			.setGenome(BeeGenomeManager.getTemplateEssence())
+			.setGenome(BeeGenomeManager.getTemplateAMEssence())
 			.register();
 		AM_QUINTESSENCE.addProduct(Config.combs.getStackForType(CombType.AM_ESSENCE), 23)
-			.setGenome(BeeGenomeManager.getTemplateQuintessence())
+			.setGenome(BeeGenomeManager.getTemplateAMQuintessence())
 			.register();
 		AM_EARTH.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateEarthAM())
+			.setGenome(BeeGenomeManager.getTemplateAMEarth())
 			.register();
 		AM_AIR.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateAirAM())
+			.setGenome(BeeGenomeManager.getTemplateAMAir())
 			.register();
 		AM_FIRE.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateFireAM())
+			.setGenome(BeeGenomeManager.getTemplateAMFire())
 			.register();
 		AM_WATER.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateWaterAM())
+			.setGenome(BeeGenomeManager.getTemplateAMWater())
 			.register();
 		AM_LIGHTNING.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateLightning())
+			.setGenome(BeeGenomeManager.getTemplateAMLightning())
 			.register();
 		AM_PLANT.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplatePlant())
+			.setGenome(BeeGenomeManager.getTemplateAMPlant())
 			.register();
 		AM_ICE.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateIce())
+			.setGenome(BeeGenomeManager.getTemplateAMIce())
 			.register();
 		AM_MAGMA.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateMagma())
+			.setGenome(BeeGenomeManager.getTemplateAMMagma())
 			.register();
 		AM_ARCANE.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 19)
-			.setGenome(BeeGenomeManager.getTemplateArcaneAM())
+			.setGenome(BeeGenomeManager.getTemplateAMArcane())
 			.register();
 		AM_VORTEX.addProduct(Config.combs.getStackForType(CombType.AM_ESSENCE), 10)
-			.setGenome(BeeGenomeManager.getTemplateVortex())
+			.setGenome(BeeGenomeManager.getTemplateAMVortex())
 			.register();
 		AM_WIGHT.addProduct(Config.combs.getStackForType(CombType.SOUL), 30)
 			.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
-			.setGenome(BeeGenomeManager.getTemplateWight())
+			.setGenome(BeeGenomeManager.getTemplateAMWight())
 			.register();
 	}
 	
@@ -580,7 +583,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
 	{
-		this.uid = "thaumicbees.species" + speciesName;
+		this.uid = "magicbees.species" + speciesName;
 		this.dominant = isSpeciesDominant;
 		AlleleManager.alleleRegistry.registerAllele(this);
 		binomial = genusName;
@@ -778,7 +781,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		return icons[type.ordinal()][Math.min(renderPass, 2)];
 	}
 	
-	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, TC_BRAINY, TC_GOSSAMER, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
+	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
 
 	public void registerItemIcons(IconRegister itemMap)
 	{
@@ -806,7 +809,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		switch (this)
 		{
 		case SKULKING: case GHASTLY: case SPIDERY:
-		case TC_BRAINY: case TC_GOSSAMER: case TC_WISPY: case TC_BATTY:
+		case TC_BRAINY: case TC_WISPY: case TC_BATTY:
 		case AM_VORTEX: case AM_WIGHT:
 			value = VersionInfo.ModName.toLowerCase() + ":bees/skulking/";
 			break;
@@ -831,4 +834,22 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerTerrainIcons(IconRegister terrainMap) { }
+
+	@Override
+	public int getComplexity()
+	{
+		return 0;
+	}
+
+	@Override
+	public float getResearchSuitability(ItemStack itemstack)
+	{
+		return 0;
+	}
+
+	@Override
+	public ItemStack[] getResearchBounty(World world, String researcher, IIndividual individual, int bountyLevel)
+	{
+		return null;
+	}
 }

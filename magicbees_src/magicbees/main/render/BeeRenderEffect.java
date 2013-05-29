@@ -6,7 +6,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 
 import magicbees.main.CommonProxy;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
@@ -97,7 +97,7 @@ public class BeeRenderEffect extends EntityFX
 		GL11.glDepthMask(true);
 
 		GL11.glPopMatrix();
-		GL11.glBindTexture(3553 /* GL_TEXTURE_2D *//* GL_TEXTURE_2D */, ThaumicBees.proxy.getClientInstance().renderEngine.getTexture("/particles.png"));
+		GL11.glBindTexture(3553 /* GL_TEXTURE_2D *//* GL_TEXTURE_2D */, MagicBees.proxy.getClientInstance().renderEngine.getTexture("/particles.png"));
 		tessellator.startDrawingQuads();
 	}
 

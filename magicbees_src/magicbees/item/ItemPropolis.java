@@ -22,8 +22,8 @@ public class ItemPropolis extends Item
 		super(id);
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("tb.propolis");
-		GameRegistry.registerItem(this, "tb.propolis");
+		this.setUnlocalizedName("propolis");
+		GameRegistry.registerItem(this, "propolis");
 	}
 	
 	public ItemStack getStackForType(PropolisType type)

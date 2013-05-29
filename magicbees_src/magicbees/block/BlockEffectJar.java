@@ -4,8 +4,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.client.gui.UIScreens;
 import magicbees.main.CommonProxy;
-import magicbees.main.ThaumicBees;
-import magicbees.main.utils.TabThaumicBees;
+import magicbees.main.MagicBees;
+import magicbees.main.utils.TabMagicBees;
 import magicbees.tileentity.TileEntityEffectJar;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -22,8 +22,8 @@ public class BlockEffectJar extends BlockContainer
 	public BlockEffectJar(int id)
 	{
 		super(id, Material.glass);
-		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
-		this.setUnlocalizedName("tb.effectJar");
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
+		this.setUnlocalizedName("effectJar");
 		this.setBlockBounds(0.25f, 0f, 0.25f, 0.75f, 0.81f, 0.74f);
 		this.setHardness(0.1f);
 		this.setResistance(1.5f);
@@ -36,7 +36,7 @@ public class BlockEffectJar extends BlockContainer
 		
 		if (!player.isSneaking())
 		{
-			player.openGui(ThaumicBees.object, UIScreens.EFFECT_JAR.ordinal(), world, x, y, z);
+			player.openGui(MagicBees.object, UIScreens.EFFECT_JAR.ordinal(), world, x, y, z);
 			activate = true;
 		}
 		

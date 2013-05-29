@@ -3,7 +3,7 @@ package magicbees.block;
 import java.util.List;
 
 import magicbees.block.types.PlankType;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -27,7 +27,7 @@ public class BlockPlanks extends Block
 		this.setHardness(2.5f);
 		this.setResistance(6.0f);
 		this.setCreativeTab(CreativeTabs.tabBlock);
-		if (ThaumicBees.getConfig().AreMagicPlanksFlammable)
+		if (MagicBees.getConfig().AreMagicPlanksFlammable)
 		{
 			Block.setBurnProperties(id, 5, 20);
 		}

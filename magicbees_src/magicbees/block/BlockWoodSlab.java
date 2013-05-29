@@ -5,7 +5,7 @@ import java.util.Random;
 
 import magicbees.block.types.PlankType;
 import magicbees.main.Config;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHalfSlab;
@@ -33,7 +33,7 @@ public class BlockWoodSlab extends BlockHalfSlab
 		this.setUnlocalizedName("tb.slab.wood");
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setLightOpacity(doubleSlab ? 255 : 0);
-		if (ThaumicBees.getConfig().AreMagicPlanksFlammable)
+		if (MagicBees.getConfig().AreMagicPlanksFlammable)
 		{
 			Block.setBurnProperties(id, 5, 20);
 		}

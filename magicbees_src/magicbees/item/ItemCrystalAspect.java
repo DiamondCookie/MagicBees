@@ -9,9 +9,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import thaumcraft.api.EnumTag;
 import magicbees.main.CommonProxy;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.TabThaumicBees;
+import magicbees.main.utils.TabMagicBees;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,7 +24,7 @@ public class ItemCrystalAspect extends Item
 	public ItemCrystalAspect(int itemId)
 	{
 		super(itemId);
-		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("crystalAspect");
 		GameRegistry.registerItem(this, "crystalAspect");
@@ -60,6 +60,6 @@ public class ItemCrystalAspect extends Item
 	@Override
 	public String getItemDisplayName(ItemStack stack)
 	{
-		return String.format(LocalizationManager.getLocalizedString("tb.resource.crystalAspect"), EnumTag.get(stack.getItemDamage()).name);
+		return String.format(LocalizationManager.getLocalizedString("resource.crystalAspect"), EnumTag.get(stack.getItemDamage()).name);
 	}
 }

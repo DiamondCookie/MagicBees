@@ -26,6 +26,6 @@ public enum CapsuleType
 	
 	public String getLocalizedName()
 	{
-		return LocalizationManager.getLocalizedString("tb.capsule." + name);
+		return LocalizationManager.getLocalizedString("capsule." + name);
 	}
 }

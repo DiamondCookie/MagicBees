@@ -39,6 +39,6 @@ public enum CombType
 	
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString("tb.comb." + this.name);
+		return LocalizationManager.getLocalizedString("comb." + this.name);
 	}
 }

@@ -8,10 +8,10 @@ import net.minecraft.world.World;
 
 public class CommonProxy
 {
-	public static final String TEXTURE_PATH = "/mods/thaumicbees/textures/";
-	public static final String MODEL_PATH = "/mods/thaumicbees/model/";
-	public static final String TCBEES_RESEARCH = "/research/thaumicbees/";
-	public static final String TCBEES_LOCDIR = "/lang/thaumicbees/";
+	public static final String TEXTURE_PATH = "/mods/magicbees/textures/";
+	public static final String MODEL_PATH = "/mods/magicbees/model/";
+	public static final String TCBEES_RESEARCH = "/research/magicbees/";
+	public static final String TCBEES_LOCDIR = "/lang/magicbees/";
 	
 	public static String FORESTRY_GFX_ITEMS;
 	public static String FORESTRY_GFX_BEEEFFECTS;
@@ -22,11 +22,6 @@ public class CommonProxy
 	public static int RenderIdEffectJar;
 
 	public CommonProxy() { }
-	
-	public void registerTileEntities()
-	{
-		GameRegistry.registerTileEntity(TileEntityEffectJar.class, "tb.entity.effectJar");
-	}
 	
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
 	{

@@ -3,7 +3,7 @@ package magicbees.bees;
 import java.util.List;
 
 
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

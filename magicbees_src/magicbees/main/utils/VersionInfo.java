@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 
 
 import cpw.mods.fml.common.FMLLog;
@@ -22,13 +22,13 @@ import cpw.mods.fml.relauncher.Side;
  */
 public class VersionInfo
 {
-	public static final String ModName = "ThaumicBees";
+	public static final String ModName = "MagicBees";
 	public static final String Version = "@VERSION@";
 	public static final String Build = "@BUILD_NUMBER@";
 	public static final String MCVersion = "@MCVERSION@";
-	public static final String VersionURL = "http://bit.ly/thaumicbeeversion";
+	public static final String VersionURL = "http://bit.ly/magicbeesVersionInfo";
 
-	public static final String Logo = "/gfx/thaumicbees/logo.png";
+	public static final String Logo = "/gfx/magicbees/logo.png";
 
 	public static final String Depends = "required-after:Forestry;after:Thaumcraft;after:ExtraBees;after:EE3;after:ArsMagica";
 
@@ -241,15 +241,12 @@ public class VersionInfo
 
 	public static void doVersionCheck()
 	{
-		if (!ThaumicBees.getConfig().DisableUpdateCheck)
-		{
-			VersionInfo main = new VersionInfo("ThaumicBees", Version, VersionURL);
-			TickHandlerVersion.registerModVersionInfo(main);
-			TickHandlerVersion.initialize();
-			TickRegistry.registerScheduledTickHandler(TickHandlerVersion.instance, Side.CLIENT);
-			
-			VersionCheckThread thread = main.new VersionCheckThread();
-			thread.start();
-		}
+		VersionInfo main = new VersionInfo(ModName, Version, VersionURL);
+		TickHandlerVersion.registerModVersionInfo(main);
+		TickHandlerVersion.initialize();
+		TickRegistry.registerScheduledTickHandler(TickHandlerVersion.instance, Side.CLIENT);
+		
+		VersionCheckThread thread = main.new VersionCheckThread();
+		thread.start();
 	}
 }

@@ -1,5 +1,6 @@
 package magicbees.bees;
 
+import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.potion.Potion;
@@ -9,6 +10,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
 import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.IAlleleRegistry;
 
 public class Allele implements IAllele
 {
@@ -21,12 +23,8 @@ public class Allele implements IAllele
 	public static IAlleleFlowers flowerThaumcraft;
 	public static IAlleleFlowers flowerArsMagica;
 	public static IAlleleFlowers flowerAuraNode;
-	@Deprecated
-	public static IAlleleFlowers flowerNodePurify;
-	@Deprecated
-	public static IAlleleFlowers flowerNodeFluxify;
 	
-	public static IAlleleEffect cleansingEffect;
+	public static IAlleleEffect effectCleansing;
 	public static IAlleleEffect digSpeed;
 	public static IAlleleEffect moveSpeed;
 	public static IAlleleEffect slowSpeed;
@@ -51,29 +49,25 @@ public class Allele implements IAllele
 		Allele.fertilityHighDominant = new AlleleInteger("fertilityHighDominant", 3, true);
 		Allele.speedBlinding = new AlleleFloat("speedBlinding", 2f, false);
 		
-		Allele.flowerBookshelf = new AlleleFlower("flowerBookshelf", new FlowerProviderBookshelf(), true);
+		Allele.flowerBookshelf = new AlleleFlower("Bookshelf", new FlowerProviderBookshelf(), true);
+		
 		if (ThaumcraftHelper.isActive())
 		{
-			FlowerProviderAuraNode provider = new FlowerProviderAuraNode();
-			Allele.flowerThaumcraft = new AlleleFlower("flowerThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
-			Allele.flowerAuraNode = new AlleleFlower("flowerAuraNode", provider, true);
-			Allele.flowerNodePurify = new AlleleFlower("flowerAuraNodePurify", provider, false);
-			Allele.flowerNodeFluxify = new AlleleFlower("flowerAuraNodeFlux", provider, false);
+			Allele.flowerThaumcraft = new AlleleFlower("ThaumcraftPlant", new FlowerProviderThaumcraftFlower(), false);
+			Allele.flowerAuraNode = new AlleleFlower("AuraNode", new FlowerProviderAuraNode(), true);
 
-			Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("effectBrainy", false, ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID)
+			Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("Brainy", false, ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID)
 				.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);
 	
-			Allele.spawnBats = new AlleleEffectSpawnMob("effectBatty", false, ThaumcraftHelper.Entity.FIREBAT.entityID)
+			Allele.spawnBats = new AlleleEffectSpawnMob("Batty", false, ThaumcraftHelper.Entity.FIREBAT.entityID)
 				.setThrottle(300).setSpawnsOnPlayerNear("Bat");
 	
-			Allele.spawnWisp = new AlleleEffectSpawnWisp("effectWispy", false, ThaumcraftHelper.Entity.WISP.entityID, "thaumcraft.wisplive")
+			Allele.spawnWisp = new AlleleEffectSpawnWisp("Wispy", false, ThaumcraftHelper.Entity.WISP.entityID, "thaumcraft.wisplive")
 				.setThrottle(1800).setChanceToSpawn(79);
 		}
 		else
 		{
 			Allele.flowerThaumcraft = Allele.flowerAuraNode = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
-			Allele.flowerNodePurify = Allele.flowerNodeFluxify = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
-			
 			Allele.spawnBrainyZombie = Allele.spawnBats = Allele.spawnWisp = (IAlleleEffect)Allele.getBaseAllele("effectNone");
 		}
 		
@@ -81,11 +75,11 @@ public class Allele implements IAllele
 		{
 			Allele.flowerArsMagica = new AlleleFlower("flowerArsMagicaPlant", new FlowerProviderArsMagicaFlower(), false);
 			//String id, boolean isDominant, int throttle, String[] mobs, int[] chance
-			Allele.spawnManaDrainer = new AlleleEffectSpawnMobWeighted("effectManaDrainer", true, 20,
+			Allele.spawnManaDrainer = new AlleleEffectSpawnMobWeighted("ManaDrain", true, 20,
 					new String[] { "ArsMagica.MobManaCreeper", "ArsMagica.ManaVortex" },
 					new int[] { 60, 2 });
 			
-			Allele.spawnWispOrHecate = new AlleleEffectSpawnMobWeighted("effectAMWisp", true, 20,
+			Allele.spawnWispOrHecate = new AlleleEffectSpawnMobWeighted("AMWisp", true, 20,
 					new String[] { "ArsMagica.MobWisp", "ArsMagica.MobHecate" },
 					new int[] { 40, 3 });
 		}
@@ -95,25 +89,100 @@ public class Allele implements IAllele
 			Allele.spawnManaDrainer = Allele.spawnWispOrHecate = (IAlleleEffect)Allele.getBaseAllele("effectNone");
 		}
 
-		Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("effectNodeGeneration", false, 400);
-		Allele.effectNodePurify = new AlleleEffectAuraNodePurify("effectNodePurify", false, 600, 150);
-		Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("effectNodeFlux", true, 300, 300);
-		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("effectNodeCharge", true, 1200);
+		Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("NodeAttract", false, 400);
+		Allele.effectNodePurify = new AlleleEffectAuraNodePurify("NodePurify", false, 600, 150);
+		Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("NodeFlux", true, 300, 300);
+		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);
 
-		Allele.cleansingEffect = new AlleleEffectCure("effectCurative", false);
-		Allele.digSpeed = new AlleleEffectPotion("effectDigSpeed", Potion.digSpeed, 15, false);
-		Allele.moveSpeed = new AlleleEffectPotion("effectMoveSpeed", Potion.moveSpeed, 10, false);
-		Allele.slowSpeed = new AlleleEffectPotion("effectSlowSpeed", Potion.moveSlowdown, 3, false);
+		Allele.effectCleansing = new AlleleEffectCure("Curative", false);
+		Allele.digSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);
+		Allele.moveSpeed = new AlleleEffectPotion("MoveSpeed", Potion.moveSpeed, 10, false);
+		Allele.slowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false);
 
-		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghast", false, "Ghast", "mob.ghast.moan")
+		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
 			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);
 		
-		Allele.spawnSpider = new AlleleEffectSpawnMob("Spider", false, "Spider", "mob.spider.step")
+		Allele.spawnSpider = new AlleleEffectSpawnMob("Spidery", false, "Spider", "mob.spider.step")
 			.setThrottle(400).setChanceToSpawn(70).setMaxMobsInSpawnZone(4);
 	}
 	
-	private String uid;
-	private boolean dominant;
+	public static void registerDeprecatedAlleleReplacements()
+	{
+		IAlleleRegistry registry = AlleleManager.alleleRegistry;
+
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.fertilityHighDominant",	fertilityHighDominant);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.flowerflowerBookshelf",	flowerBookshelf);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speedBlinding",			speedBlinding);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeAttract",		effectNodeAttract);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodePurify",		effectNodePurify);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeFlux",			effectNodeFlux);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeCharge",		effectNodeCharge);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectCurative",			effectCleansing);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectDigSpeed",	digSpeed);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectMoveSpeed",	moveSpeed);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectSlowSpeed",	slowSpeed);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.Ghast",					spawnGhast);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.Spider",					spawnSpider);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEsoteric",			BeeSpecies.ESOTERIC);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesMysterious",		BeeSpecies.MYSTERIOUS);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesArcane",			BeeSpecies.ARCANE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesCharmed",			BeeSpecies.CHARMED);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEnchanted",		BeeSpecies.ENCHANTED);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSupernatural",		BeeSpecies.SUPERNATURAL);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPupil",			BeeSpecies.PUPIL);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesScholarly",		BeeSpecies.SCHOLARLY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSavant",			BeeSpecies.SAVANT);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesAware",			BeeSpecies.AWARE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSpirit",			BeeSpecies.SPIRIT);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSoul",				BeeSpecies.SOUL);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSkulking",			BeeSpecies.SKULKING);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesGhastly",			BeeSpecies.GHASTLY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSpidery",			BeeSpecies.SPIDERY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesTimely",			BeeSpecies.TIMELY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesLordly",			BeeSpecies.LORDLY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesDoctoral",			BeeSpecies.DOCTORAL);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesIron",				BeeSpecies.IRON);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesGold",				BeeSpecies.GOLD);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesCopper",			BeeSpecies.COPPER);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesTin",				BeeSpecies.TIN);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSilver",			BeeSpecies.SILVER);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesLead",				BeeSpecies.LEAD);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesDiamond",			BeeSpecies.DIAMOND);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEmerald",			BeeSpecies.EMERALD);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesApatite",			BeeSpecies.APATITE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesStark",			BeeSpecies.TC_STARK);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesAura",				BeeSpecies.TC_AIR);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesIgnis",			BeeSpecies.TC_FIRE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesAqua",				BeeSpecies.TC_WATER);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSolum",			BeeSpecies.TC_EARTH);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPraecantatio",		BeeSpecies.TC_MAGIC);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesVis",				BeeSpecies.TC_VIS);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPure",				BeeSpecies.TC_PURE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesFlux",				BeeSpecies.TC_FLUX);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesNode",				BeeSpecies.TC_ATTRACT);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesRejuvenating",		BeeSpecies.TC_REJUVENATING);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBrainy",			BeeSpecies.TC_BRAINY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesGossamer",			BeeSpecies.TC_WISPY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesWispy",			BeeSpecies.TC_WISPY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBatty",			BeeSpecies.TC_BATTY);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesChicken",			BeeSpecies.TC_CHICKEN);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBeef",				BeeSpecies.TC_BEEF);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPork",				BeeSpecies.TC_PORK);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesMinium",			BeeSpecies.EE_MINIUM);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEssence",			BeeSpecies.AM_ESSENCE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesQuintessence",		BeeSpecies.AM_QUINTESSENCE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesErde",				BeeSpecies.AM_EARTH);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesLuft",				BeeSpecies.AM_AIR);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesFeuer",			BeeSpecies.AM_FIRE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesWasser",			BeeSpecies.AM_WATER);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBlitz",			BeeSpecies.AM_LIGHTNING);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesStaude",			BeeSpecies.AM_PLANT);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEis",				BeeSpecies.AM_ICE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesMagma",			BeeSpecies.AM_MAGMA);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesArkanen",			BeeSpecies.AM_ARCANE);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesVortex",			BeeSpecies.AM_VORTEX);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesWight",			BeeSpecies.AM_WIGHT);
+	}
 
 	public static IAlleleBeeSpecies getBaseSpecies(String name)
 	{
@@ -135,9 +204,12 @@ public class Allele implements IAllele
 		return AlleleManager.alleleRegistry.getAllele(name);
 	}
 	
+	private String uid;
+	private boolean dominant;
+
 	public Allele(String id, boolean isDominant)
 	{
-		this.uid = "thaumicbees." + id;
+		this.uid = "magicbees." + id;
 		this.dominant = isDominant;
 		AlleleManager.alleleRegistry.registerAllele(this);
 	}
@@ -152,6 +224,12 @@ public class Allele implements IAllele
 	public boolean isDominant()
 	{
 		return this.dominant;
+	}
+
+	@Override
+	public String getName()
+	{
+		return LocalizationManager.getLocalizedString(getUID());
 	}
 
 }

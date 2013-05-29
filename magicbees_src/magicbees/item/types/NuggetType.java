@@ -45,6 +45,6 @@ public enum NuggetType
 
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString("tb.nugget." + this.toString().toLowerCase());
+		return LocalizationManager.getLocalizedString("nugget." + this.toString().toLowerCase());
 	}
 }

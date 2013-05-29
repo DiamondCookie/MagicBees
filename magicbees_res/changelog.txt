@@ -5,6 +5,9 @@ Added zh_CN localization (by crafteverywhere)
 Added de_DE localization (by philip98)
 Added ru_RU localization (by CrazyTechno)
 
+1.4.7b
+Fix for creative mode crash when a certain config option is enabled.
+
 1.4.7a
 Update for Forestry Beta.
 

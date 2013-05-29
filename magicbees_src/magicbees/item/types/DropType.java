@@ -21,6 +21,6 @@ public enum DropType
 	
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString("tb.drop." + this.name);
+		return LocalizationManager.getLocalizedString("drop." + this.name);
 	}
 }

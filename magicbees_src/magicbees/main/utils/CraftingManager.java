@@ -28,7 +28,7 @@ import magicbees.item.types.PropolisType;
 import magicbees.item.types.ResourceType;
 import magicbees.item.types.WaxType;
 import magicbees.main.Config;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ShapelessBeeInfusionCraftingRecipe;
@@ -110,13 +110,13 @@ public class CraftingManager
 			'B', Item.glassBottle
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 0, 4), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 4), new Object[] {
 			"SwS", "wDw", "SwS",
 			'S', Block.sand,
 			'D', Block.dirt,
 			'w', Config.wax.getStackForType(WaxType.SOUL)
 		});
-		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 0, 4), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(Block.slowSand, 4), new Object[] {
 			"wSw", "SDS", "wSw",
 			'S', Block.sand,
 			'D', Block.dirt,

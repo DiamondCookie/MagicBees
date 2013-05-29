@@ -53,6 +53,6 @@ public enum LiquidType
 
 	public String getDisplayName()
 	{
-		return LocalizationManager.getLocalizedString("tb.liquid." + liquidID);
+		return LocalizationManager.getLocalizedString("liquid." + liquidID);
 	}
 }

@@ -2,7 +2,7 @@ package magicbees.item;
 
 import magicbees.item.types.HiveFrameType;
 import magicbees.main.Config;
-import magicbees.main.utils.TabThaumicBees;
+import magicbees.main.utils.TabMagicBees;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -29,7 +29,7 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		this.type = frameType;
 		this.setMaxDamage(this.type.maxDamage);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
 		this.setUnlocalizedName("frame" + frameType.getName());
 		GameRegistry.registerItem(this, "frame" + frameType.getName());
 	}
@@ -51,51 +51,6 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 	private ItemStack doWear(World w, int x, int y, int z, ItemStack frame, int wear)
 	{
 		int damage = wear;
-		
-		if (ThaumcraftHelper.isActive())
-		{
-			int fluxMod = 1;
-			// This throttles back the amount of aura consumed by the frame by storing a smidge of data on the item stack.
-			if (this.type.auraPerUse > 0)
-			{
-				NBTTagCompound tag;
-				if (frame.hasTagCompound())
-				{
-					tag = frame.getTagCompound();
-				}
-				else
-				{
-					tag = new NBTTagCompound();
-					tag.setByte("wearTicks", (byte)0);
-					frame.setTagCompound(tag);
-				}
-				
-				int wearTicks = tag.getByte("wearTicks") + 1;
-				
-				if (wearTicks == this.type.wearTicksPerAura)
-				{
-					// Attempt to use aura for the frame.
-					if (!ThaumcraftApi.decreaseClosestAura(w, x, y, z, this.type.auraPerUse, true))
-					{
-						// Insufficient aura, or no nearby node.
-						damage = wear + this.type.auraPerUse * this.type.wearTicksPerAura;
-						fluxMod = 1 + w.rand.nextInt(this.type.wearTicksPerAura);
-					}
-					wearTicks = 0;
-							
-					for (int i = 0; i < fluxMod; ++i)
-					{
-						ThaumcraftHelper.doFluxEffect(this.type, w, x, y, z);
-					}		
-				}
-				
-				tag.setByte("wearTicks", (byte)wearTicks);
-			}
-		}
-		else
-		{
-			damage += 2;
-		}
 		
 		frame.setItemDamage(frame.getItemDamage() + damage);
 		

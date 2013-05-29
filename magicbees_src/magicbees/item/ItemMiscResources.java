@@ -8,8 +8,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import magicbees.item.types.ResourceType;
 import magicbees.main.CommonProxy;
-import magicbees.main.ThaumicBees;
-import magicbees.main.utils.TabThaumicBees;
+import magicbees.main.MagicBees;
+import magicbees.main.utils.TabMagicBees;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -25,10 +25,10 @@ public class ItemMiscResources extends Item
 	public ItemMiscResources(int ID)
 	{
 		super(ID);
-		this.setCreativeTab(TabThaumicBees.tabThaumicBees);
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("tb.miscResources");
-		GameRegistry.registerItem(this, "tb.miscResources");
+		this.setUnlocalizedName("miscResources");
+		GameRegistry.registerItem(this, "miscResources");
 	}
 	
 	public ItemStack getStackForType(ResourceType type)

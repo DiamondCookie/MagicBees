@@ -17,9 +17,9 @@ public class ClientProxy extends CommonProxy
 	public ClientProxy() { }
 	
 	@Override
-	public void registerTileEntities()
+	public void registerRenderers()
 	{
-		super.registerTileEntities();
+		super.registerRenderers();
 		
 		RenderIdEffectJar = RenderingRegistry.getNextAvailableRenderId();
 		MinecraftForgeClient.registerItemRenderer(Config.effectJar.blockID, EffectJarRenderer.instance);
@@ -30,7 +30,7 @@ public class ClientProxy extends CommonProxy
 	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
 	{
 		// drawParticleEffects flag pulled from Forestry after configs
-		if (ThaumicBees.getConfig().DrawParticleEffects)
+		if (MagicBees.getConfig().DrawParticleEffects)
 		{
 			double spawnX;
 			double spawnY;

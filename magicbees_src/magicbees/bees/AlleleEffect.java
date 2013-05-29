@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.LocalizationManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 
 	public AlleleEffect(String id, boolean isDominant)
 	{
-		super(id, isDominant);
+		super("effect" + id, isDominant);
 	}
 
 	@Override
@@ -31,12 +31,6 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 
 	@Override
 	public abstract IEffectData validateStorage(IEffectData storedData);
-
-	@Override
-	public String getIdentifier()
-	{
-		return LocalizationManager.getLocalizedString(getUID());
-	}
 
 	@Override
 	public abstract IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing);
@@ -51,7 +45,7 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 		area[1] = Math.max((int)(area[1] * mod), 1);
 		area[2] = Math.max((int)(area[2] * mod), 1);
 		
-		ThaumicBees.proxy.drawBeeEffects(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(),
+		MagicBees.proxy.drawBeeEffects(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(),
 				genome.getPrimary().getIconColour(0), area[0], area[1], area[2]);
 		return storedData;
 	}

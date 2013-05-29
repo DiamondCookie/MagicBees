@@ -21,6 +21,6 @@ public enum PollenType
 	
 	public String getName()
 	{
-		return LocalizationManager.getLocalizedString("tb.pollen." + this.name);
+		return LocalizationManager.getLocalizedString("pollen." + this.name);
 	}
 }

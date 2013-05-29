@@ -34,7 +34,7 @@ import magicbees.item.types.ResourceType;
 import magicbees.item.types.WaxType;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.ThaumicBees;
+import magicbees.main.MagicBees;
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;

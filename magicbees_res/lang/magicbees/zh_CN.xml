@@ -2,73 +2,74 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">    
     <!-- Item names -->
-    <entry key="item.jellyBabies.name">胶糖娃娃</entry>
-    <entry key="item.tb.thaumiumScoop.name">奥法捕蜂网</entry>
-    <entry key="item.tb.thaumiumGrafter.name">奥法剪枝器</entry>
+    <entry key="item.magicbees:jellyBabies.name">胶糖娃娃</entry>
+    <entry key="item.magicbees:thaumiumScoop.name">奥法捕蜂网</entry>
+    <entry key="item.magicbees:thaumiumGrafter.name">奥法剪枝器</entry>
     
     <!-- Specially handled Item names -->
-    <entry key="item.tb.moonDial.name">翡翠色月相盘</entry>
+    <entry key="item.moonDial.name">翡翠色月相盘</entry>
+    
     <!-- Block names -->
-    <entry key="tile.tb.planks.greatwood.name">宏伟之木木板</entry>
-    <entry key="tile.tb.slab.wood.greatwood.name">宏伟之木台阶</entry>
-    <entry key="tile.tb.planks.silverwood.name">银树木板</entry>
-    <entry key="tile.tb.slab.wood.silverwood.name">银树台阶</entry>
-    <entry key="tile.tb.effectJar.name">蜜蜂收集者的罐子</entry>
+    <entry key="tile.planks.greatwood.name">宏伟之木木板</entry>
+    <entry key="tile.slab.wood.greatwood.name">宏伟之木台阶</entry>
+    <entry key="tile.planks.silverwood.name">银树木板</entry>
+    <entry key="tile.slab.wood.silverwood.name">银树台阶</entry>
+    <entry key="tile.effectJar.name">蜜蜂收集者的罐子</entry>
     
     <!-- Comb names -->
-    <entry key="tb.comb.occult">神秘蜂巢</entry>
-    <entry key="tb.comb.otherworldly">异域蜂巢</entry>
-    <entry key="tb.comb.paper">纸质蜂巢</entry>
-    <entry key="tb.comb.stark">朴实蜂巢</entry>
-    <entry key="tb.comb.air">风之蜂巢</entry>
-    <entry key="tb.comb.fire">火之蜂巢</entry>
-    <entry key="tb.comb.water">水之蜂巢</entry>
-    <entry key="tb.comb.earth">地之蜂巢</entry>
-    <entry key="tb.comb.magic">蕴魔蜂巢</entry>
-    <entry key="tb.comb.aware">回忆蜂巢</entry>
-    <entry key="tb.comb.furtive">诡秘蜂巢</entry>
-    <entry key="tb.comb.soul">灵魂蜂巢</entry>
-    <entry key="tb.comb.essence">源质蜂巢</entry>
-    <entry key="tb.comb.potent">强力蜂巢</entry>
+    <entry key="comb.occult">神秘蜂巢</entry>
+    <entry key="comb.otherworldly">异域蜂巢</entry>
+    <entry key=.comb.paper">纸质蜂巢</entry>
+    <entry key="comb.stark">朴实蜂巢</entry>
+    <entry key="comb.air">风之蜂巢</entry>
+    <entry key="comb.fire">火之蜂巢</entry>
+    <entry key="comb.water">水之蜂巢</entry>
+    <entry key="comb.earth">地之蜂巢</entry>
+    <entry key="comb.magic">蕴魔蜂巢</entry>
+    <entry key="comb.aware">回忆蜂巢</entry>
+    <entry key="comb.furtive">诡秘蜂巢</entry>
+    <entry key="comb.soul">灵魂蜂巢</entry>
+    <entry key="comb.essence">源质蜂巢</entry>
+    <entry key="comb.potent">强力蜂巢</entry>
     
     <!-- Wax names -->
-    <entry key="tb.wax.magic">魔力蜜蜡</entry>
-    <entry key="tb.wax.soul">灵魂蜜蜡</entry>
+    <entry key="wax.magic">魔力蜜蜡</entry>
+    <entry key=.wax.soul">灵魂蜜蜡</entry>
     
     <!-- Drop names -->
-    <entry key="tb.drop.enchanting">蕴魔液滴</entry>
-    <entry key="tb.drop.intellect">智慧液滴</entry>
+    <entry key="drop.enchanting">蕴魔液滴</entry>
+    <entry key="drop.intellect">智慧液滴</entry>
     
     <!-- Pollen names -->
-    <entry key="tb.pollen.unusual">罕见花粉</entry>
-    <entry key="tb.pollen.phased">相位花粉</entry>
+    <entry key="pollen.unusual">罕见花粉</entry>
+    <entry key="pollen.phased">相位花粉</entry>
     
 	<!-- Nugget names -->
-    <entry key="tb.nugget.iron">铁粒</entry>
-    <entry key="tb.nugget.steel">钢粒</entry>
-    <entry key="tb.nugget.copper">铜粒</entry>
-    <entry key="tb.nugget.tin">锡粒</entry>
-    <entry key="tb.nugget.silver">银粒</entry>
-    <entry key="tb.nugget.lead">铅粒</entry>
-    <entry key="tb.nugget.diamond">钻石碎片</entry>
-    <entry key="tb.nugget.emerald">绿宝石碎片</entry>
-    <entry key="tb.nugget.apatite">磷灰石碎片</entry>
+    <entry key="nugget.iron">铁粒</entry>
+    <entry key="nugget.steel">钢粒</entry>
+    <entry key="nugget.copper">铜粒</entry>
+    <entry key="nugget.tin">锡粒</entry>
+    <entry key="nugget.silver">银粒</entry>
+    <entry key="nugget.lead">铅粒</entry>
+    <entry key="nugget.diamond">钻石碎片</entry>
+    <entry key="nugget.emerald">绿宝石碎片</entry>
+    <entry key="nugget.apatite">磷灰石碎片</entry>
 	
     <!-- Propolis names -->
-    <entry key="tb.propolis.dull">枯竭蜂胶</entry>
-    <entry key="tb.propolis.air">和风蜂胶</entry>
-    <entry key="tb.propolis.fire">炽热蜂胶</entry>
-    <entry key="tb.propolis.water">奔流蜂胶</entry>
-    <entry key="tb.propolis.earth">石化蜂胶</entry>
-    <entry key="tb.propolis.magic">蕴魔蜂胶</entry>
+    <entry key="propolis.dull">枯竭蜂胶</entry>
+    <entry key="propolis.air">和风蜂胶</entry>
+    <entry key="propolis.fire">炽热蜂胶</entry>
+    <entry key="propolis.water">奔流蜂胶</entry>
+    <entry key="propolis.earth">石化蜂胶</entry>
+    <entry key="propolis.magic">蕴魔蜂胶</entry>
     
     <!-- Misc Resources -->
-    <entry key="tb.resource.fragment">卷章碎片</entry>
-    <entry key="tb.resource.lump">芬芳块</entry>
-    <entry key="tb.resource.fertilizer">浓缩复合物</entry>
-    <entry key="tb.resource.startNode">蜜蜂与魔法</entry>
-    <entry key="tb.resource.beeEnchant">朴实蜂蕴魔物</entry>
-    <entry key="tb.resource.crystalAspect">晶化%s要素</entry>
+    <entry key="resource.fragment">卷章碎片</entry>
+    <entry key="resource.lump">芬芳块</entry>
+    <entry key="resource.fertilizer">浓缩复合物</entry>
+    <entry key="resource.startNode">蜜蜂与魔法</entry>
+    <entry key="resource.beeEnchant">朴实蜂蕴魔物</entry>
+    <entry key="resource.crystalAspect">晶化%s要素</entry>
     
     <!-- Frames -->
     <entry key="item.frameMagic.name">魔力框架</entry>
@@ -80,186 +81,195 @@
     <entry key="item.frameOblivion.name">湮灭框架</entry>
     
     <!-- Capsule names -->
-    <entry key="tb.capsule.magic">魔力胶囊</entry>
-    <entry key="tb.capsule.void">虚空胶囊</entry>
+    <entry key="capsule.magic">魔力胶囊</entry>
+    <entry key="capsule.void">虚空胶囊</entry>
     
     <!-- Liquids -->
-    <entry key="tb.liquid.">空</entry>
-    <entry key="tb.liquid.water">水</entry>
-    <entry key="tb.liquid.lava">岩浆</entry>
-    <entry key="tb.liquid.biomass">生物质</entry>
-    <entry key="tb.liquid.biofuel">空</entry>
-    <entry key="tb.liquid.Oil">石油</entry>
-    <entry key="tb.liquid.Fuel">燃油</entry>
-    <entry key="tb.liquid.seedoil">种子油</entry>
-    <entry key="tb.liquid.honey">蜂蜜</entry>
-    <entry key="tb.liquid.juice">果汁</entry>
-    <entry key="tb.liquid.ice">冰</entry>
-    <entry key="tb.liquid.milk">牛奶</entry>
-    <entry key="tb.liquid.acid">酸</entry>
-    <entry key="tb.liquid.poison">毒液</entry>
-    <entry key="tb.liquid.liquidNitrogen">液氮</entry>
-    <entry key="tb.liquid.liquidDNA">液态DNA</entry>
-    <entry key="tb.liquid.Creosote Oil">木榴油</entry>
-    <entry key="tb.liquid.Steam">蒸汽</entry>
+    <entry key="liquid.">空</entry>
+    <entry key="liquid.water">水</entry>
+    <entry key="liquid.lava">岩浆</entry>
+    <entry key="liquid.biomass">生物质</entry>
+    <entry key="liquid.biofuel">空</entry>
+    <entry key="liquid.Oil">石油</entry>
+    <entry key="liquid.Fuel">燃油</entry>
+    <entry key="liquid.seedoil">种子油</entry>
+    <entry key="liquid.honey">蜂蜜</entry>
+    <entry key="liquid.juice">果汁</entry>
+    <entry key="liquid.ice">冰</entry>
+    <entry key="liquid.milk">牛奶</entry>
+    <entry key="liquid.acid">酸</entry>
+    <entry key="liquid.poison">毒液</entry>
+    <entry key="liquid.liquidNitrogen">液氮</entry>
+    <entry key="liquid.liquidDNA">液态DNA</entry>
+    <entry key="liquid.Creosote Oil">木榴油</entry>
+    <entry key="liquid.Steam">蒸汽</entry>
     
     <!-- Moon Phases -->
-    <entry key="tb.moon.full">满月</entry>
-    <entry key="tb.moon.gibbousWaning">亏凸月</entry>
-    <entry key="tb.moon.gibousWaxing">盈凸月</entry>
-    <entry key="tb.moon.halfWaning">下弦月</entry>
-    <entry key="tb.moon.halfWaxing">上弦月</entry>
-    <entry key="tb.moon.crescentWaning">亏蛾眉月</entry>
-    <entry key="tb.moon.crescentWaxing">凸娥眉月</entry>
-    <entry key="tb.moon.new">新月</entry>
+    <entry key="moon.full">满月</entry>
+    <entry key="moon.gibbousWaning">亏凸月</entry>
+    <entry key="moon.gibousWaxing">盈凸月</entry>
+    <entry key="moon.halfWaning">下弦月</entry>
+    <entry key="moon.halfWaxing">上弦月</entry>
+    <entry key="moon.crescentWaning">亏蛾眉月</entry>
+    <entry key="moon.crescentWaxing">凸娥眉月</entry>
+    <entry key="moon.new">新月</entry>
     
     <!-- Miscellaneous names -->
-    <entry key="tb.backpack.thaumaturge">神秘使背包</entry>
-    <entry key="itemGroup.thaumicBees">神秘蜜蜂</entry>
+    <entry key="backpack.thaumaturge">神秘使背包</entry>
+    <entry key="itemGroup.magicbees">神秘蜜蜂</entry>
     
     <!-- Species names -->
-    <entry key="thaumicbees.speciesEsoteric">玄奥</entry>
-    <entry key="thaumicbees.speciesEsoteric.description">罕见的杂交品种，具有魔力特性。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesMysterious">神秘</entry>
-    <entry key="thaumicbees.speciesMysterious.description">这些蜜蜂曾经去过世界的尽头并凯旋归来，它们的能力得到了长足增强。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesArcane">奥能</entry>
-    <entry key="thaumicbees.speciesArcane.description">"它们的产物充满了魔力!"|Azanor, 大神秘使</entry>
-    <entry key="thaumicbees.speciesCharmed">魅惑</entry>
-    <entry key="thaumicbees.speciesCharmed.description">你的神秘学养蜂试验终于结出了硕果-一种会嗡嗡叫名为蜜蜂的硕果。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesEnchanted">蕴魔</entry>
-    <entry key="thaumicbees.speciesEnchanted.description">数带魅惑蜂的繁衍让小东西们逐渐接触到未知的存在。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesSupernatural">超能</entry>
-    <entry key="thaumicbees.speciesSupernatural.description">蜜蜂行走在不可视境界线之上。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesPupil">学徒</entry>
-    <entry key="thaumicbees.speciesPupil.description">"这群蜜蜂想对我的研究稿做什么?!|Yorae,图书馆馆员</entry>
-    <entry key="thaumicbees.speciesStark">朴实</entry>
-    <entry key="thaumicbees.speciesStark.description">"它们能吸引魔力的碎片，具体有待研究！"|Azanor,大神秘使</entry>
-    <entry key="thaumicbees.speciesAura">灵气</entry>
-    <entry key="thaumicbees.speciesAura.description">"工作敏捷，扣人心弦！"|Sengir,养蜂狂人</entry>
-    <entry key="thaumicbees.speciesIgnis">灼热</entry>
-    <entry key="thaumicbees.speciesIgnis.description">注意:蜂房中的东西相当灼热。|Azanor的蜂房的警告牌</entry>
-    <entry key="thaumicbees.speciesAqua">流水</entry>
-    <entry key="thaumicbees.speciesAqua.description">"我试图养育它们，结果变成落汤鸡！"|MysteriousAges,神秘使学徒</entry>
-    <entry key="thaumicbees.speciesSolum">泥土</entry>
-    <entry key="thaumicbees.speciesSolum.description">"这些蜜蜂真心是挖掘专家，小心它们挖洞"|MysteriousAges,滑稽剧学徒</entry>
-    <entry key="thaumicbees.speciesAware">感知</entry>
-    <entry key="thaumicbees.speciesAware.description">"它们看得见你的灵魂!"|Florastar,养蜂专家</entry>
-    <entry key="thaumicbees.speciesSkulking">诡隐</entry>
-    <entry key="thaumicbees.speciesSkulking.description">这些蜜蜂变得暴躁排外，你可得当心了！|Apinomicon</entry>
-    <entry key="thaumicbees.speciesGhastly">幽魂</entry>
-    <entry key="thaumicbees.speciesGhastly.description">"*叹息*... 真的,神秘?"|Taveria</entry>
-    <entry key="thaumicbees.speciesSpidery">蜘蛛</entry>
-    <entry key="thaumicbees.speciesSpidery.description">蜘蛛蜂; 嗯.做蜘蛛蜂该做的事情。|未知语</entry>
-    <entry key="thaumicbees.speciesTimely">瞬息</entry>
-    <entry key="thaumicbees.speciesTimely.description">"养蜂员从不迟到，他想去的时候就能准点到达!"|Sengir,养蜂狂人</entry>
-    <entry key="thaumicbees.speciesLordly">贵族</entry>
-    <entry key="thaumicbees.speciesLordly.description">它们平和生活，共建和谐社会|古遗物</entry>
-    <entry key="thaumicbees.speciesDoctoral">博士</entry>
-    <entry key="thaumicbees.speciesDoctoral.description">"你们喜欢胶糖娃娃吗?"|戴着大围巾，手持蓝色盒子的陌生人</entry>
-    <entry key="thaumicbees.speciesSpirit">精神</entry>
-    <entry key="thaumicbees.speciesSpirit.description">据说这种蜜蜂能和死者沟通。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesSoul">魂魄</entry>
-    <entry key="thaumicbees.speciesSoul.description">"路西法亲自收割你的灵魂来啦！"|Yooooooooo</entry>
-    <entry key="thaumicbees.speciesIron">灰铁</entry>
-    <entry key="thaumicbees.speciesIron.description">这种蜜蜂能从周围聚集铁元素。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesGold">黄金</entry>
-    <entry key="thaumicbees.speciesGold.description">闪光的东西未必是黄金。|古代格言</entry>
-    <entry key="thaumicbees.speciesCopper">紫铜</entry>
-    <entry key="thaumicbees.speciesCopper.description">铜是非常有用的常见金属，这种蜜蜂能从周围聚集铜元素。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesTin">白锡</entry>
-    <entry key="thaumicbees.speciesTin.description">涉及到金属的时候，这些蜜蜂异常脆弱。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesSilver">白银</entry>
-    <entry key="thaumicbees.speciesSilver.description">即使略逊于黄金蜂，它们也自有其价值所在。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesLead">黑铅</entry>
-    <entry key="thaumicbees.speciesLead.description">业余炼金术师的最好，它们相信这种蜜蜂能点铅化金。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesDiamond">钻石</entry>
-    <entry key="thaumicbees.speciesDiamond.description">闪光的结晶，硬比龙牙。钻石恒久远，一颗永流传。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesEmerald">宝石</entry>
-    <entry key="thaumicbees.speciesEmerald.description">据说它们曾造访伟大巫师统治之地，并带走了巫师之城的要素。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesApatite">磷化</entry>
-    <entry key="thaumicbees.speciesApatite.description">这些东西真心是日夜牢骚不断。我关紧窗户躲进地下室，但蜜蜂尖锐的嗡嗡声却无处不在地透墙而过，乱我心绪。|养蜂入门</entry>
-    <entry key="thaumicbees.speciesScholarly">博学</entry>
-    <entry key="thaumicbees.speciesScholarly.description">"我难以确信,但我觉得它们比我更聪明 ..."|Yorae,图书馆馆员</entry>
-    <entry key="thaumicbees.speciesSavant">专家</entry>
-    <entry key="thaumicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). 把这个解出来我就给你们蜂蜜。|Yorae的桌子上发现的便签</entry>  
-    <entry key="thaumicbees.speciesPraecantatio">奇术</entry>
-    <entry key="thaumicbees.speciesPraecantatio.description">养蜂本身就是一种魔法!|Apinomicon,绪论</entry>
-    <entry key="thaumicbees.speciesVis">魔力</entry>
-    <entry key="thaumicbees.speciesVis.description">"它们能感知到魔力的存在，却还不能影响到魔力。"|Azanor,研究笔记</entry>
-    <entry key="thaumicbees.speciesPure">纯净</entry>
-    <entry key="thaumicbees.speciesPure.description">"蜜蜂中的卫士!"|MysteriousAges,神秘使</entry>
-    <entry key="thaumicbees.speciesFlux">咒波</entry>
-    <entry key="thaumicbees.speciesFlux.description">"我以为能解决咒波问题呢，结果情况更糟糕了!"|Kreicus,神秘使学徒</entry>
-    <entry key="thaumicbees.speciesNode">节点</entry>
-    <entry key="thaumicbees.speciesNode.description">经历了不寻常的突变后，这些蜜蜂具备了吸引魔力的能力。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesRejuvenating">复兴</entry>
-    <entry key="thaumicbees.speciesRejuvenating.description">神奇的蜜蜂，能吸引附近的节点靠近。|Apinomicon</entry>	
-    <entry key="thaumicbees.speciesBrainy">怒尸</entry>
-    <entry key="thaumicbees.speciesBrainy.description">蜂巢变得恶臭难闻，但这些家伙变得好聪明！|Apinomicon</entry>
-    <entry key="thaumicbees.speciesGossamer">蜘丝</entry>
-    <entry key="thaumicbees.speciesGossamer.description">他们工作的瞬息彷佛消失在光芒之中。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesWispy">精灵</entry>
-    <entry key="thaumicbees.speciesWispy.description">它们的语言支离破碎，难以理解，也许它们在和某种超自然的生物沟通？|Apinomicon</entry>
-    <entry key="thaumicbees.speciesBatty">火蝠</entry>
-    <entry key="thaumicbees.speciesBatty.description">它们通过未知的方法吸引了许多火焰蝙蝠。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesChicken">家禽</entry>
-    <entry key="thaumicbees.speciesChicken.description">"咯咯。咯咯咯，咯咯咯咯! ... 听到没？"|困惑的蜜蜂</entry>
-    <entry key="thaumicbees.speciesBeef">壮牛</entry>
-    <entry key="thaumicbees.speciesBeef.description">"哞哞,哞哞,哞哞。稍等，咋回事?"|困惑的蜜蜂</entry>
-    <entry key="thaumicbees.speciesPork">猪啰</entry>
-    <entry key="thaumicbees.speciesPork.description">"呼噜,呼噜噜.额.... 嗡嗡?"|困惑的蜜蜂</entry>
-    <entry key="thaumicbees.speciesMinium">铅丹</entry>
-    <entry key="thaumicbees.speciesMinium.description">善变乃其天性。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesEssence">源质</entry>
-    <entry key="thaumicbees.speciesEssence.description">集中力量汇集大气中的微尘。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesQuintessence">精萃</entry>
-    <entry key="thaumicbees.speciesQuintessence.description">魔法之心蕴藏世间诸事。|Apinomicon,绪论</entry>
-    <entry key="thaumicbees.speciesErde">大地</entry>
-    <entry key="thaumicbees.speciesErde.description">大地的力量灌注下，它们制造地属性的源质。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesLuft">和风</entry>
-    <entry key="thaumicbees.speciesLuft.description">在风的加持下，比空气更轻盈。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesFeuer">焰火</entry>
-    <entry key="thaumicbees.speciesFeuer.description">它们能沸水溶金。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesWasser">水灵</entry>
-    <entry key="thaumicbees.speciesWasser.description">浸透了液体后，它们的蜂巢潮湿又沉重。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesBlitz">闪电</entry>
-    <entry key="thaumicbees.speciesBlitz.description">瞬息千里，所到即生野火。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesStaude">延年</entry>
-    <entry key="thaumicbees.speciesStaude.description">与绿色和生命的力量天生亲和。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesEis">冰霜</entry>
-    <entry key="thaumicbees.speciesEis.description">"它们老偷我东西，但我却抓不住它们。它们太滑溜。"|MysteriousAges, incorrigible punster</entry>
-    <entry key="thaumicbees.speciesMagma">熔岩</entry>
-    <entry key="thaumicbees.speciesMagma.description">它们飞过之处，大地被烧灼成灰烬之地，所有的植被都被焚烧干净。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesArkanen">奥义</entry>
-    <entry key="thaumicbees.speciesArkanen.description">"古怪的生物，但是产物蛮有用的"|Mithion,专家级法师</entry>
-    <entry key="thaumicbees.speciesVortex">漩涡</entry>
-    <entry key="thaumicbees.speciesVortex.description">它们贪婪地渴求法力，被任何施法者它们都能危险。|Apinomicon</entry>
-    <entry key="thaumicbees.speciesWight">重量</entry>
-    <entry key="thaumicbees.speciesWight.description">"它们能吸收魔力;并非总是很温顺。"|Mithion,专家级法师</entry>
+    <entry key="magicbees.speciesEsoteric">玄奥</entry>
+    <entry key="magicbees.speciesEsoteric.description">罕见的杂交品种，具有魔力特性。|Apinomicon</entry>
+    <entry key="magicbees.speciesMysterious">神秘</entry>
+    <entry key="magicbees.speciesMysterious.description">这些蜜蜂曾经去过世界的尽头并凯旋归来，它们的能力得到了长足增强。|Apinomicon</entry>
+    <entry key="magicbees.speciesArcane">奥能</entry>
+    <entry key="magicbees.speciesArcane.description">"它们的产物充满了魔力!"|Azanor, 大神秘使</entry>
+    
+    <entry key="magicbees.speciesCharmed">魅惑</entry>
+    <entry key="magicbees.speciesCharmed.description">你的神秘学养蜂试验终于结出了硕果-一种会嗡嗡叫名为蜜蜂的硕果。|Apinomicon</entry>
+    <entry key="magicbees.speciesEnchanted">蕴魔</entry>
+    <entry key="magicbees.speciesEnchanted.description">数带魅惑蜂的繁衍让小东西们逐渐接触到未知的存在。|Apinomicon</entry>
+    <entry key="magicbees.speciesSupernatural">超能</entry>
+    <entry key="magicbees.speciesSupernatural.description">蜜蜂行走在不可视境界线之上。|Apinomicon</entry>
+    
+    <entry key="magicbees.speciesPupil">学徒</entry>
+    <entry key="magicbees.speciesPupil.description">"这群蜜蜂想对我的研究稿做什么?!|Yorae,图书馆馆员</entry>
+    <entry key="magicbees.speciesScholarly">博学</entry>
+    <entry key="magicbees.speciesScholarly.description">"我难以确信,但我觉得它们比我更聪明 ..."|Yorae,图书馆馆员</entry>
+    <entry key="magicbees.speciesSavant">专家</entry>
+    <entry key="magicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). 把这个解出来我就给你们蜂蜜。|Yorae的桌子上发现的便签</entry>
+    
+    <entry key="magicbees.speciesAware">感知</entry>
+    <entry key="magicbees.speciesAware.description">"它们看得见你的灵魂!"|Florastar,养蜂专家</entry>
+    <entry key="magicbees.speciesSpirit">精神</entry>
+    <entry key="magicbees.speciesSpirit.description">据说这种蜜蜂能和死者沟通。|Apinomicon</entry>
+    <entry key="magicbees.speciesSoul">魂魄</entry>
+    <entry key="magicbees.speciesSoul.description">"路西法亲自收割你的灵魂来啦！"|Yooooooooo</entry>
+    
+    <entry key="magicbees.speciesSkulking">诡隐</entry>
+    <entry key="magicbees.speciesSkulking.description">这些蜜蜂变得暴躁排外，你可得当心了！|Apinomicon</entry>
+    <entry key="magicbees.speciesGhastly">幽魂</entry>
+    <entry key="magicbees.speciesGhastly.description">"*叹息*... 真的,神秘?"|Taveria</entry>
+    <entry key="magicbees.speciesSpidery">蜘蛛</entry>
+    <entry key="magicbees.speciesSpidery.description">蜘蛛蜂; 嗯.做蜘蛛蜂该做的事情。|未知语</entry>
+    
+    <entry key="magicbees.speciesTimely">瞬息</entry>
+    <entry key="magicbees.speciesTimely.description">"养蜂员从不迟到，他想去的时候就能准点到达!"|Sengir,养蜂狂人</entry>
+    <entry key="magicbees.speciesLordly">贵族</entry>
+    <entry key="magicbees.speciesLordly.description">它们平和生活，共建和谐社会|古遗物</entry>
+    <entry key="magicbees.speciesDoctoral">博士</entry>
+    <entry key="magicbees.speciesDoctoral.description">"你们喜欢胶糖娃娃吗?"|戴着大围巾，手持蓝色盒子的陌生人</entry>
+    
+    <entry key="magicbees.speciesIron">灰铁</entry>
+    <entry key="magicbees.speciesIron.description">这种蜜蜂能从周围聚集铁元素。|Apinomicon</entry>
+    <entry key="magicbees.speciesGold">黄金</entry>
+    <entry key="magicbees.speciesGold.description">闪光的东西未必是黄金。|古代格言</entry>
+    <entry key="magicbees.speciesCopper">紫铜</entry>
+    <entry key="magicbees.speciesCopper.description">铜是非常有用的常见金属，这种蜜蜂能从周围聚集铜元素。|Apinomicon</entry>
+    <entry key="magicbees.speciesTin">白锡</entry>
+    <entry key="magicbees.speciesTin.description">涉及到金属的时候，这些蜜蜂异常脆弱。|Apinomicon</entry>
+    <entry key="magicbees.speciesSilver">白银</entry>
+    <entry key="magicbees.speciesSilver.description">即使略逊于黄金蜂，它们也自有其价值所在。|Apinomicon</entry>
+    <entry key="magicbees.speciesLead">黑铅</entry>
+    <entry key="magicbees.speciesLead.description">业余炼金术师的最好，它们相信这种蜜蜂能点铅化金。|Apinomicon</entry>
+    <entry key="magicbees.speciesDiamond">钻石</entry>
+    <entry key="magicbees.speciesDiamond.description">闪光的结晶，硬比龙牙。钻石恒久远，一颗永流传。|Apinomicon</entry>
+    <entry key="magicbees.speciesEmerald">宝石</entry>
+    <entry key="magicbees.speciesEmerald.description">据说它们曾造访伟大巫师统治之地，并带走了巫师之城的要素。|Apinomicon</entry>
+    <entry key="magicbees.speciesApatite">磷化</entry>
+    <entry key="magicbees.speciesApatite.description">这些东西真心是日夜牢骚不断。我关紧窗户躲进地下室，但蜜蜂尖锐的嗡嗡声却无处不在地透墙而过，乱我心绪。|养蜂入门</entry>
+
+    <entry key="magicbees.speciesTCStark">朴实</entry>
+    <entry key="magicbees.speciesTCStark.description">"它们能吸引魔力的碎片，具体有待研究！"|Azanor,大神秘使</entry>
+    <entry key="magicbees.speciesTCAir">灵气</entry>
+    <entry key="magicbees.speciesTCAir.description">"工作敏捷，扣人心弦！"|Sengir,养蜂狂人</entry>
+    <entry key="magicbees.speciesTCFire">灼热</entry>
+    <entry key="magicbees.speciesTCFire.description">注意:蜂房中的东西相当灼热。|Azanor的蜂房的警告牌</entry>
+    <entry key="magicbees.speciesTCWater">流水</entry>
+    <entry key="magicbees.speciesTCWater.description">"我试图养育它们，结果变成落汤鸡！"|MysteriousAges,神秘使学徒</entry>
+    <entry key="magicbees.speciesTCEarth">泥土</entry>
+    <entry key="magicbees.speciesTCEarth.description">"这些蜜蜂真心是挖掘专家，小心它们挖洞"|MysteriousAges,滑稽剧学徒</entry>
+    <entry key="magicbees.speciesTCMagic">奇术</entry>
+    <entry key="magicbees.speciesTCMagic.description">养蜂本身就是一种魔法!|Apinomicon,绪论</entry>
+    
+    <entry key="magicbees.speciesTCVis">魔力</entry>
+    <entry key="magicbees.speciesTCVis.description">"它们能感知到魔力的存在，却还不能影响到魔力。"|Azanor,研究笔记</entry>
+    <entry key="magicbees.speciesTCPure">纯净</entry>
+    <entry key="magicbees.speciesTCPure.description">"蜜蜂中的卫士!"|MysteriousAges,神秘使</entry>
+    <entry key="magicbees.speciesTCFlux">咒波</entry>
+    <entry key="magicbees.speciesTCFlux.description">"我以为能解决咒波问题呢，结果情况更糟糕了!"|Kreicus,神秘使学徒</entry>
+    <entry key="magicbees.speciesTCRejuvenating">复兴</entry>
+    <entry key="magicbees.speciesTCRejuvenating.description">神奇的蜜蜂，能吸引附近的节点靠近。|Apinomicon</entry>
+    	
+    <entry key="magicbees.speciesTCBrainy">怒尸</entry>
+    <entry key="magicbees.speciesTCBrainy.description">蜂巢变得恶臭难闻，但这些家伙变得好聪明！|Apinomicon</entry>
+    <entry key="magicbees.speciesTCWispy">精灵</entry>
+    <entry key="magicbees.speciesTCWispy.description">它们的语言支离破碎，难以理解，也许它们在和某种超自然的生物沟通？|Apinomicon</entry>
+    <entry key="magicbees.speciesTCBatty">火蝠</entry>
+    <entry key="magicbees.speciesTCBatty.description">它们通过未知的方法吸引了许多火焰蝙蝠。|Apinomicon</entry>
+    
+    <entry key="magicbees.speciesTCChicken">家禽</entry>
+    <entry key="magicbees.speciesTCChicken.description">"咯咯。咯咯咯，咯咯咯咯! ... 听到没？"|困惑的蜜蜂</entry>
+    <entry key="magicbees.speciesTCBeef">壮牛</entry>
+    <entry key="magicbees.speciesTCBeef.description">"哞哞,哞哞,哞哞。稍等，咋回事?"|困惑的蜜蜂</entry>
+    <entry key="magicbees.speciesTCPork">猪啰</entry>
+    <entry key="magicbees.speciesTCPork.description">"呼噜,呼噜噜.额.... 嗡嗡?"|困惑的蜜蜂</entry>
+    
+    <entry key="magicbees.speciesEEMinium">铅丹</entry>
+    <entry key="magicbees.speciesEEMinium.description">善变乃其天性。|Apinomicon</entry>
+    
+    <entry key="magicbees.speciesEssence">源质</entry>
+    <entry key="magicbees.speciesEssence.description">集中力量汇集大气中的微尘。|Apinomicon</entry>
+    <entry key="magicbees.speciesQuintessence">精萃</entry>
+    <entry key="magicbees.speciesQuintessence.description">魔法之心蕴藏世间诸事。|Apinomicon,绪论</entry>
+    <entry key="magicbees.speciesErde">大地</entry>
+    <entry key="magicbees.speciesErde.description">大地的力量灌注下，它们制造地属性的源质。|Apinomicon</entry>
+    <entry key="magicbees.speciesLuft">和风</entry>
+    <entry key="magicbees.speciesLuft.description">在风的加持下，比空气更轻盈。|Apinomicon</entry>
+    <entry key="magicbees.speciesFeuer">焰火</entry>
+    <entry key="magicbees.speciesFeuer.description">它们能沸水溶金。|Apinomicon</entry>
+    <entry key="magicbees.speciesWasser">水灵</entry>
+    <entry key="magicbees.speciesWasser.description">浸透了液体后，它们的蜂巢潮湿又沉重。|Apinomicon</entry>
+    <entry key="magicbees.speciesBlitz">闪电</entry>
+    <entry key="magicbees.speciesBlitz.description">瞬息千里，所到即生野火。|Apinomicon</entry>
+    <entry key="magicbees.speciesStaude">延年</entry>
+    <entry key="magicbees.speciesStaude.description">与绿色和生命的力量天生亲和。|Apinomicon</entry>
+    <entry key="magicbees.speciesEis">冰霜</entry>
+    <entry key="magicbees.speciesEis.description">"它们老偷我东西，但我却抓不住它们。它们太滑溜。"|MysteriousAges, incorrigible punster</entry>
+    <entry key="magicbees.speciesMagma">熔岩</entry>
+    <entry key="magicbees.speciesMagma.description">它们飞过之处，大地被烧灼成灰烬之地，所有的植被都被焚烧干净。|Apinomicon</entry>
+    <entry key="magicbees.speciesArkanen">奥义</entry>
+    <entry key="magicbees.speciesArkanen.description">"古怪的生物，但是产物蛮有用的"|Mithion,专家级法师</entry>
+    <entry key="magicbees.speciesVortex">漩涡</entry>
+    <entry key="magicbees.speciesVortex.description">它们贪婪地渴求法力，被任何施法者它们都能危险。|Apinomicon</entry>
+    <entry key="magicbees.speciesWight">重量</entry>
+    <entry key="magicbees.speciesWight.description">"它们能吸收魔力;并非总是很温顺。"|Mithion,专家级法师</entry>
     
     <!-- Blank species entries
-    <entry key="thaumicbees.species"></entry>
-    <entry key="thaumicbees.species.description"></entry>
+    <entry key="magicbees.species"></entry>
+    <entry key="magicbees.species.description"></entry>
      -->
     <!-- Bee Alleles -->
-    <entry key="thaumicbees.effectCurative">驱散</entry>
-    <entry key="thaumicbees.effecteffectDigSpeed">挖掘加速</entry>
-    <entry key="thaumicbees.effecteffectMoveSpeed">速度</entry>
-    <entry key="thaumicbees.effecteffectSlowSpeed">缓慢</entry>
-    <entry key="thaumicbees.effectNodeGeneration">灵气吸收</entry>
-    <entry key="thaumicbees.effectNodePurify">灵气纯化</entry>
-    <entry key="thaumicbees.effectNodeFlux">咒波</entry>
-    <entry key="thuamicbees.effectNodeCharge">灵气充能</entry>
-    <entry key="thaumicbees.effectBrainy">怒尸</entry>
-    <entry key="thaumicbees.effectBatty">火蝠</entry>
-    <entry key="thaumicbees.effectWispy">精灵</entry>
-    <entry key="thaumicbees.Ghast">幽魂</entry>	
-    <entry key="thaumicbees.effectManaDrainer">漩涡</entry>
-    <entry key="thaumicbees.effectAMWisp">精灵[AM]</entry>
-    <entry key="tb.bees.flower.book">书</entry>
-    <entry key="tb.bees.flower.magic">神秘植物</entry>
-    <entry key="tb.bees.flower.arsmagica">异域植物</entry>
-    <entry key="tb.bees.flower.node">节点</entry>
+    <entry key="magicbees.effectCurative">驱散</entry>
+    <entry key="magicbees.effectDigSpeed">挖掘加速</entry>
+    <entry key="magicbees.effectMoveSpeed">速度</entry>
+    <entry key="magicbees.effectSlowSpeed">缓慢</entry>
+    <entry key="magicbees.effectNodeGeneration">灵气吸收</entry>
+    <entry key="magicbees.effectNodePurify">灵气纯化</entry>
+    <entry key="magicbees.effectNodeFlux">咒波</entry>
+    <entry key="magicbees.effectNodeCharge">灵气充能</entry>
+    <entry key="magicbees.effectBrainy">怒尸</entry>
+    <entry key="magicbees.effectBatty">火蝠</entry>
+    <entry key="magicbees.effectWispy">精灵</entry>
+    <entry key="magicbees.effectGhastly">幽魂</entry>	
+    <entry key="magicbees.effectManaDrainer">漩涡</entry>
+    <entry key="magicbees.effectAMWisp">精灵[AM]</entry>
+    <entry key="flowerProvider.book">书</entry>
+    <entry key="flowerProvider.magic">神秘植物</entry>
+    <entry key="flowerProvider.arsmagica">异域植物</entry>
+    <entry key="flowerProvider.node">节点</entry>
+    
     <!-- Classifications -->
     <entry key="classification.arcane">奥能</entry>
     <entry key="classification.arcane.description">对奥法亲和的蜜蜂。|Apinomicon</entry>
