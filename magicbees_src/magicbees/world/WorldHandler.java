@@ -8,6 +8,7 @@ import magicbees.main.utils.ChunkCoords;
 import magicbees.world.feature.FeatureHive;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -68,10 +69,14 @@ public class WorldHandler implements IWorldGenerator
 	public void generateWorld(World world, Random random, int chunkX, int chunkZ, boolean initialGen)
 	{
 		boolean modified = false;
-		if (initialGen || MagicBees.getConfig().DoHiveRetrogen)
+
+		if (world.provider.terrainType != WorldType.FLAT)
 		{
-			FeatureHive.generateHives(world, random, chunkX, chunkZ, initialGen);
-			modified = true;
+			if (initialGen || MagicBees.getConfig().DoHiveRetrogen)
+			{
+				FeatureHive.generateHives(world, random, chunkX, chunkZ, initialGen);
+				modified = true;
+			}
 		}
 		
 		if (!initialGen && modified)

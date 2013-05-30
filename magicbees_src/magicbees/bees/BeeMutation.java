@@ -65,6 +65,7 @@ public class BeeMutation implements IBeeMutation
 		Allele.beeRoot.registerMutation(this);
 	}
 
+	@Override
 	public float getChance(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1)
 	{
 		float finalChance = 0f;
@@ -149,37 +150,55 @@ public class BeeMutation implements IBeeMutation
 		return finalChance;
 	}
 
+	@Override
 	public IAllele getAllele0()
 	{
 		return parent1;
 	}
 
+	@Override
 	public IAllele getAllele1()
 	{
 		return parent2;
 	}
 
+	@Override
 	public IAllele[] getTemplate()
 	{
 		return mutationTemplate;
 	}
 
+	@Override
 	public float getBaseChance()
 	{
 		return baseChance;
 	}
 
+	@Override
 	public boolean isPartner(IAllele allele)
 	{
 		return parent1.getUID().equals(allele.getUID()) || parent2.getUID().equals(allele.getUID());
 	}
 
+	@Override
 	public IAllele getPartner(IAllele allele)
 	{
 		IAllele val = parent1;
 		if (val.getUID().equals(allele.getUID()))
 			val = parent2;
 		return val;
+	}
+
+	@Override
+	public Collection<String> getSpecialConditions()
+	{
+		return new ArrayList<String>(0);
+	}
+
+	@Override
+	public IBeeRoot getRoot()
+	{
+		return Allele.beeRoot;
 	}
 	
 	public boolean arePartners(IAllele alleleA, IAllele alleleB)
@@ -273,12 +292,5 @@ public class BeeMutation implements IBeeMutation
 		this.nodeType = type;
 		
 		return this.setAuraNodeRequired(range);
-	}
-
-	@Override
-	public Collection<String> getSpecialConditions()
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

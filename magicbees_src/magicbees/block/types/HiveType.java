@@ -27,22 +27,22 @@ public enum HiveType
 {
 	CURIOUS("curious", 12, true,
 			new BiomeDictionary.Type[] {Type.FOREST, Type.HILLS, Type.MOUNTAIN},
-			new int[] {80, 30, 15}),
+			new int[] {60, 30, 15}),
 	UNUSUAL("unusual", 12, true,
 			new BiomeDictionary.Type[] {Type.PLAINS, Type.JUNGLE, Type.HILLS},
-			new int[] {90, 60, 20}),
+			new int[] {20, 35, 20}),
 	RESONANT("resonant", 12, true,
-			new BiomeDictionary.Type[] {Type.MAGICAL, Type.HILLS},
-			new int[] {95, 50}),
+			new BiomeDictionary.Type[] {Type.MAGICAL, Type.HILLS, Type.PLAINS},
+			new int[] {60, 30, 10}),
 	DEEP("deep", 4, true,
 			new BiomeDictionary.Type[] {Type.HILLS, Type.MOUNTAIN, Type.MUSHROOM},
-			new int[] {40, 60, 50}),
+			new int[] {20, 40, 50}),
 	INFERNAL("infernal", 15, true,
 			new BiomeDictionary.Type[] {Type.NETHER, Type.MAGICAL},
-			new int[] {98, 10}),
+			new int[] {30, 5}),
 	OBLIVION("oblivion", 7, true,
 			new BiomeDictionary.Type[] {Type.END, Type.MAGICAL},
-			new int[] {98, 6}),
+			new int[] {60, 3}),
 	;
 	
 	private static String[] nameList;
@@ -93,12 +93,12 @@ public enum HiveType
 		
 		INFERNAL.drops.add(new HiveDrop(BeeGenomeManager.getTemplateForestrySinister(), combs, 80));
 		INFERNAL.drops.add(new HiveDrop(BeeSpecies.ELDRITCH.getGenome(), combs, 10));
-		INFERNAL.drops.add(new HiveDrop(BeeGenomeManager.getTemplateForestrySteadfast(), combs, 5));
+		INFERNAL.drops.add(new HiveDrop(BeeGenomeManager.getTemplateForestrySteadfast(), combs, 3));
 		
 		combs = new ItemStack[] {new ItemStack(Config.fBeeComb, 3, ForestryHelper.Comb.MYSTERIOUS.ordinal()), new ItemStack(Item.enderPearl, 2)};
 		
 		OBLIVION.drops.add(new HiveDrop(BeeGenomeManager.getTemplateForestryEnder(), combs, 80));
-		OBLIVION.drops.add(new HiveDrop(BeeGenomeManager.getTemplateForestrySteadfast(), combs, 5));
+		OBLIVION.drops.add(new HiveDrop(BeeGenomeManager.getTemplateForestrySteadfast(), combs, 9));
 	}
 	
 	private HiveType(String hiveName, int light, boolean visible, BiomeDictionary.Type[] biomes, int[] rarity)
