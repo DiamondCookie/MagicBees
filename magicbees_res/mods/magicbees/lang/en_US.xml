@@ -24,6 +24,8 @@
 
     <!-- Comb names -->
 	<entry key="comb.mundane">Mundane Comb</entry>
+	<entry key="comb.molten">Molten Comb</entry>
+	<entry key="cmob.forgotten">Forgotten Comb</entry>
     <entry key="comb.occult">Occult Comb</entry>
     <entry key="comb.otherworldly">Otherworldy Comb</entry>
     <entry key="comb.paper">Papery Comb</entry>
@@ -127,16 +129,20 @@
 
     <!-- Species names -->
     <entry key="magicbees.speciesMystical">Mystical</entry>
-    <entry key="magicbees.speciesMystical.description"></entry>
+    <entry key="magicbees.speciesMystical.description">Common in many parts of the world, these bees have a little extra whimsy about them.|Apinomicon</entry>
     <entry key="magicbees.speciesSorcerous">Sorcerous</entry>
     <entry key="magicbees.speciesSorcerous.description"></entry>
     <entry key="magicbees.speciesUnusual">Unusual</entry>
-    <entry key="magicbees.speciesUnusual.description"></entry>
+    <entry key="magicbees.speciesUnusual.description">"A curious specimen for my collection!"|Junior Apiarist</entry>
     <entry key="magicbees.speciesAttuned">Attuned</entry>
-    <entry key="magicbees.speciesAttuned.description"></entry>
+    <entry key="magicbees.speciesAttuned.description">They fly as though guided by unseen threads through the air.|Apinomicon</entry>
+    <entry key="magicbees.speciesInfernal">Infernal</entry>
+    <entry key="magicbees.speciesInfernal.description">Spawned deep within the hellish realm, they have acquired unknown abilities|Apinomicon</entry>
+    <entry key="magicbees.speciesOblivion">Oblivion</entry>
+    <entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this world, or some other.|Apinomicon</entry>
     
     <entry key="magicbees.speciesEldritch">Eldritch</entry>
-    <entry key="magicbees.speciesEldritch.description"></entry>
+    <entry key="magicbees.speciesEldritch.description">The potential that was locked within this bee's ancestors has now come to the fore.|Apinomicon</entry>
     
     <entry key="magicbees.speciesEsoteric">Esoteric</entry>
     <entry key="magicbees.speciesEsoteric.description">An unusual crossbreed which seems to have magical properties.|Apinomicon</entry>
@@ -153,7 +159,7 @@
     <entry key="magicbees.speciesSupernatural.description">These bees walk the line between this world and the unseen.|Apinomicon</entry>
     
     <entry key="magicbees.speciesEthereal">Ethereal</entry>
-    <entry key="magicbees.speciesEthereal.description"></entry>
+    <entry key="magicbees.speciesEthereal.description">Ghostly, and charged with energy from beyond.|Apinomicon</entry>
     
     <entry key="magicbees.speciesPupil">Pupil</entry>
     <entry key="magicbees.speciesPupil.description">"What does that bee want with my paper?!"|Yorae, Librarian</entry>
@@ -301,6 +307,8 @@
 	<entry key="flowerProvider.node">Node</entry>
 
 	<!-- Classifications -->
+	<entry key="classification.veiled">Veiled</entry>
+	<entry key="classification.veiled.description">The curious species found scattered through the world may have abilities beyond one's reasoning.|Apinomicon</entry>
 	<entry key="classification.arcane">Arcane</entry>
 	<entry key="classification.arcane.description">These bees have inexplicable affinity for magic.|Apinomicon</entry>
 	<entry key="classification.supernatural">Supernatural</entry>
