@@ -29,6 +29,54 @@ public class BeeMutation implements IBeeMutation
 {	
 	public static void setupMutations()
 	{
+		IAlleleBeeSpecies baseA, baseB;
+		
+		// Forestry + These -> Common
+		
+		BeeSpecies[] magicMundane = new BeeSpecies[] { BeeSpecies.MYSTICAL, BeeSpecies.SORCEROUS, BeeSpecies.UNUSUAL, BeeSpecies.ATTUNED };
+		String[] forestryMundane = new String[] { "Forest", "Meadows", "Modest", "Wintry", "Tropical", "Marshy" };
+		String[] binnieMundane = new String[] { "marble", "rocky", "water", "embittered" };
+		
+		for (BeeSpecies species : magicMundane)
+		{
+			for (String str : forestryMundane)
+			{
+				new BeeMutation(species, Allele.getBaseSpecies(str), ForestryHelper.getTemplateForestryForSpecies("Common"), 15);
+			}
+			if (ExtraBeesHelper.isActive())
+			{
+				for (String str : binnieMundane)
+				{
+					new BeeMutation(species, Allele.getExtraSpecies(str), ForestryHelper.getTemplateForestryForSpecies("Common"), 15);
+				}
+			}
+			new BeeMutation(species, Allele.getBaseSpecies("Common"), ForestryHelper.getTemplateForestryForSpecies("Cultivated"), 12);
+			new BeeMutation(species, Allele.getBaseSpecies("Cultivated"), BeeSpecies.ELDRITCH, 12);
+		}
+		
+		new BeeMutation(Allele.getBaseSpecies("Cultivated"), BeeSpecies.ELDRITCH, BeeSpecies.ESOTERIC, 10);
+		new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 8);
+		new BeeMutation(BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, BeeSpecies.ARCANE, 8);
+		
+		new BeeMutation(Allele.getBaseSpecies("Cultivated"), BeeSpecies.ELDRITCH, BeeSpecies.CHARMED, 10);
+		new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, 8);
+		new BeeMutation(BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, BeeSpecies.SUPERNATURAL, 8);
+		
+		new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, 7);
+		
+		new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.ATTUNED, BeeSpecies.AWARE, 10);
+		new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.AWARE, BeeSpecies.SPIRIT, 8);
+		new BeeMutation(BeeSpecies.ATTUNED, BeeSpecies.AWARE, BeeSpecies.SPIRIT, 8);
+		new BeeMutation(BeeSpecies.AWARE, BeeSpecies.SPIRIT, BeeSpecies.SOUL, 7);
+		
+		new BeeMutation(Allele.getBaseSpecies("Monastic"), BeeSpecies.ARCANE, BeeSpecies.PUPIL, 10);
+		new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.PUPIL, BeeSpecies.SCHOLARLY, 8);
+		new BeeMutation(BeeSpecies.PUPIL, BeeSpecies.SCHOLARLY, BeeSpecies.SAVANT, 6);
+		
+		new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.ETHEREAL, BeeSpecies.TIMELY, 8);
+		new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.TIMELY, BeeSpecies.LORDLY, 8);
+		new BeeMutation(BeeSpecies.TIMELY, BeeSpecies.LORDLY, BeeSpecies.DOCTORAL, 7);
+
 	}
 	
 	private IAllele parent1;
@@ -47,12 +95,17 @@ public class BeeMutation implements IBeeMutation
 	private int requiredBlockId;
 	private int requiredBlockMeta;
 	private String requiredBlockOreDictEntry;
-
+	
 	public BeeMutation(IAlleleBeeSpecies species0, IAlleleBeeSpecies species1, BeeSpecies resultSpecies, int percentChance)
+	{
+		this(species0, species1, resultSpecies.getGenome(), percentChance);
+	}
+
+	public BeeMutation(IAlleleBeeSpecies species0, IAlleleBeeSpecies species1, IAllele[] resultSpeciesGenome, int percentChance)
 	{
 		this.parent1 = species0;
 		this.parent2 = species1;
-		this.mutationTemplate = resultSpecies.getGenome();
+		this.mutationTemplate = resultSpeciesGenome;
 		this.baseChance = percentChance;
 		this.isSecret = false;
 		this.isMoonRestricted = false;

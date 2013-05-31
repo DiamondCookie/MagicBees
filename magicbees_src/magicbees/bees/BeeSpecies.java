@@ -45,28 +45,32 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	MYSTICAL("Mystical", "mysticum",
 			BeeClassification.VEILED, 0xAFFFB7, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	SORCEROUS("Sorcerous", "fascinatio",
-			BeeClassification.VEILED, 0xFF444E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
+			BeeClassification.VEILED, 0xEA9A9A, EnumTemperature.HOT, EnumHumidity.ARID, false, false, true),
 	UNUSUAL("Unusual", "inusitatus",
 			BeeClassification.VEILED, 0x72D361, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	ATTUNED("Attuned", "similis",
 			BeeClassification.VEILED, 0x0086A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
+	INFERNAL("Infernal", "infernales",
+			BeeClassification.VEILED, 0xFF1C1C, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false, true),
+	OBLIVION("Oblivion", "lethe",
+			BeeClassification.VEILED, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false, false),
 	
 	ELDRITCH("Eldritch", "prodigiosus",
 			BeeClassification.VEILED, 0x8D75A0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	
 	ESOTERIC("Esoteric", "secretiore",
-			BeeClassification.ARCANE, 0x001099, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+			BeeClassification.ARCANE, 0x001099, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	MYSTERIOUS("Mysterious", "mysticus",
-			BeeClassification.ARCANE, 0x762bc2, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+			BeeClassification.ARCANE, 0x762bc2, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	ARCANE("Arcane", "arcanus",
-			BeeClassification.ARCANE, 0xd242df, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
+			BeeClassification.ARCANE, 0xd242df, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 			
 	CHARMED("Charmed", "larvatus",
-			BeeClassification.SUPERNATURAL, 0x48EEEC, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+			BeeClassification.SUPERNATURAL, 0x48EEEC, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	ENCHANTED("Enchanted", "cantatus",
-			BeeClassification.SUPERNATURAL, 0x18e726, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+			BeeClassification.SUPERNATURAL, 0x18e726, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	SUPERNATURAL("Supernatural", "coeleste",
-			BeeClassification.SUPERNATURAL, 0x005614, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
+			BeeClassification.SUPERNATURAL, 0x005614, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 			
 	ETHEREAL("Ethereal", "diaphanum",
 			BeeClassification.MAGICAL, 0xBA3B3B, 0xEFF8FF, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -314,6 +318,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		ELDRITCH.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 15)
 			.setGenome(BeeGenomeManager.getTemplateEldritch())
 			.register();
+		INFERNAL.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 12)
+			.setGenome(BeeGenomeManager.getTemplateInfernal())
+			.register();
+		OBLIVION.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 14)
+			.setGenome(BeeGenomeManager.getTemplateOblivion())
+			.register();
 		
 		ESOTERIC.addProduct(Config.combs.getStackForType(CombType.OCCULT), 20)
 			.setGenome(BeeGenomeManager.getTemplateEsoteric())
@@ -559,7 +569,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	private Icon[][] icons;
 	
 	private final static boolean defaultSecretSetting = true;
-	private final static int defaultBodyColour = 0xFF6E0D;
+	private final static int defaultBodyColour = 0xFF7C26;
 	
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{

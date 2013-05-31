@@ -1,16 +1,14 @@
 package magicbees.bees;
 
+
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.core.ItemInterface;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.apiculture.genetics.BeeTemplates;
 
 /**
  * Simply a class to hold all the functions to manage species' default genomes.
@@ -63,6 +61,8 @@ public class BeeGenomeManager
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.SORCEROUS;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown1");
 		
 		return genome;
 	}
@@ -83,6 +83,30 @@ public class BeeGenomeManager
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ATTUNED;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateInfernal()
+	{
+		IAllele[] genome = getTemplateModBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.INFERNAL;
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersNether");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectAggressive");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanShort");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateOblivion()
+	{
+		IAllele[] genome = getTemplateModBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.OBLIVION;
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceUp2");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectAggressive");
 		
 		return genome;
 	}
@@ -285,7 +309,7 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFaster");
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
-		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.fertilityHighDominant;
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityNormal");
 		
 		return genome;
 	}
@@ -296,7 +320,6 @@ public class BeeGenomeManager
 
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.SKULKING;
 		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
-		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityNormal");
 		
 		return genome;
 	}
@@ -937,27 +960,5 @@ public class BeeGenomeManager
 		selectedGene.setByte("Slot", (byte)gene.ordinal());
 		selectedGene.setString("UID0", allele.getUID());
 		selectedGene.setString("UID1", allele.getUID());		
-	}
-	
-	// ---------- Forestry templates -----------------------
-	
-	public static IAllele[] getTemplateForestryValiant()
-	{
-		return BeeTemplates.getValiantTemplate();
-	}
-	
-	public static IAllele[] getTemplateForestrySinister()
-	{
-		return BeeTemplates.getSinisterTemplate();
-	}
-	
-	public static IAllele[] getTemplateForestrySteadfast()
-	{
-		return BeeTemplates.getSteadfastTemplate();
-	}
-	
-	public static IAllele[] getTemplateForestryEnder()
-	{
-		return BeeTemplates.getEnderTemplate();
 	}
 }

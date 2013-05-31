@@ -5,40 +5,68 @@ import net.minecraft.item.ItemStack;
 
 public enum CombType
 {
-	MUNDANE("mundane", new int[] {0xFFA060, 0xE5BE99}, true),
-	OCCULT("occult", new int[] {0xff8fff, 0x6e1c6d}, true),
-	OTHERWORLDLY("otherworldly", new int[] {0x765cc1, 0x3B3B7A}, true),
-	PAPERY("paper", new int[] {0xbd9a30, 0x503900}, true),
-	SOUL("soul", new int[] {0x8A4500, 0x3C1E00}, true),
-	SKULKING("furtive", new int[] {0xcda6cd, 0x545454}, true),
-	INTELLECT("aware", new int[] {0xb0092e9, 0x618fff}, false),
+	MUNDANE("mundane", true),
+	MOLTEN("molten", true),
+	FORGOTTEN("forgotten", true),
+	OCCULT("occult", true),
+	OTHERWORLDLY("otherworldly", true),
+	PAPERY("paper", true),
+	SOUL("soul", true),
+	SKULKING("furtive", true),
 	
-	TC_STARK("stark", new int[] {0x6e6e79, 0xB0B0BC}, false),
-	TC_AIRY("air", new int[] {0x717600, 0xffff7e}, false),
-	TC_FIREY("fire", new int[] {0x740002, 0xff3C01}, false),
-	TC_WATERY("water", new int[] {0x00308c, 0x0090ff}, false),
-	TC_EARTHY("earth", new int[] {0x005100, 0x00a000}, false),
-	TC_INFUSED("magic", new int[] {0x7A489E, 0xaa32fc}, false),
+	INTELLECT("aware", false),
 	
-	AM_ESSENCE("essence", new int[] {0x03E1DE, 0x015352}, false),
-	AM_POTENT("potent", new int[] {0xBFA330, 0x41046F}, false),
+	TC_STARK("stark", false),
+	TC_AIRY("air", false),
+	TC_FIREY("fire", false),
+	TC_WATERY("water", false),
+	TC_EARTHY("earth", false),
+	TC_INFUSED("magic", false),
+	
+	AM_ESSENCE("essence", false),
+	AM_POTENT("potent", false),
 	;
 	
-	private CombType(String pName, int[] colour, boolean show)
+	private static int[][] colours = 
+			new int[][] {	{0xFF9859, 0xFFC58E},
+							{0xcc3333, 0x1E160E},
+							{0x9872FF, 0x2D2D2D},
+							{0x3EE0D8, 0x3A3820},
+							{0xE5425D, 0x323291},
+							{0xBCA664, 0x35332E},
+							{0x7F7171, 0x876D53},
+							{0xcda6cd, 0x545454},
+							
+							{0x0092e9, 0x618fff},
+							
+							{0xB0B0BC, 0x414144},
+							{0xffff7e, 0x606308},
+							{0xff3C01, 0x5B0D10},
+							{0x0090ff, 0x102F6B},
+							{0x00a000, 0x043004},
+							{0xAB12E2, 0x502868},
+							
+							{0xCC8604, 0x41046F},
+							{0xCCCC04, 0x41046F},
+						};
+	
+	private CombType(String pName, boolean show)
 	{
 		this.name = pName;
-		this.combColour = new int[2];
-		this.combColour = colour;
 		
 		this.showInList = show;
 	}
 	
 	private String name;
-	public int[] combColour;
 	public boolean showInList;
 	
 	public String getName()
 	{
 		return LocalizationManager.getLocalizedString("comb." + this.name);
+	}
+	
+	public int[] getColours()
+	{
+		return colours[this.ordinal()];
 	}
 }

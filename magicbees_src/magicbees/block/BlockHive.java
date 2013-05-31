@@ -3,9 +3,7 @@ package magicbees.block;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import magicbees.block.types.HiveType;
-import magicbees.block.types.PlankType;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,11 +13,9 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
-import forestry.core.config.ForestryBlock;
 
 public class BlockHive extends Block
 {	

@@ -16,7 +16,6 @@ public class Allele implements IAllele
 {
 	public static IBeeRoot beeRoot;
 	
-	public static AlleleInteger fertilityHighDominant;
 	public static AlleleFloat speedBlinding;
 	
 	public static IAlleleFlowers flowerBookshelf;
@@ -46,7 +45,6 @@ public class Allele implements IAllele
 	{
 		beeRoot = (IBeeRoot)AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");
 		
-		Allele.fertilityHighDominant = new AlleleInteger("fertilityHighDominant", 3, true);
 		Allele.speedBlinding = new AlleleFloat("speedBlinding", 2f, false);
 		
 		Allele.flowerBookshelf = new AlleleFlower("Bookshelf", new FlowerProviderBookshelf(), true);
@@ -110,7 +108,7 @@ public class Allele implements IAllele
 	{
 		IAlleleRegistry registry = AlleleManager.alleleRegistry;
 
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.fertilityHighDominant",	fertilityHighDominant);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.fertilityHighDominant",	Allele.getBaseAllele("fertilityHigh"));
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.flowerflowerBookshelf",	flowerBookshelf);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speedBlinding",			speedBlinding);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeAttract",		effectNodeAttract);

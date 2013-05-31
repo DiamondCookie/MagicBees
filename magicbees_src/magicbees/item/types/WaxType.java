@@ -6,7 +6,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public enum WaxType
 {
 	MAGIC("magic", false, 0xd242df),
-	SOUL("soul", true, 0x8A4500),
+	SOUL("soul", true, 0x967C63),
 	;
 	
 	private WaxType(String n, boolean sp, int c)

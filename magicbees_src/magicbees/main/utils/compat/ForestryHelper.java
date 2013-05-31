@@ -1,10 +1,14 @@
 package magicbees.main.utils.compat;
 
+import java.lang.reflect.Method;
+
+import cpw.mods.fml.common.FMLLog;
 import magicbees.main.Config;
 import net.minecraft.item.Item;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.ItemInterface;
+import forestry.api.genetics.IAllele;
 
 public class ForestryHelper
 {
@@ -103,6 +107,24 @@ public class ForestryHelper
 		Config.fBeeComb = Item.itemsList[ItemInterface.getItem("beeComb").itemID];
 		Config.fPollen = Item.itemsList[ItemInterface.getItem("pollen").itemID];
 		Config.fCraftingResource = Item.itemsList[ItemInterface.getItem("craftingMaterial").itemID];
+	}
+
+	public static IAllele[] getTemplateForestryForSpecies(String speciesName)
+	{
+		IAllele[] template = null;
+		try
+		{
+			//BeeTemplates.getValiantTemplate()
+			Class c = Class.forName("forestry.apiculture.genetics.BeeTemplates");
+			Method m = c.getMethod("getCommonTemplate");
+			template = (IAllele[])(m.invoke(null));
+		}
+		catch (Exception e)
+		{
+			FMLLog.severe("Could not get Forestry templates. Are you SURE this version of Magic Bees compatible with your version of Forestry?");
+			e.printStackTrace();
+		}
+		return template;
 	}
 	
 	public static EnumTemperature getEnumTemperatureFromValue(float rawTemp)

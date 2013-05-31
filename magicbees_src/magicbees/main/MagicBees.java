@@ -10,7 +10,7 @@ import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
-import magicbees.world.WorldHandler;
+import magicbees.world.WorldGeneratorHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -25,7 +25,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 		name="Magic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
-		version=VersionInfo.Version + " - " + VersionInfo.Build,
+		version=VersionInfo.Version + " (build " + VersionInfo.Build + ")",
 		dependencies=VersionInfo.Depends
 )
 @NetworkMod(serverSideRequired=false, clientSideRequired=true)
@@ -41,7 +41,7 @@ public class MagicBees
 	public GUIHandler guiHandler;
 	private String configsPath;
 	private Config modConfig;
-	private WorldHandler worldHandler;
+	private WorldGeneratorHandler worldHandler;
 
 	@Mod.PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -66,7 +66,7 @@ public class MagicBees
 		
 		CompatabilityManager.setupBackpacks();
 		
-		GameRegistry.registerWorldGenerator(worldHandler = new WorldHandler());
+		GameRegistry.registerWorldGenerator(worldHandler = new WorldGeneratorHandler());
 	}
 
 	@Mod.PostInit

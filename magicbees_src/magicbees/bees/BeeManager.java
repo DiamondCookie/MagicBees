@@ -10,6 +10,7 @@ public class BeeManager
 		BeeSpecies.setupBeeSpecies();
 		Allele.registerDeprecatedAlleleReplacements();
 		BeeMutation.setupMutations();
-		HiveType.initHiveDrops();
+		
+		HiveType.initHiveData();
 	}
 }

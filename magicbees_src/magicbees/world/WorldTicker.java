@@ -14,10 +14,10 @@ import cpw.mods.fml.common.TickType;
 
 public class WorldTicker implements ITickHandler
 {
-	private WorldHandler parent;
+	private WorldGeneratorHandler parent;
 	private HashMap<Integer, LinkedList<ChunkCoords>> chunkRegenList;
 	
-	public WorldTicker(WorldHandler p)
+	public WorldTicker(WorldGeneratorHandler p)
 	{
 		this.parent = p;
 		this.chunkRegenList = new HashMap<Integer, LinkedList<ChunkCoords>>();

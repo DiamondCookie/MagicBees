@@ -8,10 +8,11 @@ import net.minecraft.world.World;
 
 public class CommonProxy
 {
-	public static final String TEXTURE_PATH = "/mods/magicbees/textures/";
-	public static final String MODEL_PATH = "/mods/magicbees/model/";
-	public static final String TCBEES_RESEARCH = "/research/magicbees/";
-	public static final String TCBEES_LOCDIR = "/lang/magicbees/";
+	public static final String RESOURCE_PATH = "/mods/magicbees/";
+	public static final String TEXTURE_PATH = RESOURCE_PATH + "textures/";
+	public static final String MODEL_PATH = RESOURCE_PATH + "model/";
+	public static final String TCBEES_RESEARCH = RESOURCE_PATH + "research/";
+	public static final String TCBEES_LOCDIR = RESOURCE_PATH + "lang/";
 	
 	public static String FORESTRY_GFX_ITEMS;
 	public static String FORESTRY_GFX_BEEEFFECTS;

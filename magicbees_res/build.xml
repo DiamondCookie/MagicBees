@@ -1,11 +1,11 @@
-<project name="ThaumicBees" basedir="../../../" default="main">
+<project name="MagicBees" basedir="../../../" default="main">
 	<property name="build.dir"			value="build" />
 	<property name="classes.dir" 		value="${build.dir}/classes" />
 	<property name="resource.dir"		value="${build.dir}/mc.dev" />
 	<property name="jar.dir"			value="${build.dir}/jar" />
 	
-	<property name="src.dir"			value="Sources/ThaumicBees" />
-	<property name="lang.dir"			value="Sources/ThaumicBees/thaumicbees_res/lang" />
+	<property name="src.dir"			value="Sources/MagicBees" />
+	<property name="lang.dir"			value="Sources/MagicBees/magicbees_res/lang" />
 	
 	<property name="forge.dir"			value="${build.dir}/forge" />
 	<property name="mcp.dir"			value="${forge.dir}/mcp" />
@@ -16,20 +16,20 @@
     
 	<property name="mc.version"			value="1.5.2"/>
     <property name="forge.version"		value="7.8.0.700"/>
-    <property name="thaumicbees.version"	value="1.4.7a"/>
+    <property name="magicbees.version"	value="1.9.9"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />
-	<property name="deploy.root"		value="C:\Users\Marc\Dropbox\Public\ThaumicBees" />
+	<property name="deploy.root"		value="C:\Users\Marc\Dropbox\Public\magicBees" />
 	<property name="deploy.dir"			value="${deploy.root}\${deploy.type}" />
-	<property name="share.dir"			value="C:\Users\Marc\Dropbox\Shared\ThaumicBees" />
+	<property name="share.dir"			value="C:\Users\Marc\Dropbox\Shared\magicBees" />
 	<property name="local.dir"			value="D:\Games\Minecraft\MultiMC\instances\1.4.6 pure\minecraft\mods" />
 	
 		<!-- TARGETS -->
 	<target name="clean">
 		<delete dir="${clientsrc.dir}/forestry" />
 		<delete dir="${clientsrc.dir}/thaumcraft" />
-		<delete dir="${clientsrc.dir}/thaumicbees" />
+		<delete dir="${clientsrc.dir}/magicbees" />
 		<delete dir="${classes.dir}" />
 	</target>
 	
@@ -57,7 +57,7 @@
 
 	<target name="setup">
 		<!-- Set build number -->
-		<buildnumber file="${src.dir}/thaumicbees_res/build.number"/>
+		<buildnumber file="${src.dir}/magicbees_res/build.number"/>
 		
 		<!-- Copy source -->
 		<echo message="Copying Source" />
@@ -68,20 +68,19 @@
 			<fileset dir="${thaumcraft.dir}/">
 				<include name="thaumcraft/api/**" />
 			</fileset>
-            <fileset dir="${src.dir}/thaumicbees_src">
-				<include name="**/net/mysteriousages/**" />
-                <include name="**/thaumicbees/**" />
+            <fileset dir="${src.dir}/magicbees_src">
+                <include name="**/magicbees/**" />
 				<include name="**/forestry/**" />
             </fileset>
 		</copy>
 		
         <copy todir="${clientsrc.dir}" overwrite="true" failonerror="true">
-			<fileset dir="${src.dir}/thaumicbees_src">
+			<fileset dir="${src.dir}/magicbees_src">
                 <include name="**/VersionInfo.java" />
             </fileset>
            	<filterset>
 				<filter token="MCVERSION" value="${mc.version}" />
-            	<filter token="VERSION" value="${thaumicbees.version}" />
+            	<filter token="VERSION" value="${magicbees.version}" />
            		<filter token="BUILD_NUMBER" value="${build.number}" />
            		<filter token="FINGERPRINT" value="${key.fingerprint}" />
            	</filterset>
@@ -115,25 +114,24 @@
 			<fileset dir="${mcp.dir}/reobf/minecraft">
 				<exclude name="forestry/api/**" />
 				
-				<include name="**/thaumicbees/**" />
-				<include name="**/net/mysteriousages/**" />
+				<include name="**/magicbees/**" />
 			</fileset>
 		</copy>
 		
-		<!-- Copy ThaumicBees resources -->
+		<!-- Copy magicBees resources -->
         <copy todir="${classes.dir}/client">
-            <fileset dir="${src.dir}/thaumicbees_res">
+            <fileset dir="${src.dir}/magicbees_res">
                 <exclude name="build.xml"/>
             	<exclude name="build.number"/>
             </fileset>
         </copy>
 		
 		<copy todir="${classes.dir}/client" overwrite="true" failonerror="true">
-			<fileset dir="${src.dir}/thaumicbees_res">
+			<fileset dir="${src.dir}/magicbees_res">
 				<include name="**/mcmod.info" />
 			</fileset>
 			<filterset>
-				<filter token="MODVERSION" value="${thaumicbees.version}" />
+				<filter token="MODVERSION" value="${magicbees.version}" />
 			</filterset>
 		 </copy>
 	</target>
@@ -141,19 +139,19 @@
 	<!-- Package the jars -->
 	<target name="package" depends="setup,compile">
 		<echo message="Packaging basic jar..." />
-        <jar destfile="${jar.dir}/thaumicbees-${thaumicbees.version}-${build.number}.jar" basedir="${classes.dir}/client"/>
+        <jar destfile="${jar.dir}/magicbees-${magicbees.version}-${build.number}.jar" basedir="${classes.dir}/client"/>
 	</target>
 	
 	<!-- Deploy to private share -->
 	<target name="deploy.private" depends="clean,package">		
         <copy todir="${local.dir}">
             <fileset dir="${jar.dir}">
-            	<include name="thaumicbees-*.jar" />
+            	<include name="magicbees-*.jar" />
             </fileset>
         </copy>
         <copy todir="${share.dir}/">
             <fileset dir="${jar.dir}">
-            	<include name="thaumicbees-*.jar" />
+            	<include name="magicbees-*.jar" />
             </fileset>
         </copy>
 	</target>
@@ -162,7 +160,7 @@
 	<target name="deploy.public" depends="deploy.private">
         <copy todir="${deploy.dir}">
             <fileset dir="${jar.dir}">
-            	<include name="thaumicbees-*.jar" />
+            	<include name="magicbees-*.jar" />
             </fileset>
         </copy>
 	</target>

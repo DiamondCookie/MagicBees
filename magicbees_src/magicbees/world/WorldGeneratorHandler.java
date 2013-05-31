@@ -17,11 +17,11 @@ import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class WorldHandler implements IWorldGenerator
+public class WorldGeneratorHandler implements IWorldGenerator
 {
 	public WorldTicker ticker;
 	
-	public WorldHandler()
+	public WorldGeneratorHandler()
 	{
 		this.ticker = new WorldTicker(this);
 		TickRegistry.registerTickHandler(this.ticker, Side.SERVER);

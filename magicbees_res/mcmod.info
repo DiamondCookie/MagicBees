@@ -1,12 +1,12 @@
 [
 {
-  "modid": "ThaumicBees",
+  "modid": "MagicBees",
   "version": "@MODVERSION@",
-  "name": "ThaumicBees",
+  "name": "Magic Bees",
   "url": "http://bit.ly/XFDvLY",
-  "description": "Magic bees & more. Supports Thaumcraft, Equivalent Exchange 3",
+  "description": "Magic themed bee expansion for Forestry. TC3, EE3, AM compatible!",
   "authors": [ "MysteriousAges" ],
   "credits": "SirSengir, Azanor, Binnie & the Forestry Dev peeps",
-  "logoFile": "/mods/thaumicbees/textures/logo.png"
+  "logoFile": "/mods/magicbees/textures/logo.png"
 }
 ]

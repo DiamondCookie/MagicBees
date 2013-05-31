@@ -85,11 +85,11 @@ public class ItemComb extends Item
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
 		int meta = Math.max(0, Math.min(CombType.values().length - 1, stack.getItemDamage()));
-		int colour = CombType.values()[meta].combColour[0];
+		int colour = CombType.values()[meta].getColours()[0];
 		
 		if (pass >= 1)
 		{
-			colour = CombType.values()[meta].combColour[1];
+			colour = CombType.values()[meta].getColours()[1];
 		}
 		
 		return colour;
