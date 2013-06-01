@@ -19,7 +19,7 @@
     <!-- Comb names -->
     <entry key="comb.occult">神秘蜂巢</entry>
     <entry key="comb.otherworldly">异域蜂巢</entry>
-    <entry key=.comb.paper">纸质蜂巢</entry>
+    <entry key="comb.paper">纸质蜂巢</entry>
     <entry key="comb.stark">朴实蜂巢</entry>
     <entry key="comb.air">风之蜂巢</entry>
     <entry key="comb.fire">火之蜂巢</entry>
@@ -34,7 +34,7 @@
     
     <!-- Wax names -->
     <entry key="wax.magic">魔力蜜蜡</entry>
-    <entry key=.wax.soul">灵魂蜜蜡</entry>
+    <entry key="wax.soul">灵魂蜜蜡</entry>
     
     <!-- Drop names -->
     <entry key="drop.enchanting">蕴魔液滴</entry>
