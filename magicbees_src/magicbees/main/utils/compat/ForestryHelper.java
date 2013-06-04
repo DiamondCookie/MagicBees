@@ -104,9 +104,11 @@ public class ForestryHelper
 	
 	public static void getItems()
 	{
-		Config.fBeeComb = Item.itemsList[ItemInterface.getItem("beeComb").itemID];
-		Config.fPollen = Item.itemsList[ItemInterface.getItem("pollen").itemID];
-		Config.fCraftingResource = Item.itemsList[ItemInterface.getItem("craftingMaterial").itemID];
+		Config.fBeeComb = ItemInterface.getItem("beeComb").getItem();
+		Config.fPollen = ItemInterface.getItem("pollen").getItem();
+		Config.fCraftingResource = ItemInterface.getItem("craftingMaterial").getItem();
+		Config.fHoneyDrop = ItemInterface.getItem("honeyDrop").getItem();
+		Config.fHoneydew = ItemInterface.getItem("honeydew").getItem();
 	}
 
 	public static IAllele[] getTemplateForestryForSpecies(String speciesName)

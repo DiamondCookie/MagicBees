@@ -1,7 +1,10 @@
 package magicbees.bees;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
@@ -15,7 +18,6 @@ import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +26,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -38,7 +39,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IMutation;
 
 public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 {
@@ -50,10 +51,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.VEILED, 0x72D361, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	ATTUNED("Attuned", "similis",
 			BeeClassification.VEILED, 0x0086A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
-	INFERNAL("Infernal", "infernales",
-			BeeClassification.VEILED, 0xFF1C1C, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false, true),
-	OBLIVION("Oblivion", "lethe",
-			BeeClassification.VEILED, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false, false),
+			
+	OBLIVION("Oblivion", "oblivioni",
+			BeeClassification.VEILED, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	
 	ELDRITCH("Eldritch", "prodigiosus",
 			BeeClassification.VEILED, 0x8D75A0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -104,6 +104,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.SKULKING, 0xccccee, 0xbf877c, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	SPIDERY("Spidery", "araneolus",
 			BeeClassification.SKULKING, 0x0888888, 0x222222, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+	SMOULDERING("Smouldering", "flagrantia",
+			BeeClassification.SKULKING, 0xFFC747, 0xEA8344, EnumTemperature.HELLISH, EnumHumidity.NORMAL, false, false),
 			
 	TIMELY("Timely", "gallifreis",
 			BeeClassification.TIME, 0xC6AF86, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -111,6 +113,15 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.TIME, 0xC6AF86, 0x8E0213, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	DOCTORAL("Doctoral", "medicus qui",
 			BeeClassification.TIME, 0xDDE5FC, 0x4B6E8C, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
+
+	INFERNAL("Infernal", "infernales",
+			BeeClassification.ABOMINABLE, 0xFF1C1C, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, true),
+	HATEFUL("Hateful", "odibilis",
+			BeeClassification.ABOMINABLE, 0xDB00DB, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
+	SPITEFUL("Spiteful", "maligna",
+			BeeClassification.ABOMINABLE, 0x5FCC00, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false),
+	WITHERING("Withering", "vietus",
+			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.NORMAL, true, false),
 			
 	IRON("Iron", "ferrus",
 			BeeClassification.METALLIC, 0x686868, 0xE9E9E9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -149,9 +160,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	TC_VIS("TCVis", "arcanus saecula",
 			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_FLUX("TCFlux", "arcanus labe",
-			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TC_ATTRACT("TCAttractive", "",
-			BeeClassification.THAUMIC, 0x0, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+			BeeClassification.THAUMIC, 0x91376A, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
+	TC_ATTRACT("TCAttractive", "tractus",
+			BeeClassification.THAUMIC, 0x96FFBC, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TC_REJUVENATING("TCRejuvenating", "arcanus vitae",
 			BeeClassification.THAUMIC, 0x91D0D9, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_PURE("TCPure", "arcanus puritatem",
@@ -170,14 +181,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.FLESHY, 0x40221A, 0xAC6753, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TC_PORK("TCPork", "porcina",
 			BeeClassification.FLESHY, 0x725D2F, 0xD2BF93, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-			
-/*	@Deprecated		
-	TC_NODE("TCNode", "conficiens",
-			BeeClassification.THAUMIC, 0xFFF266, 0xFF8CE9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
-	@Deprecated
-	TC_GOSSAMER("TCGossamer", "perlucidus",
-			BeeClassification.THAUMIC, 0x183f66, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
-*/	
+
 	// --------- Equivalent Exchange Bees -----------------------------------------------------------------------------	
 	EE_MINIUM("EEMinium", "mutabilis",
 			BeeClassification.ALCHEMICAL, 0xac0921, 0x3a030b, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -218,8 +222,16 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		// Species must be set inactive prior to registration.
 		if (ThaumcraftHelper.isActive())
 		{
-			TC_AIR.addSpecialty(new ItemStack(Config.tcNuggets, 1, ThaumcraftHelper.NuggetType.QUICKSILVER.ordinal()), 8);
-			TC_EARTH.addSpecialty(new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.AMBER.ordinal()), 6);
+			SCHOLARLY.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 2);
+			SAVANT.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 5);
+			
+			TC_STARK.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.DULL.ordinal()), 5);
+			TC_AIR.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal()), 5);
+			TC_FIRE.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()), 5);
+			TC_WATER.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 5);
+			TC_EARTH.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()), 5);
+			TC_MAGIC.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()), 5);
+			
 			TC_BRAINY.addSpecialty(new ItemStack(Config.tcMiscResource,  1, ThaumcraftHelper.MiscResource.ZOMBIE_BRAIN.ordinal()), 2);
 			TC_CHICKEN.addSpecialty(new ItemStack(Config.tcNuggetChicken, 1), 9);
 			TC_BEEF.addSpecialty(new ItemStack(Config.tcNuggetBeef, 1), 9);
@@ -227,10 +239,16 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		}
 		else
 		{
+			TC_STARK.setInactive();
+			TC_AIR.setInactive();
+			TC_FIRE.setInactive();
+			TC_WATER.setInactive();
+			TC_EARTH.setInactive();
 			TC_MAGIC.setInactive();
 			TC_VIS.setInactive();
-			TC_PURE.setInactive();
 			TC_FLUX.setInactive();
+			TC_ATTRACT.setInactive();
+			TC_PURE.setInactive();
 			TC_REJUVENATING.setInactive();
 			TC_BRAINY.setInactive();
 			TC_WISPY.setInactive();
@@ -239,9 +257,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			TC_BEEF.setInactive();
 			TC_PORK.setInactive();
 		}
-		/*TC_GOSSAMER.setInactive();
-		// Node bee is getting phased out.
-		TC_NODE.setInactive();*/
 		
 		if (EquivalentExchangeHelper.isActive())
 		{
@@ -318,31 +333,28 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		ELDRITCH.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 15)
 			.setGenome(BeeGenomeManager.getTemplateEldritch())
 			.register();
-		INFERNAL.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 12)
-			.setGenome(BeeGenomeManager.getTemplateInfernal())
-			.register();
 		OBLIVION.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 14)
 			.setGenome(BeeGenomeManager.getTemplateOblivion())
 			.register();
 		
-		ESOTERIC.addProduct(Config.combs.getStackForType(CombType.OCCULT), 20)
+		ESOTERIC.addProduct(Config.combs.getStackForType(CombType.OCCULT), 18)
 			.setGenome(BeeGenomeManager.getTemplateEsoteric())
 			.register();
-		MYSTERIOUS.addProduct(Config.combs.getStackForType(CombType.OCCULT), 25)
+		MYSTERIOUS.addProduct(Config.combs.getStackForType(CombType.OCCULT), 20)
 			.setGenome(BeeGenomeManager.getTemplateMysterious())
 			.register();
-		ARCANE.addProduct(Config.combs.getStackForType(CombType.OCCULT), 30)
+		ARCANE.addProduct(Config.combs.getStackForType(CombType.OCCULT), 25)
 			.addSpecialty(Config.drops.getStackForType(DropType.ENCHANTED, 1), 9)
 			.setGenome(BeeGenomeManager.getTemplateArcane())
 			.register();
 		
-		CHARMED.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 20)
+		CHARMED.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 18)
 			.setGenome(BeeGenomeManager.getTemplateCharmed())
 			.register();
-		ENCHANTED.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 30)
+		ENCHANTED.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 20)
 			.setGenome(BeeGenomeManager.getTemplateEnchanted())
 			.register();
-		SUPERNATURAL.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 40)
+		SUPERNATURAL.addProduct(Config.combs.getStackForType(CombType.OTHERWORLDLY), 25)
 			.addSpecialty(Config.pollen.getStackForType(PollenType.UNUSUAL), 8)
 			.setGenome(BeeGenomeManager.getTemplateSupernatural())
 			.register();
@@ -356,11 +368,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplatePupil())
 			.register();
 		SCHOLARLY.addProduct(Config.combs.getStackForType(CombType.PAPERY), 25)
-			.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 2)
 			.setGenome(BeeGenomeManager.getTemplateScholarly())
 			.register();
 		SAVANT.addProduct(Config.combs.getStackForType(CombType.PAPERY), 40)
-			.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 5)
 			.setGenome(BeeGenomeManager.getTemplateSavant())
 			.register();
 		
@@ -374,33 +384,46 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplateSoul())
 			.register();
 		
-		SKULKING.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
+		SKULKING.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
 			.setGenome(BeeGenomeManager.getTemplateSkulking())
 			.register();	
-		GHASTLY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 8)
+		GHASTLY.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 8)
 			.addSpecialty(new ItemStack(Item.ghastTear), 2)
 			.setGenome(BeeGenomeManager.getTemplateGhastly())
 			.register();
-		SPIDERY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 13)
+		SPIDERY.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 13)
 			.addProduct(new ItemStack(Item.silk), 8)
 			.addSpecialty(new ItemStack(Item.spiderEye), 8)
 			.setGenome(BeeGenomeManager.getTemplateSpidery())
 			.register();
+		SMOULDERING.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
+			.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 10)
+			.addSpecialty(new ItemStack(Item.blazeRod), 5)
+			.setGenome(BeeGenomeManager.getTemplateSmouldering())
+			.register();
 		
-		TIMELY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
-			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 10)
+		TIMELY.addProduct(Config.combs.getStackForType(CombType.TEMPORAL), 16)
 			.setGenome(BeeGenomeManager.getTemplateTimely())
 			.register();		
-		LORDLY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 5)
-			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
-			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 15)
+		LORDLY.addProduct(Config.combs.getStackForType(CombType.TEMPORAL), 19)
 			.setGenome(BeeGenomeManager.getTemplateLordly())
 			.register();		
-		DOCTORAL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 10)
-			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.DRIPPING.ordinal()), 25)
-			.addProduct(Config.pollen.getStackForType(PollenType.PHASED), 19)
+		DOCTORAL.addProduct(Config.combs.getStackForType(CombType.TEMPORAL), 24)
 			.addSpecialty(new ItemStack(Config.jellyBaby), 7)
 			.setGenome(BeeGenomeManager.getTemplateDoctoral())
+			.register();
+
+		INFERNAL.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 12)
+			.setGenome(BeeGenomeManager.getTemplateInfernal())
+			.register();
+		HATEFUL.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 18)
+			.setGenome(BeeGenomeManager.getTemplateHateful())
+			.register();
+		SPITEFUL.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 24)
+			.setGenome(BeeGenomeManager.getTemplateSpiteful())
+			.register();
+		WITHERING.addSpecialty(Config.miscResources.getStackForType(ResourceType.SKULL_CHIP), 5)
+			.setGenome(BeeGenomeManager.getTemplateWithering())
 			.register();
 		
 		IRON.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
@@ -441,47 +464,46 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.register();
 		
 		
-		TC_STARK.addProduct(Config.combs.getStackForType(CombType.TC_STARK), 10)
+		TC_STARK.addProduct(Config.combs.getStackForType(CombType.HARMONIZING), 10)
 			.setGenome(BeeGenomeManager.getTemplateTCStark())
 			.register();
-		TC_AIR.addProduct(Config.combs.getStackForType(CombType.TC_AIRY), 9)
-			.addSpecialty(new ItemStack(Item.feather), 4)
+		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 9)
 			.setGenome(BeeGenomeManager.getTemplateTCAir())
 			.register();
-		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.TC_FIREY), 15)
-			.addSpecialty(new ItemStack(Item.blazePowder), 4)
+		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.FIREY), 15)
 			.setGenome(BeeGenomeManager.getTemplateTCFire())
 			.register();
-		TC_WATER.addProduct(Config.combs.getStackForType(CombType.TC_WATERY), 20)
-			.addSpecialty(new ItemStack(Block.ice), 1)
+		TC_WATER.addProduct(Config.combs.getStackForType(CombType.WATERY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCWater())
 			.register();
-		TC_EARTH.addProduct(Config.combs.getStackForType(CombType.TC_EARTHY), 30)
-			.addSpecialty(new ItemStack(Block.obsidian), 4)
+		TC_EARTH.addProduct(Config.combs.getStackForType(CombType.EARTHY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCEarth())
 			.register();
-		TC_MAGIC.addProduct(Config.combs.getStackForType(CombType.TC_INFUSED), 20)
+		TC_MAGIC.addProduct(Config.combs.getStackForType(CombType.INFUSED), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCMagic())
 			.register();
 		
-		TC_VIS.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 25)
+		TC_VIS.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 10)
 			.setGenome(BeeGenomeManager.getTemplateTCVis())
 			.register();
-		TC_PURE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
-			.setGenome(BeeGenomeManager.getTemplateTCPure())
-			.register();
-		TC_FLUX.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
+		TC_FLUX.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18)
 			.setGenome(BeeGenomeManager.getTemplateTCFlux())
 			.register();
-		TC_REJUVENATING.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 20)
+		TC_ATTRACT.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 14)
+			.setGenome(BeeGenomeManager.getTemplateTCAttract())
+			.register();
+		TC_PURE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 16)
+			.setGenome(BeeGenomeManager.getTemplateTCPure())
+			.register();
+		TC_REJUVENATING.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18)
 			.setGenome(BeeGenomeManager.getTemplateTCRejuvinating())
 			.register();
 		
-		TC_BRAINY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
+		TC_BRAINY.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
 			.addProduct(new ItemStack(Item.rottenFlesh), 6)
 			.setGenome(BeeGenomeManager.getTemplateTCBrainy())
 			.register();
-		TC_BATTY.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
+		TC_BATTY.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
 			.addSpecialty(new ItemStack(Item.gunpowder), 4)
 			.setGenome(BeeGenomeManager.getTemplateTCBatty())
 			.register();	
@@ -542,14 +564,13 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplateAMVortex())
 			.register();
 		AM_WIGHT.addProduct(Config.combs.getStackForType(CombType.SOUL), 30)
-			.addProduct(Config.combs.getStackForType(CombType.SKULKING), 10)
+			.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
 			.setGenome(BeeGenomeManager.getTemplateAMWight())
 			.register();
 	}
 	
 	private String binomial;
 	private String authority;
-	private int bodyType;
 	private int primaryColour;
 	private int secondaryColour;
 	private EnumTemperature temperature;
@@ -559,46 +580,55 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	private boolean isCounted;
 	private boolean isActive;
 	private IClassification branch;
-	private HashMap products;
-	private HashMap specialty;
+	private HashMap<ItemStack, Integer> products;
+	private HashMap<ItemStack, Integer> specialties;
 	private IAllele genomeTemplate[];
 	private String uid;
 	private boolean dominant;
+	private int complexity;
 	
 	@SideOnly(Side.CLIENT)
 	private Icon[][] icons;
 	
-	private final static boolean defaultSecretSetting = true;
+	private final static boolean defaultSecretSetting = false;
 	private final static int defaultBodyColour = 0xFF7C26;
 	
-	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour,
+			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, genusName, classification, 0, firstColour, defaultBodyColour, preferredTemp, preferredHumidity, hasGlowEffect, defaultSecretSetting, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, firstColour, defaultBodyColour,
+				preferredTemp, preferredHumidity, hasGlowEffect, defaultSecretSetting, true, isSpeciesDominant);
 	}
 
-	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
+			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, genusName, classification, 0, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, defaultSecretSetting, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, defaultSecretSetting, true, isSpeciesDominant);
 	}
 
-	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean isSecret, boolean hasGlowEffect, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
+			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean isSecret, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, genusName, classification, 0, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, isSecret, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, firstColour, secondColour,
+				preferredTemp, preferredHumidity, hasGlowEffect, isSecret, true, isSpeciesDominant);
 	}
 
-	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean isSecret, boolean hasGlowEffect, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour,
+			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean isSecret, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, genusName, classification, 0, firstColour, defaultBodyColour, preferredTemp, preferredHumidity, hasGlowEffect, isSecret, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, firstColour, defaultBodyColour,
+				preferredTemp, preferredHumidity, hasGlowEffect, isSecret, true, isSpeciesDominant);
 	}
 
-	private BeeSpecies(String speciesName, String genusName, IClassification classification, int body, int firstColour, int secondColour, EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
+	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
+			EnumTemperature preferredTemp, EnumHumidity preferredHumidity,
+			boolean hasGlowEffect, boolean isSpeciesSecret, boolean isSpeciesCounted, boolean isSpeciesDominant)
 	{
 		this.uid = "magicbees.species" + speciesName;
 		this.dominant = isSpeciesDominant;
 		AlleleManager.alleleRegistry.registerAllele(this);
 		binomial = genusName;
 		authority = "MysteriousAges";
-		bodyType = body;
 		primaryColour = firstColour;
 		secondaryColour = secondColour;
 		temperature = preferredTemp;
@@ -607,7 +637,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		isSecret = isSpeciesSecret;
 		isCounted = isSpeciesCounted;
 		products = new HashMap();
-		specialty = new HashMap();
+		specialties = new HashMap();
 		this.branch = classification;
 		this.branch.addMemberSpecies(this);
 		this.isActive = true;
@@ -626,13 +656,13 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 
 	public BeeSpecies addProduct(ItemStack produce, int percentChance)
 	{
-		products.put(produce, Integer.valueOf(percentChance));
+		products.put(produce, percentChance);
 		return this;
 	}
 
 	public BeeSpecies addSpecialty(ItemStack produce, int percentChance)
 	{
-		specialty.put(produce, Integer.valueOf(percentChance));
+		specialties.put(produce, Integer.valueOf(percentChance));
 		return this;
 	}
 
@@ -721,7 +751,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	public HashMap getSpecialty()
 	{
-		return specialty;
+		return specialties;
 	}
 
 	@Override
@@ -791,7 +821,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		return icons[type.ordinal()][Math.min(renderPass, 2)];
 	}
 	
-	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
+	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, SMOULDERING, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
 
 	public void registerItemIcons(IconRegister itemMap)
 	{
@@ -818,7 +848,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		
 		switch (this)
 		{
-		case SKULKING: case GHASTLY: case SPIDERY:
+		case SKULKING: case GHASTLY: case SPIDERY: case SMOULDERING:
 		case TC_BRAINY: case TC_WISPY: case TC_BATTY:
 		case AM_VORTEX: case AM_WIGHT:
 			value = VersionInfo.ModName.toLowerCase() + ":bees/skulking/";
@@ -848,17 +878,87 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	public int getComplexity()
 	{
-		return 0;
+		return 1;
 	}
 
 	@Override
-	public float getResearchSuitability(ItemStack itemstack)
+	public float getResearchSuitability(ItemStack itemStack)
 	{
-		return 0;
+		float value = 0f;
+		if(itemStack != null)
+		{
+			for (ItemStack product : this.products.keySet())
+			{
+				if (itemStack.isItemEqual(product))
+				{
+					value = 1f;
+					break;
+				}
+			}
+			
+			if (value <= 0f)
+			{
+				for (ItemStack specialty : this.specialties.keySet())
+				{
+					if (specialty.isItemEqual(itemStack))
+					{
+						value = 1f;
+						break;
+					}
+				}
+				if (value <= 0f)
+				{
+					if (itemStack.itemID == Config.fHoneyDrop.itemID)
+					{
+						
+					}
+					else if (itemStack.itemID == Config.fHoneydew.itemID)
+					{
+						
+					}
+					else if (itemStack.itemID == Config.fBeeComb.itemID ||
+							itemStack.itemID == Config.combs.itemID)
+					{
+						value = 4f;
+					}
+					else
+					{
+						for (Map.Entry<ItemStack, Float> catalyst : Allele.beeRoot.getResearchCatalysts().entrySet())
+						{
+							if (OreDictionary.itemMatches(itemStack, catalyst.getKey(), false))
+							{
+								value = catalyst.getValue().floatValue();
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return value;
 	}
 
 	@Override
 	public ItemStack[] getResearchBounty(World world, String researcher, IIndividual individual, int bountyLevel)
+	{
+		ArrayList<ItemStack> bounty = new ArrayList<ItemStack>();
+		
+		if (true)//world.rand.nextFloat() < ((10f / bountyLevel)))
+		{
+			Collection<? extends IMutation> resultantMutations = getRoot().getCombinations(this);
+			if (resultantMutations.size() > 0)
+			{
+				IMutation[] candidates = resultantMutations.toArray(new IMutation[resultantMutations.size()]);
+				bounty.add(AlleleManager.alleleRegistry.getMutationNoteStack(researcher, candidates[world.rand.nextInt(candidates.length)]));
+			}
+		}
+		
+		return bounty.toArray(new ItemStack[bounty.size()]);
+	}
+
+	@Override
+	public String getEntityTexture()
 	{
 		return null;
 	}

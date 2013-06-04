@@ -6,6 +6,7 @@ import magicbees.client.gui.UIScreens;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.TabMagicBees;
+import magicbees.main.utils.VersionInfo;
 import magicbees.tileentity.TileEntityEffectJar;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -18,7 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockEffectJar extends BlockContainer
-{
+{	
 	public BlockEffectJar(int id)
 	{
 		super(id, Material.glass);

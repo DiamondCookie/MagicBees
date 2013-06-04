@@ -1,39 +1,11 @@
 <research>
-<project id="TBSTARTNODE">
+<project id="BEESTARTNODE">
 <name>Bees And Magic</name>
 <popupText>Across Fields and Forest</popupText>
 <longText>There is something about your world that makes you think trees and bees require more research.</longText>
 <page type="text">A recent breakthrough has given you information regarding Apiculture and Arborculture. Perhaps it isn't quite as mundane as it first seemed.
 
 The potential exists for further study. All that is required is some creative thinking to apply new uses to old, familiar items.</page>
-</project>
-
-<project id="STARKHINT">
-<name>Stark Bees</name>
-<popupText>Crossing two boundaries</popupText>
-<longText>The cursory investigation you have completed in the direction of Beekeeping has yielded fruit. Perhaps under the right conditions, you can find a bee mutation that will enable you to infuse them with magic.</longText>
-<page type="text">Even bees are susceptible to the influence of magic, some more than others.
-
-Perhaps it would be possible to breed a bee from two species which are affected by Arcane or Supernatural powers. If such a species truly does exist, it could be possible that they could reveal additional secrets. Further research may be needed, in addition to a specimen.</page>
-</project>
-
-<project id="BEEINFUSION">
-<name>Thaumic Bees</name>
-<popupText>Magical Apiculture</popupText>
-<longText>Further research into this so-called Stark Bee has provided you with insight into how a bee may become infused with elemental energy, or the raw essence of magic itself.</longText>
-<page type="text">You have refined your previous theory regarding bees taking on aspects of elemental magic, and have come up with a way to attach elements to bees. It remains to be seen if this will be a benefit, or something you may regret in the future.
-
-By placing a legendary Stark Bee into the Infusion Altar along with a charged shard of some kind, you will be able to imprint an aspect onto the insect. Unfortunately, it only seems to work with princesses or drones, as the Queens are too sensitive to undergo the infusion process.</page>
-<page type="infusioncrafting">BEEINFUSION1</page>
-<page type="infusioncrafting">BEEINFUSION2</page>
-<page type="infusioncrafting">BEEINFUSION3</page>
-<page type="infusioncrafting">BEEINFUSION4</page>
-<page type="infusioncrafting">BEEINFUSION5</page>
-<page type="infusioncrafting">BEEINFUSION6</page>
-<page type="infusioncrafting">BEEINFUSION7</page>
-<page type="infusioncrafting">BEEINFUSION8</page>
-<page type="infusioncrafting">BEEINFUSION9</page>
-<page type="infusioncrafting">BEEINFUSION0</page>
 </project>
 
 <project id="FERTILIZER">

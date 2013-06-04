@@ -1,6 +1,7 @@
 package magicbees.tileentity;
 
 import magicbees.bees.Allele;
+import magicbees.main.utils.VersionInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,7 @@ import forestry.api.genetics.IEffectData;
 
 public class TileEntityEffectJar extends TileEntity implements IInventory
 {
-	public static final String entityName = "tileEntity.effectJar";
+	public static final String tileEntityName = VersionInfo.ModName.toLowerCase() + ".effectJar";
 	
 	private String ownerName;
 	private EffectJarHousing housingLogic;

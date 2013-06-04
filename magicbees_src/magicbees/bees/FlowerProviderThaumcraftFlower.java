@@ -53,7 +53,7 @@ public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.magic");
+		return LocalizationManager.getLocalizedString("flowerProvider.magic");
 	}
 
 	@Override

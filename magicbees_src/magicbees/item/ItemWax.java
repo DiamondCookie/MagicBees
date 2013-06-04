@@ -49,7 +49,7 @@ public class ItemWax extends Item
 	@SideOnly(Side.CLIENT)
 	public Icon getIconFromDamage(int meta)
 	{
-		return (WaxType.values()[meta].sparkly) ? this.secondaryIcon : this.itemIcon;
+		return (WaxType.values()[meta].sparkly) ? this.itemIcon : this.secondaryIcon;
 	}
 	
 	@Override

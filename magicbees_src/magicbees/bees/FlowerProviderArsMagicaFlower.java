@@ -49,7 +49,7 @@ public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.arsmagica");
+		return LocalizationManager.getLocalizedString("flowerProvider.arsmagica");
 	}
 
 	@Override

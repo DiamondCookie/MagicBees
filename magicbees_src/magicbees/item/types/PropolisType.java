@@ -11,6 +11,7 @@ public enum PropolisType
 	WATER("water", 0x1054A1),
 	EARTH("earth", 0x00a000),
 	INFUSED("magic", 0xaa32fc),
+	UNSTABLE("unstable", 0xEFB492),
 	;
 	
 	private PropolisType(String pName, int overlayColour)

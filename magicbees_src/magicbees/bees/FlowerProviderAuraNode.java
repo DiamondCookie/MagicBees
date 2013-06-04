@@ -34,7 +34,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	@Override
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.node");
+		return LocalizationManager.getLocalizedString("flowerProvider.node");
 	}
 
 	@Override

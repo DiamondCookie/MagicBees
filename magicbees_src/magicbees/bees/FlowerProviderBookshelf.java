@@ -51,6 +51,6 @@ public class FlowerProviderBookshelf implements IFlowerProvider
 
 	public String getDescription()
 	{
-		return LocalizationManager.getLocalizedString("tb.bees.flower.book");
+		return LocalizationManager.getLocalizedString("flowerProvider.book");
 	}
 }

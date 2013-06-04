@@ -135,6 +135,11 @@ public class ThaumcraftHelper
 			
 			registerResearchXML();
 		}
+		else
+		{
+			// Switch off TC-dependant items.
+			ResourceType.LORE_FRAGMENT.setHidden();
+		}
 	}
 	
 	public static void getBlocks()
@@ -263,17 +268,17 @@ public class ThaumcraftHelper
 		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OCCULT.ordinal(), tags);
 		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OTHERWORLDLY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.TC_STARK.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.HARMONIZING.ordinal(), tags);
 		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 4);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.TC_INFUSED.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.INFUSED.ordinal(), tags);
 		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.MOTION, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.TC_AIRY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.AIRY.ordinal(), tags);
 		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.POWER, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.TC_FIREY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.FIREY.ordinal(), tags);
 		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.COLD, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.TC_WATERY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.WATERY.ordinal(), tags);
 		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.ROCK, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.TC_EARTHY.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.EARTHY.ordinal(), tags);
 		
 		// Tagging capsules.
 		tags = new ObjectTags().add(EnumTag.VOID, 2).add(EnumTag.MAGIC, 2);
@@ -542,27 +547,16 @@ public class ThaumcraftHelper
 			ObjectTags tags;
 			
 			tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.PLANT, 10).add(EnumTag.INSECT, 10);
-			ResearchItem startNode = new ResearchItem("TBSTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_STARTNODE))
+			ResearchItem startNode = new ResearchItem("BEESTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_STARTNODE))
 				.setParents(ResearchList.getResearch("UTFT"))
 				.registerResearchItem();
 			
-			tags = new ObjectTags().add(EnumTag.INSECT, 9).add(EnumTag.MAGIC, 4).add(EnumTag.FLUX, 4);
-			ResearchItem starkHint = new ResearchItem("STARKHINT", tags, 5, 2, ItemInterface.getItem("beeQueenGE"))
-				.setParents(startNode)
-				.registerResearchItem();
-			
-			tags = new ObjectTags().add(EnumTag.INSECT, 15).add(EnumTag.MAGIC, 5).add(EnumTag.WATER, 5).add(EnumTag.EARTH, 5)
-					.add(EnumTag.WIND, 5).add(EnumTag.FIRE, 5);
-			ResearchItem beeInfusion = new ResearchItem("BEEINFUSION", tags, 5, 3, Config.miscResources.getStackForType(ResourceType.RESEARCH_BEEINFUSION))
-				.setParents(starkHint).setHidden()
-				.registerResearchItem();
-			
-			tags = new ObjectTags().add(EnumTag.CROP, 20).add(EnumTag.EARTH, 20).add(EnumTag.WATER, 5);
+			tags = new ObjectTags().add(EnumTag.CROP, 15).add(EnumTag.EARTH, 15).add(EnumTag.WATER, 15);
 			ResearchItem fertilizer = new ResearchItem("FERTILIZER", tags, 16, 0, ItemInterface.getItem("apatite"))
 				.setParents(startNode)
 				.registerResearchItem();
 			
-			tags = new ObjectTags().add(EnumTag.TOOL, 6).add(EnumTag.INSECT, 15).add(EnumTag.BEAST, 2)
+			tags = new ObjectTags().add(EnumTag.TOOL, 6).add(EnumTag.INSECT, 10).add(EnumTag.BEAST, 2)
 					.add(EnumTag.MAGIC, 5);
 			ResearchItem  magicFrame = new ResearchItem("HIVEFRAME", tags, 10, -2, Config.hiveFrameMagic)
 				.setParents(startNode)
@@ -575,13 +569,13 @@ public class ThaumcraftHelper
 				.registerResearchItem();
 			
 			tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 10).add(EnumTag.LIFE, 5).add(EnumTag.EXCHANGE, 6)
-					.add(EnumTag.HEAL, 2).add(EnumTag.FLOWER, 6);
+					.add(EnumTag.FLOWER, 6);
 			ResearchItem  gentleFrame = new ResearchItem("HIVEFRAMEGENTLE", tags, 12, -2, Config.hiveFrameGentle)
 				.setParents(magicFrame).setHidden()
 				.registerResearchItem();
 			
 			tags = new ObjectTags().add(EnumTag.TOOL, 4).add(EnumTag.INSECT, 10).add(EnumTag.LIFE, 6).add(EnumTag.EXCHANGE, 8)
-					.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 4).add(EnumTag.FLESH, 4);
+					.add(EnumTag.MAGIC, 8).add(EnumTag.MOTION, 4);
 			ResearchItem  metabolicFrame = new ResearchItem("HIVEFRAMEMETA", tags, 9, -3, Config.hiveFrameMetabolic)
 				.setParents(magicFrame).setHidden()
 				.registerResearchItem();

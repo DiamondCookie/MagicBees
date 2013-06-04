@@ -29,21 +29,23 @@
     <entry key="comb.occult">Occult Comb</entry>
     <entry key="comb.otherworldly">Otherworldy Comb</entry>
     <entry key="comb.paper">Papery Comb</entry>
-    <entry key="comb.stark">Stark Comb</entry>
-    <entry key="comb.air">Airy Comb</entry>
+    <entry key="comb.soul">Soul Comb</entry>
+    <entry key="comb.furtive">Furtive Comb</entry>
+    <entry key="comb.aware">Memory Comb</entry>
+	<entry key="comb.time">Temporal Comb</entry>
+    <entry key="comb.harmonizing">Harmonizing Comb</entry>
+    <entry key="comb.air">Windy Comb</entry>
     <entry key="comb.fire">Firey Comb</entry>
     <entry key="comb.water">Watery Comb</entry>
     <entry key="comb.earth">Earthy Comb</entry>
     <entry key="comb.magic">Infused Comb</entry>
-    <entry key="comb.aware">Memory Comb</entry>
-    <entry key="comb.furtive">Furtive Comb</entry>
-    <entry key="comb.soul">Soul Comb</entry>
     <entry key="comb.essence">Essence Comb</entry>
     <entry key="comb.potent">Potent Comb</entry>
 
     <!-- Wax names -->
     <entry key="wax.magic">Magic Wax</entry>
     <entry key="wax.soul">Soulful Wax</entry>
+	<entry key="wax.amnesic">Amnesic Wax</entry>
 
     <!-- Drop names -->
     <entry key="drop.enchanting">Enchanting Drop</entry>
@@ -71,13 +73,15 @@
     <entry key="propolis.water">Flowing Propolis</entry>
     <entry key="propolis.earth">Stony Propolis</entry>
     <entry key="propolis.magic">Infused Propolis</entry>
+	<entry key="propolis.unstable">Unstable Propolis</entry>
 
     <!-- Misc Resources -->
     <entry key="resource.fragment">Lore Fragment</entry>
     <entry key="resource.lump">Aromatic Lump</entry>
     <entry key="resource.fertilizer">Concentrated Compound</entry>
+	<entry key="resource.skullChip">Wither Skeleton Bone Chip</entry>
+	<entry key="resource.skullFragment">Wither Skeleton Skull Fragment</entry>
     <entry key="resource.startNode">Bees and Magic</entry>
-    <entry key="resource.beeEnchant">Stark Infusion</entry>
     <entry key="resource.crystalAspect">Crystalized %s Aspect</entry>
 
     <!-- Frames -->
@@ -126,6 +130,17 @@
     <!-- Miscellaneous names -->
     <entry key="backpack.thaumaturge">Thaumaturge's Backpack</entry>
     <entry key="itemGroup.magicBees">Thaumic Bees</entry>
+	
+	<!-- Escritoire Strings -->
+	<entry key="research.requiresBlock">Requires a foundation of %s</entry>
+	<entry key="research.requiresPhase">Occurs between the %s and %s</entry>
+	<entry key="research.requiresPhaseSingle">During the %s</entry>
+	<entry key="research.requiresNode">Only occurs when a node is near</entry>
+	<entry key="research.requiresNodeSpecific">Only occurs within influence of a %s node</entry>
+	<entry key="research.requiresBiome">Occurs within a %s</entry>
+	<entry key="research.node.pure">Pure</entry>
+	<entry key="research.node.dark">Dark</entry>
+	<entry key="research.node.chaotic">Chaotic</entry>
 
     <!-- Species names -->
     <entry key="magicbees.speciesMystical">Mystical</entry>
@@ -136,8 +151,6 @@
     <entry key="magicbees.speciesUnusual.description">"A curious specimen for my collection!"|Junior Apiarist</entry>
     <entry key="magicbees.speciesAttuned">Attuned</entry>
     <entry key="magicbees.speciesAttuned.description">They fly as though guided by unseen threads through the air.|Apinomicon</entry>
-    <entry key="magicbees.speciesInfernal">Infernal</entry>
-    <entry key="magicbees.speciesInfernal.description">Spawned deep within the hellish realm, they have acquired unknown abilities|Apinomicon</entry>
     <entry key="magicbees.speciesOblivion">Oblivion</entry>
     <entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this world, or some other.|Apinomicon</entry>
     
@@ -181,6 +194,8 @@
     <entry key="magicbees.speciesGhastly.description">"*sigh*... Really, Myst?"|Taveria, irritated Apiarist</entry>
     <entry key="magicbees.speciesSpidery">Spidery</entry>
     <entry key="magicbees.speciesSpidery.description">Spiderbee; n. Does whatever a spider-bee does.|Unknown</entry>
+    <entry key="magicbees.speciesSmouldering">Smouldering</entry>
+    <entry key="magicbees.speciesSmouldering.description">The Skulking bees have become alight with the fire of the ever-burning Blazes.|Apinomicon</entry>
     
     <entry key="magicbees.speciesTimely">Timely</entry>
     <entry key="magicbees.speciesTimely.description">"An apiarist is never late. He arrives precisely when he means to!"|Sengir, Mad Apiarist</entry>
@@ -188,6 +203,15 @@
     <entry key="magicbees.speciesLordly.description">They live in peace, within the sight of the Eye of Harmony|Tattered Remains of ancient Apinomicon</entry>
     <entry key="magicbees.speciesDoctoral">Doctoral</entry>
     <entry key="magicbees.speciesDoctoral.description">"Would you like a Jelly Baby?"|Passing stranger with a great scarf and a blue box</entry>
+	
+    <entry key="magicbees.speciesInfernal">Infernal</entry>
+    <entry key="magicbees.speciesInfernal.description">Spawned deep within the hellish realm, none have survived long enough to determine their abilities.|Apinomicon</entry>
+    <entry key="magicbees.speciesHateful">Hateful</entry>
+    <entry key="magicbees.speciesHateful.description">|Apinomicon</entry>
+    <entry key="magicbees.speciesSpiteful">Spiteful</entry>
+    <entry key="magicbees.speciesSpiteful.description">They guard their territory fiercely, with the zeal of fiends, and welts of fire.|Apinomicon</entry>
+    <entry key="magicbees.speciesWithering">Withering</entry>
+    <entry key="magicbees.speciesWithering.description">Their mere passing causes life to fail, slowly drawing all energy from their territory.|Apinomicon</entry>
     
     <entry key="magicbees.speciesIron">Ferrous</entry>
     <entry key="magicbees.speciesIron.description">Having absorbed some of the base metal, these bees can concentrate the essence of iron from the region.|Apinomicon</entry>
@@ -290,7 +314,8 @@
 	<entry key="magicbees.effectDigSpeed">Mining</entry>
 	<entry key="magicbees.effectMoveSpeed">Swiftness</entry>
 	<entry key="magicbees.effectSlowSpeed">Time Warp</entry>
-    <entry key="magicbees.effectNodeGeneration">Aura Attract</entry>
+	<entry key="magicbees.effectWithering">Withering</entry>
+    <entry key="magicbees.effectNodeAttract">Aura Attract</entry>
     <entry key="magicbees.effectNodePurify">Purify Aura</entry>
     <entry key="magicbees.effectNodeFlux">Aura Flux</entry>
     <entry key="magicbees.effectNodeCharge">Aura Charge</entry>
@@ -299,6 +324,7 @@
 	<entry key="magicbees.effectWispy">Wispy</entry>
 	<entry key="magicbees.effectGhastly">Ghastly</entry>
 	<entry key="magicbees.effectSpidery">Spidery</entry>
+	<entry key="magicbees.effectAblaze">Ablaze</entry>
 	<entry key="magicbees.effectManaDrainer">Vortex</entry>
 	<entry key="magicbees.effectAMWisp">Spiritual</entry>
 	<entry key="flowerProvider.book">Books</entry>
@@ -323,6 +349,8 @@
     <entry key="classification.time.description">Though clever use of time travel, these bees accomplish twice as much in one day.|Apinomicon</entry>
     <entry key="classification.soul">Soulful</entry>
     <entry key="classification.soul.description">It would be eerie to think that they collected the souls of the deceased.|Apinomicon</entry>
+    <entry key="classification.abominable">Abominable</entry>
+    <entry key="classification.abominable.description">Spawned in the firey depths of the Nether, there is nothing pleasant about these creatures.|Apinomicon</entry>
     <entry key="classification.metallic">Metallic</entry>
     <entry key="classification.metallic.description">They collect fragments of metal and combine them into larger portions.|Apinomicon</entry>
     <entry key="classification.gem">Gem</entry>

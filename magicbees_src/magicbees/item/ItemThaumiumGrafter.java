@@ -2,6 +2,7 @@ package magicbees.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.main.Config;
+import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -25,8 +26,8 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 		this.setMaxStackSize(1);
 		this.setMaxDamage(15);
 		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
-		this.setUnlocalizedName("thaumicbees:thaumiumGrafter");
-		GameRegistry.registerItem(this, "thaumicbees:thaumiumGrafter");
+		this.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":thaumiumGrafter");
+		GameRegistry.registerItem(this, VersionInfo.ModName.toLowerCase() + ":thaumiumGrafter");
 	}
 
 	@Override

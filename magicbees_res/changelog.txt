@@ -1,9 +1,13 @@
+2.0.0
+Enabling Retrogen of hives in case you missed them initially.
 Tearing out all old mutations, rewriting from the ground up. Maybe these will be less frustrating. ;)
 New bee species
 New hives
 Added zh_CN localization (by crafteverywhere)
 Added de_DE localization (by philip98)
 Added ru_RU localization (by CrazyTechno)
+
+=========== Old Thaumic Bees Changelog ================
 
 1.4.7b
 Fix for creative mode crash when a certain config option is enabled.

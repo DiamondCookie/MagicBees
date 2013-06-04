@@ -24,15 +24,17 @@ public class Allele implements IAllele
 	public static IAlleleFlowers flowerAuraNode;
 	
 	public static IAlleleEffect effectCleansing;
-	public static IAlleleEffect digSpeed;
-	public static IAlleleEffect moveSpeed;
-	public static IAlleleEffect slowSpeed;
+	public static IAlleleEffect effectDigSpeed;
+	public static IAlleleEffect effectMoveSpeed;
+	public static IAlleleEffect effectSlowSpeed;
+	public static IAlleleEffect effectWithering;
 	
 	public static IAlleleEffect spawnBrainyZombie;
 	public static IAlleleEffect spawnWisp;
 	public static IAlleleEffect spawnBats;
 	public static IAlleleEffect spawnGhast;
 	public static IAlleleEffect spawnSpider;
+	public static IAlleleEffect spawnBlaze;
 	public static IAlleleEffect spawnManaDrainer;
 	public static IAlleleEffect spawnWispOrHecate;
 	
@@ -93,15 +95,19 @@ public class Allele implements IAllele
 		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);
 
 		Allele.effectCleansing = new AlleleEffectCure("Curative", false);
-		Allele.digSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);
-		Allele.moveSpeed = new AlleleEffectPotion("MoveSpeed", Potion.moveSpeed, 10, false);
-		Allele.slowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false);
+		Allele.effectDigSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);
+		Allele.effectMoveSpeed = new AlleleEffectPotion("MoveSpeed", Potion.moveSpeed, 10, false);
+		Allele.effectSlowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false);
+		Allele.effectWithering = new AlleleEffectPotion("Withering", Potion.wither, 10, false);
 
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
 			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);
 		
 		Allele.spawnSpider = new AlleleEffectSpawnMob("Spidery", false, "Spider", "mob.spider.step")
 			.setThrottle(400).setChanceToSpawn(70).setMaxMobsInSpawnZone(4);
+		
+		Allele.spawnBlaze = new AlleleEffectSpawnMob("Ablaze", false, "Blaze", "mob.blaze.breathe")
+			.setThrottle(800).setChanceToSpawn(60).setMaxMobsInSpawnZone(2);
 	}
 	
 	public static void registerDeprecatedAlleleReplacements()
@@ -116,9 +122,9 @@ public class Allele implements IAllele
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeFlux",			effectNodeFlux);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeCharge",		effectNodeCharge);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectCurative",			effectCleansing);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectDigSpeed",	digSpeed);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectMoveSpeed",	moveSpeed);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectSlowSpeed",	slowSpeed);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectDigSpeed",	effectDigSpeed);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectMoveSpeed",	effectMoveSpeed);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectSlowSpeed",	effectSlowSpeed);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.Ghast",					spawnGhast);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.Spider",					spawnSpider);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEsoteric",			BeeSpecies.ESOTERIC);

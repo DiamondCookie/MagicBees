@@ -74,6 +74,8 @@ public class MagicBees
 	{
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);
+		
+		proxy.registerRenderers();
 
 		BeeManager.ititializeBees();
 		

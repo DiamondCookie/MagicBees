@@ -25,6 +25,7 @@ import magicbees.item.types.CapsuleType;
 import magicbees.item.types.HiveFrameType;
 import magicbees.item.types.NuggetType;
 import magicbees.item.types.ResourceType;
+import magicbees.item.types.WaxType;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ArsMagicaHelper;
@@ -70,6 +71,7 @@ public class Config
 	public String	ThaumaturgeExtraItems;
 	public int		CapsuleStackSizeMax;
 	public boolean	DoHiveRetrogen;
+	public boolean	ForceHiveRegen;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -111,6 +113,8 @@ public class Config
 	//----- Forestry Blocks ------------------------------------
 	//----- Forestry Items -------------------------------------
 	public static Item fBeeComb;
+	public static Item fHoneydew;
+	public static Item fHoneyDrop;
 	public static Item fPollen;
 	public static Item fCraftingResource;
 	//----- Thaumcraft Blocks ----------------------------------
@@ -159,7 +163,6 @@ public class Config
 	public Config(File configFile)
 	{
 		this.configuration = new Configuration(configFile);
-		
 		this.configuration.load();
 		this.doMiscConfig();
 	}
@@ -191,7 +194,6 @@ public class Config
 				Item.itemsList[planksWood.blockID] = null;
 		        Item.itemsList[planksWood.blockID] = new ItemMultiTextureTile(planksWood.blockID - 256, planksWood, PlankType.getAllNames());
 
-		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
 				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", MagicBees.getConfig().planksWood.blockID + "@" + PlankType.GREATWOOD.ordinal());
 				FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", MagicBees.getConfig().planksWood.blockID + "@" + PlankType.SILVERWOOD.ordinal());
 		        
@@ -206,13 +208,14 @@ public class Config
 			    Item.itemsList[slabWoodFull.blockID] = null;
 			    Item.itemsList[slabWoodFull.blockID] = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf, slabWoodFull, true);
 			    
+		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
 			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
 			}
 		}
 		
 		effectJar = new BlockEffectJar(configuration.getBlock("effectJar", blockIdBase++).getInt());
 		GameRegistry.registerBlock(effectJar, "effectJar");
-		GameRegistry.registerTileEntity(TileEntityEffectJar.class, TileEntityEffectJar.entityName);
+		GameRegistry.registerTileEntity(TileEntityEffectJar.class, TileEntityEffectJar.tileEntityName);
 		
 		hive = new BlockHive(configuration.getBlock("hives", blockIdBase++).getInt());
 		GameRegistry.registerBlock(hive, "hive");
@@ -236,7 +239,7 @@ public class Config
 		int itemIDBase = 26090;
 
 		combs= new ItemComb(configuration.getItem("combs", itemIDBase++).getInt() - 256);
-		wax = new ItemWax(configuration.getItem("wax", itemIDBase++).getInt() - 256);
+		wax = new ItemWax(configuration.getItem("wax", itemIDBase++).getInt() - 256);		
 		propolis = new ItemPropolis(configuration.getItem("propolis", itemIDBase++).getInt() - 256);
 		drops = new ItemDrop(configuration.getItem("drop", itemIDBase++).getInt() - 256);
 		miscResources = new ItemMiscResources(configuration.getItem("miscResources", itemIDBase++).getInt() - 256);
@@ -305,8 +308,8 @@ public class Config
 
 		jellyBaby = new ItemFood(configuration.getItem("jellyBabies", itemIDBase++).getInt() - 256, 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setUnlocalizedName("magicbees:jellyBabies");
-		GameRegistry.registerItem(jellyBaby, "magicbees:jellyBabies");
+		jellyBaby.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":jellyBabies");
+		GameRegistry.registerItem(jellyBaby, VersionInfo.ModName.toLowerCase() + ":jellyBabies");
 		
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, configuration.getItem("voidCapsule", itemIDBase++).getInt() - 256, this.CapsuleStackSizeMax);
@@ -336,6 +339,8 @@ public class Config
 		nuggets = new ItemNugget(configuration.getItem("beeNuggets", itemIDBase++).getInt() - 256);
 		
 		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.MAGIC));
+		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.AMNESIC));
 		OreDictionary.registerOre("nuggetIron", nuggets.getStackForType(NuggetType.IRON));
 		OreDictionary.registerOre("nuggetCopper", nuggets.getStackForType(NuggetType.COPPER));
 		OreDictionary.registerOre("nuggetTin", nuggets.getStackForType(NuggetType.TIN));
@@ -392,9 +397,24 @@ public class Config
 		p.comment = "set to true to show the current moon phase in mouse-over text.";
 		this.MoonDialShowsPhaseInText = p.getBoolean(false);
 		
-		p = configuration.get("general", "performHiveRetrogen", false);
+		p = configuration.get("Retrogen", "doHiveRetrogen", false);
 		p.comment = "Set to true to enable retroactive worldgen of Magic Bees hives.";
 		this.DoHiveRetrogen = p.getBoolean(false);
+		
+		p = configuration.get("Retrogen", "forceHiveRegen", false);
+		p.comment = "Set to true to force a regeneration of Magic Bees hives. Will set config option to false after parsed. (Implies doHiveRetrogen=true)";
+		this.ForceHiveRegen = p.getBoolean(false);
+		
+		if (this.ForceHiveRegen)
+		{
+			FMLLog.info("Magic Bees will aggressively regenerate hives in all chunks for this game instance. Config option set to false.");
+			p.set(false);
+			this.DoHiveRetrogen = true;
+		}
+		else if (this.DoHiveRetrogen)
+		{
+			FMLLog.info("Magic Bees will attempt to regenerate hives in chunks that were generated before the mod was added.");
+		}
 	}
 
 }

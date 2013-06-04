@@ -44,7 +44,7 @@ public enum MoonPhase
 	
 	public String getLocalizedName()
 	{
-		return LocalizationManager.getLocalizedString("tb.moon." + this.phaseName);
+		return LocalizationManager.getLocalizedString("moon." + this.phaseName);
 	}
 	
 	public static MoonPhase getMoonPhase(World w)

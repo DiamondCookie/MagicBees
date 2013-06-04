@@ -1,5 +1,6 @@
 package magicbees.item;
 
+import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -20,8 +21,8 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoo
 		this.setMaxStackSize(1);
 		this.setMaxDamage(30);
 		this.setCreativeTab(forestry.api.core.Tabs.tabApiculture);
-		this.setUnlocalizedName("thaumicbees:thaumiumScoop");
-		GameRegistry.registerItem(this, "thaumicbees:thaumiumScoop");
+		this.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":thaumiumScoop");
+		GameRegistry.registerItem(this, VersionInfo.ModName.toLowerCase() + ":thaumiumScoop");
 	}
 
 	@Override

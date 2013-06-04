@@ -8,6 +8,8 @@ public enum ResourceType
 	LORE_FRAGMENT("fragment", true),
 	AROMATIC_LUMP("lump", true),
 	EXTENDED_FERTILIZER("fertilizer", true),
+	SKULL_CHIP("skullChip", true),
+	SKULL_FRAGMENT("skullFragment", true),
 	
 	// Dummy items for Thaumanomicon research icons.
 	//   These won't ever actually exist in-game, and so 
@@ -22,6 +24,11 @@ public enum ResourceType
 	}
 	private String name;
 	public boolean showInList;
+	
+	public void setHidden()
+	{
+		this.showInList = false;
+	}
 	
 	public String getName()
 	{

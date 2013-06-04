@@ -42,21 +42,22 @@ public class EffectJarRenderer extends TileEntitySpecialRenderer implements IIte
 	{
 		switch (type)
 		{
+		default:
 		case ENTITY:
 			doRender(0, 0, 0, 1.8f);
 			break;
 			
 		case EQUIPPED:
+			doRender(0, 0, 0, 1.5f);
+			break;
+			
+		case EQUIPPED_FIRST_PERSON:
 			doRender(-.5, .5, 0.25, 1f);
 			break;
 			
 		case INVENTORY:
 			doRender(0.3, 0.25, 0.3, 1.5f);
-			break;
-			
-		default:
-			break;
-		
+			break;		
 		}
 	}
 	
