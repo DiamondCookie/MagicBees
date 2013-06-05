@@ -81,6 +81,9 @@
     <entry key="resource.fertilizer">Concentrated Compound</entry>
 	<entry key="resource.skullChip">Wither Skeleton Bone Chip</entry>
 	<entry key="resource.skullFragment">Wither Skeleton Skull Fragment</entry>
+	<entry key="resource.dragonDust">Draconic Dust</entry>
+	<entry key="resource.dragonChunk">Draconic Chunk</entry>
+	<entry key="resource.essenceFalseLife">Essence of False Life</entry>
     <entry key="resource.startNode">Bees and Magic</entry>
     <entry key="resource.crystalAspect">Crystalized %s Aspect</entry>
 
@@ -129,7 +132,7 @@
 
     <!-- Miscellaneous names -->
     <entry key="backpack.thaumaturge">Thaumaturge's Backpack</entry>
-    <entry key="itemGroup.magicBees">Thaumic Bees</entry>
+    <entry key="itemGroup.magicBees">Magic Bees</entry>
 	
 	<!-- Escritoire Strings -->
 	<entry key="research.requiresBlock">Requires a foundation of %s</entry>
@@ -137,7 +140,7 @@
 	<entry key="research.requiresPhaseSingle">During the %s</entry>
 	<entry key="research.requiresNode">Only occurs when a node is near</entry>
 	<entry key="research.requiresNodeSpecific">Only occurs within influence of a %s node</entry>
-	<entry key="research.requiresBiome">Occurs within a %s</entry>
+	<entry key="research.requiresBiome">Occurs within a %s biome</entry>
 	<entry key="research.node.pure">Pure</entry>
 	<entry key="research.node.dark">Dark</entry>
 	<entry key="research.node.chaotic">Chaotic</entry>
@@ -151,8 +154,6 @@
     <entry key="magicbees.speciesUnusual.description">"A curious specimen for my collection!"|Junior Apiarist</entry>
     <entry key="magicbees.speciesAttuned">Attuned</entry>
     <entry key="magicbees.speciesAttuned.description">They fly as though guided by unseen threads through the air.|Apinomicon</entry>
-    <entry key="magicbees.speciesOblivion">Oblivion</entry>
-    <entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this world, or some other.|Apinomicon</entry>
     
     <entry key="magicbees.speciesEldritch">Eldritch</entry>
     <entry key="magicbees.speciesEldritch.description">The potential that was locked within this bee's ancestors has now come to the fore.|Apinomicon</entry>
@@ -212,6 +213,17 @@
     <entry key="magicbees.speciesSpiteful.description">They guard their territory fiercely, with the zeal of fiends, and welts of fire.|Apinomicon</entry>
     <entry key="magicbees.speciesWithering">Withering</entry>
     <entry key="magicbees.speciesWithering.description">Their mere passing causes life to fail, slowly drawing all energy from their territory.|Apinomicon</entry>
+	
+    <entry key="magicbees.speciesOblivion">Oblivion</entry>
+    <entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this world, or some other.|Apinomicon</entry>
+    <entry key="magicbees.speciesNameless">Nameless</entry>
+    <entry key="magicbees.speciesNameless.description">"Other naturalists have refused to study these bees. I must know why."|Tattered Research Notes</entry>
+    <entry key="magicbees.speciesAbandoned">Abandoned</entry>
+    <entry key="magicbees.speciesAbandoned.description">"The more I study these bees, the more I feel they do not belong here, or anywhere else."|Tattered Research Notes</entry>
+    <entry key="magicbees.speciesForlorn">Forlorn</entry>
+    <entry key="magicbees.speciesForlorn.description">"I am now convinced they were left in our universe on purpose by some unknowable beings."|Tattered Research Notes</entry>
+    <entry key="magicbees.speciesDraconic">Draconic</entry>
+    <entry key="magicbees.speciesDraconic.description">"With a fel sound, they erupted from their hive. That was the last we ever saw of Gerald."|Tattered Research Notes</entry>
     
     <entry key="magicbees.speciesIron">Ferrous</entry>
     <entry key="magicbees.speciesIron.description">Having absorbed some of the base metal, these bees can concentrate the essence of iron from the region.|Apinomicon</entry>
@@ -351,6 +363,8 @@
     <entry key="classification.soul.description">It would be eerie to think that they collected the souls of the deceased.|Apinomicon</entry>
     <entry key="classification.abominable">Abominable</entry>
     <entry key="classification.abominable.description">Spawned in the firey depths of the Nether, there is nothing pleasant about these creatures.|Apinomicon</entry>
+    <entry key="classification.Extrinsic">Extrinsic</entry>
+    <entry key="classification.Extrinsic.description">It is unknown whether these creatures gave rise to the family Apidae in this universe, or if these evolved seperately.|Apinomicon</entry>
     <entry key="classification.metallic">Metallic</entry>
     <entry key="classification.metallic.description">They collect fragments of metal and combine them into larger portions.|Apinomicon</entry>
     <entry key="classification.gem">Gem</entry>

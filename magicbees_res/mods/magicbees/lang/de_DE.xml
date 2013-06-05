@@ -168,7 +168,7 @@
 	<entry key="magicbees.effectBrainy">Intelligent</entry>
 	<entry key="magicbees.effectBatty">Verrückt</entry>
 	<entry key="magicbees.effectWispy">Dünn</entry>
-	<entry key="magicbees.Ghast">Gespenstisch</entry>
+	<entry key="magicbees.effectGhastly">Gespenstisch</entry>
 	<entry key="flowerProvider.book">Bücher</entry>
 	<entry key="flowerProvider.magic">Magische Blumen</entry>
 	<entry key="flowerProvider.node">Knotenpunkt</entry>
