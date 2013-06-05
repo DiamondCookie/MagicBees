@@ -23,6 +23,7 @@ public enum BeeClassification implements IClassification
 	SOUL("Soul", "animus"),
 	
 	ABOMINABLE("Abominable", "detestabilis"),
+	EXTRINSIC("Extrinsic", "extrarius"),
 	
 	METALLIC("Metallic", "metallicis"),
 	GEM("Gem", "lapidi"),

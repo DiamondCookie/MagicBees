@@ -10,6 +10,9 @@ public enum ResourceType
 	EXTENDED_FERTILIZER("fertilizer", true),
 	SKULL_CHIP("skullChip", true),
 	SKULL_FRAGMENT("skullFragment", true),
+	DRAGON_DUST("dragonDust", true),
+	DRAGON_CHUNK("dragonChunk", true),
+	ESSENCE_FALSE_LIFE("essenceFalseLife", true),
 	
 	// Dummy items for Thaumanomicon research icons.
 	//   These won't ever actually exist in-game, and so 

@@ -51,9 +51,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.VEILED, 0x72D361, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	ATTUNED("Attuned", "similis",
 			BeeClassification.VEILED, 0x0086A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
-			
-	OBLIVION("Oblivion", "oblivioni",
-			BeeClassification.VEILED, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	
 	ELDRITCH("Eldritch", "prodigiosus",
 			BeeClassification.VEILED, 0x8D75A0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -122,6 +119,17 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.ABOMINABLE, 0x5FCC00, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false),
 	WITHERING("Withering", "vietus",
 			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.NORMAL, true, false),
+
+	OBLIVION("Oblivion", "oblivioni",
+			BeeClassification.ABOMINABLE, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
+	NAMELESS("Nameless", "sine nomine",
+			BeeClassification.ABOMINABLE, 0x8ca7cb, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
+	ABANDONED("Abandoned", "reliquit",
+			BeeClassification.ABOMINABLE, 0xc5cb8c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
+	FORLORN("Forlorn", "perditus",
+			BeeClassification.ABOMINABLE, 0xcba88c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
+	DRACONIC("Draconic", "draconic",
+			BeeClassification.ABOMINABLE, 0x9f56ad, 0x5a3b62, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
 			
 	IRON("Iron", "ferrus",
 			BeeClassification.METALLIC, 0x686868, 0xE9E9E9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -333,9 +341,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		ELDRITCH.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 15)
 			.setGenome(BeeGenomeManager.getTemplateEldritch())
 			.register();
-		OBLIVION.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 14)
-			.setGenome(BeeGenomeManager.getTemplateOblivion())
-			.register();
 		
 		ESOTERIC.addProduct(Config.combs.getStackForType(CombType.OCCULT), 18)
 			.setGenome(BeeGenomeManager.getTemplateEsoteric())
@@ -422,8 +427,24 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		SPITEFUL.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 24)
 			.setGenome(BeeGenomeManager.getTemplateSpiteful())
 			.register();
-		WITHERING.addSpecialty(Config.miscResources.getStackForType(ResourceType.SKULL_CHIP), 5)
+		WITHERING.addSpecialty(Config.miscResources.getStackForType(ResourceType.SKULL_CHIP), 15)
 			.setGenome(BeeGenomeManager.getTemplateWithering())
+			.register();
+
+		OBLIVION.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 14)
+			.setGenome(BeeGenomeManager.getTemplateOblivion())
+			.register();
+		NAMELESS.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 19)
+			.setGenome(BeeGenomeManager.getTemplateNameless())
+			.register();
+		ABANDONED.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 24)
+			.setGenome(BeeGenomeManager.getTemplateAbandoned())
+			.register();
+		FORLORN.addProduct(Config.combs.getStackForType(CombType.FORGOTTEN), 30)
+			.setGenome(BeeGenomeManager.getTemplateForlorn())
+			.register();
+		DRACONIC.addSpecialty(Config.miscResources.getStackForType(ResourceType.DRAGON_DUST), 15)
+			.setGenome(BeeGenomeManager.getTemplateDraconic())
 			.register();
 		
 		IRON.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
@@ -579,6 +600,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	private boolean isSecret;
 	private boolean isCounted;
 	private boolean isActive;
+	private boolean isNocturnal;
 	private IClassification branch;
 	private HashMap<ItemStack, Integer> products;
 	private HashMap<ItemStack, Integer> specialties;
@@ -590,20 +612,19 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@SideOnly(Side.CLIENT)
 	private Icon[][] icons;
 	
-	private final static boolean defaultSecretSetting = false;
 	private final static int defaultBodyColour = 0xFF7C26;
 	
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour,
 			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
 		this(speciesName, genusName, classification, firstColour, defaultBodyColour,
-				preferredTemp, preferredHumidity, hasGlowEffect, defaultSecretSetting, true, isSpeciesDominant);
+				preferredTemp, preferredHumidity, hasGlowEffect, false, true, isSpeciesDominant);
 	}
 
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
 			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, genusName, classification, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, defaultSecretSetting, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, false, true, isSpeciesDominant);
 	}
 
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
@@ -641,6 +662,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		this.branch = classification;
 		this.branch.addMemberSpecies(this);
 		this.isActive = true;
+		this.isNocturnal = false;
 	}
 
 	public BeeSpecies setGenome(IAllele genome[])
@@ -775,7 +797,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	public boolean isNocturnal()
 	{
-		return this.genomeTemplate[EnumBeeChromosome.NOCTURNAL.ordinal()].equals(Allele.getBaseAllele("boolTrue"));
+		return this.isNocturnal;
 	}
 
 	@Override
@@ -820,65 +842,33 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	{
 		return icons[type.ordinal()][Math.min(renderPass, 2)];
 	}
-	
-	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, SMOULDERING, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
-
-	public void registerItemIcons(IconRegister itemMap)
-	{
-		this.icons = new Icon[EnumBeeType.values().length][3];
-		
-		String root = this.getIconPath();
-		
-		Icon body1 = itemMap.registerIcon(root + "body1");
-
-		for (int i = 0; i < EnumBeeType.values().length; i++)
-		{
-			if(EnumBeeType.values()[i] == EnumBeeType.NONE)
-				continue;
-			
-			icons[i][0] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".outline");
-			icons[i][1] = body1;
-			icons[i][2] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
-		}
-	}
-	
-	private String getIconPath()
-	{
-		String value;
-		
-		switch (this)
-		{
-		case SKULKING: case GHASTLY: case SPIDERY: case SMOULDERING:
-		case TC_BRAINY: case TC_WISPY: case TC_BATTY:
-		case AM_VORTEX: case AM_WIGHT:
-			value = VersionInfo.ModName.toLowerCase() + ":bees/skulking/";
-			break;
-			
-		default:
-			value = ForestryHelper.Name.toLowerCase() + ":bees/default/";
-			break;
-		}
-		
-		return value;
-	}
-
-	/// --------- Unused Functions ---------------------------------------------
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon(short texUID)
-	{
-		return null;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerTerrainIcons(IconRegister terrainMap) { }
 
 	@Override
 	public int getComplexity()
 	{
-		return 1;
+		return 1 + getMutationPathLength(this, new ArrayList<IAllele>());
+	}
+	
+	private int getMutationPathLength(IAllele species, ArrayList<IAllele> excludeSpecies)
+	{
+		int own = 1;
+		int highest = 0;
+		excludeSpecies.add(species);
+		
+		for(IMutation mutation : getRoot().getPaths(species, EnumBeeChromosome.SPECIES.ordinal())) {
+			if(!excludeSpecies.contains(mutation.getAllele0())) {
+				int otherAdvance = getMutationPathLength(mutation.getAllele0(), excludeSpecies);
+				if(otherAdvance > highest)
+					highest = otherAdvance;
+			}
+			if(!excludeSpecies.contains(mutation.getAllele1())) {
+				int otherAdvance = getMutationPathLength(mutation.getAllele1(), excludeSpecies);
+				if(otherAdvance > highest)
+					highest = otherAdvance;
+			}
+		}
+		
+		return own + (highest > 0 ? highest : 0);
 	}
 
 	@Override
@@ -942,9 +932,10 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	public ItemStack[] getResearchBounty(World world, String researcher, IIndividual individual, int bountyLevel)
 	{
+		System.out.println("Bounty level: " + bountyLevel);
 		ArrayList<ItemStack> bounty = new ArrayList<ItemStack>();
 		
-		if (true)//world.rand.nextFloat() < ((10f / bountyLevel)))
+		if (world.rand.nextFloat() < ((10f / bountyLevel)))
 		{
 			Collection<? extends IMutation> resultantMutations = getRoot().getCombinations(this);
 			if (resultantMutations.size() > 0)
@@ -954,12 +945,83 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			}
 		}
 		
+		for (ItemStack product : this.products.keySet())
+		{
+			ItemStack copy = product.copy();
+			copy.stackSize = 1 + world.rand.nextInt(bountyLevel / 2);
+			bounty.add(copy);
+		}
+		
+		for (ItemStack specialty : this.specialties.keySet())
+		{
+			ItemStack copy = specialty.copy();
+			copy.stackSize = world.rand.nextInt(bountyLevel / 3);
+			if (copy.stackSize > 0)
+			{
+				bounty.add(copy);
+			}
+		}
+		
 		return bounty.toArray(new ItemStack[bounty.size()]);
 	}
 
 	@Override
 	public String getEntityTexture()
 	{
-		return null;
+		return "/gfx/forestry/entities/bees/honeyBee.png";
 	}
+	
+	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, SMOULDERING, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
+
+	public void registerItemIcons(IconRegister itemMap)
+	{
+		this.icons = new Icon[EnumBeeType.values().length][3];
+		
+		String root = this.getIconPath();
+		
+		Icon body1 = itemMap.registerIcon(root + "body1");
+
+		for (int i = 0; i < EnumBeeType.values().length; i++)
+		{
+			if(EnumBeeType.values()[i] == EnumBeeType.NONE)
+				continue;
+			
+			icons[i][0] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".outline");
+			icons[i][1] = body1;
+			icons[i][2] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
+		}
+	}
+	
+	private String getIconPath()
+	{
+		String value;
+		
+		switch (this)
+		{
+		case SKULKING: case GHASTLY: case SPIDERY: case SMOULDERING:
+		case TC_BRAINY: case TC_WISPY: case TC_BATTY:
+		case AM_VORTEX: case AM_WIGHT:
+			value = VersionInfo.ModName.toLowerCase() + ":bees/skulking/";
+			break;
+			
+		default:
+			value = ForestryHelper.Name.toLowerCase() + ":bees/default/";
+			break;
+		}
+		
+		return value;
+	}
+
+	/// --------- Unused Functions ---------------------------------------------
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIcon(short texUID)
+	{
+		return icons[0][0];
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerTerrainIcons(IconRegister terrainMap) { }
 }

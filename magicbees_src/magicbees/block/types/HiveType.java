@@ -29,9 +29,9 @@ public enum HiveType
 	CURIOUS("curious", 12, true),
 	UNUSUAL("unusual", 12, true),
 	RESONANT("resonant", 12, true),
-	DEEP("deep", 4, true),
-	INFERNAL("infernal", 15, true),
-	OBLIVION("oblivion", 7, true),
+	DEEP("deep", 4, false),
+	INFERNAL("infernal", 15, false),
+	OBLIVION("oblivion", 7, false),
 	;
 	
 	private static String[] nameList;

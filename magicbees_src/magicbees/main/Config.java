@@ -258,8 +258,10 @@ public class Config
 					// 0x8700C6 = purpleish.
 					String backpackName = LocalizationManager.getLocalizedString("backpack.thaumaturge");
 					BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
-					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(tier1, def, EnumBackpackType.T1);					
+					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(tier1, def, EnumBackpackType.T1);
+					thaumaturgeBackpackT1.setUnlocalizedName("backpack.thaumaturgeT1");
 					thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(tier2, def, EnumBackpackType.T2);
+					thaumaturgeBackpackT2.setUnlocalizedName("backpack.thaumaturgeT2");
 					// Add additional items from configs to backpack.
 					if (MagicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
 					{

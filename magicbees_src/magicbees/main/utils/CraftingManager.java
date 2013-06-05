@@ -154,6 +154,41 @@ public class CraftingManager
 			"xxx", "xxx",
 			'x', Config.miscResources.getStackForType(ResourceType.SKULL_FRAGMENT)
 		});
+		
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.DRAGON_CHUNK), new Object[] {
+			"xxx", "xxx",
+			'x', Config.miscResources.getStackForType(ResourceType.DRAGON_DUST)
+		});
+		
+		GameRegistry.addRecipe(new ItemStack(Block.dragonEgg, 1), new Object[] {
+			"ccc", "cec", "ccc",
+			'c', Config.miscResources.getStackForType(ResourceType.DRAGON_CHUNK),
+			'e', Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE)
+		});
+
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE), new Object[] {
+			"gwg", "wfw", "gwg",
+			'g', Block.glass,
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'f', Block.plantRed
+		});
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE), new Object[] {
+			"wgw", "gfg", "wgw",
+			'g', Block.glass,
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'f', Block.plantRed
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameGentle), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
+			ItemInterface.getItem("frameUntreated")
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameMetabolic), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
+			ItemInterface.getItem("frameImpregnated"),
+			Item.magmaCream
+		});
 
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
 		{
@@ -490,24 +525,6 @@ public class CraftingManager
 				'f', Config.hiveFrameMagic,
 				'i', Item.ingotIron,
 				'w', Config.wax.getStackForType(WaxType.MAGIC)
-		});
-		
-		output = new ItemStack(Config.hiveFrameGentle);
-		GameRegistry.addRecipe(output, new Object[] {
-				"WwW", "wFw", "WwW",
-				'F', input,
-				'w', ItemInterface.getItem("beeswax"),
-				'W', Config.wax.getStackForType(WaxType.MAGIC)
-		});
-		
-		output = new ItemStack(Config.hiveFrameMetabolic);
-		GameRegistry.addShapelessRecipe(output, new Object[] {
-				Item.magmaCream,
-				input,
-				Config.wax.getStackForType(WaxType.MAGIC),
-				Config.wax.getStackForType(WaxType.MAGIC),
-				Config.wax.getStackForType(WaxType.MAGIC),
-				Config.wax.getStackForType(WaxType.MAGIC),
 		});
 		
 		output = new ItemStack(Config.hiveFrameNecrotic);

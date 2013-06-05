@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import thaumcraft.api.aura.EnumNodeType;
 
+import magicbees.main.Config;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.MoonPhase;
 import magicbees.main.utils.compat.ArsMagicaHelper;
@@ -59,15 +60,24 @@ public class BeeMutation implements IBeeMutation
 		
 		new BeeMutation(Allele.getBaseSpecies("Cultivated"), BeeSpecies.ELDRITCH, BeeSpecies.ESOTERIC, 10);
 		new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, 8);
-		new BeeMutation(BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, BeeSpecies.ARCANE, 8);
+		new BeeMutation(BeeSpecies.ESOTERIC, BeeSpecies.MYSTERIOUS, BeeSpecies.ARCANE, 8)
+			.setMoonPhaseBonus(MoonPhase.WAXING_CRESCENT, MoonPhase.WAXING_GIBBOUS, 1.2f);
 		
 		new BeeMutation(Allele.getBaseSpecies("Cultivated"), BeeSpecies.ELDRITCH, BeeSpecies.CHARMED, 10);
 		new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, 8);
 		new BeeMutation(BeeSpecies.CHARMED, BeeSpecies.ENCHANTED, BeeSpecies.SUPERNATURAL, 8)
-			.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.WANING_GIBBOUS);
+			.setMoonPhaseBonus(MoonPhase.WANING_GIBBOUS, MoonPhase.WANING_CRESCENT, 1.2f);
 		
-		new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, 7)
-			.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.FULL);
+		new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, 7);
+		
+		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.WINDY, 14)
+			.setBlockRequired(18);
+		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.WATERY, 14)
+			.setBlockRequired(Block.waterStill);
+		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.EARTHY, 14)
+			.setBlockRequired(Block.brick);
+		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.FIREY, 14)
+			.setBlockRequired(Block.lavaStill);
 		
 		new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.ATTUNED, BeeSpecies.AWARE, 10);
 		new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.AWARE, BeeSpecies.SPIRIT, 8);
@@ -94,6 +104,12 @@ public class BeeMutation implements IBeeMutation
 		new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.ETHEREAL, BeeSpecies.GHASTLY, 9);
 		new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.HATEFUL, BeeSpecies.SMOULDERING, 7)
 			.setBiomeRequired(BiomeDictionary.Type.NETHER);
+		
+		new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.OBLIVION, BeeSpecies.NAMELESS, 10);
+		new BeeMutation(BeeSpecies.OBLIVION, BeeSpecies.NAMELESS, BeeSpecies.ABANDONED, 8);
+		new BeeMutation(BeeSpecies.NAMELESS, BeeSpecies.ABANDONED, BeeSpecies.FORLORN, 6);
+		new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.ABANDONED, BeeSpecies.DRACONIC, 6)
+			.setBiomeRequired(BiomeDictionary.Type.END);
 		
 		if (BeeSpecies.COPPER.isActive())
 		{
@@ -138,22 +154,26 @@ public class BeeMutation implements IBeeMutation
 		
 		if (ThaumcraftHelper.isActive())
 		{
+			new BeeMutation(BeeSpecies.WINDY, BeeSpecies.WINDY, BeeSpecies.TC_AIR, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.AIR.ordinal());
+			
 			new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.ETHEREAL, BeeSpecies.TC_VIS, 10)
 				.setAuraNodeRequired(75);
 			new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, 8)
 				.setAuraNodeTypeRequired(50, thaumcraft.api.aura.EnumNodeType.DARK);
-			new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, 9)
-				.setAuraNodeTypeRequired(200, thaumcraft.api.aura.EnumNodeType.UNSTABLE);
-			new BeeMutation(BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, BeeSpecies.TC_ATTRACT, 6)
-				.setAuraNodeTypeRequired(20, EnumNodeType.UNSTABLE);
+			new BeeMutation(BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, BeeSpecies.TC_ATTRACT, 13)
+				.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE)
+				.setMoonPhaseRestricted(MoonPhase.NEW, MoonPhase.NEW);
 			new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.TC_VIS, BeeSpecies.TC_REJUVENATING, 8)
 				.setAuraNodeRequired(25);
 			new BeeMutation(BeeSpecies.TC_VIS, BeeSpecies.TC_REJUVENATING, BeeSpecies.TC_PURE, 6)
-				.setAuraNodeTypeRequired(10, thaumcraft.api.aura.EnumNodeType.PURE);
+				.setAuraNodeTypeRequired(10, thaumcraft.api.aura.EnumNodeType.PURE)
+				.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.FULL);
 			
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.WINDY, BeeSpecies.TC_BATTY, 9);
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.PUPIL, BeeSpecies.TC_BRAINY, 9);
-			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.GHASTLY, BeeSpecies.TC_WISPY, 9);
+			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.GHASTLY, BeeSpecies.TC_WISPY, 9)
+				.setMoonPhaseRestricted(MoonPhase.WANING_CRESCENT, MoonPhase.WAXING_CRESCENT);
 		}
 		
 		if (ArsMagicaHelper.isActive())
@@ -167,7 +187,7 @@ public class BeeMutation implements IBeeMutation
 		
 		if (EquivalentExchangeHelper.isActive())
 		{
-			new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.ELDRITCH, BeeSpecies.EE_MINIUM, 8);
+			new BeeMutation(Allele.getBaseSpecies("Frugal"), BeeSpecies.ELDRITCH, BeeSpecies.EE_MINIUM, 8);
 		}
 	}
 	
