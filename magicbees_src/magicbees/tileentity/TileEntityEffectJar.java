@@ -1,6 +1,5 @@
 package magicbees.tileentity;
 
-import magicbees.bees.Allele;
 import magicbees.main.utils.VersionInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -71,7 +70,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	{
 		if (this.beeSlots[QUEEN_SLOT] != null)
 		{
-			IBee queen = Allele.beeRoot.getMember(this.beeSlots[QUEEN_SLOT]);
+			IBee queen = magicbees.bees.BeeManager.beeRoot.getMember(this.beeSlots[QUEEN_SLOT]);
 
 			currentBeeHealth = (queen.getHealth() * 100) / queen.getMaxHealth();
 			currentBeeColour = ((IAlleleBeeSpecies)queen.getGenome().getPrimary()).getIconColour(0);
@@ -110,9 +109,9 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 		{
 			// make a queen
 			ItemStack droneStack = this.beeSlots[DRONE_SLOT];
-			if (Allele.beeRoot.isDrone(droneStack))
+			if (magicbees.bees.BeeManager.beeRoot.isDrone(droneStack))
 			{
-				IBee bee = Allele.beeRoot.getMember(droneStack);
+				IBee bee = magicbees.bees.BeeManager.beeRoot.getMember(droneStack);
 				if (droneStack.stackSize == 1)
 				{
 					this.beeSlots[DRONE_SLOT] = null;

@@ -25,14 +25,14 @@ public class HiveDrop implements IHiveDrop
 	@Override
 	public ItemStack getPrincess(World world, int x, int y, int z, int fortune)
 	{
-		return Allele.beeRoot.getMemberStack(Allele.beeRoot.getBee(world, Allele.beeRoot.templateAsGenome(this.template)), EnumBeeType.PRINCESS.ordinal());
+		return BeeManager.beeRoot.getMemberStack(BeeManager.beeRoot.getBee(world, BeeManager.beeRoot.templateAsGenome(this.template)), EnumBeeType.PRINCESS.ordinal());
 	}
 
 	@Override
 	public Collection<ItemStack> getDrones(World world, int x, int y, int z, int fortune)
 	{
 		ArrayList<ItemStack> value = new ArrayList<ItemStack>(1);
-		value.add(Allele.beeRoot.getMemberStack(Allele.beeRoot.getBee(world, Allele.beeRoot.templateAsGenome(this.template)), EnumBeeType.DRONE.ordinal()));
+		value.add(BeeManager.beeRoot.getMemberStack(BeeManager.beeRoot.getBee(world, BeeManager.beeRoot.templateAsGenome(this.template)), EnumBeeType.DRONE.ordinal()));
 		return value;
 	}
 

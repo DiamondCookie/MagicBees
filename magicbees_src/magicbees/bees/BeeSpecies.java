@@ -18,6 +18,7 @@ import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -369,6 +370,23 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplateEthereal())
 			.register();
 		
+		WINDY.addProduct(Config.combs.getStackForType(CombType.AIRY), 10)
+			.addSpecialty(new ItemStack(Item.feather), 5)
+			.setGenome(BeeGenomeManager.getTemplateWindy())
+			.register();
+		FIREY.addProduct(Config.combs.getStackForType(CombType.FIREY), 10)
+			.addSpecialty(new ItemStack(Item.blazePowder), 5)
+			.setGenome(BeeGenomeManager.getTemplateFirey())
+			.register();
+		EARTHY.addProduct(Config.combs.getStackForType(CombType.EARTHY), 10)
+			.addSpecialty(new ItemStack(Item.clay), 9)
+			.setGenome(BeeGenomeManager.getTemplateEarthy())
+			.register();
+		WATERY.addProduct(Config.combs.getStackForType(CombType.WATERY), 10)
+			.addSpecialty(new ItemStack(Block.ice), 4)
+			.setGenome(BeeGenomeManager.getTemplateWatery())
+			.register();
+				
 		PUPIL.addProduct(Config.combs.getStackForType(CombType.PAPERY), 20)
 			.setGenome(BeeGenomeManager.getTemplatePupil())
 			.register();
@@ -488,7 +506,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		TC_STARK.addProduct(Config.combs.getStackForType(CombType.HARMONIZING), 10)
 			.setGenome(BeeGenomeManager.getTemplateTCStark())
 			.register();
-		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 9)
+		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 10)
 			.setGenome(BeeGenomeManager.getTemplateTCAir())
 			.register();
 		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.FIREY), 15)
@@ -618,13 +636,13 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
 		this(speciesName, genusName, classification, firstColour, defaultBodyColour,
-				preferredTemp, preferredHumidity, hasGlowEffect, false, true, isSpeciesDominant);
+				preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
 	}
 
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
 			EnumTemperature preferredTemp, EnumHumidity preferredHumidity, boolean hasGlowEffect, boolean isSpeciesDominant)
 	{
-		this(speciesName, genusName, classification, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, false, true, isSpeciesDominant);
+		this(speciesName, genusName, classification, firstColour, secondColour, preferredTemp, preferredHumidity, hasGlowEffect, true, true, isSpeciesDominant);
 	}
 
 	private BeeSpecies(String speciesName, String genusName, IClassification classification, int firstColour, int secondColour,
@@ -690,7 +708,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 
 	public ItemStack getBeeItem(EnumBeeType beeType)
 	{
-		return Allele.beeRoot.getMemberStack(Allele.beeRoot.getBee(null, Allele.beeRoot.templateAsGenome(genomeTemplate)), beeType.ordinal());
+		return BeeManager.beeRoot.getMemberStack(BeeManager.beeRoot.getBee(null, BeeManager.beeRoot.templateAsGenome(genomeTemplate)), beeType.ordinal());
 	}
 
 	@Override
@@ -791,7 +809,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	public IBeeRoot getRoot()
 	{
-		return Allele.beeRoot;
+		return BeeManager.beeRoot;
 	}
 
 	@Override
@@ -808,7 +826,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 
 	private BeeSpecies register()
 	{
-		Allele.beeRoot.registerTemplate(this.getGenome());
+		BeeManager.beeRoot.registerTemplate(this.getGenome());
 		if (!this.isActive)
 		{
 			AlleleManager.alleleRegistry.blacklistAllele(this.getUID());
@@ -913,7 +931,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 					}
 					else
 					{
-						for (Map.Entry<ItemStack, Float> catalyst : Allele.beeRoot.getResearchCatalysts().entrySet())
+						for (Map.Entry<ItemStack, Float> catalyst : BeeManager.beeRoot.getResearchCatalysts().entrySet())
 						{
 							if (OreDictionary.itemMatches(itemStack, catalyst.getKey(), false))
 							{

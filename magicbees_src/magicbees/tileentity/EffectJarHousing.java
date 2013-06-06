@@ -1,6 +1,5 @@
 package magicbees.tileentity;
 
-import magicbees.bees.Allele;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.BeeManager;
@@ -148,7 +147,7 @@ public class EffectJarHousing implements IBeeHousing
 		ItemStack stack = this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 		if (stack != null)
 		{
-			IBee queen = Allele.beeRoot.getMember(stack);
+			IBee queen = magicbees.bees.BeeManager.beeRoot.getMember(stack);
 			temp = queen.getGenome().getPrimary().getTemperature();
 		}
 		return temp;
@@ -161,7 +160,7 @@ public class EffectJarHousing implements IBeeHousing
 		ItemStack stack = this.jarEntity.getStackInSlot(TileEntityEffectJar.QUEEN_SLOT);
 		if (stack != null)
 		{
-			IBee queen = Allele.beeRoot.getMember(stack);
+			IBee queen = magicbees.bees.BeeManager.beeRoot.getMember(stack);
 			humid = queen.getGenome().getPrimary().getHumidity();
 		}
 		return humid;

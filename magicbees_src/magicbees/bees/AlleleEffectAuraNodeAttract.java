@@ -62,7 +62,7 @@ public class AlleleEffectAuraNodeAttract extends AlleleEffect
 						y *= 0.05f;
 						z *= 0.05f;
 						
-						ThaumcraftApi.queueNodeChanges(nodeId, node.baseLevel * -1 / 13, w.rand.nextInt(2), false, null, x, y, z);
+						ThaumcraftApi.queueNodeChanges(nodeId, -1, 0, false, null, x, y, z);
 					}
 				}
 			}

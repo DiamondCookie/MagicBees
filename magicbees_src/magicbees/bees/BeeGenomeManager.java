@@ -194,6 +194,63 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	private static IAllele[] getTemplateBaseElemental()
+	{
+		IAllele[] genome = getTemplateModBase();
+		
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateWatery()
+	{
+		IAllele[] genome = getTemplateBaseElemental();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WATERY;
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceUp1");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersSnow");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateFirey()
+	{
+		IAllele[] genome = getTemplateBaseElemental();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.FIREY;
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown1");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceUp2");
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersCacti");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateEarthy()
+	{
+		IAllele[] genome = getTemplateBaseElemental();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.EARTHY;
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLong");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateWindy()
+	{
+		IAllele[] genome = getTemplateBaseElemental();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.WINDY;
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFaster");
+		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringFaster");
+		
+		return genome;
+	}
+	
 	private static IAllele[] getTemplateBaseScholarly()
 	{
 		IAllele[] genome = getTemplateModBase();

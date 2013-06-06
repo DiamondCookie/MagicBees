@@ -14,8 +14,6 @@ import forestry.api.genetics.IAlleleRegistry;
 
 public class Allele implements IAllele
 {
-	public static IBeeRoot beeRoot;
-	
 	public static AlleleFloat speedBlinding;
 	
 	public static IAlleleFlowers flowerBookshelf;
@@ -44,9 +42,7 @@ public class Allele implements IAllele
 	public static IAlleleEffect effectNodeCharge;
 	
 	public static void setupAdditionalAlleles()
-	{
-		beeRoot = (IBeeRoot)AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");
-		
+	{		
 		Allele.speedBlinding = new AlleleFloat("speedBlinding", 2f, false);
 		
 		Allele.flowerBookshelf = new AlleleFlower("Bookshelf", new FlowerProviderBookshelf(), true);

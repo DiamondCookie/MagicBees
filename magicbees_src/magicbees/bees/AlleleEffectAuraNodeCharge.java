@@ -47,7 +47,10 @@ public class AlleleEffectAuraNodeCharge extends AlleleEffect
 			}
 			while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
 			
-			ThaumcraftApi.increaseLowestAura(world, x, y, z, 1);
+			if (world.rand.nextBoolean())
+			{
+				ThaumcraftApi.increaseLowestAura(world, x, y, z, 1);
+			}
 		}
 		else
 		{

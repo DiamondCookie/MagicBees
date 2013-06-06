@@ -16,6 +16,7 @@ import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.FMLLog;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -154,8 +155,27 @@ public class BeeMutation implements IBeeMutation
 		
 		if (ThaumcraftHelper.isActive())
 		{
+			BeeSpecies[] speciesList = new BeeSpecies[] {BeeSpecies.WINDY, BeeSpecies.FIREY, BeeSpecies.WATERY, BeeSpecies.EARTHY};
+			
+			for (int a = 0; a < speciesList.length; ++a)
+			{
+				for (int b = a + 1; b < speciesList.length; ++b)
+				{
+					new BeeMutation(speciesList[a], speciesList[b], BeeSpecies.TC_STARK, 8)
+						.setBlockRequired(Config.tcCrystal);
+				}
+			}
+			
 			new BeeMutation(BeeSpecies.WINDY, BeeSpecies.WINDY, BeeSpecies.TC_AIR, 8)
 				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.AIR.ordinal());
+			new BeeMutation(BeeSpecies.FIREY, BeeSpecies.FIREY, BeeSpecies.TC_FIRE, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.FIRE.ordinal());
+			new BeeMutation(BeeSpecies.WATERY, BeeSpecies.WATERY, BeeSpecies.TC_WATER, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.WATER.ordinal());
+			new BeeMutation(BeeSpecies.EARTHY, BeeSpecies.EARTHY, BeeSpecies.TC_EARTH, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.EARTH.ordinal());
+			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.ETHEREAL, BeeSpecies.TC_MAGIC, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.MAGIC.ordinal());
 			
 			new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.ETHEREAL, BeeSpecies.TC_VIS, 10)
 				.setAuraNodeRequired(75);
@@ -174,12 +194,30 @@ public class BeeMutation implements IBeeMutation
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.PUPIL, BeeSpecies.TC_BRAINY, 9);
 			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.GHASTLY, BeeSpecies.TC_WISPY, 9)
 				.setMoonPhaseRestricted(MoonPhase.WANING_CRESCENT, MoonPhase.WAXING_CRESCENT);
+			
+			new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.SKULKING, BeeSpecies.TC_CHICKEN, 12)
+				.setBiomeRequired(Type.FOREST);
+			new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.SKULKING, BeeSpecies.TC_BEEF, 12)
+				.setBiomeRequired(Type.PLAINS);
+			new BeeMutation(Allele.getBaseSpecies("Common"), BeeSpecies.SKULKING, BeeSpecies.TC_PORK, 12)
+				.setBiomeRequired(Type.MOUNTAIN);
 		}
 		
 		if (ArsMagicaHelper.isActive())
 		{
 			new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.ETHEREAL, BeeSpecies.AM_ESSENCE, 10);
 			new BeeMutation(BeeSpecies.ARCANE, BeeSpecies.AM_ESSENCE, BeeSpecies.AM_QUINTESSENCE, 7);
+			
+			new BeeMutation(BeeSpecies.AM_ESSENCE, BeeSpecies.WINDY, BeeSpecies.AM_AIR, 10);
+			new BeeMutation(BeeSpecies.AM_ESSENCE, BeeSpecies.EARTHY, BeeSpecies.AM_EARTH, 10);
+			new BeeMutation(BeeSpecies.AM_ESSENCE, BeeSpecies.FIREY, BeeSpecies.AM_FIRE, 10);
+			new BeeMutation(BeeSpecies.AM_ESSENCE, BeeSpecies.WATERY, BeeSpecies.AM_WATER, 10);
+			new BeeMutation(BeeSpecies.AM_ESSENCE, BeeSpecies.ETHEREAL, BeeSpecies.AM_ARCANE, 10);
+			
+			new BeeMutation(BeeSpecies.WINDY, BeeSpecies.AM_AIR, BeeSpecies.AM_LIGHTNING, 8);
+			new BeeMutation(BeeSpecies.EARTHY, BeeSpecies.AM_EARTH, BeeSpecies.AM_PLANT, 8);
+			new BeeMutation(BeeSpecies.FIREY, BeeSpecies.AM_FIRE, BeeSpecies.AM_MAGMA, 8);
+			new BeeMutation(BeeSpecies.WATERY, BeeSpecies.AM_WATER, BeeSpecies.AM_ICE, 8);
 			
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.AM_ESSENCE, BeeSpecies.AM_VORTEX, 8);
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.GHASTLY, BeeSpecies.AM_WIGHT, 8);
@@ -229,7 +267,7 @@ public class BeeMutation implements IBeeMutation
 		this.requiredBlockOreDictEntry = null;
 		this.requiredBiomeType = null;
 		
-		Allele.beeRoot.registerMutation(this);
+		BeeManager.beeRoot.registerMutation(this);
 	}
 
 	@Override
@@ -327,7 +365,7 @@ public class BeeMutation implements IBeeMutation
 			finalChance = Math.round(chance
 					* housing.getMutationModifier((IBeeGenome) genome0,
 							(IBeeGenome) genome1, chance)
-					* Allele.beeRoot.getBeekeepingMode(housing.getWorld())
+					* BeeManager.beeRoot.getBeekeepingMode(housing.getWorld())
 							.getMutationModifier((IBeeGenome) genome0,
 									(IBeeGenome) genome1, chance));
 		}
@@ -432,7 +470,7 @@ public class BeeMutation implements IBeeMutation
 	@Override
 	public IBeeRoot getRoot()
 	{
-		return Allele.beeRoot;
+		return BeeManager.beeRoot;
 	}
 	
 	public boolean arePartners(IAllele alleleA, IAllele alleleB)

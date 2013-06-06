@@ -1,11 +1,13 @@
 2.0.0
 Enabling Retrogen of hives in case you missed them initially.
 Tearing out all old mutations, rewriting from the ground up. Maybe these will be less frustrating. ;)
-New bee species
+Adding subroutines to make MB species actually worthwhile to check out in the Escritoire. If you get stuck on a mutation, throw it into the table and try out the minigame!
+New bee species (Too many to list. Have fun finding them!)
 New hives
-Added zh_CN localization (by crafteverywhere)
-Added de_DE localization (by philip98)
-Added ru_RU localization (by CrazyTechno)
+Added zh_CN localization by crafteverywhere
+Added de_DE localization by philip98 and Vexatos
+Added ru_RU localization by CrazyTechno and VeryBigBro
+
 
 =========== Old Thaumic Bees Changelog ================
 

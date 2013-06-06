@@ -18,7 +18,7 @@ public class FeatureHive
 	private static FeatureOreVein glowstoneGen;
 	private static FeatureOreVein endStoneGen;
 	
-	private static boolean logSpawns = false;
+	private static boolean logSpawns = true;
 	
 	public static void initialize()
 	{
