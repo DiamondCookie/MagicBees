@@ -10,7 +10,7 @@ public class LocalizationManager
 	{
 		de_DE("de_DE"),
 		en_US("en_US"),
-		//ru_RU("ru_RU"),
+		ru_RU("ru_RU"),
 		zh_CN("zh_CN"),
 		;
 		public String locale;
