@@ -81,6 +81,9 @@
 	<entry key="resource.fertilizer">Концентрированные соединения</entry>
 	<entry key="resource.skullChip">Обломок кости скелета-иссушителя</entry>
 	<entry key="resource.skullFragment">Фрагмент черепа скелета-иссушителя</entry>
+	<entry key="resource.dragonDust">Драконья пыль</entry>
+	<entry key="resource.dragonChunk">Драконий кусок</entry>
+	<entry key="resource.essenceFalseLife">Эссенция ложной жизни</entry>
 	<entry key="resource.startNode">Пчёлы и магия</entry>
 	<entry key="resource.crystalAspect">Кристаллизованный %s Аспект</entry>
 
@@ -129,7 +132,7 @@
 
 	<!-- Miscellaneous names -->
 	<entry key="backpack.thaumaturge">Таумотургический рюкзак</entry>
-	<entry key="itemGroup.magicBees">Thaumic Bees</entry>
+	<entry key="itemGroup.magicBees">Magic Bees</entry>
 
 	<!-- Escritoire Strings -->
 	<entry key="research.requiresBlock">Требует основы %s</entry>
@@ -137,7 +140,7 @@
 	<entry key="research.requiresPhaseSingle">Во время %s</entry>
 	<entry key="research.requiresNode">Происходит только тогда, когда нод находится вблизи</entry>
 	<entry key="research.requiresNodeSpecific">Происходит только под влиянием %s нода</entry>
-	<entry key="research.requiresBiome">Происходит в пределах %s</entry>
+	<entry key="research.requiresBiome">Происходит в пределах %s биома</entry>
 	<entry key="research.node.pure">Чистый</entry>
 	<entry key="research.node.dark">Тёмный</entry>
 	<entry key="research.node.chaotic">Хаотический</entry>
@@ -154,9 +157,6 @@
 	<entry key="magicbees.speciesAttuned">Attuned</entry>
 	<entry key="magicbees.speciesAttuned.description">They fly as though guided by unseen threads through
 		the air.|Apinomicon</entry>
-	<entry key="magicbees.speciesOblivion">Oblivion</entry>
-	<entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this
-		world, or some other.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesEldritch">Eldritch</entry>
 	<entry key="magicbees.speciesEldritch.description">The potential that was locked within this bee's
@@ -238,6 +238,22 @@
 	<entry key="magicbees.speciesWithering">Withering</entry>
 	<entry key="magicbees.speciesWithering.description">Their mere passing causes life to fail, slowly drawing
 		all energy from their territory.|Apinomicon</entry>
+
+	<entry key="magicbees.speciesOblivion">Oblivion</entry>
+	<entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this
+		world, or some other.|Apinomicon</entry>
+	<entry key="magicbees.speciesNameless">Nameless</entry>
+	<entry key="magicbees.speciesNameless.description">"Other naturalists have refused to study these bees. I
+		must know why."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesAbandoned">Abandoned</entry>
+	<entry key="magicbees.speciesAbandoned.description">"The more I study these bees, the more I feel they do
+		not belong here, or anywhere else."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesForlorn">Forlorn</entry>
+	<entry key="magicbees.speciesForlorn.description">"I am now convinced they were left in our universe on
+		purpose by some unknowable beings."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesDraconic">Draconic</entry>
+	<entry key="magicbees.speciesDraconic.description">"With a fel sound, they erupted from their hive. That
+		was the last we ever saw of Gerald."|Tattered Research Notes</entry>
 
 	<entry key="magicbees.speciesIron">Ferrous</entry>
 	<entry key="magicbees.speciesIron.description">Having absorbed some of the base metal, these bees can
@@ -421,6 +437,9 @@
 	<entry key="classification.abominable">Отвратительные</entry>
 	<entry key="classification.abominable.description">Спавнятся в огненных глубинах нижнего мира, нет ничего
 		приятного об этих существах.|Apinomicon</entry>
+	<entry key="classification.Extrinsic">Посторнонние</entry>
+	<entry key="classification.Extrinsic.description">Неизвестно, является ли эти существа порождением семьи
+		Apidae в этой вселенной, или они развивались отдельно.|Apinomicon</entry>
 	<entry key="classification.metallic">Металлические</entry>
 	<entry key="classification.metallic.description">Они собирают фрагменты металла и объединяют их в
 		большие части.|Apinomicon</entry>
