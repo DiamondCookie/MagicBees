@@ -519,13 +519,14 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectAggressive");
 		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersEnd");
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
 		
 		return genome;
 	}
 	
 	public static IAllele[] getTemplateOblivion()
 	{
-		IAllele[] genome = getTemplateModBase();
+		IAllele[] genome = getTemplateBaseExtrinsic();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.OBLIVION;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityMaximum");
@@ -535,7 +536,7 @@ public class BeeGenomeManager
 	
 	public static IAllele[] getTemplateNameless()
 	{
-		IAllele[] genome = getTemplateModBase();
+		IAllele[] genome = getTemplateBaseExtrinsic();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.NAMELESS;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
@@ -546,7 +547,7 @@ public class BeeGenomeManager
 	
 	public static IAllele[] getTemplateAbandoned()
 	{
-		IAllele[] genome = getTemplateModBase();
+		IAllele[] genome = getTemplateBaseExtrinsic();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ABANDONED;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
@@ -560,7 +561,7 @@ public class BeeGenomeManager
 	
 	public static IAllele[] getTemplateForlorn()
 	{
-		IAllele[] genome = getTemplateModBase();
+		IAllele[] genome = getTemplateBaseExtrinsic();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.FORLORN;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
@@ -574,7 +575,7 @@ public class BeeGenomeManager
 	
 	public static IAllele[] getTemplateDraconic()
 	{
-		IAllele[] genome = getTemplateModBase();
+		IAllele[] genome = getTemplateBaseExtrinsic();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.DRACONIC;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");

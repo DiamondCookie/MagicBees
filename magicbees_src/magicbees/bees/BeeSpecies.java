@@ -400,10 +400,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		AWARE.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18)
 			.setGenome(BeeGenomeManager.getTemplateAware())
 			.register();
-		SPIRIT.addProduct(Config.combs.getStackForType(CombType.SOUL), 13)
+		SPIRIT.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 22)
+			.addSpecialty(Config.combs.getStackForType(CombType.SOUL), 16)
 			.setGenome(BeeGenomeManager.getTemplateSpirit())
 			.register();
-		SOUL.addProduct(Config.combs.getStackForType(CombType.SOUL), 24)
+		SOUL.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 28)
+			.addSpecialty(Config.combs.getStackForType(CombType.SOUL), 20)
 			.setGenome(BeeGenomeManager.getTemplateSoul())
 			.register();
 		

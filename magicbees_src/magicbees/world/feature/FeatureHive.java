@@ -18,7 +18,7 @@ public class FeatureHive
 	private static FeatureOreVein glowstoneGen;
 	private static FeatureOreVein endStoneGen;
 	
-	private static boolean logSpawns = true;
+	private static boolean logSpawns = false;
 	
 	public static void initialize()
 	{
@@ -38,12 +38,7 @@ public class FeatureHive
 	
 	public static boolean generateHiveCurious(World world, Random random, int coordX, int coordZ, boolean initialGen)
 	{
-		BiomeGenBase biome = world.getBiomeGenForCoords(coordX, coordZ);
-		int min = (int)(biome.minHeight * 64 + 64);
-		int max = (int)(biome.maxHeight * 64);
-		// sanity
-		max = (max > 1) ? max : 1;
-		int coordY = min + random.nextInt(max + 5);
+		int coordY = getHeight(world, random, coordX, coordZ);
 		boolean doSpawn = false;
 		
 		if (world.isAirBlock(coordX, coordY - 1, coordZ) && world.isAirBlock(coordX, coordY, coordZ) &&
@@ -59,12 +54,7 @@ public class FeatureHive
 	
 	public static boolean generateHiveUnusual(World world, Random random, int coordX, int coordZ, boolean initialGen)
 	{
-		BiomeGenBase biome = world.getBiomeGenForCoords(coordX, coordZ);
-		int min = (int)(biome.minHeight * 64 + 64);
-		int max = (int)(biome.maxHeight * 64);
-		// sanity
-		max = (max > 1) ? max : 1;
-		int coordY = min + random.nextInt(max);
+		int coordY = getHeight(world, random, coordX, coordZ);
 		
 		boolean doSpawn = false;
 		if (world.isAirBlock(coordX, coordY + 1, coordZ) && world.isAirBlock(coordX, coordY, coordZ) &&
@@ -84,13 +74,7 @@ public class FeatureHive
 	
 	public static boolean generateHiveResonant(World world, Random random, int coordX, int coordZ, boolean initialGen)
 	{
-		BiomeGenBase biome = world.getBiomeGenForCoords(coordX, coordZ);
-		int min = (int)(biome.minHeight * 64 + 62);
-		int max = (int)(biome.maxHeight * 64);
-		// sanity
-		max = (max > 1) ? max : 1;
-		int coordY = min + random.nextInt(max);
-
+		int coordY = getHeight(world, random, coordX, coordZ);
 		boolean doSpawn = false;
 		if (world.isAirBlock(coordX, coordY + 1, coordZ) &&
 				(world.isAirBlock(coordX, coordY, coordZ) || world.getBlockId(coordX, coordY, coordZ) == Block.tallGrass.blockID) &&
@@ -262,6 +246,17 @@ public class FeatureHive
 			}
 		}
 		return doSpawn;
+	}
+	
+	private static int getHeight(World world, Random random, int coordX, int coordZ)
+	{
+		BiomeGenBase biome = world.getBiomeGenForCoords(coordX, coordZ);
+		int min = (int)(biome.minHeight * 64 + 62);
+		int max = (int)(biome.maxHeight * 64);
+		// sanity
+		min = (min > 1) ? min : 1;
+		max = (max > 5) ? max : 5;
+		return min + random.nextInt(max);
 	}
 	
 	private static int getSurroundCount(World world, int x, int y, int z, Block blockType)

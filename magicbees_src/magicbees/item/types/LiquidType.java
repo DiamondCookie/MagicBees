@@ -18,7 +18,7 @@ public enum LiquidType
 	
 	// Forestry
 	BIOMASS("biomass"),
-	BIOFUEL("biofuel"),
+	ETHANOL("ethanol"),
 	
 	// Buildcraft
 	OIL("Oil"),

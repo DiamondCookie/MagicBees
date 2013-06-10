@@ -13,6 +13,7 @@ public enum ResourceType
 	DRAGON_DUST("dragonDust", true),
 	DRAGON_CHUNK("dragonChunk", true),
 	ESSENCE_FALSE_LIFE("essenceFalseLife", true),
+	ESSENCE_SHALLOW_GRAVE("essenceShallowGrave", true),
 	
 	// Dummy items for Thaumanomicon research icons.
 	//   These won't ever actually exist in-game, and so 
