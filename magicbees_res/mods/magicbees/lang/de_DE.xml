@@ -81,6 +81,10 @@
 	<entry key="resource.fertilizer">Konzentriertes Gemisch</entry>
 	<entry key="resource.skullChip">Witherskelett-Knochensplitter</entry>
 	<entry key="resource.skullFragment">Witherskelett-Schädelfragment</entry>
+	<entry key="resource.dragonDust">Drakonischer Staub</entry>
+	<entry key="resource.dragonChunk">Drakonischer Klumpen</entry>
+	<entry key="resource.essenceFalseLife">Essenz des Falschen Lebens</entry>
+	<entry key="resource.essenceShallowGrave">Essenz eines Flachen Grabes</entry>
 	<entry key="resource.startNode">Bienen und Magie</entry>
 	<entry key="resource.crystalAspect">Kristallisierter %s - Aspekt</entry>
 
@@ -154,9 +158,6 @@
 	<entry key="magicbees.speciesAttuned">Abgestimmt</entry>
 	<entry key="magicbees.speciesAttuned.description">Sie fliegen durch die Luft, als ob sie von ungesehenen
 		Fäden geführt würden.|Apinomicon</entry>
-	<entry key="magicbees.speciesOblivion">Vergessenheit</entry>
-	<entry key="magicbees.speciesOblivion.description">Es ist unklar, ob diese Bienen in dieser Welt
-		beheimatet sind oder in einer anderen.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesEldritch">Unheimlich</entry>
 	<entry key="magicbees.speciesEldritch.description">Das Potential, das in den Vorfahren dieser Bienen
@@ -185,6 +186,18 @@
 	<entry key="magicbees.speciesEthereal">Ätherisch</entry>
 	<entry key="magicbees.speciesEthereal.description">Geisterhaft, und geladen mit Energie von
 		jenseits.|Apinomicon</entry>
+
+	<entry key="magicbees.speciesWatery">Wässrig</entry>
+	<entry key="magicbees.speciesWatery.description">Mögen feuchte Orte und fließendes Wasser.|Apinomicon</entry>
+	<entry key="magicbees.speciesEarthen">Irden</entry>
+	<entry key="magicbees.speciesEarthen.description">Sie haben eine eisenharte Verbundung mit Stein und
+		Erde.|Apinomicon</entry>
+	<entry key="magicbees.speciesFirey">Feurig</entry>
+	<entry key="magicbees.speciesFirey.description">So nah, wie man an eine lebende Flamme kommen kann,
+		ohne Glühen zur Folge zu haben.|Apinomicon</entry>
+	<entry key="magicbees.speciesWindy">Windig</entry>
+	<entry key="magicbees.speciesWindy.description">Selten in flachen, weiten, offen Räumen gesehen. Ihre
+		Territorien sind gewaltig.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesPupil">Schülerhaft</entry>
 	<entry key="magicbees.speciesPupil.description">"Was will die Biene mit meinem Papier?!"|Yorae,
@@ -240,6 +253,22 @@
 	<entry key="magicbees.speciesWithering.description">Ihr bloßes Vorbeikommen sorgt dafür, dass das Leben
 		versagt, indem sie langsam alle Energie aus ihrem Territorium
 		saugen.|Apinomicon</entry>
+		
+	<entry key="magicbees.speciesOblivion">Vergessenheit</entry>
+	<entry key="magicbees.speciesOblivion.description">Es ist unklar, ob diese Bienen in dieser Welt
+		beheimatet sind oder in einer anderen.|Apinomicon</entry>
+	<entry key="magicbees.speciesNameless">Namenlos</entry>
+	<entry key="magicbees.speciesNameless.description">"Andere Naturforscher haben abgelehnt, diese Bienen zu studieren.
+		Ich muss wissen, warum."|Zerrissene Forschungsnotizen</entry>
+	<entry key="magicbees.speciesAbandoned">Verlassen</entry>
+	<entry key="magicbees.speciesAbandoned.description">"Je mehr ich diese Bienen studiere, desto mehr fühle ich,
+		dass sie nicht hierher oder irgendwo anders hin gehören."|Zerrissene Forschungsnotizen</entry>
+	<entry key="magicbees.speciesForlorn">Einsam</entry>
+	<entry key="magicbees.speciesForlorn.description">"Ich bin nun überzeugt, sie wurden mit Absicht in unserem Universum
+		von nicht auszumachenden Wesen zurückgelassen."|Zerrissene Forschungsnotizen</entry>
+	<entry key="magicbees.speciesDraconic">Drakonisch</entry>
+	<entry key="magicbees.speciesDraconic.description">"Mit einem höllischen Geräusch brachen sie aus ihrem Stock aus.
+		Das war das letzte, was wir jemals von Gerald gesehen haben."|Zerrissene Forschungsnotizen</entry>
 
 	<entry key="magicbees.speciesIron">Eisenhaltig</entry>
 	<entry key="magicbees.speciesIron.description">Etwas des Grundmetalls absorbiert, können diese Bienen
@@ -430,6 +459,10 @@
 	<entry key="classification.abominable">Furchtbar</entry>
 	<entry key="classification.abominable.description">Entstanden in den feurigen Tiefen des Nethers gibt es
 		nichts schönes über diese Kreaturen.|Apinomicon</entry>
+	<entry key="classification.Extrinsic">Extrinsisch</entry>
+	<entry key="classification.Extrinsic.description">Es ist unbekannt, ob diese Kreaturen die Familie
+		Apidae in diesem Universum erzeugt haben oder ob diese sich
+		seperat entwickelt haben.|Apinomicon</entry>
 	<entry key="classification.metallic">Metallisch</entry>
 	<entry key="classification.metallic.description">Sie sammeln metallische Fragmente und kombinieren sie
 		zu größeren Portionen.|Apinomicon</entry>

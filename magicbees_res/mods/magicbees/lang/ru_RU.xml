@@ -84,6 +84,7 @@
 	<entry key="resource.dragonDust">Драконья пыль</entry>
 	<entry key="resource.dragonChunk">Драконий кусок</entry>
 	<entry key="resource.essenceFalseLife">Эссенция ложной жизни</entry>
+	<entry key="resource.essenceShallowGrave">Эссенция неглубокой могилы</entry>
 	<entry key="resource.startNode">Пчёлы и магия</entry>
 	<entry key="resource.crystalAspect">Кристаллизованный %s Аспект</entry>
 
@@ -185,6 +186,18 @@
 	<entry key="magicbees.speciesEthereal">Ethereal</entry>
 	<entry key="magicbees.speciesEthereal.description">Ghostly, and charged with energy from
 		beyond.|Apinomicon</entry>
+		
+	<entry key="magicbees.speciesWatery">Watery</entry>
+	<entry key="magicbees.speciesWatery.description">Fond of damp spots and flowing water.|Apinomicon</entry>
+	<entry key="magicbees.speciesEarthen">Earthen</entry>
+	<entry key="magicbees.speciesEarthen.description">They have an iron-strong connection with stone and
+		dirt.|Apinomicon</entry>
+	<entry key="magicbees.speciesFirey">Firey</entry>
+	<entry key="magicbees.speciesFirey.description">As close as you can get to living flame without
+		involving candescence.|Apinomicon</entry>
+	<entry key="magicbees.speciesWindy">Windy</entry>
+	<entry key="magicbees.speciesWindy.description">Rarely seen in flat, wide open spaces. Their
+		territories are vast.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesPupil">Pupil</entry>
 	<entry key="magicbees.speciesPupil.description">"What does that bee want with my paper?!"|Yorae,
