@@ -1,4 +1,4 @@
-package magicbees.main.render;
+package magicbees.client.render;
 
 import org.lwjgl.opengl.GL11;
 
@@ -18,7 +18,7 @@ import net.minecraftforge.client.ForgeHooksClient;
 public class BeeRenderEffect extends EntityFX
 {
 	public int blendmode = 1;
-	private static final String texture = "forestry:particles/swarm_bee";
+	private static String texture = "/mods/forestry/textures/items/particles/swarm_bee";
 
 	public BeeRenderEffect(World world, double x, double y, double z, float motionScaleX, float motionScaleY, float motionScaleZ, int color)
 	{

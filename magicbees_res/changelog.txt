@@ -1,3 +1,9 @@
+2.0.1
+Modifying mutation class to allow block-requiring mutations to work in Alvearies/other multiblock hive structures.
+Tweaking hive gen
+Fixing mistakes in bee genome templates
+Updating Biofuel capsule to use the Ethanol liquid in Forestry
+
 2.0.0
 Enabling Retrogen of hives in case you missed them initially.
 Tearing out all old mutations, rewriting from the ground up. Maybe these will be less frustrating. ;)

@@ -21,7 +21,7 @@ public class AlleleEffectCure extends AlleleEffect
 
 	public AlleleEffectCure(String id, boolean isDominant)
 	{
-		super(id, isDominant);
+		super(id, isDominant, 200);
 	}
 
 	@Override
@@ -35,28 +35,19 @@ public class AlleleEffectCure extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int count = storedData.getInteger(0);
+		List<Entity> entityList = this.getEntitiesWithinRange(genome, housing);
 		
-		if (count == 200)
+		for (Entity e : entityList)
 		{
-			List<Entity> entityList = this.getEntitiesWithinRange(genome, housing);
-			
-			for (Entity e : entityList)
+			if (e instanceof EntityPlayer)
 			{
-				if (e instanceof EntityPlayer)
-				{
-					EntityPlayer player = (EntityPlayer)e;
-					player.curePotionEffects(new ItemStack(Item.bucketMilk));
-				}
+				EntityPlayer player = (EntityPlayer)e;
+				player.curePotionEffects(new ItemStack(Item.bucketMilk));
 			}
-			storedData.setInteger(0, 0);
 		}
-		else
-		{
-			storedData.setInteger(0, count + 1);
-		}
+		storedData.setInteger(0, 0);
 		
 		return storedData;
 	}

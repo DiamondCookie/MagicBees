@@ -296,21 +296,21 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
-	public static IAllele[] getTemplateAware()
-	{
-		IAllele[] genome = getTemplateBaseSoul();
-		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AWARE;
-		
-		return genome;
-	}
-	
 	private static IAllele[] getTemplateBaseSoul()
 	{
 		IAllele[] genome = getTemplateModBase();
 		
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth1");
 		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateAware()
+	{
+		IAllele[] genome = getTemplateBaseSoul();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AWARE;
 		
 		return genome;
 	}
@@ -330,6 +330,7 @@ public class BeeGenomeManager
 		IAllele[] genome = getTemplateBaseSoul();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.SOUL;
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
 		
 		return genome;

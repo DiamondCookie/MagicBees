@@ -205,4 +205,10 @@ public class EffectJarHousing implements IBeeHousing
 		return false;
 	}
 
+	@Override
+	public boolean onEggLaid(IBee queen)
+	{
+		return false;
+	}
+
 }

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import magicbees.block.types.HiveType;
 import magicbees.main.Config;
+import magicbees.main.MagicBees;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -255,7 +256,7 @@ public class FeatureHive
 		int max = (int)(biome.maxHeight * 64);
 		// sanity
 		min = (min > 1) ? min : 1;
-		max = (max > 5) ? max : 5;
+		max = (max > 10) ? max : 10;
 		return min + random.nextInt(max);
 	}
 	

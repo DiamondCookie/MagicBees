@@ -22,7 +22,6 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	protected String alternateMob;
 	protected String mobName;
 	protected String mobSound;
-	protected int throttle;
 	protected int chanceToSpawn;
 	protected int maxMobsInArea;
 
@@ -33,10 +32,9 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	
 	public AlleleEffectSpawnMob(String id, boolean isDominant, String mobToSpawn, String mobSoundFx)
 	{
-		super(id, isDominant);
+		super(id, isDominant, 200);
 		this.aggosOnPlayer = false;
 		this.mobName = mobToSpawn;
-		this.throttle = 200;
 		this.chanceToSpawn = 100;
 		this.maxMobsInArea = 6;
 		this.mobSound = mobSoundFx;
@@ -54,20 +52,8 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int count = storedData.getInteger(0);
-		
-		if (count >= this.throttle && !storedData.getBoolean(0))
-		{
-			storedData.setBoolean(0, true);
-			storedData.setInteger(0, 0);
-		}
-		else
-		{
-			storedData.setInteger(0, count + 1);
-		}
-		
 		// Check if we're ready to spawn the mob.
 		if (storedData.getBoolean(0))
 		{

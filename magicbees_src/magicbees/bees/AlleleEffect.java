@@ -17,10 +17,12 @@ import forestry.api.genetics.IEffectData;
 
 public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 {
+	protected int throttle;
 
-	public AlleleEffect(String id, boolean isDominant)
+	public AlleleEffect(String id, boolean isDominant, int timeout)
 	{
 		super("effect" + id, isDominant);
+		this.throttle = timeout;
 	}
 
 	@Override
@@ -33,7 +35,28 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 	public abstract IEffectData validateStorage(IEffectData storedData);
 
 	@Override
-	public abstract IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing);
+	public final IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	{
+		int count = storedData.getInteger(0);
+		if (count >= this.throttle)
+		{
+			storedData = this.doEffectThrottled(genome, storedData, housing);
+		}
+		else
+		{
+			storedData.setInteger(0, count + 1);
+		}
+		return storedData;
+	}
+	
+	/**
+	 * 
+	 * @param genome
+	 * @param storedData
+	 * @param housing
+	 * @return
+	 */
+	protected abstract IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing);
 
 	@Override
 	public IEffectData doFX(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)

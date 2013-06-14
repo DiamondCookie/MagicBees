@@ -1,7 +1,7 @@
 package magicbees.main;
 
+import magicbees.client.render.BeeRenderEffect;
 import magicbees.client.render.EffectJarRenderer;
-import magicbees.main.render.BeeRenderEffect;
 import magicbees.tileentity.TileEntityEffectJar;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;

@@ -11,14 +11,12 @@ import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectSpawnMobWeighted extends AlleleEffect
 {
-	private int throttle;
 	private String[] entityNames;
 	private int[] spawnChance;
 	
 	public AlleleEffectSpawnMobWeighted(String id, boolean isDominant, int throttle, String[] mobs, int[] chance)
 	{
-		super(id, isDominant);
-		this.throttle = throttle;
+		super(id, isDominant, throttle);
 		if (mobs.length != chance.length)
 		{
 			throw new IllegalArgumentException("Array lengths must be equal!");
@@ -38,20 +36,11 @@ public class AlleleEffectSpawnMobWeighted extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int value = storedData.getInteger(0);
-		
-		if (value >= this.throttle)
+		if (this.spawnMob(genome, housing))
 		{
-			if (this.spawnMob(genome, housing))
-			{
-				storedData.setInteger(0, 0);
-			}
-		}
-		else
-		{
-			storedData.setInteger(0, value + 1);
+			storedData.setInteger(0, 0);
 		}
 		
 		return storedData;

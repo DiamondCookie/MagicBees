@@ -10,13 +10,10 @@ import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectAuraNodeCharge extends AlleleEffect
 {
-
-	private int effectTimeout;
 	
 	AlleleEffectAuraNodeCharge(String id, boolean dominant, int timeout)
 	{
-		super(id, dominant);
-		this.effectTimeout = timeout;
+		super(id, dominant, timeout);
 	}
 
 	@Override
@@ -30,32 +27,26 @@ public class AlleleEffectAuraNodeCharge extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int timeout = storedData.getInteger(0);
-		if (timeout >= this.effectTimeout)
+		World world = housing.getWorld();
+		int x = housing.getXCoord();
+		int y = housing.getYCoord();
+		int z = housing.getZCoord();
+		
+		EnumTag tag;
+		do
 		{
-			World world = housing.getWorld();
-			int x = housing.getXCoord();
-			int y = housing.getYCoord();
-			int z = housing.getZCoord();
-			
-			EnumTag tag;
-			do
-			{
-				tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
-			}
-			while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
-			
-			if (world.rand.nextBoolean())
-			{
-				ThaumcraftApi.increaseLowestAura(world, x, y, z, 1);
-			}
+			tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
 		}
-		else
+		while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
+		
+		if (world.rand.nextBoolean())
 		{
-			storedData.setInteger(0, timeout + 1);
+			ThaumcraftApi.increaseLowestAura(world, x, y, z, 1);
 		}
+		storedData.setInteger(0, 0);
+			
 		return storedData;
 	}
 

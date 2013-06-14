@@ -122,15 +122,15 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.NORMAL, true, false),
 
 	OBLIVION("Oblivion", "oblivioni",
-			BeeClassification.ABOMINABLE, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
+			BeeClassification.EXTRINSIC, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	NAMELESS("Nameless", "sine nomine",
-			BeeClassification.ABOMINABLE, 0x8ca7cb, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
+			BeeClassification.EXTRINSIC, 0x8ca7cb, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
 	ABANDONED("Abandoned", "reliquit",
-			BeeClassification.ABOMINABLE, 0xc5cb8c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
+			BeeClassification.EXTRINSIC, 0xc5cb8c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
 	FORLORN("Forlorn", "perditus",
-			BeeClassification.ABOMINABLE, 0xcba88c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
+			BeeClassification.EXTRINSIC, 0xcba88c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
 	DRACONIC("Draconic", "draconic",
-			BeeClassification.ABOMINABLE, 0x9f56ad, 0x5a3b62, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
+			BeeClassification.EXTRINSIC, 0x9f56ad, 0x5a3b62, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
 			
 	IRON("Iron", "ferrus",
 			BeeClassification.METALLIC, 0x686868, 0xE9E9E9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -1007,7 +1007,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 				continue;
 			
 			icons[i][0] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".outline");
-			icons[i][1] = body1;
+			icons[i][1] = (EnumBeeType.values()[i] != EnumBeeType.LARVAE) ? body1 :
+							itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body");
 			icons[i][2] = itemMap.registerIcon(root + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
 		}
 	}

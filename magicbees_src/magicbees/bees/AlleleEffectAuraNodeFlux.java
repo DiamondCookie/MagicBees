@@ -10,13 +10,11 @@ import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectAuraNodeFlux extends AlleleEffect
 {
-	private int effectTimeout;
 	private int nodeRange;
 	
 	AlleleEffectAuraNodeFlux(String id, boolean dominant, int timeout, int range)
 	{
-		super(id, dominant);
-		this.effectTimeout = timeout;
+		super(id, dominant, timeout);
 		this.nodeRange = range;
 	}
 
@@ -31,34 +29,28 @@ public class AlleleEffectAuraNodeFlux extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int timeout = storedData.getInteger(0);
-		if (timeout >= this.effectTimeout)
+		World world = housing.getWorld();
+		int x = housing.getXCoord();
+		int y = housing.getYCoord();
+		int z = housing.getZCoord();
+		
+		EnumTag tag;
+		do
 		{
-			World world = housing.getWorld();
-			int x = housing.getXCoord();
-			int y = housing.getYCoord();
-			int z = housing.getZCoord();
-			
-			EnumTag tag;
-			do
-			{
-				tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
-			}
-			while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
-			
-			int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
-			if (nodeId != -1)
-			{
-				int quantity = world.rand.nextInt(2) + 1;
-				ThaumcraftApi.queueNodeChanges(nodeId, 0, 0, false, new ObjectTags().add(tag, quantity), 0f, 0f, 0f);
-			}
+			tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
 		}
-		else
+		while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
+		
+		int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
+		if (nodeId != -1)
 		{
-			storedData.setInteger(0, timeout + 1);
+			int quantity = world.rand.nextInt(2) + 1;
+			ThaumcraftApi.queueNodeChanges(nodeId, 0, 0, false, new ObjectTags().add(tag, quantity), 0f, 0f, 0f);
 		}
+		storedData.setInteger(0, 0);
+
 		return storedData;
 	}
 

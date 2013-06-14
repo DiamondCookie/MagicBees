@@ -20,7 +20,7 @@ public class AlleleEffectPotion extends AlleleEffect
 	
 	public AlleleEffectPotion(String name, Potion potionApplied, int effectDuration, boolean isDominant)
 	{
-		super(name, isDominant);
+		super(name, isDominant, 200);
 		this.potionId = potionApplied.id;
 		this.duration = 20 * effectDuration;
 	}
@@ -36,28 +36,19 @@ public class AlleleEffectPotion extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int count = storedData.getInteger(0);
+		List<Entity> entityList = this.getEntitiesWithinRange(genome, housing);
 		
-		if (count == 200)
+		for (Entity e : entityList)
 		{
-			List<Entity> entityList = this.getEntitiesWithinRange(genome, housing);
-			
-			for (Entity e : entityList)
+			if (e instanceof EntityPlayer)
 			{
-				if (e instanceof EntityPlayer)
-				{
-					EntityPlayer player = (EntityPlayer)e;
-					player.addPotionEffect(new PotionEffect(this.potionId, this.duration, 0));
-				}
+				EntityPlayer player = (EntityPlayer)e;
+				player.addPotionEffect(new PotionEffect(this.potionId, this.duration, 0));
 			}
-			storedData.setInteger(0, 0);
 		}
-		else
-		{
-			storedData.setInteger(0, count + 1);
-		}
+		storedData.setInteger(0, 0);
 		
 		return storedData;
 	}

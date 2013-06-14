@@ -13,13 +13,11 @@ import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectAuraNodePurify extends AlleleEffect
 {
-	private int effectTimeout;
 	private int nodeRange;
 	
 	public AlleleEffectAuraNodePurify(String id, boolean dominant, int timeout, int range)
 	{
-		super(id, dominant);
-		this.effectTimeout = timeout;
+		super(id, dominant, timeout);
 		this.nodeRange = range;
 	}
 
@@ -34,40 +32,32 @@ public class AlleleEffectAuraNodePurify extends AlleleEffect
 	}
 
 	@Override
-	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
+	public IEffectData doEffectThrottled(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int timeout = storedData.getInteger(0);
-		if (timeout >= this.effectTimeout)
+		World world = housing.getWorld();
+		int x = housing.getXCoord();
+		int y = housing.getYCoord();
+		int z = housing.getZCoord();
+		
+		int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
+		if (nodeId >= 0)
 		{
-			World world = housing.getWorld();
-			int x = housing.getXCoord();
-			int y = housing.getYCoord();
-			int z = housing.getZCoord();
-			
-			int nodeId = ThaumcraftApi.getClosestAuraWithinRange(world, x, y, z, this.nodeRange);
-			if (nodeId >= 0)
+			AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
+			if (node != null)
 			{
-				AuraNode node = ThaumcraftApi.getNodeCopy(nodeId);
-				if (node != null)
+				int aspectCount = node.flux.tags.size();
+				if (aspectCount > 0)
 				{
-					int aspectCount = node.flux.tags.size();
-					if (aspectCount > 0)
+					EnumTag selectedTag = node.flux.getAspectsSorted()[world.rand.nextInt(node.flux.tags.size())];
+					if (selectedTag != null && housing.addProduct(new ItemStack(Config.solidFlux, 1, selectedTag.id), true))
 					{
-						EnumTag selectedTag = node.flux.getAspectsSorted()[world.rand.nextInt(node.flux.tags.size())];
-						if (selectedTag != null && housing.addProduct(new ItemStack(Config.solidFlux, 1, selectedTag.id), true))
-						{
-							node.flux.remove(selectedTag, 1);
-							ThaumcraftApi.queueNodeChanges(node.key, 0, 0, false, new ObjectTags().remove(selectedTag, 1), 0, 0, 0);
-						}
+						node.flux.remove(selectedTag, 1);
+						ThaumcraftApi.queueNodeChanges(node.key, 0, 0, false, new ObjectTags().remove(selectedTag, 1), 0, 0, 0);
 					}
 				}
 			}
-			storedData.setInteger(0, 0);
 		}
-		else
-		{
-			storedData.setInteger(0, timeout + 1);
-		}
+		storedData.setInteger(0, 0);
 		
 		return storedData;
 	}

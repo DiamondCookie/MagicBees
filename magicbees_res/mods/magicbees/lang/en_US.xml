@@ -145,6 +145,7 @@
 	<entry key="research.node.pure">Pure</entry>
 	<entry key="research.node.dark">Dark</entry>
 	<entry key="research.node.chaotic">Chaotic</entry>
+	<entry key="research.block.crystals">Crystal Cluster</entry>
 
 	<!-- Species names -->
 	<entry key="magicbees.speciesMystical">Mystical</entry>

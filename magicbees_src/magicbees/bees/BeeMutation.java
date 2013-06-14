@@ -151,7 +151,7 @@ public class BeeMutation implements IBeeMutation
 		new BeeMutation(Allele.getBaseSpecies("Austere"), baseA, BeeSpecies.EMERALD, 6)
 			.setBlockRequired(Block.blockEmerald);
 		new BeeMutation(Allele.getBaseSpecies("Rural"), BeeSpecies.COPPER, BeeSpecies.APATITE, 12)
-			.setBlockAndMetaRequired(BlockInterface.getBlock("resources").itemID, 0);
+			.setBlockRequired("oreApatite");
 		
 		if (ThaumcraftHelper.isActive())
 		{
@@ -162,7 +162,8 @@ public class BeeMutation implements IBeeMutation
 				for (int b = a + 1; b < speciesList.length; ++b)
 				{
 					new BeeMutation(speciesList[a], speciesList[b], BeeSpecies.TC_STARK, 8)
-						.setBlockRequired(Config.tcCrystal);
+						.setBlockRequired(Config.tcCrystal)
+						.setBlockRequiredNameOverride("research.block.crystals");
 				}
 			}
 			
@@ -245,6 +246,7 @@ public class BeeMutation implements IBeeMutation
 	private int requiredBlockId;
 	private int requiredBlockMeta;
 	private String requiredBlockOreDictEntry;
+	private String requiredBlockName;
 	private BiomeDictionary.Type requiredBiomeType;
 	
 	public BeeMutation(IAlleleBeeSpecies species0, IAlleleBeeSpecies species1, BeeSpecies resultSpecies, int percentChance)
@@ -266,6 +268,7 @@ public class BeeMutation implements IBeeMutation
 		this.requiredBlockMeta = OreDictionary.WILDCARD_VALUE;
 		this.requiredBlockOreDictEntry = null;
 		this.requiredBiomeType = null;
+		this.requiredBlockName = null;
 		
 		BeeManager.beeRoot.registerMutation(this);
 	}
@@ -320,8 +323,18 @@ public class BeeMutation implements IBeeMutation
 			
 			if (this.requiresBlock)
 			{
-				int blockId = housing.getWorld().getBlockId(housing.getXCoord(), housing.getYCoord() - 1, housing.getZCoord());
-				int blockMeta = housing.getWorld().getBlockMetadata(housing.getXCoord(), housing.getYCoord() - 1, housing.getZCoord());
+				Block blockBelow;
+				int blockId;
+				int blockMeta;
+				int i = 1;
+				do
+				{
+					blockId = housing.getWorld().getBlockId(housing.getXCoord(), housing.getYCoord() - i, housing.getZCoord());
+					blockMeta = housing.getWorld().getBlockMetadata(housing.getXCoord(), housing.getYCoord() - i, housing.getZCoord());
+					blockBelow = Block.blocksList[blockId];
+					++i;
+				}
+				while (blockBelow != null && !(blockBelow instanceof IBeeHousing));
 				
 				if (this.requiredBlockOreDictEntry != null)
 				{
@@ -444,7 +457,12 @@ public class BeeMutation implements IBeeMutation
 		}
 		if (this.requiresBlock)
 		{
-			if (this.requiredBlockOreDictEntry != null)
+			if (this.requiredBlockName != null)
+			{
+				conditions.add(String.format(LocalizationManager.getLocalizedString("research.requiresBlock"),
+						LocalizationManager.getLocalizedString(this.requiredBlockName)));
+			}
+			else if (this.requiredBlockOreDictEntry != null)
 			{
 				ArrayList<ItemStack> ores = OreDictionary.getOres(this.requiredBlockOreDictEntry);
 				if (ores.size() > 0)
@@ -454,6 +472,11 @@ public class BeeMutation implements IBeeMutation
 			}
 			else
 			{
+				int meta = 0;
+				if (this.requiredBlockMeta != OreDictionary.WILDCARD_VALUE)
+				{
+					meta = this.requiredBlockMeta;
+				}
 				conditions.add(String.format(LocalizationManager.getLocalizedString("research.requiresBlock"), 
 						new ItemStack(this.requiredBlockId, 1, this.requiredBlockMeta).getDisplayName()));
 			}
@@ -529,6 +552,13 @@ public class BeeMutation implements IBeeMutation
 	{
 		this.requiresBlock = true;
 		this.requiredBlockOreDictEntry = oreDictEntry;
+		
+		return this;
+	}
+	
+	public BeeMutation setBlockRequiredNameOverride(String blockName)
+	{
+		this.requiredBlockName = blockName;
 		
 		return this;
 	}
