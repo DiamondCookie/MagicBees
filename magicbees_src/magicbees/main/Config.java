@@ -350,6 +350,7 @@ public class Config
 		OreDictionary.registerOre("nuggetLead", nuggets.getStackForType(NuggetType.LEAD));
 		OreDictionary.registerOre("shardDiamond", nuggets.getStackForType(NuggetType.DIAMOND));
 		OreDictionary.registerOre("shardEmerald", nuggets.getStackForType(NuggetType.EMERALD));
+		OreDictionary.registerOre("shardApatite", nuggets.getStackForType(NuggetType.APATITE));
 	}
 	
 	private void doMiscConfig()

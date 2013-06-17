@@ -119,7 +119,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	SPITEFUL("Spiteful", "maligna",
 			BeeClassification.ABOMINABLE, 0x5FCC00, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false),
 	WITHERING("Withering", "vietus",
-			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.NORMAL, true, false),
+			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false),
 
 	OBLIVION("Oblivion", "oblivioni",
 			BeeClassification.EXTRINSIC, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
@@ -468,39 +468,39 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.register();
 		
 		IRON.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.IRON), 8)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.IRON), 18)
 			.setGenome(BeeGenomeManager.getTemplateIron())
 			.register();
 		GOLD.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(new ItemStack(Item.goldNugget, 1), 6)
+			.addSpecialty(new ItemStack(Item.goldNugget, 1), 16)
 			.setGenome(BeeGenomeManager.getTemplateGold())
 			.register();
 		COPPER.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.COPPER), 9)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.COPPER), 20)
 			.setGenome(BeeGenomeManager.getTemplateCopper())
 			.register();
 		TIN.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.TIN), 9)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.TIN), 20)
 			.setGenome(BeeGenomeManager.getTemplateTin())
 			.register();
 		SILVER.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.SILVER), 6)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.SILVER), 16)
 			.setGenome(BeeGenomeManager.getTemplateSilver())
 			.register();
 		LEAD.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.LEAD), 7)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.LEAD), 17)
 			.setGenome(BeeGenomeManager.getTemplateLead())
 			.register();
 		DIAMOND.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.DIAMOND), 3)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.DIAMOND), 6)
 			.setGenome(BeeGenomeManager.getTemplateDiamond())
 			.register();
 		EMERALD.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.EMERALD), 2)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.EMERALD), 4)
 			.setGenome(BeeGenomeManager.getTemplateEmerald())
 			.register();
 		APATITE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-			.addSpecialty(Config.nuggets.getStackForType(NuggetType.APATITE), 2)
+			.addSpecialty(Config.nuggets.getStackForType(NuggetType.APATITE), 10)
 			.setGenome(BeeGenomeManager.getTemplateApatite())
 			.register();
 		

@@ -34,13 +34,6 @@ public class AlleleEffectAuraNodeCharge extends AlleleEffect
 		int y = housing.getYCoord();
 		int z = housing.getZCoord();
 		
-		EnumTag tag;
-		do
-		{
-			tag = EnumTag.values()[world.rand.nextInt(EnumTag.values().length)];
-		}
-		while (tag == EnumTag.UNKNOWN || tag == EnumTag.WEATHER);
-		
 		if (world.rand.nextBoolean())
 		{
 			ThaumcraftApi.increaseLowestAura(world, x, y, z, 1);

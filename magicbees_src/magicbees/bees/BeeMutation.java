@@ -447,12 +447,12 @@ public class BeeMutation implements IBeeMutation
 		{
 			if (this.nodeType != null)
 			{
-				conditions.add(LocalizationManager.getLocalizedString("research.requiresNode"));
+				conditions.add(String.format(LocalizationManager.getLocalizedString("research.requiresNodeSpecific"), 
+						LocalizationManager.getLocalizedString("research.node." + this.nodeType.name().toLowerCase())));
 			}
 			else
 			{
-				conditions.add(String.format(LocalizationManager.getLocalizedString("research.requiresNodeSpecific"), 
-						LocalizationManager.getLocalizedString("research.node." + this.nodeType.name().toLowerCase())));
+				conditions.add(LocalizationManager.getLocalizedString("research.requiresNode"));
 			}
 		}
 		if (this.requiresBlock)

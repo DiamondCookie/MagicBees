@@ -149,197 +149,142 @@
 
 	<!-- Species names -->
 	<entry key="magicbees.speciesMystical">Mystical</entry>
-	<entry key="magicbees.speciesMystical.description">Common in many parts of the world, these bees have a
-		little extra whimsy about them.|Apinomicon</entry>
+	<entry key="magicbees.speciesMystical.description">Common in many parts of the world, these bees have a little extra whimsy about them.|Apinomicon</entry>
 	<entry key="magicbees.speciesSorcerous">Sorcerous</entry>
 	<entry key="magicbees.speciesSorcerous.description"></entry>
 	<entry key="magicbees.speciesUnusual">Unusual</entry>
-	<entry key="magicbees.speciesUnusual.description">"A curious specimen for my collection!"|Junior
-		Apiarist</entry>
+	<entry key="magicbees.speciesUnusual.description">"A curious specimen for my collection!"|Junior Apiarist</entry>
 	<entry key="magicbees.speciesAttuned">Attuned</entry>
-	<entry key="magicbees.speciesAttuned.description">They fly as though guided by unseen threads through
-		the air.|Apinomicon</entry>
+	<entry key="magicbees.speciesAttuned.description">They fly as though guided by unseen threads through the air.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesEldritch">Eldritch</entry>
-	<entry key="magicbees.speciesEldritch.description">The potential that was locked within this bee's
-		ancestors has now come to the fore.|Apinomicon</entry>
+	<entry key="magicbees.speciesEldritch.description">The potential that was locked within this bee's ancestors has now come to the fore.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesEsoteric">Esoteric</entry>
-	<entry key="magicbees.speciesEsoteric.description">An unusual crossbreed which seems to have magical
-		properties.|Apinomicon</entry>
+	<entry key="magicbees.speciesEsoteric.description">An unusual crossbreed which seems to have magical properties.|Apinomicon</entry>
 	<entry key="magicbees.speciesMysterious">Mysterious</entry>
-	<entry key="magicbees.speciesMysterious.description">These bees have been to the end of the world and back,
-		and their power has grown.|Apinomicon</entry>
+	<entry key="magicbees.speciesMysterious.description">These bees have been to the end of the world and back, and their power has grown.|Apinomicon</entry>
 	<entry key="magicbees.speciesArcane">Arcane</entry>
-	<entry key="magicbees.speciesArcane.description">"Their produce is charged with magic."|Azanor, Master
-		Thaumaturge</entry>
+	<entry key="magicbees.speciesArcane.description">"Their produce is charged with magic."|Azanor, Master Thaumaturge</entry>
 
 	<entry key="magicbees.speciesCharmed">Charmed</entry>
-	<entry key="magicbees.speciesCharmed.description">Your first experiments in Thaumaturgical Apiculture
-		have yielded fruit. Buzzing fruit.|Apinomicon</entry>
+	<entry key="magicbees.speciesCharmed.description">Your first experiments in Thaumaturgical Apiculture have yielded fruit. Buzzing fruit.|Apinomicon</entry>
 	<entry key="magicbees.speciesEnchanted">Enchanted</entry>
-	<entry key="magicbees.speciesEnchanted.description">Successive generations of Charmed bees have reinforced
-		their connection to the unknown.|Apinomicon</entry>
+	<entry key="magicbees.speciesEnchanted.description">Successive generations of Charmed bees have reinforced their connection to the unknown.|Apinomicon</entry>
 	<entry key="magicbees.speciesSupernatural">Supernatural</entry>
-	<entry key="magicbees.speciesSupernatural.description">These bees walk the line between this world and the
-		unseen.|Apinomicon</entry>
+	<entry key="magicbees.speciesSupernatural.description">These bees walk the line between this world and the unseen.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesEthereal">Ethereal</entry>
-	<entry key="magicbees.speciesEthereal.description">Ghostly, and charged with energy from
-		beyond.|Apinomicon</entry>
+	<entry key="magicbees.speciesEthereal.description">Ghostly, and charged with energy from beyond.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesWatery">Watery</entry>
 	<entry key="magicbees.speciesWatery.description">Fond of damp spots and flowing water.|Apinomicon</entry>
 	<entry key="magicbees.speciesEarthen">Earthen</entry>
-	<entry key="magicbees.speciesEarthen.description">They have an iron-strong connection with stone and
-		dirt.|Apinomicon</entry>
+	<entry key="magicbees.speciesEarthen.description">They have an iron-strong connection with stone and dirt.|Apinomicon</entry>
 	<entry key="magicbees.speciesFirey">Firey</entry>
-	<entry key="magicbees.speciesFirey.description">As close as you can get to living flame without
-		involving candescence.|Apinomicon</entry>
+	<entry key="magicbees.speciesFirey.description">As close as you can get to living flame without involving candescence.|Apinomicon</entry>
 	<entry key="magicbees.speciesWindy">Windy</entry>
-	<entry key="magicbees.speciesWindy.description">Rarely seen in flat, wide open spaces. Their
-		territories are vast.|Apinomicon</entry>
+	<entry key="magicbees.speciesWindy.description">Rarely seen in flat, wide open spaces. Their territories are vast.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesPupil">Pupil</entry>
-	<entry key="magicbees.speciesPupil.description">"What does that bee want with my paper?!"|Yorae,
-		Librarian</entry>
+	<entry key="magicbees.speciesPupil.description">"What does that bee want with my paper?!"|Yorae, Librarian</entry>
 	<entry key="magicbees.speciesScholarly">Scholarly</entry>
-	<entry key="magicbees.speciesScholarly.description">"I can't be sure, but I think they might be smarter
-		than me..."|Yorae, Librarian</entry>
+	<entry key="magicbees.speciesScholarly.description">"I can't be sure, but I think they might be smarter than me..."|Yorae, Librarian</entry>
 	<entry key="magicbees.speciesSavant">Savant</entry>
-	<entry key="magicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). Solve for
-		honey.|Note found on Yorae's desk</entry>
+	<entry key="magicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))). Solve for honey.|Note found on Yorae's desk</entry>
 
 	<entry key="magicbees.speciesAware">Aware</entry>
-	<entry key="magicbees.speciesAware.description">"They can see into your soul!"|Florastar, Expert
-		Beekeeper</entry>
+	<entry key="magicbees.speciesAware.description">"They can see into your soul!"|Florastar, Expert Beekeeper</entry>
 	<entry key="magicbees.speciesSpirit">Spirit</entry>
-	<entry key="magicbees.speciesSpirit.description">It is said these bees are able to contact the
-		dead.|Apinomicon</entry>
+	<entry key="magicbees.speciesSpirit.description">It is said these bees are able to contact the dead.|Apinomicon</entry>
 	<entry key="magicbees.speciesSoul">Soul</entry>
-	<entry key="magicbees.speciesSoul.description">"The Dread Pirate Roberts has come for your
-		SOOOOOOULS!"|Dread Pirate Roberts</entry>
+	<entry key="magicbees.speciesSoul.description">"The Dread Pirate Roberts has come for your SOOOOOOULS!"|Dread Pirate Roberts</entry>
 
 	<entry key="magicbees.speciesSkulking">Skulking</entry>
-	<entry key="magicbees.speciesSkulking.description">These bees have become xenophobic and bad-tempered.
-		Use caution.|Apinomicon</entry>
+	<entry key="magicbees.speciesSkulking.description">These bees have become xenophobic and bad-tempered. Use caution.|Apinomicon</entry>
 	<entry key="magicbees.speciesGhastly">Ghastly</entry>
 	<entry key="magicbees.speciesGhastly.description">"*sigh*... Really, Myst?"|Taveria, irritated Apiarist</entry>
 	<entry key="magicbees.speciesSpidery">Spidery</entry>
 	<entry key="magicbees.speciesSpidery.description">Spiderbee; n. Does whatever a spider-bee does.|Unknown</entry>
 	<entry key="magicbees.speciesSmouldering">Smouldering</entry>
-	<entry key="magicbees.speciesSmouldering.description">The Skulking bees have become alight with the fire of
-		the ever-burning Blazes.|Apinomicon</entry>
+	<entry key="magicbees.speciesSmouldering.description">The Skulking bees have become alight with the fire of the ever-burning Blazes.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesTimely">Timely</entry>
-	<entry key="magicbees.speciesTimely.description">"An apiarist is never late. He arrives precisely when
-		he means to!"|Sengir, Mad Apiarist</entry>
+	<entry key="magicbees.speciesTimely.description">"An apiarist is never late. He arrives precisely when he means to!"|Sengir, Mad Apiarist</entry>
 	<entry key="magicbees.speciesLordly">Lordly</entry>
-	<entry key="magicbees.speciesLordly.description">They live in peace, within the sight of the Eye of
-		Harmony|Tattered Remains of ancient Apinomicon</entry>
+	<entry key="magicbees.speciesLordly.description">They live in peace, within the sight of the Eye of Harmony|Tattered Remains of ancient Apinomicon</entry>
 	<entry key="magicbees.speciesDoctoral">Doctoral</entry>
-	<entry key="magicbees.speciesDoctoral.description">"Would you like a Jelly Baby?"|Passing stranger with a
-		great scarf and a blue box</entry>
+	<entry key="magicbees.speciesDoctoral.description">"Would you like a Jelly Baby?"|Passing stranger with a great scarf and a blue box</entry>
 
 	<entry key="magicbees.speciesInfernal">Infernal</entry>
-	<entry key="magicbees.speciesInfernal.description">Spawned deep within the hellish realm, none have
-		survived long enough to determine their abilities.|Apinomicon</entry>
+	<entry key="magicbees.speciesInfernal.description">Spawned deep within the hellish realm, none have survived long enough to determine their abilities.|Apinomicon</entry>
 	<entry key="magicbees.speciesHateful">Hateful</entry>
 	<entry key="magicbees.speciesHateful.description">|Apinomicon</entry>
 	<entry key="magicbees.speciesSpiteful">Spiteful</entry>
-	<entry key="magicbees.speciesSpiteful.description">They guard their territory fiercely, with the zeal of
-		fiends, and welts of fire.|Apinomicon</entry>
+	<entry key="magicbees.speciesSpiteful.description">They guard their territory fiercely, with the zeal of fiends, and welts of fire.|Apinomicon</entry>
 	<entry key="magicbees.speciesWithering">Withering</entry>
-	<entry key="magicbees.speciesWithering.description">Their mere passing causes life to fail, slowly drawing
-		all energy from their territory.|Apinomicon</entry>
+	<entry key="magicbees.speciesWithering.description">Their mere passing causes life to fail, slowly drawing all energy from their territory.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesOblivion">Oblivion</entry>
-	<entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this
-		world, or some other.|Apinomicon</entry>
+	<entry key="magicbees.speciesOblivion.description">It is unclear whether these bees are native to this world, or some other.|Apinomicon</entry>
 	<entry key="magicbees.speciesNameless">Nameless</entry>
-	<entry key="magicbees.speciesNameless.description">"Other naturalists have refused to study these bees. I
-		must know why."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesNameless.description">"Other naturalists have refused to study these bees. I must know why."|Tattered Research Notes</entry>
 	<entry key="magicbees.speciesAbandoned">Abandoned</entry>
-	<entry key="magicbees.speciesAbandoned.description">"The more I study these bees, the more I feel they do
-		not belong here, or anywhere else."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesAbandoned.description">"The more I study these bees, the more I feel they do not belong here, or anywhere else."|Tattered Research Notes</entry>
 	<entry key="magicbees.speciesForlorn">Forlorn</entry>
-	<entry key="magicbees.speciesForlorn.description">"I am now convinced they were left in our universe on
-		purpose by some unknowable beings."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesForlorn.description">"I am now convinced they were left in our universe on purpose by some unknowable beings."|Tattered Research Notes</entry>
 	<entry key="magicbees.speciesDraconic">Draconic</entry>
-	<entry key="magicbees.speciesDraconic.description">"With a fel sound, they erupted from their hive. That
-		was the last we ever saw of Gerald."|Tattered Research Notes</entry>
+	<entry key="magicbees.speciesDraconic.description">"With a fel sound, they erupted from their hive. That was the last we ever saw of Gerald."|Tattered Research Notes</entry>
 
 	<entry key="magicbees.speciesIron">Ferrous</entry>
-	<entry key="magicbees.speciesIron.description">Having absorbed some of the base metal, these bees can
-		concentrate the essence of iron from the region.|Apinomicon</entry>
+	<entry key="magicbees.speciesIron.description">Having absorbed some of the base metal, these bees can concentrate the essence of iron from the region.|Apinomicon</entry>
 	<entry key="magicbees.speciesGold">Auric</entry>
 	<entry key="magicbees.speciesGold.description">Not all that glitters is gold.|Ancient Aphorism</entry>
 	<entry key="magicbees.speciesCopper">Cuprum</entry>
-	<entry key="magicbees.speciesCopper.description">A base metal common in many applications; these bees
-		are helpful for resource-starved magicians.|Apinomicon</entry>
+	<entry key="magicbees.speciesCopper.description">A base metal common in many applications; these bees are helpful for resource-starved magicians.|Apinomicon</entry>
 	<entry key="magicbees.speciesTin">Stannum</entry>
-	<entry key="magicbees.speciesTin.description">While metalic, these bees are suprisingly
-		fragile.|Apinomicon</entry>
+	<entry key="magicbees.speciesTin.description">While metalic, these bees are suprisingly fragile.|Apinomicon</entry>
 	<entry key="magicbees.speciesSilver">Argentum</entry>
-	<entry key="magicbees.speciesSilver.description">While they do not recieve as much attention as Golden
-		bees, they are nonetheless valuable.|Apinomicon</entry>
+	<entry key="magicbees.speciesSilver.description">While they do not recieve as much attention as Golden bees, they are nonetheless valuable.|Apinomicon</entry>
 	<entry key="magicbees.speciesLead">Plumbum</entry>
-	<entry key="magicbees.speciesLead.description">A favourite of amateur alchemists, they believe they
-		can transform these bees into gold.|Apinomicon</entry>
+	<entry key="magicbees.speciesLead.description">A favourite of amateur alchemists, they believe they can transform these bees into gold.|Apinomicon</entry>
 	<entry key="magicbees.speciesDiamond">Diamandi</entry>
-	<entry key="magicbees.speciesDiamond.description">Crystalline, glittering, and harder than dragon's
-		teeth. These bees are none of those.|Apinomicon</entry>
+	<entry key="magicbees.speciesDiamond.description">Crystalline, glittering, and harder than dragon's teeth. These bees are none of those.|Apinomicon</entry>
 	<entry key="magicbees.speciesEmerald">Esmeraldi</entry>
-	<entry key="magicbees.speciesEmerald.description">It is said they have been to a land ruled by a Great
-		Wizard, and have taken the aspect of his city.|Apinomicon</entry>
+	<entry key="magicbees.speciesEmerald.description">It is said they have been to a land ruled by a Great Wizard, and have taken the aspect of his city.|Apinomicon</entry>
 	<entry key="magicbees.speciesApatite">Apatine</entry>
-	<entry key="magicbees.speciesApatite.description">Day and night the whining droned on. I barricaded the
-		windows and hid in the cellar, but everywhere the high-pitched noise
-		of the apatine bees penetrated the walls and drove me to
-		distraction.|Beekeeping 101</entry>
+	<entry key="magicbees.speciesApatite.description">Day and night the whining droned on. I barricaded the windows and hid in the cellar, but everywhere the high-pitched noise of the apatine bees penetrated the walls and drove me to distraction.|Beekeeping 101</entry>
 
 	<entry key="magicbees.speciesTCStark">Stark</entry>
-	<entry key="magicbees.speciesTCStark.description">"These are unusually attracted to shards. This
-		warrents further investigation."|Azanor, Master Thaumaturge</entry>
+	<entry key="magicbees.speciesTCStark.description">"These are unusually attracted to shards. This warrents further investigation."|Azanor, Master Thaumaturge</entry>
 	<entry key="magicbees.speciesTCAir">Aura</entry>
-	<entry key="magicbees.speciesTCAir.description">"They work so fast it's breathtaking."|Sengir, Mad
-		Apiarist</entry>
+	<entry key="magicbees.speciesTCAir.description">"They work so fast it's breathtaking."|Sengir, Mad Apiarist</entry>
 	<entry key="magicbees.speciesTCFire">Ignis</entry>
-	<entry key="magicbees.speciesTCFire.description">Caution: Contents of hive extremely hot.|Warning label
-		on Azanor's apiary</entry>
+	<entry key="magicbees.speciesTCFire.description">Caution: Contents of hive extremely hot.|Warning label on Azanor's apiary</entry>
 	<entry key="magicbees.speciesTCWater">Aqua</entry>
-	<entry key="magicbees.speciesTCWater.description">"I tried to breed them once, but that was a
-		wash."|MysteriousAges, Apprentice Thaumaturge</entry>
+	<entry key="magicbees.speciesTCWater.description">"I tried to breed them once, but that was a wash."|MysteriousAges, Apprentice Thaumaturge</entry>
 	<entry key="magicbees.speciesTCEarth">Solum</entry>
-	<entry key="magicbees.speciesTCEarth.description">"You're really gonna dig these bees, but watch out -
-		they bore quite easily."|MysteriousAges, Apprentice Comedian</entry>
+	<entry key="magicbees.speciesTCEarth.description">"You're really gonna dig these bees, but watch out - they bore quite easily."|MysteriousAges, Apprentice Comedian</entry>
 	<entry key="magicbees.speciesTCMagic">Praecantatio</entry>
 	<entry key="magicbees.speciesTCMagic.description">Beekeeping is magic!|Apinomicon, Preface</entry>
 
 	<entry key="magicbees.speciesTCVis">Vis</entry>
-	<entry key="magicbees.speciesTCVis.description">"They can feel changes in the aura, but are not yet
-		able to affect it."|Azanor, research notes</entry>
+	<entry key="magicbees.speciesTCVis.description">"They can feel changes in the aura, but are not yet able to affect it."|Azanor, research notes</entry>
 	<entry key="magicbees.speciesTCPure">Pure</entry>
 	<entry key="magicbees.speciesTCPure.description">"It's like a bee janitor!"|MysteriousAges, Thaumaturge</entry>
 	<entry key="magicbees.speciesTCFlux">Flux</entry>
-	<entry key="magicbees.speciesTCFlux.description">"I thought they would help clean up, but it only makes
-		things worse!"|Kreicus, Apprentice Thaumaturge</entry>
+	<entry key="magicbees.speciesTCFlux.description">"I thought they would help clean up, but it only makes things worse!"|Kreicus, Apprentice Thaumaturge</entry>
 	<entry key="magicbees.speciesTCAttractive">Attractive</entry>
-	<entry key="magicbees.speciesTCAttractive.description">Having undergone a freak mutation, these bees now
-		attract magic to them.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCAttractive.description">Having undergone a freak mutation, these bees now attract magic to them.|Apinomicon</entry>
 	<entry key="magicbees.speciesTCRejuvenating">Rejuvenating</entry>
-	<entry key="magicbees.speciesTCRejuvenating.description">The hum of the hive is magical, and over time is
-		absorbed by nearby nodes.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCRejuvenating.description">The hum of the hive is magical, and over time is absorbed by nearby nodes.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesTCBrainy">Brainy</entry>
-	<entry key="magicbees.speciesTCBrainy.description">Their combs may be fetid and foul-smelling, but their
-		intelligence is well-developed.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCBrainy.description">Their combs may be fetid and foul-smelling, but their intelligence is well-developed.|Apinomicon</entry>
 	<entry key="magicbees.speciesTCWispy">Wispy</entry>
-	<entry key="magicbees.speciesTCWispy.description">Their language is garbled and unintelligible. It is
-		probable they are speaking to unnatural beings.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCWispy.description">Their language is garbled and unintelligible. It is probable they are speaking to unnatural beings.|Apinomicon</entry>
 	<entry key="magicbees.speciesTCBatty">Batty</entry>
-	<entry key="magicbees.speciesTCBatty.description">They tend to attract bats to their hives through means
-		unknown.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCBatty.description">They tend to attract bats to their hives through means unknown.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesTCChicken">Poultry</entry>
 	<entry key="magicbees.speciesTCChicken.description">"Cluck. Cluck cluck! ... You heard me."|Confused bee</entry>
@@ -349,52 +294,38 @@
 	<entry key="magicbees.speciesTCPork.description">"Oink, oink. Er.... bzzz?"|Confused bee</entry>
 
 	<entry key="magicbees.speciesEEMinium">Minium</entry>
-	<entry key="magicbees.speciesEEMinium.description">It may be possible to exploit their mercurial and
-		changeable nature.|Apinomicon</entry>
+	<entry key="magicbees.speciesEEMinium.description">It may be possible to exploit their mercurial and changeable nature.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesAMEssence">Essence</entry>
-	<entry key="magicbees.speciesAMEssence.description">Drawing from motes of dust in the air and ground, they
-		concentrate the energy</entry>
+	<entry key="magicbees.speciesAMEssence.description">Drawing from motes of dust in the air and ground, they concentrate the energy</entry>
 	<entry key="magicbees.speciesAMQuintessence">Quintessential</entry>
-	<entry key="magicbees.speciesAMQuintessence.description">The heart of magic lies dormant in all
-		things.|Apinomicon, preface</entry>
+	<entry key="magicbees.speciesAMQuintessence.description">The heart of magic lies dormant in all things.|Apinomicon, preface</entry>
 
 	<entry key="magicbees.speciesAMEarth">Erde</entry>
-	<entry key="magicbees.speciesAMEarth.description">Empowered by the Earth, their produce is infused with
-		its essence.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMEarth.description">Empowered by the Earth, their produce is infused with its essence.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMAir">Luft</entry>
 	<entry key="magicbees.speciesAMAir.description">Swift as the wind, and lighter than air.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMFire">Feuer</entry>
-	<entry key="magicbees.speciesAMFire.description">Their colony can reach temperatures that boil water
-		and melt metals.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMFire.description">Their colony can reach temperatures that boil water and melt metals.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMWater">Wasser</entry>
-	<entry key="magicbees.speciesAMWater.description">Through prolonged exposure to liquids, their combs are
-		quite wet and heavy.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMWater.description">Through prolonged exposure to liquids, their combs are quite wet and heavy.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesAMLightning">Blitz</entry>
-	<entry key="magicbees.speciesAMLightning.description">They can travel vast distances in a blink, and are
-		known for starting many wildfires.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMLightning.description">They can travel vast distances in a blink, and are known for starting many wildfires.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMPlant">Staude</entry>
-	<entry key="magicbees.speciesAMPlant.description">They have an affinity for all that is green and
-		grows.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMPlant.description">They have an affinity for all that is green and grows.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMIce">Eis</entry>
-	<entry key="magicbees.speciesAMIce.description">"They keep stealing stuff from me, and I never see
-		them. They're far too slippery."|MysteriousAges, incorrigible punster</entry>
+	<entry key="magicbees.speciesAMIce.description">"They keep stealing stuff from me, and I never see them. They're far too slippery."|MysteriousAges, incorrigible punster</entry>
 	<entry key="magicbees.speciesAMMagma">Magma</entry>
-	<entry key="magicbees.speciesAMMagma.description">As they fly by, they sear the surface of the
-		landscape, eventually scouring all plants and fragile minerals
-		away.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMMagma.description">As they fly by, they sear the surface of the landscape, eventually scouring all plants and fragile minerals away.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesAMArcane">Arkanen</entry>
-	<entry key="magicbees.speciesAMArcane.description">"Curious creatures, though their produce is quite
-		useful."|Mithion, Adept</entry>
+	<entry key="magicbees.speciesAMArcane.description">"Curious creatures, though their produce is quite useful."|Mithion, Adept</entry>
 
 	<entry key="magicbees.speciesAMVortex">Vortex</entry>
-	<entry key="magicbees.speciesAMVortex.description">Ravenous for mana, they may be dangerous for any
-		caster.|Apinomicon</entry>
+	<entry key="magicbees.speciesAMVortex.description">Ravenous for mana, they may be dangerous for any caster.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMWight">Wight</entry>
-	<entry key="magicbees.speciesAMWight.description">"They attract magical spirits; not always
-		docile."|Mithion, Adept</entry>
+	<entry key="magicbees.speciesAMWight.description">"They attract magical spirits; not always docile."|Mithion, Adept</entry>
 
 	<!-- Blank species entries <entry key="magicbees.species"></entry> <entry 
 		key="magicbees.species.description"></entry> -->
@@ -424,52 +355,36 @@
 
 	<!-- Classifications -->
 	<entry key="classification.veiled">Veiled</entry>
-	<entry key="classification.veiled.description">The curious species found scattered through the world
-		may have abilities beyond one's reasoning.|Apinomicon</entry>
+	<entry key="classification.veiled.description">The curious species found scattered through the world may have abilities beyond one's reasoning.|Apinomicon</entry>
 	<entry key="classification.arcane">Arcane</entry>
-	<entry key="classification.arcane.description">These bees have inexplicable affinity for
-		magic.|Apinomicon</entry>
+	<entry key="classification.arcane.description">These bees have inexplicable affinity for magic.|Apinomicon</entry>
 	<entry key="classification.supernatural">Supernatural</entry>
-	<entry key="classification.supernatural.description">No longer ordinary bees, they have been associated
-		with many odd occurances.|Apinomicon</entry>
+	<entry key="classification.supernatural.description">No longer ordinary bees, they have been associated with many odd occurances.|Apinomicon</entry>
 	<entry key="classification.scholarly">Scholarly</entry>
-	<entry key="classification.scholarly.description">The caste of bees which have great intellect and
-		deductive ability.|Apinomicon</entry>
+	<entry key="classification.scholarly.description">The caste of bees which have great intellect and deductive ability.|Apinomicon</entry>
 	<entry key="classification.skulking">Skulking</entry>
-	<entry key="classification.skulking.description">Unpleasant and malicious. Treat this group with
-		caution.|Apinomicon</entry>
+	<entry key="classification.skulking.description">Unpleasant and malicious. Treat this group with caution.|Apinomicon</entry>
 	<entry key="classification.magic">Aware</entry>
-	<entry key="classification.magic.description">It is unclear whether they are sentient, but they have
-		suprising awareness of their surroundings.|Apinomicon</entry>
+	<entry key="classification.magic.description">It is unclear whether they are sentient, but they have suprising awareness of their surroundings.|Apinomicon</entry>
 	<entry key="classification.time">Time</entry>
-	<entry key="classification.time.description">Though clever use of time travel, these bees
-		accomplish twice as much in one day.|Apinomicon</entry>
+	<entry key="classification.time.description">Though clever use of time travel, these bees accomplish twice as much in one day.|Apinomicon</entry>
 	<entry key="classification.soul">Soulful</entry>
-	<entry key="classification.soul.description">It would be eerie to think that they collected the
-		souls of the deceased.|Apinomicon</entry>
+	<entry key="classification.soul.description">It would be eerie to think that they collected the souls of the deceased.|Apinomicon</entry>
 	<entry key="classification.abominable">Abominable</entry>
-	<entry key="classification.abominable.description">Spawned in the firey depths of the Nether, there is
-		nothing pleasant about these creatures.|Apinomicon</entry>
+	<entry key="classification.abominable.description">Spawned in the firey depths of the Nether, there is nothing pleasant about these creatures.|Apinomicon</entry>
 	<entry key="classification.Extrinsic">Extrinsic</entry>
-	<entry key="classification.Extrinsic.description">It is unknown whether these creatures gave rise to the
-		family Apidae in this universe, or if these evolved
-		seperately.|Apinomicon</entry>
+	<entry key="classification.Extrinsic.description">It is unknown whether these creatures gave rise to the family Apidae in this universe, or if these evolved seperately.|Apinomicon</entry>
 	<entry key="classification.metallic">Metallic</entry>
-	<entry key="classification.metallic.description">They collect fragments of metal and combine them into
-		larger portions.|Apinomicon</entry>
+	<entry key="classification.metallic.description">They collect fragments of metal and combine them into larger portions.|Apinomicon</entry>
 	<entry key="classification.gem">Gem</entry>
-	<entry key="classification.gem.description">They collect fragments of precious gems in their
-		combs.|Apinomicon</entry>
+	<entry key="classification.gem.description">They collect fragments of precious gems in their combs.|Apinomicon</entry>
 	<entry key="classification.thaumic">Thaumic</entry>
-	<entry key="classification.thaumic.description">These bees have an increased affinity to magic and
-		aura.|Apinomicon</entry>
+	<entry key="classification.thaumic.description">These bees have an increased affinity to magic and aura.|Apinomicon</entry>
 	<entry key="classification.fleshy">Fleshy</entry>
-	<entry key="classification.fleshy.description">Through an unknown mechanism, these bees accrue chunks
-		of animal flesh. Somehow, it's still edible.|Apinomicon</entry>
+	<entry key="classification.fleshy.description">Through an unknown mechanism, these bees accrue chunks of animal flesh. Somehow, it's still edible.|Apinomicon</entry>
 	<entry key="classification.alchemical">Alchemical</entry>
 	<entry key="classification.alchemical.description">These bees have a changeable nature.|Apinomicon</entry>
 	<entry key="classification.essential">Essential</entry>
-	<entry key="classification.essential.description">These bees have an increased affinity for aspected
-		magic.|Apinomicon</entry>
+	<entry key="classification.essential.description">These bees have an increased affinity for aspected magic.|Apinomicon</entry>
 
 </properties>

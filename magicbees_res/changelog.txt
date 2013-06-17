@@ -1,3 +1,7 @@
+Adjusting the production rates on some nugget-producing bees.
+Withering bee species now requires arid rather than normal humidity, to conform with the rest of the Infernal line.
+Withering and Slow Effects should now correctly be reduced while wearing Apiarist's Armor or other protective gear.
+
 2.0.1
 Modifying mutation class to allow block-requiring mutations to work in Alvearies/other multiblock hive structures.
 Tweaking hive gen

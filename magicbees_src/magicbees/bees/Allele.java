@@ -93,8 +93,8 @@ public class Allele implements IAllele
 		Allele.effectCleansing = new AlleleEffectCure("Curative", false);
 		Allele.effectDigSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);
 		Allele.effectMoveSpeed = new AlleleEffectPotion("MoveSpeed", Potion.moveSpeed, 10, false);
-		Allele.effectSlowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false);
-		Allele.effectWithering = new AlleleEffectPotion("Withering", Potion.wither, 10, false);
+		Allele.effectSlowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false).setMalicious();
+		Allele.effectWithering = new AlleleEffectPotion("Withering", Potion.wither, 10, false).setMalicious();
 
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
 			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);
