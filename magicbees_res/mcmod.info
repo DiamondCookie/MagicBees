@@ -1,7 +1,7 @@
 [
 {
   "modid": "MagicBees",
-  "version": "@MODVERSION@",
+  "version": "@MODVERSION@ (build @BUILD_NUMBER@)",
   "name": "Magic Bees",
   "url": "http://bit.ly/XFDvLY",
   "description": "Magic themed bee expansion for Forestry. TC3, EE3, AM compatible!",

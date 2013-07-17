@@ -25,7 +25,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 		name="Magic Bees",
 		useMetadata=true,
 		acceptedMinecraftVersions=VersionInfo.MCVersion,
-		version=VersionInfo.Version + " (build " + VersionInfo.Build + ")",
+		version=VersionInfo.Version,
 		dependencies=VersionInfo.Depends
 )
 @NetworkMod(serverSideRequired=false, clientSideRequired=true)

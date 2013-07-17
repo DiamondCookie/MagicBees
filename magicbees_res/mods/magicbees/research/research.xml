@@ -22,7 +22,7 @@ The potential exists for further study. All that is required is some creative th
 <longText>Continuing from your curiousity into these flying creatures, an idea has ocurred to you how to encourage them to work faster, coaxed along by the judicious use of magic applied to some existing beekeeping equipment.</longText>
 <page type="text">The simple frames known to all beekeepers, while effective, are flimsy and prone to breakage. With the help of magic, you have devised an improved design to function longer by enchanting it with reinforcing magic.
 
-These improved versions can last several times longer than the basic frames, so long as there is sufficient aura in the area to feed the spells woven into the construction of the frame.</page>
+These improved versions can last several times longer than the basic frames, thanks to your new enchantments.</page>
 <page type="infusioncrafting">FRAMEMAGIC</page>
 </project>
 
@@ -30,7 +30,7 @@ These improved versions can last several times longer than the basic frames, so 
 <name>Resilient Frame</name>
 <popupText>Making it better...</popupText>
 <longText>Having come up with an idea for an improved Magical Frame, the next logical step would be to reinforce the design further, shielding it from all but the harshest wear and tear. The trade-off, of course, would be an increased consumption of aura during its operation.</longText>
-<page type="text">You have successfully created a design for a more durable Apiary Frame, the Resilient Frame. Like the Magic Frame, it will increase the bees' working speed and consume aura to offset received wear and tear. Unlike the Magic Frame, its expected lifespan is much longer, but its aura use is slightly higher. </page>
+<page type="text">You have successfully created a design for a more durable Apiary Frame, the Resilient Frame. Like the Magic Frame, it will increase the bees' working speed and consume aura to offset received wear and tear. Unlike the Magic Frame, its expected lifespan is much longer. </page>
 <page type="infusioncrafting">FRAMERESILIENT</page>
 </project>
 
@@ -38,9 +38,7 @@ These improved versions can last several times longer than the basic frames, so 
 <name>Gentle Frame</name>
 <popupText>You won't even notice I'm here.</popupText>
 <longText>Continuing from your curiosity into these flying creatures, an idea has occured to you how to encourage them to live slightly longer within the Apiaries. Perhaps if you could surround them with the essence of health, life, and the plants they love, you can realize this idea.</longText>
-<page type="text">The Gentle Frame extends the life expectancy of a working queen by roughly a half, and encourages the workers to move at a slightly increased pace. The end result is that the bees live longer, and produce more while they are alive.
-
-Like the Magic Frame, the Gentle Frame also consumes small amounts of aura to maintain its enchantments, and has the negative side-effect of producing small amounts of flux in the surrounding aura now and again as the enchanted bees go about their work outside the hive. It's probably not enough to get too worried about, though.</page>
+<page type="text">The Gentle Frame extends the life expectancy of a working queen by roughly a half, and encourages the workers to move at a slightly increased pace. The end result is that the bees live longer, and produce more while they are alive.</page>
 <page type="infusioncrafting">FRAMEGENTLE</page>
 </project>
 
@@ -50,18 +48,15 @@ Like the Magic Frame, the Gentle Frame also consumes small amounts of aura to ma
 <longText>Additional bee research has yielded insight into their body structure, metabolism, and life cycle. It is possible that you could create a frame to enhance their body processes.</longText>
 <page type="text">The Metabolic Frame enhances the rate at which bees metabolize food, resulting in a higher work speed. However, this makes their genetic structure somewhat unstable and prone to mutations. While this can be frustrating for some apiarists, other, more prepared beekeepers have been known to use the Metabolic Frames in their apiaries to encourage mutations in bee species.
 
-Like the Magic Frame, this frame consumes aura to maintain its enchantments, and has the negative side-effect of producing some flux in the surrounding aura now and again as the enchanted bees go about their work. The Metabolic Frame consumes significantly more aura, as its</page>
+It is rather less durable than the Magic Frame.</page>
 <page type="infusioncrafting">FRAMEMETABOLIC</page>
-<page type="text">enchantments are much more complex, and is not quite as durable as the Magic Frame is known to be.</page>
 </project>
 
 <project id="HIVEFRAMENECRO">
 <name>Necrotic Frame</name>
 <popupText>Doom And Gloom, For Bees!</popupText>
 <longText>After being stung by a bee, you concocted an idea to make them pay. Surely placing a frame infused with death and envenomed intents in a hive will teach them a lesson!</longText>
-<page type="text">Your vengeance-fuelled research has paid off, resulting in the knowledge of the Necrotic Frame. This frame, when placed in an Apiary, will cause the bees to become sluggish, reducing their work speed, and severely unhealthy, greatly diminishing the current generation's lifespan. However, it is prudent to ensure the enchantments in the frame only affect the current generation.
-
-Like the Magic Frame, this frame consumes aura to maintain its enchantments. This is not your best work, however, and the frame's operation will produce significantly more flux in the surrounding area than your other frames.</page>
+<page type="text">Your vengeance-fuelled research has paid off, resulting in the knowledge of the Necrotic Frame. This frame, when placed in an Apiary, will cause the bees to become sluggish, reducing their work speed, and severely unhealthy, greatly diminishing the current generation's lifespan. However, it is prudent to ensure the enchantments in the frame only affect the current generation.</page>
 <page type="infusioncrafting">FRAMENECROTIC</page>
 </project>
 
@@ -71,7 +66,7 @@ Like the Magic Frame, this frame consumes aura to maintain its enchantments. Thi
 <longText>You have been seeking a way to significantly extend bee life. It should be possible by adding a frame enchanted with the essence of time to the hive.</longText>
 <page type="text">Keeping bees has been frustrating, as the insects' short lives requires you to manually intervene far too often.
 
-A new variation of your frame design, this version involving some Time magic, should help extend their lives significantly. Like the Magic frame, this one too requires aura to run, and will produce flux now and again.</page>
+A new variation of your frame design, this version involving some Time magic, should help extend their lives significantly.</page>
 <page type="infusioncrafting">FRAMETIME</page>
 </project>
 
@@ -101,7 +96,7 @@ Because the thaumium present in its construction, it is possible to enchant the 
 <longText>This improved grafter is more durable than the plain one your non-magical arborist acquaintances tend to use in their exploits. It should be possible to allow them to be enchanted with repairing magic to make them last indefinitely.</longText>
 <page type="text">Adding Thaumium to your grafter design has increased its durability significantly - up to two times longer than regular grafters.
 
-It is also possible to enchant them with the Repair enchant, given sufficient experience.</page>
+It is also possible to enchant them with the Repair enchant, given sufficient experience. Using it rapidly may, however, give you a severe case of the munchies.</page>
 <page type="arcanecrafting">THAUMIUMGRAFTER</page>
 </project>
 

@@ -52,7 +52,11 @@ public class BeeMutation implements IBeeMutation
 				for (String str : binnieMundane)
 				{
 					FMLLog.info("Registering %s", str);
-					new BeeMutation(species, Allele.getExtraSpecies(str), ForestryHelper.getTemplateForestryForSpecies("Common"), 15);
+					try {
+						new BeeMutation(species, Allele.getExtraSpecies(str), ForestryHelper.getTemplateForestryForSpecies("Common"), 15);
+					} catch (Exception e) {
+						FMLLog.info("Unable to register! This mutation will not be available.");
+					}
 				}
 			}
 			new BeeMutation(species, Allele.getBaseSpecies("Common"), ForestryHelper.getTemplateForestryForSpecies("Cultivated"), 12);
@@ -75,7 +79,7 @@ public class BeeMutation implements IBeeMutation
 			.setBlockRequired(18);
 		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.WATERY, 14)
 			.setBlockRequired(Block.waterStill);
-		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.EARTHY, 14)
+		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.EARTHY, 100)//14)
 			.setBlockRequired(Block.brick);
 		new BeeMutation(BeeSpecies.SUPERNATURAL, BeeSpecies.ETHEREAL, BeeSpecies.FIREY, 14)
 			.setBlockRequired(Block.lavaStill);
@@ -334,7 +338,7 @@ public class BeeMutation implements IBeeMutation
 					blockBelow = Block.blocksList[blockId];
 					++i;
 				}
-				while (blockBelow != null && !(blockBelow instanceof IBeeHousing));
+				while (blockBelow != null && (blockBelow instanceof IBeeHousing));
 				
 				if (this.requiredBlockOreDictEntry != null)
 				{
@@ -443,6 +447,7 @@ public class BeeMutation implements IBeeMutation
 						moonPhaseStart.getLocalizedName()));
 			}
 		}
+		
 		if (this.nodeRequired)
 		{
 			if (this.nodeType != null)
@@ -455,6 +460,7 @@ public class BeeMutation implements IBeeMutation
 				conditions.add(LocalizationManager.getLocalizedString("research.requiresNode"));
 			}
 		}
+		
 		if (this.requiresBlock)
 		{
 			if (this.requiredBlockName != null)
@@ -481,6 +487,7 @@ public class BeeMutation implements IBeeMutation
 						new ItemStack(this.requiredBlockId, 1, this.requiredBlockMeta).getDisplayName()));
 			}
 		}
+		
 		if (this.requiredBiomeType != null)
 		{
 			String biomeName = this.requiredBiomeType.name().substring(0, 1) + this.requiredBiomeType.name().substring(1).toLowerCase();

@@ -1,3 +1,9 @@
+Fixed backwards mutation logic.
+Adjusting Thaumcraft research notes to reflect recent (Hah!) changes.
+
+2.0.2
+Fixed Escritoire/Mutation Notes for bees which require a Thaumcraft Node.
+Fixing colour data for Temporal Combs.
 Adjusting the production rates on some nugget-producing bees.
 Withering bee species now requires arid rather than normal humidity, to conform with the rest of the Infernal line.
 Withering and Slow Effects should now correctly be reduced while wearing Apiarist's Armor or other protective gear.
