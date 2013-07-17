@@ -1,4 +1,10 @@
+2.0.5
+Fixed hard-coded value in a subroutine that should not have been hard-coded.
+
+2.0.4
 Fixed backwards mutation logic.
+
+2.0.3
 Adjusting Thaumcraft research notes to reflect recent (Hah!) changes.
 
 2.0.2

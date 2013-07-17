@@ -118,12 +118,12 @@ public class ForestryHelper
 		{
 			//BeeTemplates.getValiantTemplate()
 			Class c = Class.forName("forestry.apiculture.genetics.BeeTemplates");
-			Method m = c.getMethod("getCommonTemplate");
+			Method m = c.getMethod("get" + speciesName + "Template");
 			template = (IAllele[])(m.invoke(null));
 		}
 		catch (Exception e)
 		{
-			FMLLog.severe("Could not get Forestry templates. Are you SURE this version of Magic Bees compatible with your version of Forestry?");
+			FMLLog.severe("Could not get Forestry template for %s.", speciesName);
 			e.printStackTrace();
 		}
 		return template;

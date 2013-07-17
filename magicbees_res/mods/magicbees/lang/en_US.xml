@@ -327,8 +327,10 @@
 	<entry key="magicbees.speciesAMWight">Wight</entry>
 	<entry key="magicbees.speciesAMWight.description">"They attract magical spirits; not always docile."|Mithion, Adept</entry>
 
-	<!-- Blank species entries <entry key="magicbees.species"></entry> <entry 
-		key="magicbees.species.description"></entry> -->
+	<!-- Blank species entries
+	<entry key="magicbees.species"></entry>
+	<entry key="magicbees.species.description"></entry>
+	-->
 
 	<!-- Bee Alleles -->
 	<entry key="magicbees.effectCurative">Cleansing</entry>

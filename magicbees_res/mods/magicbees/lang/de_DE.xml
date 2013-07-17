@@ -133,7 +133,7 @@
 
 	<!-- Miscellaneous names -->
 	<entry key="backpack.thaumaturge">Rucksack des Thaumaturgen</entry>
-	<entry key="itemGroup.magicBees">Thaumische Bienen</entry>
+	<entry key="itemGroup.magicBees">Magische Bienen</entry>
 
 	<!-- Escritoire Strings -->
 	<entry key="research.requiresBlock">Erfordert die Basis des %s</entry>
@@ -145,6 +145,7 @@
 	<entry key="research.node.pure">Pur</entry>
 	<entry key="research.node.dark">Dunkel</entry>
 	<entry key="research.node.chaotic">Chaotisch</entry>
+    <entry key="research.block.crystals">Kristalltraube</entry>
 
 	<!-- Species names -->
 	<entry key="magicbees.speciesMystical">Mystisch</entry>
