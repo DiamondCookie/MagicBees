@@ -630,7 +630,7 @@ public class ThaumcraftHelper
 			input = new ItemStack(Item.stick);
 		}
 		
-		ThaumcraftApi.addArcaneCraftingRecipe("THAUMIUMSCOOP", "THAUMIUMSCOOP", 45, new ItemStack(Config.thaumiumScoop), new Object[] {
+		ThaumcraftApi.addArcaneCraftingRecipe("THAUMIUMSCOOP", "THAUMIUMSCOOP", 20, new ItemStack(Config.thaumiumScoop), new Object[] {
 			"sWs", "sTs", " T ",
 			's', input,
 			'W', Block.cloth,
@@ -653,47 +653,45 @@ public class ThaumcraftHelper
 
 		output = new ItemStack(Config.hiveFrameMagic);
 		input = ItemInterface.getItem("frameUntreated");
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8);
-		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAME", "FRAMEMAGIC", 50, tags, output, new Object[] {
+		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.MAGIC, 2);
+		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAME", "FRAMEMAGIC", 20, tags, output, new Object[] {
 				input
 		});
 		
 		output = new ItemStack(Config.hiveFrameResilient);
-		tags = new ObjectTags().add(EnumTag.WOOD, 12).add(EnumTag.INSECT, 8).add(EnumTag.EXCHANGE, 12);
-		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAME2", "FRAMERESILIENT", 50, tags, output, new Object[] {
-				" i ", "ifi", " i ",
+		tags = new ObjectTags().add(EnumTag.WOOD, 12).add(EnumTag.MAGIC, 2).add(EnumTag.EXCHANGE, 8);
+		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAME2", "FRAMERESILIENT", 35, tags, output, new Object[] {
+				"ifi",
 				'f', Config.hiveFrameMagic,
 				'i', Item.ingotIron
 		});
 		
 		output = new ItemStack(Config.hiveFrameGentle);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.HEAL, 12);
-		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMEGENTLE", "FRAMEGENTLE", 50, tags, output, new Object[] {
-				"www", "wFw", "www",
+		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.MAGIC, 2).add(EnumTag.LIFE, 8);
+		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMEGENTLE", "FRAMEGENTLE", 35, tags, output, new Object[] {
+				" w ", "wFw", " w ",
 				'F', input,
 				'w', ItemInterface.getItem("beeswax")
 				
 		});
 		
 		output = new ItemStack(Config.hiveFrameMetabolic);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.LIFE, 8).add(EnumTag.MOTION, 8)
-				.add(EnumTag.EXCHANGE, 8);
+		tags = new ObjectTags().add(EnumTag.WOOD, 6).add(EnumTag.MAGIC, 2).add(EnumTag.LIFE, 4).add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.addShapelessInfusionCraftingRecipe("HIVEFRAMEMETA", "FRAMEMETABOLIC", 50, tags, output, new Object[] {
 				Item.magmaCream,
 				input
 		});
 		
 		output = new ItemStack(Config.hiveFrameNecrotic);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.EXCHANGE, 12).add(EnumTag.DEATH, 16)
-				.add(EnumTag.POISON, 1);
-		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMENECRO", "FRAMENECROTIC", 50, tags, output, new Object[] {
-				" S ", "SxS", " S ",
+		tags = new ObjectTags().add(EnumTag.WOOD, 6).add(EnumTag.MAGIC, 2).add(EnumTag.EXCHANGE, 12).add(EnumTag.DEATH, 8);
+		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMENECRO", "FRAMENECROTIC", 35, tags, output, new Object[] {
+				"SxS",
 				'S', Item.rottenFlesh,
 				'x', input
 		});
 		
 		output = new ItemStack(Config.hiveFrameTemporal);
-		tags = new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.INSECT, 8).add(EnumTag.TIME, 2);
+		tags = new ObjectTags().add(EnumTag.WOOD, 6).add(EnumTag.MAGIC, 2).add(EnumTag.TIME, 1);
 		ThaumcraftApi.addInfusionCraftingRecipe("HIVEFRAMETIME", "FRAMETIME", 50, tags, output, new Object[] {
 			"tSt", "SFS", "tSt",
 			't', Item.stick,
@@ -703,7 +701,7 @@ public class ThaumcraftHelper
 		
 		output = Config.voidCapsule.getCapsuleForLiquid(LiquidType.EMPTY);
 		output.stackSize = 4;
-		tags = new ObjectTags().add(EnumTag.VOID, 16).add(EnumTag.ELDRITCH, 4).add(EnumTag.EXCHANGE, 8);
+		tags = new ObjectTags().add(EnumTag.VOID, 16).add(EnumTag.ELDRITCH, 2).add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.addInfusionCraftingRecipe("VOIDCAPSULE", "VOIDCAPSULE", 10, tags, output, new Object[] {
 			" G ", "GPG", "TGT",
 			'G', Block.thinGlass,

@@ -85,6 +85,9 @@
 	<entry key="resource.dragonChunk">Draconic Chunk</entry>
 	<entry key="resource.essenceFalseLife">Essence of False Life</entry>
 	<entry key="resource.essenceShallowGrave">Essence of a Shallow Grave</entry>
+    <entry key="resource.essenceLostTime">Essence of Lost Time</entry>
+    <entry key="resource.essenceEverlastingDurability">Essence of Everlasting Durability</entry>
+    <entry key="resource.essenceUnendingDisregard">Essence of Unending Disregard</entry>
 	<entry key="resource.startNode">Bees and Magic</entry>
 	<entry key="resource.crystalAspect">Crystalized %s Aspect</entry>
 

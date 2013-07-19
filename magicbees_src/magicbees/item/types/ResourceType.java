@@ -14,6 +14,9 @@ public enum ResourceType
 	DRAGON_CHUNK("dragonChunk", true),
 	ESSENCE_FALSE_LIFE("essenceFalseLife", true),
 	ESSENCE_SHALLOW_GRAVE("essenceShallowGrave", true),
+	ESSENCE_LOST_TIME("essenceLostTime", true),
+	ESSENCE_EVERLASTING_DURABILITY("essenceEverlastingDurability", true),
+	ESSENCE_UNENDING_DISREGARD("essenceUnendingDisregard", true),
 	
 	// Dummy items for Thaumanomicon research icons.
 	//   These won't ever actually exist in-game, and so 

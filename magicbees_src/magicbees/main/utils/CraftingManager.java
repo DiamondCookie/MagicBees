@@ -166,6 +166,19 @@ public class CraftingManager
 			'e', Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE)
 		});
 
+		GameRegistry.addRecipe(new ShapedOreRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY), new Object[] {
+			"gwg", "wiw", "gwg",
+			'g', Block.glass,
+			'w', "waxMagical",
+			'i', Item.ingotIron
+		}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY), new Object[] {
+			"wgw", "gig", "wgw",
+			'g', Block.glass,
+			'w', "waxMagical",
+			'i', Item.ingotIron
+		}));
+		
 		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE), new Object[] {
 			"gwg", "wfw", "gwg",
 			'g', Block.glass,
@@ -179,6 +192,53 @@ public class CraftingManager
 			'f', Block.plantRed
 		});
 		
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE), new Object[] {
+			"gwg", "wfw", "gwg", 
+			'g', Block.glass,
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'f', Item.rottenFlesh
+		});
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE), new Object[] {
+			"wgw", "gfg", "wgw", 
+			'g', Block.glass,
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'f', Item.rottenFlesh
+		});
+
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME), new Object[] {
+			"wgw", "gcg", "wgw",
+			'g', Block.glass,
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'c', Item.pocketSundial
+		});
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME), new Object[] {
+			"gwg", "wcw", "gwg",
+			'g', Block.glass,
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'c', Item.pocketSundial
+		});
+		
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_UNENDING_DISREGARD), new Object[] {
+			"gst", "sEs", "tsg",
+			'g', Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE),
+			't', Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME),
+			's', new ItemStack(Item.skull, 1, 1),
+			'E', Block.dragonEgg,
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameMagic, 2), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY),
+			ItemInterface.getItem("frameUntreated"),
+			ItemInterface.getItem("frameUntreated")
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameResilient), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY),
+			ItemInterface.getItem("frameImpregnated"),
+			Item.ingotIron, Item.ingotIron,
+			Item.ingotIron, Item.ingotIron
+		});
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameGentle), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
 			ItemInterface.getItem("frameUntreated")
@@ -188,6 +248,24 @@ public class CraftingManager
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
 			ItemInterface.getItem("frameImpregnated"),
 			Item.magmaCream
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameNecrotic), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE),
+			ItemInterface.getItem("frameUntreated"),
+			Item.rottenFlesh, Item.rottenFlesh,
+			Item.rottenFlesh, Item.rottenFlesh
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameTemporal), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME),
+			ItemInterface.getItem("frameImpregnated"),
+			Config.pollen.getStackForType(PollenType.PHASED)
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_UNENDING_DISREGARD),
+			ItemInterface.getItem("frameProven")
 		});
 
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
@@ -517,38 +595,6 @@ public class CraftingManager
 			"www", "wfw", "www",
 			'w', Config.wax.getStackForType(WaxType.MAGIC),
 			'f', input
-		});
-		
-		output = new ItemStack(Config.hiveFrameResilient);
-		GameRegistry.addRecipe(output, new Object[] {
-				"wiw", "ifi", "wiw",
-				'f', Config.hiveFrameMagic,
-				'i', Item.ingotIron,
-				'w', Config.wax.getStackForType(WaxType.MAGIC)
-		});
-		
-		output = new ItemStack(Config.hiveFrameNecrotic);
-		GameRegistry.addRecipe(output, new Object[] {
-				"wSw", "SFS", "wSw",
-				'S', Item.rottenFlesh,
-				'F', input,
-				'w', Config.wax.getStackForType(WaxType.MAGIC)
-		});
-		
-		output = new ItemStack(Config.hiveFrameTemporal);
-		GameRegistry.addRecipe(output, new Object[] {
-				"wSt", "wFw", "tSw",
-				't', Item.stick,
-				'S', Block.sand,
-				'F', Config.hiveFrameMagic,
-				'w', Config.wax.getStackForType(WaxType.MAGIC)
-		});
-		GameRegistry.addRecipe(output, new Object[] {
-				"tSw", "wFw", "wSt",
-				't', Item.stick,
-				'S', Block.sand,
-				'F', Config.hiveFrameMagic,
-				'w', Config.wax.getStackForType(WaxType.MAGIC)
 		});
 		
 		output = Config.voidCapsule.getCapsuleForLiquid(LiquidType.EMPTY);

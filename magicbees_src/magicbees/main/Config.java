@@ -111,6 +111,7 @@ public class Config
 	public static BackpackDefinition thaumaturgeBackpackDef;
 
 	//----- Forestry Blocks ------------------------------------
+	public static Block fAlvearyBlock;
 	//----- Forestry Items -------------------------------------
 	public static Item fBeeComb;
 	public static Item fHoneydew;

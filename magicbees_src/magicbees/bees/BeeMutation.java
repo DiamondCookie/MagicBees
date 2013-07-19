@@ -126,7 +126,7 @@ public class BeeMutation implements IBeeMutation
 			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Forest"), BeeSpecies.TIN, 12)
 				.setBlockRequired("blockTin");
 		}
-		new BeeMutation(Allele.getBaseSpecies("Common"), Allele.getBaseSpecies("Industrious"), BeeSpecies.IRON, 10)
+		new BeeMutation(Allele.getBaseSpecies("Common"), Allele.getBaseSpecies("Industrious"), BeeSpecies.IRON, 100)
 			.setBlockRequired(Block.blockIron);
 		if (BeeSpecies.LEAD.isActive())
 		{
@@ -338,7 +338,7 @@ public class BeeMutation implements IBeeMutation
 					blockBelow = Block.blocksList[blockId];
 					++i;
 				}
-				while (blockBelow != null && (blockBelow instanceof IBeeHousing));
+				while (blockBelow != null && (blockBelow instanceof IBeeHousing || blockBelow == Config.fAlvearyBlock));
 				
 				if (this.requiredBlockOreDictEntry != null)
 				{

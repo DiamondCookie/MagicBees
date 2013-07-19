@@ -1,3 +1,9 @@
+2.1.0
+Added new permanent methods for crafting all frames. These will be available even when Thaumcraft is installed.
+Removed temporary frame recipes which used to be available when Thaumcraft was not installed.
+Lowered the cost of creating several frames through Thaumcraft. These should still be a viable option with the new recipes.
+Fixed issue with foundation-requiring mutations in Forestry Alvearies. (Will likely not work with Extra Bees Alveary blocks)
+
 2.0.5
 Fixed hard-coded value in a subroutine that should not have been hard-coded.
 

@@ -2,9 +2,9 @@ package magicbees.main.utils.compat;
 
 import java.lang.reflect.Method;
 
-import cpw.mods.fml.common.FMLLog;
 import magicbees.main.Config;
-import net.minecraft.item.Item;
+import net.minecraft.block.Block;
+import cpw.mods.fml.common.FMLLog;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.ItemInterface;
@@ -99,7 +99,15 @@ public class ForestryHelper
 	
 	public static void getBlocks()
 	{
-		
+		try
+		{
+			Class c = Class.forName("forestry.core.config.ForestryBlock");
+			Config.fAlvearyBlock = (Block)(c.getField("alveary").get(null));
+		}
+		catch (Exception e)
+		{
+			
+		}
 	}
 	
 	public static void getItems()
