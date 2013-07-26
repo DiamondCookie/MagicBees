@@ -216,7 +216,7 @@
 	<entry key="magicbees.speciesSpirit">Geist</entry>
 	<entry key="magicbees.speciesSpirit.description">Es wird erzählt, diese Bienen könnten Kontakt zu den
 		Toten aufnehmen.|Apinomicon</entry>
-	<entry key="magicbees.speciesSoul">Seele</entry>
+	<entry key="magicbees.speciesSoul">Seelig</entry>
 	<entry key="magicbees.speciesSoul.description">"Der furchtbare Pirat Roberts ist gekommen für deine
 		SEEEEEELE!!"|Furchtbarer Pirat Roberts</entry>
 
@@ -255,7 +255,7 @@
 		versagt, indem sie langsam alle Energie aus ihrem Territorium
 		saugen.|Apinomicon</entry>
 		
-	<entry key="magicbees.speciesOblivion">Vergessenheit</entry>
+	<entry key="magicbees.speciesOblivion">Vergessen</entry>
 	<entry key="magicbees.speciesOblivion.description">Es ist unklar, ob diese Bienen in dieser Welt
 		beheimatet sind oder in einer anderen.|Apinomicon</entry>
 	<entry key="magicbees.speciesNameless">Namenlos</entry>
@@ -288,10 +288,10 @@
 	<entry key="magicbees.speciesLead">Plumbum</entry>
 	<entry key="magicbees.speciesLead.description">Ein Favorit von Amateuralchemisten, sie glauben, sie
 		können diese Bienen in Gold verwandeln.|Apinomicon</entry>
-	<entry key="magicbees.speciesDiamond">Diamandi</entry>
+	<entry key="magicbees.speciesDiamond">Diamandin</entry>
 	<entry key="magicbees.speciesDiamond.description">Kristallin, glitzernd, und härter als Drachenzähne.
 		Diese Bienen sind nichts davon.|Apinomicon</entry>
-	<entry key="magicbees.speciesEmerald">Esmeraldi</entry>
+	<entry key="magicbees.speciesEmerald">Esmeraldin</entry>
 	<entry key="magicbees.speciesEmerald.description">Es wird erzählt, sie waren in einem Land beherrscht
 		vom Großen Zauberer, und haben den Aspect der Stadt
 		angenommen.|Apinomicon</entry>
@@ -311,14 +311,14 @@
 	<entry key="magicbees.speciesTCFire">Ignis</entry>
 	<entry key="magicbees.speciesTCFire.description">Achtung: Inhalt des Bienenkorbs extrem
 		heiß.|Warnschild auf Azanors Bienenkorb</entry>
-	<entry key="magicbees.speciesTCWater">Aqua</entry>
+	<entry key="magicbees.speciesTCWater">Aquan</entry>
 	<entry key="magicbees.speciesTCWater.description">"Ich habe mal versucht, die zu züchten, aber es lief
 		nicht alles so gut."|MysteriousAges, Fortgeschrittener Thaumaturge</entry>
 	<entry key="magicbees.speciesTCEarth">Solum</entry>
 	<entry key="magicbees.speciesTCEarth.description">"Ich muss noch mal das Rezept für diese Bienen
 		ausgraben, aber Achtung, ihre Stacheln boren sich in deine
 		Haut."|MysteriousAges, Anfänger in der Comedy</entry>
-	<entry key="magicbees.speciesTCMagic">Praecantatio</entry>
+	<entry key="magicbees.speciesTCMagic">Praecantation</entry>
 	<entry key="magicbees.speciesTCMagic.description">Bienenzucht ist Magie!|Apinomicon, Preface</entry>
 
 	<entry key="magicbees.speciesTCVis">Vis</entry>
@@ -348,10 +348,10 @@
 	<entry key="magicbees.speciesTCBatty.description">Sie scheinen auf unerklärliche Art und Weise
 		Fledermäuse anzuziehen.|Apinomicon</entry>
 
-	<entry key="magicbees.speciesTCChicken">Geflügel</entry>
+	<entry key="magicbees.speciesTCChicken">Geflügelig</entry>
 	<entry key="magicbees.speciesTCChicken.description">"Gack, Gack, Gack! ... Du hast mich gehört."|Verwirrte
 		Biene</entry>
-	<entry key="magicbees.speciesTCBeef">Rindfleisch</entry>
+	<entry key="magicbees.speciesTCBeef">Rindfleischig</entry>
 	<entry key="magicbees.speciesTCBeef.description">"Muh, muh, muh. Moment, was?"|Verwirrte Biene</entry>
 	<entry key="magicbees.speciesTCPork">Schweineähnlich</entry>
 	<entry key="magicbees.speciesTCPork.description">"Oink, oink. Äh.... bsss?"|Verwirrte Biene</entry>
@@ -360,7 +360,7 @@
 	<entry key="magicbees.speciesEEMinium.description">Es könnte möglich sein, ihre launische und wechselnde
 		Natur auszunutzen.|Apinomicon</entry>
 
-	<entry key="magicbees.speciesAMEssence">Essenz</entry>
+	<entry key="magicbees.speciesAMEssence">Essenziell</entry>
 	<entry key="magicbees.speciesAMEssence.description">Veranlasst von Stäubchen in Luft und Erde,
 		konzentrieren sie Energie</entry>
 	<entry key="magicbees.speciesAMQuintessence">Quintessenziell</entry>
@@ -395,7 +395,7 @@
 		Landschaft an, entfernen eventuell alle Pflanzen und fragilen
 		Mineralien.|Apinomicon</entry>
 
-	<entry key="magicbees.speciesAMArcane">Arkanen</entry>
+	<entry key="magicbees.speciesAMArcane">Arkan</entry>
 	<entry key="magicbees.speciesAMArcane.description">"Seltsame Kreaturen, obwohl ihre Produkte sehr
 		nützlich sind."|Mithion, Adept</entry>
 
