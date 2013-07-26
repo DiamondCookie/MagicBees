@@ -144,6 +144,14 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.METALLIC, 0x747C81, 0x96BFC4, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	LEAD("Lead", "plumbeus",
 			BeeClassification.METALLIC, 0x96BFC4, 0x91A9F3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+	ALUMINUM("Aluminum", "aluminium",
+			BeeClassification.METALLIC, 0xEDEDED, 0x767676, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
+	ARDITE("Ardite", "aurantiaco",
+			BeeClassification.METALLIC, 0x720000, 0xFF9E00, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
+	COBALT("Cobalt", "caeruleo",
+			BeeClassification.METALLIC, 0x03265F, 0x59AAEF, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
+	MANYULLYN("Manyullyn", "manahmanah",
+			BeeClassification.METALLIC, 0x481D6D, 0xBD92F1, EnumTemperature.HOT, EnumHumidity.ARID, true, false),
 			
 	DIAMOND("Diamond", "diamond",
 			BeeClassification.GEM, 0x209581, 0x8DF5E3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
@@ -326,6 +334,22 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		{
 			LEAD.setInactive();
 		}
+		if (OreDictionary.getOres("ingotNaturalAluminum").size() <= 0)
+		{
+			ALUMINUM.setInactive();
+		}
+		if (OreDictionary.getOres("ingotArdite").size() <= 0)
+		{
+			ARDITE.setInactive();
+		}
+		if (OreDictionary.getOres("ingotCobalt").size() <= 0)
+		{
+			COBALT.setInactive();
+		}
+		if (OreDictionary.getOres("ingotManyullyn").size() <= 0)
+		{
+			MANYULLYN.setInactive();
+		}
 		
 		MYSTICAL.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 15)
 			.setGenome(BeeGenomeManager.getTemplateMystical())
@@ -491,6 +515,36 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.addSpecialty(Config.nuggets.getStackForType(NuggetType.LEAD), 17)
 			.setGenome(BeeGenomeManager.getTemplateLead())
 			.register();
+		
+		ALUMINUM.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateAluminum());
+		if (OreDictionary.getOres("nuggetNaturalAluminum").size() > 0)
+		{
+			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetNaturalAluminum").get(0), 20);
+		}
+		ALUMINUM.register();
+		ARDITE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateArdite());
+		if (OreDictionary.getOres("nuggetArdite").size() > 0)
+		{
+			ARDITE.addSpecialty(OreDictionary.getOres("nuggetArdite").get(0), 18);
+		}
+		ARDITE.register();
+		COBALT.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateCobalt());
+		if (OreDictionary.getOres("ingotCobalt").size() > 0)
+		{
+			COBALT.addSpecialty(OreDictionary.getOres("ingotCobalt").get(0), 18);
+		}
+		COBALT.register();
+		MANYULLYN.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateManyullyn());
+		if (OreDictionary.getOres("nuggetManyullyn").size() > 0)
+		{
+			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetManyullyn").get(0), 16);
+		}
+		MANYULLYN.register();
+		
 		DIAMOND.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.addSpecialty(Config.nuggets.getStackForType(NuggetType.DIAMOND), 6)
 			.setGenome(BeeGenomeManager.getTemplateDiamond())

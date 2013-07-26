@@ -653,6 +653,42 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	public static IAllele[] getTemplateAluminum()
+	{
+		IAllele[] genome = getTemplateBaseMetallic();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ALUMINUM;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateArdite()
+	{
+		IAllele[] genome = getTemplateBaseMetallic();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.ARDITE;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateCobalt()
+	{
+		IAllele[] genome = getTemplateBaseMetallic();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.COBALT;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateManyullyn()
+	{
+		IAllele[] genome = getTemplateBaseMetallic();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.MANYULLYN;
+		
+		return genome;
+	}
+	
 	public static IAllele[] getTemplateDiamond()
 	{
 		IAllele[] genome = getTemplateBaseMetallic();

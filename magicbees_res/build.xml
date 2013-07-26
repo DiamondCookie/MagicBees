@@ -131,7 +131,8 @@
 				<include name="**/mcmod.info" />
 			</fileset>
 			<filterset>
-				<filter token="BUILD_NUMBER" value="${build.number}" />
+				<filter token="MODVERSION" value="${magicbees.version}" />
+                <filter token="BUILD_NUMBER" value="${build.number}" />
 			</filterset>
 		 </copy>
 	</target>

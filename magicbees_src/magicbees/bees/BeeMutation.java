@@ -149,6 +149,28 @@ public class BeeMutation implements IBeeMutation
 		baseB = (BeeSpecies.LEAD.isActive()) ? BeeSpecies.LEAD : BeeSpecies.IRON;
 		new BeeMutation(baseA, baseB, BeeSpecies.GOLD, 8)
 			.setBlockRequired(Block.blockGold);
+		
+		if (BeeSpecies.ALUMINUM.isActive())
+		{
+			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Cultivated"), BeeSpecies.ALUMINUM, 10)
+				.setBlockRequired("blockNaturalAluminum");
+		}
+		if (BeeSpecies.ARDITE.isActive())
+		{
+			new BeeMutation(Allele.getBaseSpecies("Industrious"), BeeSpecies.INFERNAL, BeeSpecies.ARDITE, 9)
+				.setBlockRequired("blockArdite");
+		}
+		if (BeeSpecies.COBALT.isActive())
+		{
+			new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.INFERNAL, BeeSpecies.COBALT, 9)
+				.setBlockRequired("blockCobalt");
+		}
+		if (BeeSpecies.MANYULLYN.isActive())
+		{
+			new BeeMutation(BeeSpecies.ARDITE, BeeSpecies.COBALT, BeeSpecies.MANYULLYN, 9)
+				.setBlockRequired("blockManyullyn");
+		}
+		
 		new BeeMutation(Allele.getBaseSpecies("Austere"), BeeSpecies.GOLD, BeeSpecies.DIAMOND, 7)
 			.setBlockRequired(Block.blockDiamond);
 		baseA = (BeeSpecies.SILVER.isActive()) ? BeeSpecies.SILVER : Allele.getBaseSpecies("Imperial");
