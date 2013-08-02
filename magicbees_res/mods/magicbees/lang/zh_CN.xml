@@ -83,8 +83,11 @@
 	<entry key="resource.skullFragment">凋灵骷髅头骨碎片</entry>
 	<entry key="resource.dragonDust">龙之尘</entry>
 	<entry key="resource.dragonChunk">龙之块</entry>
-	<entry key="resource.essenceFalseLife">伪生源质</entry>
-	<entry key="resource.essenceShallowGrave">影墓源质</entry>
+	<entry key="resource.essenceFalseLife">虚假之命源质</entry>
+	<entry key="resource.essenceShallowGrave">暗影之墓源质</entry>
+	<entry key="resource.essenceLostTime">迷失之时源质</entry>
+	<entry key="resource.essenceEverlastingDurability">恒久不灭源质</entry>
+	<entry key="resource.essenceUnendingDisregard">无尽漠视源质</entry>
 	<entry key="resource.startNode">蜜蜂与魔法</entry>
 	<entry key="resource.crystalAspect">晶化%s要素</entry>
 
@@ -98,8 +101,8 @@
 	<entry key="item.frameOblivion.name">湮灭框架</entry>
 
 	<!-- Capsule names -->
-	<entry key="capsule.magic">魔力胶囊</entry>
-	<entry key="capsule.void">虚空胶囊</entry>
+	<entry key="capsule.magic">%s魔力胶囊</entry>
+	<entry key="capsule.void">%s虚空胶囊</entry>
 
 	<!-- Liquids -->
 	<entry key="liquid.">空</entry>
@@ -221,6 +224,14 @@
 	<entry key="magicbees.speciesSilver.description">即使略逊于黄金蜂，它们也自有其价值所在.|Apinomicon</entry>
 	<entry key="magicbees.speciesLead">黑铅</entry>
 	<entry key="magicbees.speciesLead.description">业余炼金术师的最好，它们相信这种蜜蜂能点铅化金.|Apinomicon</entry>
+	<entry key="magicbees.speciesAluminum">亮铝</entry>
+	<entry key="magicbees.speciesAluminum.description">闪亮起皱又极具韧性.|Apinomicon</entry>
+	<entry key="magicbees.speciesArdite">阿迪特</entry>
+	<entry key="magicbees.speciesArdite.description">钟爱一种地狱的橙黄色矿产.|Apinomicon</entry>
+	<entry key="magicbees.speciesCobalt">辉钴</entry>
+	<entry key="magicbees.speciesCobalt.description">这种金属不稳定的特性似乎丝毫没有影响这些蜜蜂.|Apinomicon</entry>
+	<entry key="magicbees.speciesManyullyn">玛玉灵</entry>
+	<entry key="magicbees.speciesManyullyn.description">"咚!嘟滴嘟~咚!"</entry>
 	<entry key="magicbees.speciesDiamond">钻石</entry>
 	<entry key="magicbees.speciesDiamond.description">闪光的结晶，硬比龙牙.钻石恒久远，一颗永流传.|Apinomicon</entry>
 	<entry key="magicbees.speciesEmerald">宝石</entry>

@@ -101,8 +101,8 @@
 	<entry key="item.frameOblivion.name">Oblivion Frame</entry>
 
 	<!-- Capsule names -->
-	<entry key="capsule.magic">Magic Capsule</entry>
-	<entry key="capsule.void">Void Capsule</entry>
+	<entry key="capsule.magic">%s Magic Capsule</entry>
+	<entry key="capsule.void">%s Void Capsule</entry>
 
 	<!-- Liquids -->
 	<entry key="liquid.">Empty</entry>
@@ -154,7 +154,7 @@
 	<entry key="magicbees.speciesMystical">Mystical</entry>
 	<entry key="magicbees.speciesMystical.description">Common in many parts of the world, these bees have a little extra whimsy about them.|Apinomicon</entry>
 	<entry key="magicbees.speciesSorcerous">Sorcerous</entry>
-	<entry key="magicbees.speciesSorcerous.description"></entry>
+	<entry key="magicbees.speciesSorcerous.description">Fond of warm, dry environments, they seem to have the ability to conjure water from thin air.|Apinomicon</entry>
 	<entry key="magicbees.speciesUnusual">Unusual</entry>
 	<entry key="magicbees.speciesUnusual.description">"A curious specimen for my collection!"|Junior Apiarist</entry>
 	<entry key="magicbees.speciesAttuned">Attuned</entry>
@@ -222,7 +222,7 @@
 	<entry key="magicbees.speciesInfernal">Infernal</entry>
 	<entry key="magicbees.speciesInfernal.description">Spawned deep within the hellish realm, none have survived long enough to determine their abilities.|Apinomicon</entry>
 	<entry key="magicbees.speciesHateful">Hateful</entry>
-	<entry key="magicbees.speciesHateful.description">|Apinomicon</entry>
+	<entry key="magicbees.speciesHateful.description">Continued exposure to the Nether has not improved their temperament in the least. Use caution.|Apinomicon</entry>
 	<entry key="magicbees.speciesSpiteful">Spiteful</entry>
 	<entry key="magicbees.speciesSpiteful.description">They guard their territory fiercely, with the zeal of fiends, and welts of fire.|Apinomicon</entry>
 	<entry key="magicbees.speciesWithering">Withering</entry>

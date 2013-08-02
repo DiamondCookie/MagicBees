@@ -52,7 +52,7 @@ public class ItemCapsule extends Item
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)
 	{
-		return LiquidType.values()[itemStack.getItemDamage()].getDisplayName() + " " + this.capsuleType.getLocalizedName();
+		return String.format(this.capsuleType.getLocalizedName(), LiquidType.values()[itemStack.getItemDamage()].getDisplayName());
 	}
 
 	public ItemStack getCapsuleForLiquid(LiquidType l)
