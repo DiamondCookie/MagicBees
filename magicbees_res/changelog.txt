@@ -1,3 +1,8 @@
+2.1.1
+Reworking some language entries & code to enable string formatting in capsule names.
+Localization file updates.
+Tinker's Construct bees (Ardite, Cobalt, Manyullyn) and Aluminum bees.
+
 2.1.0
 Added new permanent methods for crafting all frames. These will be available even when Thaumcraft is installed.
 Removed temporary frame recipes which used to be available when Thaumcraft was not installed.
