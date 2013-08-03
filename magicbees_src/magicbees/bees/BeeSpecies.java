@@ -522,26 +522,45 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		{
 			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetNaturalAluminum").get(0), 20);
 		}
+		else
+		{
+			ALUMINUM.setInactive();
+		}
 		ALUMINUM.register();
+		
 		ARDITE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.setGenome(BeeGenomeManager.getTemplateArdite());
 		if (OreDictionary.getOres("nuggetArdite").size() > 0)
 		{
 			ARDITE.addSpecialty(OreDictionary.getOres("nuggetArdite").get(0), 18);
 		}
+		else
+		{
+			ARDITE.setInactive();
+		}
 		ARDITE.register();
+		
 		COBALT.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.setGenome(BeeGenomeManager.getTemplateCobalt());
-		if (OreDictionary.getOres("ingotCobalt").size() > 0)
+		if (OreDictionary.getOres("nuggetCobalt").size() > 0)
 		{
-			COBALT.addSpecialty(OreDictionary.getOres("ingotCobalt").get(0), 18);
+			COBALT.addSpecialty(OreDictionary.getOres("nuggetCobalt").get(0), 18);
+		}
+		else
+		{
+			COBALT.setInactive();
 		}
 		COBALT.register();
+		
 		MANYULLYN.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.setGenome(BeeGenomeManager.getTemplateManyullyn());
 		if (OreDictionary.getOres("nuggetManyullyn").size() > 0)
 		{
-			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetManyullyn").get(0), 16);
+			MANYULLYN.addSpecialty(OreDictionary.getOres("nuggetManyullyn").get(0), 16);
+		}
+		else
+		{
+			MANYULLYN.setInactive();
 		}
 		MANYULLYN.register();
 		

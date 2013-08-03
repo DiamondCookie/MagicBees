@@ -13,27 +13,27 @@ import forestry.api.genetics.IClassification;
 
 public enum BeeClassification implements IClassification
 {
-	VEILED("Veiled", "velata"),
-	ARCANE("Arcane", "arcanus"),
-	SUPERNATURAL("Supernatural", "occultus"),
-	SCHOLARLY("Scholarly", "docto"),
-	SKULKING("Skulking", "malevolens"),
-	MAGICAL("Magic", "magica"),
-	TIME("Time", "tempestivus"),
-	SOUL("Soul", "animus"),
+	VEILED("Veiled", "Velatapis"),
+	ARCANE("Arcane", "Arcanapis"),
+	SUPERNATURAL("Supernatural", "Occultapis"),
+	SCHOLARLY("Scholarly", "Doctapis"),
+	SKULKING("Skulking", "Malevolenapis"),
+	MAGICAL("Magic", "Magicapis"),
+	TIME("Time", "Tempestivapis"),
+	SOUL("Soul", "Animapis"),
 	
-	ABOMINABLE("Abominable", "detestabilis"),
-	EXTRINSIC("Extrinsic", "extrarius"),
+	ABOMINABLE("Abominable", "Detestabilapis"),
+	EXTRINSIC("Extrinsic", "Extrarapis"),
 	
-	METALLIC("Metallic", "metallicis"),
-	GEM("Gem", "lapidi"),
+	METALLIC("Metallic", "Metalliapis"),
+	GEM("Gem", "Lapidapis"),
 	
-	THAUMIC("Thaumic", "thaumis"),
-	FLESHY("Fleshy", "carnosa"),
+	THAUMIC("Thaumic", "Thaumiapis"),
+	FLESHY("Fleshy", "Carnosapis"),
 	
-	ALCHEMICAL("Alchemical", "alchimia"),
+	ALCHEMICAL("Alchemical", "Alchimiapis"),
 	
-	ESSENTIAL("Essential", "essentia"),
+	ESSENTIAL("Essential", "Essentiapis"),
 	;
 	
 	private String uID;
