@@ -43,7 +43,7 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 	@Override
 	public IEffectData validateStorage(IEffectData storedData)
 	{
-		if (storedData == null)
+		if (storedData == null || !(storedData instanceof magicbees.bees.EffectData))
 		{
 			// Throttle; Ready to spawn
 			storedData = new EffectData(1, 1, 0);

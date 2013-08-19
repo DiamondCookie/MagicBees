@@ -66,7 +66,7 @@ public class EffectData implements IEffectData
 	public float getFloat(int index)
 	{
 		float val = 0f;
-		if (index >= 0 && index < this.intData.length)
+		if (index >= 0 && index < this.floatData.length)
 		{
 			val = this.floatData[index];
 		}
@@ -77,7 +77,7 @@ public class EffectData implements IEffectData
 	public boolean getBoolean(int index)
 	{
 		boolean val = false;
-		if (index >= 0 && index < this.intData.length)
+		if (index >= 0 && index < this.boolData.length)
 		{
 			val = this.boolData[index];
 		}

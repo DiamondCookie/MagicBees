@@ -1,3 +1,7 @@
+2.1.2
+Fixed issue with mob spawning effects incorrectly checking for effect data variables.
+Updating localization files (RU, DE)
+
 2.1.1
 Reworking some language entries & code to enable string formatting in capsule names.
 Localization file updates.
