@@ -5,7 +5,7 @@ import magicbees.main.utils.LocalizationManager;
 import net.minecraft.util.Icon;
 import net.minecraftforge.liquids.LiquidDictionary;
 
-public enum LiquidType
+public enum FluidType
 {
 	// Incidentally, Item meta is the liquid ID.
 	
@@ -46,7 +46,7 @@ public enum LiquidType
 	public boolean available = false;
 	public Icon liquidIcon;
 	
-	private LiquidType(String l)
+	private FluidType(String l)
 	{
 		this.liquidID = l;
 	}

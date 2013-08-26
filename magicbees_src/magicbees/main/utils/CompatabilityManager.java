@@ -27,7 +27,7 @@ import magicbees.item.ItemComb;
 import magicbees.item.ItemMiscResources;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
-import magicbees.item.types.LiquidType;
+import magicbees.item.types.FluidType;
 import magicbees.item.types.PollenType;
 import magicbees.item.types.PropolisType;
 import magicbees.item.types.ResourceType;

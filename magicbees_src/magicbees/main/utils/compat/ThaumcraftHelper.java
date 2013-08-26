@@ -9,7 +9,7 @@ import magicbees.item.ItemThaumiumScoop;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
 import magicbees.item.types.HiveFrameType;
-import magicbees.item.types.LiquidType;
+import magicbees.item.types.FluidType;
 import magicbees.item.types.PollenType;
 import magicbees.item.types.PropolisType;
 import magicbees.item.types.ResourceType;
@@ -282,14 +282,14 @@ public class ThaumcraftHelper
 		
 		// Tagging capsules.
 		tags = new ObjectTags().add(EnumTag.VOID, 2).add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerComplexObjectTag(Config.magicCapsule.itemID, LiquidType.EMPTY.ordinal(), tags);
+		ThaumcraftApi.registerComplexObjectTag(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal(), tags);
 
-		tags = new ObjectTags(Config.magicCapsule.itemID, LiquidType.EMPTY.ordinal())
+		tags = new ObjectTags(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal())
 			.add(EnumTag.WATER, 8);
-		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, LiquidType.WATER.ordinal(), tags);
-		tags = new ObjectTags(Config.magicCapsule.itemID, LiquidType.EMPTY.ordinal())
+		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, FluidType.WATER.ordinal(), tags);
+		tags = new ObjectTags(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal())
 			.add(EnumTag.FIRE, 12).add(EnumTag.ROCK, 4);
-		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, LiquidType.LAVA.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, FluidType.LAVA.ordinal(), tags);
 		
 		for (EnumTag tag : EnumTag.values())
 		{
@@ -699,7 +699,7 @@ public class ThaumcraftHelper
 			'F', input
 		});
 		
-		output = Config.voidCapsule.getCapsuleForLiquid(LiquidType.EMPTY);
+		output = Config.voidCapsule.getCapsuleForLiquid(FluidType.EMPTY);
 		output.stackSize = 4;
 		tags = new ObjectTags().add(EnumTag.VOID, 16).add(EnumTag.ELDRITCH, 2).add(EnumTag.EXCHANGE, 8);
 		ThaumcraftApi.addInfusionCraftingRecipe("VOIDCAPSULE", "VOIDCAPSULE", 10, tags, output, new Object[] {
