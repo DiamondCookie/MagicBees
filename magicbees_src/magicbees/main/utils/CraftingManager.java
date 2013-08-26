@@ -4,7 +4,7 @@ import magicbees.block.types.PlankType;
 import magicbees.item.ItemCapsule;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
-import magicbees.item.types.LiquidType;
+import magicbees.item.types.FluidType;
 import magicbees.item.types.NuggetType;
 import magicbees.item.types.PollenType;
 import magicbees.item.types.ResourceType;
@@ -16,6 +16,7 @@ import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -532,9 +533,9 @@ public class CraftingManager
 		ItemStack filled;
 		FluidStack liquid = null;
 
-		for (LiquidType liquidType : LiquidType.values())
+		for (FluidType fluidType : FluidType.values())
 		{
-			switch (liquidType)
+			switch (fluidType)
 			{
 				case EMPTY:
 					liquid = null;
@@ -546,25 +547,24 @@ public class CraftingManager
 					liquid = new FluidStack(FluidRegistry.LAVA, baseCapsule.getType().capacity);
 					break;
 				default:
-					liquid = FluidRegistry.getFluidStack(liquidType.liquidID, baseCapsule.getType().capacity);
+					liquid = FluidRegistry.getFluidStack(fluidType.liquidID, baseCapsule.getType().capacity);
 					break;
 			}
 
 			if (liquid != null)
 			{
-				filled = new ItemStack(baseCapsule, 1, liquidType.ordinal());
-				// WTF is this v ?
-				//LiquidContainerRegistry.registerLiquid(new LiquidContainerData(liquid, filled, empty));
+				filled = new ItemStack(baseCapsule, 1, fluidType.ordinal());
+				FluidContainerRegistry.registerFluidContainer(liquid, filled);
 
 				// Register with Squeezer/Bottler
 				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);
 				RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] {filled} , liquid,
 						Config.wax.getStackForType(WaxType.MAGIC), 20);
-				liquidType.available = true;
+				fluidType.available = true;
 			}
 		}
 		// Empty will be set to unavailable. Obviously, it always is.
-		LiquidType.EMPTY.available = true;
+		FluidType.EMPTY.available = true;
 	}
 	
 	private static void setupThaumcraftAlternativeCrafting()
@@ -579,7 +579,7 @@ public class CraftingManager
 			'f', input
 		});
 		
-		output = Config.voidCapsule.getCapsuleForLiquid(LiquidType.EMPTY);
+		output = Config.voidCapsule.getCapsuleForLiquid(FluidType.EMPTY);
 		output.stackSize = 4;
 		GameRegistry.addRecipe(output, new Object[] {
 			"wDw", "GPG", "TwT",

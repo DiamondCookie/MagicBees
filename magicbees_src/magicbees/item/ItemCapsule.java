@@ -9,7 +9,7 @@ import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
 import magicbees.block.types.PlankType;
 import magicbees.item.types.CapsuleType;
-import magicbees.item.types.LiquidType;
+import magicbees.item.types.FluidType;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.TabMagicBees;
@@ -52,10 +52,10 @@ public class ItemCapsule extends Item
 	@Override
 	public String getItemDisplayName(ItemStack itemStack)
 	{
-		return String.format(this.capsuleType.getLocalizedName(), LiquidType.values()[itemStack.getItemDamage()].getDisplayName());
+		return String.format(this.capsuleType.getLocalizedName(), FluidType.values()[itemStack.getItemDamage()].getDisplayName());
 	}
 
-	public ItemStack getCapsuleForLiquid(LiquidType l)
+	public ItemStack getCapsuleForLiquid(FluidType l)
 	{
 		return new ItemStack(this, 1, l.ordinal());
 	}
@@ -64,7 +64,7 @@ public class ItemCapsule extends Item
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int par1, CreativeTabs tab, List itemList)
 	{
-		for (LiquidType l : LiquidType.values())
+		for (FluidType l : FluidType.values())
 		{
 			if (l.available)
 			{
@@ -85,9 +85,9 @@ public class ItemCapsule extends Item
     {
     	this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":capsule" + this.capsuleType.getName().substring(0, 1).toUpperCase() 
     			+ this.capsuleType.getName().substring(1));
-    	for (LiquidType t : LiquidType.values())
+    	for (FluidType t : FluidType.values())
     	{
-    		if (t != LiquidType.EMPTY && t.liquidIcon == null)
+    		if (t != FluidType.EMPTY && t.liquidIcon == null)
     		{
     			t.liquidIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":liquids/" + t.liquidID);
     		}
@@ -101,7 +101,7 @@ public class ItemCapsule extends Item
 		Icon i = this.itemIcon;
 		if (metadata != 0 && pass == 0)
 		{
-			i = LiquidType.values()[Math.max(0, Math.min(metadata, LiquidType.values().length - 1))].liquidIcon;
+			i = FluidType.values()[Math.max(0, Math.min(metadata, FluidType.values().length - 1))].liquidIcon;
 		}
 		return i;
 	}
