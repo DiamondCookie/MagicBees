@@ -126,7 +126,7 @@ public class BeeMutation implements IBeeMutation
 			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Forest"), BeeSpecies.TIN, 12)
 				.setBlockRequired("blockTin");
 		}
-		new BeeMutation(Allele.getBaseSpecies("Common"), Allele.getBaseSpecies("Industrious"), BeeSpecies.IRON, 100)
+		new BeeMutation(Allele.getBaseSpecies("Common"), Allele.getBaseSpecies("Industrious"), BeeSpecies.IRON, 12)
 			.setBlockRequired(Block.blockIron);
 		if (BeeSpecies.LEAD.isActive())
 		{
