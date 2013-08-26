@@ -1,10 +1,12 @@
 package magicbees.client.model;
 
-import org.lwjgl.opengl.GL11;
-
 import magicbees.main.CommonProxy;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -12,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ModelEffectJar
 {
 	public static final String objFile = CommonProxy.MODEL_PATH + "effectJar.obj";
-	public static final String textureFile = CommonProxy.MODEL_TEXTURE_PATH + "jarTexture.png";
+	public static final ResourceLocation textureLocation = new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.MODEL + "jarTexture.png");
 	
 	public static final ModelEffectJar model = new ModelEffectJar();
 	

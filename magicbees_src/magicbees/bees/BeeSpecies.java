@@ -1066,7 +1066,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	
 	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, SMOULDERING, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
 
-	public void registerItemIcons(IconRegister itemMap)
+	@Override
+	public void registerIcons(IconRegister itemMap)
 	{
 		this.icons = new Icon[EnumBeeType.values().length][3];
 		
@@ -1114,8 +1115,4 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	{
 		return icons[0][0];
 	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerTerrainIcons(IconRegister terrainMap) { }
 }

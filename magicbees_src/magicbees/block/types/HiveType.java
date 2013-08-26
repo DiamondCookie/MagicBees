@@ -64,35 +64,35 @@ public enum HiveType
 		CURIOUS.validBiomes.add(Type.FOREST);
 		CURIOUS.validBiomes.add(Type.JUNGLE);
 		CURIOUS.validBiomes.add(Type.HILLS);
-		CURIOUS.drops.add(new HiveDrop(BeeSpecies.MYSTICAL.getGenome(), combs, 80));
+		CURIOUS.drops.add(new HiveDrop(BeeSpecies.MYSTICAL.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		CURIOUS.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.MYSTICAL.getGenome()), combs, 15));
 		CURIOUS.drops.add(valiantDrop);
 		
 		UNUSUAL.validBiomes.add(Type.PLAINS);
 		UNUSUAL.validBiomes.add(Type.MOUNTAIN);
 		UNUSUAL.validBiomes.add(Type.HILLS);
-		UNUSUAL.drops.add(new HiveDrop(BeeSpecies.UNUSUAL.getGenome(), combs, 80));
+		UNUSUAL.drops.add(new HiveDrop(BeeSpecies.UNUSUAL.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		UNUSUAL.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.UNUSUAL.getGenome()), combs, 15));
 		UNUSUAL.drops.add(valiantDrop);
 
 		RESONANT.validBiomes.add(Type.DESERT);
 		RESONANT.validBiomes.add(Type.MAGICAL);
-		RESONANT.drops.add(new HiveDrop(BeeSpecies.SORCEROUS.getGenome(), combs, 80));
+		RESONANT.drops.add(new HiveDrop(BeeSpecies.SORCEROUS.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		RESONANT.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.SORCEROUS.getGenome()), combs, 20));
 		RESONANT.drops.add(valiantDrop);
 		
 		DEEP.validBiomes.add(Type.HILLS);
 		DEEP.validBiomes.add(Type.MOUNTAIN);
 		DEEP.validBiomes.add(Type.MAGICAL);
-		DEEP.drops.add(new HiveDrop(BeeSpecies.ATTUNED.getGenome(), combs, 80));
+		DEEP.drops.add(new HiveDrop(BeeSpecies.ATTUNED.getGenome(), combs, 80).setIgnoblePercentage(0.65f));
 		DEEP.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.ATTUNED.getGenome()), combs, 20));
 		DEEP.drops.add(valiantDrop);
 		
-		combs = new ItemStack[] {Config.combs.getStackForType(CombType.MOLTEN), new ItemStack(Item.lightStoneDust, 6)};
+		combs = new ItemStack[] {Config.combs.getStackForType(CombType.MOLTEN), new ItemStack(Item.glowstone, 6)};
 		
 		INFERNAL.validBiomes.add(Type.NETHER);
 		INFERNAL.validBiomes.add(Type.MAGICAL);
-		INFERNAL.drops.add(new HiveDrop(BeeSpecies.INFERNAL.getGenome(), combs, 80));
+		INFERNAL.drops.add(new HiveDrop(BeeSpecies.INFERNAL.getGenome(), combs, 80).setIgnoblePercentage(0.5f));
 		INFERNAL.drops.add(new HiveDrop(ForestryHelper.getTemplateForestryForSpecies("Steadfast"), combs, 3));
 		
 		combs = new ItemStack[] {Config.combs.getStackForType(CombType.FORGOTTEN), new ItemStack(Item.enderPearl, 1)};
@@ -180,8 +180,17 @@ public enum HiveType
 			if (dart <= drop.getChance(world, x, y, z))
 			{
 				hiveDrops.addAll(drop.getDrones(world, x, y, z, fortune));
-				hiveDrops.addAll(drop.getAdditional(world, x, y, z, fortune));
 				break;
+			}
+		}
+		
+		// Get additional drops.
+		dart = world.rand.nextInt(100);
+		for (IHiveDrop drop : drops)
+		{
+			if (dart <= drop.getChance(world, x, y, z))
+			{
+				hiveDrops.addAll(drop.getAdditional(world, x, y, z, fortune));
 			}
 		}
 		
@@ -243,18 +252,21 @@ public enum HiveType
 				}
 				break;
 			case DEEP:
-				for (int i = 0; i < 1; ++i)
+				if (chunkX % 2 == 0 && chunkZ % 2 == 0)
 				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveDeep(world, random, coordX, coordZ, initialGen))
+					for (int i = 0; i < 1; ++i)
 					{
-						break;
+						int coordX = chunkX * 16 + random.nextInt(16);
+						int coordZ = chunkZ * 16 + random.nextInt(16);
+						if (FeatureHive.generateHiveDeep(world, random, coordX, coordZ, initialGen))
+						{
+							break;
+						}
 					}
 				}
 				break;
 			case INFERNAL:
-				for (int i = 0; i < 1; ++i)
+				for (int i = 0; i < 2; ++i)
 				{
 					int coordX = chunkX * 16 + random.nextInt(16);
 					int coordZ = chunkZ * 16 + random.nextInt(16);

@@ -243,7 +243,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemStack)
+	public boolean isItemValidForSlot(int i, ItemStack itemStack)
 	{
 		return true;
 	}

@@ -117,4 +117,10 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		return this.type.isHellish;
 	}
 
+	@Override
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier)
+	{
+		return this.type.geneticDecayMod;
+	}
+
 }

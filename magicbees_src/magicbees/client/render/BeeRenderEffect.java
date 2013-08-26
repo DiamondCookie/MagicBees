@@ -1,16 +1,14 @@
 package magicbees.client.render;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
-
-
-import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.ForgeHooksClient;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 /**
  * Borrowed from Forestry with some modifications.
@@ -18,7 +16,7 @@ import net.minecraftforge.client.ForgeHooksClient;
 public class BeeRenderEffect extends EntityFX
 {
 	public int blendmode = 1;
-	private static String texture = "/mods/forestry/textures/items/particles/swarm_bee";
+	private static ResourceLocation texture = new ResourceLocation("Forestry", "textures/items/particles/swarm_bee.png");
 
 	public BeeRenderEffect(World world, double x, double y, double z, float motionScaleX, float motionScaleY, float motionScaleZ, int color)
 	{
@@ -65,14 +63,14 @@ public class BeeRenderEffect extends EntityFX
 	public void renderParticle(Tessellator tessellator, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 
-		tessellator.draw();
+		/*tessellator.draw();
 		GL11.glPushMatrix();
 
 		GL11.glDepthMask(false);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, blendmode);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(texture);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -97,8 +95,8 @@ public class BeeRenderEffect extends EntityFX
 		GL11.glDepthMask(true);
 
 		GL11.glPopMatrix();
-		GL11.glBindTexture(3553 /* GL_TEXTURE_2D *//* GL_TEXTURE_2D */, MagicBees.proxy.getClientInstance().renderEngine.getTexture("/particles.png"));
-		tessellator.startDrawingQuads();
+		GL11.glBindTexture(3553, MagicBees.proxy.getClientInstance().renderEngine.func_110577_a(texture));
+		tessellator.startDrawingQuads();*/
 	}
 
 }

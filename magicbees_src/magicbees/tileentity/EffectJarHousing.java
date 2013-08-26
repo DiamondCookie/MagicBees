@@ -211,4 +211,10 @@ public class EffectJarHousing implements IBeeHousing
 		return false;
 	}
 
+	@Override
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier)
+	{
+		return 0f;
+	}
+
 }

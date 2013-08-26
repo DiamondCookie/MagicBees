@@ -1,21 +1,20 @@
 package magicbees.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.main.Config;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import thaumcraft.api.IVisRepairable;
 import thaumcraft.api.ThaumcraftApi;
+import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.arboriculture.IToolGrafter;
 
 public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGrafter
@@ -49,7 +48,7 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLiving entityLiving) {
+	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLivingBase entityLiving) {
 		int damage = 1;
 		if (id == Config.tcLeaf.blockID)
 		{

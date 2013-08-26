@@ -1,49 +1,30 @@
 package magicbees.main.utils;
 
-import java.util.ArrayList;
-
-import thaumcraft.api.EnumTag;
-import thaumcraft.api.ObjectTags;
-import thaumcraft.api.ThaumcraftApi;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.core.BlockInterface;
-import forestry.api.core.ItemInterface;
-import forestry.api.recipes.RecipeManagers;
-import magicbees.bees.Allele;
-import magicbees.bees.BeeGenomeManager;
-import magicbees.bees.BeeSpecies;
 import magicbees.block.types.PlankType;
 import magicbees.item.ItemCapsule;
-import magicbees.item.ItemWax;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
-import magicbees.item.types.HiveFrameType;
 import magicbees.item.types.LiquidType;
 import magicbees.item.types.NuggetType;
 import magicbees.item.types.PollenType;
-import magicbees.item.types.PropolisType;
 import magicbees.item.types.ResourceType;
 import magicbees.item.types.WaxType;
 import magicbees.main.Config;
-import magicbees.main.MagicBees;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ForestryHelper;
-import magicbees.main.utils.compat.ShapelessBeeInfusionCraftingRecipe;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.liquids.LiquidContainerData;
-import net.minecraftforge.liquids.LiquidContainerRegistry;
-import net.minecraftforge.liquids.LiquidDictionary;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import thaumcraft.api.EnumTag;
+import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.core.BlockInterface;
+import forestry.api.core.ItemInterface;
+import forestry.api.recipes.RecipeManagers;
 
 public class CraftingManager
 {
@@ -488,7 +469,7 @@ public class CraftingManager
 
 		output = BlockInterface.getBlock("candle");
 		output.stackSize = 24;
-		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
+		RecipeManagers.carpenterManager.addRecipe(30, new FluidStack(FluidRegistry.WATER, 600), null, output, new Object[] {
 			" S ", "WWW", "WWW",
 			'W', Config.wax,
 			'S', Item.silk
@@ -498,21 +479,21 @@ public class CraftingManager
 		output.stackSize = 6;
 		input = ItemInterface.getItem("craftingMaterial");
 		input.setItemDamage(ForestryHelper.CraftingMaterial.SILK_WISP.ordinal()); // Set to Silk Wisp
-		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(Block.waterStill, 600), null, output, new Object[] {
+		RecipeManagers.carpenterManager.addRecipe(30, new FluidStack(FluidRegistry.WATER, 600), null, output, new Object[] {
 			"WSW",
 			'W', Config.wax,
 			'S', input
 		});
 
 		output = Config.miscResources.getStackForType(ResourceType.AROMATIC_LUMP, 2);
-		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(ItemInterface.getItem("liquidHoney").itemID, 1000), null, output, new Object[] {
+		RecipeManagers.carpenterManager.addRecipe(30, FluidRegistry.getFluidStack("honey", 1000), null, output, new Object[] {
 			" P ", "JDJ", " P ",
 			'P', ItemInterface.getItem("pollen"),
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
 		});
 
-		RecipeManagers.carpenterManager.addRecipe(30, new LiquidStack(ItemInterface.getItem("liquidHoney").itemID, 1000), null, output, new Object[] {
+		RecipeManagers.carpenterManager.addRecipe(30, FluidRegistry.getFluidStack("honey", 1000), null, output, new Object[] {
 			" J ", "PDP", " J ",
 			'P', ItemInterface.getItem("pollen"),
 			'J', ItemInterface.getItem("royalJelly"),
@@ -525,20 +506,20 @@ public class CraftingManager
 			input = ItemInterface.getItem("craftingMaterial");
 			input.setItemDamage(3); // Set to Silk Mesh
 			output = new ItemStack(Config.thaumaturgeBackpackT2);
-			RecipeManagers.carpenterManager.addRecipe(200, new LiquidStack(Block.waterStill.blockID, 1000), null, output, new Object[] {
+			RecipeManagers.carpenterManager.addRecipe(200, new FluidStack(FluidRegistry.WATER, 1000), null, output, new Object[] {
 				"WXW", "WTW", "WWW",
 				'X', Item.diamond,
 				'W', input,
 				'T', new ItemStack(Config.thaumaturgeBackpackT1)
 			});
 			output = new ItemStack(Config.planksWood, 4, 0);
-			RecipeManagers.carpenterManager.addRecipe(8, new LiquidStack(Block.waterStill, 500), null, output, new Object[] {
+			RecipeManagers.carpenterManager.addRecipe(8, new FluidStack(FluidRegistry.WATER, 500), null, output, new Object[] {
 				"B",
 				'B', new ItemStack(Config.tcLog, 1, 0)
 			});
 			
 			output = new ItemStack(Config.planksWood, 6, 1);
-			RecipeManagers.carpenterManager.addRecipe(8, new LiquidStack(Block.waterStill, 500), null, output, new Object[] {
+			RecipeManagers.carpenterManager.addRecipe(8, new FluidStack(FluidRegistry.WATER, 500), null, output, new Object[] {
 				"B",
 				'B', new ItemStack(Config.tcLog, 1, 1)
 			});
@@ -549,7 +530,7 @@ public class CraftingManager
 	{
 		ItemStack empty = new ItemStack(baseCapsule, 1, 0);
 		ItemStack filled;
-		LiquidStack liquid = null;
+		FluidStack liquid = null;
 
 		for (LiquidType liquidType : LiquidType.values())
 		{
@@ -559,20 +540,21 @@ public class CraftingManager
 					liquid = null;
 					break;
 				case WATER:
-					liquid = new LiquidStack(Block.waterStill, baseCapsule.getType().capacity);
+					liquid = new FluidStack(FluidRegistry.WATER, baseCapsule.getType().capacity);
 					break;
 				case LAVA:
-					liquid = new LiquidStack(Block.lavaStill, baseCapsule.getType().capacity);
+					liquid = new FluidStack(FluidRegistry.LAVA, baseCapsule.getType().capacity);
 					break;
 				default:
-					liquid = LiquidDictionary.getLiquid(liquidType.liquidID, baseCapsule.getType().capacity);
+					liquid = FluidRegistry.getFluidStack(liquidType.liquidID, baseCapsule.getType().capacity);
 					break;
 			}
 
 			if (liquid != null)
 			{
 				filled = new ItemStack(baseCapsule, 1, liquidType.ordinal());
-				LiquidContainerRegistry.registerLiquid(new LiquidContainerData(liquid, filled, empty));
+				// WTF is this v ?
+				//LiquidContainerRegistry.registerLiquid(new LiquidContainerData(liquid, filled, empty));
 
 				// Register with Squeezer/Bottler
 				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);

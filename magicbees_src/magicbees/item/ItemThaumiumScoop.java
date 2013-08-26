@@ -4,6 +4,7 @@ import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -38,7 +39,7 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoo
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack itemstack, World world, int i, int j, int k, int l, EntityLiving entityliving) {
+	public boolean onBlockDestroyed(ItemStack itemstack, World world, int i, int j, int k, int l, EntityLivingBase entityliving) {
 		itemstack.damageItem(1, entityliving);
 		return true;
 	}

@@ -16,11 +16,11 @@ public enum HiveFrameType
 	private HiveFrameType(String name, int damage,
 			float territory, float mutation, float lifespan, float production)
 	{
-		this(name, damage, territory, mutation, lifespan, production, 1f, false, false, false, false);
+		this(name, damage, territory, mutation, lifespan, production, 1f, 0f, false, false, false, false);
 	}
 	
 	private HiveFrameType(String name, int damage,
-			float territory, float mutation, float lifespan, float production, float flowering,
+			float territory, float mutation, float lifespan, float production, float flowering, float geneticDecay,
 			boolean sealed, boolean lit, boolean sunlit, boolean hellish)
 	{
 		this.frameName = name;
@@ -31,6 +31,7 @@ public enum HiveFrameType
 		this.lifespanMod = lifespan;
 		this.productionMod = production;
 		this.floweringMod = flowering;
+		this.geneticDecayMod = geneticDecay;
 		this.isSealed = sealed;
 		this.isLit = lit;
 		this.isSunlit = sunlit;
@@ -45,6 +46,7 @@ public enum HiveFrameType
 	public float lifespanMod;
 	public float productionMod;
 	public float floweringMod;
+	public float geneticDecayMod;
 	public boolean isSealed;
 	public boolean isLit;
 	public boolean isSunlit;
