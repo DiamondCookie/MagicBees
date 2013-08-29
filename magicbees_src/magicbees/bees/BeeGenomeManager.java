@@ -718,6 +718,46 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	public static IAllele[] getTemplateMutableBase()
+	{
+		IAllele[] genome = getTemplateModBase();
+		
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanShortest");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceUp1");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateMutable()
+	{
+		IAllele[] genome = getTemplateMutableBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.MUTABLE;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTransmuting()
+	{
+		IAllele[] genome = getTemplateMutableBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TRANSMUTING;
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectTransmuting;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateCrumbling()
+	{
+		IAllele[] genome = getTemplateMutableBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.CRUMBLING;
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectCrumbling;
+		
+		return genome;
+	}
+	
 	private static IAllele[] getTemplateTCBase()
 	{
 		IAllele[] genome = getTemplateModBase();

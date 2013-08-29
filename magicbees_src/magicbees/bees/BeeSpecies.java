@@ -159,6 +159,13 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.GEM, 0x005300, 0x17DD62, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	APATITE("Apatite", "apatite",
 			BeeClassification.GEM, 0x2EA7EC, 0x001D51, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
+			
+	MUTABLE("Mutable", "mutable",
+			BeeClassification.TRANSMUTING, 0xDBB24C, 0xE0D5A6, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
+	TRANSMUTING("Transmuting", "transmuting",
+			BeeClassification.TRANSMUTING, 0xDBB24C, 0xA2D2D8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
+	CRUMBLING("Crumbling", "crumbling", 
+			BeeClassification.TRANSMUTING, 0xDBB24C, 0xDBA4A4, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 
 	// --------- Thaumcraft Bees ---------------------------------------------------------------------------------------
 	TC_STARK("TCStark", "torridae", // Stark
@@ -575,6 +582,19 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		APATITE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.addSpecialty(Config.nuggets.getStackForType(NuggetType.APATITE), 10)
 			.setGenome(BeeGenomeManager.getTemplateApatite())
+			.register();
+		
+		MUTABLE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.PARCHED.ordinal()), 30)
+			.setGenome(BeeGenomeManager.getTemplateMutable())
+			.register();
+		TRANSMUTING.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.PARCHED.ordinal()), 10)
+			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SILKY.ordinal()), 10)
+			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SIMMERING.ordinal()), 10)
+			.setGenome(BeeGenomeManager.getTemplateTransmuting())
+			.register();
+		CRUMBLING.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.POWDERY.ordinal()), 20)
+			.addProduct(new ItemStack(Config.fBeeComb, 1 , ForestryHelper.Comb.COCOA.ordinal()), 20)
+			.setGenome(BeeGenomeManager.getTemplateCrumbling())
 			.register();
 		
 		

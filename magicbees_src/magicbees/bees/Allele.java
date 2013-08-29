@@ -26,6 +26,8 @@ public class Allele implements IAllele
 	public static IAlleleEffect effectMoveSpeed;
 	public static IAlleleEffect effectSlowSpeed;
 	public static IAlleleEffect effectWithering;
+	public static IAlleleEffect effectTransmuting;
+	public static IAlleleEffect effectCrumbling;
 	
 	public static IAlleleEffect spawnBrainyZombie;
 	public static IAlleleEffect spawnWisp;
@@ -60,11 +62,18 @@ public class Allele implements IAllele
 	
 			Allele.spawnWisp = new AlleleEffectSpawnWisp("Wispy", false, ThaumcraftHelper.Entity.WISP.entityID, "thaumcraft.wisplive")
 				.setThrottle(1800).setChanceToSpawn(79);
+
+			Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("NodeAttract", false, 400);
+			Allele.effectNodePurify = new AlleleEffectAuraNodePurify("NodePurify", false, 600, 150);
+			Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("NodeFlux", true, 300, 300);
+			Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);
 		}
 		else
 		{
 			Allele.flowerThaumcraft = Allele.flowerAuraNode = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
-			Allele.spawnBrainyZombie = Allele.spawnBats = Allele.spawnWisp = (IAlleleEffect)Allele.getBaseAllele("effectNone");
+			Allele.spawnBrainyZombie = Allele.spawnBats = Allele.spawnWisp =
+			Allele.effectNodeAttract = Allele.effectNodePurify =
+			Allele.effectNodeFlux = Allele.effectNodeCharge = (IAlleleEffect)Allele.getBaseAllele("effectNone");
 		}
 		
 		if (ArsMagicaHelper.isActive())
@@ -85,16 +94,14 @@ public class Allele implements IAllele
 			Allele.spawnManaDrainer = Allele.spawnWispOrHecate = (IAlleleEffect)Allele.getBaseAllele("effectNone");
 		}
 
-		Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("NodeAttract", false, 400);
-		Allele.effectNodePurify = new AlleleEffectAuraNodePurify("NodePurify", false, 600, 150);
-		Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("NodeFlux", true, 300, 300);
-		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);
-
 		Allele.effectCleansing = new AlleleEffectCure("Curative", false);
 		Allele.effectDigSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);
 		Allele.effectMoveSpeed = new AlleleEffectPotion("MoveSpeed", Potion.moveSpeed, 10, false);
 		Allele.effectSlowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false).setMalicious();
 		Allele.effectWithering = new AlleleEffectPotion("Withering", Potion.wither, 10, false).setMalicious();
+		
+		Allele.effectTransmuting = new AlleleEffectTransmuting("Transmuting", true);
+		Allele.effectCrumbling = new AlleleEffectCrumbling("Crumbling", true);
 
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
 			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);

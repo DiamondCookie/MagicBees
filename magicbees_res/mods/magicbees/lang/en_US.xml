@@ -266,6 +266,13 @@
 	<entry key="magicbees.speciesEmerald.description">It is said they have been to a land ruled by a Great Wizard, and have taken the aspect of his city.|Apinomicon</entry>
 	<entry key="magicbees.speciesApatite">Apatine</entry>
 	<entry key="magicbees.speciesApatite.description">Day and night the whining droned on. I barricaded the windows and hid in the cellar, but everywhere the high-pitched noise of the apatine bees penetrated the walls and drove me to distraction.|Beekeeping 101</entry>
+	
+	<entry key="magicbees.speciesMutable">Mutable</entry>
+	<entry key="magicbees.speciesMutable.description">Changeable in nature, mercurial in personality.|Apinomicon</entry>
+	<entry key="magicbees.speciesTransmuting">Transmuting</entry>
+	<entry key="magicbees.speciesTransmuting.description">"I could've sworn this was made out of stone yesterday!"|Sengir, Mad Apiarist</entry>
+	<entry key="magicbees.speciesCrumbling">Crumbling</entry>
+	<entry key="magicbees.speciesCrumbling.description">They have a corrosive effect on their surroundings, rapidly aging them.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesTCStark">Stark</entry>
 	<entry key="magicbees.speciesTCStark.description">"These are unusually attracted to shards. This warrents further investigation."|Azanor, Master Thaumaturge</entry>
@@ -350,6 +357,8 @@
 	<entry key="magicbees.effectMoveSpeed">Swiftness</entry>
 	<entry key="magicbees.effectSlowSpeed">Time Warp</entry>
 	<entry key="magicbees.effectWithering">Withering</entry>
+	<entry key="magicbees.effectTransmuting">Transmuting</entry>
+	<entry key="magicbees.effectCrumbling">Crumbling</entry>
 	<entry key="magicbees.effectNodeAttract">Aura Attract</entry>
 	<entry key="magicbees.effectNodePurify">Purify Aura</entry>
 	<entry key="magicbees.effectNodeFlux">Aura Flux</entry>
@@ -392,6 +401,8 @@
 	<entry key="classification.metallic.description">They collect fragments of metal and combine them into larger portions.|Apinomicon</entry>
 	<entry key="classification.gem">Gem</entry>
 	<entry key="classification.gem.description">They collect fragments of precious gems in their combs.|Apinomicon</entry>
+	<entry key="classification.transmuting">Polymorphic</entry>
+	<entry key="classification.transmuting.description">Reality seems to be somewhat volatile around bees of this family.|Apinomicon</entry>
 	<entry key="classification.thaumic">Thaumic</entry>
 	<entry key="classification.thaumic.description">These bees have an increased affinity to magic and aura.|Apinomicon</entry>
 	<entry key="classification.fleshy">Fleshy</entry>

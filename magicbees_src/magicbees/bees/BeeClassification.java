@@ -27,6 +27,7 @@ public enum BeeClassification implements IClassification
 	
 	METALLIC("Metallic", "Metalliapis"),
 	GEM("Gem", "Lapidapis"),
+	TRANSMUTING("Transmuting", "Transmutapis"),
 	
 	THAUMIC("Thaumic", "Thaumiapis"),
 	FLESHY("Fleshy", "Carnosapis"),
