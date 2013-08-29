@@ -591,7 +591,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SILKY.ordinal()), 10)
 			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SIMMERING.ordinal()), 10)
 			.setGenome(BeeGenomeManager.getTemplateTransmuting())
-			.register();
+			;//.register();
 		CRUMBLING.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.POWDERY.ordinal()), 20)
 			.addProduct(new ItemStack(Config.fBeeComb, 1 , ForestryHelper.Comb.COCOA.ordinal()), 20)
 			.setGenome(BeeGenomeManager.getTemplateCrumbling())

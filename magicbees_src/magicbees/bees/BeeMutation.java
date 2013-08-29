@@ -117,7 +117,7 @@ public class BeeMutation implements IBeeMutation
 			.setBiomeRequired(BiomeDictionary.Type.END);
 		
 		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.ELDRITCH, BeeSpecies.MUTABLE, 12);
-		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.TRANSMUTING, 9);
+		//new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.TRANSMUTING, 9);
 		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.CRUMBLING, 9);
 		
 		if (BeeSpecies.COPPER.isActive())
