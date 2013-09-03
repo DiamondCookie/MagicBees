@@ -21,18 +21,6 @@ public class CommonProxy
 	public static final String MODEL_TEXTURE_PATH = TEXTURE_PATH + "model/";
 	
 	public static int RenderIdEffectJar;
-
-	public CommonProxy() { }
-	
-	public void drawBeeEffects(World world, double xPos, double yPos, double zPos, int colour, int rangeX, int rangeY, int rangeZ)
-	{
-		// Does nothing in common.
-	}
-	
-	public Minecraft getClientInstance()
-	{
-		return FMLClientHandler.instance().getClient();
-	}
 	
 	public void registerRenderers() { }
 

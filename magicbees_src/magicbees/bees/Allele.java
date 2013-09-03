@@ -4,8 +4,8 @@ import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.potion.Potion;
+import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
@@ -15,6 +15,8 @@ import forestry.api.genetics.IAlleleRegistry;
 public class Allele implements IAllele
 {
 	public static AlleleFloat speedBlinding;
+	
+	public static IAlleleBeeEffect forestryBaseEffect;
 	
 	public static IAlleleFlowers flowerBookshelf;
 	public static IAlleleFlowers flowerThaumcraft;
@@ -44,7 +46,9 @@ public class Allele implements IAllele
 	public static IAlleleEffect effectNodeCharge;
 	
 	public static void setupAdditionalAlleles()
-	{		
+	{
+		forestryBaseEffect = (IAlleleBeeEffect)getBaseAllele("effectNone");
+		
 		Allele.speedBlinding = new AlleleFloat("speedBlinding", 2f, false);
 		
 		Allele.flowerBookshelf = new AlleleFlower("Bookshelf", new FlowerProviderBookshelf(), true);

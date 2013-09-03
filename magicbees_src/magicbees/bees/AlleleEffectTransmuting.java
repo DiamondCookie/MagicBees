@@ -18,7 +18,7 @@ public class AlleleEffectTransmuting extends AlleleEffect
 {
 	public AlleleEffectTransmuting(String id, boolean isDominant)
 	{
-		super(id, isDominant, 200);
+		super(id, isDominant, 900);
 	}
 
 	@Override

@@ -61,16 +61,7 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 	@Override
 	public IEffectData doFX(IBeeGenome genome, IEffectData storedData, IBeeHousing housing)
 	{
-		int[] area = genome.getTerritory();
-		float mod = housing.getTerritoryModifier(genome, 1f);
-		// Check to make sure territory is at least 1 with housing modifications
-		area[0] = Math.max((int)(area[0] * mod), 1);
-		area[1] = Math.max((int)(area[1] * mod), 1);
-		area[2] = Math.max((int)(area[2] * mod), 1);
-		
-		MagicBees.proxy.drawBeeEffects(housing.getWorld(), housing.getXCoord(), housing.getYCoord(), housing.getZCoord(),
-				genome.getPrimary().getIconColour(0), area[0], area[1], area[2]);
-		return storedData;
+		return Allele.forestryBaseEffect.doFX(genome, storedData, housing);
 	}
 	
 	protected List<Entity> getEntitiesWithinRange(IBeeGenome genome, IBeeHousing housing)

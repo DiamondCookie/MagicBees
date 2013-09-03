@@ -4,6 +4,7 @@ import magicbees.bees.BeeManager;
 import magicbees.client.gui.GUIHandler;
 import magicbees.main.utils.CompatabilityManager;
 import magicbees.main.utils.CraftingManager;
+import magicbees.main.utils.IMCManager;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ArsMagicaHelper;
@@ -14,6 +15,7 @@ import magicbees.world.WorldGeneratorHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
@@ -89,6 +91,12 @@ public class MagicBees
 		ThaumcraftHelper.setupResearch();
 		
 		VersionInfo.doVersionCheck();
+	}
+	
+	@Mod.IMCCallback
+	public void handleIMCMessage(IMCEvent event)
+	{
+		IMCManager.handle(event);
 	}
 	
 	public static Config getConfig()

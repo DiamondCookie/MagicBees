@@ -12,20 +12,35 @@ import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectCrumbling extends AlleleEffect
 {
-	private HashMap<ItemStack, ItemStack> crumbleMap;
+	private static HashMap<ItemStack, ItemStack> crumbleMap = new HashMap<ItemStack, ItemStack>();
+
+	public static void addPairToMap(ItemStack source, ItemStack target)
+	{
+		boolean add = true;
+		for (ItemStack i : crumbleMap.keySet())
+		{
+			if (OreDictionary.itemMatches(i, source, false))
+			{
+				add = false;
+				break;
+			}
+		}
+		if (add)
+		{
+			crumbleMap.put(source, target);
+		}
+	}
 	
 	public AlleleEffectCrumbling(String id, boolean isDominant)
 	{
-		super(id, isDominant, 200);
+		super(id, isDominant, 600);
 		
-		crumbleMap = new HashMap<ItemStack, ItemStack>();
-		
-		crumbleMap.put(new ItemStack(Block.stone), new ItemStack(Block.cobblestone));
-		crumbleMap.put(new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestoneMossy));
-		crumbleMap.put(new ItemStack(Block.stoneBrick, 1, 0), new ItemStack(Block.stoneBrick, 1, 2));
-		crumbleMap.put(new ItemStack(Block.stoneBrick, 1, 2), new ItemStack(Block.stoneBrick, 1, 1));
-		crumbleMap.put(new ItemStack(Block.cobblestoneWall), new ItemStack(Block.cobblestoneWall, 1, 1));
-		crumbleMap.put(new ItemStack(Block.gravel), new ItemStack(Block.sand));
+		addPairToMap(new ItemStack(Block.stone), new ItemStack(Block.cobblestone));
+		addPairToMap(new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestoneMossy));
+		addPairToMap(new ItemStack(Block.stoneBrick, 1, 0), new ItemStack(Block.stoneBrick, 1, 2));
+		addPairToMap(new ItemStack(Block.stoneBrick, 1, 2), new ItemStack(Block.stoneBrick, 1, 1));
+		addPairToMap(new ItemStack(Block.cobblestoneWall), new ItemStack(Block.cobblestoneWall, 1, 1));
+		addPairToMap(new ItemStack(Block.gravel), new ItemStack(Block.sand));
 	}
 
 	@Override
