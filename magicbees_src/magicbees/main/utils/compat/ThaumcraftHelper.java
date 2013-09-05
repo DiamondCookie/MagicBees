@@ -122,7 +122,7 @@ public class ThaumcraftHelper
 	{
 		if (cpw.mods.fml.common.Loader.isModLoaded(Name))
 		{
-			if (isThaumcraftPresent = true && MagicBees.object.getConfig().EnableThaumcraftCompat)
+			if (isThaumcraftPresent == true)
 			{
 				registerResearchXML();
 			}
@@ -218,80 +218,83 @@ public class ThaumcraftHelper
 	
 	private static void setupItemAspectsThaumicBees()
 	{
-/*		ObjectTags tags;
-		ItemStack itemStack;
-		
-		tags = new ObjectTags().add(EnumTag.WOOD, 1);
-		ThaumcraftApi.registerObjectTag(Config.planksWood.blockID, -1, tags);
-		
-		tags = new ObjectTags().add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), tags);
-		
-		tags = new ObjectTags().add(EnumTag.MAGIC, 1);
-		ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.ENCHANTED.ordinal(), tags);
-		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 1);
-		ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.INTELLECT.ordinal(), tags);
-		
-		tags = new ObjectTags().add(EnumTag.ELDRITCH, 2);
-		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.UNUSUAL.ordinal(), tags);
-		tags = new ObjectTags().add(EnumTag.TIME, 2);
-		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.PHASED.ordinal(), tags);
-		
-		tags = new ObjectTags().add(EnumTag.CONTROL, 1);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, -1, tags);
-		tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.STARK.ordinal(), tags);
-		tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.WIND, 3);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.AIR.ordinal(), tags);
-		tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.FIRE, 3);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.FIRE.ordinal(), tags);
-		tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.WATER, 3);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.WATER.ordinal(), tags);
-		tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.EARTH, 3);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.EARTH.ordinal(), tags);
-		tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 4);
-		ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.INFUSED.ordinal(), tags);
-		
-		tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 3);
-		ThaumcraftApi.registerObjectTag(Config.miscResources.itemID, ResourceType.LORE_FRAGMENT.ordinal(), tags);
-		
-		tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, -1, tags);
-		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OCCULT.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OTHERWORLDLY.ordinal(), tags);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.HARMONIZING.ordinal(), tags);
-		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 4);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.INFUSED.ordinal(), tags);
-		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.MOTION, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.AIRY.ordinal(), tags);
-		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.POWER, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.FIREY.ordinal(), tags);
-		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.COLD, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.WATERY.ordinal(), tags);
-		tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.ROCK, 2);
-		ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.EARTHY.ordinal(), tags);
-		
-		// Tagging capsules.
-		tags = new ObjectTags().add(EnumTag.VOID, 2).add(EnumTag.MAGIC, 2);
-		ThaumcraftApi.registerComplexObjectTag(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal(), tags);
-
-		tags = new ObjectTags(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal())
-			.add(EnumTag.WATER, 8);
-		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, FluidType.WATER.ordinal(), tags);
-		tags = new ObjectTags(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal())
-			.add(EnumTag.FIRE, 12).add(EnumTag.ROCK, 4);
-		ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, FluidType.LAVA.ordinal(), tags);
-		
-		for (EnumTag tag : EnumTag.values())
-		{
-			if (tag == EnumTag.UNKNOWN)
+		if (isActive())
+		{/*
+			ObjectTags tags;
+			ItemStack itemStack;
+			
+			tags = new ObjectTags().add(EnumTag.WOOD, 1);
+			ThaumcraftApi.registerObjectTag(Config.planksWood.blockID, -1, tags);
+			
+			tags = new ObjectTags().add(EnumTag.MAGIC, 2);
+			ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), tags);
+			
+			tags = new ObjectTags().add(EnumTag.MAGIC, 1);
+			ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.ENCHANTED.ordinal(), tags);
+			tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 1);
+			ThaumcraftApi.registerObjectTag(Config.drops.itemID, DropType.INTELLECT.ordinal(), tags);
+			
+			tags = new ObjectTags().add(EnumTag.ELDRITCH, 2);
+			ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.UNUSUAL.ordinal(), tags);
+			tags = new ObjectTags().add(EnumTag.TIME, 2);
+			ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.PHASED.ordinal(), tags);
+			
+			tags = new ObjectTags().add(EnumTag.CONTROL, 1);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, -1, tags);
+			tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.STARK.ordinal(), tags);
+			tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.WIND, 3);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.AIR.ordinal(), tags);
+			tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.FIRE, 3);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.FIRE.ordinal(), tags);
+			tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.WATER, 3);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.WATER.ordinal(), tags);
+			tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 1).add(EnumTag.EARTH, 3);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.EARTH.ordinal(), tags);
+			tags = new ObjectTags(Config.propolis.itemID, -1).add(EnumTag.MAGIC, 4);
+			ThaumcraftApi.registerObjectTag(Config.propolis.itemID, PropolisType.INFUSED.ordinal(), tags);
+			
+			tags = new ObjectTags().add(EnumTag.KNOWLEDGE, 3);
+			ThaumcraftApi.registerObjectTag(Config.miscResources.itemID, ResourceType.LORE_FRAGMENT.ordinal(), tags);
+			
+			tags = new ObjectTags().add(EnumTag.INSECT, 2).add(EnumTag.TRAP, 2);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, -1, tags);
+			tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OCCULT.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.OTHERWORLDLY.ordinal(), tags);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.HARMONIZING.ordinal(), tags);
+			tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 4);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.INFUSED.ordinal(), tags);
+			tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.MOTION, 2);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.AIRY.ordinal(), tags);
+			tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.POWER, 2);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.FIREY.ordinal(), tags);
+			tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.COLD, 2);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.WATERY.ordinal(), tags);
+			tags = new ObjectTags(Config.combs.itemID, -1).add(EnumTag.MAGIC, 2).add(EnumTag.ROCK, 2);
+			ThaumcraftApi.registerObjectTag(Config.combs.itemID, CombType.EARTHY.ordinal(), tags);
+			
+			// Tagging capsules.
+			tags = new ObjectTags().add(EnumTag.VOID, 2).add(EnumTag.MAGIC, 2);
+			ThaumcraftApi.registerComplexObjectTag(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal(), tags);
+	
+			tags = new ObjectTags(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal())
+				.add(EnumTag.WATER, 8);
+			ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, FluidType.WATER.ordinal(), tags);
+			tags = new ObjectTags(Config.magicCapsule.itemID, FluidType.EMPTY.ordinal())
+				.add(EnumTag.FIRE, 12).add(EnumTag.ROCK, 4);
+			ThaumcraftApi.registerObjectTag(Config.magicCapsule.itemID, FluidType.LAVA.ordinal(), tags);
+			
+			for (EnumTag tag : EnumTag.values())
 			{
-				continue;
-			}
-			tags = new ObjectTags().add(tag, 1);
-			ThaumcraftApi.registerObjectTag(Config.solidFlux.itemID, tag.id, tags);
-		}*/
+				if (tag == EnumTag.UNKNOWN)
+				{
+					continue;
+				}
+				tags = new ObjectTags().add(tag, 1);
+				ThaumcraftApi.registerObjectTag(Config.solidFlux.itemID, tag.id, tags);
+			}*/
+		}
 	}
 		
 	private static void setupItemAspectsForestry()
