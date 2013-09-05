@@ -4,8 +4,8 @@ import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.potion.Potion;
+import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
@@ -15,6 +15,8 @@ import forestry.api.genetics.IAlleleRegistry;
 public class Allele implements IAllele
 {
 	public static AlleleFloat speedBlinding;
+	
+	public static IAlleleBeeEffect forestryBaseEffect;
 	
 	public static IAlleleFlowers flowerBookshelf;
 	public static IAlleleFlowers flowerThaumcraft;
@@ -26,6 +28,8 @@ public class Allele implements IAllele
 	public static IAlleleEffect effectMoveSpeed;
 	public static IAlleleEffect effectSlowSpeed;
 	public static IAlleleEffect effectWithering;
+	public static IAlleleEffect effectTransmuting;
+	public static IAlleleEffect effectCrumbling;
 	
 	public static IAlleleEffect spawnBrainyZombie;
 	public static IAlleleEffect spawnWisp;
@@ -42,7 +46,9 @@ public class Allele implements IAllele
 	public static IAlleleEffect effectNodeCharge;*/
 	
 	public static void setupAdditionalAlleles()
-	{		
+	{
+		forestryBaseEffect = (IAlleleBeeEffect)getBaseAllele("effectNone");
+		
 		Allele.speedBlinding = new AlleleFloat("speedBlinding", 2f, false);
 		
 		Allele.flowerBookshelf = new AlleleFlower("Bookshelf", new FlowerProviderBookshelf(), true);
@@ -64,7 +70,6 @@ public class Allele implements IAllele
 		else
 		{
 			Allele.flowerThaumcraft = Allele.flowerAuraNode = (IAlleleFlowers)Allele.getBaseAllele("flowersVanilla");
-			Allele.spawnBrainyZombie = Allele.spawnBats = Allele.spawnWisp = (IAlleleEffect)Allele.getBaseAllele("effectNone");
 		}
 		
 		if (ArsMagicaHelper.isActive())
@@ -95,6 +100,9 @@ public class Allele implements IAllele
 		Allele.effectMoveSpeed = new AlleleEffectPotion("MoveSpeed", Potion.moveSpeed, 10, false);
 		Allele.effectSlowSpeed = new AlleleEffectPotion("SlowSpeed", Potion.moveSlowdown, 3, false).setMalicious();
 		Allele.effectWithering = new AlleleEffectPotion("Withering", Potion.wither, 10, false).setMalicious();
+		
+		Allele.effectTransmuting = new AlleleEffectTransmuting("Transmuting", true);
+		Allele.effectCrumbling = new AlleleEffectCrumbling("Crumbling", true);
 
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
 			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);

@@ -113,6 +113,10 @@ public class BeeMutation implements IBeeMutation
 		new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.ABANDONED, BeeSpecies.DRACONIC, 6)
 			.setBiomeRequired(BiomeDictionary.Type.END);
 		
+		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.ELDRITCH, BeeSpecies.MUTABLE, 12);
+		//new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.TRANSMUTING, 9);
+		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.CRUMBLING, 9);
+		
 		if (BeeSpecies.COPPER.isActive())
 		{
 			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Meadows"), BeeSpecies.COPPER, 12)
@@ -123,7 +127,7 @@ public class BeeMutation implements IBeeMutation
 			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Forest"), BeeSpecies.TIN, 12)
 				.setBlockRequired("blockTin");
 		}
-		new BeeMutation(Allele.getBaseSpecies("Common"), Allele.getBaseSpecies("Industrious"), BeeSpecies.IRON, 100)
+		new BeeMutation(Allele.getBaseSpecies("Common"), Allele.getBaseSpecies("Industrious"), BeeSpecies.IRON, 12)
 			.setBlockRequired(Block.blockIron);
 		if (BeeSpecies.LEAD.isActive())
 		{
@@ -249,7 +253,7 @@ public class BeeMutation implements IBeeMutation
 		
 		if (EquivalentExchangeHelper.isActive())
 		{
-			new BeeMutation(Allele.getBaseSpecies("Frugal"), BeeSpecies.ELDRITCH, BeeSpecies.EE_MINIUM, 8);
+			new BeeMutation(Allele.getBaseSpecies("Frugal"), BeeSpecies.MUTABLE, BeeSpecies.EE_MINIUM, 8);
 		}
 	}
 	

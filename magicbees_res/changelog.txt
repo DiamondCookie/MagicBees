@@ -1,3 +1,13 @@
+2.1.3
+Added a new mini bee branch: Polymorphic. It is said Unusual bees can have some unusual effects on the world if they are advanced...
+Altered mutation to get Minium bees to fit into the Polymorphic branch.
+Crumbling effect ages the area around the hive.
+Added an IMC Handler to allow other mods to send an IMC message with key 'addCrumblePair" and a value containing two NBT tags
+    'source' and 'target' for ItemStacks of the source block and target block. Blocks added on a first-come-first-serve basis.
+    Only one entry per source block is accepted. Several vanilla defaults are provided, can be overridden using IMC.
+Changing humidity tolerance of Sorcerous bees to be actually useful.
+Fixed issues with the bee effects rendering (the little bee icons that shoot out of the bee machine while they work) for custom effects.
+
 2.1.2
 Fixed issue with mob spawning effects incorrectly checking for effect data variables.
 Updating localization files (RU, DE)
