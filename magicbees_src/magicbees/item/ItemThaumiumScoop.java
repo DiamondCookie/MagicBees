@@ -68,7 +68,7 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoo
         return ThaumcraftApi.toolMatThaumium.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
-	@Override
+	/*@Override
 	public void doRepair(ItemStack stack, Entity e)
 	{
 		if (stack.getItemDamage() > 0)
@@ -78,5 +78,5 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoo
 				stack.damageItem(-1, (EntityLiving)e);
 			}
 		}
-	}
+	}*/
 }

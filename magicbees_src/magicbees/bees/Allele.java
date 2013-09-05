@@ -36,10 +36,10 @@ public class Allele implements IAllele
 	public static IAlleleEffect spawnManaDrainer;
 	public static IAlleleEffect spawnWispOrHecate;
 	
-	public static IAlleleEffect effectNodeAttract;
+	/*public static IAlleleEffect effectNodeAttract;
 	public static IAlleleEffect effectNodePurify;
 	public static IAlleleEffect effectNodeFlux;
-	public static IAlleleEffect effectNodeCharge;
+	public static IAlleleEffect effectNodeCharge;*/
 	
 	public static void setupAdditionalAlleles()
 	{		
@@ -85,10 +85,10 @@ public class Allele implements IAllele
 			Allele.spawnManaDrainer = Allele.spawnWispOrHecate = (IAlleleEffect)Allele.getBaseAllele("effectNone");
 		}
 
-		Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("NodeAttract", false, 400);
+		/*Allele.effectNodeAttract = new AlleleEffectAuraNodeAttract("NodeAttract", false, 400);
 		Allele.effectNodePurify = new AlleleEffectAuraNodePurify("NodePurify", false, 600, 150);
 		Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("NodeFlux", true, 300, 300);
-		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);
+		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);*/
 
 		Allele.effectCleansing = new AlleleEffectCure("Curative", false);
 		Allele.effectDigSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);
@@ -113,10 +113,14 @@ public class Allele implements IAllele
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.fertilityHighDominant",	Allele.getBaseAllele("fertilityHigh"));
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.flowerflowerBookshelf",	flowerBookshelf);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speedBlinding",			speedBlinding);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeAttract",		effectNodeAttract);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodePurify",		effectNodePurify);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeFlux",			effectNodeFlux);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeCharge",		effectNodeCharge);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeAttract",		Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodePurify",		Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeFlux",			Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectNodeCharge",		Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("magicbees.effectNodeAttract", 		Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("magicbees.effectNodePurify",		Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("magicbees.effectNodeFlux",			Allele.getBaseAllele("effectBeatific"));
+		registry.registerDeprecatedAlleleReplacement("magicbees.effectNodeCharge",		Allele.getBaseAllele("effectBeatific"));
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effectCurative",			effectCleansing);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectDigSpeed",	effectDigSpeed);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.effecteffectMoveSpeed",	effectMoveSpeed);

@@ -262,11 +262,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			TC_WATER.setInactive();
 			TC_EARTH.setInactive();
 			TC_MAGIC.setInactive();
-			TC_VIS.setInactive();
-			TC_FLUX.setInactive();
-			TC_ATTRACT.setInactive();
-			TC_PURE.setInactive();
-			TC_REJUVENATING.setInactive();
 			TC_BRAINY.setInactive();
 			TC_WISPY.setInactive();
 			TC_BATTY.setInactive();
@@ -274,6 +269,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			TC_BEEF.setInactive();
 			TC_PORK.setInactive();
 		}
+		// TODO: Temporary always off. Maybe.
+			TC_VIS.setInactive();
+			TC_FLUX.setInactive();
+			TC_ATTRACT.setInactive();
+			TC_PURE.setInactive();
+			TC_REJUVENATING.setInactive();
 		
 		if (EquivalentExchangeHelper.isActive())
 		{

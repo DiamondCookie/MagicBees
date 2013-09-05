@@ -2,19 +2,15 @@ package magicbees.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import thaumcraft.api.EnumTag;
 import magicbees.item.types.NuggetType;
-import magicbees.item.types.PollenType;
-import magicbees.item.types.ResourceType;
-import magicbees.main.CommonProxy;
 import magicbees.main.utils.VersionInfo;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemNugget extends Item
 {

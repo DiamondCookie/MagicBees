@@ -841,7 +841,7 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
-		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeFlux;
+		//genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeFlux;
 		
 		return genome;
 	}
@@ -852,7 +852,7 @@ public class BeeGenomeManager
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_ATTRACT;
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
-		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeAttract;
+		//genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeAttract;
 		
 		return genome;
 	}
@@ -866,7 +866,7 @@ public class BeeGenomeManager
 		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		genome[EnumBeeChromosome.FLOWERING.ordinal()] = Allele.getBaseAllele("floweringAverage");
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
-		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodePurify;
+		//genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodePurify;
 		
 		return genome;
 	}
@@ -876,7 +876,7 @@ public class BeeGenomeManager
 		IAllele[] genome = getTemplateTCBaseVis();
 		
 		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_REJUVENATING;
-		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeCharge;
+		//genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectNodeCharge;
 		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.flowerAuraNode;
 		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceNone");
 		

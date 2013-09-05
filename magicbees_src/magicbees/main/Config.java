@@ -72,6 +72,8 @@ public class Config
 	public int		CapsuleStackSizeMax;
 	public boolean	DoHiveRetrogen;
 	public boolean	ForceHiveRegen;
+	
+	public boolean	EnableThaumcraftCompat;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -311,7 +313,7 @@ public class Config
 
 		jellyBaby = new ItemFood(configuration.getItem("jellyBabies", itemIDBase++).getInt() - 256, 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":jellyBabies");
+		jellyBaby.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":jellyBabies").func_111206_d(VersionInfo.ModName.toLowerCase() + ":jellyBabies");
 		GameRegistry.registerItem(jellyBaby, VersionInfo.ModName.toLowerCase() + ":jellyBabies");
 		
 		
@@ -419,6 +421,11 @@ public class Config
 		{
 			FMLLog.info("Magic Bees will attempt to regenerate hives in chunks that were generated before the mod was added.");
 		}
+		
+		// DELETE THIS.
+		p = configuration.get("DEBUG", "enableThaumcraftIntegration", true);
+		p.comment = "If MB blows up because of Thaumcraft, switch this to false.";
+		this.EnableThaumcraftCompat = p.getBoolean(true);
 	}
 
 }

@@ -21,7 +21,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import thaumcraft.api.EnumTag;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.BlockInterface;
 import forestry.api.core.ItemInterface;
@@ -362,7 +361,7 @@ public class CraftingManager
 			});
 
 			// "bottling" Crystal aspects.
-			for (EnumTag tag : EnumTag.values())
+			/*for (EnumTag tag : EnumTag.values())
 			{
 				if (tag != EnumTag.UNKNOWN)
 				{
@@ -373,7 +372,7 @@ public class CraftingManager
 							'x', Config.tcEssentiaBottle
 					});
 				}
-			}
+			}*/
 		}
 		
 		if (ArsMagicaHelper.isActive())

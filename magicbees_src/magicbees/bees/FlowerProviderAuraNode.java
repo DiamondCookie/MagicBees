@@ -3,8 +3,6 @@ package magicbees.bees;
 import magicbees.main.utils.LocalizationManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.aura.AuraNode;
 import forestry.api.genetics.IFlowerProvider;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
@@ -52,14 +50,14 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 	protected boolean isNodeWithinRange(World w, int x, int y, int z)
 	{
 		boolean nodeNearby = false;		
-		if (ThaumcraftApi.getClosestAuraWithinRange(w, x, y, z, this.nodeRange) >= 0)
+		/*if (ThaumcraftApi.getClosestAuraWithinRange(w, x, y, z, this.nodeRange) >= 0)
 		{
 			nodeNearby = true;
-		}
+		}*/
 		return nodeNearby;
 	}
 	
-	protected AuraNode getNodeWithinRange(World w, int x, int y, int z)
+	/*protected AuraNode getNodeWithinRange(World w, int x, int y, int z)
 	{
 		AuraNode node = null;
 		
@@ -70,7 +68,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 		}
 		
 		return node;
-	}
+	}*/
 
 	protected ItemStack[] addItemToProducts(ItemStack[] products, ItemStack itemStack)
 	{

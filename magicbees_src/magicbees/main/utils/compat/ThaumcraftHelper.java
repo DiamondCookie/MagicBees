@@ -1,14 +1,9 @@
 package magicbees.main.utils.compat;
 
-import java.util.HashMap;
-
 import magicbees.bees.BeeGenomeManager;
 import magicbees.bees.BeeSpecies;
-import magicbees.item.ItemThaumiumGrafter;
-import magicbees.item.ItemThaumiumScoop;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
-import magicbees.item.types.HiveFrameType;
 import magicbees.item.types.FluidType;
 import magicbees.item.types.PollenType;
 import magicbees.item.types.PropolisType;
@@ -20,13 +15,9 @@ import magicbees.main.MagicBees;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import thaumcraft.api.EnumTag;
 import thaumcraft.api.ItemApi;
-import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.research.ResearchItem;
-import thaumcraft.api.research.ResearchList;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
@@ -131,9 +122,10 @@ public class ThaumcraftHelper
 	{
 		if (cpw.mods.fml.common.Loader.isModLoaded(Name))
 		{
-			isThaumcraftPresent = true;
-			
-			registerResearchXML();
+			if (isThaumcraftPresent = true && MagicBees.object.getConfig().EnableThaumcraftCompat)
+			{
+				registerResearchXML();
+			}
 		}
 		else
 		{
@@ -226,7 +218,7 @@ public class ThaumcraftHelper
 	
 	private static void setupItemAspectsThaumicBees()
 	{
-		ObjectTags tags;
+/*		ObjectTags tags;
 		ItemStack itemStack;
 		
 		tags = new ObjectTags().add(EnumTag.WOOD, 1);
@@ -299,12 +291,12 @@ public class ThaumcraftHelper
 			}
 			tags = new ObjectTags().add(tag, 1);
 			ThaumcraftApi.registerObjectTag(Config.solidFlux.itemID, tag.id, tags);
-		}
+		}*/
 	}
 		
 	private static void setupItemAspectsForestry()
 	{
-		ObjectTags tags;
+/*		ObjectTags tags;
 		ItemStack itemStack;
 
 		itemStack = BlockInterface.getBlock("candle");
@@ -506,12 +498,12 @@ public class ThaumcraftHelper
 		tags = new ObjectTags(ItemInterface.getItem("apatite").itemID, 0).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
 		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.APATITE.ordinal(), tags);
 		tags = new ObjectTags(Item.dyePowder.itemID, 4).add(EnumTag.MECHANISM, 1).add(EnumTag.POWER, 1);
-		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.LAPIS.ordinal(), tags);
+		ThaumcraftApi.registerObjectTag(itemStack.itemID, ForestryHelper.Tube.LAPIS.ordinal(), tags);  */
 	}
 	
 	private static void setupItemAspectsExtraBees()
 	{
-		ItemStack itemStack;
+		/*ItemStack itemStack;
 		ObjectTags tags;
 		
 		try // One try block suffices. If we can't get one item, it's probably safe to assume we can't get any others.
@@ -537,14 +529,14 @@ public class ThaumcraftHelper
 			tags = new ObjectTags().add(EnumTag.EXCHANGE, 2).add(EnumTag.LIFE, 1);
 			ThaumcraftApi.registerObjectTag(itemStack.itemID, -1, tags);
 		}
-		catch (NullPointerException e) { }
+		catch (NullPointerException e) { }*/
 	}
 	
 	public static void setupResearch()
 	{
 		if (isActive())
 		{
-			ObjectTags tags;
+			/*ObjectTags tags;
 			
 			tags = new ObjectTags().add(EnumTag.WOOD, 10).add(EnumTag.PLANT, 10).add(EnumTag.INSECT, 10);
 			ResearchItem startNode = new ResearchItem("BEESTARTNODE", tags, 10, 1, Config.miscResources.getStackForType(ResourceType.RESEARCH_STARTNODE))
@@ -604,7 +596,7 @@ public class ThaumcraftHelper
 			tags = new ObjectTags().add(EnumTag.WOOD, 16).add(EnumTag.PLANT, 20).add(EnumTag.TOOL, 6).add(EnumTag.MAGIC, 6);
 			ResearchItem grafter = new ResearchItem("THAUMIUMGRAFTER", tags, 0, -4, Config.thaumiumGrafter)
 				.setParents(scoop)
-				.registerResearchItem();
+				.registerResearchItem();*/
 		}
 	}
 
@@ -612,13 +604,13 @@ public class ThaumcraftHelper
 	{
 		if (isActive())
 		{
-			ThaumcraftApi.registerResearchXML(CommonProxy.TCBEES_RESEARCH + "research.xml");
+			//ThaumcraftApi.registerResearchXML(CommonProxy.TCBEES_RESEARCH + "research.xml");
 		}
 	}
 	
 	public static void setupThaumcraftCrafting()
 	{
-		ItemStack input;
+		/*ItemStack input;
 		ItemStack output;
 		
 		if (MagicBees.getConfig().UseImpregnatedStickInTools)
@@ -752,6 +744,6 @@ public class ThaumcraftHelper
 				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
 		ShapelessBeeInfusionCraftingRecipe.createNewRecipe(researchKey, "BEEINFUSION0", BeeSpecies.TC_MAGIC.getBeeItem(EnumBeeType.PRINCESS), new Object[]
 				{ princess, new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()) },
-				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);
+				100, tags, BeeSpecies.TC_STARK, EnumBeeChromosome.SPECIES);*/
 	}
 }

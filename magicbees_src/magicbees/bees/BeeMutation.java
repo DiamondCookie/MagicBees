@@ -3,8 +3,6 @@ package magicbees.bees;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import thaumcraft.api.aura.EnumNodeType;
-
 import magicbees.main.Config;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.MoonPhase;
@@ -24,7 +22,6 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeMutation;
 import forestry.api.apiculture.IBeeRoot;
-import forestry.api.core.BlockInterface;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 
@@ -203,7 +200,7 @@ public class BeeMutation implements IBeeMutation
 				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.EARTH.ordinal());
 			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.ETHEREAL, BeeSpecies.TC_MAGIC, 8)
 				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.MAGIC.ordinal());
-			
+			/*
 			new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.ETHEREAL, BeeSpecies.TC_VIS, 10)
 				.setAuraNodeRequired(75);
 			new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, 8)
@@ -216,7 +213,7 @@ public class BeeMutation implements IBeeMutation
 			new BeeMutation(BeeSpecies.TC_VIS, BeeSpecies.TC_REJUVENATING, BeeSpecies.TC_PURE, 6)
 				.setAuraNodeTypeRequired(10, thaumcraft.api.aura.EnumNodeType.PURE)
 				.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.FULL);
-			
+			*/
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.WINDY, BeeSpecies.TC_BATTY, 9);
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.PUPIL, BeeSpecies.TC_BRAINY, 9);
 			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.GHASTLY, BeeSpecies.TC_WISPY, 9)
@@ -266,7 +263,7 @@ public class BeeMutation implements IBeeMutation
 	private MoonPhase moonPhaseEnd;
 	private float moonPhaseMutationBonus;
 	private boolean nodeRequired;
-	private thaumcraft.api.aura.EnumNodeType nodeType;
+	//private thaumcraft.api.aura.EnumNodeType nodeType;
 	private double nodeRange;
 	private boolean requiresBlock;
 	private int requiredBlockId;
@@ -289,7 +286,7 @@ public class BeeMutation implements IBeeMutation
 		this.isSecret = false;
 		this.isMoonRestricted = false;
 		this.moonPhaseMutationBonus = -1f;
-		this.nodeType = null;
+		//this.nodeType = null;
 		this.requiresBlock = false;
 		this.requiredBlockMeta = OreDictionary.WILDCARD_VALUE;
 		this.requiredBlockOreDictEntry = null;
@@ -325,7 +322,7 @@ public class BeeMutation implements IBeeMutation
 				}
 			}
 			
-			if (this.nodeRequired)
+			/*if (this.nodeRequired)
 			{
 				int nodeId = thaumcraft.api.ThaumcraftApi.getClosestAuraWithinRange(housing.getWorld(),
 						housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), this.nodeRange);
@@ -345,7 +342,7 @@ public class BeeMutation implements IBeeMutation
 				{
 					chance = 0;
 				}
-			}
+			}*/
 			
 			if (this.requiresBlock)
 			{
@@ -470,7 +467,7 @@ public class BeeMutation implements IBeeMutation
 			}
 		}
 		
-		if (this.nodeRequired)
+		/*if (this.nodeRequired)
 		{
 			if (this.nodeType != null)
 			{
@@ -481,7 +478,7 @@ public class BeeMutation implements IBeeMutation
 			{
 				conditions.add(LocalizationManager.getLocalizedString("research.requiresNode"));
 			}
-		}
+		}*/
 		
 		if (this.requiresBlock)
 		{
@@ -610,7 +607,7 @@ public class BeeMutation implements IBeeMutation
 		return this;
 	}
 	
-	public BeeMutation setAuraNodeRequired(double range)
+	/*public BeeMutation setAuraNodeRequired(double range)
 	{
 		this.nodeRequired = true;
 		this.nodeRange = range;
@@ -623,7 +620,7 @@ public class BeeMutation implements IBeeMutation
 		this.nodeType = type;
 		
 		return this.setAuraNodeRequired(range);
-	}
+	}*/
 	
 	public BeeMutation setBiomeRequired(BiomeDictionary.Type biomeType)
 	{
