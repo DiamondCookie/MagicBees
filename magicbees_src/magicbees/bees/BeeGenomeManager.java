@@ -772,7 +772,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateTCBase();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_STARK;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_CHAOS;
 		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityNormal");
 		
 		return genome;
@@ -843,7 +843,7 @@ public class BeeGenomeManager
 	{
 		IAllele[] genome = getTemplateTCBase();
 		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_MAGIC;
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TC_ORDER;
 		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedNorm");
 		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanNormal");
 		

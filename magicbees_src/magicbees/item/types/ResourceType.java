@@ -17,6 +17,19 @@ public enum ResourceType
 	ESSENCE_LOST_TIME("essenceLostTime", true),
 	ESSENCE_EVERLASTING_DURABILITY("essenceEverlastingDurability", true),
 	ESSENCE_UNENDING_DISREGARD("essenceUnendingDisregard", true),
+	z_1("", false),
+	z_2("", false),
+	z_3("", false),
+	z_4("", false),
+	z_5("", false),
+	DIMENSIONAL_SINGULARITY("dimensionalSingularity", true),
+	TC_DUST_AIR("TCairDust", true),
+	TC_DUST_WATER("TCwaterDust", true),
+	TC_DUST_FIRE("TCfireDust", true),
+	TC_DUST_EARTH("TCearthDust", true),
+	TC_DUST_ORDER("TCorderDust", true),
+	TC_DUST_CHAOS("TCchaosDust", true),
+	
 	
 	// Dummy items for Thaumanomicon research icons.
 	//   These won't ever actually exist in-game, and so 

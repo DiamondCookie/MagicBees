@@ -49,7 +49,7 @@ public class VersionInfo
 	public static int[] parseVersion(String rawVersion)
 	{
 		ArrayList<Integer> versionTokens = new ArrayList<Integer>();
-		String[] tokens = rawVersion.trim().split("\\.");
+		String[] tokens = rawVersion.trim().split("[\\. ]");
 
 		for (int i = 0; i < tokens.length; ++i)
 		{

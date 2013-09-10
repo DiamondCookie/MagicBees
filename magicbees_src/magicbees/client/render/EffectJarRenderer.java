@@ -69,7 +69,7 @@ public class EffectJarRenderer extends TileEntitySpecialRenderer implements IIte
 		GL11.glScaled(scale, scale, scale);
 		GL11.glTranslated(x, y, z);
 		
-		FMLClientHandler.instance().getClient().renderEngine.func_110577_a(ModelEffectJar.textureLocation);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(ModelEffectJar.textureLocation);
 		
 		ModelEffectJar.model.render();
 		

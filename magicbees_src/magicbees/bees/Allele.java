@@ -162,12 +162,12 @@ public class Allele implements IAllele
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesDiamond",			BeeSpecies.DIAMOND);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEmerald",			BeeSpecies.EMERALD);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesApatite",			BeeSpecies.APATITE);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesStark",			BeeSpecies.TC_STARK);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesStark",			BeeSpecies.TC_CHAOS);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesAura",				BeeSpecies.TC_AIR);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesIgnis",			BeeSpecies.TC_FIRE);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesAqua",				BeeSpecies.TC_WATER);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesSolum",			BeeSpecies.TC_EARTH);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPraecantatio",		BeeSpecies.TC_MAGIC);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPraecantatio",		BeeSpecies.TC_ORDER);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesVis",				BeeSpecies.TC_VIS);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPure",				BeeSpecies.TC_PURE);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesFlux",				BeeSpecies.TC_FLUX);

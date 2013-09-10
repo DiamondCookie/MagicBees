@@ -14,7 +14,7 @@ public class ArsMagicaHelper
 		return isArsMagicaPresent;
 	}
 	
-	public static void init()
+	public static void preInit()
 	{
 		if (Loader.isModLoaded("ArsMagica"))
 		{
@@ -22,46 +22,51 @@ public class ArsMagicaHelper
 		}
 	}
 	
-	public static void getBlocks()
+	public static void init()
 	{
 		if (isActive())
 		{
-			try
-			{
-				Class clazz = Class.forName("mithion.arsmagica.blocks.ArsMagicaBlocksCommonProxy");
-				Config.amBlackOrchid = (Block)(clazz.getField("blueOrchid").get(null));
-				Config.amDesertNova = (Block)(clazz.getField("desertNova").get(null));
-			}
-			catch (Exception e)
-			{
-				
-			}
+			getBlocks();
+			getItems();
 		}
 	}
 	
-	public static void getItems()
+	public static void postInit() {}
+	
+	private static void getBlocks()
 	{
-		if (isActive())
+		try
 		{
-			try
-			{
-				Class clazz = Class.forName("mithion.arsmagica.items.ArsMagicaItemsCommonProxy");
-				Config.amVinteumDust = (Item)(clazz.getField("vinteumDust").get(null));
-				Config.amArcaneCompound = (Item)(clazz.getField("arcaneCompound").get(null));
-				Config.amEssenceAir = (Item)(clazz.getField("airEssence").get(null));
-				Config.amEssenceArcane = (Item)(clazz.getField("arcaneEssence").get(null));
-				Config.amEssenceEarth = (Item)(clazz.getField("earthEssence").get(null));
-				Config.amEssenceFire = (Item)(clazz.getField("fireEssence").get(null));
-				Config.amEssenceIce = (Item)(clazz.getField("iceEssence").get(null));
-				Config.amEssenceLightning = (Item)(clazz.getField("lightningEssence").get(null));
-				Config.amEssenceMagma = (Item)(clazz.getField("magmaEssence").get(null));
-				Config.amEssencePlant = (Item)(clazz.getField("plantEssence").get(null));
-				Config.amEssenceWater = (Item)(clazz.getField("waterEssence").get(null));
-			}
-			catch (Exception e)
-			{
-				
-			}
+			Class clazz = Class.forName("mithion.arsmagica.blocks.ArsMagicaBlocksCommonProxy");
+			Config.amBlackOrchid = (Block)(clazz.getField("blueOrchid").get(null));
+			Config.amDesertNova = (Block)(clazz.getField("desertNova").get(null));
+		}
+		catch (Exception e)
+		{
+			
+		}
+	}
+	
+	private static void getItems()
+	{
+		try
+		{
+			Class clazz = Class.forName("mithion.arsmagica.items.ArsMagicaItemsCommonProxy");
+			Config.amVinteumDust = (Item)(clazz.getField("vinteumDust").get(null));
+			Config.amArcaneCompound = (Item)(clazz.getField("arcaneCompound").get(null));
+			Config.amEssenceAir = (Item)(clazz.getField("airEssence").get(null));
+			Config.amEssenceArcane = (Item)(clazz.getField("arcaneEssence").get(null));
+			Config.amEssenceEarth = (Item)(clazz.getField("earthEssence").get(null));
+			Config.amEssenceFire = (Item)(clazz.getField("fireEssence").get(null));
+			Config.amEssenceIce = (Item)(clazz.getField("iceEssence").get(null));
+			Config.amEssenceLightning = (Item)(clazz.getField("lightningEssence").get(null));
+			Config.amEssenceMagma = (Item)(clazz.getField("magmaEssence").get(null));
+			Config.amEssencePlant = (Item)(clazz.getField("plantEssence").get(null));
+			Config.amEssenceWater = (Item)(clazz.getField("waterEssence").get(null));
+		}
+		catch (Exception e)
+		{
+			
 		}
 	}
 }

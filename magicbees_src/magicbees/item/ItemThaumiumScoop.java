@@ -2,19 +2,17 @@ package magicbees.item;
 
 import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import thaumcraft.api.IVisRepairable;
+import thaumcraft.api.IRepairable;
 import thaumcraft.api.ThaumcraftApi;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.IToolScoop;
 
-public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoop
+public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 {
 	public ItemThaumiumScoop(int itemID)
 	{
@@ -67,16 +65,4 @@ public class ItemThaumiumScoop extends Item implements IVisRepairable, IToolScoo
     {
         return ThaumcraftApi.toolMatThaumium.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
-
-	/*@Override
-	public void doRepair(ItemStack stack, Entity e)
-	{
-		if (stack.getItemDamage() > 0)
-		{
-			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 1, true))
-			{
-				stack.damageItem(-1, (EntityLiving)e);
-			}
-		}
-	}*/
 }

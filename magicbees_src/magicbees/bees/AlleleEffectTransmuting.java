@@ -18,7 +18,7 @@ public class AlleleEffectTransmuting extends AlleleEffect
 {
 	public AlleleEffectTransmuting(String id, boolean isDominant)
 	{
-		super(id, isDominant, 900);
+		super(id, isDominant, 200);
 	}
 
 	@Override
@@ -43,76 +43,13 @@ public class AlleleEffectTransmuting extends AlleleEffect
 		int zCoord = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[0]);
 		zCoord = housing.getZCoord() + world.rand.nextInt(zCoord) - zCoord / 2;
 
-		// Check if == stone
-		boolean doTransmute = false;
-		Block block = Block.blocksList[world.getBlockId(xCoord, yCoord, zCoord)];
-		if (block == null || block == Block.stone || block == Block.cobblestone)
-		{
-			doTransmute = true;
-		}
-		else if (block != null)
-		{
-			ItemStack cobbleItem = new ItemStack(Block.cobblestone);
-			ItemStack stoneItem = new ItemStack(Block.stone);
-			ItemStack testItem = new ItemStack(block);
-			doTransmute = OreDictionary.itemMatches(cobbleItem, testItem, false) || OreDictionary.itemMatches(stoneItem, cobbleItem, false); 
-		}
-	
-		// Transmute to something.
-		if (doTransmute)
-		{
-			BiomeGenBase biome = world.getBiomeGenForCoords(xCoord, zCoord);
-			// Gogo shortcutting logic operators!
-			boolean tryThis = trySpawnAbyssalStone(world, biome, xCoord, yCoord, zCoord) ||
-				trySpawnQuarriedStone(world, biome, xCoord, yCoord, zCoord) || 
-				trySpawnSandstone(world, biome, xCoord, yCoord, zCoord);
-		}
+		BiomeGenBase biome = world.getBiomeGenForCoords(xCoord, zCoord);
+		TransmutationEffectController.instance.attemptTransmutations(world, biome,
+				new ItemStack(world.getBlockId(xCoord, yCoord, zCoord), 1, world.getBlockMetadata(xCoord, yCoord, zCoord)),
+				xCoord, yCoord, zCoord);
+		
 		storedData.setInteger(0, 0);
 
 		return storedData;
 	}
-	
-	private boolean trySpawnQuarriedStone(World world, BiomeGenBase biome, int x, int y, int z)
-	{
-		boolean flag = false;
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FOREST) && 
-    		!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FROZEN))
-		{
-			ItemStack item = GameRegistry.findItemStack("Railcraft", "stone.abyssal", 1);
-			if (item != null)
-			{
-				world.setBlock(x, y, z, item.itemID, item.getItemDamage(), 2);
-				flag = true;
-			}
-	    }
-		return flag;
-	}
-
-	private boolean trySpawnAbyssalStone(World world, BiomeGenBase biome, int x, int y, int z)
-	{
-		boolean flag = false;
-	    if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.WATER) &&
-	    		biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river"))
-		{
-			ItemStack item = GameRegistry.findItemStack("Railcraft", "stone.quarried", 1);
-			if (item != null)
-			{
-				world.setBlock(x, y, z, item.itemID, item.getItemDamage(), 2);
-				flag = true;
-			}
-	    }
-	    return flag;
-	}
-	
-	private boolean trySpawnSandstone(World world, BiomeGenBase biome, int x, int y, int z)
-	{
-		boolean flag = false;
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DESERT))
-		{
-			world.setBlock(x, y, z, Block.sandStone.blockID);
-			flag = true;
-		}
-		return flag;
-	}
-
 }

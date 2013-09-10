@@ -114,7 +114,7 @@ public class BeeMutation implements IBeeMutation
 			.setBiomeRequired(BiomeDictionary.Type.END);
 		
 		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.ELDRITCH, BeeSpecies.MUTABLE, 12);
-		//new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.TRANSMUTING, 9);
+		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.TRANSMUTING, 9);
 		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.CRUMBLING, 9);
 		
 		if (BeeSpecies.COPPER.isActive())
@@ -181,19 +181,7 @@ public class BeeMutation implements IBeeMutation
 			.setBlockRequired("oreApatite");
 		
 		if (ThaumcraftHelper.isActive())
-		{
-			BeeSpecies[] speciesList = new BeeSpecies[] {BeeSpecies.WINDY, BeeSpecies.FIREY, BeeSpecies.WATERY, BeeSpecies.EARTHY};
-			
-			for (int a = 0; a < speciesList.length; ++a)
-			{
-				for (int b = a + 1; b < speciesList.length; ++b)
-				{
-					new BeeMutation(speciesList[a], speciesList[b], BeeSpecies.TC_STARK, 8)
-						.setBlockRequired(Config.tcCrystal)
-						.setBlockRequiredNameOverride("research.block.crystals");
-				}
-			}
-			
+		{			
 			new BeeMutation(BeeSpecies.WINDY, BeeSpecies.WINDY, BeeSpecies.TC_AIR, 8)
 				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.AIR.ordinal());
 			new BeeMutation(BeeSpecies.FIREY, BeeSpecies.FIREY, BeeSpecies.TC_FIRE, 8)
@@ -202,22 +190,11 @@ public class BeeMutation implements IBeeMutation
 				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.WATER.ordinal());
 			new BeeMutation(BeeSpecies.EARTHY, BeeSpecies.EARTHY, BeeSpecies.TC_EARTH, 8)
 				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.EARTH.ordinal());
-			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.ETHEREAL, BeeSpecies.TC_MAGIC, 8)
-				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.MAGIC.ordinal());
-			/*
-			new BeeMutation(BeeSpecies.ELDRITCH, BeeSpecies.ETHEREAL, BeeSpecies.TC_VIS, 10)
-				.setAuraNodeRequired(75);
-			new BeeMutation(Allele.getBaseSpecies("Demonic"), BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, 8)
-				.setAuraNodeTypeRequired(50, thaumcraft.api.aura.EnumNodeType.DARK);
-			new BeeMutation(BeeSpecies.TC_VIS, BeeSpecies.TC_FLUX, BeeSpecies.TC_ATTRACT, 13)
-				.setAuraNodeTypeRequired(30, EnumNodeType.UNSTABLE)
-				.setMoonPhaseRestricted(MoonPhase.NEW, MoonPhase.NEW);
-			new BeeMutation(Allele.getBaseSpecies("Imperial"), BeeSpecies.TC_VIS, BeeSpecies.TC_REJUVENATING, 8)
-				.setAuraNodeRequired(25);
-			new BeeMutation(BeeSpecies.TC_VIS, BeeSpecies.TC_REJUVENATING, BeeSpecies.TC_PURE, 6)
-				.setAuraNodeTypeRequired(10, thaumcraft.api.aura.EnumNodeType.PURE)
-				.setMoonPhaseRestricted(MoonPhase.FULL, MoonPhase.FULL);
-			*/
+			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.ARCANE, BeeSpecies.TC_ORDER, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.ORDER.ordinal());
+			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.SUPERNATURAL, BeeSpecies.TC_CHAOS, 8)
+				.setBlockAndMetaRequired(Config.tcCrystal, ThaumcraftHelper.ShardType.CHAOS.ordinal());
+			
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.WINDY, BeeSpecies.TC_BATTY, 9);
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.PUPIL, BeeSpecies.TC_BRAINY, 9);
 			new BeeMutation(BeeSpecies.ETHEREAL, BeeSpecies.GHASTLY, BeeSpecies.TC_WISPY, 9)
@@ -267,7 +244,6 @@ public class BeeMutation implements IBeeMutation
 	private MoonPhase moonPhaseEnd;
 	private float moonPhaseMutationBonus;
 	private boolean nodeRequired;
-	//private thaumcraft.api.aura.EnumNodeType nodeType;
 	private double nodeRange;
 	private boolean requiresBlock;
 	private int requiredBlockId;
@@ -325,28 +301,6 @@ public class BeeMutation implements IBeeMutation
 					}
 				}
 			}
-			
-			/*if (this.nodeRequired)
-			{
-				int nodeId = thaumcraft.api.ThaumcraftApi.getClosestAuraWithinRange(housing.getWorld(),
-						housing.getXCoord(), housing.getYCoord(), housing.getZCoord(), this.nodeRange);
-				if (nodeId >= 0)
-				{
-					if (this.nodeType != null)
-					{
-						// Needs a _specific_ variety of node
-						thaumcraft.api.aura.AuraNode node = thaumcraft.api.ThaumcraftApi.getNodeCopy(nodeId);
-						if (node.type != this.nodeType)
-						{
-							chance = 0;
-						}
-					}
-				}
-				else
-				{
-					chance = 0;
-				}
-			}*/
 			
 			if (this.requiresBlock)
 			{
@@ -470,19 +424,6 @@ public class BeeMutation implements IBeeMutation
 						moonPhaseStart.getLocalizedName()));
 			}
 		}
-		
-		/*if (this.nodeRequired)
-		{
-			if (this.nodeType != null)
-			{
-				conditions.add(String.format(LocalizationManager.getLocalizedString("research.requiresNodeSpecific"), 
-						LocalizationManager.getLocalizedString("research.node." + this.nodeType.name().toLowerCase())));
-			}
-			else
-			{
-				conditions.add(LocalizationManager.getLocalizedString("research.requiresNode"));
-			}
-		}*/
 		
 		if (this.requiresBlock)
 		{
@@ -610,21 +551,6 @@ public class BeeMutation implements IBeeMutation
 		
 		return this;
 	}
-	
-	/*public BeeMutation setAuraNodeRequired(double range)
-	{
-		this.nodeRequired = true;
-		this.nodeRange = range;
-		
-		return this;
-	}
-	
-	public BeeMutation setAuraNodeTypeRequired(double range, thaumcraft.api.aura.EnumNodeType type)
-	{
-		this.nodeType = type;
-		
-		return this.setAuraNodeRequired(range);
-	}*/
 	
 	public BeeMutation setBiomeRequired(BiomeDictionary.Type biomeType)
 	{

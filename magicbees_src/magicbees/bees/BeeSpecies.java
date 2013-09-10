@@ -168,7 +168,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.TRANSMUTING, 0xDBB24C, 0xDBA4A4, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 
 	// --------- Thaumcraft Bees ---------------------------------------------------------------------------------------
-	TC_STARK("TCStark", "torridae", // Stark
+	TC_CHAOS("TCStark", "torridae", // Stark
 			BeeClassification.THAUMIC, 0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	TC_AIR("TCAir", "aether",	// Aura
 			BeeClassification.THAUMIC, 0xD9D636, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
@@ -178,7 +178,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.THAUMIC, 0x36CFD9, 0x999999, EnumTemperature.NORMAL, EnumHumidity.DAMP, true, true),
 	TC_EARTH("TCEarth", "sordida", // Solum
 			BeeClassification.THAUMIC, 0x005100, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
-	TC_MAGIC("TCMagic", "azanorius", //Praecantatio
+	TC_ORDER("TCMagic", "azanorius", //Praecantatio
 			BeeClassification.THAUMIC, 0xaa32fc, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 			
 	TC_VIS("TCVis", "arcanus saecula",
@@ -249,12 +249,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			SCHOLARLY.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 2);
 			SAVANT.addSpecialty(Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT), 5);
 			
-			TC_STARK.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.DULL.ordinal()), 5);
 			TC_AIR.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.AIR.ordinal()), 5);
 			TC_FIRE.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.FIRE.ordinal()), 5);
 			TC_WATER.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.WATER.ordinal()), 5);
 			TC_EARTH.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.EARTH.ordinal()), 5);
-			TC_MAGIC.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.MAGIC.ordinal()), 5);
+			TC_ORDER.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.ORDER.ordinal()), 5);
+			TC_CHAOS.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.CHAOS.ordinal()), 5);
 			
 			TC_BRAINY.addSpecialty(new ItemStack(Config.tcMiscResource,  1, ThaumcraftHelper.MiscResource.ZOMBIE_BRAIN.ordinal()), 2);
 			TC_CHICKEN.addSpecialty(new ItemStack(Config.tcNuggetChicken, 1), 9);
@@ -263,20 +263,20 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		}
 		else
 		{
-			TC_STARK.setInactive();
+			TC_CHAOS.setInactive();
 			TC_AIR.setInactive();
 			TC_FIRE.setInactive();
 			TC_WATER.setInactive();
 			TC_EARTH.setInactive();
-			TC_MAGIC.setInactive();
+			TC_ORDER.setInactive();
 			TC_BRAINY.setInactive();
-			TC_WISPY.setInactive();
 			TC_BATTY.setInactive();
 			TC_CHICKEN.setInactive();
 			TC_BEEF.setInactive();
 			TC_PORK.setInactive();
 		}
 		// TODO: Temporary always off. Maybe.
+			TC_WISPY.setInactive();
 			TC_VIS.setInactive();
 			TC_FLUX.setInactive();
 			TC_ATTRACT.setInactive();
@@ -592,14 +592,14 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SILKY.ordinal()), 10)
 			.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.SIMMERING.ordinal()), 10)
 			.setGenome(BeeGenomeManager.getTemplateTransmuting())
-			;//.register();
+			.register();
 		CRUMBLING.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.POWDERY.ordinal()), 20)
 			.addProduct(new ItemStack(Config.fBeeComb, 1 , ForestryHelper.Comb.COCOA.ordinal()), 20)
 			.setGenome(BeeGenomeManager.getTemplateCrumbling())
 			.register();
 		
 		
-		TC_STARK.addProduct(Config.combs.getStackForType(CombType.HARMONIZING), 10)
+		TC_CHAOS.addProduct(Config.combs.getStackForType(CombType.HARMONIZING), 10)
 			.setGenome(BeeGenomeManager.getTemplateTCStark())
 			.register();
 		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 10)
@@ -614,7 +614,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		TC_EARTH.addProduct(Config.combs.getStackForType(CombType.EARTHY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCEarth())
 			.register();
-		TC_MAGIC.addProduct(Config.combs.getStackForType(CombType.INFUSED), 20)
+		TC_ORDER.addProduct(Config.combs.getStackForType(CombType.INFUSED), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCMagic())
 			.register();
 		

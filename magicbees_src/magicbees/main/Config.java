@@ -132,10 +132,10 @@ public class Config
 	//----- Thaumcraft Items -----------------------------------
 	public static Item tcFilledJar;
 	public static Item tcMiscResource;
-	public static Item tcEssentiaBottle;
+	//public static Item tcEssentiaBottle;
 	public static Item tcShard;
 	public static Item tcGolem;
-	public static Item tcWispEssence;
+	//public static Item tcWispEssence;
 	public static Item tcNuggets;
 	public static Item tcNuggetChicken;
 	public static Item tcNuggetBeef;
@@ -177,11 +177,6 @@ public class Config
 
 	public void setupBlocks()
 	{
-		ThaumcraftHelper.getBlocks();
-		ForestryHelper.getBlocks();
-		EquivalentExchangeHelper.getBlocks();
-		ArsMagicaHelper.getBlocks();
-		
 		int blockIdBase = 1750;
 		
 		{
@@ -233,12 +228,7 @@ public class Config
 	}
 	
 	public void setupItems()
-	{
-		ThaumcraftHelper.getItems();
-		ForestryHelper.getItems();
-		EquivalentExchangeHelper.getItems();
-		ArsMagicaHelper.getItems();
-		
+	{		
 		int itemIDBase = 26090;
 
 		combs= new ItemComb(configuration.getItem("combs", itemIDBase++).getInt() - 256);
@@ -313,7 +303,7 @@ public class Config
 
 		jellyBaby = new ItemFood(configuration.getItem("jellyBabies", itemIDBase++).getInt() - 256, 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":jellyBabies").func_111206_d(VersionInfo.ModName.toLowerCase() + ":jellyBabies");
+		jellyBaby.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":jellyBabies").setTextureName(VersionInfo.ModName.toLowerCase() + ":jellyBabies");
 		GameRegistry.registerItem(jellyBaby, VersionInfo.ModName.toLowerCase() + ":jellyBabies");
 		
 		

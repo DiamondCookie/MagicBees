@@ -10,6 +10,7 @@ public class CommonProxy
 	public static final String DOMAIN = "magicbees";
 	public static final String TEXTURE = "textures/";
 	public static final String GUI_TEXTURE = TEXTURE + "gui/";
+	public static final String ITEM_TEXTURE = TEXTURE + "items/";
 	public static final String MODEL = "model/";
 	public static final String LANGS = "lang/";
 	

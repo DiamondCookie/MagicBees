@@ -33,17 +33,7 @@ public class CraftingManager
 		// Broken up into seperate sections to make things a bit easier to find.
 		setupVanillaCrafting();
 		setupCentrifugeRecipes();
-		setupSqueezerRecipes();
 		setupCarpenterRecipes();
-		
-		if (ThaumcraftHelper.isActive())
-		{
-			ThaumcraftHelper.setupThaumcraftCrafting();
-		}
-		else
-		{
-			setupThaumcraftAlternativeCrafting();
-		}
 
 		registerLiquidContainer(Config.magicCapsule);
 		registerLiquidContainer(Config.voidCapsule);
@@ -314,6 +304,24 @@ public class CraftingManager
 			"xxx", "xxx", "xxx",
 			'x', Config.nuggets.getStackForType(NuggetType.APATITE)
 		}));
+		
+		output = Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 2);
+		GameRegistry.addRecipe(output, new Object[] {
+			" E ", "pOp", " E ",
+			'E', Item.eyeOfEnder,
+			'p', Item.enderPearl,
+			'W', Block.obsidian
+		});
+		
+		output = Config.voidCapsule.getCapsuleForLiquid(FluidType.EMPTY);
+		output.stackSize = 4;
+		GameRegistry.addRecipe(output, new Object[] {
+			"T T", "GFG", "T T",
+			'G', Block.thinGlass,
+			'F', Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY),
+			'T', Item.goldNugget
+		});
+		
 
 		if (ThaumcraftHelper.isActive())
 		{
@@ -329,7 +337,7 @@ public class CraftingManager
 			}
 
 			// Essentia bottles
-			output = new ItemStack(Config.tcEssentiaBottle);
+			/*output = new ItemStack(Config.tcEssentiaBottle);
 			output.stackSize = 8;
 			GameRegistry.addRecipe(output, new Object[] {
 					" C ", "GPG", "PGP",
@@ -343,7 +351,7 @@ public class CraftingManager
 			GameRegistry.addRecipe(output, new Object[] {
 					" W ", "W W", " W ",
 					'W', Config.wax
-			});
+			});*/
 			
 			output = new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.KNOWLEDGE_FRAGMENT.ordinal());
 			GameRegistry.addRecipe(output, new Object[] {
@@ -455,12 +463,6 @@ public class CraftingManager
 					new int[] { 85, 10, 2 } );
 		}
 	}
-	
-	private static void setupSqueezerRecipes()
-	{
-		// Squeezer recipes
-		// if (ThaumcraftHelper.isActive()) { }
-	}
 
 	private static void setupCarpenterRecipes()
 	{
@@ -499,6 +501,14 @@ public class CraftingManager
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
 		});
+
+		output = new ItemStack(Config.hiveFrameMagic);
+		input = ItemInterface.getItem("frameUntreated");
+		GameRegistry.addRecipe(output, new Object[] {
+			"www", "wfw", "www",
+			'w', Config.wax.getStackForType(WaxType.MAGIC),
+			'f', input
+		});
 		
 		if (ThaumcraftHelper.isActive())
 		{
@@ -511,17 +521,6 @@ public class CraftingManager
 				'X', Item.diamond,
 				'W', input,
 				'T', new ItemStack(Config.thaumaturgeBackpackT1)
-			});
-			output = new ItemStack(Config.planksWood, 4, 0);
-			RecipeManagers.carpenterManager.addRecipe(8, new FluidStack(FluidRegistry.WATER, 500), null, output, new Object[] {
-				"B",
-				'B', new ItemStack(Config.tcLog, 1, 0)
-			});
-			
-			output = new ItemStack(Config.planksWood, 6, 1);
-			RecipeManagers.carpenterManager.addRecipe(8, new FluidStack(FluidRegistry.WATER, 500), null, output, new Object[] {
-				"B",
-				'B', new ItemStack(Config.tcLog, 1, 1)
 			});
 		}
 	}
@@ -564,29 +563,5 @@ public class CraftingManager
 		}
 		// Empty will be set to unavailable. Obviously, it always is.
 		FluidType.EMPTY.available = true;
-	}
-	
-	private static void setupThaumcraftAlternativeCrafting()
-	{
-		ItemStack input, output;
-
-		output = new ItemStack(Config.hiveFrameMagic);
-		input = ItemInterface.getItem("frameUntreated");
-		GameRegistry.addRecipe(output, new Object[] {
-			"www", "wfw", "www",
-			'w', Config.wax.getStackForType(WaxType.MAGIC),
-			'f', input
-		});
-		
-		output = Config.voidCapsule.getCapsuleForLiquid(FluidType.EMPTY);
-		output.stackSize = 4;
-		GameRegistry.addRecipe(output, new Object[] {
-			"wDw", "GPG", "TwT",
-			'G', Block.glass,
-			'D', Item.diamond,
-			'P', Item.eyeOfEnder,
-			'T', Item.ingotGold,
-			'w', Config.wax.getStackForType(WaxType.MAGIC)
-		});
 	}
 }

@@ -1,3 +1,8 @@
+2.1.4
+Some cleanup of Helper code
+Hammering out rest of Transmutation effect, and exposing parts of it in an API so other people can hook into it if they want.
+Trying out tying in Thaumcraft 4 stuff.
+
 2.1.3
 Added a new mini bee branch: Polymorphic. It is said Unusual bees can have some unusual effects on the world if they are advanced...
 Altered mutation to get Minium bees to fit into the Polymorphic branch.

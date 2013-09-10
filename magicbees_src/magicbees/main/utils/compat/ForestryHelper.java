@@ -97,7 +97,17 @@ public class ForestryHelper
 	
 	public static final String Name = "Forestry";
 	
-	public static void getBlocks()
+	public static void preInit() {}
+	
+	public static void init()
+	{
+		getBlocks();
+		getItems();
+	}
+	
+	public static void postInit() {}
+	
+	private static void getBlocks()
 	{
 		try
 		{
@@ -110,7 +120,7 @@ public class ForestryHelper
 		}
 	}
 	
-	public static void getItems()
+	private static void getItems()
 	{
 		Config.fBeeComb = ItemInterface.getItem("beeComb").getItem();
 		Config.fPollen = ItemInterface.getItem("pollen").getItem();

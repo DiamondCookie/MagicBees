@@ -4,20 +4,19 @@ import magicbees.main.Config;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import thaumcraft.api.IVisRepairable;
-import thaumcraft.api.ThaumcraftApi;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.arboriculture.IToolGrafter;
+import thaumcraft.api.IRepairable;
+import thaumcraft.api.IRepairableExtended;
+import thaumcraft.api.ThaumcraftApi;
 
-public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGrafter
+public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IToolGrafter
 {
 	public ItemThaumiumGrafter(int id)
 	{
@@ -69,7 +68,6 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
 		if (entityLiving instanceof EntityPlayer)
 		{
 			EntityPlayer p = (EntityPlayer)entityLiving;
-			p.addExhaustion(8f);
 		}
 		return true;
 	}
@@ -98,15 +96,22 @@ public class ItemThaumiumGrafter extends Item implements IVisRepairable, IToolGr
         return ThaumcraftApi.toolMatThaumium.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
-	/*@Override
-	public void doRepair(ItemStack stack, Entity e)
+	@Override
+	public boolean doRepair(ItemStack stack, EntityPlayer player, int enchantLevel)
 	{
+		boolean flag = false;
 		if (stack.getItemDamage() > 0)
 		{
-			if (ThaumcraftApi.decreaseClosestAura(e.worldObj, e.posX, e.posY, e.posZ, 2, true))
+			flag = true;
+			if (enchantLevel > 2)
 			{
-				stack.damageItem(-1, (EntityLiving)e);
+				player.setFire(enchantLevel * enchantLevel / 2);
+			}
+			else
+			{
+				player.addExhaustion(0.8f * (enchantLevel * enchantLevel));
 			}
 		}
-	}*/
+		return flag;
+	}
 }

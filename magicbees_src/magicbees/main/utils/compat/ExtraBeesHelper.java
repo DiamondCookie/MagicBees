@@ -7,36 +7,6 @@ import net.minecraft.item.ItemStack;
 
 public class ExtraBeesHelper
 {
-	private static boolean isEBPresent = false;
-	
-	public static boolean isActive()
-	{
-		return isEBPresent;
-	}
-	
-	public static void init()
-	{
-		if (cpw.mods.fml.common.Loader.isModLoaded("ExtraBees"))
-		{
-			isEBPresent = true;
-		}
-	}
-	
-	public static ItemStack getExtraBeeItem(String field)
-	{
-		ItemStack value = null;
-		try
-		{
-			Class src = Class.forName("binnie.extrabees.core.ExtraBeeItem");
-			Field f = src.getDeclaredField(field);
-			
-			Item i = (Item) f.get(null);
-			value = new ItemStack(i);
-		}
-		catch (Exception e) { }
-		return value;
-	}
-
 	public enum CombType
 	{
 		BARREN,
@@ -121,5 +91,38 @@ public class ExtraBeesHelper
 		COMPOST,
 		SAWDUST,
 		;
+	}
+	
+	private static boolean isEBPresent = false;
+	
+	public static boolean isActive()
+	{
+		return isEBPresent;
+	}
+	
+	public static void preInit()
+	{
+		if (cpw.mods.fml.common.Loader.isModLoaded("ExtraBees"))
+		{
+			isEBPresent = true;
+		}
+	}
+	
+	public static void init() {}
+	public static void postInit() {}
+	
+	public static ItemStack getExtraBeeItem(String field)
+	{
+		ItemStack value = null;
+		try
+		{
+			Class src = Class.forName("binnie.extrabees.core.ExtraBeeItem");
+			Field f = src.getDeclaredField(field);
+			
+			Item i = (Item) f.get(null);
+			value = new ItemStack(i);
+		}
+		catch (Exception e) { }
+		return value;
 	}
 }

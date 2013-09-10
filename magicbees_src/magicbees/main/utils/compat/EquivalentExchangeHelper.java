@@ -14,7 +14,7 @@ public class EquivalentExchangeHelper
 		return isEquivalentExchangePresent;
 	}
 	
-	public static void init()
+	public static void preInit()
 	{
 		if (Loader.isModLoaded("EE3"))
 		{
@@ -22,27 +22,29 @@ public class EquivalentExchangeHelper
 		}
 	}
 	
-	public static void getBlocks()
+	public static void init()
 	{
 		if (isActive())
 		{
-			
+			getBlocks();
+			getItems();
 		}
 	}
 	
-	public static void getItems()
+	public static void postInit() {}
+	
+	private static void getBlocks() {}
+	
+	private static void getItems()
 	{
-		if (isActive())
+		try
 		{
-			try
-			{
-				Class itemClass = Class.forName("com.pahimar.ee3.item.ModItems");
-				Config.eeMinuimShard = (Item)(itemClass.getField("miniumShard").get(null));
-			}
-			catch (Exception e)
-			{
-				FMLLog.info("Could not get Equivalent Exchange items.");
-			}
+			Class itemClass = Class.forName("com.pahimar.ee3.item.ModItems");
+			Config.eeMinuimShard = (Item)(itemClass.getField("miniumShard").get(null));
+		}
+		catch (Exception e)
+		{
+			FMLLog.info("Could not get Equivalent Exchange items.");
 		}
 	}
 }

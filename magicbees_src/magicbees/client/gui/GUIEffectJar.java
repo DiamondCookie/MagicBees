@@ -49,7 +49,7 @@ public class GUIEffectJar extends GuiContainer
 	{
 		GL11.glColor4f(1f, 1f, 1f, 1f);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
-		this.mc.func_110434_K().func_110577_a(BACKGROUND_LOCATION);
+		this.mc.getTextureManager().bindTexture(BACKGROUND_LOCATION);
 		
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, xSize, ySize);
 		
