@@ -134,7 +134,7 @@ public class ThaumcraftHelper
 			getBlocks();
 			getItems();
 			
-			addItemsToBackpack();
+			//addItemsToBackpack();
 		}
 	}
 	
@@ -167,6 +167,7 @@ public class ThaumcraftHelper
 		Config.tcGolem = GameRegistry.findItem(Name, "ItemGolemPlacer");
 		//Config.tcWispEssence = ItemApi.getItem("itemWispEssence", 0).getItem();
 		Config.tcNuggets = GameRegistry.findItem(Name, "ItemNugget");
+		Config.tcShard = GameRegistry.findItem(Name, "ItemShard");
 		Config.tcNuggetChicken = GameRegistry.findItem(Name, "ItemNuggetChicken");
 		Config.tcNuggetBeef = GameRegistry.findItem(Name, "itemNuggetBeef");
 		Config.tcNuggetPork = GameRegistry.findItem(Name, "itemNuggetPork");

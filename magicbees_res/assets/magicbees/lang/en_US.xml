@@ -416,6 +416,6 @@
 	<entry key="tc.research_caterogy.MAGICBEES">Apimancy</entry>
 	<entry key="tc.research_name.MAGICBEES_ROOT">Apimancy</entry>
 	<entry key="tc.research_text.MAGICBEES_ROOT">Adding some sparkle to your buzz.</entry>
-	<entry key="tc.research_page.MAGICBEES_ROOT.1">Don't get too excited.\<BR\>This is just a test.</entry>
+	<entry key="tc.research_page.MAGICBEES_ROOT.1">Don't get too excited. This is just a test.</entry>
 
 </properties>

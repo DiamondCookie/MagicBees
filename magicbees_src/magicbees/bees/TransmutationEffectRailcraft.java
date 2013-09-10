@@ -46,7 +46,7 @@ public class TransmutationEffectRailcraft implements ITransmutationEffectLogic
 	{
 		boolean flag = false;
 	    if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.WATER) &&
-	    		biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river"))
+	    		!biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river"))
 		{
 			ItemStack item = GameRegistry.findItemStack("Railcraft", "cube.stone.abyssal", 1);
 			if (item != null)
