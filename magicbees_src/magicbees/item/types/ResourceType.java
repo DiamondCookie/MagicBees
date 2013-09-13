@@ -22,7 +22,7 @@ public enum ResourceType
 	z_3("", false),
 	z_4("", false),
 	z_5("", false),
-	DIMENSIONAL_SINGULARITY("dimensionalSingularity", true),
+	DIMENSIONAL_SINGULARITY("dimensionalSingularity", false),
 	TC_DUST_AIR("TCairDust", true),
 	TC_DUST_WATER("TCwaterDust", true),
 	TC_DUST_FIRE("TCfireDust", true),
@@ -32,7 +32,7 @@ public enum ResourceType
 	
 	
 	// Dummy items for Thaumanomicon research icons.
-	//   These won't ever actually exist in-game, and so 
+	//   These won't ever actually exist in-game, and so they can be moved around.
 	RESEARCH_STARTNODE("startNode", false),
 	RESEARCH_BEEINFUSION("beeInfusion", false),
 	;

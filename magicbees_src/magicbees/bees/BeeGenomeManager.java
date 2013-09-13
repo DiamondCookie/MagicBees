@@ -1138,20 +1138,6 @@ public class BeeGenomeManager
 		return genome;
 	}
 
-	public static IAllele[] getTemplateAMMagma()
-	{
-		IAllele[] genome = getTemplateAMBase();
-		
-		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.AM_MAGMA;
-		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceDown2");
-		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
-		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
-		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanElongated");
-		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectIgnition");
-		
-		return genome;
-	}
-
 	public static IAllele[] getTemplateAMArcane()
 	{
 		IAllele[] genome = getTemplateAMBase();

@@ -7,7 +7,37 @@ import cpw.mods.fml.common.Loader;
 
 public class ArsMagicaHelper
 {
+	public enum ResourceType
+	{
+		VINTEUM_DUST,
+		ARCANE_COMPOUND,
+		ARCANE_ASH,
+		PURIFIED_VINTEUM,
+		CHIMERITE,
+		BLUE_TOPAZ,
+		SUNSTONE,
+		MOONSTONE,
+	}
+	
+	public enum EssenceType
+	{
+		ARCANE,
+		EARTH,
+		AIR,
+		FIRE,
+		WATER,
+		PLANT,
+		ICE,
+		LIGHTNING,
+		LIFE,
+		ENDER,
+		PURE,
+		HIGH,
+		BASE,
+	}
+	
 	private static boolean isArsMagicaPresent = false;
+	private static final String Name = "arsmagica2";
 	
 	public static boolean isActive()
 	{
@@ -16,7 +46,7 @@ public class ArsMagicaHelper
 	
 	public static void preInit()
 	{
-		if (Loader.isModLoaded("ArsMagica"))
+		if (Loader.isModLoaded(Name))
 		{
 			isArsMagicaPresent = true;
 		}
@@ -29,6 +59,7 @@ public class ArsMagicaHelper
 			getBlocks();
 			getItems();
 		}
+		
 	}
 	
 	public static void postInit() {}
@@ -37,9 +68,13 @@ public class ArsMagicaHelper
 	{
 		try
 		{
-			Class clazz = Class.forName("mithion.arsmagica.blocks.ArsMagicaBlocksCommonProxy");
+			Class clazz = Class.forName("am2.blocks.BlocksCommonProxy");
+			Config.amResourceBlock = (Block)(clazz.getField("AMOres").get(null));
 			Config.amBlackOrchid = (Block)(clazz.getField("blueOrchid").get(null));
 			Config.amDesertNova = (Block)(clazz.getField("desertNova").get(null));
+			Config.amAum = (Block)(clazz.getField("aum").get(null));
+			Config.amWakebloom = (Block)(clazz.getField("wakebloom").get(null));
+			Config.amTarmaRoot = (Block)(clazz.getField("tarmaRoot").get(null));
 		}
 		catch (Exception e)
 		{
@@ -51,18 +86,9 @@ public class ArsMagicaHelper
 	{
 		try
 		{
-			Class clazz = Class.forName("mithion.arsmagica.items.ArsMagicaItemsCommonProxy");
-			Config.amVinteumDust = (Item)(clazz.getField("vinteumDust").get(null));
-			Config.amArcaneCompound = (Item)(clazz.getField("arcaneCompound").get(null));
-			Config.amEssenceAir = (Item)(clazz.getField("airEssence").get(null));
-			Config.amEssenceArcane = (Item)(clazz.getField("arcaneEssence").get(null));
-			Config.amEssenceEarth = (Item)(clazz.getField("earthEssence").get(null));
-			Config.amEssenceFire = (Item)(clazz.getField("fireEssence").get(null));
-			Config.amEssenceIce = (Item)(clazz.getField("iceEssence").get(null));
-			Config.amEssenceLightning = (Item)(clazz.getField("lightningEssence").get(null));
-			Config.amEssenceMagma = (Item)(clazz.getField("magmaEssence").get(null));
-			Config.amEssencePlant = (Item)(clazz.getField("plantEssence").get(null));
-			Config.amEssenceWater = (Item)(clazz.getField("waterEssence").get(null));
+			Class clazz = Class.forName("am2.items.ItemsCommonProxy");
+			Config.amItemResource = (Item)(clazz.getField("itemOre").get(null));
+			Config.amEssence = (Item)(clazz.getField("essence").get(null));
 		}
 		catch (Exception e)
 		{

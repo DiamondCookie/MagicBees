@@ -33,12 +33,12 @@
 	<entry key="comb.furtive">Furtive Comb</entry>
 	<entry key="comb.aware">Memory Comb</entry>
 	<entry key="comb.time">Temporal Comb</entry>
-	<entry key="comb.harmonizing">Harmonizing Comb</entry>
 	<entry key="comb.air">Windy Comb</entry>
 	<entry key="comb.fire">Firey Comb</entry>
 	<entry key="comb.water">Watery Comb</entry>
 	<entry key="comb.earth">Earthy Comb</entry>
-	<entry key="comb.magic">Infused Comb</entry>
+    <entry key="comb.order">Ordered Comb</entry>
+	<entry key="comb.chaos">Entropic Comb</entry>
 	<entry key="comb.essence">Essence Comb</entry>
 	<entry key="comb.potent">Potent Comb</entry>
 
@@ -67,12 +67,12 @@
 	<entry key="nugget.apatite">Apatite Shard</entry>
 
 	<!-- Propolis names -->
-	<entry key="propolis.dull">Dull Propolis</entry>
+	<entry key="propolis.dull">Ordered Propolis</entry>
 	<entry key="propolis.air">Breezey Propolis</entry>
 	<entry key="propolis.fire">Burning Propolis</entry>
 	<entry key="propolis.water">Flowing Propolis</entry>
 	<entry key="propolis.earth">Stony Propolis</entry>
-	<entry key="propolis.magic">Infused Propolis</entry>
+	<entry key="propolis.magic">Chaotic Propolis</entry>
 	<entry key="propolis.unstable">Unstable Propolis</entry>
 
 	<!-- Misc Resources -->
@@ -88,6 +88,12 @@
     <entry key="resource.essenceLostTime">Essence of Lost Time</entry>
     <entry key="resource.essenceEverlastingDurability">Essence of Everlasting Durability</entry>
     <entry key="resource.essenceUnendingDisregard">Essence of Unending Disregard</entry>
+    <entry key="resource.TCairDust">Air Infused Dust</entry>
+    <entry key="resource.TCfireDust">Fire Infused Dust</entry>
+    <entry key="resource.TCwaterDust">Water Infused Dust</entry>
+    <entry key="resource.TCearthDust">Earth Infused Dust</entry>
+    <entry key="resource.TCorderDust">Order Infused Dust</entry>
+    <entry key="resource.TCchaosDust">Chaos Infused Dust</entry>
 	<entry key="resource.startNode">Bees and Magic</entry>
 	<entry key="resource.crystalAspect">Crystalized %s Aspect</entry>
 
@@ -413,9 +419,18 @@
 	<entry key="classification.essential.description">These bees have an increased affinity for aspected magic.|Apinomicon</entry>
 	
 	<!-- Thaumcraft Research Strings -->
-	<entry key="tc.research_caterogy.MAGICBEES">Apimancy</entry>
-	<entry key="tc.research_name.MAGICBEES_ROOT">Apimancy</entry>
-	<entry key="tc.research_text.MAGICBEES_ROOT">Adding some sparkle to your buzz.</entry>
-	<entry key="tc.research_page.MAGICBEES_ROOT.1">Don't get too excited. This is just a test.</entry>
+	<entry key="tc.research_category.MAGICBEES">Apimancy</entry>
+	
+	<entry key="tc.research_name.MB_Root">Apimancy</entry>
+	<entry key="tc.research_text.MB_Root">[MB] Adding some sparkle to your buzz.</entry>
+	<entry key="tc.research_page.MB_Root.1">Don't get too excited.##lineBreak##This is just a test.</entry>
+	
+	<entry key="tc.research_name.MB_Scoop">Thaumium Scoop</entry>
+	<entry key="tc.research_text.MB_Scoop">[MB] Handled with care.</entry>
+	<entry key="tc.research_page.MB_Scoop.1">Normal scoops are fragile, and prone to breakage. As an authority in Apimancy, you can do better. By adding some Thaumium to the handle, and lacing it with a measure of order, your new scoop will last up to three times longer!##lineBreak##In addition, the Thaumium in the device will accept the Repair enchantment.</entry>
+	
+	<entry key="tc.research_name.MB_Grafter">Thaumium Grafter</entry>
+	<entry key="tc.research_text.MB_Grafter">[MB] Saplings for every occasion.</entry>
+	<entry key="tc.research_page.MB_Grafter.1">Simple grafters are almost uselessly fragile, and while Proven Grafters are useful, the rarity of emeralds makes them annoying to procure. The solution? Make it yourself!##lineBreak##The Thaumium Grafter, like the Thaumium Scoop, is a tougher, enchantable version of the most basic of the Arborimancer's tools. Use caution though, for although the Repair enchantment can be applied to the grafter, its unusual properties make it exhausting to use.</entry>
 
 </properties>

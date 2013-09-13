@@ -190,7 +190,8 @@ public class Allele implements IAllele
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBlitz",			BeeSpecies.AM_LIGHTNING);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesStaude",			BeeSpecies.AM_PLANT);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesEis",				BeeSpecies.AM_ICE);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesMagma",			BeeSpecies.AM_MAGMA);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesMagma",			BeeSpecies.AM_FIRE);
+		registry.registerDeprecatedAlleleReplacement("magicbees.speciesMagma",				BeeSpecies.AM_FIRE);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesArkanen",			BeeSpecies.AM_ARCANE);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesVortex",			BeeSpecies.AM_VORTEX);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesWight",			BeeSpecies.AM_WIGHT);

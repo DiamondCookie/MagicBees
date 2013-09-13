@@ -2,6 +2,7 @@ package magicbees.main.utils.compat;
 
 import java.lang.reflect.Method;
 
+import magicbees.bees.BeeManager;
 import magicbees.main.Config;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.FMLLog;
@@ -113,6 +114,7 @@ public class ForestryHelper
 		{
 			Class c = Class.forName("forestry.core.config.ForestryBlock");
 			Config.fAlvearyBlock = (Block)(c.getField("alveary").get(null));
+			Config.fHiveBlock = (Block)(c.getField("beehives").get(null));
 		}
 		catch (Exception e)
 		{
@@ -131,7 +133,7 @@ public class ForestryHelper
 
 	public static IAllele[] getTemplateForestryForSpecies(String speciesName)
 	{
-		IAllele[] template = null;
+		/*IAllele[] template = null;
 		try
 		{
 			//BeeTemplates.getValiantTemplate()
@@ -144,7 +146,8 @@ public class ForestryHelper
 			FMLLog.severe("Could not get Forestry template for %s.", speciesName);
 			e.printStackTrace();
 		}
-		return template;
+		return template;*/
+		return BeeManager.beeRoot.getTemplate("forestry.species" + speciesName);
 	}
 	
 	public static EnumTemperature getEnumTemperatureFromValue(float rawTemp)

@@ -49,6 +49,13 @@ public class MagicBees
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		// Compatibility Helpers setup time.
+		ForestryHelper.preInit();
+		ExtraBeesHelper.preInit();
+		ThaumcraftHelper.preInit();
+		EquivalentExchangeHelper.preInit();
+		ArsMagicaHelper.preInit();
+		
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		this.modConfig.setupBlocks();
@@ -57,30 +64,29 @@ public class MagicBees
 		LocalizationManager.setupLocalizationInfo();
 		
 		new TransmutationEffectController();
-		
-		// Compatibility Helpers setup time.
-		ForestryHelper.preInit();
-		ExtraBeesHelper.preInit();
-		ThaumcraftHelper.preInit();
-		EquivalentExchangeHelper.preInit();
-		ArsMagicaHelper.preInit();
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
-	{		
-		GameRegistry.registerWorldGenerator(worldHandler = new WorldGeneratorHandler());
-		
+	{
 		ForestryHelper.init();
 		ExtraBeesHelper.init();
 		ThaumcraftHelper.init();
 		EquivalentExchangeHelper.init();
 		ArsMagicaHelper.init();
+		
+		GameRegistry.registerWorldGenerator(worldHandler = new WorldGeneratorHandler());		
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		ForestryHelper.postInit();
+		ExtraBeesHelper.postInit();
+		ThaumcraftHelper.postInit();
+		EquivalentExchangeHelper.postInit();
+		ArsMagicaHelper.postInit();
+		
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);
 		
@@ -93,12 +99,6 @@ public class MagicBees
 		CraftingManager.setupCrafting();
 		
 		VersionInfo.doVersionCheck();
-		
-		ForestryHelper.postInit();
-		ExtraBeesHelper.postInit();
-		ThaumcraftHelper.postInit();
-		EquivalentExchangeHelper.postInit();
-		ArsMagicaHelper.postInit();
 	}
 	
 	@Mod.EventHandler

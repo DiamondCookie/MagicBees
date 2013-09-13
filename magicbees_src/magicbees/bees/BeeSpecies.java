@@ -230,8 +230,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.ESSENTIAL, 0x49B549, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	AM_ICE("AMIce", "magica glacium",
 			BeeClassification.ESSENTIAL, 0x86BAC6, 0xE3A55B, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
-	AM_MAGMA("AMMagma", "magica torrens igneus",
-			BeeClassification.ESSENTIAL, 0x932B1E, 0xE3A55B, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
+	//AM_MAGMA("AMMagma", "magica torrens igneus",
+	//		BeeClassification.ESSENTIAL, 0x932B1E, 0xE3A55B, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
 	AM_ARCANE("AMArcane", "magica arcanum",
 			BeeClassification.ESSENTIAL, 0x76184D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 			
@@ -294,18 +294,17 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		
 		if (ArsMagicaHelper.isActive())
 		{
-			AM_QUINTESSENCE.addSpecialty(new ItemStack(Config.amArcaneCompound), 5);
-			AM_EARTH.addSpecialty(new ItemStack(Config.amEssenceEarth), 7);
-			AM_AIR.addSpecialty(new ItemStack(Config.amEssenceAir), 7);
-			AM_FIRE.addSpecialty(new ItemStack(Config.amEssenceFire), 7);
-			AM_WATER.addSpecialty(new ItemStack(Config.amEssenceWater), 7);
-			AM_LIGHTNING.addSpecialty(new ItemStack(Config.amEssenceLightning), 7);
-			AM_PLANT.addSpecialty(new ItemStack(Config.amEssencePlant), 7);
-			AM_ICE.addSpecialty(new ItemStack(Config.amEssenceIce), 7);
-			AM_MAGMA.addSpecialty(new ItemStack(Config.amEssenceMagma), 7);
-			AM_ARCANE.addSpecialty(new ItemStack(Config.amEssenceArcane), 11);
-			AM_VORTEX.addSpecialty(new ItemStack(Config.amArcaneCompound), 15);
-			AM_WIGHT.addSpecialty(new ItemStack(Item.enderPearl), 11);
+			AM_QUINTESSENCE.addSpecialty(new ItemStack(Config.amItemResource, 1, ArsMagicaHelper.ResourceType.ARCANE_COMPOUND.ordinal()), 5);
+			AM_EARTH.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.EARTH.ordinal()), 7);
+			AM_AIR.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.AIR.ordinal()), 7);
+			AM_FIRE.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.FIRE.ordinal()), 7);
+			AM_WATER.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.WATER.ordinal()), 7);
+			AM_LIGHTNING.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.LIGHTNING.ordinal()), 7);
+			AM_PLANT.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.PLANT.ordinal()), 7);
+			AM_ICE.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.ICE.ordinal()), 7);
+			AM_ARCANE.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.ARCANE.ordinal()), 11);
+			AM_VORTEX.addSpecialty(new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.EARTH.ordinal()), 15);
+			AM_WIGHT.addSpecialty(new ItemStack(Config.amItemResource, 1, ArsMagicaHelper.ResourceType.ARCANE_COMPOUND.ordinal()), 11);
 		}
 		else
 		{
@@ -318,7 +317,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			AM_LIGHTNING.setInactive();
 			AM_PLANT.setInactive();
 			AM_ICE.setInactive();
-			AM_MAGMA.setInactive();
 			AM_ARCANE.setInactive();
 			AM_VORTEX.setInactive();
 			AM_WIGHT.setInactive();
@@ -599,13 +597,13 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.register();
 		
 		
-		TC_CHAOS.addProduct(Config.combs.getStackForType(CombType.HARMONIZING), 10)
+		TC_CHAOS.addProduct(Config.combs.getStackForType(CombType.CHAOS), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCStark())
 			.register();
-		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 10)
+		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCAir())
 			.register();
-		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.FIREY), 15)
+		TC_FIRE.addProduct(Config.combs.getStackForType(CombType.FIREY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCFire())
 			.register();
 		TC_WATER.addProduct(Config.combs.getStackForType(CombType.WATERY), 20)
@@ -614,7 +612,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		TC_EARTH.addProduct(Config.combs.getStackForType(CombType.EARTHY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCEarth())
 			.register();
-		TC_ORDER.addProduct(Config.combs.getStackForType(CombType.INFUSED), 20)
+		TC_ORDER.addProduct(Config.combs.getStackForType(CombType.ORDER), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCMagic())
 			.register();
 		
@@ -688,9 +686,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.register();
 		AM_ICE.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
 			.setGenome(BeeGenomeManager.getTemplateAMIce())
-			.register();
-		AM_MAGMA.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 12)
-			.setGenome(BeeGenomeManager.getTemplateAMMagma())
 			.register();
 		AM_ARCANE.addProduct(Config.combs.getStackForType(CombType.AM_POTENT), 19)
 			.setGenome(BeeGenomeManager.getTemplateAMArcane())

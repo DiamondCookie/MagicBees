@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import magicbees.bees.Allele;
 import magicbees.bees.BeeGenomeManager;
+import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.bees.HiveDrop;
 import magicbees.item.types.CombType;

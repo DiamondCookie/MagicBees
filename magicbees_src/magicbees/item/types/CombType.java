@@ -17,12 +17,12 @@ public enum CombType
 	INTELLECT("aware", false),
 	TEMPORAL("time", false),
 	
-	HARMONIZING("harmonizing", false),
 	AIRY("air", false),
 	FIREY("fire", false),
 	WATERY("water", false),
 	EARTHY("earth", false),
-	INFUSED("magic", false),
+	ORDER("order", false),
+	CHAOS("chaos", false),
 	
 	AM_ESSENCE("essence", false),
 	AM_POTENT("potent", false),
@@ -41,12 +41,12 @@ public enum CombType
 				{0x0092e9, 0x618fff},
 				{0x2F9381, 0x773C31},
 				
-				{0xB0B0BC, 0x414144},
 				{0xffff7e, 0x606308},
 				{0xff3C01, 0x5B0D10},
 				{0x0090ff, 0x102F6B},
 				{0x00a000, 0x043004},
-				{0xAB12E2, 0x502868},
+				{0xDDDDFF, 0x9D9DB5},
+				{0x555577, 0x2D2D56},
 				
 				{0xCC8604, 0x41046F},
 				{0xCCCC04, 0x41046F},

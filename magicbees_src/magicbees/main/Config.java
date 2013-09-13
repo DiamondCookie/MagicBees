@@ -113,6 +113,7 @@ public class Config
 	public static BackpackDefinition thaumaturgeBackpackDef;
 
 	//----- Forestry Blocks ------------------------------------
+	public static Block fHiveBlock;
 	public static Block fAlvearyBlock;
 	//----- Forestry Items -------------------------------------
 	public static Item fBeeComb;
@@ -144,20 +145,15 @@ public class Config
 	//----- Equivalent Exchange Items --------------------------
 	public static Item eeMinuimShard;
 	//----- Ars Magica Blocks ----------------------------------
+	public static Block amResourceBlock;
 	public static Block amBlackOrchid;
 	public static Block amDesertNova;
+	public static Block amAum;
+	public static Block amWakebloom;
+	public static Block amTarmaRoot;
 	//----- Ars Magica Items -----------------------------------
-	public static Item amVinteumDust;
-	public static Item amArcaneCompound;
-	public static Item amEssenceArcane;
-	public static Item amEssenceEarth;
-	public static Item amEssenceWater;
-	public static Item amEssenceFire;
-	public static Item amEssenceAir;
-	public static Item amEssenceMagma;
-	public static Item amEssencePlant;
-	public static Item amEssenceIce;
-	public static Item amEssenceLightning;
+	public static Item amItemResource;
+	public static Item amEssence;
 	
 
 	//----- Config State info ----------------------------------
@@ -184,7 +180,7 @@ public class Config
 			int slabFullId = configuration.getBlock("slabFull", blockIdBase++).getInt();
 			int slabHalfId = configuration.getBlock("slabHalf", blockIdBase++).getInt();
 			
-			if (ThaumcraftHelper.isActive())
+			/*if (ThaumcraftHelper.isActive())
 			{
 				planksWood = new BlockPlanks(plankId);
 				planksWood.setUnlocalizedName("planks");
@@ -208,7 +204,7 @@ public class Config
 			    
 		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
 			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
-			}
+			}*/
 		}
 		
 		effectJar = new BlockEffectJar(configuration.getBlock("effectJar", blockIdBase++).getInt());
@@ -275,10 +271,10 @@ public class Config
 		
 		{
 			int crystalId = configuration.getItem("fluxCrystal", itemIDBase++).getInt() - 256;
-			if (ThaumcraftHelper.isActive())
+			/*if (ThaumcraftHelper.isActive())
 			{
 				solidFlux = new ItemCrystalAspect(crystalId);
-			}
+			}*/
 		}
 		
 		hiveFrameMagic = new ItemMagicHiveFrame(configuration.getItem("frameMagic", itemIDBase++).getInt() - 256, HiveFrameType.MAGIC);

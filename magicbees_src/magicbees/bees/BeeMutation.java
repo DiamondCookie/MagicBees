@@ -221,7 +221,6 @@ public class BeeMutation implements IBeeMutation
 			
 			new BeeMutation(BeeSpecies.WINDY, BeeSpecies.AM_AIR, BeeSpecies.AM_LIGHTNING, 8);
 			new BeeMutation(BeeSpecies.EARTHY, BeeSpecies.AM_EARTH, BeeSpecies.AM_PLANT, 8);
-			new BeeMutation(BeeSpecies.FIREY, BeeSpecies.AM_FIRE, BeeSpecies.AM_MAGMA, 8);
 			new BeeMutation(BeeSpecies.WATERY, BeeSpecies.AM_WATER, BeeSpecies.AM_ICE, 8);
 			
 			new BeeMutation(BeeSpecies.SKULKING, BeeSpecies.AM_ESSENCE, BeeSpecies.AM_VORTEX, 8);
