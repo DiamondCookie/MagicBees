@@ -152,22 +152,20 @@
 
 	<!-- Species names -->
 	<entry key="magicbees.speciesMystical">神秘</entry>
-    	<entry key="magicbees.speciesMystical.description">在很多地方很常见，这种蜜蜂偶尔会对自己产生一些奇怪的念头.|Apinomicon</entry>
-    	<entry key="magicbees.speciesSorcerous">巫术</entry>
-    	<entry key="magicbees.speciesSorcerous.description"></entry>
-    	<entry key="magicbees.speciesUnusual">非凡</entry>
-    	<entry key="magicbees.speciesUnusual.description">"我的新收藏品：一种好奇宝宝一样的蜜蜂!"|初级养蜂人</entry>
-    	<entry key="magicbees.speciesAttuned">谐振</entry>
-    	<entry key="magicbees.speciesAttuned.description">他们飞行时仿佛被空气中看不见的线牵引着一般.|Apinomicon</entry>
-    	<entry key="magicbees.speciesInfernal">地狱</entry>
-    	<entry key="magicbees.speciesInfernal.description">诞生于地狱深处的蜂种，具有特殊的力量|Apinomicon</entry>
-    	<entry key="magicbees.speciesOblivion">湮没</entry>
-    	<entry key="magicbees.speciesOblivion.description">我们仍然不知道这种蜜蜂是否是本世界的土著，还是异域来客。|Apinomicon</entry>
-    
-    	<entry key="magicbees.speciesEldritch">怪异</entry>
-    	<entry key="magicbees.speciesEldritch.description">这种蜜蜂体内被封印的潜能渐渐开始崭露头角.|Apinomicon</entry>
-    
-    	<entry key="magicbees.speciesEsoteric">玄奥</entry>
+	<entry key="magicbees.speciesMystical.description">在很多地方很常见，这种蜜蜂偶尔会对自己产生一些奇怪的念头.|Apinomicon</entry>
+	<entry key="magicbees.speciesSorcerous">巫术</entry>
+	<entry key="magicbees.speciesSorcerous.description"></entry>
+	<entry key="magicbees.speciesUnusual">非凡</entry>
+	<entry key="magicbees.speciesUnusual.description">"我的新收藏品：一种好奇宝宝一样的蜜蜂!"|初级养蜂人</entry>
+	<entry key="magicbees.speciesAttuned">谐振</entry>
+	<entry key="magicbees.speciesAttuned.description">他们飞行时仿佛被空气中看不见的线牵引着一般.|Apinomicon</entry>
+	<entry key="magicbees.speciesInfernal">地狱</entry>
+	<entry key="magicbees.speciesInfernal.description">诞生于地狱深处的蜂种，具有特殊的力量|Apinomicon</entry>
+	<entry key="magicbees.speciesOblivion">湮没</entry>
+	<entry key="magicbees.speciesOblivion.description">我们仍然不知道这种蜜蜂是否是本世界的土著，还是异域来客。|Apinomicon</entry>
+	<entry key="magicbees.speciesEldritch">怪异</entry>
+	<entry key="magicbees.speciesEldritch.description">这种蜜蜂体内被封印的潜能渐渐开始崭露头角.|Apinomicon</entry>
+	<entry key="magicbees.speciesEsoteric">玄奥</entry>
 	<entry key="magicbees.speciesEsoteric.description">罕见的杂交品种，具有魔力特性.|Apinomicon</entry>
 	<entry key="magicbees.speciesMysterious">奥秘</entry>
 	<entry key="magicbees.speciesMysterious.description">这些蜜蜂曾经去过世界的尽头并凯旋归来，它们的能力得到了长足增强.|Apinomicon</entry>
@@ -180,39 +178,39 @@
 	<entry key="magicbees.speciesEnchanted.description">数代魅惑蜂的繁衍让小东西们逐渐接触到未知的存在.|Apinomicon</entry>
 	<entry key="magicbees.speciesSupernatural">超能</entry>
 	<entry key="magicbees.speciesSupernatural.description">蜜蜂行走在不可视境界线之上.|Apinomicon</entry>
-    
-    	<entry key="magicbees.speciesEthereal">以太</entry>
-    	<entry key="magicbees.speciesEthereal.description">幽灵般地，被来自天域的力量充能.|Apinomicon</entry>
-    
-    	<entry key="magicbees.speciesPupil">学徒</entry>
+
+	<entry key="magicbees.speciesEthereal">以太</entry>
+	<entry key="magicbees.speciesEthereal.description">幽灵般地，被来自天域的力量充能.|Apinomicon</entry>
+	
+	<entry key="magicbees.speciesPupil">学徒</entry>
 	<entry key="magicbees.speciesPupil.description">"这群蜜蜂想对我的研究稿做什么?!|Yorae,图书馆馆员</entry>
 	<entry key="magicbees.speciesScholarly">博学</entry>
 	<entry key="magicbees.speciesScholarly.description">"我难以确信,但我觉得它们比我更聪明 ..."|Yorae,图书馆馆员</entry>
 	<entry key="magicbees.speciesSavant">专家</entry>
 	<entry key="magicbees.speciesSavant.description">lim(x^(i / pi)/ log(e * 7 - ln(32/x^-pi))).把这个解出来我就给你们蜂蜜.|Yorae的桌子上发现的便签</entry>
-    
-    	<entry key="magicbees.speciesAware">感知</entry>
+	
+	<entry key="magicbees.speciesAware">感知</entry>
 	<entry key="magicbees.speciesAware.description">"它们看得见你的灵魂!"|Florastar,养蜂专家</entry>
 	<entry key="magicbees.speciesSpirit">精神</entry>
 	<entry key="magicbees.speciesSpirit.description">据说这种蜜蜂能和死者沟通.|Apinomicon</entry>
 	<entry key="magicbees.speciesSoul">魂魄</entry>
 	<entry key="magicbees.speciesSoul.description">"路西法亲自收割你的灵魂来啦!"|Yooooooooo</entry>
-    
-    	<entry key="magicbees.speciesSkulking">诡隐</entry>
+	
+	<entry key="magicbees.speciesSkulking">诡隐</entry>
 	<entry key="magicbees.speciesSkulking.description">这些蜜蜂变得暴躁排外，你可得当心了!|Apinomicon</entry>
 	<entry key="magicbees.speciesGhastly">幽魂</entry>
 	<entry key="magicbees.speciesGhastly.description">"*叹息*... 真的,神秘?"|Taveria</entry>
 	<entry key="magicbees.speciesSpidery">蜘蛛</entry>
 	<entry key="magicbees.speciesSpidery.description">蜘蛛蜂; 嗯.做蜘蛛蜂该做的事情.|未知语</entry>
-    
-    	<entry key="magicbees.speciesTimely">瞬息</entry>
+	
+	<entry key="magicbees.speciesTimely">瞬息</entry>
 	<entry key="magicbees.speciesTimely.description">"养蜂员从不迟到，他想去的时候就能准点到达!"|Sengir,养蜂狂人</entry>
 	<entry key="magicbees.speciesLordly">贵族</entry>
 	<entry key="magicbees.speciesLordly.description">它们平和生活，共建和谐社会|古遗物</entry>
 	<entry key="magicbees.speciesDoctoral">博士</entry>
 	<entry key="magicbees.speciesDoctoral.description">"你们喜欢胶糖娃娃吗?"|戴着大围巾，手持蓝色盒子的陌生人</entry>
-    
-    	<entry key="magicbees.speciesIron">灰铁</entry>
+	
+	<entry key="magicbees.speciesIron">灰铁</entry>
 	<entry key="magicbees.speciesIron.description">这种蜜蜂能从周围聚集铁元素.|Apinomicon</entry>
 	<entry key="magicbees.speciesGold">黄金</entry>
 	<entry key="magicbees.speciesGold.description">闪光的东西未必是黄金.|古代格言</entry>
@@ -238,7 +236,7 @@
 	<entry key="magicbees.speciesEmerald.description">据说它们曾造访伟大巫师统治之地，并将巫师之城的要素劫掠一空.|Apinomicon</entry>
 	<entry key="magicbees.speciesApatite">磷化</entry>
 	<entry key="magicbees.speciesApatite.description">这些东西真心是日夜牢骚不断.我关紧窗户躲进地下室，但蜜蜂尖锐的嗡嗡声却无处不在地透墙而过，乱我心绪.|养蜂入门</entry>
-    
+	
 	<entry key="magicbees.speciesTCAir">灵气</entry>
 	<entry key="magicbees.speciesTCAir.description">"工作敏捷，扣人心弦！"|Sengir,养蜂狂人</entry>
 	<entry key="magicbees.speciesTCFire">灼热</entry>
@@ -249,9 +247,9 @@
 	<entry key="magicbees.speciesTCEarth.description">"这些蜜蜂真心是挖掘专家，小心它们挖洞"|MysteriousAges,滑稽剧学徒</entry>
 	<entry key="magicbees.speciesTCOrder">奇术</entry>
 	<entry key="magicbees.speciesTCOrder.description">养蜂本身就是一种魔法!|Apinomicon,绪论</entry>
-    <entry key="magicbees.speciesTCChaos">朴实</entry>
-    <entry key="magicbees.speciesTCChaos.description">"它们能吸引魔力的碎片，具体有待研究！"|Azanor,大神秘使</entry>
-    
+	<entry key="magicbees.speciesTCChaos">朴实</entry>
+	<entry key="magicbees.speciesTCChaos.description">"它们能吸引魔力的碎片，具体有待研究！"|Azanor,大神秘使</entry>
+	
 	<entry key="magicbees.speciesTCVis">魔力</entry>
 	<entry key="magicbees.speciesTCVis.description">"它们能感知到魔力的存在，却还不能影响到魔力."|Azanor,研究笔记</entry>
 	<entry key="magicbees.speciesTCPure">纯净</entry>
@@ -259,33 +257,33 @@
 	<entry key="magicbees.speciesTCFlux">咒波</entry>
 	<entry key="magicbees.speciesTCFlux.description">"我以为能解决咒波问题呢，结果情况更糟糕了!"|Kreicus,神秘使学徒</entry>
 	<entry key="magicbees.speciesTCAttractive">吸引</entry>
-    <entry key="magicbees.speciesTCAttractive.description">经过古怪的突变后，这种蜜蜂能吸引魔力.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCAttractive.description">经过古怪的突变后，这种蜜蜂能吸引魔力.|Apinomicon</entry>
 	<entry key="magicbees.speciesTCRejuvenating">复兴</entry>
 	<entry key="magicbees.speciesTCRejuvenating.description">神奇的蜜蜂，能吸引附近的节点靠近.|Apinomicon</entry>
-       
-    	<entry key="magicbees.speciesTCBrainy">怒尸</entry>
+	   
+	<entry key="magicbees.speciesTCBrainy">怒尸</entry>
 	<entry key="magicbees.speciesTCBrainy.description">蜂巢变得恶臭难闻，但这些家伙变得好聪明！|Apinomicon</entry>
 	<entry key="magicbees.speciesTCWispy">精灵</entry>
 	<entry key="magicbees.speciesTCWispy.description">它们的语言支离破碎，难以理解，也许它们在和某种超自然的生物沟通？|Apinomicon</entry>
 	<entry key="magicbees.speciesTCBatty">火蝠</entry>
 	<entry key="magicbees.speciesTCBatty.description">它们通过未知的方法吸引了许多火焰蝙蝠.|Apinomicon</entry>
-    
-    	<entry key="magicbees.speciesTCChicken">家禽</entry>
+	
+	<entry key="magicbees.speciesTCChicken">家禽</entry>
 	<entry key="magicbees.speciesTCChicken.description">"咯咯.咯咯咯，咯咯咯咯! ... 听到没？"|困惑的蜜蜂</entry>
 	<entry key="magicbees.speciesTCBeef">壮牛</entry>
 	<entry key="magicbees.speciesTCBeef.description">"哞哞,哞哞,哞哞.稍等，咋回事?"|困惑的蜜蜂</entry>
 	<entry key="magicbees.speciesTCPork">猪啰</entry>
 	<entry key="magicbees.speciesTCPork.description">"呼噜,呼噜噜.额.... 嗡嗡?"|困惑的蜜蜂</entry>
-    
-    	<entry key="magicbees.speciesEEMinium">铅丹</entry>
+	
+	<entry key="magicbees.speciesEEMinium">铅丹</entry>
 	<entry key="magicbees.speciesEEMinium.description">善变乃其天性.|Apinomicon</entry>
-    
-    	<entry key="magicbees.speciesAMEssence">源质</entry>
+	
+	<entry key="magicbees.speciesAMEssence">源质</entry>
 	<entry key="magicbees.speciesAMEssence.description">集中力量汇集大气中的微尘.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMQuintessence">精萃</entry>
 	<entry key="magicbees.speciesAMQuintessence.description">魔法之心蕴藏世间诸事.|Apinomicon,绪论</entry>
-    
-    	<entry key="magicbees.speciesAMErde">大地</entry>
+	
+	<entry key="magicbees.speciesAMErde">大地</entry>
 	<entry key="magicbees.speciesAMErde.description">大地的力量灌注下，它们制造地属性的源质.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMLuft">和风</entry>
 	<entry key="magicbees.speciesAMLuft.description">在风的加持下，比空气更轻盈.|Apinomicon</entry>
@@ -302,10 +300,10 @@
 	<entry key="magicbees.speciesAMEis.description">"它们老偷我东西，但我却抓不住它们.它们太滑溜."|MysteriousAges,无可救药的俏皮话大师</entry>
 	<entry key="magicbees.speciesAMMagma">熔岩</entry>
 	<entry key="magicbees.speciesAMMagma.description">它们飞过之处，大地被烧灼成灰烬之地，所有的植被都被焚烧干净.|Apinomicon</entry>
-    
+	
 	<entry key="magicbees.speciesAMArkanen">奥义</entry>
 	<entry key="magicbees.speciesAMArkanen.description">"古怪的生物，但是产物蛮有用的"|Mithion,专家级法师</entry>
-    
+	
 	<entry key="magicbees.speciesAMVortex">漩涡</entry>
 	<entry key="magicbees.speciesAMVortex.description">它们贪婪地渴求法力，对任何施法者它们都相当危险.|Apinomicon</entry>
 	<entry key="magicbees.speciesAMWight">重量</entry>

@@ -44,7 +44,7 @@
 	<entry key="comb.TCfire">Glittering Firey Comb</entry>
 	<entry key="comb.TCwater">Glittering Watery Comb</entry>
 	<entry key="comb.TCearth">Glittering Earthy Comb</entry>
-    <entry key="comb.TCorder">Glittering Ordered Comb</entry>
+	<entry key="comb.TCorder">Glittering Ordered Comb</entry>
 	<entry key="comb.TCchaos">Glittering Entropic Comb</entry>
 	
 	<entry key="comb.essence">Essence Comb</entry>
@@ -93,17 +93,17 @@
 	<entry key="resource.dragonChunk">Draconic Chunk</entry>
 	<entry key="resource.essenceLife">Essence of False Life</entry>
 	<entry key="resource.essenceDeath">Essence of a Shallow Grave</entry>
-    <entry key="resource.essenceTime">Essence of Lost Time</entry>
-    <entry key="resource.essenceDurability">Essence of Everlasting Durability</entry>
-    <entry key="resource.essenceOblivion">Essence of Scornful Oblivion</entry>
+	<entry key="resource.essenceTime">Essence of Lost Time</entry>
+	<entry key="resource.essenceDurability">Essence of Everlasting Durability</entry>
+	<entry key="resource.essenceOblivion">Essence of Scornful Oblivion</entry>
 	<entry key="resource.essenceMutable">Essence of Fickle Permanence</entry>
-    <entry key="resource.TCairDust">Air Infused Dust</entry>
-    <entry key="resource.TCfireDust">Fire Infused Dust</entry>
-    <entry key="resource.TCwaterDust">Water Infused Dust</entry>
-    <entry key="resource.TCearthDust">Earth Infused Dust</entry>
-    <entry key="resource.TCorderDust">Order Infused Dust</entry>
-    <entry key="resource.TCchaosDust">Chaos Infused Dust</entry>
-    <entry key="resource.dimensionalSingularity">Dimensional Singularity</entry>
+	<entry key="resource.TCairDust">Air Infused Dust</entry>
+	<entry key="resource.TCfireDust">Fire Infused Dust</entry>
+	<entry key="resource.TCwaterDust">Water Infused Dust</entry>
+	<entry key="resource.TCearthDust">Earth Infused Dust</entry>
+	<entry key="resource.TCorderDust">Order Infused Dust</entry>
+	<entry key="resource.TCchaosDust">Chaos Infused Dust</entry>
+	<entry key="resource.dimensionalSingularity">Dimensional Singularity</entry>
 	<entry key="resource.startNode">Bees and Magic</entry>
 	<entry key="resource.crystalAspect">Crystalized %s Aspect</entry>
 
@@ -267,14 +267,14 @@
 	<entry key="magicbees.speciesSilver.description">While they do not recieve as much attention as Golden bees, they are nonetheless valuable.|Apinomicon</entry>
 	<entry key="magicbees.speciesLead">Plumbum</entry>
 	<entry key="magicbees.speciesLead.description">A favourite of amateur alchemists, they believe they can transform these bees into gold.|Apinomicon</entry>
-    <entry key="magicbees.speciesAluminum">Aluminum</entry>
-    <entry key="magicbees.speciesAluminum.description">Crinkly, shiny, and extremely malleable.|Apinomicon</entry>
-    <entry key="magicbees.speciesArdite">Ardite</entry>
-    <entry key="magicbees.speciesArdite.description">Fond of yellowish-orange material found in hellish areas.|Apinomicon</entry>
-    <entry key="magicbees.speciesCobalt">Cobalt</entry>
-    <entry key="magicbees.speciesCobalt.description">The unstable properties of this material seem to not affect the bees in the slightest.|Apinomicon</entry>
-    <entry key="magicbees.speciesManyullyn">Manyullyn</entry>
-    <entry key="magicbees.speciesManyullyn.description">"Doot doo-dee-doot doot!"</entry>
+	<entry key="magicbees.speciesAluminum">Aluminum</entry>
+	<entry key="magicbees.speciesAluminum.description">Crinkly, shiny, and extremely malleable.|Apinomicon</entry>
+	<entry key="magicbees.speciesArdite">Ardite</entry>
+	<entry key="magicbees.speciesArdite.description">Fond of yellowish-orange material found in hellish areas.|Apinomicon</entry>
+	<entry key="magicbees.speciesCobalt">Cobalt</entry>
+	<entry key="magicbees.speciesCobalt.description">The unstable properties of this material seem to not affect the bees in the slightest.|Apinomicon</entry>
+	<entry key="magicbees.speciesManyullyn">Manyullyn</entry>
+	<entry key="magicbees.speciesManyullyn.description">"Doot doo-dee-doot doot!"</entry>
 	
 	<entry key="magicbees.speciesDiamond">Diamandi</entry>
 	<entry key="magicbees.speciesDiamond.description">Crystalline, glittering, and harder than dragon's teeth. These bees are none of those.|Apinomicon</entry>

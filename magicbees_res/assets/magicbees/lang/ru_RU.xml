@@ -86,8 +86,8 @@
 	<entry key="resource.essenceLife">Эссенция ложной жизни</entry>
 	<entry key="resource.essenceDeath">Эссенция неглубокой могилы</entry>
 	<entry key="resource.essenceTime">Эссенция утраченного времени</entry>
-    <entry key="resource.essenceDurability">Эссенция вечной прочности</entry>
-    <entry key="resource.essenceOblivion">Эссенция бесконечного равнодушия</entry>
+	<entry key="resource.essenceDurability">Эссенция вечной прочности</entry>
+	<entry key="resource.essenceOblivion">Эссенция бесконечного равнодушия</entry>
 	<entry key="resource.startNode">Пчёлы и магия</entry>
 	<entry key="resource.crystalAspect">Кристаллизованный %s аспект</entry>
 
@@ -250,14 +250,14 @@
 	<entry key="magicbees.speciesSilver.description">Хотя они не получили столького внимания, как золотые пчёлы, они тем не менее ценны.|Apinomicon</entry>
 	<entry key="magicbees.speciesLead">Свинцовые</entry>
 	<entry key="magicbees.speciesLead.description">Любимые у любительских алхимиков, они считают, что могут превратить этих пчёл в золото.|Apinomicon</entry>
-    <entry key="magicbees.speciesAluminum">Алюминиевые</entry>
-    <entry key="magicbees.speciesAluminum.description">Морщинистые, блестящие и чрезвычайно податливые.|Apinomicon</entry>
-    <entry key="magicbees.speciesArdite">Ardite</entry>
-    <entry key="magicbees.speciesArdite.description">Нежные, желтовато-оранжевого материала, находятся в адских областях.|Apinomicon</entry>
-    <entry key="magicbees.speciesCobalt">Кобальтовые</entry>
-    <entry key="magicbees.speciesCobalt.description">Нестабильные свойства этого материала, кажется не влияют на хрупкость пчёл.|Apinomicon</entry>
-    <entry key="magicbees.speciesManyullyn">Ручные</entry>
-    <entry key="magicbees.speciesManyullyn.description">"Doot doo-dee-doot doot!"</entry>
+	<entry key="magicbees.speciesAluminum">Алюминиевые</entry>
+	<entry key="magicbees.speciesAluminum.description">Морщинистые, блестящие и чрезвычайно податливые.|Apinomicon</entry>
+	<entry key="magicbees.speciesArdite">Ardite</entry>
+	<entry key="magicbees.speciesArdite.description">Нежные, желтовато-оранжевого материала, находятся в адских областях.|Apinomicon</entry>
+	<entry key="magicbees.speciesCobalt">Кобальтовые</entry>
+	<entry key="magicbees.speciesCobalt.description">Нестабильные свойства этого материала, кажется не влияют на хрупкость пчёл.|Apinomicon</entry>
+	<entry key="magicbees.speciesManyullyn">Ручные</entry>
+	<entry key="magicbees.speciesManyullyn.description">"Doot doo-dee-doot doot!"</entry>
 	
 	<entry key="magicbees.speciesDiamond">Диаманди</entry>
 	<entry key="magicbees.speciesDiamond.description">Кристаллические, сверкающие и труднее, чем зубы дракона. Эти пчёлы не одни из тех.|Apinomicon</entry>
@@ -276,8 +276,8 @@
 	<entry key="magicbees.speciesTCEarth.description">"You're really gonna dig these bees, but watch out - they bore quite easily."|MysteriousAges, Apprentice Comedian</entry>
 	<entry key="magicbees.speciesTCOrder">Праекантатио</entry>
 	<entry key="magicbees.speciesTCOrder.description">Пчеловодство это магия!|Apinomicon, Preface</entry>
-    <entry key="magicbees.speciesTCChaos">Абсолютные</entry>
-    <entry key="magicbees.speciesTCChaos.description">"Их сильно привлекают осколки. Они требуют дальнейшего изучения."|Azanor, Master Thaumaturge</entry>
+	<entry key="magicbees.speciesTCChaos">Абсолютные</entry>
+	<entry key="magicbees.speciesTCChaos.description">"Их сильно привлекают осколки. Они требуют дальнейшего изучения."|Azanor, Master Thaumaturge</entry>
 
 	<entry key="magicbees.speciesTCVis">Вис</entry>
 	<entry key="magicbees.speciesTCVis.description">"Они могут чувствовать изменения в ауре, но ещё не в состоянии воздействовать на неё."|Azanor, research notes</entry>

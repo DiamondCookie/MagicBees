@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
-        <!-- Item names -->
+	<!-- Item names -->
 	<entry key="item.magicbees:jellyBabies.name">Handvoll Gummibärchen</entry>
 	<entry key="item.magicbees:thaumiumScoop.name">Thaumium-Kescher</entry>
 	<entry key="item.magicbees:thaumiumGrafter.name">Thaumium-Gartenschere</entry>
@@ -20,7 +20,7 @@
 	<entry key="tile.hive.deep.name">Tiefer Bienenstock</entry>
 	<entry key="tile.hive.resonant.name">Hallender Bienenstock</entry>
 	<entry key="tile.hive.infernal.name">Höllischer Bienenstock</entry>
-    <entry key="tile.hive.oblivion.name">Vergessenheits-Bienenstock</entry>
+	<entry key="tile.hive.oblivion.name">Vergessenheits-Bienenstock</entry>
 
 	<!-- Comb names -->
 	<entry key="comb.mundane">Gewöhnliche Wabe</entry>
@@ -85,9 +85,9 @@
 	<entry key="resource.dragonChunk">Drakonischer Klumpen</entry>
 	<entry key="resource.essenceLife">Essenz des Falschen Lebens</entry>
 	<entry key="resource.essenceDeath">Essenz eines Flachen Grabes</entry>
-    <entry key="resource.essenceTime">Essenz der Verlorenen Zeit</entry>
-    <entry key="resource.essenceDurability">Essenz der Immerwährenden Haltbarkeit</entry>
-    <entry key="resource.essenceOblivion">Essenz der nicht endenden Gleichgültigkeit</entry>
+	<entry key="resource.essenceTime">Essenz der Verlorenen Zeit</entry>
+	<entry key="resource.essenceDurability">Essenz der Immerwährenden Haltbarkeit</entry>
+	<entry key="resource.essenceOblivion">Essenz der nicht endenden Gleichgültigkeit</entry>
 	<entry key="resource.startNode">Bienen und Magie</entry>
 	<entry key="resource.crystalAspect">Kristallisierter %s - Aspekt</entry>
 
@@ -148,7 +148,7 @@
 	<entry key="research.node.pure">Pur</entry>
 	<entry key="research.node.dark">Dunkel</entry>
 	<entry key="research.node.chaotic">Chaotisch</entry>
-        <entry key="research.block.crystals">Kristalltraube</entry>
+		<entry key="research.block.crystals">Kristalltraube</entry>
 
 	<!-- Species names -->
 	<entry key="magicbees.speciesMystical">Mystisch</entry>
@@ -251,7 +251,7 @@
 	<entry key="magicbees.speciesSilver.description">Obwohl sie nicht so viel Aufmerksamkeit bekommen wir Goldene Bienen, sind sie nichtsdestotrotz wertvoll.|Apinomikon</entry>
 	<entry key="magicbees.speciesLead">Bleiern</entry>
 	<entry key="magicbees.speciesLead.description">Ein Favorit von Amateuralchemisten, sie glauben, sie können diese Bienen in Gold verwandeln.|Apinomikon</entry>
-    <entry key="magicbees.speciesAluminum">Alumin</entry>
+	<entry key="magicbees.speciesAluminum">Alumin</entry>
 	<entry key="magicbees.speciesAluminum.description">Knittrig, glänzend und extrem geschmeidig.|Apinomikon</entry>
 	<entry key="magicbees.speciesArdite">Ardithin</entry>
 	<entry key="magicbees.speciesArdite.description">Lieben ein gelb-orangenes Material gefunden in höllischen Bereichen.|Apinomikon</entry>
@@ -277,8 +277,8 @@
 	<entry key="magicbees.speciesTCEarth.description">"Ich muss noch mal das Rezept für diese Bienen ausgraben, aber Achtung, ihre Stacheln boren sich in deine Haut."|MysteriousAges, Anfänger in der Comedy</entry>
 	<entry key="magicbees.speciesTCOrder">Praecantation-</entry>
 	<entry key="magicbees.speciesTCOrder.description">Bienenzucht ist Magie!|Apinomikon, Preface</entry>
-    <entry key="magicbees.speciesTCChaos">Schlicht-</entry>
-    <entry key="magicbees.speciesTCChaos.description">"Diese Bienen fühlen sich ungewönlich stark zu Scherben hingezogen. Dies rechtfertigt weitere Untersuchungen."|Azanor, Meisterthaumaturge</entry>
+	<entry key="magicbees.speciesTCChaos">Schlicht-</entry>
+	<entry key="magicbees.speciesTCChaos.description">"Diese Bienen fühlen sich ungewönlich stark zu Scherben hingezogen. Dies rechtfertigt weitere Untersuchungen."|Azanor, Meisterthaumaturge</entry>
 
 	<entry key="magicbees.speciesTCVis">Vis</entry>
 	<entry key="magicbees.speciesTCVis.description">"Sie können Veränderungen in der Aura wahrnehmen, aber noch nicht verändern."|Azanors Mitschriften</entry>
@@ -340,9 +340,9 @@
 	<entry key="magicbees.speciesAMWight.description">"Sie ziehen magische Wesen an; nicht nur sanftmütige."|Mithion, Adept</entry>
 
 	<!-- Blank species entries
-        <entry key="magicbees.species"></entry>
-        <entry key="magicbees.species.description"></entry> 
-        -->
+		<entry key="magicbees.species"></entry>
+		<entry key="magicbees.species.description"></entry> 
+		-->
 
 	<!-- Bee Alleles -->
 	<entry key="magicbees.effectCurative">Reinigend</entry>
