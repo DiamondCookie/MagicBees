@@ -7,10 +7,10 @@ public enum HiveFrameType
 	MAGIC("Magic", 240, 1f, 1f, 1f, 2f),
 	RESILIENT("Resilient", 800, 1f, 1f, 1f, 2f),
 	GENTLE("Gentle", 200, 1f, 0.7f, 1.5f, 1.4f),
-	METABOLIC("Metabolic", 120, 1f, 1.8f, 1f, 1.2f),
-	NECROTIC("Necrotic", 290, 1f, 1f, 0.3f, 0.75f),
+	METABOLIC("Metabolic", 130, 1f, 1.8f, 1f, 1.2f),
+	NECROTIC("Necrotic", 280, 1f, 1f, 0.3f, 0.75f),
 	TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f),
-	OBLIVION("Oblivion", 60, 1f, 1f, 0.0001f, 0f),
+	OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f),
 	;
 	
 	private HiveFrameType(String name, int damage,

@@ -25,20 +25,28 @@
 	<!-- Comb names -->
 	<entry key="comb.mundane">Mundane Comb</entry>
 	<entry key="comb.molten">Molten Comb</entry>
-	<entry key="comb.forgotten">Forgotten Comb</entry>
 	<entry key="comb.occult">Occult Comb</entry>
 	<entry key="comb.otherworldly">Otherworldy Comb</entry>
+	<entry key="comb.transmuted">Transmuting Comb</entry>
 	<entry key="comb.paper">Papery Comb</entry>
 	<entry key="comb.soul">Soul Comb</entry>
 	<entry key="comb.furtive">Furtive Comb</entry>
 	<entry key="comb.aware">Memory Comb</entry>
 	<entry key="comb.time">Temporal Comb</entry>
+	<entry key="comb.forgotten">Forgotten Comb</entry>
+	
 	<entry key="comb.air">Windy Comb</entry>
 	<entry key="comb.fire">Firey Comb</entry>
 	<entry key="comb.water">Watery Comb</entry>
 	<entry key="comb.earth">Earthy Comb</entry>
-    <entry key="comb.order">Ordered Comb</entry>
-	<entry key="comb.chaos">Entropic Comb</entry>
+	
+	<entry key="comb.TCair">Glittering Windy Comb</entry>
+	<entry key="comb.TCfire">Glittering Firey Comb</entry>
+	<entry key="comb.TCwater">Glittering Watery Comb</entry>
+	<entry key="comb.TCearth">Glittering Earthy Comb</entry>
+    <entry key="comb.TCorder">Glittering Ordered Comb</entry>
+	<entry key="comb.TCchaos">Glittering Entropic Comb</entry>
+	
 	<entry key="comb.essence">Essence Comb</entry>
 	<entry key="comb.potent">Potent Comb</entry>
 
@@ -83,17 +91,19 @@
 	<entry key="resource.skullFragment">Wither Skeleton Skull Fragment</entry>
 	<entry key="resource.dragonDust">Draconic Dust</entry>
 	<entry key="resource.dragonChunk">Draconic Chunk</entry>
-	<entry key="resource.essenceFalseLife">Essence of False Life</entry>
-	<entry key="resource.essenceShallowGrave">Essence of a Shallow Grave</entry>
-    <entry key="resource.essenceLostTime">Essence of Lost Time</entry>
-    <entry key="resource.essenceEverlastingDurability">Essence of Everlasting Durability</entry>
-    <entry key="resource.essenceUnendingDisregard">Essence of Unending Disregard</entry>
+	<entry key="resource.essenceLife">Essence of False Life</entry>
+	<entry key="resource.essenceDeath">Essence of a Shallow Grave</entry>
+    <entry key="resource.essenceTime">Essence of Lost Time</entry>
+    <entry key="resource.essenceDurability">Essence of Everlasting Durability</entry>
+    <entry key="resource.essenceOblivion">Essence of Scornful Oblivion</entry>
+	<entry key="resource.essenceMutable">Essence of Fickle Permanence</entry>
     <entry key="resource.TCairDust">Air Infused Dust</entry>
     <entry key="resource.TCfireDust">Fire Infused Dust</entry>
     <entry key="resource.TCwaterDust">Water Infused Dust</entry>
     <entry key="resource.TCearthDust">Earth Infused Dust</entry>
     <entry key="resource.TCorderDust">Order Infused Dust</entry>
     <entry key="resource.TCchaosDust">Chaos Infused Dust</entry>
+    <entry key="resource.dimensionalSingularity">Dimensional Singularity</entry>
 	<entry key="resource.startNode">Bees and Magic</entry>
 	<entry key="resource.crystalAspect">Crystalized %s Aspect</entry>
 
@@ -280,9 +290,7 @@
 	<entry key="magicbees.speciesCrumbling">Crumbling</entry>
 	<entry key="magicbees.speciesCrumbling.description">They have a corrosive effect on their surroundings, rapidly aging them.|Apinomicon</entry>
 
-	<entry key="magicbees.speciesTCStark">Stark</entry>
-	<entry key="magicbees.speciesTCStark.description">"These are unusually attracted to shards. This warrents further investigation."|Azanor, Master Thaumaturge</entry>
-	<entry key="magicbees.speciesTCAir">Aura</entry>
+	<entry key="magicbees.speciesTCAir">Aer</entry>
 	<entry key="magicbees.speciesTCAir.description">"They work so fast it's breathtaking."|Sengir, Mad Apiarist</entry>
 	<entry key="magicbees.speciesTCFire">Ignis</entry>
 	<entry key="magicbees.speciesTCFire.description">Caution: Contents of hive extremely hot.|Warning label on Azanor's apiary</entry>
@@ -290,8 +298,10 @@
 	<entry key="magicbees.speciesTCWater.description">"I tried to breed them once, but that was a wash."|MysteriousAges, Apprentice Thaumaturge</entry>
 	<entry key="magicbees.speciesTCEarth">Solum</entry>
 	<entry key="magicbees.speciesTCEarth.description">"You're really gonna dig these bees, but watch out - they bore quite easily."|MysteriousAges, Apprentice Comedian</entry>
-	<entry key="magicbees.speciesTCMagic">Praecantatio</entry>
-	<entry key="magicbees.speciesTCMagic.description">Beekeeping is magic!|Apinomicon, Preface</entry>
+	<entry key="magicbees.speciesTCOrder">Ordered</entry>
+	<entry key="magicbees.speciesTCOrder.description">Their combs are nearly perfect, each part mirroring the pattern of the whole.|Apinomicon</entry>
+	<entry key="magicbees.speciesTCChaos">Chaotic</entry>
+	<entry key="magicbees.speciesTCChaos.description">The social structure of their hives seems to vary day by day, making it more flexible and resillient than others, but significantly more unpredictable.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesTCVis">Vis</entry>
 	<entry key="magicbees.speciesTCVis.description">"They can feel changes in the aura, but are not yet able to affect it."|Azanor, research notes</entry>
@@ -419,18 +429,65 @@
 	<entry key="classification.essential.description">These bees have an increased affinity for aspected magic.|Apinomicon</entry>
 	
 	<!-- Thaumcraft Research Strings -->
+	<entry key="tc.aspect.tempus">Time, Moment, Eternity</entry>
 	<entry key="tc.research_category.MAGICBEES">Apimancy</entry>
 	
+	<!-- Thaumcraft page strings note:
+		Thaumcraft uses <BR> for linebreaks, <LINE> for fancy horizontal rules, and <IMG>...</IMG> for images. HOWEVER, putting those into this XML file make Java furious, and ignore the entire file. To that end, I've introduced some translation tokens:
+			##lineBreak## ->  <BR>
+			##horizontalRule## ->  <LINE>
+			##img## ->  <IMG>
+			##/img## ->  </IMG>
+			
+		The alternative is to completely change the format of the file, but I don't think that's wise at this stage in the game. (Mostly, I'm afraid it'll break the UTF-8 characters in some of the files.
+	-->
 	<entry key="tc.research_name.MB_Root">Apimancy</entry>
 	<entry key="tc.research_text.MB_Root">[MB] Adding some sparkle to your buzz.</entry>
-	<entry key="tc.research_page.MB_Root.1">Don't get too excited.##lineBreak##This is just a test.</entry>
+	<entry key="tc.research_page.MB_Root.1">Welcome to Apimancy! As a budding keeper of magical bees, there are a few things you should know before diving in. As your acceptance letter to the Academy of Austere Apimancers has mentioned, there are several new tools available to discover. These include some improved versions of Forestry tools, each with their own particular quirks and new frames for your apiaries. ##horizontalRule## You may also discover that there are new bee strains available to discover, if you can coax them to live in certain conditions. The Forestry Escritoire will help you discover them and become the envy</entry>
+	<entry key="tc.research_page.MB_Root.2">of your former, nonmagical colleagues. Also take note of the several new strains of wild bees that have appeared: these are the key to progressing into the magical lineages of your small winged charges.</entry>
+	
+	<entry key="tc.research_name.MB_LoreFragment">Lore Fragments</entry>
+	<entry key="tc.research_text.MB_LoreFragment">[MB] Research? More like BEEsearch!</entry>
+	<entry key="tc.research_page.MB_LoreFragment.1">While experimenting with bee breeds, you may run accross a strain whose intellectual capabilities are a match for your own. Well, maybe, however unlikely that is. It's possible that they may unearth some obscure reference or a snippet of information that your great intellect may have missed while exploiting the greater mysteries of the universe. ##lineBreak## Should your helpful buzzing friends happen to locate this sort of item for you, it may be possible to combine the scraps together into something a little more cohesive.</entry>
+	
+	<entry key="tc.research_name.MB_FrameMagic">Magic Frame</entry>
+	<entry key="tc.research_text.MB_FrameMagic">[MB] Putting magic into beekeeping contexts</entry>
+	<entry key="tc.research_page.MB_FrameMagic.1">The Magic Frame is a simple improvement over your regular, run-of-the-mill Untreated Frames. Still fairly simple to produce, it is capable of lasting three times longer in an apiary than Untreated Frames before becoming unuseable. The enchantable properties of the Magic Frame enable it to be used with several of the special essences involved in Apimancy where other frames would reject the infusion of magics.</entry>
 	
 	<entry key="tc.research_name.MB_Scoop">Thaumium Scoop</entry>
 	<entry key="tc.research_text.MB_Scoop">[MB] Handled with care.</entry>
-	<entry key="tc.research_page.MB_Scoop.1">Normal scoops are fragile, and prone to breakage. As an authority in Apimancy, you can do better. By adding some Thaumium to the handle, and lacing it with a measure of order, your new scoop will last up to three times longer!##lineBreak##In addition, the Thaumium in the device will accept the Repair enchantment.</entry>
+	<entry key="tc.research_page.MB_Scoop.1">Normal scoops are fragile, and prone to breakage. As an authority in Apimancy, you can do better. By adding some Thaumium to the handle, and lacing it with a measure of order, your new scoop will last up to three times longer! ##lineBreak## In addition, the Thaumium in the device will accept the Repair enchantment.</entry>
 	
 	<entry key="tc.research_name.MB_Grafter">Thaumium Grafter</entry>
 	<entry key="tc.research_text.MB_Grafter">[MB] Saplings for every occasion.</entry>
-	<entry key="tc.research_page.MB_Grafter.1">Simple grafters are almost uselessly fragile, and while Proven Grafters are useful, the rarity of emeralds makes them annoying to procure. The solution? Make it yourself!##lineBreak##The Thaumium Grafter, like the Thaumium Scoop, is a tougher, enchantable version of the most basic of the Arborimancer's tools. Use caution though, for although the Repair enchantment can be applied to the grafter, its unusual properties make it exhausting to use.</entry>
+	<entry key="tc.research_page.MB_Grafter.1">Simple grafters are almost uselessly fragile, and while Proven Grafters are useful, the rarity of emeralds makes them annoying to procure. The solution? Make it yourself! ##lineBreak## The Thaumium Grafter, like the Thaumium Scoop, is a tougher, enchantable version of the most basic of the Arborimancer's tools. Use caution though, for although the Repair enchantment can be applied to the grafter, its unusual properties make it exhausting to use.</entry>
+	
+	<entry key="tc.research_name.MB_EssenceLife">Essence of False Life</entry>
+	<entry key="tc.research_text.MB_EssenceLife">[MB] A rose by any other name. . .</entry>
+	<entry key="tc.research_page.MB_EssenceLife.1">Simple to create by means of magic, this essence has unusual properties when exposed to bees. When combined with an everyday apiary frame, it has the effect of greatly extending the lifespan of a working hive.</entry>
+	
+	<entry key="tc.research_name.MB_EssenceDeath">Essence of a Shallow Grave</entry>
+	<entry key="tc.research_text.MB_EssenceDeath">[MB] Not quite six feet under.</entry>
+	<entry key="tc.reseacrh_page.MB_EssenceDeath.1">The Essence of a Shallow Grave channels the death of many of the ... "natural" creatures that wander the world: Zombies, Skeletons, those sorts of things. Exposing bees to this energy has the effect of making them slow and sluggish, and curtails the extent of their lifespan. Some Apimancers consider using frames imbued with these Essences to be cruel, however, others view it as a natrual part of normal beekeeping, with an eye to creating their perfect strain of bees sometime within THEIR lifetime. ##lineBreak## The Apimancer's Guild of Safety recommends handling them with telekenisis or very long tongs.</entry>
+	
+	<entry key="tc.research_name.MB_EssenceArmor">Essence of Everlasting Durability</entry>
+	<entry key="tc.research_text.MB_EssenceArmor">[MB] The rubber to your glue</entry>
+	<entry key="tc.research_page.MB_EssenceArmor.1">This is the distilled essence of protection, bound to last forever, or until the magics stored within it weaken and eventually break. But until then, it's invincible. Mostly. ##lineBreak## While Magic Frames are useful, they are a tad fragile. This essence takes the enchantments you weave into Magic frames to an entirely new level. Combine the essence with a magic frame, and it should have a vastly extended lifespan.</entry>
+	
+	<entry key="tc.research_name.MB_EssenceUnstable">Essence of Fickle Permanence</entry>
+	<entry key="tc.research_text.MB_EssenceUnstable">[MB] Assured in unsurity</entry>
+	<entry key="tc.research_page.MB_EssenceUnstable.1">Unstable by nature, the Essence of Fickle Permanence has the side effect of causing normally stable objects and systems to become somewhat unreliable. While this may mostly be a bad thing, Apimancers have discovered that exposing a hive to the essence has the duel effects of both causing the bees to work faster, and the offspring to have higher mutation rates.</entry>
+	
+	<entry key="tc.research_name.MB_EssenceTime">Essence of Lost Time</entry>
+	<entry key="tc.research_text.MB_EssenceTime">[MB] No time like the unmoment</entry>
+	<entry key="tc.research_page.MB_EssenceTime.1">Time is a fickle thing. It comes and it goes, but where exactly does it go to? As a respectable thaumaturge, it has become possible to trap these wasted moments and save them in a magical form. So, now that it is possible to collect extra time from the world, it seems only appropriate that they are used in a place that would be useful. It would be too dangerous to attempt to access these moments yourself for the moment, but perhaps it would be simple to allow your bees access to this untapped lump of time. ##lineBreak## By combining the essence with a Magic Frame as usual will suffice to extend the lifespan of bees in your keeping by several times.</entry>
+	
+	<entry key="tc.research_name.MB_DimensionalSingularity">Dimensional Singularity</entry>
+	<entry key="tc.research_text.MB_DimensionalSingularity">[MB] Quantum flux for them, unlimited storage for you</entry>
+	<entry key="tc.research_page.MB_DimensionalSingularity.1">While it may appear similar to the Portable Hole, it serves as a two-way link with another place, which is... probably uninhabited. It should be possible to utilize these singularities to store materials outside of your dimensional understanding - which of course means that they won't clutter up your inventory. As they are now, they are not particularly useful, but there should be ways to unlock their potential.</entry>
+	
+	<entry key="tc.research_name.MB_EssenceOblivion">Essence of Scornful Oblivion</entry>
+	<entry key="tc.research_text.MB_EssenceOblivion">[MB] Cast aside with malice</entry>
+	<entry key="tc.research_page.MB_EssenceOblivion.1">Breeding bees for mutations can be aggrivating, especially whith long-lived species. With a little cleverness and only the slightest hint of smugness, you have found a way to utilize the Dimensional Singularity in a manner that only sucks away the life force of your tiny flying friends, bit by bit. Well, maybe significant amounts all at once. It's probably not going to affect them too badly.</entry>
 
 </properties>

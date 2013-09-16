@@ -12,17 +12,17 @@ public enum ResourceType
 	SKULL_FRAGMENT("skullFragment", true),
 	DRAGON_DUST("dragonDust", true),
 	DRAGON_CHUNK("dragonChunk", true),
-	ESSENCE_FALSE_LIFE("essenceFalseLife", true),
-	ESSENCE_SHALLOW_GRAVE("essenceShallowGrave", true),
-	ESSENCE_LOST_TIME("essenceLostTime", true),
-	ESSENCE_EVERLASTING_DURABILITY("essenceEverlastingDurability", true),
-	ESSENCE_UNENDING_DISREGARD("essenceUnendingDisregard", true),
-	z_1("", false),
-	z_2("", false),
-	z_3("", false),
-	z_4("", false),
-	z_5("", false),
-	DIMENSIONAL_SINGULARITY("dimensionalSingularity", false),
+	ESSENCE_FALSE_LIFE("essenceLife", true),//
+	ESSENCE_SHALLOW_GRAVE("essenceDeath", true),//
+	ESSENCE_LOST_TIME("essenceTime", true),
+	ESSENCE_EVERLASTING_DURABILITY("essenceDurability", true),//
+	ESSENCE_SCORNFUL_OBLIVION("essenceOblivion", true),
+	ESSENCE_FICKLE_PERMANENCE("essenceMutable", true),//
+	z_2("lump", false), // Using lump for the name to avoid missing texture warnings.
+	z_3("lump", false),
+	z_4("lump", false),
+	z_5("lump", false),
+	DIMENSIONAL_SINGULARITY("dimensionalSingularity", true),
 	TC_DUST_AIR("TCairDust", true),
 	TC_DUST_WATER("TCwaterDust", true),
 	TC_DUST_FIRE("TCfireDust", true),

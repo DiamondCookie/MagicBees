@@ -33,9 +33,9 @@ public enum NuggetType
 		return this.targetIngot;
 	}
 	
-	public void setActive(boolean b)
+	public void setInactive()
 	{
-		this.active = b;
+		this.active = false;
 	}
 	
 	public boolean isActive()

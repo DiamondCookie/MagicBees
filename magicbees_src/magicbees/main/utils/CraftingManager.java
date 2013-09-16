@@ -94,6 +94,14 @@ public class CraftingManager
 			'D', Block.dirt,
 			'w', Config.wax.getStackForType(WaxType.SOUL)
 		});
+
+		output = new ItemStack(Config.hiveFrameMagic);
+		input = ItemInterface.getItem("frameUntreated");
+		GameRegistry.addRecipe(output, new Object[] {
+			"www", "wfw", "www",
+			'w', Config.wax.getStackForType(WaxType.MAGIC),
+			'f', input
+		});
 		
 		GameRegistry.addRecipe(new ItemStack(Config.hiveFrameTemporal), new Object[] {
 			"sPs", "PfP", "sPs",
@@ -142,13 +150,13 @@ public class CraftingManager
 			"gwg", "wiw", "gwg",
 			'g', Block.glass,
 			'w', "waxMagical",
-			'i', Item.ingotIron
+			'i', Block.blockIron
 		}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY), new Object[] {
 			"wgw", "gig", "wgw",
 			'g', Block.glass,
 			'w', "waxMagical",
-			'i', Item.ingotIron
+			'i', Block.blockIron
 		}));
 		
 		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE), new Object[] {
@@ -190,7 +198,15 @@ public class CraftingManager
 			'c', Item.pocketSundial
 		});
 		
-		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_UNENDING_DISREGARD), new Object[] {
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_FICKLE_PERMANENCE), new Object[] {
+			"wew", "gcg", "wew",
+			'w', Config.wax.getStackForType(WaxType.SOUL),
+			'c', Item.magmaCream,
+			'e', Item.egg,
+			'g', Block.glowStone
+		});
+		
+		GameRegistry.addRecipe(Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION), new Object[] {
 			"gst", "sEs", "tsg",
 			'g', Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE),
 			't', Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME),
@@ -198,87 +214,78 @@ public class CraftingManager
 			'E', Block.dragonEgg,
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameMagic, 2), new Object[] {
-			Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY),
-			ItemInterface.getItem("frameUntreated"),
-			ItemInterface.getItem("frameUntreated")
-		});
-		
+		input = new ItemStack(Config.hiveFrameMagic);
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameResilient), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY),
-			ItemInterface.getItem("frameImpregnated"),
-			Item.ingotIron, Item.ingotIron,
-			Item.ingotIron, Item.ingotIron
+			input
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameGentle), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
-			ItemInterface.getItem("frameUntreated")
-		});
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameMetabolic), new Object[] {
-			Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
-			ItemInterface.getItem("frameImpregnated"),
-			Item.magmaCream
+			input
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameNecrotic), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE),
-			ItemInterface.getItem("frameUntreated"),
-			Item.rottenFlesh, Item.rottenFlesh,
-			Item.rottenFlesh, Item.rottenFlesh
+			input, Item.rottenFlesh, Item.rottenFlesh, Item.rottenFlesh, Item.rottenFlesh
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameMetabolic), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_FICKLE_PERMANENCE),
+			input
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameTemporal), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME),
-			ItemInterface.getItem("frameImpregnated"),
-			Config.pollen.getStackForType(PollenType.PHASED)
+			input, Config.pollen.getStackForType(PollenType.PHASED)
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
-			Config.miscResources.getStackForType(ResourceType.ESSENCE_UNENDING_DISREGARD),
-			ItemInterface.getItem("frameProven")
-		});
+		if (!ThaumcraftHelper.isActive())
+		{
+			GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
+				Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
+				ItemInterface.getItem("frameProven")
+			});
+		}
 
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
 		{
-			NuggetType.COPPER.setActive(false);
+			NuggetType.COPPER.setInactive();
 		}
-		if (OreDictionary.getOres("ingotTin").size() <= 0)
-		{
-			NuggetType.TIN.setActive(false);
-		}
-		if (OreDictionary.getOres("ingotSilver").size() <= 0)
-		{
-			NuggetType.SILVER.setActive(false);
-		}
-		if (OreDictionary.getOres("ingotLead").size() <= 0)
-		{
-			NuggetType.LEAD.setActive(false);
-		}
-
-		if (NuggetType.COPPER.isActive())
+		else
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotCopper").get(0), new Object[] {
 				"xxx", "xxx", "xxx",
 				'x', "nuggetCopper"
 			}));
 		}
-		if (NuggetType.TIN.isActive())
+		if (OreDictionary.getOres("ingotTin").size() <= 0)
+		{
+			NuggetType.TIN.setInactive();
+		}
+		else
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotTin").get(0), new Object[] {
 				"xxx", "xxx", "xxx",
 				'x', "nuggetTin"
 			}));
 		}
-		if (NuggetType.SILVER.isActive())
+		if (OreDictionary.getOres("ingotSilver").size() <= 0)
+		{
+			NuggetType.SILVER.setInactive();
+		}
+		else
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotSilver").get(0), new Object[] {
 				"xxx", "xxx", "xxx",
 				'x', "nuggetSilver"
 			}));
 		}
-		if (NuggetType.LEAD.isActive())
+		if (OreDictionary.getOres("ingotLead").size() <= 0)
+		{
+			NuggetType.LEAD.setInactive();
+		}
+		else
 		{
 			GameRegistry.addRecipe(new ShapedOreRecipe(OreDictionary.getOres("ingotLead").get(0), new Object[] {
 				"xxx", "xxx", "xxx",
@@ -354,10 +361,10 @@ public class CraftingManager
 					'W', Config.wax
 			});*/
 			
+			input = Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT);
 			output = new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.KNOWLEDGE_FRAGMENT.ordinal());
-			GameRegistry.addRecipe(output, new Object[] {
-					"FF", "FF",
-					'F', Config.miscResources.getStackForType(ResourceType.LORE_FRAGMENT)
+			GameRegistry.addShapelessRecipe(output, new Object[] {
+					input, input, input, input
 			});
 	
 			// T1 Thaumaturge's backpack
@@ -437,54 +444,69 @@ public class CraftingManager
 		RecipeManagers.centrifugeManager.addRecipe(20,  Config.combs.getStackForType(CombType.TEMPORAL),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.pollen.getStackForType(PollenType.PHASED), new ItemStack(Config.fHoneydew, 1)},
 				new int[] {100, 5, 60});
+		
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.AIRY),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.AIR) },
+				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.feather) },
 				new int[] { 100, 60 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.FIREY),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.FIRE) },
+				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.blazePowder) },
 				new int[] { 100, 60 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.WATERY),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.WATER) },
+				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.dyePowder) },
 				new int[] { 100, 60 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.EARTHY),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.EARTH) },
+				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.clay) },
 				new int[] { 100, 60 });
-		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.ORDER),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.ORDER) },
-				new int[] { 100, 60 });
-		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.CHAOS),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.CHAOS) },
-				new int[] { 100, 60 });
-		
-		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.AM_POTENT),
-				new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("refractoryWax"), ItemInterface.getItem("honeydew") },
-				new int[] { 50, 50, 65 } );
 
+		if (ThaumcraftHelper.isActive())
+		{
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TC_AIR),
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.feather), Config.propolis.getStackForType(PropolisType.AIR) },
+					new int[] { 100, 60, 80 });
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TC_FIRE),
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.blazePowder), Config.propolis.getStackForType(PropolisType.FIRE) },
+					new int[] { 100, 60, 80 });
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TC_WATER),
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.dyePowder), Config.propolis.getStackForType(PropolisType.WATER) },
+					new int[] { 100, 60, 80 });
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TC_EARTH),
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.clay), Config.propolis.getStackForType(PropolisType.EARTH) },
+					new int[] { 100, 60, 80 });
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TC_ORDER),
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.ORDER) },
+					new int[] { 100, 80 });
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TC_CHAOS),
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.CHAOS) },
+					new int[] { 100, 80 });
 
-		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.AIR),
-				new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_AIR) },
-				new int[] { 100, 65 } );
-		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.FIRE),
-				new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_FIRE) },
-				new int[] { 100, 65 } );
-		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.WATER),
-				new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_WATER) },
-				new int[] { 100, 65 } );
-		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.EARTH),
-				new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_EARTH) },
-				new int[] { 100, 65 } );
-		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.ORDER),
-				new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_ORDER) },
-				new int[] { 100, 65 } );
-		RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.CHAOS),
-				new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_CHAOS) },
-				new int[] { 100, 65 } );
+			RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.AIR),
+					new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_AIR) },
+					new int[] { 100, 65 } );
+			RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.FIRE),
+					new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_FIRE) },
+					new int[] { 100, 65 } );
+			RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.WATER),
+					new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_WATER) },
+					new int[] { 100, 65 } );
+			RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.EARTH),
+					new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_EARTH) },
+					new int[] { 100, 65 } );
+			RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.ORDER),
+					new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_ORDER) },
+					new int[] { 100, 65 } );
+			RecipeManagers.centrifugeManager.addRecipe(8, Config.propolis.getStackForType(PropolisType.CHAOS),
+					new ItemStack[] {propolis, Config.miscResources.getStackForType(ResourceType.TC_DUST_CHAOS) },
+					new int[] { 100, 65 } );
+		}
 		
 		if (ArsMagicaHelper.isActive())
 		{
 			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.AM_ESSENCE), 
 					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Config.amItemResource), new ItemStack(Config.amItemResource) },
 					new int[] { 85, 10, 2 } );
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.AM_POTENT),
+					new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("refractoryWax"), ItemInterface.getItem("honeydew") },
+					new int[] { 50, 50, 65 } );
 		}
 	}
 
@@ -524,14 +546,6 @@ public class CraftingManager
 			'P', ItemInterface.getItem("pollen"),
 			'J', ItemInterface.getItem("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
-		});
-
-		output = new ItemStack(Config.hiveFrameMagic);
-		input = ItemInterface.getItem("frameUntreated");
-		GameRegistry.addRecipe(output, new Object[] {
-			"www", "wfw", "www",
-			'w', Config.wax.getStackForType(WaxType.MAGIC),
-			'f', input
 		});
 		
 		if (ThaumcraftHelper.isActive())

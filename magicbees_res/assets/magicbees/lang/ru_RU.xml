@@ -83,11 +83,11 @@
 	<entry key="resource.skullFragment">Фрагмент черепа скелета-иссушителя</entry>
 	<entry key="resource.dragonDust">Драконья пыль</entry>
 	<entry key="resource.dragonChunk">Драконий кусок</entry>
-	<entry key="resource.essenceFalseLife">Эссенция ложной жизни</entry>
-	<entry key="resource.essenceShallowGrave">Эссенция неглубокой могилы</entry>
-	<entry key="resource.essenceLostTime">Эссенция утраченного времени</entry>
-    <entry key="resource.essenceEverlastingDurability">Эссенция вечной прочности</entry>
-    <entry key="resource.essenceUnendingDisregard">Эссенция бесконечного равнодушия</entry>
+	<entry key="resource.essenceLife">Эссенция ложной жизни</entry>
+	<entry key="resource.essenceDeath">Эссенция неглубокой могилы</entry>
+	<entry key="resource.essenceTime">Эссенция утраченного времени</entry>
+    <entry key="resource.essenceDurability">Эссенция вечной прочности</entry>
+    <entry key="resource.essenceOblivion">Эссенция бесконечного равнодушия</entry>
 	<entry key="resource.startNode">Пчёлы и магия</entry>
 	<entry key="resource.crystalAspect">Кристаллизованный %s аспект</entry>
 
@@ -266,8 +266,6 @@
 	<entry key="magicbees.speciesApatite">Апатин</entry>
 	<entry key="magicbees.speciesApatite.description">День и ночь жужжат. Я забаррикадировал окна и спрятался в подвале, но пронзительный шум апатин пчёл проникал в стены и доводил меня до безумия.|Beekeeping 101</entry>
 
-	<entry key="magicbees.speciesTCStark">Абсолютные</entry>
-	<entry key="magicbees.speciesTCStark.description">"Их сильно привлекают осколки. Они требуют дальнейшего изучения."|Azanor, Master Thaumaturge</entry>
 	<entry key="magicbees.speciesTCAir">Аура</entry>
 	<entry key="magicbees.speciesTCAir.description">"Они работают так быстро, что это захватывает дух."|Sengir, Mad Apiarist</entry>
 	<entry key="magicbees.speciesTCFire">Игнис</entry>
@@ -276,8 +274,10 @@
 	<entry key="magicbees.speciesTCWater.description">"Я пытался размножить их однажды, но я получил мыло."|MysteriousAges, Apprentice Thaumaturge</entry>
 	<entry key="magicbees.speciesTCEarth">Солим</entry>
 	<entry key="magicbees.speciesTCEarth.description">"You're really gonna dig these bees, but watch out - they bore quite easily."|MysteriousAges, Apprentice Comedian</entry>
-	<entry key="magicbees.speciesTCMagic">Праекантатио</entry>
-	<entry key="magicbees.speciesTCMagic.description">Пчеловодство это магия!|Apinomicon, Preface</entry>
+	<entry key="magicbees.speciesTCOrder">Праекантатио</entry>
+	<entry key="magicbees.speciesTCOrder.description">Пчеловодство это магия!|Apinomicon, Preface</entry>
+    <entry key="magicbees.speciesTCChaos">Абсолютные</entry>
+    <entry key="magicbees.speciesTCChaos.description">"Их сильно привлекают осколки. Они требуют дальнейшего изучения."|Azanor, Master Thaumaturge</entry>
 
 	<entry key="magicbees.speciesTCVis">Вис</entry>
 	<entry key="magicbees.speciesTCVis.description">"Они могут чувствовать изменения в ауре, но ещё не в состоянии воздействовать на неё."|Azanor, research notes</entry>

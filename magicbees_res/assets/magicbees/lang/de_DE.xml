@@ -20,7 +20,7 @@
 	<entry key="tile.hive.deep.name">Tiefer Bienenstock</entry>
 	<entry key="tile.hive.resonant.name">Hallender Bienenstock</entry>
 	<entry key="tile.hive.infernal.name">Höllischer Bienenstock</entry>
-        <entry key="tile.hive.oblivion.name">Vergessenheits-Bienenstock</entry>
+    <entry key="tile.hive.oblivion.name">Vergessenheits-Bienenstock</entry>
 
 	<!-- Comb names -->
 	<entry key="comb.mundane">Gewöhnliche Wabe</entry>
@@ -83,11 +83,11 @@
 	<entry key="resource.skullFragment">Witherskelett-Schädelfragment</entry>
 	<entry key="resource.dragonDust">Drakonischer Staub</entry>
 	<entry key="resource.dragonChunk">Drakonischer Klumpen</entry>
-	<entry key="resource.essenceFalseLife">Essenz des Falschen Lebens</entry>
-	<entry key="resource.essenceShallowGrave">Essenz eines Flachen Grabes</entry>
-        <entry key="resource.essenceLostTime">Essenz der Verlorenen Zeit</entry>
-        <entry key="resource.essenceEverlastingDurability">Essenz der Immerwährenden Haltbarkeit</entry>
-        <entry key="resource.essenceUnendingDisregard">Essenz der nicht endenden Gleichgültigkeit</entry>
+	<entry key="resource.essenceLife">Essenz des Falschen Lebens</entry>
+	<entry key="resource.essenceDeath">Essenz eines Flachen Grabes</entry>
+    <entry key="resource.essenceTime">Essenz der Verlorenen Zeit</entry>
+    <entry key="resource.essenceDurability">Essenz der Immerwährenden Haltbarkeit</entry>
+    <entry key="resource.essenceOblivion">Essenz der nicht endenden Gleichgültigkeit</entry>
 	<entry key="resource.startNode">Bienen und Magie</entry>
 	<entry key="resource.crystalAspect">Kristallisierter %s - Aspekt</entry>
 
@@ -251,14 +251,14 @@
 	<entry key="magicbees.speciesSilver.description">Obwohl sie nicht so viel Aufmerksamkeit bekommen wir Goldene Bienen, sind sie nichtsdestotrotz wertvoll.|Apinomikon</entry>
 	<entry key="magicbees.speciesLead">Bleiern</entry>
 	<entry key="magicbees.speciesLead.description">Ein Favorit von Amateuralchemisten, sie glauben, sie können diese Bienen in Gold verwandeln.|Apinomikon</entry>
-        <entry key="magicbees.speciesAluminum">Alumin</entry>
-        <entry key="magicbees.speciesAluminum.description">Knittrig, glänzend und extrem geschmeidig.|Apinomikon</entry>
-        <entry key="magicbees.speciesArdite">Ardithin</entry>
-        <entry key="magicbees.speciesArdite.description">Lieben ein gelb-orangenes Material gefunden in höllischen Bereichen.|Apinomikon</entry>
-        <entry key="magicbees.speciesCobalt">Cobalten</entry>
-        <entry key="magicbees.speciesCobalt.description">Die instabilen Eigenschaften dieses Materials scheinen die Bienen nicht im Geringsten zu beinflussen.|Apinomikon</entry>
-        <entry key="magicbees.speciesManyullyn">Manyullyn</entry>
-        <entry key="magicbees.speciesManyullyn.description">"Tie tie-pa-tie pie!"</entry>
+    <entry key="magicbees.speciesAluminum">Alumin</entry>
+	<entry key="magicbees.speciesAluminum.description">Knittrig, glänzend und extrem geschmeidig.|Apinomikon</entry>
+	<entry key="magicbees.speciesArdite">Ardithin</entry>
+	<entry key="magicbees.speciesArdite.description">Lieben ein gelb-orangenes Material gefunden in höllischen Bereichen.|Apinomikon</entry>
+	<entry key="magicbees.speciesCobalt">Cobalten</entry>
+	<entry key="magicbees.speciesCobalt.description">Die instabilen Eigenschaften dieses Materials scheinen die Bienen nicht im Geringsten zu beinflussen.|Apinomikon</entry>
+	<entry key="magicbees.speciesManyullyn">Manyullyn</entry>
+	<entry key="magicbees.speciesManyullyn.description">"Tie tie-pa-tie pie!"</entry>
 
 	<entry key="magicbees.speciesDiamond">Diamandin</entry>
 	<entry key="magicbees.speciesDiamond.description">Kristallin, glitzernd, und härter als Drachenzähne. Diese Bienen sind nichts davon.|Apinomikon</entry>
@@ -267,8 +267,6 @@
 	<entry key="magicbees.speciesApatite">Apatin</entry>
 	<entry key="magicbees.speciesApatite.description">Tag und Nacht summten die Weinenden. Ich verbarrikadierte die Fenster und versteckte mich im Keller, aber überall durchdrang der schrille Ton der Apatinen Bienen die Wände brachte mich zum Wahnsinn.|Beekeeping 101</entry>
 
-	<entry key="magicbees.speciesTCStark">Schlicht</entry>
-	<entry key="magicbees.speciesTCStark.description">"Diese Bienen fühlen sich ungewönlich stark zu Scherben hingezogen. Dies rechtfertigt weitere Untersuchungen."|Azanor, Meisterthaumaturge</entry>
 	<entry key="magicbees.speciesTCAir">Auran</entry>
 	<entry key="magicbees.speciesTCAir.description">"Sie arbeiten so atemberaubend schnell."|Sengir, verrückter Imker</entry>
 	<entry key="magicbees.speciesTCFire">Ignis</entry>
@@ -277,8 +275,10 @@
 	<entry key="magicbees.speciesTCWater.description">"Ich habe mal versucht, die zu züchten, aber es lief nicht alles so gut."|MysteriousAges, Fortgeschrittener Thaumaturge</entry>
 	<entry key="magicbees.speciesTCEarth">Solon</entry>
 	<entry key="magicbees.speciesTCEarth.description">"Ich muss noch mal das Rezept für diese Bienen ausgraben, aber Achtung, ihre Stacheln boren sich in deine Haut."|MysteriousAges, Anfänger in der Comedy</entry>
-	<entry key="magicbees.speciesTCMagic">Praecantation</entry>
-	<entry key="magicbees.speciesTCMagic.description">Bienenzucht ist Magie!|Apinomikon, Preface</entry>
+	<entry key="magicbees.speciesTCOrder">Praecantation-</entry>
+	<entry key="magicbees.speciesTCOrder.description">Bienenzucht ist Magie!|Apinomikon, Preface</entry>
+    <entry key="magicbees.speciesTCChaos">Schlicht-</entry>
+    <entry key="magicbees.speciesTCChaos.description">"Diese Bienen fühlen sich ungewönlich stark zu Scherben hingezogen. Dies rechtfertigt weitere Untersuchungen."|Azanor, Meisterthaumaturge</entry>
 
 	<entry key="magicbees.speciesTCVis">Vis</entry>
 	<entry key="magicbees.speciesTCVis.description">"Sie können Veränderungen in der Aura wahrnehmen, aber noch nicht verändern."|Azanors Mitschriften</entry>

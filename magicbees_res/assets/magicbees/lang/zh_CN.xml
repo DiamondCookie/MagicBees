@@ -83,11 +83,11 @@
 	<entry key="resource.skullFragment">凋灵骷髅头骨碎片</entry>
 	<entry key="resource.dragonDust">龙之尘</entry>
 	<entry key="resource.dragonChunk">龙之块</entry>
-	<entry key="resource.essenceFalseLife">虚假之命源质</entry>
-	<entry key="resource.essenceShallowGrave">暗影之墓源质</entry>
-	<entry key="resource.essenceLostTime">迷失之时源质</entry>
-	<entry key="resource.essenceEverlastingDurability">恒久不灭源质</entry>
-	<entry key="resource.essenceUnendingDisregard">无尽漠视源质</entry>
+	<entry key="resource.essenceLife">虚假之命源质</entry>
+	<entry key="resource.essenceDeath">暗影之墓源质</entry>
+	<entry key="resource.essenceTime">迷失之时源质</entry>
+	<entry key="resource.essenceDurability">恒久不灭源质</entry>
+	<entry key="resource.essenceOblivion">无尽漠视源质</entry>
 	<entry key="resource.startNode">蜜蜂与魔法</entry>
 	<entry key="resource.crystalAspect">晶化%s要素</entry>
 
@@ -239,8 +239,6 @@
 	<entry key="magicbees.speciesApatite">磷化</entry>
 	<entry key="magicbees.speciesApatite.description">这些东西真心是日夜牢骚不断.我关紧窗户躲进地下室，但蜜蜂尖锐的嗡嗡声却无处不在地透墙而过，乱我心绪.|养蜂入门</entry>
     
-    	<entry key="magicbees.speciesTCStark">朴实</entry>
-	<entry key="magicbees.speciesTCStark.description">"它们能吸引魔力的碎片，具体有待研究！"|Azanor,大神秘使</entry>
 	<entry key="magicbees.speciesTCAir">灵气</entry>
 	<entry key="magicbees.speciesTCAir.description">"工作敏捷，扣人心弦！"|Sengir,养蜂狂人</entry>
 	<entry key="magicbees.speciesTCFire">灼热</entry>
@@ -249,8 +247,10 @@
 	<entry key="magicbees.speciesTCWater.description">"我试图养育它们，结果变成落汤鸡！"|MysteriousAges,神秘使学徒</entry>
 	<entry key="magicbees.speciesTCEarth">泥土</entry>
 	<entry key="magicbees.speciesTCEarth.description">"这些蜜蜂真心是挖掘专家，小心它们挖洞"|MysteriousAges,滑稽剧学徒</entry>
-	<entry key="magicbees.speciesTCMagic">奇术</entry>
-	<entry key="magicbees.speciesTCMagic.description">养蜂本身就是一种魔法!|Apinomicon,绪论</entry>
+	<entry key="magicbees.speciesTCOrder">奇术</entry>
+	<entry key="magicbees.speciesTCOrder.description">养蜂本身就是一种魔法!|Apinomicon,绪论</entry>
+    <entry key="magicbees.speciesTCChaos">朴实</entry>
+    <entry key="magicbees.speciesTCChaos.description">"它们能吸引魔力的碎片，具体有待研究！"|Azanor,大神秘使</entry>
     
 	<entry key="magicbees.speciesTCVis">魔力</entry>
 	<entry key="magicbees.speciesTCVis.description">"它们能感知到魔力的存在，却还不能影响到魔力."|Azanor,研究笔记</entry>
@@ -259,7 +259,7 @@
 	<entry key="magicbees.speciesTCFlux">咒波</entry>
 	<entry key="magicbees.speciesTCFlux.description">"我以为能解决咒波问题呢，结果情况更糟糕了!"|Kreicus,神秘使学徒</entry>
 	<entry key="magicbees.speciesTCAttractive">吸引</entry>
-    	<entry key="magicbees.speciesTCAttractive.description">经过古怪的突变后，这种蜜蜂能吸引魔力.|Apinomicon</entry>
+    <entry key="magicbees.speciesTCAttractive.description">经过古怪的突变后，这种蜜蜂能吸引魔力.|Apinomicon</entry>
 	<entry key="magicbees.speciesTCRejuvenating">复兴</entry>
 	<entry key="magicbees.speciesTCRejuvenating.description">神奇的蜜蜂，能吸引附近的节点靠近.|Apinomicon</entry>
        
