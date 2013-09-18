@@ -59,7 +59,7 @@ public class ItemMiscResources extends Item
     {
     	for (int i = 0; i < ResourceType.values().length; i++)
     	{
-    		this.icons[i] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":" + ResourceType.values()[i].getName());
+    		this.icons[i] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":" + ResourceType.values()[i].getName());
     	}
     }
     

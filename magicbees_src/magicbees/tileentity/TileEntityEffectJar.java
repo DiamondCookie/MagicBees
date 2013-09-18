@@ -1,20 +1,19 @@
 package magicbees.tileentity;
 
-import magicbees.main.utils.VersionInfo;
+import magicbees.main.CommonProxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IEffectData;
 
 public class TileEntityEffectJar extends TileEntity implements IInventory
 {
-	public static final String tileEntityName = VersionInfo.ModName.toLowerCase() + ".effectJar";
+	public static final String tileEntityName = CommonProxy.DOMAIN + ".effectJar";
 	
 	private String ownerName;
 	private EffectJarHousing housingLogic;

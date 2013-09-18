@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import magicbees.block.types.PlankType;
+import magicbees.main.CommonProxy;
 import magicbees.main.Config;
 import magicbees.main.MagicBees;
-import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.material.Material;
@@ -78,7 +78,7 @@ public class BlockWoodSlab extends BlockHalfSlab
 		this.icons = new Icon[PlankType.values().length];
     	for (PlankType t : PlankType.values())
     	{
-    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":" + t.name);
+    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":" + t.name);
     	}
     }
 

@@ -302,10 +302,13 @@ public class ThaumcraftHelper
 				new ItemStack(Item.pocketSundial), new AspectList().add(Aspect.ORDER, 10).add(Aspect.VOID, 10).add(Aspect.TRAP, 4));
 		
 		singularity = ThaumcraftApi.addCrucibleRecipe("MB_DimensionalSingularity", Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 3),
-				new ItemStack(Block.dragonEgg), new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 10));
+				new ItemStack(Block.blockDiamond), new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20));
 		
-		essenceOblivion = ThaumcraftApi.addCrucibleRecipe("MB_EssenceOblivion", Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
-				Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY), new AspectList().add(Aspect.DARKNESS, 5).add(Aspect.ELDRITCH, 5).add(Aspect.HUNGER, 15).add(Aspect.VOID, 10));
+		essenceOblivion = ThaumcraftApi.addShapelessArcaneCraftingRecipe("MB_EssenceOblivion", Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
+				new AspectList().add(Aspect.ENTROPY, 25).add(Aspect.AIR, 40).add(Aspect.ORDER, 15), new Object[] {
+					Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY),
+					Block.dragonEgg,
+		});
 	}
 	
 	private static Object frameMagic;
@@ -455,7 +458,7 @@ public class ThaumcraftHelper
 		ResearchItem essenceOblivionR = new ResearchItem("MB_EssenceOblivion", category, new AspectList().add(Aspect.VOID, 2).add(Aspect.HUNGER, 1),
 				-3, 3, 5,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION))
-			.setPages(getResearchPage("MB_EssenceOblivion.1"), new ResearchPage((RecipeCrucible)essenceOblivion), new ResearchPage(recipe) )
+			.setPages(getResearchPage("MB_EssenceOblivion.1"), new ResearchPage((IArcaneRecipe)essenceOblivion), new ResearchPage(recipe) )
 			.setParents("MB_DimensionalSingularity")
 			.setConcealed()
 			.registerResearchItem();

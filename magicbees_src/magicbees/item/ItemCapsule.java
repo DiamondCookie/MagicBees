@@ -83,13 +83,13 @@ public class ItemCapsule extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-    	this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":capsule" + this.capsuleType.getName().substring(0, 1).toUpperCase() 
+    	this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":capsule" + this.capsuleType.getName().substring(0, 1).toUpperCase() 
     			+ this.capsuleType.getName().substring(1));
     	for (FluidType t : FluidType.values())
     	{
     		if (t != FluidType.EMPTY && t.liquidIcon == null)
     		{
-    			t.liquidIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":liquids/" + t.liquidID);
+    			t.liquidIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":liquids/" + t.liquidID);
     		}
     	}
     }

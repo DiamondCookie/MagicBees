@@ -1,17 +1,14 @@
 package magicbees.block.types;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
-import magicbees.bees.Allele;
 import magicbees.bees.BeeGenomeManager;
-import magicbees.bees.BeeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.bees.HiveDrop;
 import magicbees.item.types.CombType;
+import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.world.feature.FeatureHive;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -121,8 +118,8 @@ public enum HiveType
 		{
 			type.icons = new Icon[2];
 
-			type.icons[0] = register.registerIcon(VersionInfo.ModName.toLowerCase() + ":beehive." + type.ordinal() + ".top");
-			type.icons[1] = register.registerIcon(VersionInfo.ModName.toLowerCase() + ":beehive." + type.ordinal() + ".side");
+			type.icons[0] = register.registerIcon(CommonProxy.DOMAIN + ":beehive." + type.ordinal() + ".top");
+			type.icons[1] = register.registerIcon(CommonProxy.DOMAIN + ":beehive." + type.ordinal() + ".side");
 		}
 	}
 	

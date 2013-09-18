@@ -3,16 +3,14 @@ package magicbees.block;
 import java.util.List;
 
 import magicbees.block.types.PlankType;
+import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
-import magicbees.main.utils.VersionInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -62,7 +60,7 @@ public class BlockPlanks extends Block
 		this.icons = new Icon[PlankType.values().length];
     	for (PlankType t : PlankType.values())
     	{
-    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":" + t.name);
+    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":" + t.name);
     	}
     }
 }

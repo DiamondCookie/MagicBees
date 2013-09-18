@@ -3,7 +3,7 @@ package magicbees.item;
 import java.util.List;
 
 import magicbees.item.types.NuggetType;
-import magicbees.main.utils.VersionInfo;
+import magicbees.main.CommonProxy;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -54,7 +54,7 @@ public class ItemNugget extends Item
     	this.icons = new Icon[NuggetType.values().length];
     	for (int i = 0; i < NuggetType.values().length; i++)
     	{
-    		this.icons[i] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":nugget" 
+    		this.icons[i] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":nugget" 
     				+ NuggetType.values()[i].name().substring(0, 1) 
     				+ NuggetType.values()[i].name().substring(1).toLowerCase());
     	}

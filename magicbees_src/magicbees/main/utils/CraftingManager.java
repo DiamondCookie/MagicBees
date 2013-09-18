@@ -313,12 +313,13 @@ public class CraftingManager
 			'x', Config.nuggets.getStackForType(NuggetType.APATITE)
 		}));
 		
-		output = Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 2);
+		output = Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY);
 		GameRegistry.addRecipe(output, new Object[] {
-			" E ", "pOp", " E ",
+			"EOE", "QDQ", "EOE",
 			'E', Item.eyeOfEnder,
-			'p', Item.enderPearl,
-			'W', Block.obsidian
+			'Q', Block.blockNetherQuartz,
+			'O', Block.obsidian,
+			'D', Block.blockDiamond
 		});
 		
 		output = Config.voidCapsule.getCapsuleForLiquid(FluidType.EMPTY);
@@ -329,6 +330,26 @@ public class CraftingManager
 			'F', Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY),
 			'T', Item.goldNugget
 		});
+		
+		output = new ItemStack(Config.magnet);
+		GameRegistry.addRecipe(output, new Object[] {
+			" i ", "cSc", " B ",
+			'i', Item.ingotIron,
+			'c', Item.compass,
+			'B', Block.blockDiamond,
+			'S', Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY)
+		});
+		
+		for (int level = 1; level <= 8; level++)
+		{
+			output = new ItemStack(Config.magnet, 1, level * 2);
+			GameRegistry.addRecipe(new ShapedOreRecipe(output, new Object[] {
+					" m ", "mSm", " B ",
+					'm', "mb.magnet.level" + (level - 1),
+					'B', Item.diamond,
+					'S', Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY)
+			}));
+		}
 		
 
 		if (ThaumcraftHelper.isActive())

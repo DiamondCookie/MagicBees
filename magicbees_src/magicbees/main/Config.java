@@ -9,7 +9,6 @@ import magicbees.block.BlockHive;
 import magicbees.block.BlockPlanks;
 import magicbees.block.BlockWoodSlab;
 import magicbees.block.types.HiveType;
-import magicbees.block.types.PlankType;
 import magicbees.item.ItemCapsule;
 import magicbees.item.ItemComb;
 import magicbees.item.ItemCrystalAspect;
@@ -17,6 +16,7 @@ import magicbees.item.ItemDrop;
 import magicbees.item.ItemMagicHiveFrame;
 import magicbees.item.ItemMiscResources;
 import magicbees.item.ItemMoonDial;
+import magicbees.item.ItemMysteriousMagnet;
 import magicbees.item.ItemNugget;
 import magicbees.item.ItemPollen;
 import magicbees.item.ItemPropolis;
@@ -27,10 +27,6 @@ import magicbees.item.types.NuggetType;
 import magicbees.item.types.ResourceType;
 import magicbees.item.types.WaxType;
 import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.VersionInfo;
-import magicbees.main.utils.compat.ArsMagicaHelper;
-import magicbees.main.utils.compat.EquivalentExchangeHelper;
-import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
@@ -38,7 +34,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemMultiTextureTile;
-import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -73,7 +68,9 @@ public class Config
 	public boolean	DoHiveRetrogen;
 	public boolean	ForceHiveRegen;
 	
-	public boolean	EnableThaumcraftCompat;
+	public float	MagnetBaseRange;
+	public float	MagnetLevelMultiplier;
+	
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -93,6 +90,7 @@ public class Config
 	public static Item thaumiumGrafter;
 	public static ItemNugget nuggets;
 	public static ItemMoonDial moonDial;
+	public static ItemMysteriousMagnet magnet;
 	
 	//----- Liquid Capsules --------------------
 	public static ItemCapsule magicCapsule;
@@ -299,8 +297,8 @@ public class Config
 
 		jellyBaby = new ItemFood(configuration.getItem("jellyBabies", itemIDBase++).getInt() - 256, 1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setUnlocalizedName(VersionInfo.ModName.toLowerCase() + ":jellyBabies").setTextureName(VersionInfo.ModName.toLowerCase() + ":jellyBabies");
-		GameRegistry.registerItem(jellyBaby, VersionInfo.ModName.toLowerCase() + ":jellyBabies");
+		jellyBaby.setUnlocalizedName(CommonProxy.DOMAIN + ":jellyBabies").setTextureName(CommonProxy.DOMAIN + ":jellyBabies");
+		GameRegistry.registerItem(jellyBaby, CommonProxy.DOMAIN + ":jellyBabies");
 		
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, configuration.getItem("voidCapsule", itemIDBase++).getInt() - 256, this.CapsuleStackSizeMax);
@@ -328,6 +326,16 @@ public class Config
 		moonDial = new ItemMoonDial(configuration.getItem("moonDial", itemIDBase++).getInt() - 256);
 		
 		nuggets = new ItemNugget(configuration.getItem("beeNuggets", itemIDBase++).getInt() - 256);
+		
+		magnet = new ItemMysteriousMagnet(configuration.getItem("magicMagnet", itemIDBase++).getInt() - 256);
+		magnet.setBaseRange(3f); // magnet.setBaseRange(MagnetBaseRange);
+		magnet.setLevelMultiplier(0.75f); // magnet.setLevelMultiplier(MagnetLevelMultiplier);
+		
+		for (int level = 0; level <= 8; level++)
+		{
+			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2));
+			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2 + 1));
+		}
 		
 		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.MAGIC));
@@ -407,11 +415,15 @@ public class Config
 		{
 			FMLLog.info("Magic Bees will attempt to regenerate hives in chunks that were generated before the mod was added.");
 		}
+
+		// TODO: Determine optimal settings, then uncomment.
+		/*p = configuration.get("general", "magnetRangeBase", 3.0);
+		p.comment = "Base range (in blocks) of the Mysterious Magnet";
+		this.MagnetBaseRange = (float)p.getDouble(3.0);
 		
-		// DELETE THIS.
-		p = configuration.get("DEBUG", "enableThaumcraftIntegration", true);
-		p.comment = "If MB blows up because of Thaumcraft, switch this to false.";
-		this.EnableThaumcraftCompat = p.getBoolean(true);
+		p = configuration.get("general", "magnetRangeMultiplier", 0.75);
+		p.comment = "Range multiplier per level of the Mysterious Magnet. Total range = base range + level * multiplier";
+		this.MagnetLevelMultiplier = (float)p.getDouble(0.75);*/
 	}
 
 }

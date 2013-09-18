@@ -1,6 +1,6 @@
 package magicbees.item;
 
-import magicbees.main.utils.VersionInfo;
+import magicbees.main.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import thaumcraft.api.IRepairable;
 import thaumcraft.api.ThaumcraftApi;
-import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.IToolScoop;
 
 public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
@@ -20,7 +19,7 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 		this.setMaxStackSize(1);
 		this.setMaxDamage(30);
 		this.setCreativeTab(forestry.api.core.Tabs.tabApiculture);
-		this.setUnlocalizedName(this.iconString = VersionInfo.ModName.toLowerCase() + ":thaumiumScoop");
+		this.setUnlocalizedName(this.iconString = CommonProxy.DOMAIN + ":thaumiumScoop");
 	}
 
 	@Override

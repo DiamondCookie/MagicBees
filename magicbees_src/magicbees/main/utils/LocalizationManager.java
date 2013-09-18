@@ -38,4 +38,14 @@ public class LocalizationManager
 		}
 		return result;
 	}
+	
+	public static String getLocalizedString(String key, Object ...objects)
+	{
+		String result = LanguageRegistry.instance().getStringLocalization(key);
+		if (result.isEmpty())
+		{
+			result = LanguageRegistry.instance().getStringLocalization(key, "en_US");
+		}
+		return String.format(result, objects);
+	}
 }

@@ -1,16 +1,12 @@
 package magicbees.item;
 
 import magicbees.item.types.HiveFrameType;
-import magicbees.main.Config;
+import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.main.utils.VersionInfo;
-import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import thaumcraft.api.ThaumcraftApi;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -37,7 +33,7 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":frame" + type.getName());
+        this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":frame" + type.getName());
     }
 	
 	// --------- IHiveFrame functions -----------------------------------------

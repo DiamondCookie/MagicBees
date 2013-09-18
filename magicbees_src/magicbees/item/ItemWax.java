@@ -3,7 +3,7 @@ package magicbees.item;
 import java.util.List;
 
 import magicbees.item.types.WaxType;
-import magicbees.main.utils.VersionInfo;
+import magicbees.main.CommonProxy;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -41,8 +41,8 @@ public class ItemWax extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-    	this.itemIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":wax.0");
-    	this.secondaryIcon = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":wax.1");
+    	this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":wax.0");
+    	this.secondaryIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":wax.1");
     }
     
 	@Override

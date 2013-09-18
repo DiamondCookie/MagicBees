@@ -4,19 +4,19 @@ import magicbees.main.utils.LocalizationManager;
 
 public enum HiveFrameType
 {
-	MAGIC("Magic", 240, 1f, 1f, 1f, 2f),
-	RESILIENT("Resilient", 800, 1f, 1f, 1f, 2f),
-	GENTLE("Gentle", 200, 1f, 0.7f, 1.5f, 1.4f),
-	METABOLIC("Metabolic", 130, 1f, 1.8f, 1f, 1.2f),
-	NECROTIC("Necrotic", 280, 1f, 1f, 0.3f, 0.75f),
-	TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f),
-	OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f),
+	MAGIC("Magic", 240, 1f, 1f, 1f, 2f, 0.5f),
+	RESILIENT("Resilient", 800, 1f, 1f, 1f, 2f, 0.5f),
+	GENTLE("Gentle", 200, 1f, 0.7f, 1.5f, 1.4f, 0.1f),
+	METABOLIC("Metabolic", 130, 1f, 1.8f, 1f, 1.2f, 1f),
+	NECROTIC("Necrotic", 280, 1f, 1f, 0.3f, 0.75f, 0.8f),
+	TEMPORAL("Temporal", 300, 1f, 1f, 2.5f, 1f, 0.8f),
+	OBLIVION("Oblivion", 50, 1f, 1f, 0.0001f, 0f, 0.8f),
 	;
 	
 	private HiveFrameType(String name, int damage,
-			float territory, float mutation, float lifespan, float production)
+			float territory, float mutation, float lifespan, float production, float geneticDecay)
 	{
-		this(name, damage, territory, mutation, lifespan, production, 1f, 0f, false, false, false, false);
+		this(name, damage, territory, mutation, lifespan, production, 1f, geneticDecay, false, false, false, false);
 	}
 	
 	private HiveFrameType(String name, int damage,

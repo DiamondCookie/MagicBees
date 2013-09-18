@@ -11,9 +11,9 @@ import magicbees.item.types.DropType;
 import magicbees.item.types.NuggetType;
 import magicbees.item.types.PollenType;
 import magicbees.item.types.ResourceType;
+import magicbees.main.CommonProxy;
 import magicbees.main.Config;
 import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ForestryHelper;
@@ -1113,7 +1113,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		case SKULKING: case GHASTLY: case SPIDERY: case SMOULDERING:
 		case TC_BRAINY: case TC_WISPY: case TC_BATTY:
 		case AM_VORTEX: case AM_WIGHT:
-			value = VersionInfo.ModName.toLowerCase() + ":bees/skulking/";
+			value = CommonProxy.DOMAIN + ":bees/skulking/";
 			break;
 			
 		default:

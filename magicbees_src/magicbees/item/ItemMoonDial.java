@@ -2,22 +2,18 @@ package magicbees.item;
 
 import java.util.List;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import magicbees.item.types.PollenType;
-import magicbees.main.Config;
+import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.MoonPhase;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.main.utils.VersionInfo;
-import magicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMoonDial extends Item
 {
@@ -38,7 +34,7 @@ public class ItemMoonDial extends Item
     	this.icons = new Icon[MoonPhase.values().length];
     	for (int i = 0; i < MoonPhase.values().length; ++i)
     	{
-    		this.icons[i] = par1IconRegister.registerIcon(VersionInfo.ModName.toLowerCase() + ":moonDial." + i);
+    		this.icons[i] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":moonDial." + i);
     	}
     	this.itemIcon = this.icons[4];
     }

@@ -1,13 +1,12 @@
 package magicbees.world;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 
+import magicbees.main.CommonProxy;
 import magicbees.main.utils.ChunkCoords;
-import magicbees.main.utils.VersionInfo;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -57,7 +56,7 @@ public class WorldTicker implements ITickHandler
 	@Override
 	public String getLabel()
 	{
-		return VersionInfo.ModName.toLowerCase() + ".world";
+		return CommonProxy.DOMAIN + ".world";
 	}
 	
 	public void queueChunkCoords(ChunkCoords coords)

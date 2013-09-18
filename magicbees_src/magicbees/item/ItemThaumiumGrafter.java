@@ -1,7 +1,7 @@
 package magicbees.item;
 
+import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,11 +10,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.arboriculture.IToolGrafter;
-import thaumcraft.api.IRepairable;
 import thaumcraft.api.IRepairableExtended;
 import thaumcraft.api.ThaumcraftApi;
+import forestry.api.arboriculture.IToolGrafter;
 
 public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IToolGrafter
 {
@@ -24,7 +22,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 		this.setMaxStackSize(1);
 		this.setMaxDamage(15);
 		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
-		this.setUnlocalizedName(this.iconString = VersionInfo.ModName.toLowerCase() + ":thaumiumGrafter");
+		this.setUnlocalizedName(this.iconString = CommonProxy.DOMAIN + ":thaumiumGrafter");
 	}
 
 	@Override
