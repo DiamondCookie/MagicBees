@@ -117,6 +117,8 @@ public class BeeMutation implements IBeeMutation
 		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.TRANSMUTING, 9);
 		new BeeMutation(BeeSpecies.UNUSUAL, BeeSpecies.MUTABLE, BeeSpecies.CRUMBLING, 9);
 		
+		new BeeMutation(BeeSpecies.MYSTICAL, BeeSpecies.MUTABLE, BeeSpecies.INVISIBLE, 15);
+		
 		if (BeeSpecies.COPPER.isActive())
 		{
 			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Meadows"), BeeSpecies.COPPER, 12)

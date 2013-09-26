@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import magicbees.item.types.CombType;
 import magicbees.main.CommonProxy;
+import magicbees.main.Config;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ForestryHelper;
@@ -44,7 +45,7 @@ public class ItemComb extends Item
 	{
 		for (CombType type : CombType.values())
 		{
-			if (type.showInList)
+			if (type.showInList || MagicBees.getConfig().ForestryDebugEnabled)
 			{
 				list.add(this.getStackForType(type));
 			}

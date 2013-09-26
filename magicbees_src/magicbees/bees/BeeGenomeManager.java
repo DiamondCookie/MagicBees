@@ -758,6 +758,16 @@ public class BeeGenomeManager
 		return genome;
 	}
 	
+	public static IAllele[] getTemplateInvisible()
+	{
+		IAllele[] genome = getTemplateMutableBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.INVISIBLE;
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.effectInvisibility;
+		
+		return genome;
+	}
+	
 	private static IAllele[] getTemplateTCBase()
 	{
 		IAllele[] genome = getTemplateModBase();

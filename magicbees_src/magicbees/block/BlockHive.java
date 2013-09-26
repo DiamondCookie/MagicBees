@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import magicbees.block.types.HiveType;
+import magicbees.main.MagicBees;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -57,7 +58,7 @@ public class BlockHive extends Block
 	{
 		for (HiveType type : HiveType.values())
 		{
-			if (type.show)
+			if (type.show || MagicBees.getConfig().ForestryDebugEnabled)
 			{
 				itemsList.add(new ItemStack(this, 1, type.ordinal()));
 			}

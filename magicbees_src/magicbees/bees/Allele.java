@@ -30,6 +30,7 @@ public class Allele implements IAllele
 	public static IAlleleEffect effectWithering;
 	public static IAlleleEffect effectTransmuting;
 	public static IAlleleEffect effectCrumbling;
+	public static IAlleleEffect effectInvisibility;
 	
 	public static IAlleleEffect spawnBrainyZombie;
 	public static IAlleleEffect spawnWisp;
@@ -103,6 +104,8 @@ public class Allele implements IAllele
 		
 		Allele.effectTransmuting = new AlleleEffectTransmuting("Transmuting", true);
 		Allele.effectCrumbling = new AlleleEffectCrumbling("Crumbling", true);
+		
+		Allele.effectInvisibility = new AlleleEffectPotion("Invisibility", Potion.invisibility, 10, false);
 
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
 			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);

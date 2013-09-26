@@ -166,6 +166,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.TRANSMUTING, 0xDBB24C, 0xA2D2D8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	CRUMBLING("Crumbling", "crumbling", 
 			BeeClassification.TRANSMUTING, 0xDBB24C, 0xDBA4A4, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
+			
+	INVISIBLE("Invisible", "invisible",
+			BeeClassification.VEILED, 0xffccff, 0xffffff, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	// --------- Thaumcraft Bees ---------------------------------------------------------------------------------------
 	TC_AIR("TCAir", "aether",
@@ -597,6 +600,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplateCrumbling())
 			.register();
 		
+		INVISIBLE.addProduct(Config.combs.getStackForType(CombType.MUNDANE), 35)
+			.setGenome(BeeGenomeManager.getTemplateInvisible())
+			.register();
 		
 		TC_AIR.addProduct(Config.combs.getStackForType(CombType.AIRY), 20)
 			.setGenome(BeeGenomeManager.getTemplateTCAir())

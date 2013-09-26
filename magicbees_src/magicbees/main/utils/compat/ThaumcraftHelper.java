@@ -19,8 +19,9 @@ import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.IArcaneRecipe;
-import thaumcraft.api.crafting.RecipeCrucible;
+import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
@@ -155,12 +156,17 @@ public class ThaumcraftHelper
 			getBlocks();
 			getItems();
 			
+			aspectTime = new Aspect("tempus", 0xB68CFF, new Aspect[] { Aspect.VOID, Aspect.ORDER },
+					new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.TEXTURE + "aspects/tempus.png"), 1);
+			
 			//addItemsToBackpack();
 			setupItemAspects();
 			setupCrafting();
 			setupResearch();
 		}
 	}
+	
+	private static Object aspectTime;
 	
 	private static void getBlocks()
 	{
@@ -301,8 +307,17 @@ public class ThaumcraftHelper
 		essenceTime = ThaumcraftApi.addCrucibleRecipe("MB_EssenceTime", Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME),
 				new ItemStack(Item.pocketSundial), new AspectList().add(Aspect.ORDER, 10).add(Aspect.VOID, 10).add(Aspect.TRAP, 4));
 		
-		singularity = ThaumcraftApi.addCrucibleRecipe("MB_DimensionalSingularity", Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 3),
-				new ItemStack(Block.blockDiamond), new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20));
+		input = new ItemStack(Item.enderPearl);
+		singularityA = ThaumcraftApi.addInfusionCraftingRecipe("MB_DimensionalSingularity", Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 3),
+				5, new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20),
+				new ItemStack(Block.blockDiamond),
+				new ItemStack[] { input, input});
+		
+		ItemStack in2 = new ItemStack(Item.diamond);
+		singularityB = ThaumcraftApi.addInfusionCraftingRecipe("MB_DimensionalSingularity", Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 3),
+				6, new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20).add(Aspect.VOID, 15),
+				Config.propolis.getStackForType(PropolisType.UNSTABLE),
+				new ItemStack[] { input, input, in2, in2 });
 		
 		essenceOblivion = ThaumcraftApi.addShapelessArcaneCraftingRecipe("MB_EssenceOblivion", Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
 				new AspectList().add(Aspect.ENTROPY, 25).add(Aspect.AIR, 40).add(Aspect.ORDER, 15), new Object[] {
@@ -315,7 +330,8 @@ public class ThaumcraftHelper
 	private static Object frameOblivion;
 	private static Object thaumScoop;
 	private static Object thaumGrafter;
-	private static Object singularity;
+	private static Object singularityA;
+	private static Object singularityB;
 	private static Object essenceLife;
 	private static Object essenceDeath;
 	private static Object essenceArmor;
@@ -385,7 +401,7 @@ public class ThaumcraftHelper
 		ResearchItem essenceFalseLifeR = new ResearchItem("MB_EssenceLife", category, new AspectList().add(Aspect.LIFE, 2).add(Aspect.MAGIC, 1),
 				2, -1, 2,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE))
-			.setPages(getResearchPage("MB_EssenceLife.1"), new ResearchPage((RecipeCrucible)essenceLife), new ResearchPage(recipe) )
+			.setPages(getResearchPage("MB_EssenceLife.1"), new ResearchPage((CrucibleRecipe)essenceLife), new ResearchPage(recipe) )
 			.setParentsHidden("CRUCIBLE")
 			.registerResearchItem();
 		
@@ -397,7 +413,7 @@ public class ThaumcraftHelper
 		ResearchItem essenceDurabilityR = new ResearchItem("MB_EssenceArmor", category, new AspectList().add(Aspect.ARMOR, 1),
 				5, 0, 3,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY))
-			.setPages(getResearchPage("MB_EssenceArmor.1"), new ResearchPage((RecipeCrucible)essenceArmor), new ResearchPage(recipe) )
+			.setPages(getResearchPage("MB_EssenceArmor.1"), new ResearchPage((CrucibleRecipe)essenceArmor), new ResearchPage(recipe) )
 			.setParents("MB_EssenceLife")
 			.registerResearchItem();
 		
@@ -409,8 +425,8 @@ public class ThaumcraftHelper
 		ResearchItem essenceUnstableR = new ResearchItem("MB_EssenceUnstable", category, new AspectList().add(Aspect.ENTROPY, 2).add(Aspect.ORDER, 1),
 				3, 1, 4,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_FICKLE_PERMANENCE))
-			.setPages(getResearchPage("MB_EssenceUnstable.1"), new ResearchPage((RecipeCrucible)essenceUnstableA),
-				new ResearchPage((RecipeCrucible)essenceUnstableB), new ResearchPage(recipe) )
+			.setPages(getResearchPage("MB_EssenceUnstable.1"), new ResearchPage((CrucibleRecipe)essenceUnstableA),
+				new ResearchPage((CrucibleRecipe)essenceUnstableB), new ResearchPage(recipe) )
 			.setParents("MB_EssenceLife")
 			.setConcealed()
 			.registerResearchItem();
@@ -423,7 +439,7 @@ public class ThaumcraftHelper
 		ResearchItem essenceShallowGraveR = new ResearchItem("MB_EssenceDeath", category, new AspectList().add(Aspect.DEATH, 2).add(Aspect.MAGIC, 1),
 				2, 3, 2,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE))
-			.setPages(getResearchPage("MB_EssenceDeath.1"), new ResearchPage((RecipeCrucible)essenceDeath), new ResearchPage(recipe) )
+			.setPages(getResearchPage("MB_EssenceDeath.1"), new ResearchPage((CrucibleRecipe)essenceDeath), new ResearchPage(recipe) )
 			.setParents("MB_EssenceUnstable")
 			.setConcealed()
 			.registerResearchItem();
@@ -433,18 +449,18 @@ public class ThaumcraftHelper
 		list.add(input);
 		recipe = new ShapelessRecipes(new ItemStack(Config.hiveFrameTemporal), list);
 		
-		ResearchItem essenceTimeR = new ResearchItem("MB_EssenceTime", category, new AspectList().add(Aspect.TRAP, 2).add(Aspect.VOID, 1),
+		ResearchItem essenceTimeR = new ResearchItem("MB_EssenceTime", category, new AspectList().add((Aspect)aspectTime, 2),
 				0, 2, 5,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME))
-			.setPages(getResearchPage("MB_EssenceTime.1"), new ResearchPage((RecipeCrucible)essenceTime), new ResearchPage(recipe) )
+			.setPages(getResearchPage("MB_EssenceTime.1"), new ResearchPage((CrucibleRecipe)essenceTime), new ResearchPage(recipe) )
 			.setParents("MB_EssenceUnstable")
 			.setConcealed()
 			.registerResearchItem();
 		
-		ResearchItem singularityR = new ResearchItem("MB_DimensionalSingularity", category, new AspectList().add(Aspect.ELDRITCH, 2).add(Aspect.VOID, 1),
+		ResearchItem singularityR = new ResearchItem("MB_DimensionalSingularity", category, new AspectList().add(Aspect.ELDRITCH, 2).add((Aspect)aspectTime, 1).add(Aspect.VOID, 1),
 				-1, 4, 5,
 				Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY))
-			.setPages(getResearchPage("MB_DimensionalSingularity.1"), new ResearchPage((RecipeCrucible)singularity) )
+			.setPages(getResearchPage("MB_DimensionalSingularity.1"), new ResearchPage((InfusionRecipe)singularityA) , new ResearchPage((InfusionRecipe)singularityB))
 			.setParents("MB_FrameMagic", "MB_EssenceTime", "MB_EssenceDeath")
 			.setConcealed()
 			.setSpecial()
@@ -455,7 +471,7 @@ public class ThaumcraftHelper
 		list.add(forestry.api.core.ItemInterface.getItem("frameProven"));
 		recipe = new ShapelessRecipes(new ItemStack(Config.hiveFrameOblivion), list);
 		
-		ResearchItem essenceOblivionR = new ResearchItem("MB_EssenceOblivion", category, new AspectList().add(Aspect.VOID, 2).add(Aspect.HUNGER, 1),
+		ResearchItem essenceOblivionR = new ResearchItem("MB_EssenceOblivion", category, new AspectList().add(Aspect.VOID, 2).add(Aspect.HUNGER, 1).add((Aspect)aspectTime, 1),
 				-3, 3, 5,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION))
 			.setPages(getResearchPage("MB_EssenceOblivion.1"), new ResearchPage((IArcaneRecipe)essenceOblivion), new ResearchPage(recipe) )
@@ -478,6 +494,9 @@ public class ThaumcraftHelper
 	{
 		ItemStack item;
 		AspectList list;
+		
+		ThaumcraftApi.registerObjectTag(Item.pocketSundial.itemID, 0, new AspectList(Item.pocketSundial.itemID, 0).add((Aspect)aspectTime, 4));
+		ThaumcraftApi.registerObjectTag(Item.redstoneRepeater.itemID, 0, new AspectList(Item.redstoneRepeater.itemID, 0).add((Aspect)aspectTime, 2));
 		
 		list = new AspectList(Block.wood.blockID, 0);
 		for (int i = 1; i <= 8; i++)
@@ -582,16 +601,16 @@ public class ThaumcraftHelper
 		list = new AspectList().add(Aspect.PLANT, 2);
 		item = forestry.api.core.ItemInterface.getItem("pollen");
 		ThaumcraftApi.registerObjectTag(item.itemID, ForestryHelper.Pollen.NORMAL.ordinal(), list);
-		ThaumcraftApi.registerObjectTag(item.itemID, ForestryHelper.Pollen.CRYSTALLINE.ordinal(), list.copy().add(Aspect.ICE, 1));
-		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.UNUSUAL.ordinal(), list.copy().add(Aspect.MAGIC, 1));
-		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.PHASED.ordinal(), list.copy().add(Aspect.ELDRITCH, 1));
+		ThaumcraftApi.registerObjectTag(item.itemID, ForestryHelper.Pollen.CRYSTALLINE.ordinal(), list.copy().add(Aspect.ICE, 2));
+		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.UNUSUAL.ordinal(), list.copy().add(Aspect.MAGIC, 2));
+		ThaumcraftApi.registerObjectTag(Config.pollen.itemID, PollenType.PHASED.ordinal(), list.copy().add((Aspect)aspectTime, 2));
 		
 		list = new AspectList().add(Aspect.ORDER, 1);
 		item = forestry.api.core.ItemInterface.getItem("beeswax");
-		ThaumcraftApi.registerObjectTag(item.itemID, item.getItemDamage(), list);
-		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), list.copy().add(Aspect.MAGIC, 1));
-		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.SOUL.ordinal(), list.copy().add(Aspect.SOUL, 1));
-		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.AMNESIC.ordinal(), list.copy().add(Aspect.MIND, 1));
+		ThaumcraftApi.registerObjectTag(item.itemID, item.getItemDamage(), list.copy().add(Aspect.ORDER, 2));
+		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.MAGIC.ordinal(), list.copy().add(Aspect.MAGIC, 2));
+		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.SOUL.ordinal(), list.copy().add(Aspect.SOUL, 2));
+		ThaumcraftApi.registerObjectTag(Config.wax.itemID, WaxType.AMNESIC.ordinal(), list.copy().add(Aspect.MIND, 2));
 		
 		list = new AspectList().add(Aspect.EXCHANGE, 2).add(Aspect.LIFE, 2);
 		item = forestry.api.core.ItemInterface.getItem("honeyDrop");
@@ -619,6 +638,6 @@ public class ThaumcraftHelper
 		ThaumcraftApi.registerObjectTag(item.itemID, item.getItemDamage(), new AspectList().add(Aspect.ARMOR, 6));
 		
 		item = Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME);
-		ThaumcraftApi.registerObjectTag(item.itemID, item.getItemDamage(), new AspectList().add(Aspect.VOID, 6));
+		ThaumcraftApi.registerObjectTag(item.itemID, item.getItemDamage(), new AspectList().add(Aspect.VOID, 6).add((Aspect)aspectTime, 8	));
 	}
 }

@@ -293,6 +293,9 @@
 	<entry key="magicbees.speciesTransmuting.description">"I could've sworn this was made out of stone yesterday!"|Sengir, Mad Apiarist</entry>
 	<entry key="magicbees.speciesCrumbling">Crumbling</entry>
 	<entry key="magicbees.speciesCrumbling.description">They have a corrosive effect on their surroundings, rapidly aging them.|Apinomicon</entry>
+	
+	<entry key="magicbees.speciesInvisible">Invisible</entry>
+	<entry key="magicbees.speciesInvisible.description">Easy to miss, their glassy body is difficult to spot in the countryside.|Apinomicon</entry>
 
 	<entry key="magicbees.speciesTCAir">Aer</entry>
 	<entry key="magicbees.speciesTCAir.description">"They work so fast it's breathtaking."|Sengir, Mad Apiarist</entry>
@@ -379,6 +382,7 @@
 	<entry key="magicbees.effectWithering">Withering</entry>
 	<entry key="magicbees.effectTransmuting">Transmuting</entry>
 	<entry key="magicbees.effectCrumbling">Crumbling</entry>
+	<entry key="magicbees.effectInvisiblility">Invisibility</entry>
 	<entry key="magicbees.effectNodeAttract">Aura Attract</entry>
 	<entry key="magicbees.effectNodePurify">Purify Aura</entry>
 	<entry key="magicbees.effectNodeFlux">Aura Flux</entry>

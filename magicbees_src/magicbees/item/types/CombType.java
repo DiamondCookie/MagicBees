@@ -10,9 +10,10 @@ public enum CombType
 	OCCULT("occult", true),
 	OTHERWORLDLY("otherworldly", true),
 	TRANSMUTED("transmuted", true),
+	
 	PAPERY("paper", true),
 	SOUL("soul", true),
-	FURTIVE("furtive", true),
+	FURTIVE("furtive", false),
 	INTELLECT("aware", false),
 	TEMPORAL("time", false),
 	FORGOTTEN("forgotten", false),
@@ -22,12 +23,12 @@ public enum CombType
 	WATERY("water", false),
 	EARTHY("earth", false),
 	
-	TC_AIR("TCair", true),
-	TC_FIRE("TCfire", true),
-	TC_WATER("TCwater", true),
-	TC_EARTH("TCearth", true),
-	TC_ORDER("TCorder", true),
-	TC_CHAOS("TCchaos", true),
+	TC_AIR("TCair", false),
+	TC_FIRE("TCfire", false),
+	TC_WATER("TCwater", false),
+	TC_EARTH("TCearth", false),
+	TC_ORDER("TCorder", false),
+	TC_CHAOS("TCchaos", false),
 	
 	AM_ESSENCE("essence", false),
 	AM_POTENT("potent", false),
@@ -42,9 +43,10 @@ public enum CombType
 		
 		{0xBCA664, 0x35332E},
 		{0x7F7171, 0x876D53},
-		{0xcda6cd, 0x545454},
+		{0xB7ACB7, 0x636363},
 		{0x0092e9, 0x618fff},
 		{0x2F9381, 0x773C31},
+		{0xB191D8, 0x35443B},
 		
 		{0xffff7e, 0x606308},
 		{0xff3C01, 0x5B0D10},

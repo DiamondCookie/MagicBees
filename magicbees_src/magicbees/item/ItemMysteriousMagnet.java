@@ -5,6 +5,7 @@ import java.util.List;
 
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.TabMagicBees;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -27,7 +28,8 @@ public class ItemMysteriousMagnet extends Item
 	
 	private float rangeBase;
 	private float multiplier;
-	private HashMap<Integer, Float> special = new HashMap<Integer, Float>();
+	private int maxLevel;
+	private final float fudgeFactor = 0.2f;
 	
 	public ItemMysteriousMagnet(int par1)
 	{
@@ -36,10 +38,9 @@ public class ItemMysteriousMagnet extends Item
 		this.setHasSubtypes(true);
 		this.rangeBase = 3f;
 		this.multiplier = 0.75f;
-		this.special.put(792499080, 6f);
-		this.special.put(-1813233790, 0.4f);
-		this.special.put(902599041, 5.5f);
+		this.maxLevel = 8;
 		this.setUnlocalizedName(CommonProxy.DOMAIN + ":mysteriousMagnet");
+		this.setCreativeTab(TabMagicBees.tabMagicBees);
 	}
 	
 	public void setBaseRange(float value)
@@ -50,6 +51,16 @@ public class ItemMysteriousMagnet extends Item
 	public void setLevelMultiplier(float value)
 	{
 		this.multiplier = value;
+	}
+	
+	public void setMaximumLevel(int value)
+	{
+		this.maxLevel = value;
+	}
+	
+	public int getMaximumLevel()
+	{
+		return this.maxLevel;
 	}
 
 	@Override
@@ -69,9 +80,12 @@ public class ItemMysteriousMagnet extends Item
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List list)
+	public void getSubItems(int id, CreativeTabs tabs, List list)
 	{
-		super.getSubItems(par1, par2CreativeTabs, list);
+		for (int i = 0; i <= this.maxLevel; i++)
+		{
+			list.add(new ItemStack(this, 1, i * 2));
+		}
 	}
 
 	@Override
@@ -87,6 +101,13 @@ public class ItemMysteriousMagnet extends Item
 	public Icon getIconFromDamage(int damage)
 	{
 		return isMagnetActive(damage) ? this.activeIcon : this.itemIcon;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack itemStack, int pass)
+	{
+		return isMagnetActive(itemStack);
 	}
 
 	@Override
@@ -106,8 +127,29 @@ public class ItemMysteriousMagnet extends Item
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 			int dragCount = player.username.hashCode();
-			float radius = getRadius(itemStack.getItemDamage());
+			float radius = getRadius(itemStack.getItemDamage()) - fudgeFactor;
 			AxisAlignedBB bounds = player.boundingBox.expand(radius, radius, radius);
+			
+			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+			{
+				bounds.expand(fudgeFactor, fudgeFactor, fudgeFactor);
+				
+				if ((itemStack.getItemDamage() >> 1) >= 7)
+				{
+					List<EntityArrow> arrows = world.getEntitiesWithinAABB(EntityArrow.class, bounds);
+					
+					for (EntityArrow arrow : arrows)
+					{
+						if (arrow.canBePickedUp == 1 && world.rand.nextInt(6) == 0)
+						{
+							EntityItem replacement = new EntityItem(world, arrow.posX, arrow.posY, arrow.posZ, new ItemStack(Item.arrow));
+							world.spawnEntityInWorld(replacement);
+						}
+						world.removeEntity(arrow);
+					}
+				}
+			}
+			
 			List<EntityItem> list = world.getEntitiesWithinAABB(EntityItem.class, bounds);
 			
 			for (EntityItem e : list)
@@ -136,28 +178,9 @@ public class ItemMysteriousMagnet extends Item
 					
 					if (world.rand.nextInt(20) == 0)
 					{
-						float pitch = 0.9f - world.rand.nextFloat() / 10f;
+						float pitch = 0.85f - world.rand.nextFloat() * 3f / 10f;
 			            world.playSoundEffect(e.posX, e.posY, e.posZ, "mob.endermen.portal", 0.6f, pitch);
 					}
-				}
-				if (this.special.containsKey(dragCount) && world.rand.nextInt(15) == 0)
-				{
-		            world.playSoundEffect(entity.posX, entity.posY, entity.posZ, "mob.endermen.portal", 1.5f, this.special.get(dragCount));
-				}
-			}
-			
-			if ((itemStack.getItemDamage() >> 1) >= 7 && FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-			{
-				List<EntityArrow> arrows = world.getEntitiesWithinAABB(EntityArrow.class, bounds);
-				
-				for (EntityArrow arrow : arrows)
-				{
-					if (world.rand.nextInt(10) == 0)
-					{
-						EntityItem replacement = new EntityItem(world, arrow.posX, arrow.posY, arrow.posZ, new ItemStack(Item.arrow));
-						world.spawnEntityInWorld(replacement);
-					}
-					world.removeEntity(arrow);
 				}
 			}
 		}

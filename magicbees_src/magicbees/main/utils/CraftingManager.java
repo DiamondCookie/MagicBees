@@ -333,10 +333,10 @@ public class CraftingManager
 		
 		output = new ItemStack(Config.magnet);
 		GameRegistry.addRecipe(output, new Object[] {
-			" i ", "cSc", " B ",
+			" i ", "cSc", " d ",
 			'i', Item.ingotIron,
 			'c', Item.compass,
-			'B', Block.blockDiamond,
+			'd', Item.diamond,
 			'S', Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY)
 		});
 		
@@ -344,9 +344,10 @@ public class CraftingManager
 		{
 			output = new ItemStack(Config.magnet, 1, level * 2);
 			GameRegistry.addRecipe(new ShapedOreRecipe(output, new Object[] {
-					" m ", "mSm", " B ",
+					" d ", "mSm", " B ",
+					'd', Item.diamond,
 					'm', "mb.magnet.level" + (level - 1),
-					'B', Item.diamond,
+					'B', Block.blockRedstone,
 					'S', Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY)
 			}));
 		}

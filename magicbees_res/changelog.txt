@@ -1,5 +1,10 @@
+2.1.6
+How about not crashing because I forgot a colour tuple? >.>
+Presenting a new bee species: You can't see it though, because it's invisible. >_>
+
 2.1.5
 Behold! The Mysterious Magnet! It attracts items to it, and thus, you, from great distances! (well, greater than your arms anyhow.)
+Updating TC4 API for when it releases.
 
 2.1.4
 Some cleanup of Helper code

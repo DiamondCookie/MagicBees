@@ -70,7 +70,9 @@ public class Config
 	
 	public float	MagnetBaseRange;
 	public float	MagnetLevelMultiplier;
+	public int		MagnetMaxLevel;
 	
+	public boolean	ForestryDebugEnabled;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -162,6 +164,8 @@ public class Config
 		this.configuration = new Configuration(configFile);
 		this.configuration.load();
 		this.doMiscConfig();
+		
+		this.ForestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
 	}
 	
 	public void saveConfigs()
@@ -330,6 +334,7 @@ public class Config
 		magnet = new ItemMysteriousMagnet(configuration.getItem("magicMagnet", itemIDBase++).getInt() - 256);
 		magnet.setBaseRange(3f); // magnet.setBaseRange(MagnetBaseRange);
 		magnet.setLevelMultiplier(0.75f); // magnet.setLevelMultiplier(MagnetLevelMultiplier);
+		magnet.setMaximumLevel(8); // magnet.setMaxiumumLevel(MagnetMaxLevel);
 		
 		for (int level = 0; level <= 8; level++)
 		{
@@ -423,7 +428,11 @@ public class Config
 		
 		p = configuration.get("general", "magnetRangeMultiplier", 0.75);
 		p.comment = "Range multiplier per level of the Mysterious Magnet. Total range = base range + level * multiplier";
-		this.MagnetLevelMultiplier = (float)p.getDouble(0.75);*/
+		this.MagnetLevelMultiplier = (float)p.getDouble(0.75);
+		
+		p = configuration.get("general", "magnetMaximumLevel", 8);
+		p.comment = "Maximum level of the magnets.";
+		this.MagnetMaxLevel = p.getInt();*/
 	}
 
 }
