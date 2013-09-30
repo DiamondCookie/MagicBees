@@ -240,13 +240,10 @@ public class CraftingManager
 			input, Config.pollen.getStackForType(PollenType.PHASED)
 		});
 		
-		if (!ThaumcraftHelper.isActive())
-		{
-			GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
-				Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
-				ItemInterface.getItem("frameProven")
-			});
-		}
+		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
+			Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
+			ItemInterface.getItem("frameProven")
+		});
 
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
 		{

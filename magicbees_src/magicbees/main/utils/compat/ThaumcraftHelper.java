@@ -282,12 +282,6 @@ public class ThaumcraftHelper
 					'C', new ItemStack(Config.tcMiscResource, 1, MiscResource.ENCHANTED_FABRIC.ordinal())
 		});
 		
-		frameOblivion = ThaumcraftApi.addShapelessArcaneCraftingRecipe("MB_EssenceOblivion", new ItemStack(Config.hiveFrameOblivion),
-				new AspectList().add(Aspect.ORDER, 10).add(Aspect.ENTROPY, 5), new Object[] {
-					Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
-					ItemInterface.getItem("frameProven")
-		});
-		
 		essenceLife = ThaumcraftApi.addCrucibleRecipe("MB_EssenceLife", Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE),
 				new ItemStack(Block.plantRed), new AspectList().add(Aspect.EXCHANGE, 4).add(Aspect.PLANT, 4));
 		
@@ -327,7 +321,6 @@ public class ThaumcraftHelper
 	}
 	
 	private static Object frameMagic;
-	private static Object frameOblivion;
 	private static Object thaumScoop;
 	private static Object thaumGrafter;
 	private static Object singularityA;
