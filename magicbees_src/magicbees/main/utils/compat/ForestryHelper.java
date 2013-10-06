@@ -133,20 +133,6 @@ public class ForestryHelper
 
 	public static IAllele[] getTemplateForestryForSpecies(String speciesName)
 	{
-		/*IAllele[] template = null;
-		try
-		{
-			//BeeTemplates.getValiantTemplate()
-			Class c = Class.forName("forestry.apiculture.genetics.BeeTemplates");
-			Method m = c.getMethod("get" + speciesName + "Template");
-			template = (IAllele[])(m.invoke(null));
-		}
-		catch (Exception e)
-		{
-			FMLLog.severe("Could not get Forestry template for %s.", speciesName);
-			e.printStackTrace();
-		}
-		return template;*/
 		return BeeManager.beeRoot.getTemplate("forestry.species" + speciesName);
 	}
 	

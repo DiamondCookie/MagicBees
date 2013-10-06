@@ -332,9 +332,9 @@ public class Config
 		nuggets = new ItemNugget(configuration.getItem("beeNuggets", itemIDBase++).getInt() - 256);
 		
 		magnet = new ItemMysteriousMagnet(configuration.getItem("magicMagnet", itemIDBase++).getInt() - 256);
-		magnet.setBaseRange(3f); // magnet.setBaseRange(MagnetBaseRange);
-		magnet.setLevelMultiplier(0.75f); // magnet.setLevelMultiplier(MagnetLevelMultiplier);
-		magnet.setMaximumLevel(8); // magnet.setMaxiumumLevel(MagnetMaxLevel);
+		magnet.setBaseRange(MagnetBaseRange);
+		magnet.setLevelMultiplier(MagnetLevelMultiplier);
+		magnet.setMaximumLevel(MagnetMaxLevel);
 		
 		for (int level = 0; level <= 8; level++)
 		{
@@ -421,8 +421,7 @@ public class Config
 			FMLLog.info("Magic Bees will attempt to regenerate hives in chunks that were generated before the mod was added.");
 		}
 
-		// TODO: Determine optimal settings, then uncomment.
-		/*p = configuration.get("general", "magnetRangeBase", 3.0);
+		p = configuration.get("general", "magnetRangeBase", 3.0);
 		p.comment = "Base range (in blocks) of the Mysterious Magnet";
 		this.MagnetBaseRange = (float)p.getDouble(3.0);
 		
@@ -432,7 +431,7 @@ public class Config
 		
 		p = configuration.get("general", "magnetMaximumLevel", 8);
 		p.comment = "Maximum level of the magnets.";
-		this.MagnetMaxLevel = p.getInt();*/
+		this.MagnetMaxLevel = p.getInt();
 	}
 
 }
