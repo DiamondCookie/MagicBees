@@ -142,30 +142,9 @@
         <jar destfile="${jar.dir}/magicbees-${magicbees.version}-${build.number}.jar" basedir="${classes.dir}/client"/>
 	</target>
 	
-	<!-- Deploy to private share -->
-	<target name="deploy.private" depends="clean,package">		
-        <copy todir="${local.dir}">
-            <fileset dir="${jar.dir}">
-            	<include name="magicbees-*.jar" />
-            </fileset>
-        </copy>
-        <copy todir="${share.dir}/">
-            <fileset dir="${jar.dir}">
-            	<include name="magicbees-*.jar" />
-            </fileset>
-        </copy>
-	</target>
-	
-	<!-- Deploy to public share -->
-	<target name="deploy.public" depends="deploy.private">
-        <copy todir="${deploy.dir}">
-            <fileset dir="${jar.dir}">
-            	<include name="magicbees-*.jar" />
-            </fileset>
-        </copy>
-	</target>
-	
 	<!-- Clean build target without copying of jars -->
 	<target name="main" depends="clean,package" />
+	
+	<target name="fullbuild" depends="forgeclean,package" />
 	
 </project>
