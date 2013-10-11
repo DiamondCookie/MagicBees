@@ -119,4 +119,11 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		return this.type.geneticDecayMod;
 	}
 
+	@Override
+	public boolean isBookEnchantable(ItemStack itemstack1, ItemStack itemstack2)
+	{
+		return false;
+	}
+	
+
 }

@@ -42,8 +42,9 @@ public class FeatureHive
 		int coordY = getHeight(world, random, coordX, coordZ);
 		boolean doSpawn = false;
 		
+		Block b = Block.blocksList[world.getBlockId(coordX, coordY + 1, coordZ)];
 		if (world.isAirBlock(coordX, coordY - 1, coordZ) && world.isAirBlock(coordX, coordY, coordZ) &&
-				GlobalManager.leafBlockIds.contains(world.getBlockId(coordX, coordY + 1, coordZ))  )
+				b != null && b.isLeaves(world, coordX, coordY + 1, coordZ))
 		{
 			world.setBlock(coordX, coordY, coordZ, Config.hive.blockID, HiveType.CURIOUS.ordinal(), 3);
 			if (logSpawns) 	FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Curious", coordX, coordZ, coordY);

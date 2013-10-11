@@ -221,7 +221,7 @@ public class Config
 			MinecraftForge.setBlockHarvestLevel(hive, t.ordinal(), "scoop", 0);
 		}
 		
-		FMLLog.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100% normal.");
+		FMLLog.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100%% normal.");
 		Item.itemsList[hive.blockID] = null;
 		Item.itemsList[hive.blockID] = new ItemMultiTextureTile(hive.blockID - 256, hive, HiveType.getAllNames());
 	}
