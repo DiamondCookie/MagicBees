@@ -304,14 +304,14 @@ public class ThaumcraftHelper
 		input = new ItemStack(Item.enderPearl);
 		singularityA = ThaumcraftApi.addInfusionCraftingRecipe("MB_DimensionalSingularity", Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 3),
 				5, new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20),
-				new ItemStack(Block.blockDiamond),
+				new ItemStack(Block.blockGold),
 				new ItemStack[] { input, input});
 		
 		ItemStack in2 = new ItemStack(Item.diamond);
 		singularityB = ThaumcraftApi.addInfusionCraftingRecipe("MB_DimensionalSingularity", Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY, 3),
 				6, new AspectList().add(Aspect.ELDRITCH, 10).add(Aspect.EXCHANGE, 20).add(Aspect.VOID, 15),
 				Config.propolis.getStackForType(PropolisType.UNSTABLE),
-				new ItemStack[] { input, input, in2, in2 });
+				new ItemStack[] { input, input, in2 });
 		
 		essenceOblivion = ThaumcraftApi.addShapelessArcaneCraftingRecipe("MB_EssenceOblivion", Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
 				new AspectList().add(Aspect.ENTROPY, 25).add(Aspect.AIR, 40).add(Aspect.ORDER, 15), new Object[] {

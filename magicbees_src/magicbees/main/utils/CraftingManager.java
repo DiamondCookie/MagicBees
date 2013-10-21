@@ -312,11 +312,11 @@ public class CraftingManager
 		
 		output = Config.miscResources.getStackForType(ResourceType.DIMENSIONAL_SINGULARITY);
 		GameRegistry.addRecipe(output, new Object[] {
-			"EOE", "QDQ", "EOE",
+			" G ", "QEQ", " W ",
 			'E', Item.eyeOfEnder,
 			'Q', Block.blockNetherQuartz,
-			'O', Block.obsidian,
-			'D', Block.blockDiamond
+			'W', Block.whiteStone,
+			'G', Block.blockGold
 		});
 		
 		output = Config.voidCapsule.getCapsuleForLiquid(FluidType.EMPTY);

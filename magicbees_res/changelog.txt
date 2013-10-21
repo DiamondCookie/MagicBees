@@ -1,5 +1,6 @@
 2.1.7
 Some non-bee bug removals.
+Magnets are ... a bit expensive. >_>;
 
 2.1.6
 How about not crashing because I forgot a colour tuple? >.>
