@@ -173,7 +173,7 @@ public class Allele implements IAllele
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPraecantatio",		BeeSpecies.TC_ORDER);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesVis",				BeeSpecies.TC_VIS);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesPure",				BeeSpecies.TC_PURE);
-		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesFlux",				BeeSpecies.TC_FLUX);
+		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesFlux",				BeeSpecies.TC_TAINT);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesNode",				BeeSpecies.TC_ATTRACT);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesRejuvenating",		BeeSpecies.TC_REJUVENATING);
 		registry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBrainy",			BeeSpecies.TC_BRAINY);

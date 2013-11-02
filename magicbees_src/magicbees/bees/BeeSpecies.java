@@ -186,7 +186,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			
 	TC_VIS("TCVis", "arcanus saecula",
 			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TC_FLUX("TCFlux", "arcanus labe",
+	TC_TAINT("TCFlux", "arcanus labe",
 			BeeClassification.THAUMIC, 0x91376A, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_ATTRACT("TCAttractive", "tractus",
 			BeeClassification.THAUMIC, 0x96FFBC, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
@@ -259,6 +259,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			TC_ORDER.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.ORDER.ordinal()), 5);
 			TC_CHAOS.addSpecialty(new ItemStack(Config.tcShard, 1, ThaumcraftHelper.ShardType.CHAOS.ordinal()), 5);
 			
+			//TC_PURE.addSpecialty(new ItemStack(Config.));
+			
 			TC_BRAINY.addSpecialty(new ItemStack(Config.tcMiscResource,  1, ThaumcraftHelper.MiscResource.ZOMBIE_BRAIN.ordinal()), 2);
 			TC_CHICKEN.addSpecialty(new ItemStack(Config.tcNuggetChicken, 1), 9);
 			TC_BEEF.addSpecialty(new ItemStack(Config.tcNuggetBeef, 1), 9);
@@ -272,6 +274,10 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			TC_WATER.setInactive();
 			TC_EARTH.setInactive();
 			TC_ORDER.setInactive();
+			
+			TC_VIS.setInactive();
+			TC_PURE.setInactive();
+			
 			TC_BRAINY.setInactive();
 			TC_BATTY.setInactive();
 			TC_CHICKEN.setInactive();
@@ -280,10 +286,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		}
 		// TODO: Temporary always off. Maybe.
 			TC_WISPY.setInactive();
-			TC_VIS.setInactive();
-			TC_FLUX.setInactive();
+			TC_TAINT.setInactive();
 			TC_ATTRACT.setInactive();
-			TC_PURE.setInactive();
 			TC_REJUVENATING.setInactive();
 		
 		if (EquivalentExchangeHelper.isActive())
@@ -626,7 +630,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		TC_VIS.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 10)
 			.setGenome(BeeGenomeManager.getTemplateTCVis())
 			.register();
-		TC_FLUX.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18)
+		TC_TAINT.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 18)
 			.setGenome(BeeGenomeManager.getTemplateTCFlux())
 			.register();
 		TC_ATTRACT.addProduct(Config.combs.getStackForType(CombType.INTELLECT), 14)

@@ -127,8 +127,8 @@
 	<entry key="liquid.lava">Lava</entry>
 	<entry key="liquid.biomass">Biomass</entry>
 	<entry key="liquid.biofuel">Biofuel</entry>
-	<entry key="liquid.Oil">Oil</entry>
-	<entry key="liquid.Fuel">Fuel</entry>
+	<entry key="liquid.oil">Oil</entry>
+	<entry key="liquid.fuel">Fuel</entry>
 	<entry key="liquid.seedoil">Seed Oil</entry>
 	<entry key="liquid.honey">Honey</entry>
 	<entry key="liquid.juice">Juice</entry>

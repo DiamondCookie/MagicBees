@@ -5,6 +5,7 @@ import magicbees.main.Config;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,23 +51,27 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 		{
 			Block block = Block.blocksList[id];
 			int meta = world.getBlockMetadata(x, y, z) & 1;
-			block.dropBlockAsItemWithChance(world, x, y, z, meta, 0, 0);
-			if (meta == ThaumcraftHelper.TreeType.GREATWOOD.ordinal())
+			if (meta == 0 || meta == 1)
 			{
-				damage = 2;
-			}
-			else if (meta == ThaumcraftHelper.TreeType.SILVERWOOD.ordinal())
-			{
-				damage = 4;
+				this.dropItem(world, x, y, z, new ItemStack(Config.tcPlant, 1, meta));
 			}
 		}
 		itemstack.damageItem(damage, entityLiving);
-		
-		if (entityLiving instanceof EntityPlayer)
-		{
-			EntityPlayer p = (EntityPlayer)entityLiving;
-		}
 		return true;
+	}
+	
+	private void dropItem(World world, int x, int y, int z, ItemStack item)
+	{
+        if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops"))
+        {
+            float f = 0.7F;
+            double d0 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+            double d1 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+            double d2 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+            EntityItem entityitem = new EntityItem(world, (double)x + d0, (double)y + d1, (double)z + d2, item);
+            entityitem.delayBeforeCanPickup = 10;
+            world.spawnEntityInWorld(entityitem);
+        }
 	}
 	
     /**
@@ -100,14 +105,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 		if (stack.getItemDamage() > 0)
 		{
 			flag = true;
-			if (enchantLevel > 2)
-			{
-				player.setFire(enchantLevel * enchantLevel / 2);
-			}
-			else
-			{
-				player.addExhaustion(0.8f * (enchantLevel * enchantLevel));
-			}
+			player.addExhaustion(0.6f * (enchantLevel * enchantLevel));
 		}
 		return flag;
 	}

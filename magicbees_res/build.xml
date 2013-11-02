@@ -1,8 +1,8 @@
 <project name="MagicBees" basedir="../../../" default="main">
-	<property name="build.dir"			value="build" />
+	<property name="build.dir"			value="build/MagicBees" />
 	<property name="classes.dir" 		value="${build.dir}/classes" />
 	<property name="resource.dir"		value="${build.dir}/mc.dev" />
-	<property name="jar.dir"			value="${build.dir}/jar" />
+	<property name="jar.dir"			value="build/jar" />
 	
 	<property name="src.dir"			value="Sources/MagicBees" />
 	
@@ -15,7 +15,7 @@
     
 	<property name="mc.version"			value="1.6.2"/>
     <property name="forge.version"		value="9.10.1.849"/>
-    <property name="magicbees.version"	value="2.1.7"/>
+    <property name="magicbees.version"	value="2.1.8"/>
 
 	<!-- for local deployment only, not used by main -->
 	<property name="deploy.type"		value="previews" />

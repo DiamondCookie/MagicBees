@@ -21,8 +21,8 @@ public enum FluidType
 	ETHANOL("ethanol"),
 	
 	// Buildcraft
-	OIL("Oil"),
-	FUEL("Fuel"),
+	OIL("oil"),
+	FUEL("fuel"),
 	
 	// More Forestry
 	SEEDOIL("seedoil"),

@@ -214,6 +214,7 @@ public class CraftingManager
 			'E', Block.dragonEgg,
 		});
 		
+		// IF YOU UPDATE THESE, CHANGE THE RECIPES IN THAUMCRAFT HELPER, YOU IDIOT.
 		input = new ItemStack(Config.hiveFrameMagic);
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameResilient), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY),
@@ -227,7 +228,7 @@ public class CraftingManager
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameNecrotic), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_SHALLOW_GRAVE),
-			input, Item.rottenFlesh, Item.rottenFlesh, Item.rottenFlesh, Item.rottenFlesh
+			input
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameMetabolic), new Object[] {
@@ -237,13 +238,14 @@ public class CraftingManager
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameTemporal), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME),
-			input, Config.pollen.getStackForType(PollenType.PHASED)
+			input
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
 			ItemInterface.getItem("frameProven")
 		});
+		// </idiot>
 
 		if (OreDictionary.getOres("ingotCopper").size() <= 0)
 		{

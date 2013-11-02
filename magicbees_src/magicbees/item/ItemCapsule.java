@@ -89,7 +89,7 @@ public class ItemCapsule extends Item
     	{
     		if (t != FluidType.EMPTY && t.liquidIcon == null)
     		{
-    			t.liquidIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":liquids/" + t.liquidID);
+    			t.liquidIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":liquids/" + t.liquidID.toLowerCase());
     		}
     	}
     }

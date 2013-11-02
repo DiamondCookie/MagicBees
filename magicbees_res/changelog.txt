@@ -1,3 +1,6 @@
+2.1.8
+Fixing inconcistent recipes between Thaumonomicon & actual crafting
+
 2.1.7
 Some non-bee bug removals.
 Magnets are ... a bit expensive. >_>;

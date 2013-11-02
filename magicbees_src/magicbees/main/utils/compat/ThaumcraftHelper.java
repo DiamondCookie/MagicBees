@@ -106,7 +106,9 @@ public class ThaumcraftHelper
 		GREATWOOD_SAPLING,
 		SILVERWOOD_SAPLING,
 		SHIMMERLEAF,
-		CINDERPEARL;
+		CINDERPEARL,
+		PURIFYING_PLANT,
+		;
 	}
 	
 	public enum TreeType
