@@ -153,7 +153,7 @@ public class FeatureHive
 				netherQuartzGen.generateVein(world, random, coordX, coordY, coordZ - 1, 4);
 			}
 		}
-		else
+		else if (MagicBees.getConfig().DoSpecialHiveGen)
 		{
 			int coordY = random.nextInt(13) + 5;
 			
@@ -216,7 +216,7 @@ public class FeatureHive
 				}
 			}
 		}
-		else
+		else if (MagicBees.getConfig().DoSpecialHiveGen)
 		{
 			// 1 per gen
 			int coordY = random.nextInt(5) + 5;

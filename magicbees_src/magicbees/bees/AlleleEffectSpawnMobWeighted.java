@@ -28,7 +28,7 @@ public class AlleleEffectSpawnMobWeighted extends AlleleEffect
 	@Override
 	public IEffectData validateStorage(IEffectData storedData)
 	{
-		if (storedData == null)
+		if (storedData == null || !(storedData instanceof magicbees.bees.EffectData))
 		{
 			storedData = new EffectData(1, 0, 0);
 		}

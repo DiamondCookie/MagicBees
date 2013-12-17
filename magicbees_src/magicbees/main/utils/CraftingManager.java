@@ -465,6 +465,9 @@ public class CraftingManager
 		RecipeManagers.centrifugeManager.addRecipe(20,  Config.combs.getStackForType(CombType.TEMPORAL),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.pollen.getStackForType(PollenType.PHASED), new ItemStack(Config.fHoneydew, 1)},
 				new int[] {100, 5, 60});
+		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TRANSMUTED), 
+				new ItemStack[] {ItemInterface.getItem("beeswax"), Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.UNSTABLE)}, 
+				new int[] {80, 80, 15});
 		
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.AIRY),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Item.feather) },

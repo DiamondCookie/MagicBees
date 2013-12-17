@@ -63,6 +63,7 @@ public class Config
 	public boolean	AreMagicPlanksFlammable;
 	public boolean	UseImpregnatedStickInTools;
 	public boolean	MoonDialShowsPhaseInText;
+	public boolean	DoSpecialHiveGen;
 	public String	ThaumaturgeExtraItems;
 	public int		CapsuleStackSizeMax;
 	public boolean	DoHiveRetrogen;
@@ -402,6 +403,10 @@ public class Config
 		p = configuration.get("general", "moonDialShowText", false);
 		p.comment = "set to true to show the current moon phase in mouse-over text.";
 		this.MoonDialShowsPhaseInText = p.getBoolean(false);
+		
+		p = configuration.get("general", "doSpecialHiveGen", true);
+		p.comment = "Set to false if you hate fun and do not want special hives generating in Magic biomes.";
+		this.DoSpecialHiveGen = p.getBoolean(true);
 		
 		p = configuration.get("Retrogen", "doHiveRetrogen", false);
 		p.comment = "Set to true to enable retroactive worldgen of Magic Bees hives.";

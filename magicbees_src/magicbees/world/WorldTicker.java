@@ -32,7 +32,7 @@ public class WorldTicker implements ITickHandler
 		int dimensionID = world.provider.dimensionId;
 		LinkedList<ChunkCoords> chunkList = chunkRegenList.get(dimensionID);
 		
-		if (chunkList != null && chunkList.size() > 0)
+		if (chunkList != null && chunkList.peekFirst() != null)
 		{
 			ChunkCoords coords = chunkList.removeFirst();
 
