@@ -49,6 +49,9 @@ public class MagicBees
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
+		this.modConfig = new Config(event.getSuggestedConfigurationFile());
+		
 		// Compatibility Helpers setup time.
 		ForestryHelper.preInit();
 		ExtraBeesHelper.preInit();
@@ -56,8 +59,6 @@ public class MagicBees
 		EquivalentExchangeHelper.preInit();
 		ArsMagicaHelper.preInit();
 		
-		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
-		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		this.modConfig.setupBlocks();
 		this.modConfig.setupItems();
 		
@@ -97,6 +98,7 @@ public class MagicBees
 		this.modConfig.saveConfigs();
 		
 		CraftingManager.setupCrafting();
+		CraftingManager.registerLiquidContainers();
 		
 		VersionInfo.doVersionCheck();
 	}

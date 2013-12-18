@@ -30,7 +30,7 @@ public class VersionInfo
 
 	public static final String Logo = "/gfx/magicbees/logo.png";
 
-	public static final String Depends = "required-after:Forestry;after:Thaumcraft;after:ExtraBees;after:EE3;after:ArsMagica;after:TConstruct";
+	public static final String Depends = "required-after:Forestry;after:Thaumcraft;after:ExtraBees;after:EE3;after:ArsMagica;after:TConstruct;after:Railcraft";
 
 	boolean criticalUpdate;
 	boolean newVersion;

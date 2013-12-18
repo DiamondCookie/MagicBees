@@ -29,15 +29,18 @@ import forestry.api.recipes.RecipeManagers;
 
 public class CraftingManager
 {
+	public static void registerLiquidContainers()
+	{
+		registerLiquidContainer(Config.magicCapsule);
+		registerLiquidContainer(Config.voidCapsule);
+	}
+	
 	public static void setupCrafting()
 	{
 		// Broken up into seperate sections to make things a bit easier to find.
 		setupVanillaCrafting();
 		setupCentrifugeRecipes();
 		setupCarpenterRecipes();
-
-		registerLiquidContainer(Config.magicCapsule);
-		registerLiquidContainer(Config.voidCapsule);
 	}
 	
 	private static void setupVanillaCrafting()
@@ -614,7 +617,7 @@ public class CraftingManager
 			if (liquid != null)
 			{
 				filled = new ItemStack(baseCapsule, 1, fluidType.ordinal());
-				FluidContainerRegistry.registerFluidContainer(liquid, filled);
+				FluidContainerRegistry.registerFluidContainer(liquid, filled, empty);
 
 				// Register with Squeezer/Bottler
 				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);

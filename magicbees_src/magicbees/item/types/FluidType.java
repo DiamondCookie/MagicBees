@@ -18,7 +18,7 @@ public enum FluidType
 	
 	// Forestry
 	BIOMASS("biomass"),
-	ETHANOL("ethanol"),
+	ETHANOL("bioethanol"),
 	
 	// Buildcraft
 	OIL("oil"),
@@ -34,12 +34,12 @@ public enum FluidType
 	// ExtraBees liquids
 	ACID("acid"),
 	POISON("poison"),
-	LIQUIDNITROGEN("liquidNitrogen"),
-	DNA("liquidDNA"),
+	LIQUIDNITROGEN("liquidnitrogen"),
+	DNA("liquiddna"),
 	
 	// Railcraft
-	CREOSOTEOIL("Creosote Oil"),
-	STEAM("Steam"),
+	CREOSOTEOIL("creosote"),
+	STEAM("steam"),
 	;
 	public String liquidID;
 	public int iconIdx;
