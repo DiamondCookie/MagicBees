@@ -1,6 +1,7 @@
 2.1.9
 Adding configuration option to not spawn special hives in Magic Biomes for people who hate fun, and specialness.
 Adding a shadow to the Tempus aspect for Vazkii.
+Possibly fixing issues with fluid containers.
 
 2.1.8
 Fixing inconcistent recipes between Thaumonomicon & actual crafting

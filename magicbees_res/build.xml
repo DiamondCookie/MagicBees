@@ -15,14 +15,7 @@
     
 	<property name="mc.version"			value="1.6.2"/>
     <property name="forge.version"		value="9.10.1.849"/>
-    <property name="magicbees.version"	value="2.1.8"/>
-
-	<!-- for local deployment only, not used by main -->
-	<property name="deploy.type"		value="previews" />
-	<property name="deploy.root"		value="C:\Users\Marc\Dropbox\Public\magicBees" />
-	<property name="deploy.dir"			value="${deploy.root}\${deploy.type}" />
-	<property name="share.dir"			value="C:\Users\Marc\Dropbox\Shared\magicBees" />
-	<property name="local.dir"			value="D:\Games\Minecraft\MultiMC\instances\1.4.6 pure\minecraft\mods" />
+    <property name="magicbees.version"	value="2.1.9"/>
 	
 		<!-- TARGETS -->
 	<target name="clean">
