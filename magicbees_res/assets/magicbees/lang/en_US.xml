@@ -126,7 +126,7 @@
 	<entry key="liquid.water">Water</entry>
 	<entry key="liquid.lava">Lava</entry>
 	<entry key="liquid.biomass">Biomass</entry>
-	<entry key="liquid.biofuel">Biofuel</entry>
+	<entry key="liquid.bioethanol">Bioethanol</entry>
 	<entry key="liquid.oil">Oil</entry>
 	<entry key="liquid.fuel">Fuel</entry>
 	<entry key="liquid.seedoil">Seed Oil</entry>
@@ -136,10 +136,10 @@
 	<entry key="liquid.milk">Milk</entry>
 	<entry key="liquid.acid">Acid</entry>
 	<entry key="liquid.poison">Poison</entry>
-	<entry key="liquid.liquidNitrogen">Liquid Nitrogen</entry>
-	<entry key="liquid.liquidDNA">Liquid DNA</entry>
-	<entry key="liquid.Creosote Oil">Creosote Oil</entry>
-	<entry key="liquid.Steam">Steam</entry>
+	<entry key="liquid.liquidnitrogen">Liquid Nitrogen</entry>
+	<entry key="liquid.liquiddna">Liquid DNA</entry>
+	<entry key="liquid.creosote">Creosote Oil</entry>
+	<entry key="liquid.steam">Steam</entry>
 
 	<!-- Moon Phases -->
 	<entry key="moon.full">Full Moon</entry>

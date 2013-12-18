@@ -109,7 +109,7 @@
 	<entry key="liquid.water">с водой</entry>
 	<entry key="liquid.lava">с лавой</entry>
 	<entry key="liquid.biomass">с биомассой</entry>
-	<entry key="liquid.biofuel">с биотопливом</entry>
+	<entry key="liquid.bioethanol">с биотопливом</entry>
 	<entry key="liquid.Oil">с нефтью</entry>
 	<entry key="liquid.Fuel">с топливом</entry>
 	<entry key="liquid.seedoil">с растительным маслом</entry>
@@ -119,10 +119,10 @@
 	<entry key="liquid.milk">с молоком</entry>
 	<entry key="liquid.acid">с кислотой</entry>
 	<entry key="liquid.poison">с ядом</entry>
-	<entry key="liquid.liquidNitrogen">с жидким азотом</entry>
-	<entry key="liquid.liquidDNA">с жидким ДНК</entry>
-	<entry key="liquid.Creosote Oil">с креозотным маслом</entry>
-	<entry key="liquid.Steam">с паром</entry>
+	<entry key="liquid.liquidnitrogen">с жидким азотом</entry>
+	<entry key="liquid.liquiddna">с жидким ДНК</entry>
+	<entry key="liquid.creosote">с креозотным маслом</entry>
+	<entry key="liquid.steam">с паром</entry>
 
 	<!-- Moon Phases -->
 	<entry key="moon.full">Полнолуние</entry>

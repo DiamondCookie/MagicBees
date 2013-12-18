@@ -109,7 +109,7 @@
 	<entry key="liquid.water">水</entry>
 	<entry key="liquid.lava">岩浆</entry>
 	<entry key="liquid.biomass">生物质</entry>
-	<entry key="liquid.biofuel">空</entry>
+	<entry key="liquid.bioethanol">空</entry>
 	<entry key="liquid.Oil">石油</entry>
 	<entry key="liquid.Fuel">燃油</entry>
 	<entry key="liquid.seedoil">种子油</entry>
@@ -119,10 +119,10 @@
 	<entry key="liquid.milk">牛奶</entry>
 	<entry key="liquid.acid">酸</entry>
 	<entry key="liquid.poison">毒液</entry>
-	<entry key="liquid.liquidNitrogen">液氮</entry>
-	<entry key="liquid.liquidDNA">液态DNA</entry>
-	<entry key="liquid.Creosote Oil">木榴油</entry>
-	<entry key="liquid.Steam">蒸汽</entry>
+	<entry key="liquid.liquidnitrogen">液氮</entry>
+	<entry key="liquid.liquiddna">液态DNA</entry>
+	<entry key="liquid.creosote">木榴油</entry>
+	<entry key="liquid.steam">蒸汽</entry>
 
 	<!-- Moon Phases -->
 	<entry key="moon.full">满月</entry>
