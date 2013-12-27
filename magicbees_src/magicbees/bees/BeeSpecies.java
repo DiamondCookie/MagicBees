@@ -528,9 +528,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		
 		ALUMINUM.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 			.setGenome(BeeGenomeManager.getTemplateAluminum());
-		if (OreDictionary.getOres("nuggetNaturalAluminum").size() > 0)
+		if (OreDictionary.getOres("nuggetAluminum").size() > 0)
 		{
-			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetNaturalAluminum").get(0), 20);
+			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetAluminum").get(0), 20);
 		}
 		else
 		{

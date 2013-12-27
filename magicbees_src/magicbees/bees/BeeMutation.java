@@ -156,7 +156,7 @@ public class BeeMutation implements IBeeMutation
 		if (BeeSpecies.ALUMINUM.isActive())
 		{
 			new BeeMutation(Allele.getBaseSpecies("Industrious"), Allele.getBaseSpecies("Cultivated"), BeeSpecies.ALUMINUM, 10)
-				.setBlockRequired("blockNaturalAluminum");
+				.setBlockRequired("blockAluminum");
 		}
 		if (BeeSpecies.ARDITE.isActive())
 		{

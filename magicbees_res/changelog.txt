@@ -1,3 +1,6 @@
+2.1.10
+Changing Aluminum bees to use changed ore dictionary entries. mDiyo Houuuuuuuuuuuuuuuuuse!
+
 2.1.9
 Adding configuration option to not spawn special hives in Magic Biomes for people who hate fun, and specialness.
 Adding a shadow to the Tempus aspect for Vazkii.
