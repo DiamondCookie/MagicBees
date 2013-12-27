@@ -78,11 +78,11 @@ public class Allele implements IAllele
 			Allele.flowerArsMagica = new AlleleFlower("flowerArsMagicaPlant", new FlowerProviderArsMagicaFlower(), false);
 			//String id, boolean isDominant, int throttle, String[] mobs, int[] chance
 			Allele.spawnManaDrainer = new AlleleEffectSpawnMobWeighted("ManaDrain", true, 20,
-					new String[] { "ArsMagica.MobManaCreeper", "ArsMagica.ManaVortex" },
+					new String[] { ArsMagicaHelper.Name + ".MobManaCreeper", ArsMagicaHelper.Name + ".ManaVortex" },
 					new int[] { 60, 2 });
 			
 			Allele.spawnWispOrHecate = new AlleleEffectSpawnMobWeighted("AMWisp", true, 20,
-					new String[] { "ArsMagica.MobWisp", "ArsMagica.MobHecate" },
+					new String[] { ArsMagicaHelper.Name + ".MobWisp", ArsMagicaHelper.Name + ".MobHecate" },
 					new int[] { 40, 3 });
 		}
 		else

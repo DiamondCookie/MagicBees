@@ -37,7 +37,7 @@ public class ArsMagicaHelper
 	}
 	
 	private static boolean isArsMagicaPresent = false;
-	private static final String Name = "arsmagica2";
+	public static final String Name = "arsmagica2";
 	
 	public static boolean isActive()
 	{
