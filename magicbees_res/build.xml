@@ -15,7 +15,7 @@
     
 	<property name="mc.version"			value="1.6.2"/>
     <property name="forge.version"		value="9.10.1.849"/>
-    <property name="magicbees.version"	value="2.1.9"/>
+    <property name="magicbees.version"	value="2.1.10"/>
 	
 		<!-- TARGETS -->
 	<target name="clean">
