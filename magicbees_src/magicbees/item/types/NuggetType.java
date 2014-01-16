@@ -12,7 +12,13 @@ public enum NuggetType
 	LEAD,
 	DIAMOND,
 	EMERALD,
-	APATITE,
+	APATITE, 
+	ELECTRUM,
+	PLATINUM,
+	NICKEL,
+	INVAR,
+	BRONZE,
+	ENDERIUM,
 	;
 	
 	private Item targetIngot;

@@ -1187,7 +1187,211 @@ public class BeeGenomeManager
 		
 		return genome;
 	}
+	
+	public static IAllele[] getTemplateTEBase()
+	{
+		IAllele[] genome = getTemplateModBase();
+		
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		genome[EnumBeeChromosome.TOLERANT_FLYER.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFast");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLonger");		
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersVanilla");
+		
+		
+		return genome;
+	}
 
+	public static IAllele[] getTemplateTEBaseMetal()
+	{
+		IAllele[] genome = getTemplateTEBase();
+		
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");		
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedSlowest");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityLow");
+		
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEBaseNether()
+	{
+		IAllele[] genome = getTemplateTEBase();
+		
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");		
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedSlow");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectIgnition");
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersNether");
+		
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEEnd()
+	{
+		IAllele[] genome = getTemplateTEBase();
+		
+		genome[EnumBeeChromosome.NOCTURNAL.ordinal()] = Allele.getBaseAllele("boolTrue");		
+		genome[EnumBeeChromosome.CAVE_DWELLING.ordinal()] = Allele.getBaseAllele("boolTrue");
+		genome[EnumBeeChromosome.SPEED.ordinal()] = Allele.getBaseAllele("speedFastest");
+		genome[EnumBeeChromosome.FERTILITY.ordinal()] = Allele.getBaseAllele("fertilityHigh");
+		genome[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		genome[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = Allele.getBaseAllele("toleranceBoth2");
+		genome[EnumBeeChromosome.LIFESPAN.ordinal()] = Allele.getBaseAllele("lifespanLongest");
+		
+		
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEElectrum()
+	{
+		IAllele[] genome = getTemplateTEBaseMetal();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_ELECTRUM;
+		
+		return genome;
+	}
+	public static IAllele[] getTemplateTEPlatinum()
+	{
+		IAllele[] genome = getTemplateTEBaseNether();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_PLATINUM;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTENickel()
+	{
+		IAllele[] genome = getTemplateTEBaseMetal();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_NICKEL;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEInvar()
+	{
+		IAllele[] genome = getTemplateTEBaseNether();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_INVAR;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEBronze()
+	{
+		IAllele[] genome = getTemplateTEBaseMetal();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_BRONZE;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateRSAFluxed()
+	{
+		IAllele[] genome = getTemplateTEBaseNether();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.RSA_FLUXED;
+		
+		return genome;
+	}
+	public static IAllele[] getTemplateTEDante()
+	{
+		IAllele[] genome = getTemplateTEBaseNether();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_DANTE;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEPyro()
+	{
+		IAllele[] genome = getTemplateTEEnd();
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_PYRO;
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectIgnition");
+		
+
+		
+		
+		
+		return genome;
+	}
+	
+	
+	public static IAllele[] getTemplateTEDestabilized()
+	{
+		IAllele[] genome = getTemplateTEBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_DESTABILIZED;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTELux()
+	{
+		IAllele[] genome = getTemplateTEBaseNether();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_LUX;
+		
+		return genome;
+	}
+	public static IAllele[] getTemplateTEWinsome()
+	{
+		IAllele[] genome = getTemplateTEBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_WINSOME;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEEndearing()
+	{
+		IAllele[] genome = getTemplateTEEnd();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_ENDEARING;
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEGelid()
+	{
+		IAllele[] genome = getTemplateTEEnd();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_GELID;
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersSnow");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectGlacial");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTEBlizzy()
+	{
+		IAllele[] genome = getTemplateTEEnd();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_BLIZZY;
+		genome[EnumBeeChromosome.FLOWER_PROVIDER.ordinal()] = Allele.getBaseAllele("flowersSnow");
+		genome[EnumBeeChromosome.EFFECT.ordinal()] = Allele.getBaseAllele("effectGlacial");
+		
+		return genome;
+	}
+	
+	public static IAllele[] getTemplateTECoal()
+	{
+		IAllele[] genome = getTemplateTEBase();
+		
+		genome[EnumBeeChromosome.SPECIES.ordinal()] = BeeSpecies.TE_COAL;
+		
+		return genome;
+	}
+	
+
+	
 	public static ItemStack getBeeNBTForSpecies(BeeSpecies species, EnumBeeType beeType)
 	{
 		ItemStack taggedBee;

@@ -4,7 +4,7 @@
 	<property name="resource.dir"		value="${build.dir}/mc.dev" />
 	<property name="jar.dir"			value="build/jar" />
 	
-	<property name="src.dir"			value="Sources/MagicBees" />
+	<property name="src.dir"			value="Sources/Minecraft" />
 	
 	<property name="forge.dir"			value="${build.dir}/forge" />
 	<property name="mcp.dir"			value="${forge.dir}/mcp" />

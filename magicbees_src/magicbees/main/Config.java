@@ -41,6 +41,8 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -155,6 +157,32 @@ public class Config
 	//----- Ars Magica Items -----------------------------------
 	public static Item amItemResource;
 	public static Item amEssence;
+	//----Redstone Arsenal Items---
+	public static ItemStack rsaFluxBlock;
+	public static ItemStack rsaFluxNugget;	
+	//---ThermalExpansion Items ---
+	public static ItemStack teEnderiumBlock;
+	public static ItemStack teElectrumBlock;
+	public static ItemStack teInvarBlock;
+	public static ItemStack teNickelBlock;
+	public static ItemStack tePlatinumBlock;
+	public static ItemStack teBronzeBlock;	
+	public static ItemStack teEnderiumNugget;
+	public static ItemStack teInvarNugget;
+	public static ItemStack teElectrumNugget;
+	public static ItemStack teNickelNugget;
+	public static ItemStack tePlatinumNugget;
+	public static ItemStack teDustCryotheum;
+	public static ItemStack teDustBlizz;
+	public static ItemStack teDustPyrotheum;
+	public static ItemStack teDustSulfur;
+	public static ItemStack teDustPlatinum;
+	public static FluidStack teFluidGlowstone;
+	public static FluidStack teFluidCoal;
+	public static FluidStack teFluidRedstone;
+	public static FluidStack teFluidEnder;
+		
+	
 	
 
 	//----- Config State info ----------------------------------

@@ -11,7 +11,9 @@ import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import magicbees.main.utils.compat.ForestryHelper;
+import magicbees.main.utils.compat.RedstoneArsenalHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.ThermalExpansionHelper;
 import magicbees.world.WorldGeneratorHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -58,7 +60,9 @@ public class MagicBees
 		ThaumcraftHelper.preInit();
 		EquivalentExchangeHelper.preInit();
 		ArsMagicaHelper.preInit();
-		
+		ThermalExpansionHelper.preInit();
+		RedstoneArsenalHelper.preInit();
+			
 		this.modConfig.setupBlocks();
 		this.modConfig.setupItems();
 		
@@ -75,6 +79,8 @@ public class MagicBees
 		ThaumcraftHelper.init();
 		EquivalentExchangeHelper.init();
 		ArsMagicaHelper.init();
+		ThermalExpansionHelper.init();
+		RedstoneArsenalHelper.init();
 		
 		GameRegistry.registerWorldGenerator(worldHandler = new WorldGeneratorHandler());		
 	}
@@ -87,6 +93,8 @@ public class MagicBees
 		ThaumcraftHelper.postInit();
 		EquivalentExchangeHelper.postInit();
 		ArsMagicaHelper.postInit();
+		ThermalExpansionHelper.postInit();
+		RedstoneArsenalHelper.postInit();
 		
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.instance().registerGuiHandler(this, this.guiHandler);
