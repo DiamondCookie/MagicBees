@@ -31,7 +31,12 @@ public enum CombType
 	TC_CHAOS("TCchaos", false),
 	
 	AM_ESSENCE("essence", false),
-	AM_POTENT("potent", false),
+	AM_POTENT("potent", false),	
+	
+	TE_DESTABILIZED("TEelectric", false),
+	TE_CARBON("TEcarbon", false),
+	TE_LUX("TElux", false),
+	TE_ENDEARING("TEendearing", false),
 	;
 	
 	private static int[][] colours = new int[][] {
@@ -62,6 +67,11 @@ public enum CombType
 		
 		{0xCC8604, 0x41046F},
 		{0xCCCC04, 0x41046F},
+		
+		{0xCC002C, 0x6B0118},
+		{0x454545, 0x0F0F0F},
+		{0xF5F3A4, 0xC9C87D},
+		{0x12E3D9, 0x069E97},
 	};
 	
 	private CombType(String pName, boolean show)

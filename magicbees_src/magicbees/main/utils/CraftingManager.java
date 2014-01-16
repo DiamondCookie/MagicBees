@@ -14,6 +14,7 @@ import magicbees.main.Config;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.ThermalExpansionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -535,6 +536,24 @@ public class CraftingManager
 					new ItemStack[] {ItemInterface.getItem("beeswax"), ItemInterface.getItem("refractoryWax"), ItemInterface.getItem("honeydew") },
 					new int[] { 50, 50, 65 } );
 		}
+		if (ThermalExpansionHelper.isActive())
+		{
+			
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TE_DESTABILIZED), 
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.drops.getStackForType(DropType.DESTABILIZED)},
+					new int[] {50, 22});
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TE_CARBON), 
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.drops.getStackForType(DropType.CARBON)},
+					new int[] {50, 22});
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TE_LUX), 
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.drops.getStackForType(DropType.LUX)},
+					new int[] {50, 22});
+			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TE_ENDEARING), 
+					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.drops.getStackForType(DropType.ENDEARING)},
+					new int[] {50, 22});
+			
+		}
+			
 	}
 
 	private static void setupCarpenterRecipes()

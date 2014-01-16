@@ -7,6 +7,11 @@ public enum DropType
 {
 	ENCHANTED("enchanting", 0x6e1c6d, 0xff8fff),
 	INTELLECT("intellect", 0x25914D, 0x18E072),
+	DESTABILIZED("destabilized", 0xCC002C, 0x6B0118),
+	CARBON("carbon", 0x454545, 0x0F0F0F),
+	LUX("lux", 0xF5F3A4, 0xC9C87D),
+	ENDEARING("endearing", 0x12E3D9, 0x069E97),
+	
 	;
 	
 	private DropType(String pName, int colourA, int colourB)

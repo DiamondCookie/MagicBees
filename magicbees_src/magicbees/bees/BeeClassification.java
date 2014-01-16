@@ -35,6 +35,9 @@ public enum BeeClassification implements IClassification
 	ALCHEMICAL("Alchemical", "Alchimiapis"),
 	
 	ESSENTIAL("Essential", "Essentiapis"),
+	
+	THERMAL ("Thermal", "Thermametallic"),
+	ADORABLE ("Adorable", "Amabilis"),
 	;
 	
 	private String uID;

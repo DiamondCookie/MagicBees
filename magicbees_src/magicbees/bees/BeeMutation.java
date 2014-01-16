@@ -11,6 +11,8 @@ import magicbees.main.utils.compat.EquivalentExchangeHelper;
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import magicbees.main.utils.compat.ForestryHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.ThermalExpansionHelper;
+import magicbees.main.utils.compat.RedstoneArsenalHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
@@ -232,6 +234,63 @@ public class BeeMutation implements IBeeMutation
 		if (EquivalentExchangeHelper.isActive())
 		{
 			new BeeMutation(Allele.getBaseSpecies("Frugal"), BeeSpecies.MUTABLE, BeeSpecies.EE_MINIUM, 8);
+		}
+		if (RedstoneArsenalHelper.isActive())
+		{
+			new BeeMutation(BeeSpecies.TE_ELECTRUM, BeeSpecies.TE_DESTABILIZED, BeeSpecies.RSA_FLUXED, 10)			
+			.setBlockRequired("blockElectrumFlux");
+			
+			
+		}
+		
+		if (ThermalExpansionHelper.isActive())
+		{
+			new BeeMutation(BeeSpecies.TIN, BeeSpecies.COPPER, BeeSpecies.TE_BRONZE, 12)
+			.setBlockRequired("blockBronze");
+			
+			new BeeMutation(BeeSpecies.GOLD, BeeSpecies.SILVER, BeeSpecies.TE_ELECTRUM, 10)
+			.setBlockRequired("blockElectrum");
+			
+			new BeeMutation(BeeSpecies.IRON, BeeSpecies.ESOTERIC, BeeSpecies.TE_NICKEL, 14)
+			.setBlockRequired("blockNickel");
+			
+			new BeeMutation(BeeSpecies.IRON, BeeSpecies.TE_NICKEL, BeeSpecies.TE_INVAR, 14)
+			.setBlockRequired("blockInvar");
+			
+			new BeeMutation(BeeSpecies.TE_NICKEL, BeeSpecies.TE_INVAR, BeeSpecies.TE_PLATINUM, 10)
+			.setBlockRequired("blockPlatinum");
+			
+			new BeeMutation(BeeSpecies.TIN, BeeSpecies.COPPER, BeeSpecies.TE_BRONZE, 12)
+			.setBlockRequired("blockBronze");
+			
+			new BeeMutation(BeeSpecies.SPITEFUL, BeeSpecies.TIN, BeeSpecies.TE_COAL, 12)
+			.setBlockRequired(Block.oreCoal);
+			
+			new BeeMutation(BeeSpecies.SPITEFUL, Allele.getBaseSpecies("Industrious"), BeeSpecies.TE_DESTABILIZED, 12)
+			.setBlockRequired(Block.oreRedstone);
+			
+			new BeeMutation(BeeSpecies.SMOULDERING, BeeSpecies.INFERNAL, BeeSpecies.TE_LUX, 12)
+			.setBlockRequired(Block.glowStone);
+			
+			new BeeMutation(BeeSpecies.SMOULDERING, Allele.getBaseSpecies("Austere"), BeeSpecies.TE_DANTE, 12)
+			.setBiomeRequired(BiomeDictionary.Type.NETHER);
+			
+			new BeeMutation(BeeSpecies.TE_DANTE, BeeSpecies.TE_COAL, BeeSpecies.TE_PYRO, 8)
+			.setBiomeRequired(BiomeDictionary.Type.NETHER);
+			
+			new BeeMutation(BeeSpecies.SKULKING, Allele.getBaseSpecies("Wintry"), BeeSpecies.TE_BLIZZY, 12);
+			
+			
+			new BeeMutation(BeeSpecies.TE_BLIZZY, Allele.getBaseSpecies("Icy"), BeeSpecies.TE_GELID, 8);
+			
+			
+			new BeeMutation(BeeSpecies.TE_PLATINUM, BeeSpecies.OBLIVION, BeeSpecies.TE_WINSOME, 12);
+			
+			
+			new BeeMutation(BeeSpecies.TE_WINSOME, BeeSpecies.TE_COAL, BeeSpecies.TE_ENDEARING, 8)
+			.setBlockRequired("blockEnderium");			
+			
+			
 		}
 	}
 	
