@@ -3,6 +3,7 @@ package magicbees.bees;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.ThaumcraftHelper;
+import magicbees.main.utils.compat.ThermalExpansionHelper;
 import net.minecraft.potion.Potion;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -38,6 +39,7 @@ public class Allele implements IAllele
 	public static IAlleleEffect spawnGhast;
 	public static IAlleleEffect spawnSpider;
 	public static IAlleleEffect spawnBlaze;
+	public static IAlleleEffect spawnBlizz;
 	public static IAlleleEffect spawnManaDrainer;
 	public static IAlleleEffect spawnWispOrHecate;
 	
@@ -95,6 +97,16 @@ public class Allele implements IAllele
 		Allele.effectNodePurify = new AlleleEffectAuraNodePurify("NodePurify", false, 600, 150);
 		Allele.effectNodeFlux = new AlleleEffectAuraNodeFlux("NodeFlux", true, 300, 300);
 		Allele.effectNodeCharge = new AlleleEffectAuraNodeCharge("NodeCharge", true, 1200);*/
+		
+		if (ThermalExpansionHelper.isActive())
+		{
+			Allele.spawnBlizz = new AlleleEffectSpawnMob("Blizzy", true, ThermalExpansionHelper.Entity.BLIZZ.entityID)
+				.setThrottle(100).setChanceToSpawn(80);
+		}
+		else
+		{
+			Allele.spawnBlizz = (IAlleleEffect)Allele.getBaseAllele("effectNone");
+		}
 
 		Allele.effectCleansing = new AlleleEffectCure("Curative", false);
 		Allele.effectDigSpeed = new AlleleEffectPotion("DigSpeed", Potion.digSpeed, 15, false);

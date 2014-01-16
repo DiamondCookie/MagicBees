@@ -247,33 +247,34 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.ESSENTIAL, 0xB50000, 0x4C4837, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 			
 	//---------------------Thermal Expansion Bees---------------------------
-    TE_BLIZZY("TEBlizzy", "Detestabilapis blizzard",
+    TE_BLIZZY("TEBlizzy", "blizzard",
 			BeeClassification.ABOMINABLE, 0x0073C4, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
-	TE_GELID("TEGelid", "Detestabilapis cyro",
+	TE_GELID("TEGelid", "cyro",
 		    BeeClassification.ABOMINABLE, 0x4AAFF7, EnumTemperature.COLD, EnumHumidity.NORMAL, true, true),
-    TE_DANTE("TEDante", "Detestabilapis inferno",
+    TE_DANTE("TEDante", "inferno",
 			BeeClassification.ABOMINABLE, 0xF7AC4A, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
-	TE_PYRO("TEPyro", "Detestabilapis pyromaniac",
+	TE_PYRO("TEPyro", "pyromaniac",
 			BeeClassification.ABOMINABLE, 0xFA930C, EnumTemperature.HELLISH, EnumHumidity.ARID, true, true),
-	TE_ELECTRUM("TEElectrum", "Thermametallic electrum",
+			
+	TE_ELECTRUM("TEElectrum", "electrum",
 			BeeClassification.THERMAL, 0xEAF79E, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
-	TE_PLATINUM("TEPlatinum", "Thermametallic platina",
+	TE_PLATINUM("TEPlatinum", "platina",
 			BeeClassification.THERMAL, 0x9EE7F7, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TE_NICKEL("TENickel", "Thermametallic nickel",
+			TE_NICKEL("TENickel", "nickel",
 			BeeClassification.THERMAL, 0xB4C989, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-    TE_INVAR("TEInvar", "Thermametallic invar",
+    TE_INVAR("TEInvar", "invar",
 			BeeClassification.THERMAL, 0xCDE3A1, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
-	TE_BRONZE("TEBronze", "Thermametallic pyropus",
+	TE_BRONZE("TEBronze", "pyropus",
 			BeeClassification.THERMAL, 0xB56D07, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TE_COAL("TECoal", "Thermametallic carbonis",
+	TE_COAL("TECoal", "carbonis",
 			BeeClassification.THERMAL, 0x2E2D2D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TE_DESTABILIZED("TEDestabilized", "Thermametallic electric",
+	TE_DESTABILIZED("TEDestabilized", "electric",
 			BeeClassification.THERMAL, 0x5E0203, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TE_LUX("TELux", "Thermametallic lux",
+	TE_LUX("TELux", "lux",
 			BeeClassification.THERMAL, 0xF1FA89, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
-	TE_WINSOME("TEWinsome", "Amabilis cuniculus",
+	TE_WINSOME("TEWinsome", "cuniculus",
 			BeeClassification.ADORABLE, 0x096B67, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
-	TE_ENDEARING("TEEndearing", "Amabilis cognito",
+	TE_ENDEARING("TEEndearing", "cognito",
 			BeeClassification.ADORABLE, 0x069E97, EnumTemperature.COLD, EnumHumidity.NORMAL, true, true),	
 			
 			
@@ -379,10 +380,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			TE_PYRO.addSpecialty(Config.teDustPyrotheum, 9);
 			TE_WINSOME.addSpecialty(Config.teDustPlatinum, 9);
 			TE_ENDEARING.addSpecialty(Config.teEnderiumNugget, 9);
-			
-			
-		
-	
 		}
 		else
 		{
@@ -401,14 +398,11 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		
 		if (RedstoneArsenalHelper.isActive())
 		{
-			RSA_FLUXED.addSpecialty(Config.rsaFluxNugget, 9);			
-		
-	
+			RSA_FLUXED.addSpecialty(Config.rsaFluxNugget, 9);	
 		}
 		else
 		{
 			RSA_FLUXED.setInactive();
-				
 		}
 		
 		
@@ -819,130 +813,130 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		
 		TE_ELECTRUM.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
 		.setGenome(BeeGenomeManager.getTemplateTEElectrum());
-	if (OreDictionary.getOres("nuggetElectrum").size() > 0)
-	{
-		TE_ELECTRUM.addSpecialty(OreDictionary.getOres("nuggetElectrum").get(0), 18);
-	}
-	else
-	{
-		TE_ELECTRUM.setInactive();
-	}
-	TE_ELECTRUM.register();
-	
-	
-	TE_PLATINUM.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-	.setGenome(BeeGenomeManager.getTemplateTEPlatinum());
-    if (OreDictionary.getOres("nuggetPlatinum").size() > 0)
-    {
-	TE_PLATINUM.addSpecialty(OreDictionary.getOres("nuggetPlatinum").get(0), 18);
-    }
-    else
-    {
-	TE_PLATINUM.setInactive();
-    }
-    TE_PLATINUM.register();
-    
-    
-    TE_NICKEL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-	.setGenome(BeeGenomeManager.getTemplateTENickel());
-    if (OreDictionary.getOres("nuggetNickel").size() > 0)
-    {
-	TE_NICKEL.addSpecialty(OreDictionary.getOres("nuggetNickel").get(0), 18);
-    }
-    else
-    {
-	TE_NICKEL.setInactive();
-    }
-    TE_NICKEL.register();
-    
-    
-    TE_INVAR.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-	.setGenome(BeeGenomeManager.getTemplateTEInvar());
-    if (OreDictionary.getOres("nuggetInvar").size() > 0)
-    {
-	TE_INVAR.addSpecialty(OreDictionary.getOres("nuggetInvar").get(0), 18);
-    }
-    else
-    {
-	TE_INVAR.setInactive();
-    }
-    TE_INVAR.register();
-    
-    
-    TE_BRONZE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-	.setGenome(BeeGenomeManager.getTemplateTEBronze());
-    if (OreDictionary.getOres("nuggetBronze").size() > 0)
-    {
-	TE_BRONZE.addSpecialty(OreDictionary.getOres("nuggetBronze").get(0), 18);
-    }
-    else
-    {
-	TE_BRONZE.setInactive();
-    }
-    TE_BRONZE.register();
-    
-    
-    RSA_FLUXED.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-	.setGenome(BeeGenomeManager.getTemplateRSAFluxed());
-    if (OreDictionary.getOres("nuggetElectrumFlux").size() > 0)
-    {
-	RSA_FLUXED.addSpecialty(OreDictionary.getOres("nuggetElectrumFlux").get(0), 18);
-    }
-    else
-    {
-	RSA_FLUXED.setInactive();
-    }
-    RSA_FLUXED.register();
-    
-    
-    TE_DANTE.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
-	.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 10)
-	.addSpecialty(new ItemStack(Item.blazePowder), 5)	
-	.setGenome(BeeGenomeManager.getTemplateTEDante())
-	.register();
-    
-    TE_PYRO.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
-	.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 10)
-	.addSpecialty(new ItemStack(Item.blazePowder), 5)	
-	.setGenome(BeeGenomeManager.getTemplateTEPyro())
-	.register();
-    
-    TE_DESTABILIZED.addProduct(Config.combs.getStackForType(CombType.TE_DESTABILIZED), 10)
-	.addProduct(Config.combs.getStackForType(CombType.OCCULT), 10)
-	.addSpecialty(new ItemStack(Item.redstone), 5)	
-	.setGenome(BeeGenomeManager.getTemplateTEDestabilized())
-	.register();
-    
-    TE_LUX.addProduct(Config.combs.getStackForType(CombType.TE_LUX), 10)
-	.addProduct(Config.combs.getStackForType(CombType.OCCULT), 10)
-	.addSpecialty(new ItemStack(Item.glowstone), 5)	
-	.setGenome(BeeGenomeManager.getTemplateTELux())
-	.register();
-    
-    TE_WINSOME.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
-	.addProduct(Config.combs.getStackForType(CombType.TE_ENDEARING), 5)
-	.addSpecialty(new ItemStack(Item.enderPearl), 5)	
-	.setGenome(BeeGenomeManager.getTemplateTEWinsome())
-	.register();
-    
-    TE_ENDEARING.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 10)
-	.addProduct(Config.combs.getStackForType(CombType.TE_ENDEARING), 5)		
-	.setGenome(BeeGenomeManager.getTemplateTEEndearing())
-	.register();
-    
-    TE_COAL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
-	.addProduct(Config.combs.getStackForType(CombType.TE_CARBON), 5)
-	.addSpecialty(new ItemStack(Item.coal), 5)
-	.setGenome(BeeGenomeManager.getTemplateTECoal())
-	.register();
-    
-    TE_BLIZZY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.FROZEN.ordinal()), 10)		
-	.setGenome(BeeGenomeManager.getTemplateTEBlizzy())
-	.register();
-    
-    TE_GELID.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.FROZEN.ordinal()), 10)		
-	.setGenome(BeeGenomeManager.getTemplateTEBlizzy())
-	.register();
+		if (OreDictionary.getOres("nuggetElectrum").size() > 0)
+		{
+			TE_ELECTRUM.addSpecialty(OreDictionary.getOres("nuggetElectrum").get(0), 18);
+		}
+		else
+		{
+			TE_ELECTRUM.setInactive();
+		}
+		TE_ELECTRUM.register();
+
+
+		TE_PLATINUM.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+		.setGenome(BeeGenomeManager.getTemplateTEPlatinum());
+		if (OreDictionary.getOres("nuggetPlatinum").size() > 0)
+		{
+			TE_PLATINUM.addSpecialty(OreDictionary.getOres("nuggetPlatinum").get(0), 18);
+		}
+		else
+		{
+			TE_PLATINUM.setInactive();
+		}
+		TE_PLATINUM.register();
+
+
+		TE_NICKEL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+		.setGenome(BeeGenomeManager.getTemplateTENickel());
+		if (OreDictionary.getOres("nuggetNickel").size() > 0)
+		{
+			TE_NICKEL.addSpecialty(OreDictionary.getOres("nuggetNickel").get(0), 18);
+		}
+		else
+		{
+			TE_NICKEL.setInactive();
+		}
+		TE_NICKEL.register();
+
+
+		TE_INVAR.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+		.setGenome(BeeGenomeManager.getTemplateTEInvar());
+		if (OreDictionary.getOres("nuggetInvar").size() > 0)
+		{
+			TE_INVAR.addSpecialty(OreDictionary.getOres("nuggetInvar").get(0), 18);
+		}
+		else
+		{
+			TE_INVAR.setInactive();
+		}
+		TE_INVAR.register();
+
+
+		TE_BRONZE.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+		.setGenome(BeeGenomeManager.getTemplateTEBronze());
+		if (OreDictionary.getOres("nuggetBronze").size() > 0)
+		{
+			TE_BRONZE.addSpecialty(OreDictionary.getOres("nuggetBronze").get(0), 18);
+		}
+		else
+		{
+			TE_BRONZE.setInactive();
+		}
+		TE_BRONZE.register();
+
+
+		RSA_FLUXED.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+		.setGenome(BeeGenomeManager.getTemplateRSAFluxed());
+		if (OreDictionary.getOres("nuggetElectrumFlux").size() > 0)
+		{
+			RSA_FLUXED.addSpecialty(OreDictionary.getOres("nuggetElectrumFlux").get(0), 18);
+		}
+		else
+		{
+			RSA_FLUXED.setInactive();
+		}
+		RSA_FLUXED.register();
+
+
+		TE_DANTE.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
+		.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 10)
+		.addSpecialty(new ItemStack(Item.blazePowder), 5)	
+		.setGenome(BeeGenomeManager.getTemplateTEDante())
+		.register();
+
+		TE_PYRO.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
+		.addProduct(Config.combs.getStackForType(CombType.MOLTEN), 10)
+		.addSpecialty(new ItemStack(Item.blazePowder), 5)	
+		.setGenome(BeeGenomeManager.getTemplateTEPyro())
+		.register();
+
+		TE_DESTABILIZED.addProduct(Config.combs.getStackForType(CombType.TE_DESTABILIZED), 10)
+		.addProduct(Config.combs.getStackForType(CombType.OCCULT), 10)
+		.addSpecialty(new ItemStack(Item.redstone), 5)	
+		.setGenome(BeeGenomeManager.getTemplateTEDestabilized())
+		.register();
+
+		TE_LUX.addProduct(Config.combs.getStackForType(CombType.TE_LUX), 10)
+		.addProduct(Config.combs.getStackForType(CombType.OCCULT), 10)
+		.addSpecialty(new ItemStack(Item.glowstone), 5)	
+		.setGenome(BeeGenomeManager.getTemplateTELux())
+		.register();
+
+		TE_WINSOME.addProduct(Config.combs.getStackForType(CombType.FURTIVE), 10)
+		.addProduct(Config.combs.getStackForType(CombType.TE_ENDEARING), 5)
+		.addSpecialty(new ItemStack(Item.enderPearl), 5)	
+		.setGenome(BeeGenomeManager.getTemplateTEWinsome())
+		.register();
+
+		TE_ENDEARING.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.MYSTERIOUS.ordinal()), 10)
+		.addProduct(Config.combs.getStackForType(CombType.TE_ENDEARING), 5)		
+		.setGenome(BeeGenomeManager.getTemplateTEEndearing())
+		.register();
+
+		TE_COAL.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+		.addProduct(Config.combs.getStackForType(CombType.TE_CARBON), 5)
+		.addSpecialty(new ItemStack(Item.coal), 5)
+		.setGenome(BeeGenomeManager.getTemplateTECoal())
+		.register();
+
+		TE_BLIZZY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.FROZEN.ordinal()), 10)		
+		.setGenome(BeeGenomeManager.getTemplateTEBlizzy())
+		.register();
+
+		TE_GELID.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.FROZEN.ordinal()), 10)		
+		.setGenome(BeeGenomeManager.getTemplateTEGelid())
+		.register();
     }
 	
 
@@ -1329,8 +1323,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		return "/gfx/forestry/entities/bees/honeyBee.png";
 	}
 	
-	private static final BeeSpecies[] skulkingIconBees = { SKULKING, GHASTLY, SPIDERY, SMOULDERING, TC_BRAINY, TC_WISPY, TC_BATTY, AM_VORTEX, TC_WISPY };
-
 	@Override
 	public void registerIcons(IconRegister itemMap)
 	{
@@ -1361,6 +1353,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		case SKULKING: case GHASTLY: case SPIDERY: case SMOULDERING:
 		case TC_BRAINY: case TC_WISPY: case TC_BATTY:
 		case AM_VORTEX: case AM_WIGHT:
+		case TE_BLIZZY: case TE_GELID: case TE_DANTE: case TE_PYRO:
 			value = CommonProxy.DOMAIN + ":bees/skulking/";
 			break;
 			

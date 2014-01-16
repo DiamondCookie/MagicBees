@@ -48,8 +48,18 @@ public class ThermalExpansionHelper
 		;
 	}
 	
-	
+	public enum Entity
+	{
+		BLIZZ("Blizz"),
+		;
 		
+		public final String entityID;
+		private Entity(String s)
+		{
+			this.entityID = s;
+		}
+	}
+
 	public static final String Name = "ThermalExpansion";
 	private static boolean isThermalExpansionPresent = false;
 	
@@ -65,8 +75,7 @@ public class ThermalExpansionHelper
 			isThermalExpansionPresent = true;
 		}
 	}
-		
-	
+
 	public static void init()
 	{
 		if (isActive()) {
@@ -75,19 +84,15 @@ public class ThermalExpansionHelper
 		}
 	}
 	
-	private static void getFluids() {
+	private static void getFluids()
+	{
 		Config.teFluidGlowstone = FluidRegistry.getFluidStack("glowstone", 50);
 		Config.teFluidCoal = FluidRegistry.getFluidStack("coal", 50);
 		Config.teFluidRedstone = FluidRegistry.getFluidStack("redstone", 50);
-		Config.teFluidEnder = FluidRegistry.getFluidStack("ender", 50);
-		
-		
+		Config.teFluidEnder = FluidRegistry.getFluidStack("ender", 50);	
 	}
-	
-	
 	private static void setupCrafting()
 	{
-		
 		//crucible recipes
 		// carbon to liquid coal
 		ItemStack carbonDrop = Config.drops.getStackForType(DropType.CARBON);
@@ -139,8 +144,6 @@ public class ThermalExpansionHelper
 		luxDrop.writeToNBT(toSend.getCompoundTag("input"));
 		Config.teFluidGlowstone.writeToNBT(toSend.getCompoundTag("output"));
 		FMLInterModComms.sendMessage("ThermalExpansion", "CrucibleRecipe", toSend);
-		
-		
 	}
 	
 	public static void postInit()
@@ -149,11 +152,9 @@ public class ThermalExpansionHelper
 		{
 			// Apparently the Game Registry isn't populated until now. ):
 			getBlocks();
-			getItems();			
-			
+			getItems();
 		}
 	}
-	
 
 	private static void getBlocks()
 	{
@@ -179,9 +180,4 @@ public class ThermalExpansionHelper
 		Config.teDustPlatinum = GameRegistry.findItemStack("ThermalExpansion", "dustPlatinum", 1);
 		
 	}
-	
-	
-		}	
-		
-	
-
+}

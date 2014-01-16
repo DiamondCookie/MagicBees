@@ -1,3 +1,6 @@
+2.1.11
+Thermal Expansion & Redstone Arsenal bees, courtesy of jadedcat.
+
 2.1.10
 Changing Aluminum bees to use changed ore dictionary entries. mDiyo Houuuuuuuuuuuuuuuuuse!
 Updating AM2 mob-spawning bees to use newer names.

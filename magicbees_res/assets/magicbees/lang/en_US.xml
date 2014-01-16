@@ -380,15 +380,15 @@
 	<entry key="magicbees.speciesAMWight.description">"They attract magical spirits; not always docile."|Mithion, Adept</entry>
 	
 	<entry key="magicbees.speciesTEBlizzy">Blizzy</entry>
-    <entry key="magicbees.speciesTEBlizzy.description">Frigid and cold like miniature snowmen|Apinomicon</entry>
+    <entry key="magicbees.speciesTEBlizzy.description">Frigid and cold, like miniature snowmen.|Apinomicon</entry>
     <entry key="magicbees.speciesTEGelid">Gelid</entry>
-    <entry key="magicbees.speciesTEGelid.description">Liquid coolant producers|Apinomicon</entry>
+    <entry key="magicbees.speciesTEGelid.description">Liquid coolant producers.|Apinomicon</entry>
     <entry key="magicbees.speciesTEDante">Dante</entry>
-    <entry key="magicbees.speciesTEDante.description">Mixing bees in an inferno produces surprising results|Apinomicon</entry>
+    <entry key="magicbees.speciesTEDante.description">Mixing bees in an inferno produces surprising results.|Apinomicon</entry>
     <entry key="magicbees.speciesTEPyro">Pyro</entry>
     <entry key="magicbees.speciesTEPyro.description">"You Monster"|Apinomicon</entry>
     <entry key="magicbees.speciesTEDante">Dante</entry>
-    <entry key="magicbees.speciesTEDante.description">Mixing bees in an inferno produces surprising results|Apinomicon</entry>
+    <entry key="magicbees.speciesTEDante.description">Mixing bees in an inferno produces surprising results.|Apinomicon</entry>
     <entry key="magicbees.speciesTEElectrum">Electrum</entry>
     <entry key="magicbees.speciesTEElectrum.description">...|Apinomicon</entry>
     <entry key="magicbees.speciesTEPlatinum">Platinum</entry>
@@ -402,13 +402,14 @@
     <entry key="magicbees.speciesTECoal">Carbon</entry>
     <entry key="magicbees.speciesTECoal.description">...|Apinomicon</entry>
     <entry key="magicbees.speciesTEDestabilized">Destabilized</entry>
-    <entry key="magicbees.speciesTEDestabilized.description">These bees started out unstable, they didn't get better with time|Apinomicon</entry>
+    <entry key="magicbees.speciesTEDestabilized.description">These bees started out unstable; they didn't get better with time.|Apinomicon</entry>
     <entry key="magicbees.speciesTELux">Lux</entry>
-    <entry key="magicbees.speciesTELux.description">Let there be light..|Apinomicon</entry>
+    <entry key="magicbees.speciesTELux.description">Let there be light...|Apinomicon</entry>
     <entry key="magicbees.speciesTEWinsome">Winsome</entry>
     <entry key="magicbees.speciesTEWinsome.description">....|Apinomicon</entry>
     <entry key="magicbees.speciesTEEndearing">Endearing</entry>
     <entry key="magicbees.speciesTEEndearing.description">....|Apinomicon</entry>
+    
     <entry key="magicbees.speciesRSAFluxed">Fluxed</entry>
     <entry key="magicbees.speciesRSAFluxed.description">....|Apinomicon</entry>
     
