@@ -147,7 +147,12 @@ public class ThaumcraftHelper
 	
 	public static void init()
 	{
-		//if (isActive()) { }
+		if (isActive())
+		{
+			
+			aspectTime = new Aspect("tempus", 0xB68CFF, new Aspect[] { Aspect.VOID, Aspect.ORDER },
+					new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.TEXTURE + "aspects/tempus.png"), 1);
+		}
 	}
 	
 	public static void postInit()
@@ -158,8 +163,6 @@ public class ThaumcraftHelper
 			getBlocks();
 			getItems();
 			
-			aspectTime = new Aspect("tempus", 0xB68CFF, new Aspect[] { Aspect.VOID, Aspect.ORDER },
-					new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.TEXTURE + "aspects/tempus.png"), 1);
 			
 			//addItemsToBackpack();
 			setupItemAspects();

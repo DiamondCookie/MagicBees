@@ -40,6 +40,7 @@ public enum HiveType
 	private int lightLevel;
 	private ArrayList<IHiveDrop> drops;
 	private ArrayList<BiomeDictionary.Type> validBiomes;
+	private float[] spawnChance;
 	@SideOnly(Side.CLIENT)
 	private Icon[] icons;
 	
@@ -60,44 +61,44 @@ public enum HiveType
 		ItemStack[] combs = new ItemStack[] {Config.combs.getStackForType(CombType.MUNDANE)};
 		HiveDrop valiantDrop = new HiveDrop(BeeGenomeManager.addRainResist(ForestryHelper.getTemplateForestryForSpecies("Valiant")), combs, 5);
 
-		CURIOUS.validBiomes.add(Type.FOREST);
-		CURIOUS.validBiomes.add(Type.JUNGLE);
-		CURIOUS.validBiomes.add(Type.HILLS);
+		CURIOUS.addSpawnBiome(Type.FOREST, 0.015F);
+		CURIOUS.addSpawnBiome(Type.JUNGLE, 0.01F);
+		CURIOUS.addSpawnBiome(Type.HILLS, 0.07F);
 		CURIOUS.drops.add(new HiveDrop(BeeSpecies.MYSTICAL.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		CURIOUS.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.MYSTICAL.getGenome()), combs, 15));
 		CURIOUS.drops.add(valiantDrop);
 		
-		UNUSUAL.validBiomes.add(Type.PLAINS);
-		UNUSUAL.validBiomes.add(Type.MOUNTAIN);
-		UNUSUAL.validBiomes.add(Type.HILLS);
+		UNUSUAL.addSpawnBiome(Type.PLAINS, 0.01F);
+		UNUSUAL.addSpawnBiome(Type.MOUNTAIN, 0.02F);
+		UNUSUAL.addSpawnBiome(Type.HILLS, 0.02F);
 		UNUSUAL.drops.add(new HiveDrop(BeeSpecies.UNUSUAL.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		UNUSUAL.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.UNUSUAL.getGenome()), combs, 15));
 		UNUSUAL.drops.add(valiantDrop);
 
-		RESONANT.validBiomes.add(Type.DESERT);
-		RESONANT.validBiomes.add(Type.MAGICAL);
+		RESONANT.addSpawnBiome(Type.DESERT, 0.01F);
+		RESONANT.addSpawnBiome(Type.MAGICAL, 0.02F);
 		RESONANT.drops.add(new HiveDrop(BeeSpecies.SORCEROUS.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		RESONANT.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.SORCEROUS.getGenome()), combs, 20));
 		RESONANT.drops.add(valiantDrop);
 		
-		DEEP.validBiomes.add(Type.HILLS);
-		DEEP.validBiomes.add(Type.MOUNTAIN);
-		DEEP.validBiomes.add(Type.MAGICAL);
+		DEEP.addSpawnBiome(Type.HILLS, 0.01F);
+		DEEP.addSpawnBiome(Type.MOUNTAIN, 0.01F);
+		DEEP.addSpawnBiome(Type.MAGICAL, 0.02F);
 		DEEP.drops.add(new HiveDrop(BeeSpecies.ATTUNED.getGenome(), combs, 80).setIgnoblePercentage(0.65f));
 		DEEP.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.ATTUNED.getGenome()), combs, 20));
 		DEEP.drops.add(valiantDrop);
 		
 		combs = new ItemStack[] {Config.combs.getStackForType(CombType.MOLTEN), new ItemStack(Item.glowstone, 6)};
 		
-		INFERNAL.validBiomes.add(Type.NETHER);
-		INFERNAL.validBiomes.add(Type.MAGICAL);
+		INFERNAL.addSpawnBiome(Type.NETHER, 0.04F);
+		INFERNAL.addSpawnBiome(Type.MAGICAL, 0.007F);
 		INFERNAL.drops.add(new HiveDrop(BeeSpecies.INFERNAL.getGenome(), combs, 80).setIgnoblePercentage(0.5f));
 		INFERNAL.drops.add(new HiveDrop(ForestryHelper.getTemplateForestryForSpecies("Steadfast"), combs, 3));
 		
 		combs = new ItemStack[] {Config.combs.getStackForType(CombType.FORGOTTEN), new ItemStack(Item.enderPearl, 1)};
 		
-		OBLIVION.validBiomes.add(Type.END);
-		OBLIVION.validBiomes.add(Type.MAGICAL);
+		OBLIVION.addSpawnBiome(Type.END, 0.05F);
+		OBLIVION.addSpawnBiome(Type.MAGICAL, 0.005F);
 		OBLIVION.drops.add(new HiveDrop(BeeSpecies.OBLIVION.getGenome(), combs, 80));
 		OBLIVION.drops.add(new HiveDrop(ForestryHelper.getTemplateForestryForSpecies("Steadfast"), combs, 9));
 	}
@@ -211,98 +212,59 @@ public enum HiveType
 		return names;
 	}
 	
-	public void generateHive(World world, Random random, int chunkX, int chunkZ, boolean initialGen)
+	private void addSpawnBiome(Type biome, float chance)
 	{
-		if (spawnsInBiome(world.getBiomeGenForCoordsBody(chunkX * 16, chunkZ * 16)))
-		{
-			switch (this)
-			{
-			case CURIOUS:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveCurious(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case UNUSUAL:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveUnusual(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case RESONANT:
-				for (int i = 0; i < 2; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveResonant(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case DEEP:
-				if (chunkX % 2 == 0 && chunkZ % 2 == 0)
-				{
-					for (int i = 0; i < 1; ++i)
-					{
-						int coordX = chunkX * 16 + random.nextInt(16);
-						int coordZ = chunkZ * 16 + random.nextInt(16);
-						if (FeatureHive.generateHiveDeep(world, random, coordX, coordZ, initialGen))
-						{
-							break;
-						}
-					}
-				}
-				break;
-			case INFERNAL:
-				for (int i = 0; i < 2; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveInfernal(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case OBLIVION:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveOblivion(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			}
-		}
+		validBiomes.add(biome);
+		spawnChance[biome.ordinal()] = chance;
 	}
 	
-	public boolean spawnsInBiome(BiomeGenBase biomeGen)
+	public boolean generateHive(World world, Random random, int coordX, int coordZ, boolean initialGen)
 	{
-		boolean found = false;
+		switch (this)
+		{
+			case CURIOUS:
+				return FeatureHive.generateHiveCurious(world, random, coordX, coordZ, initialGen);
+				
+			case UNUSUAL:
+				return FeatureHive.generateHiveUnusual(world, random, coordX, coordZ, initialGen);
+				
+			case RESONANT:
+				return FeatureHive.generateHiveResonant(world, random, coordX, coordZ, initialGen);
+				
+			case DEEP:
+				return FeatureHive.generateHiveDeep(world, random, coordX, coordZ, initialGen);
+				
+			case INFERNAL:
+				return FeatureHive.generateHiveInfernal(world, random, coordX, coordZ, initialGen);
+				
+			case OBLIVION:
+				return FeatureHive.generateHiveOblivion(world, random, coordX, coordZ, initialGen);
+		}
+		return true;
+	}
+	
+	public float getBiomeSpawnChance(BiomeGenBase biomeGen)
+	{
+		float chanceSum = 0;
+		int validTypes = 0;
+		
 		BiomeDictionary.Type[] types = BiomeDictionary.getTypesForBiome(biomeGen);
 		for (int i = 0; i < types.length; ++i)
 		{
-			if (this.validBiomes.contains(types[i]))
+			if (validBiomes.contains(types[i]))
 			{
-				found = true;
-				break;
+				chanceSum += spawnChance[types[i].ordinal()];
+				validTypes++;
 			}
 		}
 		
-		return found;
+		if(validTypes > 0)
+		{
+			return chanceSum / (float)validTypes;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
