@@ -1,5 +1,9 @@
+2.1.12
+Changing hive gen to use isGenMineableReplaceable, which should make Deep hives spawn in Underground Biomes stone.
+
 2.1.11
 Thermal Expansion & Redstone Arsenal bees, courtesy of jadedcat.
+Adding missing loc string for Blinding speed allele
 
 2.1.10
 Changing Aluminum bees to use changed ore dictionary entries. mDiyo Houuuuuuuuuuuuuuuuuse!

@@ -100,7 +100,7 @@ public class Allele implements IAllele
 		
 		if (ThermalExpansionHelper.isActive())
 		{
-			Allele.spawnBlizz = new AlleleEffectSpawnMob("Blizzy", true, ThermalExpansionHelper.Entity.BLIZZ.entityID)
+			Allele.spawnBlizz = new AlleleEffectSpawnMob("TEBlizzy", true, ThermalExpansionHelper.Entity.BLIZZ.entityID)
 				.setThrottle(100).setChanceToSpawn(80);
 		}
 		else

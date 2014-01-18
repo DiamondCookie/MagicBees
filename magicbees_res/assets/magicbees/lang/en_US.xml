@@ -386,7 +386,7 @@
     <entry key="magicbees.speciesTEDante">Dante</entry>
     <entry key="magicbees.speciesTEDante.description">Mixing bees in an inferno produces surprising results.|Apinomicon</entry>
     <entry key="magicbees.speciesTEPyro">Pyro</entry>
-    <entry key="magicbees.speciesTEPyro.description">"You Monster"|Apinomicon</entry>
+    <entry key="magicbees.speciesTEPyro.description">You Monster.|Everyone, to you.</entry>
     <entry key="magicbees.speciesTEDante">Dante</entry>
     <entry key="magicbees.speciesTEDante.description">Mixing bees in an inferno produces surprising results.|Apinomicon</entry>
     <entry key="magicbees.speciesTEElectrum">Electrum</entry>
@@ -420,6 +420,7 @@
 	-->
 
 	<!-- Bee Alleles -->
+	<entry key="magicbees.speedBlinding">Blinding</entry>
 	<entry key="magicbees.effectCurative">Cleansing</entry>
 	<entry key="magicbees.effectDigSpeed">Mining</entry>
 	<entry key="magicbees.effectMoveSpeed">Swiftness</entry>
@@ -439,7 +440,8 @@
 	<entry key="magicbees.effectSpidery">Spidery</entry>
 	<entry key="magicbees.effectAblaze">Ablaze</entry>
 	<entry key="magicbees.effectManaDrainer">Vortex</entry>
-	<entry key="magicbees.effectAMWisp">Spiritual</entry>
+    <entry key="magicbees.effectAMWisp">Spiritual</entry>
+    <entry key="magicbees.effectTEBlizzy">Blizzy</entry>
 	<entry key="flowerProvider.book">Books</entry>
 	<entry key="flowerProvider.magic">Thaumic Flowers</entry>
 	<entry key="flowerProvider.arsmagica">Exotic Flowers</entry>

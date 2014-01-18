@@ -240,7 +240,7 @@ public enum HiveType
 				}
 				break;
 			case RESONANT:
-				for (int i = 0; i < 2; ++i)
+				for (int i = 0; i < 3; ++i)
 				{
 					int coordX = chunkX * 16 + random.nextInt(16);
 					int coordZ = chunkZ * 16 + random.nextInt(16);

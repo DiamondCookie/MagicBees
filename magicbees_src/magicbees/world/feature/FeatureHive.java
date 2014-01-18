@@ -19,14 +19,14 @@ public class FeatureHive
 	private static FeatureOreVein glowstoneGen;
 	private static FeatureOreVein endStoneGen;
 	
-	private static boolean logSpawns = false;
+	private static boolean logSpawns = true;
 	
 	public static void initialize()
 	{
-		redstoneGen = new FeatureOreVein(Block.oreRedstone.blockID, Block.stone);
-		netherQuartzGen = new FeatureOreVein(Block.oreNetherQuartz.blockID, Block.netherrack);
-		glowstoneGen = new FeatureOreVein(Block.glowStone.blockID, Block.stone);
-		endStoneGen = new FeatureOreVein(Block.whiteStone.blockID, Block.stone);
+		redstoneGen = new FeatureOreVein(Block.oreRedstone, Block.stone);
+		netherQuartzGen = new FeatureOreVein(Block.oreNetherQuartz, Block.netherrack);
+		glowstoneGen = new FeatureOreVein(Block.glowStone, Block.stone);
+		endStoneGen = new FeatureOreVein(Block.whiteStone, Block.stone);
 	}
 	
 	public static void generateHives(World world, Random random, int chunkX, int chunkZ, boolean initialGen)
@@ -43,7 +43,8 @@ public class FeatureHive
 		boolean doSpawn = false;
 		
 		Block b = Block.blocksList[world.getBlockId(coordX, coordY + 1, coordZ)];
-		if (world.isAirBlock(coordX, coordY - 1, coordZ) && world.isAirBlock(coordX, coordY, coordZ) &&
+		if (world.isAirBlock(coordX, coordY - 1, coordZ) &&
+				world.isAirBlock(coordX, coordY, coordZ) &&
 				b != null && b.isLeaves(world, coordX, coordY + 1, coordZ))
 		{
 			world.setBlock(coordX, coordY, coordZ, Config.hive.blockID, HiveType.CURIOUS.ordinal(), 3);
@@ -59,8 +60,9 @@ public class FeatureHive
 		int coordY = getHeight(world, random, coordX, coordZ);
 		
 		boolean doSpawn = false;
-		if (world.isAirBlock(coordX, coordY + 1, coordZ) && world.isAirBlock(coordX, coordY, coordZ) &&
-				GlobalManager.dirtBlockIds.contains(world.getBlockId(coordX, coordY - 1, coordZ))  )
+		if (world.isAirBlock(coordX, coordY + 1, coordZ) &&
+				world.isAirBlock(coordX, coordY, coordZ) &&
+				canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Block.dirt))
 		{
 			doSpawn = true;
 		}
@@ -78,10 +80,10 @@ public class FeatureHive
 	{
 		int coordY = getHeight(world, random, coordX, coordZ);
 		boolean doSpawn = false;
-		if (world.isAirBlock(coordX, coordY + 1, coordZ) &&
-				(world.isAirBlock(coordX, coordY, coordZ) || world.getBlockId(coordX, coordY, coordZ) == Block.tallGrass.blockID) &&
-				(GlobalManager.dirtBlockIds.contains(world.getBlockId(coordX, coordY - 1, coordZ)) ||
-				 GlobalManager.sandBlockIds.contains(world.getBlockId(coordX, coordY - 1, coordZ))) )
+		if (world.rand.nextInt() < 40 && world.isAirBlock(coordX, coordY + 1, coordZ) &&
+				(world.isAirBlock(coordX, coordY, coordZ) || canBlockReplaceAt(world, coordX, coordY, coordZ, Block.tallGrass)) &&
+				(canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Block.dirt) ||
+						canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Block.sand)))
 		{
 			doSpawn = true;
 		}
@@ -104,8 +106,7 @@ public class FeatureHive
 		boolean doSpawn = false;
 		
 		if (random.nextInt(100) < 40 && 
-				!world.isAirBlock(coordX, coordY, coordZ) &&
-				world.getBlockId(coordX, coordY, coordZ) == Block.stone.blockID)
+				!world.isAirBlock(coordX, coordY, coordZ) && canBlockReplaceAt(world, coordX, coordY, coordZ, Block.stone))
 		{			
 			doSpawn = getSurroundCount(world, coordX, coordY, coordZ, Block.stone) >= 6;
 		}
@@ -135,7 +136,8 @@ public class FeatureHive
 			int chop = random.nextInt(2) + 1;
 			int coordY = random.nextInt(60 / chop) + random.nextInt(chop) * (120 / chop) - 5;
 			
-			if (!world.isAirBlock(coordX, coordY, coordZ) && world.getBlockId(coordX, coordY, coordZ) == Block.netherrack.blockID)
+			if (!world.isAirBlock(coordX, coordY, coordZ) && Block.blocksList[world.getBlockId(coordX, coordY, coordZ)] != null &&
+					Block.blocksList[world.getBlockId(coordX, coordY, coordZ)].isGenMineableReplaceable(world, coordX, coordY, coordZ, Block.netherrack.blockID))
 			{				
 				doSpawn = getSurroundCount(world, coordX, coordY, coordZ, Block.netherrack) >= 5;
 			}
@@ -153,11 +155,12 @@ public class FeatureHive
 				netherQuartzGen.generateVein(world, random, coordX, coordY, coordZ - 1, 4);
 			}
 		}
-		else if (MagicBees.getConfig().DoSpecialHiveGen)
+		else if (MagicBees.getConfig().DoSpecialHiveGen && world.rand.nextInt() < 11)
 		{
 			int coordY = random.nextInt(13) + 5;
 			
-			if (!world.isAirBlock(coordX, coordY, coordZ) && world.getBlockId(coordX, coordY, coordZ) == Block.stone.blockID)
+			if (!world.isAirBlock(coordX, coordY, coordZ) &&
+					canBlockReplaceAt(world, coordX, coordY, coordZ, Block.stone))
 			{
 				
 				doSpawn = getSurroundCount(world, coordX, coordY, coordZ, Block.stone) >= 6;
@@ -168,20 +171,23 @@ public class FeatureHive
 				world.setBlock(coordX, coordY, coordZ, Config.hive.blockID, HiveType.INFERNAL.ordinal(), 3);
 				if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Infernal", coordX, coordZ, coordY);
 
-				glowstoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, 2);
-				glowstoneGen.generateVein(world, random, coordX - 1, coordY, coordZ, 2);
-				if (world.getBlockId(coordX, coordY + 1, coordZ) == Block.stone.blockID ||
-						world.getBlockId(coordX, coordY + 1, coordZ) == Block.netherrack.blockID)
+				glowstoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, world.rand.nextInt(4) + 1);
+				glowstoneGen.generateVein(world, random, coordX - 1, coordY, coordZ, world.rand.nextInt(4) + 1);
+				
+				if (canBlockReplaceAt(world, coordX, coordY + 1, coordZ, Block.stone) ||
+						canBlockReplaceAt(world, coordX, coordY + 1, coordZ, Block.netherrack))
 				{
 					world.setBlock(coordX, coordY + 1, coordZ, Block.glowStone.blockID, 0, 3);
 				}
-				if (world.getBlockId(coordX, coordY - 1, coordZ) == Block.stone.blockID ||
-						world.getBlockId(coordX, coordY + 1, coordZ) == Block.netherrack.blockID)
+				
+				if (canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Block.stone) ||
+						canBlockReplaceAt(world, coordX, coordY + 1, coordZ, Block.netherrack))
 				{
 					world.setBlock(coordX, coordY - 1, coordZ, Block.glowStone.blockID, 0, 3);
 				}
-				glowstoneGen.generateVein(world, random, coordX, coordY, coordZ + 1, 2);
-				glowstoneGen.generateVein(world, random, coordX, coordY, coordZ - 1, 2);
+				
+				glowstoneGen.generateVein(world, random, coordX, coordY, coordZ + 1, world.rand.nextInt(4) + 1);
+				glowstoneGen.generateVein(world, random, coordX, coordY, coordZ - 1, world.rand.nextInt(4) + 1);
 			}
 		}
 		
@@ -197,8 +203,8 @@ public class FeatureHive
 			int coordY = 10 + random.nextInt(25);
 			
 			if (world.isAirBlock(coordX, coordY - 2, coordZ) &&
-					world.getBlockId(coordX, coordY - 1, coordZ) == Block.whiteStone.blockID &&
-					world.getBlockId(coordX, coordY, coordZ) == Block.whiteStone.blockID)
+					canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Block.whiteStone) &&
+					canBlockReplaceAt(world, coordX, coordY, coordZ, Block.whiteStone))
 			{
 				doSpawn = true;
 			}
@@ -216,7 +222,7 @@ public class FeatureHive
 				}
 			}
 		}
-		else if (MagicBees.getConfig().DoSpecialHiveGen)
+		else if (MagicBees.getConfig().DoSpecialHiveGen && world.rand.nextInt() < 8)
 		{
 			// 1 per gen
 			int coordY = random.nextInt(5) + 5;
@@ -225,8 +231,9 @@ public class FeatureHive
 			{
 				--coordY;
 				
-				if (!world.isAirBlock(coordX, coordY, coordZ) && world.getBlockId(coordX, coordY, coordZ) == Block.stone.blockID ||
-						world.getBlockId(coordX, coordY + 1, coordZ) == Block.whiteStone.blockID)
+				if (!world.isAirBlock(coordX, coordY, coordZ) &&
+						canBlockReplaceAt(world, coordX, coordY, coordZ, Block.stone) ||
+						canBlockReplaceAt(world, coordX, coordY, coordZ, Block.whiteStone))
 				{					
 					doSpawn = getSurroundCount(world, coordX, coordY, coordZ, Block.whiteStone) >= 5 ||
 							getSurroundCount(world, coordX, coordY, coordZ, Block.stone) >= 5;
@@ -239,12 +246,12 @@ public class FeatureHive
 				world.setBlock(coordX, coordY, coordZ, Config.hive.blockID, HiveType.OBLIVION.ordinal(), 3);
 				if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Oblivion", coordX, coordZ, coordY);
 
-				endStoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, 3);
-				endStoneGen.generateVein(world, random, coordX - 1, coordY, coordZ, 3);
-				endStoneGen.generateVein(world, random, coordX, coordY + 1, coordZ, 2);
-				endStoneGen.generateVein(world, random, coordX, coordY - 1, coordZ, 2);
-				endStoneGen.generateVein(world, random, coordX, coordY, coordZ + 1, 3);
-				endStoneGen.generateVein(world, random, coordX, coordY, coordZ - 1, 3);
+				endStoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, world.rand.nextInt(6) + 1);
+				endStoneGen.generateVein(world, random, coordX - 1, coordY, coordZ, world.rand.nextInt(6) + 1);
+				endStoneGen.generateVein(world, random, coordX, coordY + 1, coordZ, world.rand.nextInt(3) + 1);
+				endStoneGen.generateVein(world, random, coordX, coordY - 1, coordZ, world.rand.nextInt(3) + 1);
+				endStoneGen.generateVein(world, random, coordX, coordY, coordZ + 1, world.rand.nextInt(6) + 1);
+				endStoneGen.generateVein(world, random, coordX, coordY, coordZ - 1, world.rand.nextInt(6) + 1);
 			}
 		}
 		return doSpawn;
@@ -261,35 +268,47 @@ public class FeatureHive
 		return min + random.nextInt(max);
 	}
 	
+	// Determines if surrounding material is "equivalent" to provided block using isGenMineableReplaceable.
 	private static int getSurroundCount(World world, int x, int y, int z, Block blockType)
 	{
 		int surroundCount = 0;
 		
-		if (world.getBlockId(x+1, y, z) == blockType.blockID)
+		if (canBlockReplaceAt(world, x+1, y, z, blockType))
 		{
 			++surroundCount;
 		}
-		if (world.getBlockId(x-1, y, z) == blockType.blockID)
+		
+		if (canBlockReplaceAt(world, x-1, y, z, blockType))
 		{
 			++surroundCount;
 		}
-		if (world.getBlockId(x, y+1, z) == blockType.blockID)
+		
+		if (canBlockReplaceAt(world, x, y+1, z, blockType))
 		{
 			++surroundCount;
 		}
-		if (world.getBlockId(x, y-1, z) == blockType.blockID)
+		
+		if (canBlockReplaceAt(world, x, y-1, z, blockType))
 		{
 			++surroundCount;
 		}
-		if (world.getBlockId(x, y, z+1) == blockType.blockID)
+		
+		if (canBlockReplaceAt(world, x, y, z+1, blockType))
 		{
 			++surroundCount;
 		}
-		if (world.getBlockId(x, y, z-1) == blockType.blockID)
+		
+		if (canBlockReplaceAt(world, x, y, z-1, blockType))
 		{
 			++surroundCount;
 		}
 		
 		return surroundCount;
+	}
+	
+	private static boolean canBlockReplaceAt(World world, int x, int y, int z, Block block)
+	{
+		return Block.blocksList[world.getBlockId(x, y, z)] != null &&
+				Block.blocksList[world.getBlockId(x, y, z)].isGenMineableReplaceable(world, x, y, z, block.blockID);
 	}
 }

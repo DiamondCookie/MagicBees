@@ -9,20 +9,20 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class FeatureOreVein
 {
-	private int veinBlockId;
+	private Block veinBlock;
 	private int veinBlockMeta;
-	private int replacesBlockId;
+	private Block replacesBlock;
 	
-	public FeatureOreVein(int blockId, Block replacesBlock)
+	public FeatureOreVein(Block block, Block replacesBlock)
 	{
-		this(blockId, 0, replacesBlock);
+		this(block, 0, replacesBlock);
 	}
 	
-	public FeatureOreVein(int blockId, int meta, Block replacesBlock)
+	public FeatureOreVein(Block block, int meta, Block replacesBlock)
 	{
-		this.veinBlockId = blockId;
+		this.veinBlock = block;
 		this.veinBlockMeta = meta;
-		this.replacesBlockId = replacesBlock.blockID;
+		this.replacesBlock = replacesBlock;
 	}
 	
 	public void generateVein(World world, Random random, int startX, int startY, int startZ, int maxSpawnCount)
@@ -37,9 +37,9 @@ public class FeatureOreVein
 		{
 			++spawnAttempts;
 			
-			if (!world.isAirBlock(currentX, currentY, currentZ) && world.getBlockId(currentX, currentY, currentZ) == replacesBlockId)
+			if (!world.isAirBlock(currentX, currentY, currentZ) && canBlockReplaceAt(world, currentX, currentY, currentZ, replacesBlock))
 			{
-				world.setBlock(currentX, currentY, currentZ, this.veinBlockId, this.veinBlockMeta, 2);
+				world.setBlock(currentX, currentY, currentZ, this.veinBlock.blockID, this.veinBlockMeta, 2);
 				++spawnCount;
 			}
 
@@ -65,5 +65,11 @@ public class FeatureOreVein
 				break;
 			}
 		}
+	}
+	
+	private static boolean canBlockReplaceAt(World world, int x, int y, int z, Block block)
+	{
+		return Block.blocksList[world.getBlockId(x, y, z)] != null &&
+				Block.blocksList[world.getBlockId(x, y, z)].isGenMineableReplaceable(world, x, y, z, block.blockID);
 	}
 }
