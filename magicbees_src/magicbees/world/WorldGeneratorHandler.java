@@ -52,7 +52,7 @@ public class WorldGeneratorHandler implements IWorldGenerator
 		{
 			doRetrogen = true;
 		}
-		else
+		else if (MagicBees.getConfig().DoHiveRetrogen)
 		{
 			if (!tag.hasKey("hiveRetrogen") || MagicBees.getConfig().ForceHiveRegen)
 			{

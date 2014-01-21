@@ -1,5 +1,6 @@
 2.1.12
 Changing hive gen to use isGenMineableReplaceable, which should make Deep hives spawn in Underground Biomes stone.
+Fixing logic error in handling world gen/retrogen
 
 2.1.11
 Thermal Expansion & Redstone Arsenal bees, courtesy of jadedcat.
