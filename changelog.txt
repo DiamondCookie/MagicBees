@@ -1,0 +1,249 @@
+2.1.13
+Updated to 1.7.2.
+
+2.1.12
+Changing hive gen to use isGenMineableReplaceable, which should make Deep hives spawn in Underground Biomes stone.
+Fixing logic error in handling world gen/retrogen
+
+2.1.11
+Thermal Expansion & Redstone Arsenal bees, courtesy of jadedcat.
+Adding missing loc string for Blinding speed allele
+
+2.1.10
+Changing Aluminum bees to use changed ore dictionary entries. mDiyo Houuuuuuuuuuuuuuuuuse!
+Updating AM2 mob-spawning bees to use newer names.
+
+2.1.9
+Adding configuration option to not spawn special hives in Magic Biomes for people who hate fun, and specialness.
+Adding a shadow to the Tempus aspect for Vazkii.
+Possibly fixing issues with fluid containers.
+
+2.1.8
+Fixing inconcistent recipes between Thaumonomicon & actual crafting
+Added missing centrifuge recipe for the Transmuting combs. This is the source of Unstable Propolis.
+
+2.1.7
+Some non-bee bug removals.
+Magnets are ... a bit expensive. >_>;
+
+2.1.6
+How about not crashing because I forgot a colour tuple? >.>
+Presenting a new bee species: You can't see it though, because it's invisible. >_>
+
+2.1.5
+Behold! The Mysterious Magnet! It attracts items to it, and thus, you, from great distances! (well, greater than your arms anyhow.)
+Updating TC4 API for when it releases.
+
+2.1.4
+Some cleanup of Helper code
+Hammering out rest of Transmutation effect, and exposing parts of it in an API so other people can hook into it if they want.
+Have some Ars Magica 2 integration.
+Also, have some Thaumcraft 4 integration!
+
+2.1.3
+Added a new mini bee branch: Polymorphic. It is said Unusual bees can have some unusual effects on the world if they are advanced...
+Altered mutation to get Minium bees to fit into the Polymorphic branch.
+Crumbling effect ages the area around the hive.
+Added an IMC Handler to allow other mods to send an IMC message with key 'addCrumblePair" and a value containing two NBT tags
+    'source' and 'target' for ItemStacks of the source block and target block. Blocks added on a first-come-first-serve basis.
+    Only one entry per source block is accepted. Several vanilla defaults are provided, can be overridden using IMC.
+Changing humidity tolerance of Sorcerous bees to be actually useful.
+Fixed issues with the bee effects rendering (the little bee icons that shoot out of the bee machine while they work) for custom effects.
+
+2.1.2
+Fixed issue with mob spawning effects incorrectly checking for effect data variables.
+Updating localization files (RU, DE)
+
+2.1.1
+Reworking some language entries & code to enable string formatting in capsule names.
+Localization file updates.
+Tinker's Construct bees (Ardite, Cobalt, Manyullyn) and Aluminum bees.
+
+2.1.0
+Added new permanent methods for crafting all frames. These will be available even when Thaumcraft is installed.
+Removed temporary frame recipes which used to be available when Thaumcraft was not installed.
+Lowered the cost of creating several frames through Thaumcraft. These should still be a viable option with the new recipes.
+Fixed issue with foundation-requiring mutations in Forestry Alvearies. (Will likely not work with Extra Bees Alveary blocks)
+
+2.0.5
+Fixed hard-coded value in a subroutine that should not have been hard-coded.
+
+2.0.4
+Fixed backwards mutation logic.
+
+2.0.3
+Adjusting Thaumcraft research notes to reflect recent (Hah!) changes.
+
+2.0.2
+Fixed Escritoire/Mutation Notes for bees which require a Thaumcraft Node.
+Fixing colour data for Temporal Combs.
+Adjusting the production rates on some nugget-producing bees.
+Withering bee species now requires arid rather than normal humidity, to conform with the rest of the Infernal line.
+Withering and Slow Effects should now correctly be reduced while wearing Apiarist's Armor or other protective gear.
+
+2.0.1
+Modifying mutation class to allow block-requiring mutations to work in Alvearies/other multiblock hive structures.
+Tweaking hive gen
+Fixing mistakes in bee genome templates
+Updating Biofuel capsule to use the Ethanol liquid in Forestry
+
+2.0.0
+Enabling Retrogen of hives in case you missed them initially.
+Tearing out all old mutations, rewriting from the ground up. Maybe these will be less frustrating. ;)
+Adding subroutines to make MB species actually worthwhile to check out in the Escritoire. If you get stuck on a mutation, throw it into the table and try out the minigame!
+New bee species (Too many to list. Have fun finding them!)
+New hives
+Added zh_CN localization by crafteverywhere
+Added de_DE localization by philip98 and Vexatos
+Added ru_RU localization by CrazyTechno and VeryBigBro
+
+
+=========== Old Thaumic Bees Changelog ================
+
+1.4.7b
+Fix for creative mode crash when a certain config option is enabled.
+
+1.4.7a
+Update for Forestry Beta.
+
+1.4.7
+Added the Bee Collector's Jar.
+Created an alternate recipe for the Temporal Frame that is always active.
+Adjusted TC3 alternate recipe for the Temporal Frame.
+Fixed an issue with the "Pick Block" function on the Greatwood & Silverwood planks. Should also stop NEI from providing incorrect block info on them.
+Fixed the Node flower growing flowers.
+Adding Apatite bees.
+
+1.4.6
+Ars Magica integration! 13 new bee species to help you research & cast spells.
+Changing mutations around, because I'm still not happy with them. (Again.)
+Many icon & texture fixes. (derp!)
+
+1.4.5a
+Repaired Thaumcraft 3 integration for 3.0.4a.
+Fixed Biofuel capsules being shown as "Empty x Capsule"
+Fixed missing texture for oil & fuel capsules
+
+1.4.5
+Added the Jade Moon Dial - tells you what moon phase it currently is for breeding purposes.
+Added a creative menu tab for certain Thaumic Bees items - misc resources, capsules, tools.
+
+1.4.4b
+Ported to 1.5! Wooo!
+
+1.4.4a
+Fixed an isuse that caused GregTech to crash.
+
+1.4.4
+Made greatwood & silverwood planks fireproof by default - added a config option to toggle it.
+Added Nuggets - Iron, Copper, Tin, Silver, Lead. Should craft into 1st ore dictionary ingot of appropriate type.
+Added Shards - Diamond, Emerald.
+Added 15 new bees. Have fun~ <3
+Added Equivalent Exchange 3 compatability! (It's 1 thing, don't get terribly excited.)
+New frame type! Search Strongholds for them.
+
+1.4.3c
+Thaumium Grafter now doubles your chance to get Greatwood & Silverwood saplings.
+Thaumium Grafter now takes extra damage when trying to break Greatwood & Silverwood leaves.
+Thaumium Grafter now has a balancing feature when repairing.
+Extra... uh. "Enhancements". =D
+
+1.4.3b
+Greatwood & Silverwood planks support BuildCraft facades.
+Tweaking Aura cost for Repair on Thaumium Grafters and other balance.
+Turns out I can't get the version crap to work properly. More fixes.
+
+1.4.3a
+Changed Version info embedded in mod to match format supported by Version checking. Will need to make this more robust in the future.
+Fixed bug with Thaumium Grafter not being enchantable.
+
+1.4.3
+Added automatic version-checking for ThaumicBees! From this version on, when a new version becomes available, it will notify you in-game. Notifications can be switched off via a config file option.
+Fixed missing aspects on Extra Bees combs.
+
+1.4.2
+Added Void Capsules - hold up to 8 buckets of liquid with one! It's a waterproof bag of holding! Plus stacking.
+Fix: Added Greatwood & Silverwood slabs to the ore dictionary so they should work as normal.
+Added Thaumium Scoop - 30 uses, can be enchanted with Repair.
+Added Thaumium Grafter - 15 uses, can be enchanted with Repair.
+
+1.4.1
+Added Greatwood and Silverwood planks. Since Greatwood and Silverwood are tougher than other trees, you'll need some extra machinery. To obtain these, jam a log of the appropriate tree into a Forestry carpenter and provide a half bucket of water.
+Added slabs for the new planks also.
+
+1.4.0a
+Fixed some issues with the Node bee's effect. 
+
+1.4.0
+New branch of bees containing 3 new species. A new type of frame!
+Thaumaturge's Backpack now require Amber rather than Gold Nuggets.
+Due to popular complaint, the Bees & Magic node now requires Unified Thaumic Field Theory to unlock.
+Moving all kinds of string contstants out of code into Localization files.
+Also fixed crazy aspects showing up on things that shouldn't have those aspects.
+ACTUALLY fixed issue with untyped node mutations failing.
+
+1.3.0d
+Fixed an issue with mutations requiring a non-specific type of node to fail.
+
+1.3.0c
+Discovered a function call that will crash dedicated servers. If you are running ThuamicBees on a server, please update to this revision.
+
+1.3.0b
+Fixed a problem with capsules not being registered with the Forge Liquid Dictionary. You should be able to use them just about everywhere, now.
+Fixed the issue with certain items appearing twice in Creative Mode tabs.
+
+1.3.0a
+Some bug fixes, including uncommenting some mutation-related code, research tweaking.
+Added the last bee for a long while, probably. Good luck getting it.
+
+Common TB crashes stemming from Forestry issues should now be reported a little better, especially the backpack registration & item texture file related things. Errors should appear in your log, so make sure you read the log before you report the error here. It could be something silly on your end that is causing the crash.
+
+1.3.0
+3 new species of bee: Vis, Pure, and Flux! Each requires an aura node nearby, and may have some side-effects...
+New Thaumcraft research! Open up your Thaumanomicon to see it.
+New Apiary Frames! They run off magic, confers bees with bonuses, and may have an impact outside of your apiary...
+
+1.2.705B - Replaced 1.2.705
+Fixed issue with bad Mutation class, allowing pure bees to turn into any bee that involves them in a mutation.
+Also ACTUALLY fixed issue with Extra Bees loading after ThaumicBees on *nix-based systems.
+
+1.2.705
+*Stealth update: Fixed an issue with TB loading before Extra Bees, resulting in some Null Pointers getting passed and choked on. If you get this issue, please re-download 1.2.705. No other changes were made in this version.
+
+*8 new species of bees, including "Praecantatio", which, like the other Elemental bees, may contain Vis shards in its propolis. Some of the new species may also have extra evil involved, so be ready for anything.
+*Extra integration with Extra Bees! Mutations for some of the new bees. If Extra Bees is present, their mutations will require EB species rather than the base Forestry species.
+*Changed the "Charmed" mutation to avoid conflicting with Extra Bees. (Binnie already had one there, so mine got moved.)
+*New bee branch, similar to Extra Bees's mob spawning bees.
+*One new bee from a new branch, the rest of which will come once Azanor releases the Thaumcraft API.
+
+1.1.702-67 - Replaced 1.1.702-62
+Additional Magic Capsules, featuring ExtraBees liquids, and RailCraft Creosote & Steam. (Yes, steam capsules. It's magic. That's how. :P)
+Tagged additional Forestry items with Thaumcraft aspects.
+
+1.1.702-62
+Added Magic Capsules!
+Compatible with BuildCraft and Forestry liquids, they function almost the same way as refactory capsules, except that they can store 2 buckets' worth of liquid. As such, you cannot right-click with them to scoop up water or lava, but you can use them in bottlers, carpenters, Railcraft's Iron Tanks, Thermal Expansion's liquid transposers, and other things that support the Forge Liquid Dictionary. They can be useful for storing larger amounts of liquids in chests and things. I am also able to add other liquids to them in the future, and liquids from mods that are not present will not appear in the Creative inventory or the NEI listings.
+
+1.0.701-56
+Update to Forestry 1.7.0.1/1.7.0.2
+
+Added all kinds of backpack integration for Thaumcraft, including a new Thaumaturge's Backpack and Woven variety. These will suck up shards, Thaumcraft resources such as quicksilver, amber, zombie brains, research fragments and other goodies. Other TC items such as marker blocks, warded stone, candles, logs, leaves and plants also can fall into Forestry's default backpacks as appropriate. (I may have missed some other obvious items.)
+
+1.0.70-53
+Update to Forestry 1.7.0.0
+
+1.0.0-50
+-Added Thaumcraft aspects to some Forestry items, notably combs and bees. (Finally, something to use those extra drones for!)
+-Added another Swarmer inducer item - craftable via carpenter using liquid honey, Royal Jelly, Pollen and Enchanting Drops from Arcane bees. 8 times more effective than Royal Jelly alone!
+-Added carpenter recipe for candles using magic wax. Same patterns as with beeswax.
+
+1.0.0-48
+-Support for Forestry 1.6.5.5+
+-Extra alles for bee mutations!
+-Thaumcraft aspects associated with some Forestry items!
+
+1.0.0-35
+-Bugfix version to account for launcher jars located outside of expected folder. Replaced 1.0.0-34
+
+1.0.0-34
+-Initial Release
