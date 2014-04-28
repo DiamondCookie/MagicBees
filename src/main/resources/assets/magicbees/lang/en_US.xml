@@ -353,25 +353,25 @@
 	<entry key="magicbees.speciesAMQuintessence">Quintessential</entry>
 	<entry key="magicbees.speciesAMQuintessence.description">The heart of magic lies dormant in all things.|Apinomicon, preface</entry>
 
-	<entry key="magicbees.speciesAMEarth">Erde</entry>
+	<entry key="magicbees.speciesAMEarth">Terrestric</entry>
 	<entry key="magicbees.speciesAMEarth.description">Empowered by the Earth, their produce is infused with its essence.|Apinomicon</entry>
-	<entry key="magicbees.speciesAMAir">Luft</entry>
+	<entry key="magicbees.speciesAMAir">Aiolic</entry>
 	<entry key="magicbees.speciesAMAir.description">Swift as the wind, and lighter than air.|Apinomicon</entry>
-	<entry key="magicbees.speciesAMFire">Feuer</entry>
+	<entry key="magicbees.speciesAMFire">Igneous</entry>
 	<entry key="magicbees.speciesAMFire.description">Their colony can reach temperatures that boil water and melt metals.|Apinomicon</entry>
-	<entry key="magicbees.speciesAMWater">Wasser</entry>
+	<entry key="magicbees.speciesAMWater">Aqueous</entry>
 	<entry key="magicbees.speciesAMWater.description">Through prolonged exposure to liquids, their combs are quite wet and heavy.|Apinomicon</entry>
 
-	<entry key="magicbees.speciesAMLightning">Blitz</entry>
+	<entry key="magicbees.speciesAMLightning">Fulguric</entry>
 	<entry key="magicbees.speciesAMLightning.description">They can travel vast distances in a blink, and are known for starting many wildfires.|Apinomicon</entry>
-	<entry key="magicbees.speciesAMPlant">Staude</entry>
+	<entry key="magicbees.speciesAMPlant">Fruticic</entry>
 	<entry key="magicbees.speciesAMPlant.description">They have an affinity for all that is green and grows.|Apinomicon</entry>
-	<entry key="magicbees.speciesAMIce">Eis</entry>
+	<entry key="magicbees.speciesAMIce">Glacic</entry>
 	<entry key="magicbees.speciesAMIce.description">"They keep stealing stuff from me, and I never see them. They're far too slippery."|MysteriousAges, incorrigible punster</entry>
-	<entry key="magicbees.speciesAMMagma">Magma</entry>
+	<entry key="magicbees.speciesAMMagma">Magmatic/entry>
 	<entry key="magicbees.speciesAMMagma.description">As they fly by, they sear the surface of the landscape, eventually scouring all plants and fragile minerals away.|Apinomicon</entry>
 
-	<entry key="magicbees.speciesAMArcane">Arkanen</entry>
+	<entry key="magicbees.speciesAMArcane">Arcane</entry>
 	<entry key="magicbees.speciesAMArcane.description">"Curious creatures, though their produce is quite useful."|Mithion, Adept</entry>
 
 	<entry key="magicbees.speciesAMVortex">Vortex</entry>
