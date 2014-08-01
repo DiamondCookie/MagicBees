@@ -81,7 +81,7 @@ public abstract class AlleleEffect extends Allele implements IAlleleBeeEffect
 		min[2] = housing.getZCoord() - area[2] / 2;
 		max[2] = housing.getZCoord() + area[2] / 2;
 		
-		AxisAlignedBB bounds = AxisAlignedBB.getAABBPool().getAABB(min[0], min[1], min[2], max[0], max[1], max[2]);
+		AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(min[0], min[1], min[2], max[0], max[1], max[2]);
 		return housing.getWorld().getEntitiesWithinAABB(EntityPlayer.class, bounds);
 	}
 

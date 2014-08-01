@@ -3,7 +3,8 @@ package magicbees.main.utils.compat;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.core.ItemInterface;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
 import forestry.api.genetics.IAllele;
 import magicbees.bees.BeeManager;
 import magicbees.main.Config;
@@ -111,8 +112,8 @@ public class ForestryHelper
 		try
 		{
 			Class c = Class.forName("forestry.core.config.ForestryBlock");
-			Config.fAlvearyBlock = (Block)(c.getField("alveary").get(null));
-			Config.fHiveBlock = (Block)(c.getField("beehives").get(null));
+			Config.fAlvearyBlock = BlockInterface.getBlock("alveary");
+			Config.fHiveBlock = BlockInterface.getBlock("beehives");
 		}
 		catch (Exception e)
 		{
@@ -122,11 +123,11 @@ public class ForestryHelper
 	
 	private static void getItems()
 	{
-		Config.fBeeComb = ItemInterface.getItem("beeComb").getItem();
-		Config.fPollen = ItemInterface.getItem("pollen").getItem();
-		Config.fCraftingResource = ItemInterface.getItem("craftingMaterial").getItem();
-		Config.fHoneyDrop = ItemInterface.getItem("honeyDrop").getItem();
-		Config.fHoneydew = ItemInterface.getItem("honeydew").getItem();
+		Config.fBeeComb = ItemInterface.getItem("beeComb");
+		Config.fPollen = ItemInterface.getItem("pollen");
+		Config.fCraftingResource = ItemInterface.getItem("craftingMaterial");
+		Config.fHoneyDrop = ItemInterface.getItem("honeyDrop");
+		Config.fHoneydew = ItemInterface.getItem("honeydew");
 	}
 
 	public static IAllele[] getTemplateForestryForSpecies(String speciesName)

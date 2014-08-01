@@ -227,11 +227,11 @@ public class Config
 		GameRegistry.registerTileEntity(TileEntityEffectJar.class, TileEntityEffectJar.tileEntityName);
 
 		hive = new BlockHive();
-		GameRegistry.registerBlock(hive, "hive");
+		GameRegistry.registerBlock(hive, ItemMagicHive.class, "hive");
 
 		for (HiveType t : HiveType.values())
 		{
-			hive.setHarvestLevel("scoop", t.ordinal(), 0);
+			hive.setHarvestLevel("scoop", 0, t.ordinal() );
 		}
 
 		FMLLog.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100%% normal.");
@@ -301,7 +301,7 @@ public class Config
 		jellyBaby = new ItemFood(1, false).setAlwaysEdible()
 				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
 		jellyBaby.setUnlocalizedName(CommonProxy.DOMAIN + ":jellyBabies").setTextureName(CommonProxy.DOMAIN + ":jellyBabies");
-		GameRegistry.registerItem(jellyBaby, CommonProxy.DOMAIN + ":jellyBabies");
+		GameRegistry.registerItem(jellyBaby, "jellyBabies");
 		
 		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, this.CapsuleStackSizeMax);
@@ -330,6 +330,7 @@ public class Config
 		magnet.setBaseRange(MagnetBaseRange);
 		magnet.setLevelMultiplier(MagnetLevelMultiplier);
 		magnet.setMaximumLevel(MagnetMaxLevel);
+        GameRegistry.registerItem(magnet, "magnet", CommonProxy.DOMAIN);
 		
 		for (int level = 0; level <= 8; level++)
 		{

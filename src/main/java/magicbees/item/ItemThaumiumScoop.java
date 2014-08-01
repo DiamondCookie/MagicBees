@@ -1,5 +1,6 @@
 package magicbees.item;
 
+import cpw.mods.fml.common.Optional;
 import magicbees.main.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +15,10 @@ import forestry.api.core.IToolScoop;
 import java.util.HashSet;
 import java.util.Set;
 
+@Optional.InterfaceList(
+        {@Optional.Interface(iface = "IRepairable", modid = "Thaumcraft", striprefs = true),
+        @Optional.Interface(iface = "IToolScoop", modid = "forestry", striprefs = true)}
+)
 public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 {
 	public ItemThaumiumScoop()

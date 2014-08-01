@@ -4,7 +4,7 @@ package magicbees.bees;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
-import forestry.api.core.ItemInterface;
+import magicbees.main.utils.ItemInterface;
 import forestry.api.genetics.IAllele;
 import magicbees.main.utils.compat.ExtraBeesHelper;
 import net.minecraft.item.ItemStack;
@@ -1379,14 +1379,14 @@ public class BeeGenomeManager
 		switch (beeType)
 		{
 			case PRINCESS:
-				taggedBee = ItemInterface.getItem("beePrincessGE");
+				taggedBee = ItemInterface.getItemStack("beePrincessGE");
 				break;
 			case QUEEN:
-				taggedBee = ItemInterface.getItem("beeQueenGE");
+				taggedBee = ItemInterface.getItemStack("beeQueenGE");
 				break;
 			case DRONE:
 			default:
-				taggedBee = ItemInterface.getItem("beeDroneGE");
+				taggedBee = ItemInterface.getItemStack("beeDroneGE");
 				break;
 		}
 		

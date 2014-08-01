@@ -1,8 +1,8 @@
 package magicbees.main.utils.compat;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.core.BlockInterface;
-import forestry.api.core.ItemInterface;
+import magicbees.main.utils.ItemInterface;
+import magicbees.main.utils.BlockInterface;
 import magicbees.item.types.PollenType;
 import magicbees.item.types.PropolisType;
 import magicbees.item.types.ResourceType;
@@ -171,29 +171,29 @@ public class ThaumcraftHelper
 	
 	private static void getBlocks()
 	{
-		Config.tcPlant = GameRegistry.findBlock(Name, "blockCustomPlant");
-		Config.tcCandle = GameRegistry.findBlock(Name, "blockCandle");
-		Config.tcCrystal = GameRegistry.findBlock(Name, "blockCrystal");
-		Config.tcMarker = GameRegistry.findBlock(Name, "blockMarker");
-		Config.tcJar = GameRegistry.findBlock(Name, "blockJar");
-		Config.tcLog = GameRegistry.findBlock(Name, "blockMagicalLog");
-		Config.tcLeaf = GameRegistry.findBlock(Name, "blockMagicalLeaves");
-		Config.tcWarded = GameRegistry.findBlock(Name, "blockWarded");
+		Config.tcPlant = BlockInterface.getBlock(Name, "blockCustomPlant");
+		Config.tcCandle = BlockInterface.getBlock(Name, "blockCandle");
+		Config.tcCrystal = BlockInterface.getBlock(Name, "blockCrystal");
+		Config.tcMarker = BlockInterface.getBlock(Name, "blockMarker");
+		Config.tcJar = BlockInterface.getBlock(Name, "blockJar");
+		Config.tcLog = BlockInterface.getBlock(Name, "blockMagicalLog");
+		Config.tcLeaf = BlockInterface.getBlock(Name, "blockMagicalLeaves");
+		Config.tcWarded = BlockInterface.getBlock(Name, "blockWarded");
 	}
 	
 	private static void getItems()
 	{
-		Config.tcFilledJar = GameRegistry.findItem(Name, "BlockJarFilledItem");
-		Config.tcMiscResource = GameRegistry.findItem(Name, "ItemResource");
-		//Config.tcEssentiaBottle = GameRegistry.findItem(Name, "BlockJarFilledItem");
-		Config.tcShard = GameRegistry.findItem(Name, "ItemShard");
-		Config.tcGolem = GameRegistry.findItem(Name, "ItemGolemPlacer");
+		Config.tcFilledJar = ItemInterface.getItem(Name, "BlockJarFilledItem");
+		Config.tcMiscResource = ItemInterface.getItem(Name, "ItemResource");
+		//Config.tcEssentiaBottle = ItemInterface.getItem(Name, "BlockJarFilledItem");
+		Config.tcShard = ItemInterface.getItem(Name, "ItemShard");
+		Config.tcGolem = ItemInterface.getItem(Name, "ItemGolemPlacer");
 		//Config.tcWispEssence = ItemApi.getItem("itemWispEssence", 0).getItem();
-		Config.tcNuggets = GameRegistry.findItem(Name, "ItemNugget");
-		Config.tcShard = GameRegistry.findItem(Name, "ItemShard");
-		Config.tcNuggetChicken = GameRegistry.findItem(Name, "ItemNuggetChicken");
-		Config.tcNuggetBeef = GameRegistry.findItem(Name, "ItemNuggetBeef");
-		Config.tcNuggetPork = GameRegistry.findItem(Name, "ItemNuggetPork");
+		Config.tcNuggets = ItemInterface.getItem(Name, "ItemNugget");
+		Config.tcShard = ItemInterface.getItem(Name, "ItemShard");
+		Config.tcNuggetChicken = ItemInterface.getItem(Name, "ItemNuggetChicken");
+		Config.tcNuggetBeef = ItemInterface.getItem(Name, "ItemNuggetBeef");
+		Config.tcNuggetPork = ItemInterface.getItem(Name, "ItemNuggetPork");
 	}
 
 	private static void addItemsToBackpack()
@@ -463,7 +463,7 @@ public class ThaumcraftHelper
 		
 		list = new ArrayList<Object>(2);
 		list.add(Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION));
-		list.add(ItemInterface.getItem("frameProven"));
+		list.add(ItemInterface.getItemStack("frameProven"));
 		recipe = new ShapelessRecipes(new ItemStack(Config.hiveFrameOblivion), list);
 		
 		ResearchItem essenceOblivionR = new ResearchItem("MB_EssenceOblivion", category, new AspectList().add(Aspect.VOID, 2).add(Aspect.HUNGER, 1).add((Aspect)aspectTime, 1),
@@ -499,7 +499,7 @@ public class ThaumcraftHelper
 		list = new AspectList(new ItemStack(Blocks.log));
 		for (int i = 1; i <= 8; i++)
 		{
-			item = forestry.api.core.BlockInterface.getBlock("log" + i);
+			item = ItemInterface.getItemStack("log" + i);
 			if (item != null)
 			{
 				ThaumcraftApi.registerObjectTag(item, list);
@@ -509,7 +509,7 @@ public class ThaumcraftHelper
 		list = new AspectList(new ItemStack(Blocks.planks));
 		for (int i = 1; i <= 2; i++)
 		{
-			item = BlockInterface.getBlock("planks" + i);
+			item = ItemInterface.getItemStack("planks" + i);
 			if (item != null)
 			{
 				ThaumcraftApi.registerObjectTag(item, list);
@@ -522,63 +522,63 @@ public class ThaumcraftHelper
 		ThaumcraftApi.registerObjectTag(new ItemStack(Config.hive), list);
 		
 		list = new AspectList().add(Aspect.LIGHT, 1);
-		item = BlockInterface.getBlock("candle");
+		item = ItemInterface.getItemStack("candle");
 		ThaumcraftApi.registerObjectTag(item, new int[] { item.getItemDamage() }, list);
 		
 		list = new AspectList().add(Aspect.DARKNESS, 1);
-		item = BlockInterface.getBlock("stump");
+		item = ItemInterface.getItemStack("stump");
 		ThaumcraftApi.registerObjectTag(item, new int[] { item.getItemDamage() }, list);
 		
 		list = new AspectList(new ItemStack(Blocks.glass)).add(Aspect.SENSES, 1);
-		item = BlockInterface.getBlock("glass");
+		item = ItemInterface.getItemStack("glass");
 		ThaumcraftApi.registerObjectTag(item, list);
 		
 		list = new AspectList().add(Aspect.EARTH, 2).add(Aspect.WATER, 2);
-		item = BlockInterface.getBlock("soil");
+		item = ItemInterface.getItemStack("soil");
 		ThaumcraftApi.registerObjectTag(item, new int[]{1}, list);
 				
 		list = new AspectList(new ItemStack(Blocks.leaves));
-		item = BlockInterface.getBlock("leaves");
+		item = ItemInterface.getItemStack("leaves");
 		ThaumcraftApi.registerObjectTag(item, new int[] { item.getItemDamage() }, list);
 		
 		list = new AspectList(new ItemStack(Blocks.sapling));
-		item = forestry.api.core.BlockInterface.getBlock("saplingGE");
+		item = ItemInterface.getItemStack("saplingGE");
 		ThaumcraftApi.registerObjectTag(item, list);
 		
 		list = new AspectList()/*.add(Aspect.SEED, 1)*/.add(Aspect.PLANT, 1);
-		item = forestry.api.core.ItemInterface.getItem("pollenFertile");
+		item = ItemInterface.getItemStack("pollenFertile");
 		ThaumcraftApi.registerObjectTag(item, list);
 		
 		list = new AspectList().add(Aspect.CRYSTAL, 1).add(Aspect.EARTH, 2);
-		item = forestry.api.core.BlockInterface.getBlock("resources");
+		item = ItemInterface.getItemStack("resources");
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, ForestryHelper.BlockResource.APATITE.ordinal()),
 				list.copy()/*.add(Aspect.STONE, 2)*/);
-		item = forestry.api.core.ItemInterface.getItem("apatite");
+		item = ItemInterface.getItemStack("apatite");
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, item.getItemDamage()),
 				list.copy().add(Aspect.CRYSTAL, 2));
 		
 		
 		list = new AspectList().add(Aspect.MOTION, 2).add(Aspect.FLIGHT, 1);
-		item = forestry.api.core.ItemInterface.getItem("beeDroneGE");
+		item = ItemInterface.getItemStack("beeDroneGE");
 		ThaumcraftApi.registerObjectTag(item, list);
 		list = list.copy().add(Aspect.GREED, 2).add(Aspect.EXCHANGE, 1);
-		item = forestry.api.core.ItemInterface.getItem("beePrincessGE");
+		item = ItemInterface.getItemStack("beePrincessGE");
 		ThaumcraftApi.registerObjectTag(item, list);
-		item = forestry.api.core.ItemInterface.getItem("beeQueenGE");
+		item = ItemInterface.getItemStack("beeQueenGE");
 		ThaumcraftApi.registerObjectTag(item, list);
 		list = new AspectList().add(Aspect.LIFE, 2).add(Aspect.EXCHANGE, 5);
-		item = forestry.api.core.ItemInterface.getItem("beeLarvaeGE");
+		item = ItemInterface.getItemStack("beeLarvaeGE");
 		ThaumcraftApi.registerObjectTag(item, list);
 		
-		item = forestry.api.core.ItemInterface.getItem("scoop");
+		item = ItemInterface.getItemStack("scoop");
 		list = new AspectList(new ItemStack(item.getItem(), 1, 0)).add(Aspect.TOOL, 2);
 		ThaumcraftApi.registerComplexObjectTag(item, list);
 		
-		item = forestry.api.core.ItemInterface.getItem("grafter");
+		item = ItemInterface.getItemStack("grafter");
 		list = new AspectList(new ItemStack(item.getItem(), 1, item.getItemDamage())).add(Aspect.TOOL, 2);
 		ThaumcraftApi.registerComplexObjectTag(item, list);
 		
-		item = forestry.api.core.ItemInterface.getItem("grafterProven");
+		item = ItemInterface.getItemStack("grafterProven");
 		list = list.copy().add(Aspect.TOOL, 2).add(Aspect.EXCHANGE, 3);
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, item.getItemDamage()), list);
 		
@@ -586,7 +586,7 @@ public class ThaumcraftHelper
 		ThaumcraftApi.registerObjectTag("beeComb", list);
 		
 		list = new AspectList().add(Aspect.SLIME, 1);
-		item = forestry.api.core.ItemInterface.getItem("propolis");
+		item = ItemInterface.getItemStack("propolis");
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, ForestryHelper.Propolis.NORMAL.ordinal()),
 				list);
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, ForestryHelper.Propolis.SILKY.ordinal()),
@@ -609,7 +609,7 @@ public class ThaumcraftHelper
 				list.copy().add(Aspect.ENTROPY, 2));
 		
 		list = new AspectList().add(Aspect.PLANT, 2);
-		item = forestry.api.core.ItemInterface.getItem("pollen");
+		item = ItemInterface.getItemStack("pollen");
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, ForestryHelper.Pollen.NORMAL.ordinal()), list);
 		ThaumcraftApi.registerObjectTag(new ItemStack(item.getItem(), 1, ForestryHelper.Pollen.CRYSTALLINE.ordinal()),
 				list.copy()/*.add(Aspect.ICE, 2)*/);
@@ -619,7 +619,7 @@ public class ThaumcraftHelper
 				list.copy().add((Aspect)aspectTime, 2));
 		
 		list = new AspectList().add(Aspect.ORDER, 1);
-		item = forestry.api.core.ItemInterface.getItem("beeswax");
+		item = ItemInterface.getItemStack("beeswax");
 		ThaumcraftApi.registerObjectTag(item, new int[] {item.getItemDamage()}, list.copy().add(Aspect.ORDER,
 				2));
 		ThaumcraftApi.registerObjectTag(new ItemStack(Config.wax, 1, WaxType.MAGIC.ordinal()),
@@ -630,19 +630,19 @@ public class ThaumcraftHelper
 				list.copy().add(Aspect.MIND, 2));
 		
 		list = new AspectList().add(Aspect.EXCHANGE, 2).add(Aspect.LIFE, 2);
-		item = forestry.api.core.ItemInterface.getItem("honeyDrop");
+		item = ItemInterface.getItemStack("honeyDrop");
 		ThaumcraftApi.registerObjectTag(item, new int[] {item.getItemDamage()}, list);
 		
 		list = new AspectList().add(Aspect.LIFE, 2).add(Aspect.ENERGY, 2);
-		item = forestry.api.core.ItemInterface.getItem("honeydew");
+		item = ItemInterface.getItemStack("honeydew");
 		ThaumcraftApi.registerObjectTag(item, new int[] {item.getItemDamage()}, list);
 		
 		list = new AspectList().add(Aspect.GREED, 1).add(Aspect.LIFE, 4);
-		item = forestry.api.core.ItemInterface.getItem("royalJelly");
+		item = ItemInterface.getItemStack("royalJelly");
 		ThaumcraftApi.registerObjectTag(item, new int[] {item.getItemDamage()}, list);
 		
 		list = new AspectList().add(Aspect.FIRE, 1).add(Aspect.TRAP, 2);
-		item = forestry.api.core.ItemInterface.getItem("phosphor");
+		item = ItemInterface.getItemStack("phosphor");
 		ThaumcraftApi.registerObjectTag(item, new int[] {item.getItemDamage()}, list);
 
 		item = Config.miscResources.getStackForType(ResourceType.ESSENCE_FALSE_LIFE);

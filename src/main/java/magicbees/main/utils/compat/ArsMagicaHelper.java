@@ -2,6 +2,8 @@ package magicbees.main.utils.compat;
 
 import cpw.mods.fml.common.Loader;
 import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -69,12 +71,12 @@ public class ArsMagicaHelper
 		try
 		{
 			Class clazz = Class.forName("am2.blocks.BlocksCommonProxy");
-			Config.amResourceBlock = (Block)(clazz.getField("AMOres").get(null));
-			Config.amBlackOrchid = (Block)(clazz.getField("blueOrchid").get(null));
-			Config.amDesertNova = (Block)(clazz.getField("desertNova").get(null));
-			Config.amAum = (Block)(clazz.getField("aum").get(null));
-			Config.amWakebloom = (Block)(clazz.getField("wakebloom").get(null));
-			Config.amTarmaRoot = (Block)(clazz.getField("tarmaRoot").get(null));
+			Config.amResourceBlock = BlockInterface.getBlock(Name, "AMOres");
+			Config.amBlackOrchid = BlockInterface.getBlock(Name, "blueOrchid");
+			Config.amDesertNova = BlockInterface.getBlock(Name, "desertNova");
+			Config.amAum = BlockInterface.getBlock(Name, "aum");
+			Config.amWakebloom = BlockInterface.getBlock(Name, "wakebloom");
+			Config.amTarmaRoot = BlockInterface.getBlock(Name, "tarmaRoot");
 		}
 		catch (Exception e)
 		{
@@ -87,8 +89,8 @@ public class ArsMagicaHelper
 		try
 		{
 			Class clazz = Class.forName("am2.items.ItemsCommonProxy");
-			Config.amItemResource = (Item)(clazz.getField("itemOre").get(null));
-			Config.amEssence = (Item)(clazz.getField("essence").get(null));
+			Config.amItemResource = ItemInterface.getItem(Name, "itemOre");
+			Config.amEssence = ItemInterface.getItem(Name, "essence");
 		}
 		catch (Exception e)
 		{

@@ -3,6 +3,7 @@ package magicbees.main.utils.compat;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import magicbees.main.Config;
+import magicbees.main.utils.ItemInterface;
 import net.minecraft.item.Item;
 
 public class EquivalentExchangeHelper
@@ -40,7 +41,7 @@ public class EquivalentExchangeHelper
 		try
 		{
 			Class itemClass = Class.forName("com.pahimar.ee3.item.ModItems");
-			Config.eeMinuimShard = (Item)(itemClass.getField("miniumShard").get(null));
+			Config.eeMinuimShard = ItemInterface.getItem("EE3", "miniumShard");
 		}
 		catch (Exception e)
 		{

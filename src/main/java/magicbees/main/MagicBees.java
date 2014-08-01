@@ -11,10 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.bees.BeeManager;
 import magicbees.bees.TransmutationEffectController;
 import magicbees.client.gui.GUIHandler;
-import magicbees.main.utils.CraftingManager;
-import magicbees.main.utils.IMCManager;
-import magicbees.main.utils.LocalizationManager;
-import magicbees.main.utils.VersionInfo;
+import magicbees.main.utils.*;
 import magicbees.main.utils.compat.*;
 import magicbees.world.WorldGeneratorHandler;
 
@@ -54,9 +51,10 @@ public class MagicBees
 		this.modConfig.setupBlocks();
 		this.modConfig.setupItems();
 		
-		LocalizationManager.setupLocalizationInfo();
+		// LocalizationManager.setupLocalizationInfo();
 		
 		new TransmutationEffectController();
+        LogHelper.info("Preinit completed");
 	}
 
 	@Mod.EventHandler
@@ -72,6 +70,8 @@ public class MagicBees
 
 		worldHandler = new WorldGeneratorHandler();
 		GameRegistry.registerWorldGenerator(worldHandler, 0);
+
+        LogHelper.info("Init completed");
 	}
 
 	@Mod.EventHandler
@@ -98,6 +98,7 @@ public class MagicBees
 		CraftingManager.registerLiquidContainers();
 		
 		VersionInfo.doVersionCheck();
+        LogHelper.info("Postinit completed");
 	}
 	
 	@Mod.EventHandler

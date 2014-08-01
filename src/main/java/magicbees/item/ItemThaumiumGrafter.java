@@ -1,5 +1,6 @@
 package magicbees.item;
 
+import cpw.mods.fml.common.Optional;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
 import magicbees.main.utils.compat.ThaumcraftHelper;
@@ -18,6 +19,10 @@ import forestry.api.arboriculture.IToolGrafter;
 import java.util.HashSet;
 import java.util.Set;
 
+@Optional.InterfaceList(
+    {@Optional.Interface(iface = "IRepairableExtended", modid = "Thaumcraft", striprefs = true),
+    @Optional.Interface(iface = "IToolGrafter", modid = "forestry", striprefs = true)}
+)
 public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IToolGrafter
 {
 	public ItemThaumiumGrafter()
@@ -92,6 +97,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
     /**
      * Return the enchantability factor of the item, most of the time is based on material.
      */
+    @Optional.Method(modid = "Thaumcraft")
     public int getItemEnchantability()
     {
         return ThaumcraftApi.toolMatThaumium.getEnchantability();
@@ -100,6 +106,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
     /**
      * Return the name for this tool's material.
      */
+    @Optional.Method(modid = "Thaumcraft")
     public String getToolMaterialName()
     {
         return ThaumcraftApi.toolMatThaumium.toString();
@@ -108,6 +115,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
     /**
      * Return whether this item is repairable in an anvil.
      */
+    @Optional.Method(modid = "Thaumcraft")
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
         return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable
@@ -115,6 +123,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
     }
 
 	@Override
+    @Optional.Method(modid = "Thaumcraft")
 	public boolean doRepair(ItemStack stack, EntityPlayer player, int enchantLevel)
 	{
 		boolean flag = false;

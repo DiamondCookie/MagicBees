@@ -1,5 +1,6 @@
 package magicbees.tileentity;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import forestry.api.apiculture.BeeManager;
@@ -173,7 +174,7 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public String getOwnerName()
+	public GameProfile getOwnerName()
 	{
 		return this.jarEntity.getOwner();
 	}

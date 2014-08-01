@@ -21,7 +21,7 @@ public class TransmutationEffectVanilla implements ITransmutationEffectLogic
 	private boolean trySpawnSandstone(World world, BiomeGenBase biome, ItemStack sourceBlock, int x, int y, int z)
 	{
 		boolean flag = false;
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DESERT) &&
+		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SANDY) &&
 				OreDictionary.itemMatches(new ItemStack(Blocks.sand), sourceBlock, false))
 		{
 			world.setBlock(x, y, z, Blocks.sandstone);

@@ -1,5 +1,6 @@
 package magicbees.tileentity;
 
+import com.mojang.authlib.GameProfile;
 import magicbees.main.CommonProxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,11 +13,12 @@ import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IEffectData;
 import net.minecraftforge.common.util.Constants;
 
+
 public class TileEntityEffectJar extends TileEntity implements IInventory
 {
 	public static final String tileEntityName = CommonProxy.DOMAIN + ".effectJar";
 	
-	private String ownerName;
+	private GameProfile ownerName;
 	private EffectJarHousing housingLogic;
 	
 	private static final int SLOT_COUNT = 2;
@@ -38,7 +40,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	
 	public void setOwner(EntityPlayer player)
 	{
-		this.ownerName = player.getCommandSenderName();
+        this.ownerName = player.getGameProfile();
 	}
 	
 	@Override
@@ -47,7 +49,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 		return pass == 1;
 	}
 
-	public String getOwner()
+	public GameProfile getOwner()
 	{
 		return this.ownerName;
 	}

@@ -2,6 +2,7 @@ package magicbees.main.utils.compat;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.main.Config;
+import magicbees.main.utils.ItemInterface;
 import net.minecraft.item.ItemStack;
 
 public class RedstoneArsenalHelper
@@ -64,12 +65,12 @@ public class RedstoneArsenalHelper
 	
 	private static void getBlocks()
 	{
-		Config.rsaFluxBlock = GameRegistry.findItemStack("RedstoneArsenal", "blockElectrumFlux", 1);			
+		Config.rsaFluxBlock = ItemInterface.getItemStack("RedstoneArsenal", "blockElectrumFlux", 1);
 	}
 	
 	private static void getItems()
 	{
-		Config.rsaFluxNugget = GameRegistry.findItemStack("RedstoneArsenal", "nuggetElectrumFlux", 1);		
+		Config.rsaFluxNugget = ItemInterface.getItemStack("RedstoneArsenal", "nuggetElectrumFlux", 1);
 	}
 	
 	

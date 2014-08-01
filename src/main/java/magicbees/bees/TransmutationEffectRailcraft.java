@@ -31,7 +31,7 @@ public class TransmutationEffectRailcraft implements ITransmutationEffectLogic
 	{
 		boolean flag = false;
 		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FOREST) && 
-    		!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FROZEN))
+    		!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SNOWY))
 		{
 			ItemStack item = GameRegistry.findItemStack("Railcraft", "cube.stone.quarried", 1);
 			if (item != null)

@@ -74,7 +74,7 @@ public enum HiveType
 		UNUSUAL.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.UNUSUAL.getGenome()), combs, 15));
 		UNUSUAL.drops.add(valiantDrop);
 
-		RESONANT.validBiomes.add(Type.DESERT);
+		RESONANT.validBiomes.add(Type.SANDY);
 		RESONANT.validBiomes.add(Type.MAGICAL);
 		RESONANT.drops.add(new HiveDrop(BeeSpecies.SORCEROUS.getGenome(), combs, 80).setIgnoblePercentage(0.7f));
 		RESONANT.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.SORCEROUS.getGenome()), combs, 20));

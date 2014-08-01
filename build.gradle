@@ -17,13 +17,19 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "2.1.13"
+version = "2.1.14"
 group= "magicbees" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "magicbees"
 
 minecraft {
-    version = "1.7.2-10.12.0.1057"
+    version = "1.7.10-10.13.0.1188"
     assetDir = "eclipse/assets"
+}
+
+dependencies {
+
+	compile files("/libs/Thaumcraft-1.7.2-4.1.1.14.jar")
+	compile files("/libs/forestry_1.7.10-2.4.2.31-dev.jar")
 }
 
 processResources

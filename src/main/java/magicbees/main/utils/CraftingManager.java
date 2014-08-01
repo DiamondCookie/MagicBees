@@ -1,8 +1,8 @@
 package magicbees.main.utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.core.BlockInterface;
-import forestry.api.core.ItemInterface;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
 import forestry.api.recipes.RecipeManagers;
 import magicbees.item.ItemCapsule;
 import magicbees.item.types.*;
@@ -50,8 +50,7 @@ public class CraftingManager
 
 		// Concentrated Fertilizer -> Forestry fertilizer
 		input = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER);
-		output = ItemInterface.getItem("fertilizerCompound");
-		output.stackSize = 6;
+		output = ItemInterface.getItemStack("Forestry", "fertilizerCompound", 6);
 		GameRegistry.addRecipe(output, new Object[] {
 				" S ", " F ", " S ",
 				'F', input,
@@ -63,12 +62,11 @@ public class CraftingManager
 				'S', Blocks.sand
 		});
 
-		output = output.copy();
-		output.stackSize = 12;
+        output = output.copy();
 		GameRegistry.addRecipe(output, new Object[] {
 				"aaa", "aFa", "aaa",
 				'F', input,
-				'a', ItemInterface.getItem("ash")
+				'a', ItemInterface.getItemStack("ash")
 		});
 
 		// "bottling" Intellect drops
@@ -92,7 +90,7 @@ public class CraftingManager
 		});
 
 		output = new ItemStack(Config.hiveFrameMagic);
-		input = ItemInterface.getItem("frameUntreated");
+		input = ItemInterface.getItemStack("frameUntreated");
 		GameRegistry.addRecipe(output, new Object[] {
 			"www", "wfw", "www",
 			'w', Config.wax.getStackForType(WaxType.MAGIC),
@@ -239,7 +237,7 @@ public class CraftingManager
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Config.hiveFrameOblivion), new Object[] {
 			Config.miscResources.getStackForType(ResourceType.ESSENCE_SCORNFUL_OBLIVION),
-			ItemInterface.getItem("frameProven")
+			ItemInterface.getItemStack("frameProven")
 		});
 		// </idiot>
 
@@ -303,7 +301,7 @@ public class CraftingManager
 			'x', "shardEmerald"
 		}));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(ItemInterface.getItem("apatite"), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(ItemInterface.getItemStack("apatite"), new Object[] {
 			"xxx", "xxx", "xxx",
 			'x', Config.nuggets.getStackForType(NuggetType.APATITE)
 		}));
@@ -410,7 +408,7 @@ public class CraftingManager
 
 		if (ArsMagicaHelper.isActive())
 		{
-			input = ItemInterface.getItem("apatite");
+			input = ItemInterface.getItemStack("apatite");
 			output = Config.miscResources.getStackForType(ResourceType.EXTENDED_FERTILIZER, 4);
 			GameRegistry.addShapelessRecipe(output, new Object[] {
 					new ItemStack(Config.amEssence, 1, ArsMagicaHelper.EssenceType.EARTH.ordinal()),
@@ -425,22 +423,22 @@ public class CraftingManager
 
 	private static void setupCentrifugeRecipes()
 	{
-		ItemStack beeswax = ItemInterface.getItem("beeswax");
-		ItemStack propolis = ItemInterface.getItem("propolis");
+		ItemStack beeswax = ItemInterface.getItemStack("beeswax");
+		ItemStack propolis = ItemInterface.getItemStack("propolis");
 		propolis.setItemDamage(ForestryHelper.Propolis.PULSATING.ordinal());
 
 		// 20 is the 'average' time to centrifuge a comb.
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.MUNDANE),
-				new ItemStack[] {beeswax, ItemInterface.getItem("honeyDrop"),
+				new ItemStack[] {beeswax, ItemInterface.getItemStack("honeyDrop"),
 						Config.wax.getStackForType(WaxType.MAGIC)},
 				new int[] {90, 60, 10});
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.MOLTEN),
-				new ItemStack[] {ItemInterface.getItem("refractoryWax"),
-						ItemInterface.getItem("honeyDrop")},
+				new ItemStack[] {ItemInterface.getItemStack("refractoryWax"),
+						ItemInterface.getItemStack("honeyDrop")},
 				new int[] {86, 8});
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.FORGOTTEN),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.AMNESIC), propolis,
-						ItemInterface.getItem("honeyDrop")},
+						ItemInterface.getItemStack("honeyDrop")},
 				new int[] {50, 50, 22});
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.OCCULT),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), GameRegistry.findItemStack("forestry",
@@ -448,10 +446,10 @@ public class CraftingManager
 				new int[] { 100, 60 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.OTHERWORLDLY),
 				new ItemStack[] {beeswax, Config.wax.getStackForType(WaxType.MAGIC),
-						ItemInterface.getItem("honeyDrop") },
+						ItemInterface.getItemStack("honeyDrop") },
 				new int[] { 50, 20, 100 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.PAPERY),
-				new ItemStack[] {ItemInterface.getItem("beeswax"),
+				new ItemStack[] {ItemInterface.getItemStack("beeswax"),
 						Config.wax.getStackForType(WaxType.MAGIC),
 						new ItemStack(Items.paper) },
 				new int[] { 80, 20, 5 });
@@ -461,8 +459,8 @@ public class CraftingManager
 				new int[] { 90, 40, 10 });
 		propolis.setItemDamage(ForestryHelper.Propolis.NORMAL.ordinal());
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.FURTIVE),
-				new ItemStack[] {ItemInterface.getItem("beeswax"), propolis,
-						ItemInterface.getItem("honeydew") },
+				new ItemStack[] {ItemInterface.getItemStack("beeswax"), propolis,
+						ItemInterface.getItemStack("honeydew") },
 				new int[] { 90, 20, 35 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.SOUL),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.SOUL), GameRegistry.findItemStack("forestry",
@@ -472,7 +470,7 @@ public class CraftingManager
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.pollen.getStackForType(PollenType.PHASED), new ItemStack(Config.fHoneydew, 1)},
 				new int[] {100, 5, 60});
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.TRANSMUTED),
-				new ItemStack[] {ItemInterface.getItem("beeswax"),
+				new ItemStack[] {ItemInterface.getItemStack("beeswax"),
 						Config.wax.getStackForType(WaxType.MAGIC), Config.propolis.getStackForType(PropolisType.UNSTABLE)},
 				new int[] {80, 80, 15});
 
@@ -540,9 +538,9 @@ public class CraftingManager
 					new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), new ItemStack(Config.amItemResource), new ItemStack(Config.amItemResource) },
 					new int[] { 85, 10, 2 } );
 			RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.AM_POTENT),
-					new ItemStack[] {ItemInterface.getItem("beeswax"),
-							ItemInterface.getItem("refractoryWax"),
-							ItemInterface.getItem("honeydew")},
+					new ItemStack[] {ItemInterface.getItemStack("beeswax"),
+							ItemInterface.getItemStack("refractoryWax"),
+							ItemInterface.getItemStack("honeydew")},
 					new int[] { 50, 50, 65 } );
 		}
 		if (ThermalExpansionHelper.isActive())
@@ -570,17 +568,15 @@ public class CraftingManager
 		ItemStack input;
 		ItemStack output;
 
-		output = BlockInterface.getBlock("candle");
-		output.stackSize = 24;
+		output = ItemInterface.getItemStack("Forestry", "candle", 24);
 		RecipeManagers.carpenterManager.addRecipe(30, new FluidStack(FluidRegistry.WATER, 600), null, output, new Object[] {
 			" S ", "WWW", "WWW",
 			'W', Config.wax,
 			'S', Items.string
 		});
 
-		output = BlockInterface.getBlock("candle");
-		output.stackSize = 6;
-		input = ItemInterface.getItem("craftingMaterial");
+		output = ItemInterface.getItemStack("Forestry", "candle", 6);
+		input = ItemInterface.getItemStack("craftingMaterial");
 		input.setItemDamage(ForestryHelper.CraftingMaterial.SILK_WISP.ordinal()); // Set to Silk Wisp
 		RecipeManagers.carpenterManager.addRecipe(30, new FluidStack(FluidRegistry.WATER, 600), null, output, new Object[] {
 			"WSW",
@@ -591,22 +587,22 @@ public class CraftingManager
 		output = Config.miscResources.getStackForType(ResourceType.AROMATIC_LUMP, 2);
 		RecipeManagers.carpenterManager.addRecipe(30, FluidRegistry.getFluidStack("honey", 1000), null, output, new Object[] {
 			" P ", "JDJ", " P ",
-			'P', ItemInterface.getItem("pollen"),
-			'J', ItemInterface.getItem("royalJelly"),
+			'P', ItemInterface.getItemStack("pollen"),
+			'J', ItemInterface.getItemStack("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
 		});
 
 		RecipeManagers.carpenterManager.addRecipe(30, FluidRegistry.getFluidStack("honey", 1000), null, output, new Object[] {
 			" J ", "PDP", " J ",
-			'P', ItemInterface.getItem("pollen"),
-			'J', ItemInterface.getItem("royalJelly"),
+			'P', ItemInterface.getItemStack("pollen"),
+			'J', ItemInterface.getItemStack("royalJelly"),
 			'D', Config.drops.getStackForType(DropType.ENCHANTED)
 		});
 
 		if (ThaumcraftHelper.isActive())
 		{
 			// Carpenter recipes
-			input = ItemInterface.getItem("craftingMaterial");
+			input = ItemInterface.getItemStack("craftingMaterial");
 			input.setItemDamage(3); // Set to Silk Mesh
 			output = new ItemStack(Config.thaumaturgeBackpackT2);
 			RecipeManagers.carpenterManager.addRecipe(200, new FluidStack(FluidRegistry.WATER, 1000), null, output, new Object[] {
