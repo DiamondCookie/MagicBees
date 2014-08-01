@@ -1,5 +1,6 @@
 package magicbees.main;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -17,7 +18,8 @@ import magicbees.world.WorldGeneratorHandler;
 
 @Mod(
 		modid=VersionInfo.ModName,
-		dependencies=VersionInfo.Depends
+		dependencies=VersionInfo.Depends,
+        guiFactory=VersionInfo.GUI_FACTORY_CLASS
 )
 public class MagicBees
 {
@@ -38,6 +40,7 @@ public class MagicBees
 	{
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
+        FMLCommonHandler.instance().bus().register(modConfig);
 		
 		// Compatibility Helpers setup time.
 		ForestryHelper.preInit();

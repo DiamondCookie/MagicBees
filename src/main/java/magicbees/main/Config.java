@@ -1,7 +1,9 @@
 package magicbees.main;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
@@ -16,6 +18,7 @@ import magicbees.block.types.PlankType;
 import magicbees.item.*;
 import magicbees.item.types.*;
 import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
@@ -172,7 +175,7 @@ public class Config
 	
 
 	//----- Config State info ----------------------------------
-	private Configuration configuration;
+	public static Configuration configuration;
 	
 	public Config(File configFile)
 	{
@@ -182,7 +185,19 @@ public class Config
 		
 		this.ForestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
 	}
-	
+
+    @SubscribeEvent
+    public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if (event.modID.equalsIgnoreCase(VersionInfo.ModName))
+        {
+            if (configuration.hasChanged())
+            {
+                this.configuration.save();
+            }
+        }
+    }
+
 	public void saveConfigs()
 	{
 		this.configuration.save();

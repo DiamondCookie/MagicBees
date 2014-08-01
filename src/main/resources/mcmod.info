@@ -5,7 +5,7 @@
   "mcversion": "${mcversion}",
   "name": "Magic Bees",
   "url": "http://bit.ly/XFDvLY",
-  "description": "Magic themed bee expansion for Forestry. TC3, EE3, AM compatible!",
+  "description": "Magic themed bee expansion for Forestry. TC4, EE3, AM 2, TE 3",
   "authors": [ "MysteriousAges" ],
   "credits": "SirSengir, Azanor, Binnie & the Forestry Dev peeps",
   "logoFile": "/mods/magicbees/textures/logo.png"

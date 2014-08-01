@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "2.1.14"
+version = "1.7.10-2.1.15"
 group= "magicbees" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "magicbees"
 
