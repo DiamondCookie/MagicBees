@@ -38,6 +38,8 @@ public enum BeeClassification implements IClassification
 	
 	THERMAL ("Thermal", "Thermametallic"),
 	ADORABLE ("Adorable", "Amabilis"),
+
+    BLOODY ("Bloody", "Sanguis")
 	;
 	
 	private String uID;

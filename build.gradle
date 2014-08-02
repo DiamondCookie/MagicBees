@@ -30,6 +30,7 @@ dependencies {
 
 	compile files("/libs/Thaumcraft-1.7.2-4.1.1.14.jar")
 	compile files("/libs/forestry_1.7.10-2.4.2.31-dev.jar")
+	compile files("/libs/Blood Magic-v1.1.0(1.7.10).jar")
 }
 
 processResources

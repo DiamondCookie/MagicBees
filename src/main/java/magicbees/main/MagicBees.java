@@ -50,6 +50,7 @@ public class MagicBees
 		ArsMagicaHelper.preInit();
 		ThermalExpansionHelper.preInit();
 		RedstoneArsenalHelper.preInit();
+        BloodMagicHelper.preInit();
 			
 		this.modConfig.setupBlocks();
 		this.modConfig.setupItems();
@@ -70,6 +71,7 @@ public class MagicBees
 		ArsMagicaHelper.init();
 		ThermalExpansionHelper.init();
 		RedstoneArsenalHelper.init();
+        BloodMagicHelper.init();
 
 		worldHandler = new WorldGeneratorHandler();
 		GameRegistry.registerWorldGenerator(worldHandler, 0);
@@ -87,6 +89,7 @@ public class MagicBees
 		ArsMagicaHelper.postInit();
 		ThermalExpansionHelper.postInit();
 		RedstoneArsenalHelper.postInit();
+        BloodMagicHelper.postInit();
 		
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, this.guiHandler);

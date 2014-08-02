@@ -9,6 +9,7 @@ import forestry.api.genetics.IAllele;
 import magicbees.bees.BeeManager;
 import magicbees.main.Config;
 import net.minecraft.block.Block;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ForestryHelper
 {
@@ -123,7 +124,7 @@ public class ForestryHelper
 	
 	private static void getItems()
 	{
-		Config.fBeeComb = ItemInterface.getItem("beeComb");
+		Config.fBeeComb = ItemInterface.getItem("beeCombs");
 		Config.fPollen = ItemInterface.getItem("pollen");
 		Config.fCraftingResource = ItemInterface.getItem("craftingMaterial");
 		Config.fHoneyDrop = ItemInterface.getItem("honeyDrop");

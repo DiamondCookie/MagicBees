@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import magicbees.main.Config;
 import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.MoonPhase;
 import magicbees.main.utils.compat.ArsMagicaHelper;
 import magicbees.main.utils.compat.EquivalentExchangeHelper;
@@ -51,11 +52,11 @@ public class BeeMutation implements IBeeMutation
 			{
 				for (String str : binnieMundane)
 				{
-					FMLLog.info("Registering %s", str);
+					LogHelper.info("Registering %s" + str);
 					try {
 						new BeeMutation(species, Allele.getExtraSpecies(str), ForestryHelper.getTemplateForestryForSpecies("Common"), 15);
 					} catch (Exception e) {
-						FMLLog.info("Unable to register! This mutation will not be available.");
+						LogHelper.info("Unable to register! This mutation will not be available.");
 					}
 				}
 			}

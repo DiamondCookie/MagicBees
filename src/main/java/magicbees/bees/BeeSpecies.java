@@ -1,5 +1,6 @@
 package magicbees.bees;
 
+import WayofTime.alchemicalWizardry.api.altarRecipeRegistry.AltarRecipeRegistry;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,6 +13,7 @@ import magicbees.item.types.*;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
 import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.compat.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -960,6 +962,27 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
                     return new ItemStack[0];
                 }
             },
+
+    //----------------------Bloodmagic Bees---------------------------------
+    BM_BLOODY("BMBloody", "sanguis",
+            BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false )
+            {
+                @Override
+                 public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
+                {
+                    return new ItemStack[0];
+                }
+            },
+
+    BM_BOUND("BMBound", "obligatus",
+            BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false )
+            {
+                @Override
+                public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
+                {
+                    return new ItemStack[0];
+                }
+            },
 	
 	;
 	
@@ -1082,7 +1105,17 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		{
 			RSA_FLUXED.setInactive();
 		}
-		
+
+        // Bloodmagic Bees
+
+        if (BloodMagicHelper.isActive())
+        {
+
+        }
+        else
+        {
+            BM_BLOODY.setInactive();
+        }
 		
 	
 		AlleleManager.alleleRegistry.registerDeprecatedAlleleReplacement("thaumicbees.speciesBlitz", AM_LIGHTNING);
@@ -1615,6 +1648,24 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		TE_GELID.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.FROZEN.ordinal()), 10)		
 			.setGenome(BeeGenomeManager.getTemplateTEGelid())
 			.register();
+
+        BM_BLOODY.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+            .setGenome(BeeGenomeManager.getTemplateBMBloody())
+            .register();
+
+        BM_BOUND.addProduct(new ItemStack(Config.fBeeComb, 1, ForestryHelper.Comb.HONEY.ordinal()), 10)
+                .setGenome(BeeGenomeManager.getTemplateBMBound())
+                .register();
+
+
+
+        if (BloodMagicHelper.isActive())
+        {
+            BloodMagicHelper.addAltarRecipeBee(MYSTICAL, BM_BLOODY, 1, 1000, 100, 100);
+
+            BloodMagicHelper.addBindingRecipeBee(BM_BLOODY, BM_BOUND);
+        }
+
     }
 
 	
