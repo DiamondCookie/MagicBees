@@ -18,6 +18,7 @@ import magicbees.block.types.PlankType;
 import magicbees.item.*;
 import magicbees.item.types.*;
 import magicbees.main.utils.LocalizationManager;
+import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
@@ -170,7 +171,20 @@ public class Config
 	public static FluidStack teFluidCoal;
 	public static FluidStack teFluidRedstone;
 	public static FluidStack teFluidEnder;
-		
+    //--- Blood Magic Blocks ---
+    public static Block bmBloodStoneBrick;
+    //--- Blood Magic Items ---
+    public static ItemStack bmIncendium;
+    public static ItemStack bmMagicales;
+    public static ItemStack bmSanctus;
+    public static ItemStack bmAether;
+    public static ItemStack bmCrepitous;
+    public static ItemStack bmCrystallos;
+    public static ItemStack bmTerrae;
+    public static ItemStack bmAquasalus;
+    public static ItemStack bmTennebrae;
+
+
 	
 	
 
@@ -352,7 +366,8 @@ public class Config
 			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2));
 			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2 + 1));
 		}
-		
+
+
 		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.MAGIC));
 		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.AMNESIC));
@@ -364,6 +379,26 @@ public class Config
 		OreDictionary.registerOre("shardDiamond", nuggets.getStackForType(NuggetType.DIAMOND));
 		OreDictionary.registerOre("shardEmerald", nuggets.getStackForType(NuggetType.EMERALD));
 		OreDictionary.registerOre("shardApatite", nuggets.getStackForType(NuggetType.APATITE));
+
+
+        String item;
+        for (NuggetType type: NuggetType.values())
+        {
+            LogHelper.info("Found nugget of type " + type.toString());
+            item = type.toString().toLowerCase();
+            item = Character.toString(item.charAt(0)).toUpperCase() + item.substring(1);
+            if (OreDictionary.getOres("ingot" + item).size() <= 0)
+            {
+                if (OreDictionary.getOres("shard" + item).size() <= 0)
+                {
+                    LogHelper.info("Disabled nugget " + type.toString());
+                    type.setInactive();
+                }
+            }
+
+        }
+
+        GameRegistry.registerItem(nuggets, "beeNugget");
 	}
 	
 	private void doMiscConfig()

@@ -2,6 +2,7 @@ package magicbees.item.types;
 
 import magicbees.main.utils.LocalizationManager;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 public enum NuggetType
 {
@@ -12,13 +13,7 @@ public enum NuggetType
 	LEAD,
 	DIAMOND,
 	EMERALD,
-	APATITE, 
-	ELECTRUM,
-	PLATINUM,
-	NICKEL,
-	INVAR,
-	BRONZE,
-	ENDERIUM,
+	APATITE,
 	;
 	
 	private Item targetIngot;
@@ -53,4 +48,5 @@ public enum NuggetType
 	{
 		return LocalizationManager.getLocalizedString("nugget." + this.toString().toLowerCase());
 	}
+
 }

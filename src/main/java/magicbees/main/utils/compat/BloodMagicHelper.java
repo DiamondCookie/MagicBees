@@ -7,6 +7,9 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import forestry.api.apiculture.EnumBeeType;
 import magicbees.bees.BeeSpecies;
+import magicbees.main.Config;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
 import magicbees.main.utils.LogHelper;
 import net.minecraft.item.ItemStack;
 
@@ -32,11 +35,30 @@ public class BloodMagicHelper {
     {
         if (isActive())
         {
-
+            getBlocks();
+            getItems();
         }
     }
 
     public static void postInit(){}
+
+    public static void getBlocks()
+    {
+        Config.bmBloodStoneBrick = BlockInterface.getBlock(Name, "bloodStoneBrick");
+    }
+
+    public static void getItems()
+    {
+        Config.bmIncendium = ItemInterface.getItemStack(Name, "incendium");
+        Config.bmMagicales = ItemInterface.getItemStack(Name, "magicales");
+        Config.bmSanctus = ItemInterface.getItemStack(Name, "sanctus");
+        Config.bmAether = ItemInterface.getItemStack(Name, "aether");
+        Config.bmCrepitous = ItemInterface.getItemStack(Name, "crepitous");
+        Config.bmCrystallos = ItemInterface.getItemStack(Name, "crystallos");
+        Config.bmTerrae = ItemInterface.getItemStack(Name, "terrae");
+        Config.bmAquasalus = ItemInterface.getItemStack(Name, "aquasalus");
+        Config.bmTennebrae = ItemInterface.getItemStack(Name, "tennebrae");
+    }
 
     public static void addAltarRecipe(ItemStack requiredItem, ItemStack result, int minTier, int liquidRequired, int consumptionRate, int drainRate, boolean canBeFilled)
     {

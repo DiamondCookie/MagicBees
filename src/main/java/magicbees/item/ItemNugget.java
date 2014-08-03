@@ -1,9 +1,11 @@
 package magicbees.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.item.types.NuggetType;
 import magicbees.main.CommonProxy;
+import magicbees.main.utils.LogHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -59,7 +61,7 @@ public class ItemNugget extends Item
     				+ NuggetType.values()[i].name().substring(1).toLowerCase());
     	}
     }
-    
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int meta)

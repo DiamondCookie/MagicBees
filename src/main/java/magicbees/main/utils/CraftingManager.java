@@ -63,6 +63,7 @@ public class CraftingManager
 		});
 
         output = output.copy();
+        output.stackSize = 12;
 		GameRegistry.addRecipe(output, new Object[] {
 				"aaa", "aFa", "aaa",
 				'F', input,

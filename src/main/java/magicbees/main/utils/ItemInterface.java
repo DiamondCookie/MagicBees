@@ -10,6 +10,11 @@ public class ItemInterface {
         return GameRegistry.findItemStack("Forestry", item, 1);
     }
 
+    public static ItemStack getItemStack(String modId, String item)
+    {
+        return GameRegistry.findItemStack(modId, item, 1);
+    }
+
     public static ItemStack getItemStack(String modId, String item, int stackSize)
     {
         return GameRegistry.findItemStack(modId, item, stackSize);
