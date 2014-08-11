@@ -1,5 +1,6 @@
 package magicbees.main.utils.compat;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.item.types.DropType;
@@ -55,7 +56,7 @@ public class ThermalExpansionHelper
 	
 	public static void preInit()
 	{
-		if (cpw.mods.fml.common.Loader.isModLoaded(Name))
+		if (Loader.isModLoaded(Name) && Config.ThermalExpansionActive)
 		{
 			isThermalExpansionPresent = true;
 		}
@@ -143,26 +144,12 @@ public class ThermalExpansionHelper
 
 	private static void getBlocks()
 	{
-		Config.teEnderiumBlock = GameRegistry.findItemStack("ThermalExpansion", "blockEnderium", 1);
-		Config.teElectrumBlock = GameRegistry.findItemStack("ThermalExpansion", "blockElectrum", 1);
-		Config.teInvarBlock = GameRegistry.findItemStack("ThermalExpansion", "blockInvar", 1);
-		Config.teNickelBlock = GameRegistry.findItemStack("ThermalExpansion", "blockNickel", 1);
-		Config.tePlatinumBlock = GameRegistry.findItemStack("ThermalExpansion", "blockPlatinum", 1);
-		Config.teBronzeBlock = GameRegistry.findItemStack("ThermalExpansion", "blockBronze", 1);		
+
 	}
 	
 	private static void getItems()
 	{		
-		Config.teEnderiumNugget = GameRegistry.findItemStack("ThermalExpansion", "nuggetEnderium", 1);
-		Config.teInvarNugget = GameRegistry.findItemStack("ThermalExpansion", "nuggetInvar", 1);
-		Config.teElectrumNugget = GameRegistry.findItemStack("ThermalExpansion", "nuggetElectrum", 1);		
-		Config.teNickelNugget = GameRegistry.findItemStack("ThermalExpansion", "nuggetNickel", 1);
-		Config.tePlatinumNugget = GameRegistry.findItemStack("ThermalExpansion", "nuggetPlatinum", 1);
-		Config.teDustCryotheum = GameRegistry.findItemStack("ThermalExpansion", "dustCryotheum", 1);
-		Config.teDustBlizz = GameRegistry.findItemStack("ThermalExpansion", "dustBlizz", 1);
-		Config.teDustPyrotheum = GameRegistry.findItemStack("ThermalExpansion", "dustPyrotheum", 1);
-		Config.teDustSulfur = GameRegistry.findItemStack("ThermalExpansion", "dustSulfur", 1);
-		Config.teDustPlatinum = GameRegistry.findItemStack("ThermalExpansion", "dustPlatinum", 1);
+
 		
 	}
 }

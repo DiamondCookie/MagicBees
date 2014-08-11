@@ -1,5 +1,6 @@
 package magicbees.main.utils.compat;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.main.utils.ItemInterface;
 import magicbees.main.utils.BlockInterface;
@@ -127,7 +128,7 @@ public class ThaumcraftHelper
 	
 	public static void preInit()
 	{
-		if (cpw.mods.fml.common.Loader.isModLoaded(Name))
+		if (Loader.isModLoaded(Name) && Config.ThaumcraftActive)
 		{
 			isThaumcraftPresent = true;
 		}

@@ -1075,6 +1075,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		
 		if (ThermalExpansionHelper.isActive())
 		{
+            LogHelper.info("Thermal Expansion bees active");
 			TE_BLIZZY.addSpecialty(Config.teDustBlizz, 9);
 			TE_GELID.addSpecialty(Config.teDustCryotheum, 9);
 			TE_DANTE.addSpecialty(Config.teDustSulfur, 9);
@@ -1137,8 +1138,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		{
 			LEAD.setInactive();
 		}
-		if (OreDictionary.getOres("ingotNaturalAluminum").size() <= 0)
+		if (OreDictionary.getOres("ingotNaturalAluminum").size() <= 0 && OreDictionary.getOres("ingotAluminum").size() <= 0 && OreDictionary.getOres("ingotAluminium").size() <= 0)
 		{
+            LogHelper.info("Aluminum bees inactive!");
 			ALUMINUM.setInactive();
 		}
 		if (OreDictionary.getOres("ingotArdite").size() <= 0)
@@ -1322,10 +1324,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			.setGenome(BeeGenomeManager.getTemplateAluminum());
 		if (OreDictionary.getOres("nuggetAluminum").size() > 0)
 		{
+            LogHelper.info("Aluminum bees active!");
 			ALUMINUM.addSpecialty(OreDictionary.getOres("nuggetAluminum").get(0), 20);
 		}
 		else
 		{
+            LogHelper.info("Aluminum bees inactive!");
 			ALUMINUM.setInactive();
 		}
 		ALUMINUM.register();

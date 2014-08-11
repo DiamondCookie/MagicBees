@@ -1,5 +1,6 @@
 package magicbees.main.utils.compat;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.main.Config;
 import magicbees.main.utils.ItemInterface;
@@ -31,7 +32,7 @@ public class RedstoneArsenalHelper
 	
 	public static void preInit()
 	{
-		if (cpw.mods.fml.common.Loader.isModLoaded(Name))
+		if (Loader.isModLoaded(Name) && Config.RedstoneArsenalActive)
 		{
 			isRedstoneArsenalPresent = true;
 		}
@@ -44,7 +45,10 @@ public class RedstoneArsenalHelper
 	
 	public static void init()
 	{
-		//if (isActive()) { }
+		if (isActive())
+        {
+
+        }
 	}
 	
 	public static void postInit()

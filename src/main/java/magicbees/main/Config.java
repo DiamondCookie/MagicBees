@@ -60,6 +60,15 @@ public class Config
 	public int		CapsuleStackSizeMax;
 	public boolean	DoHiveRetrogen;
 	public boolean	ForceHiveRegen;
+    public static boolean  LogHiveSpawns;
+
+    public static boolean ArsMagicaActive;
+    public static boolean BloodMagicActive;
+    public static boolean EquivalentExchangeActive;
+    public static boolean ExtraBeesActive;
+    public static boolean RedstoneArsenalActive;
+    public static boolean ThaumcraftActive;
+    public static boolean ThermalExpansionActive;
 	
 	public float	MagnetBaseRange;
 	public float	MagnetLevelMultiplier;
@@ -263,7 +272,7 @@ public class Config
 			hive.setHarvestLevel("scoop", 0, t.ordinal() );
 		}
 
-		FMLLog.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100%% normal.");
+		LogHelper.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100%% normal.");
 		/*Item.itemsList[hive.blockID] = null;
 		Item.itemsList[hive.blockID] = new ItemMultiTextureTile(hive.blockID - 256, hive, HiveType.getAllNames());*/
 	}
@@ -482,6 +491,33 @@ public class Config
 		p = configuration.get("general", "magnetMaximumLevel", 8);
 		p.comment = "Maximum level of the magnets.";
 		this.MagnetMaxLevel = p.getInt();
+
+        //Modules
+        p = configuration.get("modules", "ArsMagica", true);
+        this.ArsMagicaActive = p.getBoolean();
+
+        p = configuration.get("modules", "BloodMagic", true);
+        this.BloodMagicActive = p.getBoolean();
+
+        p = configuration.get("modules", "EquivalentExchange", true);
+        this.EquivalentExchangeActive = p.getBoolean();
+
+        p = configuration.get("modules", "ExtraBees", true);
+        this.ExtraBeesActive = p.getBoolean();
+
+        p = configuration.get("modules", "RedstoneArsenal", true);
+        this.RedstoneArsenalActive = p.getBoolean();
+
+        p = configuration.get("modules", "Thaumcraft", true);
+        this.ThaumcraftActive = p.getBoolean();
+
+        p = configuration.get("modules", "ThermalExpansion", true);
+        this.ThermalExpansionActive = p.getBoolean();
+
+        // Debug
+        p = configuration.get("debug", "logHiveSpawns", false);
+        p.comment = "Enable to see exact locations of MagicBees hive spawns.";
+        this.LogHiveSpawns = p.getBoolean();
 	}
 
 }

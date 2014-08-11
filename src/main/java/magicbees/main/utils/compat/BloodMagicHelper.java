@@ -25,7 +25,7 @@ public class BloodMagicHelper {
 
     public static void preInit()
     {
-        if (Loader.isModLoaded(Name))
+        if (Loader.isModLoaded(Name) && Config.BloodMagicActive)
         {
             isBloodMagicActive = true;
         }

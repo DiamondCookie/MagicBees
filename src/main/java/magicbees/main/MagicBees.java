@@ -43,14 +43,7 @@ public class MagicBees
         FMLCommonHandler.instance().bus().register(modConfig);
 		
 		// Compatibility Helpers setup time.
-		ForestryHelper.preInit();
-		ExtraBeesHelper.preInit();
-		ThaumcraftHelper.preInit();
-		EquivalentExchangeHelper.preInit();
-		ArsMagicaHelper.preInit();
-		ThermalExpansionHelper.preInit();
-		RedstoneArsenalHelper.preInit();
-        BloodMagicHelper.preInit();
+		ModHelper.preInit();
 			
 		this.modConfig.setupBlocks();
 		this.modConfig.setupItems();
@@ -64,14 +57,7 @@ public class MagicBees
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		ForestryHelper.init();
-		ExtraBeesHelper.init();
-		ThaumcraftHelper.init();
-		EquivalentExchangeHelper.init();
-		ArsMagicaHelper.init();
-		ThermalExpansionHelper.init();
-		RedstoneArsenalHelper.init();
-        BloodMagicHelper.init();
+        ModHelper.init();
 
 		worldHandler = new WorldGeneratorHandler();
 		GameRegistry.registerWorldGenerator(worldHandler, 0);
@@ -82,14 +68,7 @@ public class MagicBees
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		ForestryHelper.postInit();
-		ExtraBeesHelper.postInit();
-		ThaumcraftHelper.postInit();
-		EquivalentExchangeHelper.postInit();
-		ArsMagicaHelper.postInit();
-		ThermalExpansionHelper.postInit();
-		RedstoneArsenalHelper.postInit();
-        BloodMagicHelper.postInit();
+        ModHelper.postInit();
 		
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, this.guiHandler);

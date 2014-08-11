@@ -1,5 +1,7 @@
 package magicbees.main.utils.compat;
 
+import cpw.mods.fml.common.Loader;
+import magicbees.main.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -102,7 +104,7 @@ public class ExtraBeesHelper
 	
 	public static void preInit()
 	{
-		if (cpw.mods.fml.common.Loader.isModLoaded("ExtraBees"))
+		if (Loader.isModLoaded("ExtraBees") && Config.ExtraBeesActive)
 		{
 			isEBPresent = true;
 		}

@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-2.1.15"
+version = "1.7.10-2.1.17"
 group= "magicbees" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "magicbees"
 
@@ -25,7 +25,7 @@ minecraft {
     version = "1.7.10-10.13.0.1188"
     assetDir = "eclipse/assets"
 }
-
+    
 dependencies {
 
 	compile files("/libs/Thaumcraft-1.7.2-4.1.1.14.jar")

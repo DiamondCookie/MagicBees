@@ -1,9 +1,9 @@
 package magicbees.world.feature;
 
-import cpw.mods.fml.common.FMLLog;
 import magicbees.block.types.HiveType;
 import magicbees.main.Config;
 import magicbees.main.MagicBees;
+import magicbees.main.utils.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -18,7 +18,7 @@ public class FeatureHive
 	private static FeatureOreVein glowstoneGen;
 	private static FeatureOreVein endStoneGen;
 	
-	private static boolean logSpawns = true;
+	private static boolean logSpawns = MagicBees.getConfig().LogHiveSpawns;
 	
 	public static void initialize()
 	{
@@ -47,7 +47,7 @@ public class FeatureHive
 				b != null && b.isLeaves(world, coordX, coordY + 1, coordZ))
 		{
 			world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.CURIOUS.ordinal(), 3);
-			if (logSpawns) 	FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Curious", coordX, coordZ, coordY);
+			if (logSpawns) 	LogHelper.info("Spawning curious hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 			doSpawn = true;
 		}
 		
@@ -61,7 +61,7 @@ public class FeatureHive
 		boolean doSpawn = false;
 		if (world.isAirBlock(coordX, coordY + 1, coordZ) &&
 				world.isAirBlock(coordX, coordY, coordZ) &&
-				canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Blocks.dirt))
+				canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Blocks.grass))
 		{
 			doSpawn = true;
 		}
@@ -69,7 +69,7 @@ public class FeatureHive
 		if (doSpawn)
 		{
 			world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.UNUSUAL.ordinal(), 3);
-			if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Unusual", coordX, coordZ, coordY);
+			if (logSpawns) LogHelper.info("Spawning unusual hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 		}
 		
 		return doSpawn;
@@ -82,7 +82,7 @@ public class FeatureHive
 		if (world.rand.nextInt() < 40 && world.isAirBlock(coordX, coordY + 1, coordZ) &&
 				(world.isAirBlock(coordX, coordY, coordZ) || canBlockReplaceAt(world, coordX, coordY, coordZ,
 						Blocks.tallgrass)) &&
-				(canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Blocks.dirt) ||
+				(canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Blocks.grass) ||
 						canBlockReplaceAt(world, coordX, coordY - 1, coordZ, Blocks.sand)))
 		{
 			doSpawn = true;
@@ -91,7 +91,7 @@ public class FeatureHive
 		if (doSpawn)
 		{
 			world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.RESONANT.ordinal(), 3);
-			if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Resonant", coordX, coordZ, coordY);
+			if (logSpawns) LogHelper.info("Spawning resonant hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 		}
 		
 		return doSpawn;
@@ -115,7 +115,7 @@ public class FeatureHive
 		if (doSpawn)
 		{
 			world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.DEEP.ordinal(), 3);
-			if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Deep", coordX, coordZ, coordY);
+			if (logSpawns) LogHelper.info("Spawning deep hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 			
 
 			redstoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, 2);
@@ -147,7 +147,7 @@ public class FeatureHive
 			if (doSpawn)
 			{
 				world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.INFERNAL.ordinal(), 3);
-				if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Infernal", coordX, coordZ, coordY);
+				if (logSpawns) LogHelper.info("Spawning infernal hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 
 				netherQuartzGen.generateVein(world, random, coordX + 1, coordY, coordZ, 4);
 				netherQuartzGen.generateVein(world, random, coordX - 1, coordY, coordZ, 4);
@@ -171,7 +171,7 @@ public class FeatureHive
 			if (doSpawn)
 			{
 				world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.INFERNAL.ordinal(), 3);
-				if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Infernal", coordX, coordZ, coordY);
+				if (logSpawns) LogHelper.info("Spawning infernal hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 
 				glowstoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, world.rand.nextInt(4) + 1);
 				glowstoneGen.generateVein(world, random, coordX - 1, coordY, coordZ, world.rand.nextInt(4) + 1);
@@ -214,7 +214,7 @@ public class FeatureHive
 			if (doSpawn)
 			{
 				world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.OBLIVION.ordinal(), 3);
-				if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Oblivion", coordX, coordZ, coordY);
+				if (logSpawns) LogHelper.info("Spawning oblivion hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 				
 				int obsidianSpikeHeight = random.nextInt(8) + 2;
 				
@@ -246,7 +246,7 @@ public class FeatureHive
 			if (doSpawn)
 			{
 				world.setBlock(coordX, coordY, coordZ, Config.hive, HiveType.OBLIVION.ordinal(), 3);
-				if (logSpawns) FMLLog.info("Spawning %s hive at: X %d,  Z %d, Y %d", "Oblivion", coordX, coordZ, coordY);
+				if (logSpawns) LogHelper.info("Spawning oblivion hive at: X " + coordX + ", Y: " +  coordY + ", Z: " + coordZ);
 
 				endStoneGen.generateVein(world, random, coordX + 1, coordY, coordZ, world.rand.nextInt(6) + 1);
 				endStoneGen.generateVein(world, random, coordX - 1, coordY, coordZ, world.rand.nextInt(6) + 1);
