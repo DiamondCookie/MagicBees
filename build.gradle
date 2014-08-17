@@ -15,6 +15,13 @@ buildscript {
     }
 }
 
+repositories {
+    maven {
+        name = "forestry"
+        url = "http://maven.ic2.player.to/"
+    }
+}
+
 apply plugin: 'forge'
 
 version = "1.7.10-2.1.18"
@@ -29,7 +36,7 @@ minecraft {
 dependencies {
 
 	compile files("/libs/Thaumcraft-1.7.2-4.1.1.14.jar")
-	compile files("/libs/forestry_1.7.10-2.4.2.31-dev.jar")
+    compile 'net.sengir.forestry:forestry_1.7.10:2.4.2.31:dev'
 	compile files("/libs/Blood Magic-v1.1.0(1.7.10).jar")
 }
 
