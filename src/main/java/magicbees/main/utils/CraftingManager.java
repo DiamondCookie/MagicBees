@@ -442,8 +442,7 @@ public class CraftingManager
 						ItemInterface.getItemStack("honeyDrop")},
 				new int[] {50, 50, 22});
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.OCCULT),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), GameRegistry.findItemStack("forestry",
-						"honeyDrop", 1) },
+				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItemStack("honeyDrop")},
 				new int[] { 100, 60 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.OTHERWORLDLY),
 				new ItemStack[] {beeswax, Config.wax.getStackForType(WaxType.MAGIC),
@@ -455,8 +454,7 @@ public class CraftingManager
 						new ItemStack(Items.paper) },
 				new int[] { 80, 20, 5 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.INTELLECT),
-				new ItemStack[] { Config.wax.getStackForType(WaxType.MAGIC), GameRegistry.findItemStack("forestry",
-						"honeydew", 1), Config.drops.getStackForType(DropType.INTELLECT) },
+				new ItemStack[] { Config.wax.getStackForType(WaxType.MAGIC), ItemInterface.getItemStack("honeydew"), Config.drops.getStackForType(DropType.INTELLECT) },
 				new int[] { 90, 40, 10 });
 		propolis.setItemDamage(ForestryHelper.Propolis.NORMAL.ordinal());
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.FURTIVE),
@@ -464,8 +462,7 @@ public class CraftingManager
 						ItemInterface.getItemStack("honeydew") },
 				new int[] { 90, 20, 35 });
 		RecipeManagers.centrifugeManager.addRecipe(20, Config.combs.getStackForType(CombType.SOUL),
-				new ItemStack[] {Config.wax.getStackForType(WaxType.SOUL), GameRegistry.findItemStack("forestry",
-						"honeydew", 1) },
+				new ItemStack[] {Config.wax.getStackForType(WaxType.SOUL), ItemInterface.getItemStack("honeydew")},
 				new int[] { 95, 26 });
 		RecipeManagers.centrifugeManager.addRecipe(20,  Config.combs.getStackForType(CombType.TEMPORAL),
 				new ItemStack[] {Config.wax.getStackForType(WaxType.MAGIC), Config.pollen.getStackForType(PollenType.PHASED), new ItemStack(Config.fHoneydew, 1)},

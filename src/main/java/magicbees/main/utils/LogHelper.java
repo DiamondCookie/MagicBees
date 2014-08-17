@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Level;
 public class LogHelper
 {
     public static void log(Level logLevel, Object object){
-        FMLLog.log(VersionInfo.ModName, logLevel, "[MagicBees]: " + String.valueOf(object));
+        FMLLog.log(VersionInfo.ModName, logLevel, String.valueOf(object));
     }
 
     public static void all(Object object){ log(Level.ALL, object); }
