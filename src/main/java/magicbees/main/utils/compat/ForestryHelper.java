@@ -3,12 +3,15 @@ package magicbees.main.utils.compat;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
+import forestry.core.config.ForestryBlock;
+import forestry.core.config.ForestryItem;
 import magicbees.main.utils.BlockInterface;
 import magicbees.main.utils.ItemInterface;
 import forestry.api.genetics.IAllele;
 import magicbees.bees.BeeManager;
 import magicbees.main.Config;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ForestryHelper

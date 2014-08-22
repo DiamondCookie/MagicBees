@@ -1788,6 +1788,12 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		return LocalizationManager.getLocalizedString(getUID() + ".description");
 	}
 
+    @Override
+    public String getUnlocalizedName()
+    {
+        return getUID();
+    }
+
 	@Override
 	public EnumTemperature getTemperature()
 	{

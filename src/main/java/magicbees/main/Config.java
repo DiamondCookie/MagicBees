@@ -207,6 +207,7 @@ public class Config
 		this.doMiscConfig();
 		
 		this.ForestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
+        this.configuration.save();
 	}
 
     @SubscribeEvent
@@ -231,7 +232,8 @@ public class Config
 		{
 			if (ThaumcraftHelper.isActive())
 			{
-				planksWood = new BlockPlanks();
+                /**
+                planksWood = new BlockPlanks();
 				planksWood.setBlockName("planks");
 
 				//Item.itemsList[planksWood.blockID] = null;
@@ -255,8 +257,9 @@ public class Config
 			    Item.itemsList[slabWoodFull.blockID] = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf,
 			    slabWoodFull, true);*/
 
-		        OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
-			    OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
+		        //OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
+			    //OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
+
 			}
 		}
 

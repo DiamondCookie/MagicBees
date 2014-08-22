@@ -260,4 +260,9 @@ public class Allele implements IAllele
 		return LocalizationManager.getLocalizedString(getUID());
 	}
 
+    @Override
+    public String getUnlocalizedName() {
+        return this.uid;
+    }
+
 }

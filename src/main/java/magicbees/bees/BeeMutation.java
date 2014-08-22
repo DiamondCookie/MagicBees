@@ -52,7 +52,7 @@ public class BeeMutation implements IBeeMutation
 			{
 				for (String str : binnieMundane)
 				{
-					LogHelper.info("Registering %s" + str);
+					LogHelper.info("Registering " + str);
 					try {
 						new BeeMutation(species, Allele.getExtraSpecies(str), ForestryHelper.getTemplateForestryForSpecies("Common"), 15);
 					} catch (Exception e) {
@@ -374,10 +374,10 @@ public class BeeMutation implements IBeeMutation
 				
 				if (this.requiredBlockOreDictEntry != null)
 				{
-					int dicId = OreDictionary.getOreID(new ItemStack(blockBelow, 1, blockMeta));
-					if (dicId != -1)
+					int[] dicId = OreDictionary.getOreIDs(new ItemStack(blockBelow, 1, blockMeta));
+					if (dicId.length != 0)
 					{
-						if (!OreDictionary.getOreName(dicId).equals(this.requiredBlockOreDictEntry))
+						if (!OreDictionary.getOreName(dicId[1]).equals(this.requiredBlockOreDictEntry))
 						{
 							chance = 0;
 						}

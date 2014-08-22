@@ -39,7 +39,12 @@ public class BackpackDefinition implements IBackpackDefinition
 		return this.name;
 	}
 
-	@Override
+    @Override
+    public String getName(ItemStack backpack) {
+        return backpack.getDisplayName();
+    }
+
+    @Override
 	public int getPrimaryColour()
 	{
 		return this.colour;
@@ -58,12 +63,6 @@ public class BackpackDefinition implements IBackpackDefinition
 		{
 			this.items.add(validItem);
 		}
-	}
-
-	@Override
-	public Collection<ItemStack> getValidItems(EntityPlayer player)
-	{
-		return this.items;
 	}
 
 	@Override
