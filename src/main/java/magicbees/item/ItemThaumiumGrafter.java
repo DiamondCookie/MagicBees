@@ -31,7 +31,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 		this.setMaxStackSize(1);
 		this.setMaxDamage(15);
 		this.setCreativeTab(forestry.api.core.Tabs.tabArboriculture);
-		this.setUnlocalizedName(this.iconString = CommonProxy.DOMAIN + ":thaumiumGrafter");
+		this.setUnlocalizedName("thaumiumGrafter");
 	}
 
 	@Override

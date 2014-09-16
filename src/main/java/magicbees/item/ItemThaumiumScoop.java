@@ -27,7 +27,7 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 		this.setMaxStackSize(1);
 		this.setMaxDamage(30);
 		this.setCreativeTab(forestry.api.core.Tabs.tabApiculture);
-		this.setUnlocalizedName(this.iconString = CommonProxy.DOMAIN + ":thaumiumScoop");
+		this.setUnlocalizedName("thaumiumScoop");
 	}
 
 	@Override

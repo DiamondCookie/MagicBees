@@ -120,6 +120,7 @@ public class ThaumcraftHelper
 		SILVERWOOD,
 		;
 	}
+
 	
 	public static final String Name = "Thaumcraft";
 	private static boolean isThaumcraftPresent = false;

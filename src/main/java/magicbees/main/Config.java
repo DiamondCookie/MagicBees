@@ -50,6 +50,7 @@ public class Config
 {
 	public boolean	DrawParticleEffects;	
 	public boolean	BeeInfusionsAdded;
+    public boolean  ThaumaturgeBackpackActive;
 	public boolean	AddThaumcraftItemsToBackpacks;
 	public boolean	DisableUpdateNotification;
 	public boolean	AreMagicPlanksFlammable;
@@ -292,7 +293,7 @@ public class Config
 		BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), 95);
 		
 		{
-			if (ThaumcraftHelper.isActive())
+			if (ThaumcraftHelper.isActive() && ThaumaturgeBackpackActive)
 			{
 				try
 				{
@@ -301,8 +302,10 @@ public class Config
 					BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
 					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T1);
 					thaumaturgeBackpackT1.setUnlocalizedName("backpack.thaumaturgeT1");
+                    GameRegistry.registerItem(thaumaturgeBackpackT1, "backpack.thaumaturgeT1");
 					thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T2);
 					thaumaturgeBackpackT2.setUnlocalizedName("backpack.thaumaturgeT2");
+                    GameRegistry.registerItem(thaumaturgeBackpackT2, "backpack.thaumaturgeT2");
 					// Add additional items from configs to backpack.
 					if (MagicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
 					{
@@ -428,7 +431,11 @@ public class Config
 		{
 			e.printStackTrace();
 		}
-		
+
+        p = configuration.get("general", "backpack.thaumaturge.active", true);
+        p.comment = "Set to false to disable the Thaumaturge backpack";
+        this.ThaumaturgeBackpackActive = p.getBoolean(true);
+
 		p = configuration.get("general", "backpack.thaumaturge.additionalItems", "");
 		p.comment = "Add additional items to the Thaumaturge's Backpack." +
 				"\n Format is the same as Forestry's: id:meta;id;id:meta (etc)";

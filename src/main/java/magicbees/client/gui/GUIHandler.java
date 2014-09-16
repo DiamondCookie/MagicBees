@@ -1,6 +1,7 @@
 package magicbees.client.gui;
 
 import magicbees.tileentity.TileEntityEffectJar;
+import magicbees.tileentity.TileEntityThaumicApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -17,6 +18,10 @@ public class GUIHandler implements IGuiHandler
 		{
 			value = new ContainerEffectJar((TileEntityEffectJar)world.getTileEntity(x, y, z), player);
 		}
+        else if (ID == UIScreens.THAUMIC_APIARY.ordinal())
+        {
+            //value = new Container((TileEntityThaumicApiary)world.getTileEntity(x, y, z), player);
+        }
 		
 		return value;
 	}

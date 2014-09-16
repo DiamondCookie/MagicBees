@@ -377,7 +377,7 @@ public class BeeMutation implements IBeeMutation
 					int[] dicId = OreDictionary.getOreIDs(new ItemStack(blockBelow, 1, blockMeta));
 					if (dicId.length != 0)
 					{
-						if (!OreDictionary.getOreName(dicId[1]).equals(this.requiredBlockOreDictEntry))
+						if (!OreDictionary.getOreName(dicId[0]).equals(this.requiredBlockOreDictEntry))
 						{
 							chance = 0;
 						}
