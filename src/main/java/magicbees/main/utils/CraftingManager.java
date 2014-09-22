@@ -642,7 +642,7 @@ public class CraftingManager
 				FluidContainerRegistry.registerFluidContainer(liquid, filled, empty);
 
 				// Register with Squeezer/Bottler
-				RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);
+				//RecipeManagers.bottlerManager.addRecipe(5, liquid, empty, filled);  Outdated?
 				RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] {filled} , liquid,
 						Config.wax.getStackForType(WaxType.MAGIC), 20);
 				fluidType.available = true;

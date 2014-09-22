@@ -1,8 +1,11 @@
 package magicbees.item;
 
 import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -84,5 +87,12 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
     {
         return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super
 		    .getIsRepairable(par1ItemStack, par2ItemStack);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + "thaumiumScoop");
     }
 }

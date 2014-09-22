@@ -4,8 +4,8 @@ language.code=de_DE
 
 #Items
 item.magicbees:jellyBabies.name=Handvoll Gummibärchen
-item.magicbees:thaumiumScoop.name=Thaumiumkescher
-item.magicbees:thaumiumGrafter.name=Thaumiumgartenschere
+item.thaumiumScoop.name=Thaumiumkescher
+item.thaumiumGrafter.name=Thaumiumgartenschere
 item.magicbees:mysteriousMagnet.name=Mysteriöser Magnet
 item.moonDial.name=Jade-Mondskala
 

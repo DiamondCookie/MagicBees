@@ -4,8 +4,8 @@ language.code=en_US
 
 #Items
 item.magicbees:jellyBabies.name=Handful of Jelly Babies
-item.magicbees:thaumiumScoop.name=Thaumium Scoop
-item.magicbees:thaumiumGrafter.name=Thaumium Grafter
+item.thaumiumScoop.name=Thaumium Scoop
+item.thaumiumGrafter.name=Thaumium Grafter
 item.magicbees:mysteriousMagnet.name=Mysterious Magnet
 item.moonDial.name=Jade Moon Dial
 

@@ -33,12 +33,6 @@ public class BackpackDefinition implements IBackpackDefinition
 		return this.key;
 	}
 
-	@Override
-	public String getName()
-	{
-		return this.name;
-	}
-
     @Override
     public String getName(ItemStack backpack) {
         return backpack.getDisplayName();

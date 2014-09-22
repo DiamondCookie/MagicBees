@@ -1,7 +1,7 @@
 	#Items
 	item.magicbees:jellyBabies.name=胶糖娃娃
-	item.magicbees:thaumiumScoop.name=奥法捕蜂网
-	item.magicbees:thaumiumGrafter.name=奥法剪枝器
+	item.thaumiumScoop.name=奥法捕蜂网
+	item.thaumiumGrafter.name=奥法剪枝器
 
 	item.moonDial.name=翡翠色月相盘
 	
