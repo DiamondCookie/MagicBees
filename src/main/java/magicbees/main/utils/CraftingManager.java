@@ -383,14 +383,16 @@ public class CraftingManager
 					input, input, input, input
 			});
 
-			// T1 Thaumaturge's backpack
-			GameRegistry.addRecipe(new ItemStack(Config.thaumaturgeBackpackT1), new Object[] {
-				"SWS", "NCN", "SWS",
-				'S', Items.string,
-				'W', Blocks.wool,
-				'N', new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.AMBER.ordinal()),
-				'C', Blocks.chest
-			});
+            if(Config.ThaumaturgeBackpackActive) {
+                // T1 Thaumaturge's backpack
+                GameRegistry.addRecipe(new ItemStack(Config.thaumaturgeBackpackT1), new Object[]{
+                        "SWS", "NCN", "SWS",
+                        'S', Items.string,
+                        'W', Blocks.wool,
+                        'N', new ItemStack(Config.tcMiscResource, 1, ThaumcraftHelper.MiscResource.AMBER.ordinal()),
+                        'C', Blocks.chest
+                });
+            }
 
 			// "bottling" Crystal aspects.
 			/*for (EnumTag tag : EnumTag.values())

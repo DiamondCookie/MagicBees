@@ -35,7 +35,7 @@ public class BackpackDefinition implements IBackpackDefinition
 
     @Override
     public String getName(ItemStack backpack) {
-        return backpack.getDisplayName();
+        return name;
     }
 
     @Override

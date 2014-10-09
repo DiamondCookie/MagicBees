@@ -76,7 +76,10 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 			int meta = world.getBlockMetadata(x, y, z) & 1;
 			if (meta == 0 || meta == 1)
 			{
-				this.dropItem(world, x, y, z, new ItemStack(Config.tcPlant, 1, meta));
+                double chance = Math.random();
+                if (chance <= Config.ThaumcraftSaplingDroprate) {
+                    this.dropItem(world, x, y, z, new ItemStack(Config.tcPlant, 1, meta));
+                }
 			}
 		}
 		itemstack.damageItem(damage, entityLiving);

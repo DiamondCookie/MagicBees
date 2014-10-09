@@ -50,7 +50,7 @@ public class Config
 {
 	public boolean	DrawParticleEffects;	
 	public boolean	BeeInfusionsAdded;
-    public boolean  ThaumaturgeBackpackActive;
+    public static boolean  ThaumaturgeBackpackActive;
 	public boolean	AddThaumcraftItemsToBackpacks;
 	public boolean	DisableUpdateNotification;
 	public boolean	AreMagicPlanksFlammable;
@@ -62,6 +62,7 @@ public class Config
 	public boolean	DoHiveRetrogen;
 	public boolean	ForceHiveRegen;
     public static boolean  LogHiveSpawns;
+    public static double ThaumcraftSaplingDroprate;
 
     public static boolean ArsMagicaActive;
     public static boolean BloodMagicActive;
@@ -462,6 +463,9 @@ public class Config
 		p = configuration.get("general", "useImpregnatedStickInTools", false);
 		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
 		this.UseImpregnatedStickInTools = p.getBoolean(false);
+
+        p = configuration.get("general", "thaumCraftSaplingDroprate", 0.1, "The chance for thaumcraft saplings using the thaumium grafter", 0.0, 1.0);
+        this.ThaumcraftSaplingDroprate = p.getDouble(0.1);
 		
 		p = configuration.get("general", "moonDialShowText", false);
 		p.comment = "set to true to show the current moon phase in mouse-over text.";

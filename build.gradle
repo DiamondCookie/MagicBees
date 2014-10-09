@@ -24,7 +24,7 @@ repositories {
 
 apply plugin: 'forge'
 
-version = "1.7.10-2.1.20"
+version = "1.7.10-2.1.22"
 group= "magicbees" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "magicbees"
 
@@ -35,7 +35,7 @@ minecraft {
     
 dependencies {
 	compile files("/libs/Thaumcraft-1.7.10-4.2.0.0.jar")
-    compile 'net.sengir.forestry:forestry_1.7.10:3.0.0.174:dev'
+    compile 'net.sengir.forestry:forestry_1.7.10:3.1.1.4:dev'
 	compile files("/libs/Blood Magic-v1.1.0(1.7.10).jar")
 }
 

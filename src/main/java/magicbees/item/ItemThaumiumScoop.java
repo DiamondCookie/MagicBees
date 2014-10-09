@@ -93,6 +93,6 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + "thaumiumScoop");
+        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":thaumiumScoop");
     }
 }
