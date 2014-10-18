@@ -137,7 +137,7 @@ public class FeatureHive
 			int chop = random.nextInt(2) + 1;
 			int coordY = random.nextInt(60 / chop) + random.nextInt(chop) * (120 / chop) - 5;
 			
-			if(world.isAirBlock(coordX, coordY, coordZ) && world.getBlock(coordX, coordY, coordZ) != null &&
+			if(!world.isAirBlock(coordX, coordY, coordZ) && world.getBlock(coordX, coordY, coordZ) != null &&
 					world.getBlock(coordX, coordY, coordZ).isReplaceableOreGen(world, coordX, coordY, coordZ,
 							Blocks.netherrack))
 			{				

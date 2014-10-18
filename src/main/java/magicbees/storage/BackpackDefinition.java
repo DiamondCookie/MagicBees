@@ -2,6 +2,7 @@ package magicbees.storage;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -76,6 +77,13 @@ public class BackpackDefinition implements IBackpackDefinition
 		}
 		
 		return flag;
+	}
+
+	@Override
+	public void addValidItems(List<ItemStack> validItems) {
+		for(ItemStack s : validItems)
+			addValidItem(s);
+		
 	}
 
 }
