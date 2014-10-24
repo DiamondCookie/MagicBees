@@ -1,3 +1,29 @@
+2.1.22
++ Added configoption to change thaumcraft saplingdroprate using thaumiumgrafter
+* First 1.7.10 update on CurseForge! Woohoo!
+* Updated chinese translation courtesy of Astrologers
+* Fixed texturebugs with thaumium scoop and grafter
+* Fixed backpack issues. Hopefully fixed for real this time
+
+2.1.21
+* Bumped forestry requirement to 3.0.0.174 (Might work with lower versions, untested)
+* Fixed issue with Thaumic tools not having icons/localized names
+
+2.1.20
+* Fixes crash due to not registrering backpack correctly
+* Fixes crash when breeding metal bees
+* Fixed a missing configoption
+* Started work on ThaumicApiary
+
+2.1.19
+* Updated to Forestry 3. This is now required.
+* Updated Thaumcraft integration to work in 1.7.10
+* Updated ExtraBees integration
+* Changed all language files to the .lang format
+
+2.1.18
+* A few critical bugfixes to stop centrifuge crashes.
+
 2.1.13
 Updated to 1.7.2.
 
