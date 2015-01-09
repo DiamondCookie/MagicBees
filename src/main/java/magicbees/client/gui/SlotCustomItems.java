@@ -1,6 +1,7 @@
 package magicbees.client.gui;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.inventory.IInventory;
@@ -14,21 +15,13 @@ import net.minecraftforge.oredict.OreDictionary;
 public class SlotCustomItems extends Slot
 {
 	private List<ItemStack> items;
-	
-	public SlotCustomItems(IInventory inventory, int slotIndex, int xPos, int yPos)
-	{
-		this(inventory, slotIndex, xPos, yPos, new ItemStack[0]);
-	}
-	
+
 	public SlotCustomItems(IInventory inventory, int slotIndex, int xPos, int yPos, ItemStack... items)
 	{
 		super(inventory, slotIndex, xPos, yPos);
-		this.items = new ArrayList<ItemStack>();
-		
-		for (ItemStack i : items)
-		{
-			this.items.add(i);
-		}
+		this.items = new ArrayList<ItemStack>(items.length);
+
+		Collections.addAll(this.items, items);
 	}
 	
 	/**
@@ -92,24 +85,17 @@ public class SlotCustomItems extends Slot
 	@Override
 	public boolean isItemValid(ItemStack itemStack)
 	{
-		boolean flag = false;
-		for (int i = 0; i < this.items.size(); ++i)
+		for (ItemStack item : this.items)
 		{
-			if (this.items.get(i).getItem() == itemStack.getItem())
+			if (item != null && item.getItem() == itemStack.getItem())
 			{
-				if (this.items.get(i).getItemDamage() == itemStack.getItemDamage())
+				if (item.getItemDamage() == itemStack.getItemDamage() || item.getItemDamage() == OreDictionary.WILDCARD_VALUE)
 				{
-					flag = true;
-					break;
-				}
-				else
-				{
-					flag = this.items.get(i).getItemDamage() == OreDictionary.WILDCARD_VALUE;
-					break;
+					return true;
 				}
 			}
 		}
-		return flag;
+		return false;
 	}
 
 }

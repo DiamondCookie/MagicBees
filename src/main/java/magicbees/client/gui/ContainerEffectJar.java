@@ -20,8 +20,7 @@ public class ContainerEffectJar extends Container
 	public ContainerEffectJar(TileEntityEffectJar tileEntityEffectJar, EntityPlayer player)
 	{
 		this.jar = tileEntityEffectJar;
-		this.addSlotToContainer(new SlotCustomItems(this.jar, 0, 80, 22, GameRegistry.findItemStack
-				("forestry", "beeDroneGE", 1)));
+		this.addSlotToContainer(new SlotCustomItems(this.jar, 0, 80, 22, GameRegistry.findItemStack("Forestry", "beeDroneGE", 1)));
 
 		for (int i = 0; i < 3; ++i)
 		{
