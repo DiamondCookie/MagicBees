@@ -167,9 +167,9 @@ public class ItemMysteriousMagnet extends Item
 					y = y / length + player.motionY / 2;
 					z = z / length + player.motionZ / 2;
 					
-					e.motionX =+ x;
-					e.motionY =+ y;
-					e.motionZ =+ z;
+					e.motionX = x;
+					e.motionY = y;
+					e.motionZ = z;
 					e.isAirBorne = true;
 					
 					if (e.isCollidedHorizontally)
