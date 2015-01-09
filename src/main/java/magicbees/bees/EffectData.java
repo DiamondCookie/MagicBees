@@ -18,11 +18,13 @@ public class EffectData implements IEffectData
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound)
-	{ }
+	{
+	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound)
-	{ }
+	{
+	}
 
 	@Override
 	public void setInteger(int index, int val)

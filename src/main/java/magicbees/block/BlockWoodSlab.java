@@ -3,6 +3,8 @@ package magicbees.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.block.types.PlankType;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
@@ -18,8 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockWoodSlab extends BlockSlab
 {
@@ -41,15 +41,15 @@ public class BlockWoodSlab extends BlockSlab
 	}
 
 	@Override
-    public Item getItemDropped(int id, Random rand, int par3)
-    {
-        return Item.getItemFromBlock(Config.slabWoodHalf);
-    }
+	public Item getItemDropped(int id, Random rand, int par3)
+	{
+		return Item.getItemFromBlock(Config.slabWoodHalf);
+	}
 
-    protected ItemStack createStackedBlock(int meta)
-    {
-        return new ItemStack(Config.planksWood, 1, meta & 7);
-    }
+	protected ItemStack createStackedBlock(int meta)
+	{
+		return new ItemStack(Config.planksWood, 1, meta & 7);
+	}
 
 	@Override
 	public String func_150002_b(int meta)
@@ -71,35 +71,35 @@ public class BlockWoodSlab extends BlockSlab
 	@Override
 	public IIcon getIcon(int side, int meta)
 	{
-		return this.icons[Math.max(0, Math.min(meta & 7, icons.length-1))];
+		return this.icons[Math.max(0, Math.min(meta & 7, icons.length - 1))];
 	}
 	
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
 		this.icons = new IIcon[PlankType.values().length];
-    	for (PlankType t : PlankType.values())
-    	{
-    		this.icons[t.ordinal()] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":" + t.name);
-    	}
-    }
+		for (PlankType t : PlankType.values())
+		{
+			this.icons[t.ordinal()] = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":" + t.name);
+		}
+	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
 	{
 		Block block = world.getBlock(x, y, z);
 
-	    if (block.isAir(world, x, y, z))
-	    {
-	        return null;
-	    }
-	
-	    Item item = Item.getItemFromBlock(block);
-	    if (item == null)
-	    {
-	        return null;
-	    }
-	
-	    return new ItemStack(item, 1, getDamageValue(world, x, y, z) & 7);
+		if (block.isAir(world, x, y, z))
+		{
+			return null;
+		}
+
+		Item item = Item.getItemFromBlock(block);
+		if (item == null)
+		{
+			return null;
+		}
+
+		return new ItemStack(item, 1, getDamageValue(world, x, y, z) & 7);
 	}
 }

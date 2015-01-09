@@ -2,19 +2,12 @@ package magicbees.bees;
 
 import java.util.List;
 
-
-import magicbees.main.MagicBees;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
-import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectCure extends AlleleEffect

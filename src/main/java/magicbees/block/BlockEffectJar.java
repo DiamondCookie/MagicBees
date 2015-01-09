@@ -19,7 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockEffectJar extends BlockContainer
-{	
+{
 	public BlockEffectJar()
 	{
 		super(Material.glass);

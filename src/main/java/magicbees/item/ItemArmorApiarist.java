@@ -17,16 +17,20 @@ public class ItemArmorApiarist extends Item implements IArmorApiarist
 	{
 		int count = 0;
 
-		if (wearsHelmet(player)) {
+		if (wearsHelmet(player))
+		{
 			count++;
 		}
-		if (wearsChest(player)) {
+		if (wearsChest(player))
+		{
 			count++;
 		}
-		if (wearsLegs(player)) {
+		if (wearsLegs(player))
+		{
 			count++;
 		}
-		if (wearsBoots(player)) {
+		if (wearsBoots(player))
+		{
 			count++;
 		}
 

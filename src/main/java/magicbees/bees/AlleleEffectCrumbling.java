@@ -77,7 +77,7 @@ public class AlleleEffectCrumbling extends AlleleEffect
 				{
 					ItemStack target = crumbleMap.get(key);
 					world.setBlock(xCoord, yCoord, zCoord, Block.getBlockFromItem(target.getItem()),
-						target.getItemDamage(), 2);
+							target.getItemDamage(), 2);
 					
 					break;
 				}

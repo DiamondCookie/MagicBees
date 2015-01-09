@@ -9,9 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
- * 
  * @author MysteriousAges
- *
  */
 public class SlotCustomItems extends Slot
 {
@@ -34,7 +32,6 @@ public class SlotCustomItems extends Slot
 	}
 	
 	/**
-	 * 
 	 * @return List of valid ItemStacks
 	 */
 	public List<ItemStack> getValidItems()
@@ -69,7 +66,6 @@ public class SlotCustomItems extends Slot
 	}
 	
 	/**
-	 * 
 	 * @param removeItem ItemStack to remove.
 	 */
 	public void removeValidItem(ItemStack removeItem)
@@ -108,7 +104,7 @@ public class SlotCustomItems extends Slot
 				}
 				else
 				{
-					flag = this.items.get(i).getItemDamage() ==OreDictionary.WILDCARD_VALUE;
+					flag = this.items.get(i).getItemDamage() == OreDictionary.WILDCARD_VALUE;
 					break;
 				}
 			}

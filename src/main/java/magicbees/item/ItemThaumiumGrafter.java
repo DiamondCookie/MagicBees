@@ -1,11 +1,13 @@
 package magicbees.item;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.utils.compat.ThaumcraftHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,12 +21,11 @@ import thaumcraft.api.IRepairableExtended;
 import thaumcraft.api.ThaumcraftApi;
 import forestry.api.arboriculture.IToolGrafter;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Optional.InterfaceList(
-    {@Optional.Interface(iface = "IRepairableExtended", modid = "Thaumcraft", striprefs = true),
-    @Optional.Interface(iface = "IToolGrafter", modid = "forestry", striprefs = true)}
+		{
+				@Optional.Interface(iface = "IRepairableExtended", modid = "Thaumcraft", striprefs = true),
+				@Optional.Interface(iface = "IToolGrafter", modid = "forestry", striprefs = true)
+		}
 )
 public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IToolGrafter
 {
@@ -44,14 +45,16 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 	}
 
 	@Override
-	public Set<String> getToolClasses(ItemStack itemStack) {
+	public Set<String> getToolClasses(ItemStack itemStack)
+	{
 		HashSet<String> classes = new HashSet<String>(1);
 		classes.add("grafter");
 		return classes;
 	}
 
 	@Override
-	public int getHarvestLevel(ItemStack itemStack, String toolClass) {
+	public int getHarvestLevel(ItemStack itemStack, String toolClass)
+	{
 		return toolClass.equals("grafter") ? 3 : 0;
 	}
 	
@@ -69,17 +72,19 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 
 	@Override
 	public boolean onBlockDestroyed(ItemStack itemstack, World world, Block block, int x, int y, int z,
-	                                EntityLivingBase entityLiving) {
+									EntityLivingBase entityLiving)
+	{
 		int damage = 1;
 		if (block == Config.tcLeaf)
 		{
 			int meta = world.getBlockMetadata(x, y, z) & 1;
 			if (meta == 0 || meta == 1)
 			{
-                double chance = Math.random();
-                if (chance <= Config.ThaumcraftSaplingDroprate) {
-                    this.dropItem(world, x, y, z, new ItemStack(Config.tcPlant, 1, meta));
-                }
+				double chance = Math.random();
+				if (chance <= Config.ThaumcraftSaplingDroprate)
+				{
+					this.dropItem(world, x, y, z, new ItemStack(Config.tcPlant, 1, meta));
+				}
 			}
 		}
 		itemstack.damageItem(damage, entityLiving);
@@ -88,48 +93,48 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 	
 	private void dropItem(World world, int x, int y, int z, ItemStack item)
 	{
-        if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops"))
-        {
-            float f = 0.7F;
-            double d0 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-            double d1 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-            double d2 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-            EntityItem entityitem = new EntityItem(world, (double)x + d0, (double)y + d1, (double)z + d2, item);
-            entityitem.delayBeforeCanPickup = 10;
-            world.spawnEntityInWorld(entityitem);
-        }
+		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops"))
+		{
+			float f = 0.7F;
+			double d0 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+			double d1 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+			double d2 = (double)(world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+			EntityItem entityitem = new EntityItem(world, (double)x + d0, (double)y + d1, (double)z + d2, item);
+			entityitem.delayBeforeCanPickup = 10;
+			world.spawnEntityInWorld(entityitem);
+		}
 	}
 	
-    /**
-     * Return the enchantability factor of the item, most of the time is based on material.
-     */
-    @Optional.Method(modid = "Thaumcraft")
-    public int getItemEnchantability()
-    {
-        return ThaumcraftApi.toolMatThaumium.getEnchantability();
-    }
+	/**
+	 * Return the enchantability factor of the item, most of the time is based on material.
+	 */
+	@Optional.Method(modid = "Thaumcraft")
+	public int getItemEnchantability()
+	{
+		return ThaumcraftApi.toolMatThaumium.getEnchantability();
+	}
 
-    /**
-     * Return the name for this tool's material.
-     */
-    @Optional.Method(modid = "Thaumcraft")
-    public String getToolMaterialName()
-    {
-        return ThaumcraftApi.toolMatThaumium.toString();
-    }
+	/**
+	 * Return the name for this tool's material.
+	 */
+	@Optional.Method(modid = "Thaumcraft")
+	public String getToolMaterialName()
+	{
+		return ThaumcraftApi.toolMatThaumium.toString();
+	}
 
-    /**
-     * Return whether this item is repairable in an anvil.
-     */
-    @Optional.Method(modid = "Thaumcraft")
-    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-        return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable
-		        (par1ItemStack, par2ItemStack);
-    }
+	/**
+	 * Return whether this item is repairable in an anvil.
+	 */
+	@Optional.Method(modid = "Thaumcraft")
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+	{
+		return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable
+				(par1ItemStack, par2ItemStack);
+	}
 
 	@Override
-    @Optional.Method(modid = "Thaumcraft")
+	@Optional.Method(modid = "Thaumcraft")
 	public boolean doRepair(ItemStack stack, EntityPlayer player, int enchantLevel)
 	{
 		boolean flag = false;
@@ -141,10 +146,10 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 		return flag;
 	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":thaumiumGrafter");
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister iconRegister)
+	{
+		this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":thaumiumGrafter");
+	}
 }

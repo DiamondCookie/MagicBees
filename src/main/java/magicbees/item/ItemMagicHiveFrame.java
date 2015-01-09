@@ -3,10 +3,6 @@ package magicbees.item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IHiveFrame;
 import magicbees.item.types.HiveFrameType;
 import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
@@ -14,6 +10,10 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IHiveFrame;
 
 public class ItemMagicHiveFrame extends Item implements IHiveFrame
 {
@@ -30,11 +30,11 @@ public class ItemMagicHiveFrame extends Item implements IHiveFrame
 		GameRegistry.registerItem(this, "frame" + frameType.getName());
 	}
 	
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":frame" + type.getName());
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+		this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":frame" + type.getName());
+	}
 	
 	// --------- IHiveFrame functions -----------------------------------------
 	

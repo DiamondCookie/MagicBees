@@ -62,13 +62,13 @@ public class Allele implements IAllele
 			Allele.flowerAuraNode = new AlleleFlower("AuraNode", new FlowerProviderAuraNode(), true);
 
 			Allele.spawnBrainyZombie = new AlleleEffectSpawnMob("Brainy", false, ThaumcraftHelper.Entity.BRAINY_ZOMBIE.entityID)
-				.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);
-	
+					.setAggrosPlayerOnSpawn().setThrottle(800).setSpawnsOnPlayerNear(null).setMaxMobsInSpawnZone(2);
+
 			Allele.spawnBats = new AlleleEffectSpawnMob("Batty", false, ThaumcraftHelper.Entity.FIREBAT.entityID)
-				.setThrottle(300).setSpawnsOnPlayerNear("Bat");
-	
+					.setThrottle(300).setSpawnsOnPlayerNear("Bat");
+
 			Allele.spawnWisp = new AlleleEffectSpawnWisp("Wispy", false, ThaumcraftHelper.Entity.WISP.entityID, "thaumcraft.wisplive")
-				.setThrottle(1800).setChanceToSpawn(79);
+					.setThrottle(1800).setChanceToSpawn(79);
 		}
 		else
 		{
@@ -101,7 +101,7 @@ public class Allele implements IAllele
 		if (ThermalExpansionHelper.isActive())
 		{
 			Allele.spawnBlizz = new AlleleEffectSpawnMob("TEBlizzy", true, ThermalExpansionHelper.Entity.BLIZZ.entityID)
-				.setThrottle(100).setChanceToSpawn(80);
+					.setThrottle(100).setChanceToSpawn(80);
 		}
 		else
 		{
@@ -120,13 +120,13 @@ public class Allele implements IAllele
 		Allele.effectInvisibility = new AlleleEffectPotion("Invisibility", Potion.invisibility, 10, false);
 
 		Allele.spawnGhast = new AlleleEffectSpawnMob("Ghastly", false, "Ghast", "mob.ghast.moan")
-			.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);
+				.setThrottle(2060).setChanceToSpawn(10).setMaxMobsInSpawnZone(1);
 		
 		Allele.spawnSpider = new AlleleEffectSpawnMob("Spidery", false, "Spider", "mob.spider.step")
-			.setThrottle(400).setChanceToSpawn(70).setMaxMobsInSpawnZone(4);
+				.setThrottle(400).setChanceToSpawn(70).setMaxMobsInSpawnZone(4);
 		
 		Allele.spawnBlaze = new AlleleEffectSpawnMob("Ablaze", false, "Blaze", "mob.blaze.breathe")
-			.setThrottle(800).setChanceToSpawn(60).setMaxMobsInSpawnZone(2);
+				.setThrottle(800).setChanceToSpawn(60).setMaxMobsInSpawnZone(2);
 	}
 	
 	public static void registerDeprecatedAlleleReplacements()
@@ -214,12 +214,12 @@ public class Allele implements IAllele
 
 	public static IAlleleBeeSpecies getBaseSpecies(String name)
 	{
-		return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("forestry.species").append(name).toString());
+		return (IAlleleBeeSpecies)AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("forestry.species").append(name).toString());
 	}
 	
 	public static IAlleleBeeSpecies getExtraSpecies(String name)
 	{
-		return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("extrabees.species.").append(name).toString());
+		return (IAlleleBeeSpecies)AlleleManager.alleleRegistry.getAllele((new StringBuilder()).append("extrabees.species.").append(name).toString());
 	}
 	
 	public static IAllele getBaseAllele(String name)
@@ -260,9 +260,10 @@ public class Allele implements IAllele
 		return LocalizationManager.getLocalizedString(getUID());
 	}
 
-    @Override
-    public String getUnlocalizedName() {
-        return this.uid;
-    }
+	@Override
+	public String getUnlocalizedName()
+	{
+		return this.uid;
+	}
 
 }

@@ -1,7 +1,6 @@
 package magicbees.item.types;
 
 import magicbees.main.utils.LocalizationManager;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public enum PropolisType
 {

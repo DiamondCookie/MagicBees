@@ -14,14 +14,14 @@ public enum HiveFrameType
 	;
 	
 	private HiveFrameType(String name, int damage,
-			float territory, float mutation, float lifespan, float production, float geneticDecay)
+						  float territory, float mutation, float lifespan, float production, float geneticDecay)
 	{
 		this(name, damage, territory, mutation, lifespan, production, 1f, geneticDecay, false, false, false, false);
 	}
 	
 	private HiveFrameType(String name, int damage,
-			float territory, float mutation, float lifespan, float production, float flowering, float geneticDecay,
-			boolean sealed, boolean lit, boolean sunlit, boolean hellish)
+						  float territory, float mutation, float lifespan, float production, float flowering, float geneticDecay,
+						  boolean sealed, boolean lit, boolean sunlit, boolean hellish)
 	{
 		this.frameName = name;
 		this.maxDamage = damage;

@@ -3,12 +3,10 @@ package magicbees.bees;
 import java.util.EnumSet;
 
 import magicbees.main.utils.LocalizationManager;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IFlowerProvider;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
@@ -47,7 +45,7 @@ public class FlowerProviderBookshelf implements IFlowerProvider
 	public boolean isAcceptedPollinatable(World world, IPollinatable pollinatable)
 	{
 		EnumSet<EnumPlantType> types = pollinatable.getPlantType();
-		return types.size() > 0 && !types.contains(EnumPlantType.Nether) && !types.contains(EnumPlantType.Water) ;
+		return types.size() > 0 && !types.contains(EnumPlantType.Nether) && !types.contains(EnumPlantType.Water);
 	}
 
 	public String getDescription()

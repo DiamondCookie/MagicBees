@@ -1,5 +1,7 @@
 package magicbees.item;
 
+import java.util.List;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,8 +12,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class ItemCrystalAspect extends Item
 {
@@ -38,11 +38,11 @@ public class ItemCrystalAspect extends Item
 		}*/
 	}
 	
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":crystalAspect");
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+		this.itemIcon = par1IconRegister.registerIcon(CommonProxy.DOMAIN + ":crystalAspect");
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

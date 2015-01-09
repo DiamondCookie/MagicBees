@@ -1,7 +1,6 @@
 package magicbees.storage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,8 +9,8 @@ import forestry.api.storage.IBackpackDefinition;
 
 /**
  * Backpack definition for Forestry.
- * @author MysteriousAges
  *
+ * @author MysteriousAges
  */
 public class BackpackDefinition implements IBackpackDefinition
 {
@@ -34,12 +33,13 @@ public class BackpackDefinition implements IBackpackDefinition
 		return this.key;
 	}
 
-    @Override
-    public String getName(ItemStack backpack) {
-        return name;
-    }
+	@Override
+	public String getName(ItemStack backpack)
+	{
+		return name;
+	}
 
-    @Override
+	@Override
 	public int getPrimaryColour()
 	{
 		return this.colour;
@@ -64,7 +64,7 @@ public class BackpackDefinition implements IBackpackDefinition
 	public boolean isValidItem(EntityPlayer player, ItemStack itemStack)
 	{
 		boolean flag = false;
-		
+
 		ItemStack stack;
 		for (int i = 0; i < this.items.size() && !flag; i++)
 		{
@@ -75,15 +75,16 @@ public class BackpackDefinition implements IBackpackDefinition
 				flag = stack.getItemDamage() == -1 || stack.getItemDamage() == itemStack.getItemDamage();
 			}
 		}
-		
+
 		return flag;
 	}
 
 	@Override
-	public void addValidItems(List<ItemStack> validItems) {
-		for(ItemStack s : validItems)
+	public void addValidItems(List<ItemStack> validItems)
+	{
+		for (ItemStack s : validItems)
 			addValidItem(s);
-		
+
 	}
 
 }

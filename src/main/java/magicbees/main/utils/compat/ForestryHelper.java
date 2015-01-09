@@ -1,18 +1,12 @@
 package magicbees.main.utils.compat;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.core.config.ForestryBlock;
-import forestry.core.config.ForestryItem;
-import magicbees.main.utils.BlockInterface;
-import magicbees.main.utils.ItemInterface;
-import forestry.api.genetics.IAllele;
 import magicbees.bees.BeeManager;
 import magicbees.main.Config;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+import magicbees.main.utils.BlockInterface;
+import magicbees.main.utils.ItemInterface;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.IAllele;
 
 public class ForestryHelper
 {
@@ -20,10 +14,9 @@ public class ForestryHelper
 	{
 		APATITE,
 		COPPER,
-		TIN,
-		;
+		TIN,;
 	}
-	
+
 	public enum CraftingMaterial
 	{
 		PULSATING_DUST, // unused
@@ -32,10 +25,9 @@ public class ForestryHelper
 		WOVEN_SILK,
 		DISSIPATION_CHARGE,
 		ICE_SHARD,
-		SCENTED_PANELING,
-		;
+		SCENTED_PANELING,;
 	}
-	
+
 	public enum Comb
 	{
 		HONEY,
@@ -53,35 +45,31 @@ public class ForestryHelper
 		DARKENED,
 		OMEGA,
 		WHEATEN,
-		MOSSY,
-		;
+		MOSSY,;
 	}
-	
+
 	public enum Propolis
 	{
 		NORMAL,
 		STICKY, // Unused.
 		PULSATING,
-		SILKY,
-		;
+		SILKY,;
 	}
-	
+
 	public enum Pollen
 	{
 		NORMAL,
-		CRYSTALLINE,
-		;
+		CRYSTALLINE,;
 	}
-	
+
 	public enum CircuitBoard
 	{
 		BASIC,
 		ENHANCED,
 		REFINED,
-		INTRICATE,
-		;
+		INTRICATE,;
 	}
-	
+
 	public enum Tube
 	{
 		COPPER,
@@ -95,22 +83,25 @@ public class ForestryHelper
 		RUBBER,
 		EMERALD,
 		APATITE,
-		LAPIS,
-		;
+		LAPIS,;
 	}
-	
+
 	public static final String Name = "Forestry";
-	
-	public static void preInit() {}
-	
+
+	public static void preInit()
+	{
+	}
+
 	public static void init()
 	{
 		getBlocks();
 		getItems();
 	}
-	
-	public static void postInit() {}
-	
+
+	public static void postInit()
+	{
+	}
+
 	private static void getBlocks()
 	{
 		try
@@ -121,10 +112,10 @@ public class ForestryHelper
 		}
 		catch (Exception e)
 		{
-			
+
 		}
 	}
-	
+
 	private static void getItems()
 	{
 		Config.fBeeComb = ItemInterface.getItem("beeCombs");
@@ -138,12 +129,12 @@ public class ForestryHelper
 	{
 		return BeeManager.beeRoot.getTemplate("forestry.species" + speciesName);
 	}
-	
+
 	public static EnumTemperature getEnumTemperatureFromValue(float rawTemp)
 	{
 		return EnumTemperature.getFromValue(rawTemp);
 	}
-	
+
 	public static EnumHumidity getEnumHumidityFromValue(float rawHumidity)
 	{
 		return EnumHumidity.getFromValue(rawHumidity);

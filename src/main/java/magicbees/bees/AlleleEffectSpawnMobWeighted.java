@@ -1,10 +1,9 @@
 package magicbees.bees;
 
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
-import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;
@@ -55,7 +54,7 @@ public class AlleleEffectSpawnMobWeighted extends AlleleEffect
 		
 		for (int i = 0; i < this.spawnChance.length && !flag; ++i)
 		{
-			roll = 100 - w.rand.nextInt(100)+1;
+			roll = 100 - w.rand.nextInt(100) + 1;
 			if (roll < this.spawnChance[i])
 			{
 				flag = true;

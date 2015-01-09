@@ -1,8 +1,10 @@
 package magicbees.block.types;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.IHiveDrop;
 import magicbees.bees.BeeGenomeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.bees.HiveDrop;
@@ -19,9 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-
-import java.util.ArrayList;
-import java.util.Random;
+import forestry.api.apiculture.IHiveDrop;
 
 public enum HiveType
 {
@@ -57,7 +57,7 @@ public enum HiveType
 	
 	public static void initHiveData()
 	{
-		ItemStack[] combs = new ItemStack[] {Config.combs.getStackForType(CombType.MUNDANE)};
+		ItemStack[] combs = new ItemStack[] { Config.combs.getStackForType(CombType.MUNDANE) };
 		HiveDrop valiantDrop = new HiveDrop(BeeGenomeManager.addRainResist(ForestryHelper.getTemplateForestryForSpecies("Valiant")), combs, 5);
 
 		CURIOUS.validBiomes.add(Type.FOREST);
@@ -87,14 +87,14 @@ public enum HiveType
 		DEEP.drops.add(new HiveDrop(BeeGenomeManager.addRainResist(BeeSpecies.ATTUNED.getGenome()), combs, 20));
 		DEEP.drops.add(valiantDrop);
 		
-		combs = new ItemStack[] {Config.combs.getStackForType(CombType.MOLTEN), new ItemStack(Items.glowstone_dust, 6)};
+		combs = new ItemStack[] { Config.combs.getStackForType(CombType.MOLTEN), new ItemStack(Items.glowstone_dust, 6) };
 		
 		INFERNAL.validBiomes.add(Type.NETHER);
 		INFERNAL.validBiomes.add(Type.MAGICAL);
 		INFERNAL.drops.add(new HiveDrop(BeeSpecies.INFERNAL.getGenome(), combs, 80).setIgnoblePercentage(0.5f));
 		INFERNAL.drops.add(new HiveDrop(ForestryHelper.getTemplateForestryForSpecies("Steadfast"), combs, 3));
 		
-		combs = new ItemStack[] {Config.combs.getStackForType(CombType.FORGOTTEN), new ItemStack(Items.ender_pearl, 1)};
+		combs = new ItemStack[] { Config.combs.getStackForType(CombType.FORGOTTEN), new ItemStack(Items.ender_pearl, 1) };
 		
 		OBLIVION.validBiomes.add(Type.END);
 		OBLIVION.validBiomes.add(Type.MAGICAL);
@@ -217,75 +217,75 @@ public enum HiveType
 		{
 			switch (this)
 			{
-			case CURIOUS:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveCurious(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case UNUSUAL:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveUnusual(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case RESONANT:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveResonant(world, random, coordX, coordZ, initialGen))
-					{
-						break;
-					}
-				}
-				break;
-			case DEEP:
-				if (chunkX % 2 == 0 && chunkZ % 2 == 0)
-				{
-					for (int i = 0; i < 1; ++i)
+				case CURIOUS:
+					for (int i = 0; i < 3; ++i)
 					{
 						int coordX = chunkX * 16 + random.nextInt(16);
 						int coordZ = chunkZ * 16 + random.nextInt(16);
-						if (FeatureHive.generateHiveDeep(world, random, coordX, coordZ, initialGen))
+						if (FeatureHive.generateHiveCurious(world, random, coordX, coordZ, initialGen))
 						{
 							break;
 						}
 					}
-				}
-				break;
-			case INFERNAL:
-				for (int i = 0; i < 2; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveInfernal(world, random, coordX, coordZ, initialGen))
+					break;
+				case UNUSUAL:
+					for (int i = 0; i < 3; ++i)
 					{
-						break;
+						int coordX = chunkX * 16 + random.nextInt(16);
+						int coordZ = chunkZ * 16 + random.nextInt(16);
+						if (FeatureHive.generateHiveUnusual(world, random, coordX, coordZ, initialGen))
+						{
+							break;
+						}
 					}
-				}
-				break;
-			case OBLIVION:
-				for (int i = 0; i < 3; ++i)
-				{
-					int coordX = chunkX * 16 + random.nextInt(16);
-					int coordZ = chunkZ * 16 + random.nextInt(16);
-					if (FeatureHive.generateHiveOblivion(world, random, coordX, coordZ, initialGen))
+					break;
+				case RESONANT:
+					for (int i = 0; i < 3; ++i)
 					{
-						break;
+						int coordX = chunkX * 16 + random.nextInt(16);
+						int coordZ = chunkZ * 16 + random.nextInt(16);
+						if (FeatureHive.generateHiveResonant(world, random, coordX, coordZ, initialGen))
+						{
+							break;
+						}
 					}
-				}
-				break;
+					break;
+				case DEEP:
+					if (chunkX % 2 == 0 && chunkZ % 2 == 0)
+					{
+						for (int i = 0; i < 1; ++i)
+						{
+							int coordX = chunkX * 16 + random.nextInt(16);
+							int coordZ = chunkZ * 16 + random.nextInt(16);
+							if (FeatureHive.generateHiveDeep(world, random, coordX, coordZ, initialGen))
+							{
+								break;
+							}
+						}
+					}
+					break;
+				case INFERNAL:
+					for (int i = 0; i < 2; ++i)
+					{
+						int coordX = chunkX * 16 + random.nextInt(16);
+						int coordZ = chunkZ * 16 + random.nextInt(16);
+						if (FeatureHive.generateHiveInfernal(world, random, coordX, coordZ, initialGen))
+						{
+							break;
+						}
+					}
+					break;
+				case OBLIVION:
+					for (int i = 0; i < 3; ++i)
+					{
+						int coordX = chunkX * 16 + random.nextInt(16);
+						int coordZ = chunkZ * 16 + random.nextInt(16);
+						if (FeatureHive.generateHiveOblivion(world, random, coordX, coordZ, initialGen))
+						{
+							break;
+						}
+					}
+					break;
 			}
 		}
 	}

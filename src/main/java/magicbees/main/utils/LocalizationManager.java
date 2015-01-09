@@ -1,8 +1,7 @@
 package magicbees.main.utils;
 
-import magicbees.main.CommonProxy;
-import net.minecraft.util.StringTranslate;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import magicbees.main.CommonProxy;
 
 public class LocalizationManager
 {
@@ -11,16 +10,15 @@ public class LocalizationManager
 		de_DE("de_DE"),
 		en_US("en_US"),
 		ru_RU("ru_RU"),
-		zh_CN("zh_CN"),
-		;
+		zh_CN("zh_CN"),;
 		public String locale;
-		
+
 		private Locale(String loc)
 		{
 			this.locale = loc;
 		}
 	}
-	
+
 	public static void setupLocalizationInfo()
 	{
 		for (Locale l : Locale.values())
@@ -38,8 +36,8 @@ public class LocalizationManager
 		}
 		return result;
 	}
-	
-	public static String getLocalizedString(String key, Object ...objects)
+
+	public static String getLocalizedString(String key, Object... objects)
 	{
 		String result = LanguageRegistry.instance().getStringLocalization(key);
 		if (result.isEmpty())

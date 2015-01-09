@@ -1,6 +1,5 @@
 package magicbees.main.utils;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.world.World;
 
 /**
@@ -16,17 +15,18 @@ public enum MoonPhase
 	WAXING_CRESCENT("crecentWaxing"),
 	WAXING_HALF("halfWaxing"),
 	WAXING_GIBBOUS("gibbousWaxing");
-	
+
 	private String phaseName;
+
 	private MoonPhase(String name)
 	{
 		this.phaseName = name;
 	}
-	
+
 	public boolean isBetween(MoonPhase first, MoonPhase second)
 	{
 		boolean flag = false;
-		
+
 		if (first.ordinal() <= second.ordinal())
 		{
 			// Straightforward.
@@ -38,20 +38,20 @@ public enum MoonPhase
 			flag = (first.ordinal() <= this.ordinal() && this.ordinal() <= WAXING_GIBBOUS.ordinal()) ||
 					(FULL.ordinal() <= this.ordinal() && this.ordinal() <= second.ordinal());
 		}
-		
+
 		return flag;
 	}
-	
+
 	public String getLocalizedName()
 	{
 		return LocalizationManager.getLocalizedString("moon." + this.phaseName);
 	}
-	
+
 	public static MoonPhase getMoonPhase(World w)
 	{
 		return getMoonPhaseFromTime(w.getWorldTime());
 	}
-	
+
 	public static MoonPhase getMoonPhaseFromTime(long time)
 	{
 		return MoonPhase.values()[(int)((time - 6000) / 24000L) % 8];

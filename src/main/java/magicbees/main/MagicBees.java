@@ -12,22 +12,25 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.bees.BeeManager;
 import magicbees.bees.TransmutationEffectController;
 import magicbees.client.gui.GUIHandler;
-import magicbees.main.utils.*;
-import magicbees.main.utils.compat.*;
+import magicbees.main.utils.CraftingManager;
+import magicbees.main.utils.IMCManager;
+import magicbees.main.utils.LogHelper;
+import magicbees.main.utils.VersionInfo;
+import magicbees.main.utils.compat.ModHelper;
 import magicbees.world.WorldGeneratorHandler;
 
 @Mod(
-		modid=VersionInfo.ModName,
-		dependencies=VersionInfo.Depends,
-        guiFactory=VersionInfo.GUI_FACTORY_CLASS
+		modid = VersionInfo.ModName,
+		dependencies = VersionInfo.Depends,
+		guiFactory = VersionInfo.GUI_FACTORY_CLASS
 )
 public class MagicBees
 {
 
 	@Mod.Instance(VersionInfo.ModName)
 	public static MagicBees object;
-	
-	@SidedProxy(serverSide="magicbees.main.CommonProxy", clientSide="magicbees.main.ClientProxy")
+
+	@SidedProxy(serverSide = "magicbees.main.CommonProxy", clientSide = "magicbees.main.ClientProxy")
 	public static CommonProxy proxy;
 
 	public GUIHandler guiHandler;
@@ -40,8 +43,8 @@ public class MagicBees
 	{
 		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
-        FMLCommonHandler.instance().bus().register(modConfig);
-		
+		FMLCommonHandler.instance().bus().register(modConfig);
+
 		// Compatibility Helpers setup time.
 		ModHelper.preInit();
 			
@@ -51,47 +54,47 @@ public class MagicBees
 		// LocalizationManager.setupLocalizationInfo();
 		
 		new TransmutationEffectController();
-        LogHelper.info("Preinit completed");
+		LogHelper.info("Preinit completed");
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-        ModHelper.init();
+		ModHelper.init();
 
 		worldHandler = new WorldGeneratorHandler();
 		GameRegistry.registerWorldGenerator(worldHandler, 0);
 
-        LogHelper.info("Init completed");
+		LogHelper.info("Init completed");
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-        ModHelper.postInit();
-		
+		ModHelper.postInit();
+
 		this.guiHandler = new GUIHandler();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, this.guiHandler);
-		
+
 		proxy.registerRenderers();
 
 		BeeManager.ititializeBees();
-		
+
 		this.modConfig.saveConfigs();
-		
+
 		CraftingManager.setupCrafting();
 		CraftingManager.registerLiquidContainers();
-		
+
 		VersionInfo.doVersionCheck();
-        LogHelper.info("Postinit completed");
+		LogHelper.info("Postinit completed");
 	}
-	
+
 	@Mod.EventHandler
 	public void handleIMCMessage(IMCEvent event)
 	{
 		IMCManager.handle(event);
 	}
-	
+
 	public static Config getConfig()
 	{
 		return object.modConfig;

@@ -1,10 +1,5 @@
 package magicbees.main;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
-
 public class CommonProxy
 {
 	public static final String DOMAIN = "magicbees";

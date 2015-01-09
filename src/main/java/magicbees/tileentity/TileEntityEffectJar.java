@@ -8,10 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IEffectData;
-import net.minecraftforge.common.util.Constants;
 
 
 public class TileEntityEffectJar extends TileEntity implements IInventory
@@ -40,7 +40,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	
 	public void setOwner(EntityPlayer player)
 	{
-        this.ownerName = player.getGameProfile();
+		this.ownerName = player.getGameProfile();
 	}
 	
 	@Override
@@ -120,7 +120,7 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 				}
 				else
 				{
-					droneStack.stackSize--;	
+					droneStack.stackSize--;
 				}
 				
 				this.beeSlots[QUEEN_SLOT] = droneStack.copy();
@@ -171,19 +171,19 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	{
 		super.readFromNBT(tagRoot);
 		
-        NBTTagList nbttaglist = tagRoot.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-        this.beeSlots = new ItemStack[SLOT_COUNT];
+		NBTTagList nbttaglist = tagRoot.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+		this.beeSlots = new ItemStack[SLOT_COUNT];
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
-        {
-            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
+		for (int i = 0; i < nbttaglist.tagCount(); ++i)
+		{
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+			byte b0 = nbttagcompound1.getByte("Slot");
 
-            if (b0 >= 0 && b0 < this.beeSlots.length)
-            {
-                this.beeSlots[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-            }
-        }
+			if (b0 >= 0 && b0 < this.beeSlots.length)
+			{
+				this.beeSlots[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			}
+		}
 		this.currentBeeHealth = tagRoot.getInteger("currentBeeHealth");
 		this.throttle = tagRoot.getInteger("throttle");
 	}
@@ -193,18 +193,18 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	{
 		super.writeToNBT(tagRoot);
 
-        NBTTagList inventory = new NBTTagList();
-        for (int i = 0; i < this.beeSlots.length; ++i)
-        {
-            if (this.beeSlots[i] != null)
-            {
-                NBTTagCompound itemTag = new NBTTagCompound();
-                itemTag.setByte("Slot", (byte)i);
-                this.beeSlots[i].writeToNBT(itemTag);
-                inventory.appendTag(itemTag);
-            }
-        }
-        tagRoot.setTag("Items", inventory);
+		NBTTagList inventory = new NBTTagList();
+		for (int i = 0; i < this.beeSlots.length; ++i)
+		{
+			if (this.beeSlots[i] != null)
+			{
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("Slot", (byte)i);
+				this.beeSlots[i].writeToNBT(itemTag);
+				inventory.appendTag(itemTag);
+			}
+		}
+		tagRoot.setTag("Items", inventory);
 		tagRoot.setInteger("currentBeeHealth", this.currentBeeHealth);
 		tagRoot.setInteger("throttle", this.throttle);
 	}
@@ -252,8 +252,12 @@ public class TileEntityEffectJar extends TileEntity implements IInventory
 	}
 
 	@Override
-	public void openInventory() { }
+	public void openInventory()
+	{
+	}
 
 	@Override
-	public void closeInventory() { }
+	public void closeInventory()
+	{
+	}
 }

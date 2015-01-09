@@ -1,5 +1,8 @@
 package magicbees.item;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,12 +18,11 @@ import thaumcraft.api.IRepairable;
 import thaumcraft.api.ThaumcraftApi;
 import forestry.api.core.IToolScoop;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Optional.InterfaceList(
-        {@Optional.Interface(iface = "IRepairable", modid = "Thaumcraft", striprefs = true),
-        @Optional.Interface(iface = "IToolScoop", modid = "forestry", striprefs = true)}
+		{
+				@Optional.Interface(iface = "IRepairable", modid = "Thaumcraft", striprefs = true),
+				@Optional.Interface(iface = "IToolScoop", modid = "forestry", striprefs = true)
+		}
 )
 public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 {
@@ -34,14 +36,16 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 	}
 
 	@Override
-	public Set<String> getToolClasses(ItemStack itemStack) {
+	public Set<String> getToolClasses(ItemStack itemStack)
+	{
 		HashSet<String> classes = new HashSet<String>(1);
 		classes.add("scoop");
 		return classes;
 	}
 
 	@Override
-	public int getHarvestLevel(ItemStack itemStack, String toolClass) {
+	public int getHarvestLevel(ItemStack itemStack, String toolClass)
+	{
 		return toolClass.equals("scoop") ? 3 : 0;
 	}
 
@@ -59,40 +63,41 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 
 	@Override
 	public boolean onBlockDestroyed(ItemStack itemstack, World world, Block block, int j, int k, int l,
-	                                EntityLivingBase entityliving) {
+									EntityLivingBase entityliving)
+	{
 		itemstack.damageItem(1, entityliving);
 		return true;
 	}
 	
-    /**
-     * Return the enchantability factor of the item, most of the time is based on material.
-     */
-    public int getItemEnchantability()
-    {
-        return ThaumcraftApi.toolMatThaumium.getEnchantability();
-    }
+	/**
+	 * Return the enchantability factor of the item, most of the time is based on material.
+	 */
+	public int getItemEnchantability()
+	{
+		return ThaumcraftApi.toolMatThaumium.getEnchantability();
+	}
 
-    /**
-     * Return the name for this tool's material.
-     */
-    public String getToolMaterialName()
-    {
-        return ThaumcraftApi.toolMatThaumium.toString();
-    }
+	/**
+	 * Return the name for this tool's material.
+	 */
+	public String getToolMaterialName()
+	{
+		return ThaumcraftApi.toolMatThaumium.toString();
+	}
 
-    /**
-     * Return whether this item is repairable in an anvil.
-     */
-    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-        return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super
-		    .getIsRepairable(par1ItemStack, par2ItemStack);
-    }
+	/**
+	 * Return whether this item is repairable in an anvil.
+	 */
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+	{
+		return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super
+				.getIsRepairable(par1ItemStack, par2ItemStack);
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":thaumiumScoop");
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister iconRegister)
+	{
+		this.itemIcon = iconRegister.registerIcon(CommonProxy.DOMAIN + ":thaumiumScoop");
+	}
 }

@@ -4,17 +4,16 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import magicbees.main.Config;
 import magicbees.main.utils.ItemInterface;
-import net.minecraft.item.Item;
 
 public class EquivalentExchangeHelper
 {
 	private static boolean isEquivalentExchangePresent = false;
-	
+
 	public static boolean isActive()
 	{
 		return isEquivalentExchangePresent;
 	}
-	
+
 	public static void preInit()
 	{
 		if (Loader.isModLoaded("EE3") && Config.EquivalentExchangeActive)
@@ -22,7 +21,7 @@ public class EquivalentExchangeHelper
 			isEquivalentExchangePresent = true;
 		}
 	}
-	
+
 	public static void init()
 	{
 		if (isActive())
@@ -31,11 +30,15 @@ public class EquivalentExchangeHelper
 			getItems();
 		}
 	}
-	
-	public static void postInit() {}
-	
-	private static void getBlocks() {}
-	
+
+	public static void postInit()
+	{
+	}
+
+	private static void getBlocks()
+	{
+	}
+
 	private static void getItems()
 	{
 		try

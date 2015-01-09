@@ -83,7 +83,7 @@ public class FlowerProviderAuraNode implements IFlowerProvider
 				}
 			}
 		}
-			
+
 		if (itemStack.stackSize > 0)
 		{
 			ItemStack[] newProducts = new ItemStack[products.length + 1];

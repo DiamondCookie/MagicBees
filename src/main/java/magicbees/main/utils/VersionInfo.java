@@ -1,7 +1,5 @@
 package magicbees.main.utils;
 
-import cpw.mods.fml.common.FMLLog;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -9,10 +7,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import cpw.mods.fml.common.FMLLog;
+
 /**
  * Using some of the VersionInfo code from cofh. (Thanks, Lemming!)
- * @author MysteriousAges
  *
+ * @author MysteriousAges
  */
 public class VersionInfo
 {
@@ -21,7 +21,7 @@ public class VersionInfo
 	public static final String Build = "@BUILD_NUMBER@";
 	public static final String MCVersion = "@MCVERSION@";
 	public static final String VersionURL = "http://bit.ly/magicbeesVersionInfo";
-    public static final String GUI_FACTORY_CLASS = "magicbees.client.gui.GuiFactory";
+	public static final String GUI_FACTORY_CLASS = "magicbees.client.gui.GuiFactory";
 
 	public static final String Logo = "/gfx/magicbees/logo.png";
 
@@ -55,11 +55,11 @@ public class VersionInfo
 			}
 			else if (tokens[i].matches("[0-9]+[a-z]"))
 			{
-				String numberString = tokens[i].substring(0, tokens[i].length()-1);
+				String numberString = tokens[i].substring(0, tokens[i].length() - 1);
 				versionTokens.add(Integer.valueOf(numberString));
-				versionTokens.add(Character.getNumericValue(tokens[i].charAt(tokens[i].length()-1)));
+				versionTokens.add(Character.getNumericValue(tokens[i].charAt(tokens[i].length() - 1)));
 			}
-		}    	
+		}
 
 		// Can't use versionTokens.toArray 'cause that returns an Integer[], not int[]
 		int[] value = new int[versionTokens.size()];
@@ -84,13 +84,13 @@ public class VersionInfo
 				result = true;
 				break;
 			}
-			else if (versionTokens[i] > targetTokens[i]) 
+			else if (versionTokens[i] > targetTokens[i])
 			{
 				result = false;
 				break;
 			}
-		
-			if (i == versionTokens.length-1 && versionTokens.length < targetTokens.length)
+
+			if (i == versionTokens.length - 1 && versionTokens.length < targetTokens.length)
 			{
 				// If the versions compared are the same, but target has an extra token, it's probably a "letter" build
 				//  and is ahead of this one.
@@ -189,14 +189,14 @@ public class VersionInfo
 			try
 			{
 				String location = VersionURL;
-				
+
 				HttpURLConnection connection = null;
-				
+
 				// Used to "dereference" any location headers we may get.
 				while (location != null && !location.isEmpty())
 				{
 					URL url = new URL(location);
-					connection = (HttpURLConnection) url.openConnection();
+					connection = (HttpURLConnection)url.openConnection();
 					connection.setRequestProperty("User-Agent",
 							"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17");
 					connection.connect();
@@ -247,7 +247,7 @@ public class VersionInfo
 		/*TickHandlerVersion.registerModVersionInfo(main);
 		TickHandlerVersion.initialize();*/
 		//TickRegistry.registerScheduledTickHandler(TickHandlerVersion.instance, Side.CLIENT);
-		
+
 		VersionCheckThread thread = main.new VersionCheckThread();
 		thread.start();
 	}

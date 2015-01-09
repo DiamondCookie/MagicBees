@@ -1,22 +1,39 @@
 package magicbees.main;
 
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.storage.BackpackManager;
-import forestry.api.storage.EnumBackpackType;
-import forestry.api.storage.IBackpackDefinition;
 import magicbees.block.BlockEffectJar;
 import magicbees.block.BlockHive;
 import magicbees.block.BlockPlanks;
 import magicbees.block.BlockWoodSlab;
 import magicbees.block.types.HiveType;
-import magicbees.block.types.PlankType;
-import magicbees.item.*;
-import magicbees.item.types.*;
+import magicbees.item.ItemCapsule;
+import magicbees.item.ItemComb;
+import magicbees.item.ItemCrystalAspect;
+import magicbees.item.ItemDrop;
+import magicbees.item.ItemMagicHive;
+import magicbees.item.ItemMagicHiveFrame;
+import magicbees.item.ItemMiscResources;
+import magicbees.item.ItemMoonDial;
+import magicbees.item.ItemMysteriousMagnet;
+import magicbees.item.ItemNugget;
+import magicbees.item.ItemPollen;
+import magicbees.item.ItemPropolis;
+import magicbees.item.ItemThaumiumGrafter;
+import magicbees.item.ItemThaumiumScoop;
+import magicbees.item.ItemWax;
+import magicbees.item.types.CapsuleType;
+import magicbees.item.types.HiveFrameType;
+import magicbees.item.types.NuggetType;
+import magicbees.item.types.ResourceType;
+import magicbees.item.types.WaxType;
 import magicbees.main.utils.LocalizationManager;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
@@ -26,57 +43,54 @@ import magicbees.tileentity.TileEntityEffectJar;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.storage.BackpackManager;
+import forestry.api.storage.EnumBackpackType;
 
 /**
  * A class to hold some data related to mod state & functions.
- * @author MysteriousAges
  *
+ * @author MysteriousAges
  */
 public class Config
 {
-	public boolean	DrawParticleEffects;	
-	public boolean	BeeInfusionsAdded;
-    public static boolean  ThaumaturgeBackpackActive;
-	public boolean	AddThaumcraftItemsToBackpacks;
-	public boolean	DisableUpdateNotification;
-	public boolean	AreMagicPlanksFlammable;
-	public boolean	UseImpregnatedStickInTools;
-	public boolean	MoonDialShowsPhaseInText;
-	public boolean	DoSpecialHiveGen;
-	public String	ThaumaturgeExtraItems;
-	public int		CapsuleStackSizeMax;
-	public boolean	DoHiveRetrogen;
-	public boolean	ForceHiveRegen;
-    public static boolean  LogHiveSpawns;
-    public static double ThaumcraftSaplingDroprate;
+	public boolean DrawParticleEffects;
+	public boolean BeeInfusionsAdded;
+	public static boolean ThaumaturgeBackpackActive;
+	public boolean AddThaumcraftItemsToBackpacks;
+	public boolean DisableUpdateNotification;
+	public boolean AreMagicPlanksFlammable;
+	public boolean UseImpregnatedStickInTools;
+	public boolean MoonDialShowsPhaseInText;
+	public boolean DoSpecialHiveGen;
+	public String ThaumaturgeExtraItems;
+	public int CapsuleStackSizeMax;
+	public boolean DoHiveRetrogen;
+	public boolean ForceHiveRegen;
+	public static boolean LogHiveSpawns;
+	public static double ThaumcraftSaplingDroprate;
 
-    public static boolean ArsMagicaActive;
-    public static boolean BloodMagicActive;
-    public static boolean EquivalentExchangeActive;
-    public static boolean ExtraBeesActive;
-    public static boolean RedstoneArsenalActive;
-    public static boolean ThaumcraftActive;
-    public static boolean ThermalExpansionActive;
-	
-	public float	MagnetBaseRange;
-	public float	MagnetLevelMultiplier;
-	public int		MagnetMaxLevel;
-	
-	public boolean	ForestryDebugEnabled;
+	public static boolean ArsMagicaActive;
+	public static boolean BloodMagicActive;
+	public static boolean EquivalentExchangeActive;
+	public static boolean ExtraBeesActive;
+	public static boolean RedstoneArsenalActive;
+	public static boolean ThaumcraftActive;
+	public static boolean ThermalExpansionActive;
+
+	public float MagnetBaseRange;
+	public float MagnetLevelMultiplier;
+	public int MagnetMaxLevel;
+
+	public boolean ForestryDebugEnabled;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -160,14 +174,14 @@ public class Config
 	public static Item amEssence;
 	//----Redstone Arsenal Items---
 	public static ItemStack rsaFluxBlock;
-	public static ItemStack rsaFluxNugget;	
+	public static ItemStack rsaFluxNugget;
 	//---ThermalExpansion Items ---
 	public static ItemStack teEnderiumBlock;
 	public static ItemStack teElectrumBlock;
 	public static ItemStack teInvarBlock;
 	public static ItemStack teNickelBlock;
 	public static ItemStack tePlatinumBlock;
-	public static ItemStack teBronzeBlock;	
+	public static ItemStack teBronzeBlock;
 	public static ItemStack teEnderiumNugget;
 	public static ItemStack teInvarNugget;
 	public static ItemStack teElectrumNugget;
@@ -182,22 +196,19 @@ public class Config
 	public static FluidStack teFluidCoal;
 	public static FluidStack teFluidRedstone;
 	public static FluidStack teFluidEnder;
-    //--- Blood Magic Blocks ---
-    public static Block bmBloodStoneBrick;
-    //--- Blood Magic Items ---
-    public static ItemStack bmIncendium;
-    public static ItemStack bmMagicales;
-    public static ItemStack bmSanctus;
-    public static ItemStack bmAether;
-    public static ItemStack bmCrepitous;
-    public static ItemStack bmCrystallos;
-    public static ItemStack bmTerrae;
-    public static ItemStack bmAquasalus;
-    public static ItemStack bmTennebrae;
+	//--- Blood Magic Blocks ---
+	public static Block bmBloodStoneBrick;
+	//--- Blood Magic Items ---
+	public static ItemStack bmIncendium;
+	public static ItemStack bmMagicales;
+	public static ItemStack bmSanctus;
+	public static ItemStack bmAether;
+	public static ItemStack bmCrepitous;
+	public static ItemStack bmCrystallos;
+	public static ItemStack bmTerrae;
+	public static ItemStack bmAquasalus;
+	public static ItemStack bmTennebrae;
 
-
-	
-	
 
 	//----- Config State info ----------------------------------
 	public static Configuration configuration;
@@ -209,20 +220,20 @@ public class Config
 		this.doMiscConfig();
 		
 		this.ForestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
-        this.configuration.save();
+		this.configuration.save();
 	}
 
-    @SubscribeEvent
-    public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-    {
-        if (event.modID.equalsIgnoreCase(VersionInfo.ModName))
-        {
-            if (configuration.hasChanged())
-            {
-                this.configuration.save();
-            }
-        }
-    }
+	@SubscribeEvent
+	public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
+	{
+		if (event.modID.equalsIgnoreCase(VersionInfo.ModName))
+		{
+			if (configuration.hasChanged())
+			{
+				this.configuration.save();
+			}
+		}
+	}
 
 	public void saveConfigs()
 	{
@@ -234,33 +245,33 @@ public class Config
 		{
 			if (ThaumcraftHelper.isActive())
 			{
-                /**
-                planksWood = new BlockPlanks();
-				planksWood.setBlockName("planks");
+				/**
+				 planksWood = new BlockPlanks();
+				 planksWood.setBlockName("planks");
 
-				//Item.itemsList[planksWood.blockID] = null;
-		        //Item.itemsList[planksWood.blockID] = new ItemMultiTexture(planksWood.blockID - 256, planksWood,
-				//	PlankType.getAllNames());
+				 //Item.itemsList[planksWood.blockID] = null;
+				 //Item.itemsList[planksWood.blockID] = new ItemMultiTexture(planksWood.blockID - 256, planksWood,
+				 //	PlankType.getAllNames());
 
-				//FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", MagicBees.getConfig().planksWood
-				//	.blockID + "@" + PlankType.GREATWOOD.ordinal());
-				//FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", MagicBees.getConfig().planksWood
-				//	.blockID + "@" + PlankType.SILVERWOOD.ordinal());
+				 //FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", MagicBees.getConfig().planksWood
+				 //	.blockID + "@" + PlankType.GREATWOOD.ordinal());
+				 //FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", MagicBees.getConfig().planksWood
+				 //	.blockID + "@" + PlankType.SILVERWOOD.ordinal());
 
-		        slabWoodFull = new BlockWoodSlab(true);
-		        slabWoodHalf = new BlockWoodSlab(false);
+				 slabWoodFull = new BlockWoodSlab(true);
+				 slabWoodHalf = new BlockWoodSlab(false);
 
-		        slabWoodFull.setBlockName("planks");
-		        slabWoodHalf.setBlockName("planks");
+				 slabWoodFull.setBlockName("planks");
+				 slabWoodHalf.setBlockName("planks");
 
-			    /*Item.itemsList[slabWoodHalf.blockID] = null;
-			    Item.itemsList[slabWoodHalf.blockID] = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false);
-			    Item.itemsList[slabWoodFull.blockID] = null;
-			    Item.itemsList[slabWoodFull.blockID] = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf,
-			    slabWoodFull, true);*/
+				 /*Item.itemsList[slabWoodHalf.blockID] = null;
+				 Item.itemsList[slabWoodHalf.blockID] = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false);
+				 Item.itemsList[slabWoodFull.blockID] = null;
+				 Item.itemsList[slabWoodFull.blockID] = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf,
+				 slabWoodFull, true);*/
 
-		        //OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
-			    //OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
+				//OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
+				//OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
 
 			}
 		}
@@ -274,7 +285,7 @@ public class Config
 
 		for (HiveType t : HiveType.values())
 		{
-			hive.setHarvestLevel("scoop", 0, t.ordinal() );
+			hive.setHarvestLevel("scoop", 0, t.ordinal());
 		}
 
 		LogHelper.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100%% normal.");
@@ -283,7 +294,7 @@ public class Config
 	}
 	
 	public void setupItems()
-	{		
+	{
 		combs = new ItemComb();
 		wax = new ItemWax();
 		propolis = new ItemPropolis();
@@ -303,10 +314,10 @@ public class Config
 					BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
 					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T1);
 					thaumaturgeBackpackT1.setUnlocalizedName("backpack.thaumaturgeT1");
-                    GameRegistry.registerItem(thaumaturgeBackpackT1, "backpack.thaumaturgeT1");
+					GameRegistry.registerItem(thaumaturgeBackpackT1, "backpack.thaumaturgeT1");
 					thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T2);
 					thaumaturgeBackpackT2.setUnlocalizedName("backpack.thaumaturgeT2");
-                    GameRegistry.registerItem(thaumaturgeBackpackT2, "backpack.thaumaturgeT2");
+					GameRegistry.registerItem(thaumaturgeBackpackT2, "backpack.thaumaturgeT2");
 					// Add additional items from configs to backpack.
 					if (MagicBees.getConfig().ThaumaturgeExtraItems.length() > 0)
 					{
@@ -354,7 +365,8 @@ public class Config
 		{
 			if (ThaumcraftHelper.isActive())
 			{
-				try {
+				try
+				{
 					// Reflecting avoids the need to directly include the Thaumcraft API in the jar. BAM!
 					Constructor ctor1 = Class.forName("magicbees.item.ItemThaumiumScoop").getConstructor();
 					thaumiumScoop = new ItemThaumiumScoop();
@@ -363,7 +375,10 @@ public class Config
 					Constructor ctor2 = Class.forName("magicbees.item.ItemThaumiumGrafter").getConstructor();
 					thaumiumGrafter = new ItemThaumiumGrafter();
 					GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
-				} catch (Exception e) { } 
+				}
+				catch (Exception e)
+				{
+				}
 			}
 		}
 		
@@ -375,8 +390,8 @@ public class Config
 		magnet.setBaseRange(MagnetBaseRange);
 		magnet.setLevelMultiplier(MagnetLevelMultiplier);
 		magnet.setMaximumLevel(MagnetMaxLevel);
-        GameRegistry.registerItem(magnet, "magnet", CommonProxy.DOMAIN);
-		
+		GameRegistry.registerItem(magnet, "magnet", CommonProxy.DOMAIN);
+
 		for (int level = 0; level <= 8; level++)
 		{
 			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2));
@@ -397,24 +412,24 @@ public class Config
 		OreDictionary.registerOre("shardApatite", nuggets.getStackForType(NuggetType.APATITE));
 
 
-        String item;
-        for (NuggetType type: NuggetType.values())
-        {
-            LogHelper.info("Found nugget of type " + type.toString());
-            item = type.toString().toLowerCase();
-            item = Character.toString(item.charAt(0)).toUpperCase() + item.substring(1);
-            if (OreDictionary.getOres("ingot" + item).size() <= 0)
-            {
-                if (OreDictionary.getOres("shard" + item).size() <= 0)
-                {
-                    LogHelper.info("Disabled nugget " + type.toString());
-                    type.setInactive();
-                }
-            }
+		String item;
+		for (NuggetType type : NuggetType.values())
+		{
+			LogHelper.info("Found nugget of type " + type.toString());
+			item = type.toString().toLowerCase();
+			item = Character.toString(item.charAt(0)).toUpperCase() + item.substring(1);
+			if (OreDictionary.getOres("ingot" + item).size() <= 0)
+			{
+				if (OreDictionary.getOres("shard" + item).size() <= 0)
+				{
+					LogHelper.info("Disabled nugget " + type.toString());
+					type.setInactive();
+				}
+			}
 
-        }
+		}
 
-        GameRegistry.registerItem(nuggets, "beeNugget");
+		GameRegistry.registerItem(nuggets, "beeNugget");
 	}
 	
 	private void doMiscConfig()
@@ -433,9 +448,9 @@ public class Config
 			e.printStackTrace();
 		}
 
-        p = configuration.get("general", "backpack.thaumaturge.active", true);
-        p.comment = "Set to false to disable the Thaumaturge backpack";
-        this.ThaumaturgeBackpackActive = p.getBoolean(true);
+		p = configuration.get("general", "backpack.thaumaturge.active", true);
+		p.comment = "Set to false to disable the Thaumaturge backpack";
+		this.ThaumaturgeBackpackActive = p.getBoolean(true);
 
 		p = configuration.get("general", "backpack.thaumaturge.additionalItems", "");
 		p.comment = "Add additional items to the Thaumaturge's Backpack." +
@@ -464,9 +479,9 @@ public class Config
 		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
 		this.UseImpregnatedStickInTools = p.getBoolean(false);
 
-        p = configuration.get("general", "thaumCraftSaplingDroprate", 0.1, "The chance for thaumcraft saplings using the thaumium grafter", 0.0, 1.0);
-        this.ThaumcraftSaplingDroprate = p.getDouble(0.1);
-		
+		p = configuration.get("general", "thaumCraftSaplingDroprate", 0.1, "The chance for thaumcraft saplings using the thaumium grafter", 0.0, 1.0);
+		this.ThaumcraftSaplingDroprate = p.getDouble(0.1);
+
 		p = configuration.get("general", "moonDialShowText", false);
 		p.comment = "set to true to show the current moon phase in mouse-over text.";
 		this.MoonDialShowsPhaseInText = p.getBoolean(false);
@@ -506,32 +521,32 @@ public class Config
 		p.comment = "Maximum level of the magnets.";
 		this.MagnetMaxLevel = p.getInt();
 
-        //Modules
-        p = configuration.get("modules", "ArsMagica", true);
-        this.ArsMagicaActive = p.getBoolean();
+		//Modules
+		p = configuration.get("modules", "ArsMagica", true);
+		this.ArsMagicaActive = p.getBoolean();
 
-        p = configuration.get("modules", "BloodMagic", true);
-        this.BloodMagicActive = p.getBoolean();
+		p = configuration.get("modules", "BloodMagic", true);
+		this.BloodMagicActive = p.getBoolean();
 
-        p = configuration.get("modules", "EquivalentExchange", true);
-        this.EquivalentExchangeActive = p.getBoolean();
+		p = configuration.get("modules", "EquivalentExchange", true);
+		this.EquivalentExchangeActive = p.getBoolean();
 
-        p = configuration.get("modules", "ExtraBees", true);
-        this.ExtraBeesActive = p.getBoolean();
+		p = configuration.get("modules", "ExtraBees", true);
+		this.ExtraBeesActive = p.getBoolean();
 
-        p = configuration.get("modules", "RedstoneArsenal", true);
-        this.RedstoneArsenalActive = p.getBoolean();
+		p = configuration.get("modules", "RedstoneArsenal", true);
+		this.RedstoneArsenalActive = p.getBoolean();
 
-        p = configuration.get("modules", "Thaumcraft", true);
-        this.ThaumcraftActive = p.getBoolean();
+		p = configuration.get("modules", "Thaumcraft", true);
+		this.ThaumcraftActive = p.getBoolean();
 
-        p = configuration.get("modules", "ThermalExpansion", true);
-        this.ThermalExpansionActive = p.getBoolean();
+		p = configuration.get("modules", "ThermalExpansion", true);
+		this.ThermalExpansionActive = p.getBoolean();
 
-        // Debug
-        p = configuration.get("debug", "logHiveSpawns", false);
-        p.comment = "Enable to see exact locations of MagicBees hive spawns.";
-        this.LogHiveSpawns = p.getBoolean();
+		// Debug
+		p = configuration.get("debug", "logHiveSpawns", false);
+		p.comment = "Enable to see exact locations of MagicBees hive spawns.";
+		this.LogHiveSpawns = p.getBoolean();
 	}
 
 }

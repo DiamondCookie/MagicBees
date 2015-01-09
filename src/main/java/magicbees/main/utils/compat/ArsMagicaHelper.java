@@ -4,8 +4,6 @@ import cpw.mods.fml.common.Loader;
 import magicbees.main.Config;
 import magicbees.main.utils.BlockInterface;
 import magicbees.main.utils.ItemInterface;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 public class ArsMagicaHelper
 {
@@ -20,7 +18,7 @@ public class ArsMagicaHelper
 		SUNSTONE,
 		MOONSTONE,
 	}
-	
+
 	public enum EssenceType
 	{
 		ARCANE,
@@ -37,15 +35,15 @@ public class ArsMagicaHelper
 		HIGH,
 		BASE,
 	}
-	
+
 	private static boolean isArsMagicaPresent = false;
 	public static final String Name = "arsmagica2";
-	
+
 	public static boolean isActive()
 	{
 		return isArsMagicaPresent;
 	}
-	
+
 	public static void preInit()
 	{
 		if (Loader.isModLoaded(Name) && Config.ArsMagicaActive)
@@ -53,7 +51,7 @@ public class ArsMagicaHelper
 			isArsMagicaPresent = true;
 		}
 	}
-	
+
 	public static void init()
 	{
 		if (isActive())
@@ -61,11 +59,13 @@ public class ArsMagicaHelper
 			getBlocks();
 			getItems();
 		}
-		
+
 	}
-	
-	public static void postInit() {}
-	
+
+	public static void postInit()
+	{
+	}
+
 	private static void getBlocks()
 	{
 		try
@@ -80,10 +80,10 @@ public class ArsMagicaHelper
 		}
 		catch (Exception e)
 		{
-			
+
 		}
 	}
-	
+
 	private static void getItems()
 	{
 		try
@@ -94,7 +94,7 @@ public class ArsMagicaHelper
 		}
 		catch (Exception e)
 		{
-			
+
 		}
 	}
 }

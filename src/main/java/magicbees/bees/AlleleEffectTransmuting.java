@@ -1,15 +1,8 @@
 package magicbees.bees;
 
-import java.util.Locale;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.oredict.OreDictionary;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;

@@ -1,5 +1,7 @@
 package magicbees.item;
 
+import java.util.List;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,8 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class ItemMysteriousMagnet extends Item
 {
@@ -180,7 +180,7 @@ public class ItemMysteriousMagnet extends Item
 					if (world.rand.nextInt(20) == 0)
 					{
 						float pitch = 0.85f - world.rand.nextFloat() * 3f / 10f;
-			            world.playSoundEffect(e.posX, e.posY, e.posZ, "mob.endermen.portal", 0.6f, pitch);
+						world.playSoundEffect(e.posX, e.posY, e.posZ, "mob.endermen.portal", 0.6f, pitch);
 					}
 				}
 			}

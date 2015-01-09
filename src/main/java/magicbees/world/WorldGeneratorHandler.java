@@ -1,5 +1,7 @@
 package magicbees.world;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
@@ -12,8 +14,6 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.ChunkDataEvent;
-
-import java.util.Random;
 
 public class WorldGeneratorHandler implements IWorldGenerator
 {

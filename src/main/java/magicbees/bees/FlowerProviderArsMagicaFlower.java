@@ -12,9 +12,9 @@ import forestry.api.genetics.IPollinatable;
 
 public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 {
-	private ItemStack[] flowers = {new ItemStack(Config.amBlackOrchid), new ItemStack(Config.amDesertNova),
-				new ItemStack(Config.amAum), new ItemStack(Config.amWakebloom),
-				new ItemStack(Config.amTarmaRoot) };
+	private ItemStack[] flowers = { new ItemStack(Config.amBlackOrchid), new ItemStack(Config.amDesertNova),
+			new ItemStack(Config.amAum), new ItemStack(Config.amWakebloom),
+			new ItemStack(Config.amTarmaRoot) };
 	
 	@Override
 	public boolean isAcceptedFlower(World world, IIndividual genome, int x, int y, int z)
@@ -34,7 +34,9 @@ public class FlowerProviderArsMagicaFlower implements IFlowerProvider
 	public boolean growFlower(World world, IIndividual genome, int x, int y, int z)
 	{
 		boolean flag = false;
-		x = -222; y = 70; z = -51;
+		x = -222;
+		y = 70;
+		z = -51;
 		Block blockDown = world.getBlock(x, y - 1, z);
 		if (world.getBlock(x, y, z).isAir(world, x, y, z))
 		{

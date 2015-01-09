@@ -1,19 +1,19 @@
 package magicbees.world;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Random;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import magicbees.main.utils.ChunkCoords;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
-
 public class WorldTicker
 {
 	private WorldGeneratorHandler parent;
 	private HashMap<Integer, LinkedList<ChunkCoords>> chunkRegenList;
-	
+
 	public WorldTicker(WorldGeneratorHandler p)
 	{
 		this.parent = p;
@@ -21,8 +21,10 @@ public class WorldTicker
 	}
 
 	@SubscribeEvent
-	public void onTick(TickEvent.WorldTickEvent event) {
-		if(event.phase == TickEvent.Phase.END) {
+	public void onTick(TickEvent.WorldTickEvent event)
+	{
+		if (event.phase == TickEvent.Phase.END)
+		{
 			World world = event.world;
 			int dimensionID = world.provider.dimensionId;
 			LinkedList<ChunkCoords> chunkList = chunkRegenList.get(dimensionID);

@@ -3,10 +3,6 @@ package magicbees.bees;
 import java.util.ArrayList;
 
 import magicbees.main.utils.LocalizationManager;
-
-
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
@@ -36,11 +32,10 @@ public enum BeeClassification implements IClassification
 	
 	ESSENTIAL("Essential", "Essentiapis"),
 	
-	THERMAL ("Thermal", "Thermametallic"),
-	ADORABLE ("Adorable", "Amabilis"),
+	THERMAL("Thermal", "Thermametallic"),
+	ADORABLE("Adorable", "Amabilis"),
 
-    BLOODY ("Bloody", "Sanguis")
-	;
+	BLOODY("Bloody", "Sanguis");
 	
 	private String uID;
 	private String latin;

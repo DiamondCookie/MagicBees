@@ -2,7 +2,6 @@ package magicbees.bees;
 
 import java.util.List;
 
-
 import magicbees.item.ItemArmorApiarist;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -10,7 +9,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;
@@ -128,23 +126,23 @@ public class AlleleEffectSpawnMob extends AlleleEffect
 		EntityLiving mob;
 		if (spawnAlternate && this.alternateMob != null)
 		{
-			mob = (EntityLiving) EntityList.createEntityByName(this.alternateMob, world);
+			mob = (EntityLiving)EntityList.createEntityByName(this.alternateMob, world);
 		}
 		else
 		{
-			mob = (EntityLiving) EntityList.createEntityByName(this.mobName, world);
+			mob = (EntityLiving)EntityList.createEntityByName(this.mobName, world);
 		}
 
 		if (mob != null)
 		{
-			double pos[] = this.randomMobSpawnCoords(world, bee, housing);			
-				
+			double pos[] = this.randomMobSpawnCoords(world, bee, housing);
+
 			int entitiesCount = world.getEntitiesWithinAABB(mob.getClass(),
 					AxisAlignedBB.getBoundingBox((int)pos[0], (int)pos[1], (int)pos[2], (int)pos[0] + 1, (int)pos[1] + 1, (int)pos[2] + 1)
 							.expand(8.0D, 4.0D, 8.0D)).size();
 			
-				mob.setPositionAndRotation(pos[0], pos[1], pos[2], world.rand.nextFloat() * 360f, 0f);
-				
+			mob.setPositionAndRotation(pos[0], pos[1], pos[2], world.rand.nextFloat() * 360f, 0f);
+
 			if (entitiesCount < this.maxMobsInArea && mob.getCanSpawnHere())
 			{
 				spawnedFlag = world.spawnEntityInWorld(mob);

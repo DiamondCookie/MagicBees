@@ -3,7 +3,6 @@ package magicbees.tileentity;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -12,18 +11,16 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;
 
 /**
- * 
  * Singleton object to simulate enough of a bee house to fire the bee effects. =D
- * 
- * @author MysteriousAges
  *
+ * @author MysteriousAges
  */
 public class EffectJarHousing implements IBeeHousing
 {
 	private static EffectJarHousing instance = new EffectJarHousing();
-	
+
 	TileEntityEffectJar jarEntity;
-	
+
 	public static EffectJarHousing getFor(TileEntityEffectJar entity)
 	{
 		instance.jarEntity = entity;
@@ -103,16 +100,24 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void onQueenChange(ItemStack queen) { }
+	public void onQueenChange(ItemStack queen)
+	{
+	}
 
 	@Override
-	public void wearOutEquipment(int amount) { }
+	public void wearOutEquipment(int amount)
+	{
+	}
 
 	@Override
-	public void onQueenDeath(IBee queen) { }
+	public void onQueenDeath(IBee queen)
+	{
+	}
 
 	@Override
-	public void onPostQueenDeath(IBee queen) { }
+	public void onPostQueenDeath(IBee queen)
+	{
+	}
 
 	@Override
 	public ItemStack getQueen()
@@ -133,7 +138,9 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void setDrone(ItemStack itemstack) { }
+	public void setDrone(ItemStack itemstack)
+	{
+	}
 
 	@Override
 	public int getBiomeId()
@@ -180,7 +187,9 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void setErrorState(int state) { }
+	public void setErrorState(int state)
+	{
+	}
 
 	@Override
 	public int getErrorOrdinal()

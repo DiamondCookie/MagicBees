@@ -13,8 +13,8 @@ import forestry.api.genetics.IPollinatable;
 
 public class FlowerProviderThaumcraftFlower implements IFlowerProvider
 {
-	private ItemStack[] flowers = {new ItemStack(Config.tcPlant, 1, 2), new ItemStack(Config.tcPlant, 1, 3) };
-			
+	private ItemStack[] flowers = { new ItemStack(Config.tcPlant, 1, 2), new ItemStack(Config.tcPlant, 1, 3) };
+
 	@Override
 	public boolean isAcceptedFlower(World world, IIndividual genome, int x, int y, int z)
 	{

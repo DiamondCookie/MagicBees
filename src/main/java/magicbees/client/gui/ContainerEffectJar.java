@@ -24,17 +24,17 @@ public class ContainerEffectJar extends Container
 				("forestry", "beeDroneGE", 1)));
 
 		for (int i = 0; i < 3; ++i)
-        {
-            for (int j = 0; j < 9; ++j)
-            {
-                this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 74 + i * 18));
-            }
-        }
+		{
+			for (int j = 0; j < 9; ++j)
+			{
+				this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 74 + i * 18));
+			}
+		}
 
-        for (int i = 0; i < 9; ++i)
-        {
-            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 132));
-        }
+		for (int i = 0; i < 9; ++i)
+		{
+			this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 132));
+		}
 	}
 	
 	@Override

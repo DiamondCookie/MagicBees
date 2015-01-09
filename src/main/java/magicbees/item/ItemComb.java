@@ -1,9 +1,10 @@
 package magicbees.item;
 
+import java.util.List;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import magicbees.item.types.CombType;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.compat.ForestryHelper;
@@ -12,8 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import java.util.List;
+import forestry.api.core.Tabs;
 
 public class ItemComb extends Item
 {
@@ -29,7 +29,7 @@ public class ItemComb extends Item
 	public ItemStack getStackForType(CombType type)
 	{
 		return new ItemStack(this, 1, type.ordinal());
-	}	
+	}
 	
 	public ItemStack getStackForType(CombType type, int count)
 	{
@@ -65,12 +65,12 @@ public class ItemComb extends Item
 	@SideOnly(Side.CLIENT)
 	private IIcon secondIcon;
 	
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":beeCombs.0");
-        this.secondIcon= par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":beeCombs.1");
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+		this.itemIcon = par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":beeCombs.0");
+		this.secondIcon = par1IconRegister.registerIcon(ForestryHelper.Name.toLowerCase() + ":beeCombs.1");
+	}
 
 	@Override
 	public IIcon getIcon(ItemStack stack, int pass)

@@ -2,7 +2,6 @@ package magicbees.item.types;
 
 import magicbees.main.utils.LocalizationManager;
 import net.minecraft.item.Item;
-import net.minecraftforge.oredict.OreDictionary;
 
 public enum NuggetType
 {

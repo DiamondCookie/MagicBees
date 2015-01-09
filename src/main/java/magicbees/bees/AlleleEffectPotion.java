@@ -7,11 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
-import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 
 public class AlleleEffectPotion extends AlleleEffect

@@ -1,8 +1,6 @@
 package magicbees.bees;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.api.bees.ITransmutationEffectLogic;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
