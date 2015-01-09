@@ -40,6 +40,11 @@ public class BackpackDefinition implements IBackpackDefinition
 	}
 
 	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
 	public int getPrimaryColour()
 	{
 		return this.colour;

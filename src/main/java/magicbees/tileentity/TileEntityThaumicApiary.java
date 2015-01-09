@@ -6,9 +6,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.core.EnumErrorCode;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;
@@ -186,6 +189,12 @@ public class TileEntityThaumicApiary extends TileEntity implements IInventory, I
 	}
 
 	@Override
+	public BiomeGenBase getBiome()
+	{
+		return null;
+	}
+
+	@Override
 	public EnumTemperature getTemperature()
 	{
 		return null;
@@ -204,9 +213,20 @@ public class TileEntityThaumicApiary extends TileEntity implements IInventory, I
 	}
 
 	@Override
+	public void setErrorState(EnumErrorCode enumErrorCode) {
+
+	}
+
+	@Override
 	public int getErrorOrdinal()
 	{
-		return 0;
+		return getErrorState().ordinal();
+	}
+
+	@Override
+	public EnumErrorCode getErrorState()
+	{
+		return EnumErrorCode.UNKNOWN;
 	}
 
 	@Override

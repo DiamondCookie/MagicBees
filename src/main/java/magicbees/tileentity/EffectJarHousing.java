@@ -3,9 +3,12 @@ package magicbees.tileentity;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.core.EnumErrorCode;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;
@@ -145,7 +148,12 @@ public class EffectJarHousing implements IBeeHousing
 	@Override
 	public int getBiomeId()
 	{
-		return this.jarEntity.getWorldObj().getBiomeGenForCoords(getXCoord(), getYCoord()).biomeID;
+		return getBiome().biomeID;
+	}
+
+	@Override
+	public BiomeGenBase getBiome() {
+		return this.jarEntity.getWorldObj().getBiomeGenForCoords(getXCoord(), getYCoord());
 	}
 
 	@Override
@@ -192,9 +200,20 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
+	public void setErrorState(EnumErrorCode enumErrorCode)
+	{
+	}
+
+	@Override
 	public int getErrorOrdinal()
 	{
-		return 1; // EnumErrorCode.OK.ordinal() value.
+		return getErrorState().ordinal();
+	}
+
+	@Override
+	public EnumErrorCode getErrorState()
+	{
+		return EnumErrorCode.OK;
 	}
 
 	@Override
