@@ -365,7 +365,7 @@ public class ThaumcraftHelper
 				.setStub().setAutoUnlock().setRound()
 				.registerResearchItem();
 
-		ResearchItem thaumiumScoopR = new ResearchItem("MB_Scoop", category, new AspectList().add(Aspect.TOOL, 1),
+		ResearchItem thaumiumScoopR = new ResearchItem("MB_Scoop", category, new AspectList().add(Aspect.TOOL, 1).add(Aspect.MAGIC, 1).add(Aspect.AIR, 1),
 				-2, -3, 1,
 				new ItemStack(Config.thaumiumScoop))
 				.setPages(getResearchPage("MB_Scoop.1"), new ResearchPage((IArcaneRecipe)thaumScoop))
@@ -403,7 +403,7 @@ public class ThaumcraftHelper
 		list.add(input);
 		recipe = new ShapelessRecipes(new ItemStack(Config.hiveFrameResilient), list);
 
-		ResearchItem essenceDurabilityR = new ResearchItem("MB_EssenceArmor", category, new AspectList().add(Aspect.ARMOR, 1),
+		ResearchItem essenceDurabilityR = new ResearchItem("MB_EssenceArmor", category, new AspectList().add(Aspect.ARMOR, 1).add(Aspect.MAGIC, 1),
 				5, 0, 3,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_EVERLASTING_DURABILITY))
 				.setPages(getResearchPage("MB_EssenceArmor.1"), new ResearchPage((CrucibleRecipe)essenceArmor), new ResearchPage(recipe))
@@ -442,7 +442,7 @@ public class ThaumcraftHelper
 		list.add(input);
 		recipe = new ShapelessRecipes(new ItemStack(Config.hiveFrameTemporal), list);
 
-		ResearchItem essenceTimeR = new ResearchItem("MB_EssenceTime", category, new AspectList().add((Aspect)aspectTime, 2),
+		ResearchItem essenceTimeR = new ResearchItem("MB_EssenceTime", category, new AspectList().add((Aspect)aspectTime, 2).add(Aspect.MAGIC, 1),
 				0, 2, 5,
 				Config.miscResources.getStackForType(ResourceType.ESSENCE_LOST_TIME))
 				.setPages(getResearchPage("MB_EssenceTime.1"), new ResearchPage((CrucibleRecipe)essenceTime), new ResearchPage(recipe))
