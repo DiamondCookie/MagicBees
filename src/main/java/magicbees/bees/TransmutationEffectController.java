@@ -25,12 +25,11 @@ public class TransmutationEffectController implements ITransmutationEffectContro
 	
 	public void attemptTransmutations(World world, BiomeGenBase biome, ItemStack sourceBlock, int x, int y, int z)
 	{
-		boolean done = false;
-		int i = 0;
+		boolean done;
 		ITransmutationEffectLogic logic;
-		while (!done && i < logicObjects.size())
+		for (int i = 0; i < logicObjects.size(); i++)
 		{
-			logic = logicObjects.get(i++);
+			logic = logicObjects.get(i);
 			try
 			{
 				done = logic.tryTransmutation(world, biome, sourceBlock, x, y, z);

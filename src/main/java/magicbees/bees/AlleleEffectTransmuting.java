@@ -29,12 +29,13 @@ public class AlleleEffectTransmuting extends AlleleEffect
 	{
 		World world = housing.getWorld();
 		// Get random coords within territory
-		int xCoord = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[0]);
-		xCoord = housing.getXCoord() + world.rand.nextInt(xCoord) - xCoord / 2;
-		int yCoord = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[1]);
-		yCoord = housing.getYCoord() + world.rand.nextInt(yCoord) - yCoord / 2;
-		int zCoord = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[0]);
-		zCoord = housing.getZCoord() + world.rand.nextInt(zCoord) - zCoord / 2;
+		int xRange = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[0]);
+		int yRange = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[1]);
+		int zRange = (int)(housing.getTerritoryModifier(genome, 1f) * genome.getTerritory()[2]);
+
+		int xCoord = housing.getXCoord() + world.rand.nextInt(xRange) - xRange / 2;
+		int yCoord = housing.getYCoord() + world.rand.nextInt(yRange) - yRange / 2;
+		int zCoord = housing.getZCoord() + world.rand.nextInt(zRange) - zRange / 2;
 
 		BiomeGenBase biome = world.getBiomeGenForCoords(xCoord, zCoord);
 		TransmutationEffectController.instance.attemptTransmutations(world, biome,
