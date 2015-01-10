@@ -50,959 +50,248 @@ import forestry.api.genetics.IMutation;
 public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 {
 	MYSTICAL("Mystical", "mysticum",
-			BeeClassification.VEILED, 0xAFFFB7, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.VEILED, 0xAFFFB7, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	SORCEROUS("Sorcerous", "fascinatio",
-			BeeClassification.VEILED, 0xEA9A9A, EnumTemperature.HOT, EnumHumidity.ARID, false, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.VEILED, 0xEA9A9A, EnumTemperature.HOT, EnumHumidity.ARID, false, false, true),
 	UNUSUAL("Unusual", "inusitatus",
-			BeeClassification.VEILED, 0x72D361, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.VEILED, 0x72D361, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	ATTUNED("Attuned", "similis",
-			BeeClassification.VEILED, 0x0086A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.VEILED, 0x0086A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false, true),
 	
 	ELDRITCH("Eldritch", "prodigiosus",
-			BeeClassification.VEILED, 0x8D75A0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.VEILED, 0x8D75A0, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	
 	ESOTERIC("Esoteric", "secretiore",
-			BeeClassification.ARCANE, 0x001099, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ARCANE, 0x001099, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	MYSTERIOUS("Mysterious", "mysticus",
-			BeeClassification.ARCANE, 0x762bc2, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ARCANE, 0x762bc2, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	ARCANE("Arcane", "arcanus",
-			BeeClassification.ARCANE, 0xd242df, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ARCANE, 0xd242df, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 
 	CHARMED("Charmed", "larvatus",
-			BeeClassification.SUPERNATURAL, 0x48EEEC, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SUPERNATURAL, 0x48EEEC, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	ENCHANTED("Enchanted", "cantatus",
-			BeeClassification.SUPERNATURAL, 0x18e726, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SUPERNATURAL, 0x18e726, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	SUPERNATURAL("Supernatural", "coeleste",
-			BeeClassification.SUPERNATURAL, 0x005614, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SUPERNATURAL, 0x005614, 0xFF9D60, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 
 	ETHEREAL("Ethereal", "diaphanum",
-			BeeClassification.MAGICAL, 0xBA3B3B, 0xEFF8FF, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.MAGICAL, 0xBA3B3B, 0xEFF8FF, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 
 	WATERY("Watery", "aquatilis",
-			BeeClassification.MAGICAL, 0x313C5E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.MAGICAL, 0x313C5E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	EARTHY("Earthen", "fictili",
-			BeeClassification.MAGICAL, 0x78822D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.MAGICAL, 0x78822D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	FIREY("Firey", "ardens",
-			BeeClassification.MAGICAL, 0xD35119, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.MAGICAL, 0xD35119, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	WINDY("Windy", "ventosum",
-			BeeClassification.MAGICAL, 0xFFFDBA, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.MAGICAL, 0xFFFDBA, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 
 	PUPIL("Pupil", "disciplina",
-			BeeClassification.SCHOLARLY, 0xFFFF00, EnumTemperature.NORMAL, EnumHumidity.ARID, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SCHOLARLY, 0xFFFF00, EnumTemperature.NORMAL, EnumHumidity.ARID, false, true),
 	SCHOLARLY("Scholarly", "studiosis",
-			BeeClassification.SCHOLARLY, 0x6E0000, EnumTemperature.NORMAL, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SCHOLARLY, 0x6E0000, EnumTemperature.NORMAL, EnumHumidity.ARID, false, false),
 	SAVANT("Savant", "philologus",
-			BeeClassification.SCHOLARLY, 0xFFA042, EnumTemperature.NORMAL, EnumHumidity.ARID, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SCHOLARLY, 0xFFA042, EnumTemperature.NORMAL, EnumHumidity.ARID, true, false),
 
 	AWARE("Aware", "sensibilis",
-			BeeClassification.MAGICAL, 0x5E95B5, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.MAGICAL, 0x5E95B5, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	SPIRIT("Spirit", "larva",
-			BeeClassification.SOUL, 0xb2964b, EnumTemperature.WARM, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SOUL, 0xb2964b, EnumTemperature.WARM, EnumHumidity.NORMAL, false, true),
 	SOUL("Soul", "anima",
-			BeeClassification.SOUL, 0x7d591b, EnumTemperature.HELLISH, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SOUL, 0x7d591b, EnumTemperature.HELLISH, EnumHumidity.NORMAL, true, false),
 
 	SKULKING("Skulking", "malevolens",
-			BeeClassification.SKULKING, 0x524827, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SKULKING, 0x524827, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	GHASTLY("Ghastly", "pallens",
-			BeeClassification.SKULKING, 0xccccee, 0xbf877c, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SKULKING, 0xccccee, 0xbf877c, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	SPIDERY("Spidery", "araneolus",
-			BeeClassification.SKULKING, 0x0888888, 0x222222, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SKULKING, 0x0888888, 0x222222, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	SMOULDERING("Smouldering", "flagrantia",
-			BeeClassification.SKULKING, 0xFFC747, 0xEA8344, EnumTemperature.HELLISH, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.SKULKING, 0xFFC747, 0xEA8344, EnumTemperature.HELLISH, EnumHumidity.NORMAL, false, false),
 
 	TIMELY("Timely", "gallifreis",
-			BeeClassification.TIME, 0xC6AF86, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.TIME, 0xC6AF86, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	LORDLY("Lordly", "rassilonis",
-			BeeClassification.TIME, 0xC6AF86, 0x8E0213, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.TIME, 0xC6AF86, 0x8E0213, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	DOCTORAL("Doctoral", "medicus qui",
-			BeeClassification.TIME, 0xDDE5FC, 0x4B6E8C, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.TIME, 0xDDE5FC, 0x4B6E8C, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 
 	INFERNAL("Infernal", "infernales",
-			BeeClassification.ABOMINABLE, 0xFF1C1C, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0xFF1C1C, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, true),
 	HATEFUL("Hateful", "odibilis",
-			BeeClassification.ABOMINABLE, 0xDB00DB, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0xDB00DB, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
 	SPITEFUL("Spiteful", "maligna",
-			BeeClassification.ABOMINABLE, 0x5FCC00, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0x5FCC00, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false),
 	WITHERING("Withering", "vietus",
-			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0x5B5B5B, 0x960F00, EnumTemperature.HELLISH, EnumHumidity.ARID, true, false),
 
 	OBLIVION("Oblivion", "oblivioni",
-			BeeClassification.EXTRINSIC, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.EXTRINSIC, 0xD5C3E5, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	NAMELESS("Nameless", "sine nomine",
-			BeeClassification.EXTRINSIC, 0x8ca7cb, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.EXTRINSIC, 0x8ca7cb, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
 	ABANDONED("Abandoned", "reliquit",
-			BeeClassification.EXTRINSIC, 0xc5cb8c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.EXTRINSIC, 0xc5cb8c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, false, true),
 	FORLORN("Forlorn", "perditus",
-			BeeClassification.EXTRINSIC, 0xcba88c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.EXTRINSIC, 0xcba88c, 0xF696FF, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
 	DRACONIC("Draconic", "draconic",
-			BeeClassification.EXTRINSIC, 0x9f56ad, 0x5a3b62, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.EXTRINSIC, 0x9f56ad, 0x5a3b62, EnumTemperature.COLD, EnumHumidity.NORMAL, true, false),
 
 	IRON("Iron", "ferrus",
-			BeeClassification.METALLIC, 0x686868, 0xE9E9E9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x686868, 0xE9E9E9, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	GOLD("Gold", "aurum",
-			BeeClassification.METALLIC, 0x684B01, 0xFFFF0B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x684B01, 0xFFFF0B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	COPPER("Copper", "aercus",
-			BeeClassification.METALLIC, 0x684B01, 0xFFC81A, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x684B01, 0xFFC81A, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TIN("Tin", "stannum",
-			BeeClassification.METALLIC, 0x3E596D, 0xA6BACB, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x3E596D, 0xA6BACB, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	SILVER("Silver", "argenteus",
-			BeeClassification.METALLIC, 0x747C81, 0x96BFC4, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x747C81, 0x96BFC4, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	LEAD("Lead", "plumbeus",
-			BeeClassification.METALLIC, 0x96BFC4, 0x91A9F3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x96BFC4, 0x91A9F3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	ALUMINUM("Aluminum", "aluminium",
-			BeeClassification.METALLIC, 0xEDEDED, 0x767676, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0xEDEDED, 0x767676, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	ARDITE("Ardite", "aurantiaco",
-			BeeClassification.METALLIC, 0x720000, 0xFF9E00, EnumTemperature.HOT, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x720000, 0xFF9E00, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 	COBALT("Cobalt", "caeruleo",
-			BeeClassification.METALLIC, 0x03265F, 0x59AAEF, EnumTemperature.HOT, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x03265F, 0x59AAEF, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 	MANYULLYN("Manyullyn", "manahmanah",
-			BeeClassification.METALLIC, 0x481D6D, 0xBD92F1, EnumTemperature.HOT, EnumHumidity.ARID, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.METALLIC, 0x481D6D, 0xBD92F1, EnumTemperature.HOT, EnumHumidity.ARID, true, false),
 
 	DIAMOND("Diamond", "diamond",
-			BeeClassification.GEM, 0x209581, 0x8DF5E3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.GEM, 0x209581, 0x8DF5E3, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	EMERALD("Emerald", "prasinus",
-			BeeClassification.GEM, 0x005300, 0x17DD62, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.GEM, 0x005300, 0x17DD62, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 	APATITE("Apatite", "apatite",
-			BeeClassification.GEM, 0x2EA7EC, 0x001D51, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.GEM, 0x2EA7EC, 0x001D51, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	MUTABLE("Mutable", "mutable",
-			BeeClassification.TRANSMUTING, 0xDBB24C, 0xE0D5A6, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.TRANSMUTING, 0xDBB24C, 0xE0D5A6, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TRANSMUTING("Transmuting", "transmuting",
-			BeeClassification.TRANSMUTING, 0xDBB24C, 0xA2D2D8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.TRANSMUTING, 0xDBB24C, 0xA2D2D8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	CRUMBLING("Crumbling", "crumbling",
-			BeeClassification.TRANSMUTING, 0xDBB24C, 0xDBA4A4, EnumTemperature.HOT, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.TRANSMUTING, 0xDBB24C, 0xDBA4A4, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 
 	INVISIBLE("Invisible", "invisible",
-			BeeClassification.VEILED, 0xffccff, 0xffffff, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.VEILED, 0xffccff, 0xffffff, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	// --------- Thaumcraft Bees ---------------------------------------------------------------------------------------
 	TC_AIR("TCAir", "aether",
-			BeeClassification.THAUMIC, 0xD9D636, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0xD9D636, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 	TC_FIRE("TCFire", "praefervidus",
-			BeeClassification.THAUMIC, 0xE50B0B, 0x999999, EnumTemperature.HOT, EnumHumidity.ARID, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0xE50B0B, 0x999999, EnumTemperature.HOT, EnumHumidity.ARID, true, true),
 	TC_WATER("TCWater", "umidus",
-			BeeClassification.THAUMIC, 0x36CFD9, 0x999999, EnumTemperature.NORMAL, EnumHumidity.DAMP, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x36CFD9, 0x999999, EnumTemperature.NORMAL, EnumHumidity.DAMP, true, true),
 	TC_EARTH("TCEarth", "sordida",
-			BeeClassification.THAUMIC, 0x005100, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x005100, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 	TC_ORDER("TCOrder", "ordinatus",
-			BeeClassification.THAUMIC, 0xaa32fc, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0xaa32fc, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 	TC_CHAOS("TCChaos", "tenebrarum",
-			BeeClassification.THAUMIC, 0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0xCCCCCC, 0x999999, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 
 	TC_VIS("TCVis", "arcanus saecula",
-			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x004c99, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_TAINT("TCFlux", "arcanus labe",
-			BeeClassification.THAUMIC, 0x91376A, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x91376A, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_ATTRACT("TCAttractive", "tractus",
-			BeeClassification.THAUMIC, 0x96FFBC, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x96FFBC, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TC_REJUVENATING("TCRejuvenating", "arcanus vitae",
-			BeeClassification.THAUMIC, 0x91D0D9, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x91D0D9, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_PURE("TCPure", "arcanus puritatem",
-			BeeClassification.THAUMIC, 0xb0092e, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0xb0092e, 0x675ED1, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	TC_BRAINY("TCBrainy", "cerebrum",
-			BeeClassification.THAUMIC, 0x83FF70, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x83FF70, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TC_WISPY("TCWispy", "umbrabilis",
-			BeeClassification.THAUMIC, 0x9cb8d5, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x9cb8d5, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TC_BATTY("TCBatty", "chiroptera",
-			BeeClassification.THAUMIC, 0x27350d, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THAUMIC, 0x27350d, 0xe15236, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 
 	TC_CHICKEN("TCChicken", "pullus",
-			BeeClassification.FLESHY, 0x7D431E, 0xE0905E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.FLESHY, 0x7D431E, 0xE0905E, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TC_BEEF("TCBeef", "bubulae",
-			BeeClassification.FLESHY, 0x40221A, 0xAC6753, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.FLESHY, 0x40221A, 0xAC6753, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	TC_PORK("TCPork", "porcina",
-			BeeClassification.FLESHY, 0x725D2F, 0xD2BF93, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.FLESHY, 0x725D2F, 0xD2BF93, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 
 	// --------- Equivalent Exchange Bees -----------------------------------------------------------------------------	
 	EE_MINIUM("EEMinium", "mutabilis",
-			BeeClassification.ALCHEMICAL, 0xac0921, 0x3a030b, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ALCHEMICAL, 0xac0921, 0x3a030b, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 
 	// --------- Ars Magica Bees --------------------------------------------------------------------------------------	
 	AM_ESSENCE("AMEssence", "essentia",
-			BeeClassification.ESSENTIAL, 0x86BBC5, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x86BBC5, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	AM_QUINTESSENCE("AMQuintessence", "cor essentia",
-			BeeClassification.ESSENTIAL, 0xE3A45B, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0xE3A45B, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, true),
 
 	AM_EARTH("AMEarth", "magica terra",
-			BeeClassification.ESSENTIAL, 0xAA875E, 0xE3A55B, EnumTemperature.WARM, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0xAA875E, 0xE3A55B, EnumTemperature.WARM, EnumHumidity.ARID, false, false),
 	AM_AIR("AMAir", "magica aer",
-			BeeClassification.ESSENTIAL, 0xD5EB9D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0xD5EB9D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	AM_FIRE("AMFire", "magica ignis",
-			BeeClassification.ESSENTIAL, 0x93451E, 0xE3A55B, EnumTemperature.HOT, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x93451E, 0xE3A55B, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 	AM_WATER("AMWater", "magica aqua",
-			BeeClassification.ESSENTIAL, 0x3B7D8C, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.DAMP, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x3B7D8C, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.DAMP, false, false),
 	AM_LIGHTNING("AMLightning", "magica fulgur",
-			BeeClassification.ESSENTIAL, 0xEBEFA1, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0xEBEFA1, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	AM_PLANT("AMPlant", "magica herba",
-			BeeClassification.ESSENTIAL, 0x49B549, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x49B549, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	AM_ICE("AMIce", "magica glacium",
-			BeeClassification.ESSENTIAL, 0x86BAC6, 0xE3A55B, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x86BAC6, 0xE3A55B, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	//AM_MAGMA("AMMagma", "magica torrens igneus",
 	//		BeeClassification.ESSENTIAL, 0x932B1E, 0xE3A55B, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
 	AM_ARCANE("AMArcane", "magica arcanum",
-			BeeClassification.ESSENTIAL, 0x76184D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x76184D, 0xE3A55B, EnumTemperature.NORMAL, EnumHumidity.NORMAL, true, false),
 
 	AM_VORTEX("AMVortex", "gurges",
-			BeeClassification.ESSENTIAL, 0x71BBE2, 0x0B35A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0x71BBE2, 0x0B35A8, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, true),
 	AM_WIGHT("AMWight", "vectem",
-			BeeClassification.ESSENTIAL, 0xB50000, 0x4C4837, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ESSENTIAL, 0xB50000, 0x4C4837, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	//---------------------Thermal Expansion Bees---------------------------
 	TE_BLIZZY("TEBlizzy", "blizzard",
-			BeeClassification.ABOMINABLE, 0x0073C4, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0x0073C4, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	TE_GELID("TEGelid", "cyro",
-			BeeClassification.ABOMINABLE, 0x4AAFF7, EnumTemperature.COLD, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0x4AAFF7, EnumTemperature.COLD, EnumHumidity.NORMAL, true, true),
 	TE_DANTE("TEDante", "inferno",
-			BeeClassification.ABOMINABLE, 0xF7AC4A, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0xF7AC4A, EnumTemperature.HELLISH, EnumHumidity.ARID, false, false),
 	TE_PYRO("TEPyro", "pyromaniac",
-			BeeClassification.ABOMINABLE, 0xFA930C, EnumTemperature.HELLISH, EnumHumidity.ARID, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ABOMINABLE, 0xFA930C, EnumTemperature.HELLISH, EnumHumidity.ARID, true, true),
 
 	TE_ELECTRUM("TEElectrum", "electrum",
-			BeeClassification.THERMAL, 0xEAF79E, EnumTemperature.HOT, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0xEAF79E, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 	TE_PLATINUM("TEPlatinum", "platina",
-			BeeClassification.THERMAL, 0x9EE7F7, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0x9EE7F7, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TE_NICKEL("TENickel", "nickel",
-			BeeClassification.THERMAL, 0xB4C989, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0xB4C989, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TE_INVAR("TEInvar", "invar",
-			BeeClassification.THERMAL, 0xCDE3A1, EnumTemperature.HOT, EnumHumidity.ARID, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0xCDE3A1, EnumTemperature.HOT, EnumHumidity.ARID, false, false),
 	TE_BRONZE("TEBronze", "pyropus",
-			BeeClassification.THERMAL, 0xB56D07, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0xB56D07, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TE_COAL("TECoal", "carbonis",
-			BeeClassification.THERMAL, 0x2E2D2D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0x2E2D2D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TE_DESTABILIZED("TEDestabilized", "electric",
-			BeeClassification.THERMAL, 0x5E0203, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0x5E0203, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TE_LUX("TELux", "lux",
-			BeeClassification.THERMAL, 0xF1FA89, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0xF1FA89, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 	TE_WINSOME("TEWinsome", "cuniculus",
-			BeeClassification.ADORABLE, 0x096B67, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ADORABLE, 0x096B67, EnumTemperature.COLD, EnumHumidity.NORMAL, false, false),
 	TE_ENDEARING("TEEndearing", "cognito",
-			BeeClassification.ADORABLE, 0x069E97, EnumTemperature.COLD, EnumHumidity.NORMAL, true, true)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.ADORABLE, 0x069E97, EnumTemperature.COLD, EnumHumidity.NORMAL, true, true),
 
 
 	//--------------------Redstone Arsenal Bees-----------------------------
 	RSA_FLUXED("RSAFluxed", "Thermametallic electroflux",
-			BeeClassification.THERMAL, 0x9E060D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.THERMAL, 0x9E060D, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	//----------------------Bloodmagic Bees---------------------------------
 	BM_BLOODY("BMBloody", "sanguis",
-			BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
-			},
+			BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	BM_BOUND("BMBound", "obligatus",
 			BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
 			{
-				@Override
-				public ItemStack[] getResearchBounty(World world, GameProfile gameProfile, IIndividual iIndividual, int i)
-				{
-					return new ItemStack[0];
-				}
+
 			},;
 	
 	public static void setupBeeSpecies()
@@ -1985,59 +1274,55 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 	@Override
 	public float getResearchSuitability(ItemStack itemStack)
 	{
-		float value = 0f;
-		if (itemStack != null)
+		if (itemStack == null)
 		{
-			for (ItemStack product : this.products.keySet())
+			return 0f;
+		}
+
+		for (ItemStack product : this.products.keySet())
+		{
+			if (itemStack.isItemEqual(product))
 			{
-				if (itemStack.isItemEqual(product))
-				{
-					value = 1f;
-					break;
-				}
+				return 1f;
 			}
-			
-			if (value <= 0f)
+		}
+
+		for (ItemStack specialty : this.specialties.keySet())
+		{
+			if (specialty.isItemEqual(itemStack))
 			{
-				for (ItemStack specialty : this.specialties.keySet())
+				return  1f;
+			}
+		}
+
+		if (itemStack.getItem() == Config.fHoneyDrop)
+		{
+			return 0.5f;
+		}
+		else if (itemStack.getItem() == Config.fHoneydew)
+		{
+			return 0.7f;
+		}
+		else if (itemStack.getItem() == Config.fBeeComb || itemStack.getItem() == Config.combs)
+		{
+			return 0.4f;
+		}
+		else if (getRoot().isMember(itemStack))
+		{
+			return 1.0f;
+		}
+		else
+		{
+			for (Map.Entry<ItemStack, Float> catalyst : BeeManager.beeRoot.getResearchCatalysts().entrySet())
+			{
+				if (OreDictionary.itemMatches(itemStack, catalyst.getKey(), false))
 				{
-					if (specialty.isItemEqual(itemStack))
-					{
-						value = 1f;
-						break;
-					}
-				}
-				if (value <= 0f)
-				{
-					if (itemStack.getItem() == Config.fHoneyDrop)
-					{
-						
-					}
-					else if (itemStack.getItem() == Config.fHoneydew)
-					{
-						
-					}
-					else if (itemStack.getItem() == Config.fBeeComb ||
-							itemStack.getItem() == Config.combs)
-					{
-						value = 4f;
-					}
-					else
-					{
-						for (Map.Entry<ItemStack, Float> catalyst : BeeManager.beeRoot.getResearchCatalysts().entrySet())
-						{
-							if (OreDictionary.itemMatches(itemStack, catalyst.getKey(), false))
-							{
-								value = catalyst.getValue().floatValue();
-								break;
-							}
-						}
-					}
+					return catalyst.getValue();
 				}
 			}
 		}
-		
-		return value;
+
+		return 0f;
 	}
 
 
