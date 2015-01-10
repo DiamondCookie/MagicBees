@@ -20,8 +20,8 @@ import forestry.api.core.IToolScoop;
 
 @Optional.InterfaceList(
 		{
-				@Optional.Interface(iface = "IRepairable", modid = "Thaumcraft", striprefs = true),
-				@Optional.Interface(iface = "IToolScoop", modid = "forestry", striprefs = true)
+				@Optional.Interface(iface = "thaumcraft.api.IRepairable", modid = CommonProxy.ThaumcraftID, striprefs = true),
+				@Optional.Interface(iface = "forestry.api.core.IToolScoop", modid = CommonProxy.ForestryID, striprefs = true)
 		}
 )
 public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
@@ -72,6 +72,7 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 	/**
 	 * Return the enchantability factor of the item, most of the time is based on material.
 	 */
+	@Optional.Method(modid = CommonProxy.ThaumcraftID)
 	public int getItemEnchantability()
 	{
 		return ThaumcraftApi.toolMatThaumium.getEnchantability();
@@ -80,6 +81,7 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 	/**
 	 * Return the name for this tool's material.
 	 */
+	@Optional.Method(modid = CommonProxy.ThaumcraftID)
 	public String getToolMaterialName()
 	{
 		return ThaumcraftApi.toolMatThaumium.toString();
@@ -88,10 +90,10 @@ public class ItemThaumiumScoop extends Item implements IRepairable, IToolScoop
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
+	@Optional.Method(modid = CommonProxy.ThaumcraftID)
 	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
 	{
-		return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super
-				.getIsRepairable(par1ItemStack, par2ItemStack);
+		return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() || super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
 
 	@Override

@@ -8,6 +8,9 @@ public class CommonProxy
 	public static final String ITEM_TEXTURE = TEXTURE + "items/";
 	public static final String MODEL = "model/";
 	public static final String LANGS = "lang/";
+
+	public static final String ForestryID = "forestry";
+	public static final String ThaumcraftID = "Thaumcraft";
 	
 	@Deprecated
 	public static final String RESOURCE_PATH = "/assets/magicbees/";

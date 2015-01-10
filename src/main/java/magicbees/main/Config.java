@@ -367,12 +367,9 @@ public class Config
 			{
 				try
 				{
-					// Reflecting avoids the need to directly include the Thaumcraft API in the jar. BAM!
-					Constructor ctor1 = Class.forName("magicbees.item.ItemThaumiumScoop").getConstructor();
 					thaumiumScoop = new ItemThaumiumScoop();
 					GameRegistry.registerItem(thaumiumScoop, thaumiumScoop.getUnlocalizedName(), CommonProxy.DOMAIN);
 					
-					Constructor ctor2 = Class.forName("magicbees.item.ItemThaumiumGrafter").getConstructor();
 					thaumiumGrafter = new ItemThaumiumGrafter();
 					GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 				}

@@ -23,8 +23,8 @@ import forestry.api.arboriculture.IToolGrafter;
 
 @Optional.InterfaceList(
 		{
-				@Optional.Interface(iface = "IRepairableExtended", modid = "Thaumcraft", striprefs = true),
-				@Optional.Interface(iface = "IToolGrafter", modid = "forestry", striprefs = true)
+				@Optional.Interface(iface = "thaumcraft.api.IRepairableExtended", modid = CommonProxy.ThaumcraftID, striprefs = true),
+				@Optional.Interface(iface = "forestry.api.arboriculture.IToolGrafter", modid = CommonProxy.ForestryID, striprefs = true)
 		}
 )
 public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IToolGrafter
@@ -108,7 +108,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 	/**
 	 * Return the enchantability factor of the item, most of the time is based on material.
 	 */
-	@Optional.Method(modid = "Thaumcraft")
+	@Optional.Method(modid = CommonProxy.ThaumcraftID)
 	public int getItemEnchantability()
 	{
 		return ThaumcraftApi.toolMatThaumium.getEnchantability();
@@ -117,7 +117,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 	/**
 	 * Return the name for this tool's material.
 	 */
-	@Optional.Method(modid = "Thaumcraft")
+	@Optional.Method(modid = CommonProxy.ThaumcraftID)
 	public String getToolMaterialName()
 	{
 		return ThaumcraftApi.toolMatThaumium.toString();
@@ -126,15 +126,13 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
-	@Optional.Method(modid = "Thaumcraft")
+	@Optional.Method(modid = CommonProxy.ThaumcraftID)
 	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
 	{
-		return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() ? true : super.getIsRepairable
-				(par1ItemStack, par2ItemStack);
+		return ThaumcraftApi.toolMatThaumium.customCraftingMaterial == par2ItemStack.getItem() || super.getIsRepairable(par1ItemStack, par2ItemStack);
 	}
 
 	@Override
-	@Optional.Method(modid = "Thaumcraft")
 	public boolean doRepair(ItemStack stack, EntityPlayer player, int enchantLevel)
 	{
 		boolean flag = false;
