@@ -6,7 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
-import magicbees.main.MagicBees;
+import magicbees.main.Config;
 import magicbees.main.utils.MoonPhase;
 import magicbees.main.utils.TabMagicBees;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -50,7 +50,7 @@ public class ItemMoonDial extends Item
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List infoList, boolean par4)
 	{
-		if (MagicBees.getConfig().MoonDialShowsPhaseInText &&
+		if (Config.MoonDialShowsPhaseInText &&
 				entityPlayer.getCurrentEquippedItem() != null &&
 				entityPlayer.getCurrentEquippedItem().getItem() == this)
 		{

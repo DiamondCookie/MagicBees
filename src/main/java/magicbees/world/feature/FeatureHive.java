@@ -18,7 +18,7 @@ public class FeatureHive
 	private static FeatureOreVein glowstoneGen;
 	private static FeatureOreVein endStoneGen;
 
-	private static boolean logSpawns = MagicBees.getConfig().LogHiveSpawns;
+	private static boolean logSpawns = Config.LogHiveSpawns;
 
 	public static void initialize()
 	{
@@ -161,7 +161,7 @@ public class FeatureHive
 				netherQuartzGen.generateVein(world, random, coordX, coordY, coordZ - 1, 4);
 			}
 		}
-		else if (MagicBees.getConfig().DoSpecialHiveGen && world.rand.nextInt() < 11)
+		else if (Config.DoSpecialHiveGen && world.rand.nextInt() < 11)
 		{
 			int coordY = random.nextInt(13) + 5;
 
@@ -230,7 +230,7 @@ public class FeatureHive
 				}
 			}
 		}
-		else if (MagicBees.getConfig().DoSpecialHiveGen && world.rand.nextInt() < 8)
+		else if (Config.DoSpecialHiveGen && world.rand.nextInt() < 8)
 		{
 			// 1 per gen
 			int coordY = random.nextInt(5) + 5;

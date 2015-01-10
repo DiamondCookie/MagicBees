@@ -6,7 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.block.types.HiveType;
-import magicbees.main.MagicBees;
+import magicbees.main.Config;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -59,7 +59,7 @@ public class BlockHive extends Block
 	{
 		for (HiveType type : HiveType.values())
 		{
-			if (type.show || MagicBees.getConfig().ForestryDebugEnabled)
+			if (type.show || Config.ForestryDebugEnabled)
 			{
 				itemsList.add(new ItemStack(this, 1, type.ordinal()));
 			}

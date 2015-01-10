@@ -34,7 +34,7 @@ public class BlockWoodSlab extends BlockSlab
 		this.setBlockName("tb.slab.wood");
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setLightOpacity(doubleSlab ? 255 : 0);
-		if (MagicBees.getConfig().AreMagicPlanksFlammable)
+		if (Config.AreMagicPlanksFlammable)
 		{
 			Blocks.fire.setFireInfo(this, 5, 20);
 		}

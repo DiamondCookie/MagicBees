@@ -56,7 +56,7 @@ public class TickHandlerVersion implements IScheduledTickHandler
         {
             VersionInfo anInfo = modVersionInfo.get(modIndex);
 
-            if ((!MagicBees.getConfig().DisableUpdateNotification || anInfo.isCriticalUpdate()) && anInfo.isNewVersionAvailable())
+            if ((!Config.DisableUpdateNotification || anInfo.isCriticalUpdate()) && anInfo.isNewVersionAvailable())
             {
                 EntityPlayer player = (EntityPlayer) tickData[0];
                 player.sendChatToPlayer(ChatMessageComponent.createFromText("[" + anInfo.modName + "] A new version is available: " + anInfo.getLatestVersion()));

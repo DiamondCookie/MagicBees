@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.block.types.PlankType;
 import magicbees.main.CommonProxy;
-import magicbees.main.MagicBees;
+import magicbees.main.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,7 +27,7 @@ public class BlockPlanks extends Block
 		this.setHardness(2.5f);
 		this.setResistance(6.0f);
 		this.setCreativeTab(CreativeTabs.tabBlock);
-		if (MagicBees.getConfig().AreMagicPlanksFlammable)
+		if (Config.AreMagicPlanksFlammable)
 		{
 			Blocks.fire.setFireInfo(this, 5, 20);
 		}

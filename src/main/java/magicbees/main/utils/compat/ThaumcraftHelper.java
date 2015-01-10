@@ -196,7 +196,7 @@ public class ThaumcraftHelper
 
 	private static void addItemsToBackpack()
 	{
-//		if (MagicBees.getConfig().AddThaumcraftItemsToBackpacks)
+//		if (Config.AddThaumcraftItemsToBackpacks)
 //		{
 //			// Add all shards and Thaumium to miner's backpack
 //			String ids = Config.tcShard.itemID + ":" + -1 + ";"

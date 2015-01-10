@@ -5,6 +5,8 @@ import java.util.Random;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
+
+import magicbees.main.Config;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.world.feature.FeatureHive;
@@ -32,7 +34,7 @@ public class WorldGeneratorHandler implements IWorldGenerator
 	public void chunkSaveEventHandler(ChunkDataEvent.Save event)
 	{
 		NBTTagCompound tag = new NBTTagCompound();
-		if (MagicBees.getConfig().DoHiveRetrogen)
+		if (Config.DoHiveRetrogen)
 		{
 			tag.setBoolean("hiveRetrogen", true);
 		}
@@ -50,9 +52,9 @@ public class WorldGeneratorHandler implements IWorldGenerator
 		{
 			doRetrogen = true;
 		}
-		else if (MagicBees.getConfig().DoHiveRetrogen)
+		else if (Config.DoHiveRetrogen)
 		{
-			if (!tag.hasKey("hiveRetrogen") || MagicBees.getConfig().ForceHiveRegen)
+			if (!tag.hasKey("hiveRetrogen") || Config.ForceHiveRegen)
 			{
 				doRetrogen = true;
 			}
@@ -77,7 +79,7 @@ public class WorldGeneratorHandler implements IWorldGenerator
 
 		if (world.provider.terrainType != WorldType.FLAT)
 		{
-			if (initialGen || MagicBees.getConfig().DoHiveRetrogen)
+			if (initialGen || Config.DoHiveRetrogen)
 			{
 				FeatureHive.generateHives(world, random, chunkX, chunkZ, initialGen);
 				modified = true;

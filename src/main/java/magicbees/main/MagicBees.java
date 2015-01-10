@@ -95,8 +95,4 @@ public class MagicBees
 		IMCManager.handle(event);
 	}
 
-	public static Config getConfig()
-	{
-		return object.modConfig;
-	}
 }

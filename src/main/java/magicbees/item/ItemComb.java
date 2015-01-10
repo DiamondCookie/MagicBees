@@ -6,7 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.item.types.CombType;
-import magicbees.main.MagicBees;
+import magicbees.main.Config;
 import magicbees.main.utils.compat.ForestryHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -42,7 +42,7 @@ public class ItemComb extends Item
 	{
 		for (CombType type : CombType.values())
 		{
-			if (type.showInList || MagicBees.getConfig().ForestryDebugEnabled)
+			if (type.showInList || Config.ForestryDebugEnabled)
 			{
 				list.add(this.getStackForType(type));
 			}
