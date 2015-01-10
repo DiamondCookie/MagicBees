@@ -289,10 +289,8 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 			BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
 
 	BM_BOUND("BMBound", "obligatus",
-			BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false)
-			{
-
-			},;
+			BeeClassification.BLOODY, 0xb7102f, EnumTemperature.NORMAL, EnumHumidity.NORMAL, false, false),
+	;
 	
 	public static void setupBeeSpecies()
 	{
