@@ -125,7 +125,7 @@ public class ThaumcraftHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded(Name) && Config.ThaumcraftActive)
+		if (Loader.isModLoaded(Name) && Config.thaumcraftActive)
 		{
 			isThaumcraftPresent = true;
 		}
@@ -196,7 +196,7 @@ public class ThaumcraftHelper
 
 	private static void addItemsToBackpack()
 	{
-//		if (Config.AddThaumcraftItemsToBackpacks)
+//		if (Config.addThaumcraftItemsToBackpacks)
 //		{
 //			// Add all shards and Thaumium to miner's backpack
 //			String ids = Config.tcShard.itemID + ":" + -1 + ";"

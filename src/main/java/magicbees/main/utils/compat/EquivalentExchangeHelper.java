@@ -16,7 +16,7 @@ public class EquivalentExchangeHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded("EE3") && Config.EquivalentExchangeActive)
+		if (Loader.isModLoaded("EE3") && Config.equivalentExchangeActive)
 		{
 			isEquivalentExchangePresent = true;
 		}

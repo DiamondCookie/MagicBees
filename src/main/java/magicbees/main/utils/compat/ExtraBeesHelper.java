@@ -103,7 +103,7 @@ public class ExtraBeesHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded("ExtraBees") && Config.ExtraBeesActive)
+		if (Loader.isModLoaded("ExtraBees") && Config.extraBeesActive)
 		{
 			isEBPresent = true;
 		}

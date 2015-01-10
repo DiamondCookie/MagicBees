@@ -61,35 +61,35 @@ import forestry.api.storage.EnumBackpackType;
  */
 public class Config
 {
-	public static boolean DrawParticleEffects;
-	public static boolean BeeInfusionsAdded;
-	public static boolean ThaumaturgeBackpackActive;
-	public static boolean AddThaumcraftItemsToBackpacks;
-	public static boolean DisableUpdateNotification;
-	public static boolean AreMagicPlanksFlammable;
-	public static boolean UseImpregnatedStickInTools;
-	public static boolean MoonDialShowsPhaseInText;
-	public static boolean DoSpecialHiveGen;
-	public static String ThaumaturgeExtraItems;
-	public static int CapsuleStackSizeMax;
-	public static boolean DoHiveRetrogen;
-	public static boolean ForceHiveRegen;
-	public static boolean LogHiveSpawns;
-	public static double ThaumcraftSaplingDroprate;
+	public static boolean drawParticleEffects;
+	public static boolean beeInfusionsAdded;
+	public static boolean thaumaturgeBackpackActive;
+	public static boolean addThaumcraftItemsToBackpacks;
+	public static boolean disableUpdateNotification;
+	public static boolean areMagicPlanksFlammable;
+	public static boolean useImpregnatedStickInTools;
+	public static boolean moonDialShowsPhaseInText;
+	public static boolean doSpecialHiveGen;
+	public static String thaumaturgeExtraItems;
+	public static int capsuleStackSizeMax;
+	public static boolean doHiveRetrogen;
+	public static boolean forceHiveRegen;
+	public static boolean logHiveSpawns;
+	public static double thaumcraftSaplingDroprate;
 
-	public static boolean ArsMagicaActive;
-	public static boolean BloodMagicActive;
-	public static boolean EquivalentExchangeActive;
-	public static boolean ExtraBeesActive;
-	public static boolean RedstoneArsenalActive;
-	public static boolean ThaumcraftActive;
-	public static boolean ThermalExpansionActive;
+	public static boolean arsMagicaActive;
+	public static boolean bloodMagicActive;
+	public static boolean equivalentExchangeActive;
+	public static boolean extraBeesActive;
+	public static boolean redstoneArsenalActive;
+	public static boolean thaumcraftActive;
+	public static boolean thermalExpansionActive;
 
-	public static float MagnetBaseRange;
-	public static float MagnetLevelMultiplier;
-	public static int MagnetMaxLevel;
+	public static float magnetBaseRange;
+	public static float magnetLevelMultiplier;
+	public static int magnetMaxLevel;
 
-	public static boolean ForestryDebugEnabled;
+	public static boolean forestryDebugEnabled;
 
 	public static BlockPlanks planksWood;
 	public static BlockWoodSlab slabWoodHalf;
@@ -218,7 +218,7 @@ public class Config
 		configuration.load();
 		this.doMiscConfig();
 		
-		ForestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
+		forestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
 		configuration.save();
 	}
 
@@ -304,7 +304,7 @@ public class Config
 		BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), 95);
 		
 		{
-			if (ThaumcraftHelper.isActive() && ThaumaturgeBackpackActive)
+			if (ThaumcraftHelper.isActive() && thaumaturgeBackpackActive)
 			{
 				try
 				{
@@ -318,10 +318,10 @@ public class Config
 					thaumaturgeBackpackT2.setUnlocalizedName("backpack.thaumaturgeT2");
 					GameRegistry.registerItem(thaumaturgeBackpackT2, "backpack.thaumaturgeT2");
 					// Add additional items from configs to backpack.
-					if (ThaumaturgeExtraItems.length() > 0)
+					if (thaumaturgeExtraItems.length() > 0)
 					{
 						FMLLog.info("Attempting to add extra items to Thaumaturge's backpack. If you get an error, check your MagicBees.conf.");
-						FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + ThaumaturgeExtraItems);
+						FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + thaumaturgeExtraItems);
 					}
 				}
 				catch (Exception e)
@@ -332,7 +332,7 @@ public class Config
 			}
 		}
 
-		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, CapsuleStackSizeMax);
+		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, capsuleStackSizeMax);
 		pollen = new ItemPollen();
 		
 		{
@@ -359,7 +359,7 @@ public class Config
 		GameRegistry.registerItem(jellyBaby, "jellyBabies");
 		
 		
-		voidCapsule = new ItemCapsule(CapsuleType.VOID, CapsuleStackSizeMax);
+		voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
 
 		{
 			if (ThaumcraftHelper.isActive())
@@ -383,9 +383,9 @@ public class Config
 		nuggets = new ItemNugget();
 		
 		magnet = new ItemMysteriousMagnet();
-		magnet.setBaseRange(MagnetBaseRange);
-		magnet.setLevelMultiplier(MagnetLevelMultiplier);
-		magnet.setMaximumLevel(MagnetMaxLevel);
+		magnet.setBaseRange(magnetBaseRange);
+		magnet.setLevelMultiplier(magnetLevelMultiplier);
+		magnet.setMaximumLevel(magnetMaxLevel);
 		GameRegistry.registerItem(magnet, "magnet", CommonProxy.DOMAIN);
 
 		for (int level = 0; level <= 8; level++)
@@ -437,7 +437,7 @@ public class Config
 		try
 		{
 			f = Class.forName("forestry.core.config.Config").getField("enableParticleFX");
-			DrawParticleEffects = f.getBoolean(null);
+			drawParticleEffects = f.getBoolean(null);
 		}
 		catch (Exception e)
 		{
@@ -446,103 +446,103 @@ public class Config
 
 		p = configuration.get("general", "backpack.thaumaturge.active", true);
 		p.comment = "Set to false to disable the Thaumaturge backpack";
-		ThaumaturgeBackpackActive = p.getBoolean(true);
+		thaumaturgeBackpackActive = p.getBoolean(true);
 
 		p = configuration.get("general", "backpack.thaumaturge.additionalItems", "");
 		p.comment = "Add additional items to the Thaumaturge's Backpack." +
 				"\n Format is the same as Forestry's: id:meta;id;id:meta (etc)";
-		ThaumaturgeExtraItems = p.getString();
+		thaumaturgeExtraItems = p.getString();
 		
 		p = configuration.get("general", "backpack.forestry.addThaumcraftItems", true);
 		p.comment = "Set to true if you want MagicBees to add several Thaumcraft blocks & items to Forestry backpacks." +
 				"\n Set to false to disable.";
-		AddThaumcraftItemsToBackpacks = p.getBoolean(true);
+		addThaumcraftItemsToBackpacks = p.getBoolean(true);
 		
 		p = configuration.get("general", "capsuleStackSize", 64);
 		p.comment = "Allows you to edit the stack size of the capsules in MagicBees if using GregTech, \n" +
 				"or the reduced capsule size in Forestry & Railcraft. Default: 64";
-		CapsuleStackSizeMax = p.getInt();
+		capsuleStackSizeMax = p.getInt();
 		
 		p = configuration.get("general", "disableVersionNotification", false);
 		p.comment = "Set to true to stop ThaumicBees from notifying you when new updates are available. (Does not supress critical updates)";
-		DisableUpdateNotification = p.getBoolean(false);
+		disableUpdateNotification = p.getBoolean(false);
 		
 		p = configuration.get("general", "areMagicPlanksFlammable", false);
 		p.comment = "Set to true to allow Greatwood & Silverwood planks to burn in a fire.";
-		AreMagicPlanksFlammable = p.getBoolean(false);
+		areMagicPlanksFlammable = p.getBoolean(false);
 		
 		p = configuration.get("general", "useImpregnatedStickInTools", false);
 		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
-		UseImpregnatedStickInTools = p.getBoolean(false);
+		useImpregnatedStickInTools = p.getBoolean(false);
 
 		p = configuration.get("general", "thaumCraftSaplingDroprate", 0.1, "The chance for thaumcraft saplings using the thaumium grafter", 0.0, 1.0);
-		ThaumcraftSaplingDroprate = p.getDouble(0.1);
+		thaumcraftSaplingDroprate = p.getDouble(0.1);
 
 		p = configuration.get("general", "moonDialShowText", false);
 		p.comment = "set to true to show the current moon phase in mouse-over text.";
-		MoonDialShowsPhaseInText = p.getBoolean(false);
+		moonDialShowsPhaseInText = p.getBoolean(false);
 		
 		p = configuration.get("general", "doSpecialHiveGen", true);
 		p.comment = "Set to false if you hate fun and do not want special hives generating in Magic biomes.";
-		DoSpecialHiveGen = p.getBoolean(true);
+		doSpecialHiveGen = p.getBoolean(true);
 		
 		p = configuration.get("Retrogen", "doHiveRetrogen", false);
 		p.comment = "Set to true to enable retroactive worldgen of Magic Bees hives.";
-		DoHiveRetrogen = p.getBoolean(false);
+		doHiveRetrogen = p.getBoolean(false);
 		
 		p = configuration.get("Retrogen", "forceHiveRegen", false);
 		p.comment = "Set to true to force a regeneration of Magic Bees hives. Will set config option to false after parsed. (Implies doHiveRetrogen=true)";
-		ForceHiveRegen = p.getBoolean(false);
+		forceHiveRegen = p.getBoolean(false);
 		
-		if (ForceHiveRegen)
+		if (forceHiveRegen)
 		{
 			FMLLog.info("Magic Bees will aggressively regenerate hives in all chunks for this game instance. Config option set to false.");
 			p.set(false);
-			DoHiveRetrogen = true;
+			doHiveRetrogen = true;
 		}
-		else if (DoHiveRetrogen)
+		else if (doHiveRetrogen)
 		{
 			FMLLog.info("Magic Bees will attempt to regenerate hives in chunks that were generated before the mod was added.");
 		}
 
 		p = configuration.get("general", "magnetRangeBase", 3.0);
 		p.comment = "Base range (in blocks) of the Mysterious Magnet";
-		MagnetBaseRange = (float)p.getDouble(3.0);
+		magnetBaseRange = (float)p.getDouble(3.0);
 		
 		p = configuration.get("general", "magnetRangeMultiplier", 0.75);
 		p.comment = "Range multiplier per level of the Mysterious Magnet. Total range = base range + level * multiplier";
-		MagnetLevelMultiplier = (float)p.getDouble(0.75);
+		magnetLevelMultiplier = (float)p.getDouble(0.75);
 		
 		p = configuration.get("general", "magnetMaximumLevel", 8);
 		p.comment = "Maximum level of the magnets.";
-		MagnetMaxLevel = p.getInt();
+		magnetMaxLevel = p.getInt();
 
 		//Modules
 		p = configuration.get("modules", "ArsMagica", true);
-		ArsMagicaActive = p.getBoolean();
+		arsMagicaActive = p.getBoolean();
 
 		p = configuration.get("modules", "BloodMagic", true);
-		BloodMagicActive = p.getBoolean();
+		bloodMagicActive = p.getBoolean();
 
 		p = configuration.get("modules", "EquivalentExchange", true);
-		EquivalentExchangeActive = p.getBoolean();
+		equivalentExchangeActive = p.getBoolean();
 
 		p = configuration.get("modules", "ExtraBees", true);
-		ExtraBeesActive = p.getBoolean();
+		extraBeesActive = p.getBoolean();
 
 		p = configuration.get("modules", "RedstoneArsenal", true);
-		RedstoneArsenalActive = p.getBoolean();
+		redstoneArsenalActive = p.getBoolean();
 
 		p = configuration.get("modules", "Thaumcraft", true);
-		ThaumcraftActive = p.getBoolean();
+		thaumcraftActive = p.getBoolean();
 
 		p = configuration.get("modules", "ThermalExpansion", true);
-		ThermalExpansionActive = p.getBoolean();
+		thermalExpansionActive = p.getBoolean();
 
 		// Debug
 		p = configuration.get("debug", "logHiveSpawns", false);
 		p.comment = "Enable to see exact locations of MagicBees hive spawns.";
-		LogHiveSpawns = p.getBoolean();
+		logHiveSpawns = p.getBoolean();
 	}
 
 }

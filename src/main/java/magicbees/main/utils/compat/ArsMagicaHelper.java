@@ -46,7 +46,7 @@ public class ArsMagicaHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded(Name) && Config.ArsMagicaActive)
+		if (Loader.isModLoaded(Name) && Config.arsMagicaActive)
 		{
 			isArsMagicaPresent = true;
 		}

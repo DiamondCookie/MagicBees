@@ -81,7 +81,7 @@ public class ItemThaumiumGrafter extends Item implements IRepairableExtended, IT
 			if (meta == 0 || meta == 1)
 			{
 				double chance = Math.random();
-				if (chance <= Config.ThaumcraftSaplingDroprate)
+				if (chance <= Config.thaumcraftSaplingDroprate)
 				{
 					this.dropItem(world, x, y, z, new ItemStack(Config.tcPlant, 1, meta));
 				}

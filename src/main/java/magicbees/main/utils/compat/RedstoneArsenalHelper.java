@@ -28,7 +28,7 @@ public class RedstoneArsenalHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded(Name) && Config.RedstoneArsenalActive)
+		if (Loader.isModLoaded(Name) && Config.redstoneArsenalActive)
 		{
 			isRedstoneArsenalPresent = true;
 		}

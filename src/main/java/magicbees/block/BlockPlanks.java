@@ -27,7 +27,7 @@ public class BlockPlanks extends Block
 		this.setHardness(2.5f);
 		this.setResistance(6.0f);
 		this.setCreativeTab(CreativeTabs.tabBlock);
-		if (Config.AreMagicPlanksFlammable)
+		if (Config.areMagicPlanksFlammable)
 		{
 			Blocks.fire.setFireInfo(this, 5, 20);
 		}

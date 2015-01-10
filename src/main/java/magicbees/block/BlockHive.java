@@ -59,7 +59,7 @@ public class BlockHive extends Block
 	{
 		for (HiveType type : HiveType.values())
 		{
-			if (type.show || Config.ForestryDebugEnabled)
+			if (type.show || Config.forestryDebugEnabled)
 			{
 				itemsList.add(new ItemStack(this, 1, type.ordinal()));
 			}

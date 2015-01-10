@@ -389,7 +389,7 @@ public class CraftingManager
 					input, input, input, input
 			});
 
-			if (Config.ThaumaturgeBackpackActive)
+			if (Config.thaumaturgeBackpackActive)
 			{
 				// T1 Thaumaturge's backpack
 				GameRegistry.addRecipe(new ItemStack(Config.thaumaturgeBackpackT1), new Object[] {

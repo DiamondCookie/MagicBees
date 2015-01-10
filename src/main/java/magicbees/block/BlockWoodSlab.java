@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.block.types.PlankType;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
-import magicbees.main.MagicBees;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -34,7 +34,7 @@ public class BlockWoodSlab extends BlockSlab
 		this.setBlockName("tb.slab.wood");
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setLightOpacity(doubleSlab ? 255 : 0);
-		if (Config.AreMagicPlanksFlammable)
+		if (Config.areMagicPlanksFlammable)
 		{
 			Blocks.fire.setFireInfo(this, 5, 20);
 		}

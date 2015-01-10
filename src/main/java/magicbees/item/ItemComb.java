@@ -42,7 +42,7 @@ public class ItemComb extends Item
 	{
 		for (CombType type : CombType.values())
 		{
-			if (type.showInList || Config.ForestryDebugEnabled)
+			if (type.showInList || Config.forestryDebugEnabled)
 			{
 				list.add(this.getStackForType(type));
 			}

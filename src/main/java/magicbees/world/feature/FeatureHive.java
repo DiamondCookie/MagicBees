@@ -4,7 +4,6 @@ import java.util.Random;
 
 import magicbees.block.types.HiveType;
 import magicbees.main.Config;
-import magicbees.main.MagicBees;
 import magicbees.main.utils.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -18,7 +17,7 @@ public class FeatureHive
 	private static FeatureOreVein glowstoneGen;
 	private static FeatureOreVein endStoneGen;
 
-	private static boolean logSpawns = Config.LogHiveSpawns;
+	private static boolean logSpawns = Config.logHiveSpawns;
 
 	public static void initialize()
 	{
@@ -161,7 +160,7 @@ public class FeatureHive
 				netherQuartzGen.generateVein(world, random, coordX, coordY, coordZ - 1, 4);
 			}
 		}
-		else if (Config.DoSpecialHiveGen && world.rand.nextInt() < 11)
+		else if (Config.doSpecialHiveGen && world.rand.nextInt() < 11)
 		{
 			int coordY = random.nextInt(13) + 5;
 
@@ -230,7 +229,7 @@ public class FeatureHive
 				}
 			}
 		}
-		else if (Config.DoSpecialHiveGen && world.rand.nextInt() < 8)
+		else if (Config.doSpecialHiveGen && world.rand.nextInt() < 8)
 		{
 			// 1 per gen
 			int coordY = random.nextInt(5) + 5;

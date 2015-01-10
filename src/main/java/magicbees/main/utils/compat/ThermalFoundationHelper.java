@@ -16,7 +16,7 @@ public class ThermalFoundationHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded(Name) && Config.ThermalExpansionActive)
+		if (Loader.isModLoaded(Name) && Config.thermalExpansionActive)
 		{
 			isThermalFoundationPresent = true;
 		}

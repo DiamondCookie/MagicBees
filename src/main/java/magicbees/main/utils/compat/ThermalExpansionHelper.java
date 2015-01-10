@@ -53,7 +53,7 @@ public class ThermalExpansionHelper
 
 	public static void preInit()
 	{
-		if (Loader.isModLoaded(Name) && Config.ThermalExpansionActive)
+		if (Loader.isModLoaded(Name) && Config.thermalExpansionActive)
 		{
 			isThermalExpansionPresent = true;
 		}

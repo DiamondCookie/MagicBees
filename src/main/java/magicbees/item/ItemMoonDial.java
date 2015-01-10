@@ -50,7 +50,7 @@ public class ItemMoonDial extends Item
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List infoList, boolean par4)
 	{
-		if (Config.MoonDialShowsPhaseInText &&
+		if (Config.moonDialShowsPhaseInText &&
 				entityPlayer.getCurrentEquippedItem() != null &&
 				entityPlayer.getCurrentEquippedItem().getItem() == this)
 		{
