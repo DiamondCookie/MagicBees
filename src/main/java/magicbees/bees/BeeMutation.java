@@ -186,7 +186,7 @@ public class BeeMutation implements IBeeMutation
 		new BeeMutation(Allele.getBaseSpecies("Austere"), baseA, BeeSpecies.EMERALD, 6)
 				.setBlockRequired(Blocks.emerald_block);
 		new BeeMutation(Allele.getBaseSpecies("Rural"), BeeSpecies.COPPER, BeeSpecies.APATITE, 12)
-				.setBlockRequired("oreApatite");
+				.setBlockRequired("blockApatite");
 		
 		if (ThaumcraftHelper.isActive())
 		{
