@@ -8,9 +8,10 @@ import net.minecraft.world.biome.BiomeGenBase;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
-import forestry.api.core.EnumErrorCode;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
+import forestry.api.core.ErrorStateRegistry;
+import forestry.api.core.IErrorState;
 import forestry.api.genetics.IIndividual;
 
 /**
@@ -200,20 +201,20 @@ public class EffectJarHousing implements IBeeHousing
 	}
 
 	@Override
-	public void setErrorState(EnumErrorCode enumErrorCode)
+	public void setErrorState(IErrorState enumErrorCode)
 	{
 	}
 
 	@Override
 	public int getErrorOrdinal()
 	{
-		return getErrorState().ordinal();
+		return getErrorState().getID();
 	}
 
 	@Override
-	public EnumErrorCode getErrorState()
+	public IErrorState getErrorState()
 	{
-		return EnumErrorCode.OK;
+		return ErrorStateRegistry.getErrorState("ok");
 	}
 
 	@Override

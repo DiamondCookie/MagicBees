@@ -68,6 +68,11 @@ public class BackpackDefinition implements IBackpackDefinition
 	@Override
 	public boolean isValidItem(EntityPlayer player, ItemStack itemStack)
 	{
+		return isValidItem(itemStack);
+	}
+
+	@Override
+	public boolean isValidItem(ItemStack itemStack) {
 		boolean flag = false;
 
 		ItemStack stack;
