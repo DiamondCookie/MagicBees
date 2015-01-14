@@ -3,13 +3,29 @@ package magicbees.world.feature;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import magicbees.main.utils.BlockUtil;
 
 public class FeatureOreVein
 {
-	private Block veinBlock;
-	private int veinBlockMeta;
-	private Block replacesBlock;
+	public static final FeatureOreVein redstoneGen;
+	public static final FeatureOreVein netherQuartzGen;
+	public static final FeatureOreVein glowstoneGen;
+	public static final FeatureOreVein endStoneGen;
+
+	static
+	{
+		redstoneGen = new FeatureOreVein(Blocks.redstone_ore, Blocks.stone);
+		netherQuartzGen = new FeatureOreVein(Blocks.quartz_ore, Blocks.netherrack);
+		glowstoneGen = new FeatureOreVein(Blocks.glowstone, Blocks.stone);
+		endStoneGen = new FeatureOreVein(Blocks.end_stone, Blocks.stone);
+	}
+
+	private final Block veinBlock;
+	private final int veinBlockMeta;
+	private final Block replacesBlock;
 
 	public FeatureOreVein(Block block, Block replacesBlock)
 	{
@@ -35,7 +51,7 @@ public class FeatureOreVein
 		{
 			++spawnAttempts;
 
-			if (!world.isAirBlock(currentX, currentY, currentZ) && canBlockReplaceAt(world, currentX, currentY, currentZ, replacesBlock))
+			if (!world.isAirBlock(currentX, currentY, currentZ) && BlockUtil.canBlockReplaceAt(world, currentX, currentY, currentZ, replacesBlock))
 			{
 				world.setBlock(currentX, currentY, currentZ, this.veinBlock, this.veinBlockMeta, 2);
 				++spawnCount;
@@ -63,11 +79,5 @@ public class FeatureOreVein
 					break;
 			}
 		}
-	}
-
-	private static boolean canBlockReplaceAt(World world, int x, int y, int z, Block block)
-	{
-		return world.getBlock(x, y, z) != null &&
-				world.getBlock(x, y, z).isReplaceableOreGen(world, x, y, z, block);
 	}
 }

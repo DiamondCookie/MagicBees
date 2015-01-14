@@ -1,9 +1,17 @@
 package magicbees.main.utils.compat;
 
+import java.util.Locale;
+
 import magicbees.bees.BeeManager;
+import magicbees.bees.HiveDescription;
+import magicbees.block.types.HiveType;
 import magicbees.main.Config;
 import magicbees.main.utils.BlockInterface;
 import magicbees.main.utils.ItemInterface;
+import magicbees.main.utils.VersionInfo;
+
+import forestry.api.apiculture.hives.HiveManager;
+import forestry.api.apiculture.hives.IHiveRegistry;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IAllele;
@@ -90,6 +98,27 @@ public class ForestryHelper
 
 	public static void preInit()
 	{
+		IHiveRegistry hiveRegistry = HiveManager.hiveRegistry;
+
+		HiveDescription.initHiveData();
+
+		registerHive(hiveRegistry, HiveDescription.CURIOUS);
+		registerHive(hiveRegistry, HiveDescription.UNUSUAL);
+		registerHive(hiveRegistry, HiveDescription.RESONANT);
+		registerHive(hiveRegistry, HiveDescription.DEEP);
+		registerHive(hiveRegistry, HiveDescription.INFERNAL);
+		registerHive(hiveRegistry, HiveDescription.OBLIVION);
+
+		if (Config.doSpecialHiveGen)
+		{
+			registerHive(hiveRegistry, HiveDescription.INFERNAL_OVERWORLD);
+			registerHive(hiveRegistry, HiveDescription.OBLIVION_OVERWORLD);
+		}
+	}
+
+	private static void registerHive(IHiveRegistry hiveRegistry, HiveDescription hiveDescription) {
+		String hiveName = VersionInfo.ModName + ":" + hiveDescription.toString().toLowerCase(Locale.ENGLISH);
+		hiveRegistry.registerHive(hiveName, hiveDescription);
 	}
 
 	public static void init()

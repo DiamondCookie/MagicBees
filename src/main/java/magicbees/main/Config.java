@@ -72,8 +72,6 @@ public class Config
 	public static boolean doSpecialHiveGen;
 	public static String thaumaturgeExtraItems;
 	public static int capsuleStackSizeMax;
-	public static boolean doHiveRetrogen;
-	public static boolean forceHiveRegen;
 	public static boolean logHiveSpawns;
 	public static double thaumcraftSaplingDroprate;
 
@@ -485,25 +483,6 @@ public class Config
 		p = configuration.get("general", "doSpecialHiveGen", true);
 		p.comment = "Set to false if you hate fun and do not want special hives generating in Magic biomes.";
 		doSpecialHiveGen = p.getBoolean(true);
-		
-		p = configuration.get("Retrogen", "doHiveRetrogen", false);
-		p.comment = "Set to true to enable retroactive worldgen of Magic Bees hives.";
-		doHiveRetrogen = p.getBoolean(false);
-		
-		p = configuration.get("Retrogen", "forceHiveRegen", false);
-		p.comment = "Set to true to force a regeneration of Magic Bees hives. Will set config option to false after parsed. (Implies doHiveRetrogen=true)";
-		forceHiveRegen = p.getBoolean(false);
-		
-		if (forceHiveRegen)
-		{
-			FMLLog.info("Magic Bees will aggressively regenerate hives in all chunks for this game instance. Config option set to false.");
-			p.set(false);
-			doHiveRetrogen = true;
-		}
-		else if (doHiveRetrogen)
-		{
-			FMLLog.info("Magic Bees will attempt to regenerate hives in chunks that were generated before the mod was added.");
-		}
 
 		p = configuration.get("general", "magnetRangeBase", 3.0);
 		p.comment = "Base range (in blocks) of the Mysterious Magnet";

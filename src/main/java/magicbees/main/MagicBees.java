@@ -8,7 +8,7 @@ import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+
 import magicbees.bees.BeeManager;
 import magicbees.bees.TransmutationEffectController;
 import magicbees.client.gui.GUIHandler;
@@ -17,7 +17,6 @@ import magicbees.main.utils.IMCManager;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ModHelper;
-import magicbees.world.WorldGeneratorHandler;
 
 @Mod(
 		modid = VersionInfo.ModName,
@@ -36,7 +35,6 @@ public class MagicBees
 	public GUIHandler guiHandler;
 	private String configsPath;
 	private Config modConfig;
-	private WorldGeneratorHandler worldHandler;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -61,9 +59,6 @@ public class MagicBees
 	public void init(FMLInitializationEvent event)
 	{
 		ModHelper.init();
-
-		worldHandler = new WorldGeneratorHandler();
-		GameRegistry.registerWorldGenerator(worldHandler, 0);
 
 		LogHelper.info("Init completed");
 	}
