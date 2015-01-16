@@ -8,10 +8,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import magicbees.block.BlockEffectJar;
-import magicbees.block.BlockHive;
-import magicbees.block.BlockPlanks;
-import magicbees.block.BlockWoodSlab;
+import magicbees.block.*;
 import magicbees.block.types.HiveType;
 import magicbees.item.ItemCapsule;
 import magicbees.item.ItemComb;
@@ -39,6 +36,7 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
+import magicbees.tileentity.TileEntityThaumicApiary;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -94,6 +92,7 @@ public class Config
 	public static BlockWoodSlab slabWoodFull;
 	public static BlockEffectJar effectJar;
 	public static BlockHive hive;
+    public static BlockThaumicApiary thaumicApiary;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -336,7 +335,13 @@ public class Config
 		{
 			if (ThaumcraftHelper.isActive())
 			{
+                // Items
 				solidFlux = new ItemCrystalAspect();
+
+                // Blocks
+                thaumicApiary = new BlockThaumicApiary();
+                GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
+                GameRegistry.registerTileEntity(TileEntityThaumicApiary.class, TileEntityThaumicApiary.tileEntityName);
 			}
 		}
 		

@@ -1,11 +1,8 @@
 package magicbees.client.gui;
 
-import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveFrame;
-import forestry.api.apiculture.hives.IHive;
 import forestry.plugins.PluginApiculture;
 import magicbees.main.utils.ItemInterface;
-import magicbees.main.utils.LogHelper;
 import magicbees.tileentity.TileEntityThaumicApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

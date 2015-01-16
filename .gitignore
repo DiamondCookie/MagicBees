@@ -3,6 +3,7 @@
 *.ipr
 *.iws
 out/
+.idea/
 
 # Eclipse Project Files
 .classpath
@@ -12,6 +13,7 @@ eclipse/
 
 # Gradle
 .gradle
+gradle/
 build/
 debug/
 libs/
