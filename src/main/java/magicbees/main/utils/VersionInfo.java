@@ -18,7 +18,6 @@ public class VersionInfo
 {
 	public static final String ModName = "MagicBees";
 	public static final String Version = "@VERSION@";
-	public static final String Build = "@BUILD_NUMBER@";
 	public static final String MCVersion = "@MCVERSION@";
 	public static final String VersionURL = "http://bit.ly/magicbeesVersionInfo";
 	public static final String GUI_FACTORY_CLASS = "magicbees.client.gui.GuiFactory";

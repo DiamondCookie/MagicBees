@@ -78,7 +78,8 @@ public class MagicBees
 		CraftingManager.setupCrafting();
 		CraftingManager.registerLiquidContainers();
 
-		VersionInfo.doVersionCheck();
+		// Version check file is MIA.
+		//VersionInfo.doVersionCheck();
 		LogHelper.info("Postinit completed");
 	}
 

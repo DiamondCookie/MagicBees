@@ -1,0 +1,6 @@
+[submodule "thaumcraft-api"]
+	path = thaumcraft-api
+	url = https://github.com/Azanor/thaumcraft-api
+[submodule "thaumcraft/api"]
+	path = thaumcraft/api
+	url = https://github.com/Azanor/thaumcraft-api
