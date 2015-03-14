@@ -54,9 +54,11 @@ public class BlockHive extends Block
 	}
 
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List itemsList)
+	public void getSubBlocks(Item item, CreativeTabs tab,  List itemsList)
 	{
+		// Java bitches about raw types & types not being checked. Sorry, but the API sucks.
 		for (HiveType type : HiveType.values())
 		{
 			if (type.show || Config.forestryDebugEnabled)

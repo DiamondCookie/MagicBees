@@ -17,3 +17,4 @@ gradle/
 build/
 debug/
 libs/
+/bin/

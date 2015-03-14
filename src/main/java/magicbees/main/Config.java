@@ -4,7 +4,6 @@ import java.io.File;
 import java.lang.reflect.Field;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -72,6 +71,7 @@ public class Config
 	public static int capsuleStackSizeMax;
 	public static boolean logHiveSpawns;
 	public static double thaumcraftSaplingDroprate;
+	public static int aromaticLumpSwarmerRate;
 
 	public static boolean arsMagicaActive;
 	public static boolean bloodMagicActive;
@@ -213,7 +213,7 @@ public class Config
 	{
 		configuration = new Configuration(configFile);
 		configuration.load();
-		this.doMiscConfig();
+		processConfigFile();
 		
 		forestryDebugEnabled = (new File("./config/forestry/DEBUG.ON")).exists();
 		configuration.save();
@@ -238,55 +238,8 @@ public class Config
 
 	public void setupBlocks()
 	{
-		{
-			if (ThaumcraftHelper.isActive())
-			{
-				/**
-				 planksWood = new BlockPlanks();
-				 planksWood.setBlockName("planks");
-
-				 //Item.itemsList[planksWood.blockID] = null;
-				 //Item.itemsList[planksWood.blockID] = new ItemMultiTexture(planksWood.blockID - 256, planksWood,
-				 //	PlankType.getAllNames());
-
-				 //FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", Config.planksWood
-				 //	.blockID + "@" + PlankType.GREATWOOD.ordinal());
-				 //FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", Config.planksWood
-				 //	.blockID + "@" + PlankType.SILVERWOOD.ordinal());
-
-				 slabWoodFull = new BlockWoodSlab(true);
-				 slabWoodHalf = new BlockWoodSlab(false);
-
-				 slabWoodFull.setBlockName("planks");
-				 slabWoodHalf.setBlockName("planks");
-
-				 /*Item.itemsList[slabWoodHalf.blockID] = null;
-				 Item.itemsList[slabWoodHalf.blockID] = new ItemSlab(slabWoodHalf.blockID - 256, slabWoodHalf, slabWoodFull, false);
-				 Item.itemsList[slabWoodFull.blockID] = null;
-				 Item.itemsList[slabWoodFull.blockID] = new ItemSlab(slabWoodFull.blockID - 256, slabWoodHalf,
-				 slabWoodFull, true);*/
-
-				//OreDictionary.registerOre("plankWood", new ItemStack(planksWood, 1, -1));
-				//OreDictionary.registerOre("slabWood", new ItemStack(slabWoodHalf, 1, -1));
-
-			}
-		}
-
-		effectJar = new BlockEffectJar();
-		GameRegistry.registerBlock(effectJar, "effectJar");
-		GameRegistry.registerTileEntity(TileEntityEffectJar.class, TileEntityEffectJar.tileEntityName);
-
-		hive = new BlockHive();
-		GameRegistry.registerBlock(hive, ItemMagicHive.class, "hive");
-
-		for (HiveType t : HiveType.values())
-		{
-			hive.setHarvestLevel("scoop", 0, t.ordinal());
-		}
-
-		LogHelper.info("Replacing stupid-block with 'Here,  have some delicious textures' ItemBlock. This is 100%% normal.");
-		/*Item.itemsList[hive.blockID] = null;
-		Item.itemsList[hive.blockID] = new ItemMultiTextureTile(hive.blockID - 256, hive, HiveType.getAllNames());*/
+		setupEffectJar();
+		setupHives();
 	}
 	
 	public void setupItems()
@@ -297,144 +250,27 @@ public class Config
 		drops = new ItemDrop();
 		miscResources = new ItemMiscResources();
 		
-		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
-		BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), 95);
-		
-		{
-			if (ThaumcraftHelper.isActive() && thaumaturgeBackpackActive)
-			{
-				try
-				{
-					// 0x8700C6 = purpleish.
-					String backpackName = LocalizationManager.getLocalizedString("backpack.thaumaturge");
-					BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
-					thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T1);
-					thaumaturgeBackpackT1.setUnlocalizedName("backpack.thaumaturgeT1");
-					GameRegistry.registerItem(thaumaturgeBackpackT1, "backpack.thaumaturgeT1");
-					thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T2);
-					thaumaturgeBackpackT2.setUnlocalizedName("backpack.thaumaturgeT2");
-					GameRegistry.registerItem(thaumaturgeBackpackT2, "backpack.thaumaturgeT2");
-					// Add additional items from configs to backpack.
-					if (thaumaturgeExtraItems.length() > 0)
-					{
-						FMLLog.info("Attempting to add extra items to Thaumaturge's backpack. If you get an error, check your MagicBees.conf.");
-						FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + thaumaturgeExtraItems);
-					}
-				}
-				catch (Exception e)
-				{
-					FMLLog.severe("MagicBees encountered a problem during loading!");
-					FMLLog.severe("Could not register backpacks via Forestry. Check your FML Client log and see if Forestry crashed silently.");
-				}
-			}
-		}
+		setupThaumcraftBackpacks();
 
 		magicCapsule = new ItemCapsule(CapsuleType.MAGIC, capsuleStackSizeMax);
 		pollen = new ItemPollen();
 		
-		{
-			if (ThaumcraftHelper.isActive())
-			{
-                // Items
-				solidFlux = new ItemCrystalAspect();
-
-                // Blocks
-                thaumicApiary = new BlockThaumicApiary();
-                GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
-                GameRegistry.registerTileEntity(TileEntityThaumicApiary.class, TileEntityThaumicApiary.tileEntityName);
-			}
-		}
-		
-		hiveFrameMagic = new ItemMagicHiveFrame(HiveFrameType.MAGIC);
-		hiveFrameResilient = new ItemMagicHiveFrame(HiveFrameType.RESILIENT);
-		hiveFrameGentle = new ItemMagicHiveFrame(HiveFrameType.GENTLE);
-		hiveFrameMetabolic = new ItemMagicHiveFrame(HiveFrameType.METABOLIC);
-		hiveFrameNecrotic = new ItemMagicHiveFrame(HiveFrameType.NECROTIC);
-		hiveFrameTemporal = new ItemMagicHiveFrame(HiveFrameType.TEMPORAL);
-		hiveFrameOblivion = new ItemMagicHiveFrame(HiveFrameType.OBLIVION);
-		
-		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(hiveFrameOblivion), 1, 1, 18));
-		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(hiveFrameOblivion), 1, 3, 23));
-
-		jellyBaby = new ItemFood(1, false).setAlwaysEdible()
-				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
-		jellyBaby.setUnlocalizedName(CommonProxy.DOMAIN + ":jellyBabies").setTextureName(CommonProxy.DOMAIN + ":jellyBabies");
-		GameRegistry.registerItem(jellyBaby, "jellyBabies");
-		
-		
+		setupThaumcraftItems();		
+		setupFrames();
+		setupJellyBaby();		
 		voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
-
-		{
-			if (ThaumcraftHelper.isActive())
-			{
-				try
-				{
-					thaumiumScoop = new ItemThaumiumScoop();
-					GameRegistry.registerItem(thaumiumScoop, thaumiumScoop.getUnlocalizedName(), CommonProxy.DOMAIN);
-					
-					thaumiumGrafter = new ItemThaumiumGrafter();
-					GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
-				}
-				catch (Exception e)
-				{
-				}
-			}
-		}
-		
+		setupThaumcraftTools();		
 		moonDial = new ItemMoonDial();
 		
-		nuggets = new ItemNugget();
+		setupNuggets();
+		setupMysteriousMagnet();
+		setupOreDictionaryEntries();
 		
-		magnet = new ItemMysteriousMagnet();
-		magnet.setBaseRange(magnetBaseRange);
-		magnet.setLevelMultiplier(magnetLevelMultiplier);
-		magnet.setMaximumLevel(magnetMaxLevel);
-		GameRegistry.registerItem(magnet, "magnet", CommonProxy.DOMAIN);
-
-		for (int level = 0; level <= 8; level++)
-		{
-			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2));
-			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2 + 1));
-		}
-
-
-		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.MAGIC));
-		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.AMNESIC));
-		OreDictionary.registerOre("nuggetIron", nuggets.getStackForType(NuggetType.IRON));
-		OreDictionary.registerOre("nuggetCopper", nuggets.getStackForType(NuggetType.COPPER));
-		OreDictionary.registerOre("nuggetTin", nuggets.getStackForType(NuggetType.TIN));
-		OreDictionary.registerOre("nuggetSilver", nuggets.getStackForType(NuggetType.SILVER));
-		OreDictionary.registerOre("nuggetLead", nuggets.getStackForType(NuggetType.LEAD));
-		OreDictionary.registerOre("shardDiamond", nuggets.getStackForType(NuggetType.DIAMOND));
-		OreDictionary.registerOre("shardEmerald", nuggets.getStackForType(NuggetType.EMERALD));
-		OreDictionary.registerOre("shardApatite", nuggets.getStackForType(NuggetType.APATITE));
-
-
-		String item;
-		for (NuggetType type : NuggetType.values())
-		{
-			LogHelper.info("Found nugget of type " + type.toString());
-			item = type.toString().toLowerCase();
-			item = Character.toString(item.charAt(0)).toUpperCase() + item.substring(1);
-			if (OreDictionary.getOres("ingot" + item).size() <= 0)
-			{
-				if (OreDictionary.getOres("shard" + item).size() <= 0)
-				{
-					LogHelper.info("Disabled nugget " + type.toString());
-					type.setInactive();
-				}
-			}
-
-		}
-
-		GameRegistry.registerItem(nuggets, "beeNugget");
+		setupMiscForestryItemHooks();
 	}
-	
-	private void doMiscConfig()
+
+	private void processConfigFile()
 	{
-		Property p;
-		
 		// Pull config from Forestry via reflection
 		Field f;
 		try
@@ -444,63 +280,24 @@ public class Config
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			LogHelper.warn("Failed to retrieve Forestry's bee particle FX setting. This is not critical, but should be reported so it can be fixed.");
+			LogHelper.debug(e);
 		}
 
-		p = configuration.get("general", "backpack.thaumaturge.active", true);
-		p.comment = "Set to false to disable the Thaumaturge backpack";
-		thaumaturgeBackpackActive = p.getBoolean(true);
+		doGeneralConfigs();
+		doModuleConfigs();
+		doDebugConfigs();
+	}
 
-		p = configuration.get("general", "backpack.thaumaturge.additionalItems", "");
-		p.comment = "Add additional items to the Thaumaturge's Backpack." +
-				"\n Format is the same as Forestry's: id:meta;id;id:meta (etc)";
-		thaumaturgeExtraItems = p.getString();
-		
-		p = configuration.get("general", "backpack.forestry.addThaumcraftItems", true);
-		p.comment = "Set to true if you want MagicBees to add several Thaumcraft blocks & items to Forestry backpacks." +
-				"\n Set to false to disable.";
-		addThaumcraftItemsToBackpacks = p.getBoolean(true);
-		
-		p = configuration.get("general", "capsuleStackSize", 64);
-		p.comment = "Allows you to edit the stack size of the capsules in MagicBees if using GregTech, \n" +
-				"or the reduced capsule size in Forestry & Railcraft. Default: 64";
-		capsuleStackSizeMax = p.getInt();
-		
-		p = configuration.get("general", "disableVersionNotification", false);
-		p.comment = "Set to true to stop ThaumicBees from notifying you when new updates are available. (Does not supress critical updates)";
-		disableUpdateNotification = p.getBoolean(false);
-		
-		p = configuration.get("general", "areMagicPlanksFlammable", false);
-		p.comment = "Set to true to allow Greatwood & Silverwood planks to burn in a fire.";
-		areMagicPlanksFlammable = p.getBoolean(false);
-		
-		p = configuration.get("general", "useImpregnatedStickInTools", false);
-		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
-		useImpregnatedStickInTools = p.getBoolean(false);
+	private void doDebugConfigs() {
+		Property p;
+		p = configuration.get("debug", "logHiveSpawns", false);
+		p.comment = "Enable to see exact locations of MagicBees hive spawns.";
+		logHiveSpawns = p.getBoolean();
+	}
 
-		p = configuration.get("general", "thaumCraftSaplingDroprate", 0.1, "The chance for thaumcraft saplings using the thaumium grafter", 0.0, 1.0);
-		thaumcraftSaplingDroprate = p.getDouble(0.1);
-
-		p = configuration.get("general", "moonDialShowText", false);
-		p.comment = "set to true to show the current moon phase in mouse-over text.";
-		moonDialShowsPhaseInText = p.getBoolean(false);
-		
-		p = configuration.get("general", "doSpecialHiveGen", true);
-		p.comment = "Set to false if you hate fun and do not want special hives generating in Magic biomes.";
-		doSpecialHiveGen = p.getBoolean(true);
-
-		p = configuration.get("general", "magnetRangeBase", 3.0);
-		p.comment = "Base range (in blocks) of the Mysterious Magnet";
-		magnetBaseRange = (float)p.getDouble(3.0);
-		
-		p = configuration.get("general", "magnetRangeMultiplier", 0.75);
-		p.comment = "Range multiplier per level of the Mysterious Magnet. Total range = base range + level * multiplier";
-		magnetLevelMultiplier = (float)p.getDouble(0.75);
-		
-		p = configuration.get("general", "magnetMaximumLevel", 8);
-		p.comment = "Maximum level of the magnets.";
-		magnetMaxLevel = p.getInt();
-
+	private void doModuleConfigs() {
+		Property p;
 		//Modules
 		p = configuration.get("modules", "ArsMagica", true);
 		arsMagicaActive = p.getBoolean();
@@ -522,11 +319,213 @@ public class Config
 
 		p = configuration.get("modules", "ThermalExpansion", true);
 		thermalExpansionActive = p.getBoolean();
-
-		// Debug
-		p = configuration.get("debug", "logHiveSpawns", false);
-		p.comment = "Enable to see exact locations of MagicBees hive spawns.";
-		logHiveSpawns = p.getBoolean();
 	}
 
+	private void doGeneralConfigs() {
+		Property p;
+		final String section = "general"; 
+		p = configuration.get(section, "backpack.thaumaturge.active", true);
+		p.comment = "Set to false to disable the Thaumaturge backpack";
+		thaumaturgeBackpackActive = p.getBoolean(true);
+
+		p = configuration.get(section, "backpack.thaumaturge.additionalItems", "");
+		p.comment = "Add additional items to the Thaumaturge's Backpack." +
+				"\n Format is the same as Forestry's: id:meta;id;id:meta (etc)";
+		thaumaturgeExtraItems = p.getString();
+		
+		p = configuration.get(section, "backpack.forestry.addThaumcraftItems", true);
+		p.comment = "Set to true if you want MagicBees to add several Thaumcraft blocks & items to Forestry backpacks." +
+				"\n Set to false to disable.";
+		addThaumcraftItemsToBackpacks = p.getBoolean(true);
+		
+		p = configuration.get(section, "capsuleStackSize", 64);
+		p.comment = "Allows you to edit the stack size of the capsules in MagicBees if using GregTech, \n" +
+				"or the reduced capsule size in Forestry & Railcraft. Default: 64";
+		capsuleStackSizeMax = p.getInt();
+		
+		p = configuration.get(section, "disableVersionNotification", false);
+		p.comment = "Set to true to stop ThaumicBees from notifying you when new updates are available. (Does not supress critical updates)";
+		disableUpdateNotification = p.getBoolean(false);
+		
+		p = configuration.get(section, "areMagicPlanksFlammable", false);
+		p.comment = "Set to true to allow Greatwood & Silverwood planks to burn in a fire.";
+		areMagicPlanksFlammable = p.getBoolean(false);
+		
+		p = configuration.get(section, "useImpregnatedStickInTools", false);
+		p.comment = "Set to true to make Thaumium Grafter & Scoop require impregnated sticks in the recipe.";
+		useImpregnatedStickInTools = p.getBoolean(false);
+
+		p = configuration.get(section, "thaumCraftSaplingDroprate", 0.1, "The chance for thaumcraft saplings using the thaumium grafter", 0.0, 1.0);
+		thaumcraftSaplingDroprate = p.getDouble(0.1);
+
+		p = configuration.get(section, "moonDialShowText", false);
+		p.comment = "set to true to show the current moon phase in mouse-over text.";
+		moonDialShowsPhaseInText = p.getBoolean(false);
+		
+		p = configuration.get(section, "doSpecialHiveGen", true);
+		p.comment = "Set to false if you hate fun and do not want special hives generating in Magic biomes.";
+		doSpecialHiveGen = p.getBoolean(true);
+
+		p = configuration.get(section, "magnetRangeBase", 3.0);
+		p.comment = "Base range (in blocks) of the Mysterious Magnet";
+		magnetBaseRange = (float)p.getDouble(3.0);
+		
+		p = configuration.get(section, "magnetRangeMultiplier", 0.75);
+		p.comment = "Range multiplier per level of the Mysterious Magnet. Total range = base range + level * multiplier";
+		magnetLevelMultiplier = (float)p.getDouble(0.75);
+		
+		p = configuration.get(section, "magnetMaximumLevel", 8);
+		p.comment = "Maximum level of the magnets.";
+		magnetMaxLevel = p.getInt();
+		
+		p = configuration.get(section, "aromaticLumpSwarmerRate", 95);
+		p.comment = "Aromatic lump swarmer rate. Final value is X/1000. 0 will disable, values outside of [0,1000] will be clamped to range. Default: 95";
+		aromaticLumpSwarmerRate = p.getInt();
+	}
+
+	private void setupEffectJar() {
+		effectJar = new BlockEffectJar();
+		GameRegistry.registerBlock(effectJar, "effectJar");
+		GameRegistry.registerTileEntity(TileEntityEffectJar.class, TileEntityEffectJar.tileEntityName);
+	}
+
+	private void setupFrames() {
+		hiveFrameMagic = new ItemMagicHiveFrame(HiveFrameType.MAGIC);
+		hiveFrameResilient = new ItemMagicHiveFrame(HiveFrameType.RESILIENT);
+		hiveFrameGentle = new ItemMagicHiveFrame(HiveFrameType.GENTLE);
+		hiveFrameMetabolic = new ItemMagicHiveFrame(HiveFrameType.METABOLIC);
+		hiveFrameNecrotic = new ItemMagicHiveFrame(HiveFrameType.NECROTIC);
+		hiveFrameTemporal = new ItemMagicHiveFrame(HiveFrameType.TEMPORAL);
+		hiveFrameOblivion = new ItemMagicHiveFrame(HiveFrameType.OBLIVION);
+		
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(hiveFrameOblivion), 1, 1, 18));
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(hiveFrameOblivion), 1, 3, 23));
+	}
+
+	private void setupHives() {
+		hive = new BlockHive();
+		GameRegistry.registerBlock(hive, ItemMagicHive.class, "hive");
+
+		for (HiveType t : HiveType.values())
+		{
+			hive.setHarvestLevel("scoop", 0, t.ordinal());
+		}
+	}
+
+	private void setupMysteriousMagnet() {
+		magnet = new ItemMysteriousMagnet();
+		magnet.setBaseRange(magnetBaseRange);
+		magnet.setLevelMultiplier(magnetLevelMultiplier);
+		magnet.setMaximumLevel(magnetMaxLevel);
+		GameRegistry.registerItem(magnet, "magnet", CommonProxy.DOMAIN);
+	}
+
+	private void setupJellyBaby() {
+		jellyBaby = new ItemFood(1, false).setAlwaysEdible()
+				.setPotionEffect(Potion.moveSpeed.id, 5, 1, 1f);
+		jellyBaby.setUnlocalizedName(CommonProxy.DOMAIN + ":jellyBabies").setTextureName(CommonProxy.DOMAIN + ":jellyBabies");
+		GameRegistry.registerItem(jellyBaby, "jellyBabies");
+	}
+
+	private void setupNuggets() {
+		nuggets = new ItemNugget();
+		String item;
+		for (NuggetType type : NuggetType.values()) {
+			LogHelper.info("Found nugget of type " + type.toString());
+			item = type.toString().toLowerCase();
+			item = Character.toString(item.charAt(0)).toUpperCase() + item.substring(1);
+			if (OreDictionary.getOres("ingot" + item).size() <= 0) {
+				if (OreDictionary.getOres("shard" + item).size() <= 0) {
+					LogHelper.info("Disabled nugget " + type.toString());
+					type.setInactive();
+				}
+			}
+		}
+
+		GameRegistry.registerItem(nuggets, "beeNugget");
+	}
+
+	private void setupOreDictionaryEntries() {
+		for (int level = 0; level <= 8; level++) {
+			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2));
+			OreDictionary.registerOre("mb.magnet.level" + level, new ItemStack(magnet, 1, level * 2 + 1));
+		}
+		
+		OreDictionary.registerOre("beeComb", new ItemStack(combs, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.MAGIC));
+		OreDictionary.registerOre("waxMagical", wax.getStackForType(WaxType.AMNESIC));
+		OreDictionary.registerOre("nuggetIron", nuggets.getStackForType(NuggetType.IRON));
+		OreDictionary.registerOre("nuggetCopper", nuggets.getStackForType(NuggetType.COPPER));
+		OreDictionary.registerOre("nuggetTin", nuggets.getStackForType(NuggetType.TIN));
+		OreDictionary.registerOre("nuggetSilver", nuggets.getStackForType(NuggetType.SILVER));
+		OreDictionary.registerOre("nuggetLead", nuggets.getStackForType(NuggetType.LEAD));
+		OreDictionary.registerOre("shardDiamond", nuggets.getStackForType(NuggetType.DIAMOND));
+		OreDictionary.registerOre("shardEmerald", nuggets.getStackForType(NuggetType.EMERALD));
+		OreDictionary.registerOre("shardApatite", nuggets.getStackForType(NuggetType.APATITE));
+	}
+	
+	private void setupThaumcraftBackpacks() {
+		if (ThaumcraftHelper.isActive() && thaumaturgeBackpackActive) {
+			try {
+				// 0x8700C6 is a purple-y colour, which is associated with Thaumcraft.
+				String backpackName = LocalizationManager.getLocalizedString("backpack.thaumaturge");
+				BackpackDefinition def = new BackpackDefinition("thaumaturge", backpackName, 0x8700C6);
+				thaumaturgeBackpackT1 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T1);
+				thaumaturgeBackpackT1.setUnlocalizedName("backpack.thaumaturgeT1");
+				GameRegistry.registerItem(thaumaturgeBackpackT1, "backpack.thaumaturgeT1");
+				thaumaturgeBackpackT2 = BackpackManager.backpackInterface.addBackpack(def, EnumBackpackType.T2);
+				thaumaturgeBackpackT2.setUnlocalizedName("backpack.thaumaturgeT2");
+				GameRegistry.registerItem(thaumaturgeBackpackT2, "backpack.thaumaturgeT2");
+				// Add additional items from configs to backpack.
+				if (thaumaturgeExtraItems.length() > 0) {
+					LogHelper.info("Attempting to add extra items to Thaumaturge's backpack. If you get an error, check your MagicBees.conf.");
+					FMLInterModComms.sendMessage("Forestry", "add-backpack-items", "thaumaturge@" + thaumaturgeExtraItems);
+				}
+			}
+			catch (Exception e) {
+				LogHelper.error("MagicBees encountered a problem during loading!");
+				LogHelper.error("Could not register backpacks via Forestry. Check your FML Client log and see if Forestry crashed silently.");
+			}
+		}
+	}
+
+	private void setupThaumcraftItems() {
+		if (ThaumcraftHelper.isActive())
+		{
+            // Items
+			solidFlux = new ItemCrystalAspect();
+
+            // Blocks
+            thaumicApiary = new BlockThaumicApiary();
+            GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
+            GameRegistry.registerTileEntity(TileEntityThaumicApiary.class, TileEntityThaumicApiary.tileEntityName);
+		}
+	}
+
+	private void setupThaumcraftTools() {
+		if (ThaumcraftHelper.isActive())
+		{
+			try
+			{
+				thaumiumScoop = new ItemThaumiumScoop();
+				GameRegistry.registerItem(thaumiumScoop, thaumiumScoop.getUnlocalizedName(), CommonProxy.DOMAIN);
+				
+				thaumiumGrafter = new ItemThaumiumGrafter();
+				GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
+			}
+			catch (Exception e)
+			{
+				LogHelper.warn("Couldn't register Thaumium tools!");
+				LogHelper.debug(e);
+			}
+		}
+	}
+
+	private void setupMiscForestryItemHooks() {
+		// Make Aromatic Lumps a swarmer inducer. Chance is /1000.
+		if (aromaticLumpSwarmerRate <= 0) {
+			aromaticLumpSwarmerRate = (aromaticLumpSwarmerRate >= 1000) ? 1000: aromaticLumpSwarmerRate;
+			BeeManager.inducers.put(miscResources.getStackForType(ResourceType.AROMATIC_LUMP), aromaticLumpSwarmerRate);
+		}
+	}
 }

@@ -33,13 +33,11 @@ public class MagicBees
 	public static CommonProxy proxy;
 
 	public GUIHandler guiHandler;
-	private String configsPath;
 	private Config modConfig;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		this.configsPath = event.getModConfigurationDirectory().getAbsolutePath();
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(modConfig);
 
