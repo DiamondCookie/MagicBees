@@ -40,7 +40,7 @@ minecraft {
 sourceSets {
 	main {
 		java {
-			srcDir "./thaumcraft/api"
+			srcDir "./api"
 		}
 	}
 }
