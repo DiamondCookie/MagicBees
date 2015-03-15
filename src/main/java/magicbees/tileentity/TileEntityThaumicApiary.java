@@ -37,8 +37,8 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
     private static final int SLOT_QUEEN = 0;
     private static final int SLOT_DRONE = 1;
     private static final int SLOT_FRAME_START = 2;
-    private static final int SLOT_INVENTORY_START = 5;
     private static final int SLOT_FRAME_COUNT = 3;
+    private static final int SLOT_INVENTORY_START = 5;
     private static final int SLOT_INVENTORY_COUNT = 7;
 
 
@@ -383,8 +383,12 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
     @Override
     public boolean canInsertItem(int slot, ItemStack itemStack, int side) {
         if(slot == SLOT_QUEEN && PluginApiculture.beeInterface.isMember(itemStack)
-                && !PluginApiculture.beeInterface.isDrone(itemStack))
+                && !PluginApiculture.beeInterface.isDrone(itemStack)) {
             return true;
+        }
+        else if (slot == SLOT_DRONE && PluginApiculture.beeInterface.isDrone(itemStack)) {
+        	return true;
+        }
         return slot == SLOT_DRONE && PluginApiculture.beeInterface.isDrone(itemStack);
     }
 
