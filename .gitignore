@@ -22,3 +22,6 @@ config/
 crash-reports/
 logs/
 mods/
+saves/
+usernamecache.json
+options.txt

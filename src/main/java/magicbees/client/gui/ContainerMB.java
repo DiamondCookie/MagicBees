@@ -13,12 +13,12 @@ public class ContainerMB extends Container
     public void addPlayerInventory(InventoryPlayer inventoryPlayer, int xStart, int yStart)
     {
         for (int x = 0; x < PLAYER_INVENTORY_COLUMNS; x++){
-            addSlotToContainer(new Slot(inventoryPlayer, x, 8 + 18 * x, yStart + 4 + PLAYER_INVENTORY_ROWS * 18));
+            addSlotToContainer(new Slot(inventoryPlayer, x, xStart + 8 + 18 * x, yStart + 4 + PLAYER_INVENTORY_ROWS * 18));
         }
 
         for (int y = 0; y < PLAYER_INVENTORY_ROWS; y++){
             for (int x = 0; x < PLAYER_INVENTORY_COLUMNS; x++){
-                addSlotToContainer(new Slot(inventoryPlayer, x + y * 9 + 9, 8 + 18 * x, yStart + y * 18));
+                addSlotToContainer(new Slot(inventoryPlayer, x + y * 9 + 9, xStart + 8 + 18 * x, yStart + y * 18));
             }
         }
     }

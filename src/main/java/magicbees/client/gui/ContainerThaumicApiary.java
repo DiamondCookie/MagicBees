@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerThaumicApiary extends ContainerMB {
 
-    private TileEntityThaumicApiary thaumicApiary;
+    public TileEntityThaumicApiary apiary;
     public int maxSlot = 0;
 
     // Constants
@@ -24,12 +24,12 @@ public class ContainerThaumicApiary extends ContainerMB {
     private static final int SLOT_INVENTORY_COUNT = 7;
 
     public ContainerThaumicApiary(InventoryPlayer inventoryPlayer, TileEntityThaumicApiary thaumicApiary){
-        this.thaumicApiary = thaumicApiary;
+        this.apiary = thaumicApiary;
 
         // Queen/Princess slot
-        addSlotToContainer(new SlotCustomItems(this.thaumicApiary, 0, 29, 39, ItemInterface.getItemStack("Forestry", "beeQueenGE", 1), ItemInterface.getItemStack("Forestry", "beePrincessGE", 1)));
+        addSlotToContainer(new SlotCustomItems(this.apiary, 0, 29, 39, ItemInterface.getItemStack("Forestry", "beeQueenGE", 1), ItemInterface.getItemStack("Forestry", "beePrincessGE", 1)));
         // Drone slot
-        addSlotToContainer(new SlotCustomItems(this.thaumicApiary, 1, 29, 65, ItemInterface.getItemStack("Forestry", "beeDroneGE", 64)));
+        addSlotToContainer(new SlotCustomItems(this.apiary, 1, 29, 65, ItemInterface.getItemStack("Forestry", "beeDroneGE", 64)));
 
         int currentSlot = 1;
 
@@ -56,7 +56,7 @@ public class ContainerThaumicApiary extends ContainerMB {
             j++;
         }
 
-        addPlayerInventory(inventoryPlayer, 0, 108);
+        addPlayerInventory(inventoryPlayer, 6, 109);
 
         maxSlot = currentSlot;
 
@@ -105,13 +105,13 @@ public class ContainerThaumicApiary extends ContainerMB {
 
     @Override
     public boolean canInteractWith(EntityPlayer entityPlayer) {
-        return thaumicApiary.isUseableByPlayer(entityPlayer);
+        return apiary.isUseableByPlayer(entityPlayer);
     }
 
 
     @Override
     public void updateProgressBar(int i, int j) {
-        thaumicApiary.getGUINetworkData(i, j);
+        apiary.getGUINetworkData(i, j);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class ContainerThaumicApiary extends ContainerMB {
         super.detectAndSendChanges();
 
         for (Object crafter : crafters) {
-            thaumicApiary.sendGUINetworkData(this, (ICrafting) crafter);
+            apiary.sendGUINetworkData(this, (ICrafting) crafter);
         }
     }
 }
