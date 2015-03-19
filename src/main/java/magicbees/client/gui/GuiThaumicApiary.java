@@ -26,11 +26,11 @@ public class GuiThaumicApiary extends GuiContainer
     private static final int LIFEBAR_DEST_Y = 37;
     
     private static final int LIFEBAR_SRC_Y = 0;
-    private static final int LIFEBAR_SRC_STAGE1_X = 193;
-    private static final int LIFEBAR_SRC_STAGE2_X = 189;
-    private static final int LIFEBAR_SRC_STAGE3_X = 185;
-    private static final int LIFEBAR_SRC_STAGE4_X = 181;
-    private static final int LIFEBAR_SRC_STAGE5_X = 177;
+    private static final int LIFEBAR_SRC_STAGE1_X = 184;
+    private static final int LIFEBAR_SRC_STAGE2_X = 182;
+    private static final int LIFEBAR_SRC_STAGE3_X = 180;
+    private static final int LIFEBAR_SRC_STAGE4_X = 178;
+    private static final int LIFEBAR_SRC_STAGE5_X = 176;
     
     private static final int WORKBOOST_WIDTH = 16;
     private static final int WORKBOOST_HEIGHT = 12;
