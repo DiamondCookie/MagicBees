@@ -3,8 +3,7 @@ package magicbees.tileentity;
 import magicbees.bees.BeeManager;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
-import magicbees.main.utils.LogHelper;
-import magicbees.reference.Names;
+import magicbees.main.utils.ItemStackUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -29,41 +28,39 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.core.ErrorStateRegistry;
 import forestry.api.core.IErrorState;
 import forestry.api.genetics.IIndividual;
-import forestry.core.inventory.InvTools;
-import forestry.core.inventory.InventoryAdapter;
 import forestry.core.utils.Utils;
 
 public class TileEntityThaumicApiary extends TileEntity implements ISidedInventory, IBeeHousing {
 
     public static final String tileEntityName = CommonProxy.DOMAIN + ".thaumicApiary";
-    private GameProfile ownerName;
+    private GameProfile ownerProfile;
 
     // Constants
     private static final int SLOT_QUEEN = 0;
     private static final int SLOT_DRONE = 1;
     private static final int SLOT_FRAME_START = 2;
     private static final int SLOT_FRAME_COUNT = 3;
-    private static final int SLOT_INVENTORY_START = 5;
-    private static final int SLOT_INVENTORY_COUNT = 7;
-
-
+    private static final int SLOT_PRODUCTS_START = 5;
+    private static final int SLOT_PRODUCTS_COUNT = 7;
+    
     private final IBeekeepingLogic logic;
     private BiomeGenBase biome;
     private int displayHealthMax = 0;
     private int displayHealth = 0;
     private boolean init = false;
+    
+    private IErrorState errorState = ErrorStateRegistry.getErrorState("ok");
 
     private ItemStack[] items;
 
-    protected final InventoryAdapter inventory = new InventoryAdapter(12, "Items");
-
-    public TileEntityThaumicApiary()
-    {
+    public TileEntityThaumicApiary(){
         items = new ItemStack[12];
         logic = BeeManager.beeRoot.createBeekeepingLogic(this);
     }
 
-    public void setOwner(EntityPlayer player) { this.ownerName = player.getGameProfile(); }
+    public void setOwner(EntityPlayer player) {
+    	this.ownerProfile = player.getGameProfile();
+    }
 
     @Override
     public ItemStack getQueen() {
@@ -94,7 +91,6 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
     public void onQueenChange(ItemStack queenStack) {
     	if (!worldObj.isRemote) {
     		MagicBees.object.netHandler.sendInventoryUpdate(this, SLOT_QUEEN, queenStack);
-    		this.markDirty();
     	}
     }
 
@@ -135,14 +131,17 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
         return false;
     }
 
+	private boolean isItemStackFrame(int i) {
+		return getStackInSlot(i) != null && getStackInSlot(i).getItem() instanceof IHiveFrame;
+	}
+
     @Override
     public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
         float mod = 1.0f;
-        for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++){
-            if (getStackInSlot(i) == null)
-                continue;
-            if (getStackInSlot(i).getItem() instanceof IHiveFrame)
-                mod *= ((IHiveFrame) getStackInSlot(i).getItem()).getTerritoryModifier(genome, mod);
+        for (int slotIndex = SLOT_FRAME_START; slotIndex < SLOT_FRAME_START + SLOT_FRAME_COUNT; slotIndex++) {
+            if (isItemStackFrame(slotIndex)) {
+                mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getTerritoryModifier(genome, mod);
+            }
         }
         return mod;
     }
@@ -150,11 +149,10 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
     @Override
     public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
         float mod = 1.0f;
-        for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++){
-            if (getStackInSlot(i) == null)
-                continue;
-            if (getStackInSlot(i).getItem() instanceof IHiveFrame)
-                mod *= ((IHiveFrame) getStackInSlot(i).getItem()).getMutationModifier(genome, mate, mod);
+        for (int slotIndex = SLOT_FRAME_START; slotIndex < SLOT_FRAME_START + SLOT_FRAME_COUNT; slotIndex++) {
+            if (isItemStackFrame(slotIndex)) {
+                mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getMutationModifier(genome, mate, mod);
+            }
         }
         if (this.isMutationBoosted()) {
         	mod = mod * 2f;
@@ -165,11 +163,10 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
     @Override
     public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
         float mod = 1.0f;
-        for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++){
-            if (getStackInSlot(i) == null)
-                continue;
-            if (getStackInSlot(i).getItem() instanceof IHiveFrame)
-                mod *= ((IHiveFrame) getStackInSlot(i).getItem()).getLifespanModifier(genome, mate, mod);
+        for (int slotIndex = SLOT_FRAME_START; slotIndex < SLOT_FRAME_START + SLOT_FRAME_COUNT; slotIndex++) {
+            if (isItemStackFrame(slotIndex)) {
+                mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getLifespanModifier(genome, mate, mod);
+            }
         }
         if (this.isDeathRateBoosted()) {
         	mod = mod / 2f;
@@ -179,12 +176,11 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
 
     @Override
     public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-        float mod = 1.0f;
-        for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++){
-            if (getStackInSlot(i) == null)
-                continue;
-            if (getStackInSlot(i).getItem() instanceof IHiveFrame)
-                mod *= ((IHiveFrame) getStackInSlot(i).getItem()).getProductionModifier(genome, mod);
+        float mod = 0.9f;
+        for (int slotIndex = SLOT_FRAME_START; slotIndex < SLOT_FRAME_START + SLOT_FRAME_COUNT; slotIndex++){
+            if (isItemStackFrame(slotIndex)) {
+                mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getProductionModifier(genome, mod);
+            }
         }
         if (this.isWorkBoosted()) {
         	mod = mod * 2f;
@@ -195,23 +191,21 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
     @Override
     public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
         float mod = 1.0f;
-        for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++){
-            if (getStackInSlot(i) == null)
-                continue;
-            if (getStackInSlot(i).getItem() instanceof IHiveFrame)
-                mod *= ((IHiveFrame) getStackInSlot(i).getItem()).getFloweringModifier(genome, mod);
+        for (int slotIndex = SLOT_FRAME_START; slotIndex < SLOT_FRAME_START + SLOT_FRAME_COUNT; slotIndex++) {
+            if (isItemStackFrame(slotIndex)) {
+                mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getFloweringModifier(genome, mod);
+            }
         }
         return mod;
     }
 
     @Override
     public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
-        float mod = 1.0f;
-        for (int i = SLOT_FRAME_START; i < SLOT_FRAME_START + SLOT_FRAME_COUNT; i++){
-            if (getStackInSlot(i) == null)
-                continue;
-            if (getStackInSlot(i).getItem() instanceof IHiveFrame)
-                mod *= ((IHiveFrame) getStackInSlot(i).getItem()).getGeneticDecay(genome, mod);
+        float mod = 0.8f;
+        for (int slotIndex = SLOT_FRAME_START; slotIndex < SLOT_FRAME_START + SLOT_FRAME_COUNT; slotIndex++) {
+            if (isItemStackFrame(slotIndex)) {
+                mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getGeneticDecay(genome, mod);
+            }
         }
         return mod;
     }
@@ -238,7 +232,7 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
 
     @Override
     public GameProfile getOwnerName() {
-        return this.ownerName;
+        return this.ownerProfile;
     }
 
     @Override
@@ -283,33 +277,34 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
 
     @Override
     public void setErrorState(int state) {
-
+    	this.errorState = ErrorStateRegistry.getErrorState((short) state);
     }
 
     @Override
     public void setErrorState(IErrorState state) {
-
+    	this.errorState = state;
     }
 
     @Override
     public int getErrorOrdinal() {
-        return 0;
+        return this.errorState.getID();
     }
 
     @Override
     public IErrorState getErrorState() {
-        return null;
+        return this.errorState;
     }
 
-    public InventoryAdapter getInternalInventory() {
-        return inventory;
-    }
-
-    // TODO: Implement own version of this
     @Override
     public boolean addProduct(ItemStack product, boolean all) {
-        LogHelper.info("Trying to add " + product.getDisplayName() + " to thaumicApiary");
-        return InvTools.tryAddStack(getInternalInventory(), product, SLOT_INVENTORY_START, SLOT_INVENTORY_COUNT, all, true);
+    	int countAdded = ItemStackUtils.addItemToInventory(this, product, SLOT_PRODUCTS_START, SLOT_PRODUCTS_COUNT);
+    	
+    	if (all) {
+    		return countAdded == product.stackSize;
+    	}
+    	else {
+    		return countAdded > 0;
+    	}
     }
 
     @Override
@@ -358,7 +353,7 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
 
     @Override
     public String getInventoryName() {
-        return Names.Containers.THAUMIC_APIARY;
+        return tileEntityName;
     }
 
     @Override
@@ -532,10 +527,10 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
         }
 
         if (worldObj.isRemote) {
-            updateServerSide();
+            updateClientSide();
         }
         else {
-            updateClientSide();
+        	updateServerSide();
         }
     }
 

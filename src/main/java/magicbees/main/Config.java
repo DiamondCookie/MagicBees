@@ -240,6 +240,7 @@ public class Config
 	{
 		setupEffectJar();
 		setupHives();
+		setupApiary();
 	}
 	
 	public void setupItems()
@@ -388,6 +389,12 @@ public class Config
 		GameRegistry.registerBlock(effectJar, "effectJar");
 		GameRegistry.registerTileEntity(TileEntityEffectJar.class, TileEntityEffectJar.tileEntityName);
 	}
+	
+	private void setupApiary() {
+        thaumicApiary = new BlockThaumicApiary();
+        GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
+        GameRegistry.registerTileEntity(TileEntityThaumicApiary.class, TileEntityThaumicApiary.tileEntityName);
+	}
 
 	private void setupFrames() {
 		hiveFrameMagic = new ItemMagicHiveFrame(HiveFrameType.MAGIC);
@@ -493,12 +500,8 @@ public class Config
 		if (ThaumcraftHelper.isActive())
 		{
             // Items
-			solidFlux = new ItemCrystalAspect();
-
-            // Blocks
-            thaumicApiary = new BlockThaumicApiary();
-            GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
-            GameRegistry.registerTileEntity(TileEntityThaumicApiary.class, TileEntityThaumicApiary.tileEntityName);
+			//solidFlux replaced by Thaumcraft's crystalized essentia.
+			//solidFlux = new ItemCrystalAspect();
 		}
 	}
 
