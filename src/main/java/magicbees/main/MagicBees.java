@@ -1,14 +1,5 @@
 package magicbees.main;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-
 import magicbees.bees.BeeManager;
 import magicbees.bees.TransmutationEffectController;
 import magicbees.client.gui.GUIHandler;
@@ -17,6 +8,15 @@ import magicbees.main.utils.IMCManager;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ModHelper;
+import magicbees.main.utils.net.NetworkEventHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(
 		modid = VersionInfo.ModName,
@@ -34,10 +34,12 @@ public class MagicBees
 
 	public GUIHandler guiHandler;
 	private Config modConfig;
+	public final NetworkEventHandler netHandler = new NetworkEventHandler();
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		LogHelper.info("Preinit started");
 		this.modConfig = new Config(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(modConfig);
 

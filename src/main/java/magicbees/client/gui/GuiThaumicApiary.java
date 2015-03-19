@@ -74,21 +74,58 @@ public class GuiThaumicApiary extends GuiContainer
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
         TileEntityThaumicApiary apiary = ((ContainerThaumicApiary)this.inventorySlots).apiary;
-        int value = LIFEBAR_HEIGHT - (apiary.getHealthScaled(100) * LIFEBAR_HEIGHT) / 100;
-        this.drawTexturedModalRect(this.guiLeft + LIFEBAR_DEST_X, this.guiTop + LIFEBAR_DEST_Y,
-        		LIFEBAR_SRC_STAGE1_X, LIFEBAR_SRC_Y, LIFEBAR_WIDTH, value);
+        
+        drawLifebar(apiary);
 
-        if (apiary.isWorkBoosted()) {
-        	this.drawTexturedModalRect(this.guiLeft + WORKBOOST_DEST_X, this.guiTop + WORKBOOST_DEST_Y,
-        			WORKBOOST_SRC_X, WORKBOOST_SRC_Y, WORKBOOST_WIDTH, WORKBOOST_HEIGHT);
-        }
-        if (apiary.isDeathRateBoosted()) {
-        	this.drawTexturedModalRect(this.guiLeft + DEATHBOOST_DEST_X, this.guiTop + DEATHBOOST_DEST_Y,
-        			DEATHBOOST_SRC_X, DEATHBOOST_SRC_Y, DEATHBOOST_WIDTH, DEATHBOOST_HEIGHT);
-        }
-        if (apiary.isMutationBoosted()) {
+        drawWorkBoostIcon(apiary);
+        drawDeathRateIcon(apiary);
+        drawMutationIcon(apiary);
+    }
+
+	private void drawMutationIcon(TileEntityThaumicApiary apiary) {
+		if (apiary.isMutationBoosted()) {
         	this.drawTexturedModalRect(this.guiLeft + MUTATIONBOOST_DEST_X, this.guiTop + MUTATIONBOOST_DEST_Y,
         			MUTATIONBOOST_SRC_X, MUTATIONBOOST_SRC_Y, MUTATIONBOOST_WIDTH, MUTATIONBOOST_HEIGHT);
         }
+	}
+
+	private void drawDeathRateIcon(TileEntityThaumicApiary apiary) {
+		if (apiary.isDeathRateBoosted()) {
+        	this.drawTexturedModalRect(this.guiLeft + DEATHBOOST_DEST_X, this.guiTop + DEATHBOOST_DEST_Y,
+        			DEATHBOOST_SRC_X, DEATHBOOST_SRC_Y, DEATHBOOST_WIDTH, DEATHBOOST_HEIGHT);
+        }
+	}
+
+	private void drawWorkBoostIcon(TileEntityThaumicApiary apiary) {
+		if (apiary.isWorkBoosted()) {
+        	this.drawTexturedModalRect(this.guiLeft + WORKBOOST_DEST_X, this.guiTop + WORKBOOST_DEST_Y,
+        			WORKBOOST_SRC_X, WORKBOOST_SRC_Y, WORKBOOST_WIDTH, WORKBOOST_HEIGHT);
+        }
+	}
+
+	private void drawLifebar(TileEntityThaumicApiary apiary) {
+		int value = LIFEBAR_HEIGHT - apiary.getHealthScaled(LIFEBAR_HEIGHT);
+        int lifebarSrc = getLifebarSrc(apiary);
+        this.drawTexturedModalRect(this.guiLeft + LIFEBAR_DEST_X, this.guiTop + value + LIFEBAR_DEST_Y,
+        		lifebarSrc, LIFEBAR_SRC_Y, LIFEBAR_WIDTH, LIFEBAR_HEIGHT - value);
+	}
+    
+    private int getLifebarSrc(TileEntityThaumicApiary apiary) {
+    	int value = apiary.getHealthScaled(5);
+    	if (value >= 5) {
+    		return LIFEBAR_SRC_STAGE1_X;
+    	}
+    	else if (value >= 4) {
+    		return LIFEBAR_SRC_STAGE2_X;
+    	}
+    	else if (value >= 3) {
+    		return LIFEBAR_SRC_STAGE3_X;
+    	}
+    	else if (value >= 2) {
+    		return LIFEBAR_SRC_STAGE4_X;
+    	}
+    	else {
+    		return LIFEBAR_SRC_STAGE5_X;
+    	}
     }
 }

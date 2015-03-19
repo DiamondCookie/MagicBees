@@ -56,7 +56,7 @@ public class ContainerThaumicApiary extends ContainerMB {
             j++;
         }
 
-        addPlayerInventory(inventoryPlayer, 6, 109);
+        addPlayerInventory(inventoryPlayer, 0, 109);
 
         maxSlot = currentSlot;
 
