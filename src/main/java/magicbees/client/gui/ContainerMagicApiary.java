@@ -3,16 +3,16 @@ package magicbees.client.gui;
 import forestry.api.apiculture.IHiveFrame;
 import forestry.plugins.PluginApiculture;
 import magicbees.main.utils.ItemInterface;
-import magicbees.tileentity.TileEntityThaumicApiary;
+import magicbees.tileentity.TileEntityMagicApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerThaumicApiary extends ContainerMB {
+public class ContainerMagicApiary extends ContainerMB {
 
-    public TileEntityThaumicApiary apiary;
+    public TileEntityMagicApiary apiary;
     public int maxSlot = 0;
 
     // Constants
@@ -23,7 +23,7 @@ public class ContainerThaumicApiary extends ContainerMB {
     private static final int SLOT_FRAME_COUNT = 3;
     private static final int SLOT_INVENTORY_COUNT = 7;
 
-    public ContainerThaumicApiary(InventoryPlayer inventoryPlayer, TileEntityThaumicApiary thaumicApiary){
+    public ContainerMagicApiary(InventoryPlayer inventoryPlayer, TileEntityMagicApiary thaumicApiary){
         this.apiary = thaumicApiary;
 
         // Queen/Princess slot

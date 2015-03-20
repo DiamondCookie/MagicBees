@@ -3,7 +3,7 @@ package magicbees.client.gui;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
-import magicbees.tileentity.TileEntityThaumicApiary;
+import magicbees.tileentity.TileEntityMagicApiary;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class GuiThaumicApiary extends GuiContainer
+public class GuiMagicApiary extends GuiContainer
 {
     public static final ResourceLocation BACKGROUND_LOCATION = new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.GUI_TEXTURE + "apiary.png");
 
@@ -53,8 +53,8 @@ public class GuiThaumicApiary extends GuiContainer
     private static final int MUTATIONBOOST_SRC_X = 176;
     private static final int MUTATIONBOOST_SRC_Y = 71;
 
-    public GuiThaumicApiary(InventoryPlayer inventoryPlayer, TileEntityThaumicApiary thaumicApiary) {
-        super(new ContainerThaumicApiary(inventoryPlayer, thaumicApiary));
+    public GuiMagicApiary(InventoryPlayer inventoryPlayer, TileEntityMagicApiary thaumicApiary) {
+        super(new ContainerMagicApiary(inventoryPlayer, thaumicApiary));
 
         this.xSize = WIDTH;
         this.ySize = HEIGHT;
@@ -73,7 +73,7 @@ public class GuiThaumicApiary extends GuiContainer
 
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
-        TileEntityThaumicApiary apiary = ((ContainerThaumicApiary)this.inventorySlots).apiary;
+        TileEntityMagicApiary apiary = ((ContainerMagicApiary)this.inventorySlots).apiary;
         
         drawLifebar(apiary);
 
@@ -82,35 +82,35 @@ public class GuiThaumicApiary extends GuiContainer
         drawMutationIcon(apiary);
     }
 
-	private void drawMutationIcon(TileEntityThaumicApiary apiary) {
+	private void drawMutationIcon(TileEntityMagicApiary apiary) {
 		if (apiary.isMutationBoosted()) {
         	this.drawTexturedModalRect(this.guiLeft + MUTATIONBOOST_DEST_X, this.guiTop + MUTATIONBOOST_DEST_Y,
         			MUTATIONBOOST_SRC_X, MUTATIONBOOST_SRC_Y, MUTATIONBOOST_WIDTH, MUTATIONBOOST_HEIGHT);
         }
 	}
 
-	private void drawDeathRateIcon(TileEntityThaumicApiary apiary) {
+	private void drawDeathRateIcon(TileEntityMagicApiary apiary) {
 		if (apiary.isDeathRateBoosted()) {
         	this.drawTexturedModalRect(this.guiLeft + DEATHBOOST_DEST_X, this.guiTop + DEATHBOOST_DEST_Y,
         			DEATHBOOST_SRC_X, DEATHBOOST_SRC_Y, DEATHBOOST_WIDTH, DEATHBOOST_HEIGHT);
         }
 	}
 
-	private void drawWorkBoostIcon(TileEntityThaumicApiary apiary) {
+	private void drawWorkBoostIcon(TileEntityMagicApiary apiary) {
 		if (apiary.isWorkBoosted()) {
         	this.drawTexturedModalRect(this.guiLeft + WORKBOOST_DEST_X, this.guiTop + WORKBOOST_DEST_Y,
         			WORKBOOST_SRC_X, WORKBOOST_SRC_Y, WORKBOOST_WIDTH, WORKBOOST_HEIGHT);
         }
 	}
 
-	private void drawLifebar(TileEntityThaumicApiary apiary) {
+	private void drawLifebar(TileEntityMagicApiary apiary) {
 		int value = LIFEBAR_HEIGHT - apiary.getHealthScaled(LIFEBAR_HEIGHT);
         int lifebarSrc = getLifebarSrc(apiary);
         this.drawTexturedModalRect(this.guiLeft + LIFEBAR_DEST_X, this.guiTop + value + LIFEBAR_DEST_Y,
         		lifebarSrc, LIFEBAR_SRC_Y, LIFEBAR_WIDTH, LIFEBAR_HEIGHT - value);
 	}
     
-    private int getLifebarSrc(TileEntityThaumicApiary apiary) {
+    private int getLifebarSrc(TileEntityMagicApiary apiary) {
     	int value = apiary.getHealthScaled(5);
     	if (value >= 5) {
     		return LIFEBAR_SRC_STAGE1_X;

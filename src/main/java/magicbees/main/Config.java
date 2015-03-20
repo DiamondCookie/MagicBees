@@ -35,7 +35,7 @@ import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
-import magicbees.tileentity.TileEntityThaumicApiary;
+import magicbees.tileentity.TileEntityMagicApiary;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -92,7 +92,7 @@ public class Config
 	public static BlockWoodSlab slabWoodFull;
 	public static BlockEffectJar effectJar;
 	public static BlockHive hive;
-    public static BlockThaumicApiary thaumicApiary;
+    public static BlockMagicApiary thaumicApiary;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -391,9 +391,9 @@ public class Config
 	}
 	
 	private void setupApiary() {
-        thaumicApiary = new BlockThaumicApiary();
+        thaumicApiary = new BlockMagicApiary();
         GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
-        GameRegistry.registerTileEntity(TileEntityThaumicApiary.class, TileEntityThaumicApiary.tileEntityName);
+        GameRegistry.registerTileEntity(TileEntityMagicApiary.class, TileEntityMagicApiary.tileEntityName);
 	}
 
 	private void setupFrames() {

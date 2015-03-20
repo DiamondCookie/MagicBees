@@ -10,11 +10,8 @@ item.magicbees:mysteriousMagnet.name=Mysterious Magnet
 item.moonDial.name=Jade Moon Dial
 
 #Tiles
-tile.planks.greatwood.name=Greatwood Planks
-tile.slab.wood.greatwood.name=Greatwood Slab
-tile.planks.silverwood.name=Silverwood Planks
-tile.slab.wood.silverwood.name=Silverwood Slab
 tile.effectJar.name=Bee Collector's Jar
+tile.magicApiary.name=Magic Apiary
 tile.hive.curious.name=Curious Hive
 tile.hive.unusual.name=Unusual Hive
 tile.hive.deep.name=Deep Hive

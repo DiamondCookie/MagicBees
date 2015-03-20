@@ -6,7 +6,7 @@ import magicbees.client.gui.UIScreens;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.TabMagicBees;
-import magicbees.tileentity.TileEntityThaumicApiary;
+import magicbees.tileentity.TileEntityMagicApiary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,16 +21,16 @@ import net.minecraft.world.World;
 
 import javax.swing.*;
 
-public class BlockThaumicApiary extends BlockContainer
+public class BlockMagicApiary extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public BlockThaumicApiary()
+    public BlockMagicApiary()
     {
         super(Material.wood);
         this.setCreativeTab(TabMagicBees.tabMagicBees);
-        this.setBlockName("thaumicApiary");
+        this.setBlockName("magicApiary");
         this.setHardness(1f);
         this.setResistance(1.5f);
         this.setHarvestLevel("axe", 0);
@@ -79,7 +79,7 @@ public class BlockThaumicApiary extends BlockContainer
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        return new TileEntityThaumicApiary();
+        return new TileEntityMagicApiary();
     }
 
     @Override

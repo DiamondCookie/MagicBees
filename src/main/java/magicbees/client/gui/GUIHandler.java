@@ -1,7 +1,7 @@
 package magicbees.client.gui;
 
 import magicbees.tileentity.TileEntityEffectJar;
-import magicbees.tileentity.TileEntityThaumicApiary;
+import magicbees.tileentity.TileEntityMagicApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,8 +21,8 @@ public class GUIHandler implements IGuiHandler
 		}
         else if (ID == UIScreens.THAUMIC_APIARY.ordinal())
         {
-            TileEntityThaumicApiary tileEntityThaumicApiary = (TileEntityThaumicApiary) world.getTileEntity(x, y, z);
-            value = new ContainerThaumicApiary(player.inventory, tileEntityThaumicApiary);
+            TileEntityMagicApiary tileEntityThaumicApiary = (TileEntityMagicApiary) world.getTileEntity(x, y, z);
+            value = new ContainerMagicApiary(player.inventory, tileEntityThaumicApiary);
         }
 		
 		return value;
@@ -38,8 +38,8 @@ public class GUIHandler implements IGuiHandler
 			value = new GUIEffectJar((TileEntityEffectJar)world.getTileEntity(x, y, z), player);
 		}else if (ID == UIScreens.THAUMIC_APIARY.ordinal())
         {
-            TileEntityThaumicApiary tileEntityThaumicApiary = (TileEntityThaumicApiary) world.getTileEntity(x, y, z);
-            value = new GuiThaumicApiary(player.inventory, tileEntityThaumicApiary);
+            TileEntityMagicApiary tileEntityThaumicApiary = (TileEntityMagicApiary) world.getTileEntity(x, y, z);
+            value = new GuiMagicApiary(player.inventory, tileEntityThaumicApiary);
         }
 		
 		return value;

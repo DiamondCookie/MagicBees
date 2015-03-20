@@ -30,9 +30,9 @@ import forestry.api.core.IErrorState;
 import forestry.api.genetics.IIndividual;
 import forestry.core.utils.Utils;
 
-public class TileEntityThaumicApiary extends TileEntity implements ISidedInventory, IBeeHousing {
+public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing {
 
-    public static final String tileEntityName = CommonProxy.DOMAIN + ".thaumicApiary";
+    public static final String tileEntityName = CommonProxy.DOMAIN + ".magicApiary";
     private GameProfile ownerProfile;
 
     // Constants
@@ -53,7 +53,7 @@ public class TileEntityThaumicApiary extends TileEntity implements ISidedInvento
 
     private ItemStack[] items;
 
-    public TileEntityThaumicApiary(){
+    public TileEntityMagicApiary(){
         items = new ItemStack[12];
         logic = BeeManager.beeRoot.createBeekeepingLogic(this);
     }
