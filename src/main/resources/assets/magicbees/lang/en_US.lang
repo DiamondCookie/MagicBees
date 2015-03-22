@@ -12,6 +12,7 @@ item.moonDial.name=Jade Moon Dial
 #Tiles
 tile.effectJar.name=Bee Collector's Jar
 tile.magicApiary.name=Magic Apiary
+tile.visAuraProvider.name=Vis Apiary Booster
 tile.hive.curious.name=Curious Hive
 tile.hive.unusual.name=Unusual Hive
 tile.hive.deep.name=Deep Hive

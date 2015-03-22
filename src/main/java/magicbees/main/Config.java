@@ -3,11 +3,12 @@ package magicbees.main;
 import java.io.File;
 import java.lang.reflect.Field;
 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import magicbees.block.*;
+import magicbees.block.BlockEffectJar;
+import magicbees.block.BlockHive;
+import magicbees.block.BlockMagicApiary;
+import magicbees.block.BlockPlanks;
+import magicbees.block.BlockVisAuraProvider;
+import magicbees.block.BlockWoodSlab;
 import magicbees.block.types.HiveType;
 import magicbees.item.ItemCapsule;
 import magicbees.item.ItemComb;
@@ -36,6 +37,7 @@ import magicbees.main.utils.compat.ThaumcraftHelper;
 import magicbees.storage.BackpackDefinition;
 import magicbees.tileentity.TileEntityEffectJar;
 import magicbees.tileentity.TileEntityMagicApiary;
+import magicbees.tileentity.TileEntityVisAuraProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -47,6 +49,10 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.EnumBackpackType;
@@ -92,7 +98,8 @@ public class Config
 	public static BlockWoodSlab slabWoodFull;
 	public static BlockEffectJar effectJar;
 	public static BlockHive hive;
-    public static BlockMagicApiary thaumicApiary;
+    public static BlockMagicApiary magicApiary;
+    public static BlockVisAuraProvider visAuraProvider;
 	
 	public static ItemComb combs;
 	public static ItemWax wax;
@@ -241,6 +248,8 @@ public class Config
 		setupEffectJar();
 		setupHives();
 		setupApiary();
+		
+		setupThaumcraftBlocks();
 	}
 	
 	public void setupItems()
@@ -391,8 +400,8 @@ public class Config
 	}
 	
 	private void setupApiary() {
-        thaumicApiary = new BlockMagicApiary();
-        GameRegistry.registerBlock(thaumicApiary, "thaumicApiary");
+        magicApiary = new BlockMagicApiary();
+        GameRegistry.registerBlock(magicApiary, "magicApiary");
         GameRegistry.registerTileEntity(TileEntityMagicApiary.class, TileEntityMagicApiary.tileEntityName);
 	}
 
@@ -495,13 +504,19 @@ public class Config
 			}
 		}
 	}
+	
+	private void setupThaumcraftBlocks() {
+		if (ThaumcraftHelper.isActive()) {
+			visAuraProvider = new BlockVisAuraProvider();
+			GameRegistry.registerBlock(visAuraProvider, "visAuraProvider");
+			GameRegistry.registerTileEntity(TileEntityVisAuraProvider.class, "visAuraProvider");
+		}
+	}
 
 	private void setupThaumcraftItems() {
 		if (ThaumcraftHelper.isActive())
 		{
             // Items
-			//solidFlux replaced by Thaumcraft's crystalized essentia.
-			//solidFlux = new ItemCrystalAspect();
 		}
 	}
 

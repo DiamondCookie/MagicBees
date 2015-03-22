@@ -1,9 +1,12 @@
 package magicbees.tileentity;
 
+import magicbees.api.bees.IMagicApiaryAuraProvider;
 import magicbees.bees.BeeManager;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
+import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.ItemStackUtils;
+import magicbees.main.utils.LogHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -43,17 +46,28 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private static final int SLOT_PRODUCTS_START = 5;
     private static final int SLOT_PRODUCTS_COUNT = 7;
     
-    private final IBeekeepingLogic logic;
+    private static final int AURAPROVIDER_SEARCH_RADIUS = 6;
+    
+    private IBeekeepingLogic logic;
+    private boolean hasAuraProvider = false;
+    private IMagicApiaryAuraProvider auraProvider;
+    private ChunkCoords auraProviderPosition;
     private BiomeGenBase biome;
     private int displayHealthMax = 0;
     private int displayHealth = 0;
     private boolean init = false;
+    
+    private static final int FLAG_MUTATIONCHARGE = 1 << 0;
+    private static final int FLAG_DEATHCHARGE = 1 << 1;
+    private static final int FLAG_PRODUCTION = 1 << 2;
+    private int flags;
     
     private IErrorState errorState = ErrorStateRegistry.getErrorState("ok");
 
     private ItemStack[] items;
 
     public TileEntityMagicApiary(){
+    	flags = 0;
         items = new ItemStack[12];
         logic = BeeManager.beeRoot.createBeekeepingLogic(this);
     }
@@ -482,13 +496,16 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
                 items.appendTag(item);
             }
         }
+        compound.setTag("Items", items);
 
         compound.setInteger("BiomeId", biome.biomeID);
         if (logic != null) {
             logic.writeToNBT(compound);
         }
 
-        compound.setTag("Items", items);
+        ChunkCoords.writeToNBT(this.auraProviderPosition, compound);
+        
+        compound.setInteger("flags", this.flags);
     }
 
     @Override
@@ -509,6 +526,9 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         int biomeId = compound.getInteger("BiomeId");
         biome = BiomeGenBase.getBiome(biomeId);
         logic.readFromNBT(compound);
+        
+        this.auraProviderPosition = ChunkCoords.readFromNBT(compound);
+        this.flags = compound.getInteger("flags");
     }
 
     public float getExactTemperature() {
@@ -556,6 +576,13 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     }
 
     public void updateServerSide() {
+   		if (!this.hasAuraProvider) {
+   			findAuraProvider();
+   		}
+   		else {
+   			updateAuraProvider();
+   		}
+    	
         logic.update();
 
         IBee queen = logic.getQueen();
@@ -602,4 +629,86 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     public boolean isMutationBoosted() {
     	return false;
     }
+    
+    private void updateAuraProvider() {
+    	
+    }
+    
+    private static final int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 2;
+    private void findAuraProvider() {
+    	if (worldObj.getTotalWorldTime() % 10 != 0) {
+    		return;
+    	}
+    	
+    	if (this.auraProviderPosition == null) {
+    		this.auraProviderPosition = new ChunkCoords(0,
+    				xCoord - AURAPROVIDER_SEARCH_RADIUS,
+    				(yCoord - AURAPROVIDER_SEARCH_RADIUS >= 0) ? yCoord - AURAPROVIDER_SEARCH_RADIUS : 0,
+    				zCoord - AURAPROVIDER_SEARCH_RADIUS);
+    		LogHelper.info("Apiary starting search");
+    	}
+    	else {
+    		// Will end up here after loading from save with a valid auraProvider.
+    		if (locationHasAuraProvider(auraProviderPosition.x, auraProviderPosition.y, auraProviderPosition.z)) {
+    			this.auraProvider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(auraProviderPosition.x,
+    																				auraProviderPosition.y,
+    																				auraProviderPosition.x));
+    			this.hasAuraProvider = true;
+    			return;
+    		}
+    	}
+    	
+    	int blocksCounted = 0;
+    	int x = auraProviderPosition.x;
+    	int y = auraProviderPosition.y;
+    	int z = auraProviderPosition.z;
+    	while ((y < yCoord + AURAPROVIDER_SEARCH_RADIUS) && blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
+    		while ((z < zCoord + AURAPROVIDER_SEARCH_RADIUS) && blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
+    			while ((x < xCoord + AURAPROVIDER_SEARCH_RADIUS) && blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
+    	    		if (locationHasAuraProvider(x, y, z)) {
+    	    			LogHelper.info("Apiary found aura provider!");
+    	    			this.auraProvider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(x, y, z));
+    	    			this.hasAuraProvider = true;
+    	    	    	saveAuraProviderPosition(x, y, z);
+    	    	    	return;
+    	    		}    				
+
+    				++blocksCounted;
+    	    		++x;
+    			}
+	    		if (blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
+	    			++z;
+	    			x = xCoord - AURAPROVIDER_SEARCH_RADIUS;
+    			}
+    		}
+    		if (blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
+    			++y;
+    			z = zCoord - AURAPROVIDER_SEARCH_RADIUS;
+    		}
+    	}
+
+    	LogHelper.info("Apiary suspending search");
+    	
+    	if (auraProvider == null) {
+	    	saveAuraProviderPosition(x, y, z);
+	    	
+	    	if (auraProviderPosition.y >= yCoord + AURAPROVIDER_SEARCH_RADIUS) {
+	    		LogHelper.info("Apiary finished scanning blocks; did not find aura provider.");
+	    		this.auraProviderPosition = null;
+	    		return;
+	    	}
+    	}
+    }
+
+	private void saveAuraProviderPosition(int x, int y, int z) {
+		auraProviderPosition = new ChunkCoords(auraProviderPosition.dimension, x, y, z);
+	}
+
+	private boolean locationHasAuraProvider(int x, int y, int z) {
+		TileEntity entity = worldObj.getTileEntity(x, y, z);
+		if (entity != null && entity instanceof IMagicApiaryAuraProvider) {
+			return true;
+		}
+		return false;
+	}
 }
