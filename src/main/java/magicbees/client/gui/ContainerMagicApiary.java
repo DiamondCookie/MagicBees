@@ -56,7 +56,7 @@ public class ContainerMagicApiary extends ContainerMB {
             j++;
         }
 
-        addPlayerInventory(inventoryPlayer, 0, 109);
+        addPlayerInventory(inventoryPlayer, 0, 110);
 
         maxSlot = currentSlot;
 

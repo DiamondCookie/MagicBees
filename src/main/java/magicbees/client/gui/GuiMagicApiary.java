@@ -1,15 +1,18 @@
 package magicbees.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.main.CommonProxy;
 import magicbees.tileentity.TileEntityMagicApiary;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiMagicApiary extends GuiContainer
@@ -52,12 +55,15 @@ public class GuiMagicApiary extends GuiContainer
     private static final int MUTATIONBOOST_DEST_Y = 17;
     private static final int MUTATIONBOOST_SRC_X = 176;
     private static final int MUTATIONBOOST_SRC_Y = 71;
+    
+    private GuiButton mutationButton;
 
     public GuiMagicApiary(InventoryPlayer inventoryPlayer, TileEntityMagicApiary thaumicApiary) {
         super(new ContainerMagicApiary(inventoryPlayer, thaumicApiary));
 
         this.xSize = WIDTH;
         this.ySize = HEIGHT;
+        
     }
 
 	@Override
@@ -97,7 +103,7 @@ public class GuiMagicApiary extends GuiContainer
 	}
 
 	private void drawWorkBoostIcon(TileEntityMagicApiary apiary) {
-		if (apiary.isWorkBoosted()) {
+		if (apiary.isProductionBoosted()) {
         	this.drawTexturedModalRect(this.guiLeft + WORKBOOST_DEST_X, this.guiTop + WORKBOOST_DEST_Y,
         			WORKBOOST_SRC_X, WORKBOOST_SRC_Y, WORKBOOST_WIDTH, WORKBOOST_HEIGHT);
         }
@@ -128,4 +134,10 @@ public class GuiMagicApiary extends GuiContainer
     		return LIFEBAR_SRC_STAGE5_X;
     	}
     }
+
+	@Override
+	protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_) {
+		// TODO Auto-generated method stub
+		super.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);
+	}
 }

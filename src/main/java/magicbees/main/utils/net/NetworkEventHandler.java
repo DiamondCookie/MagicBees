@@ -6,6 +6,7 @@ import io.netty.buffer.ByteBufInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import magicbees.main.MagicBees;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
@@ -26,9 +27,14 @@ public class NetworkEventHandler {
 	
 	public static final String CHANNEL_NAME = VersionInfo.ModName;
 	
+	public static NetworkEventHandler getInstance() {
+		return MagicBees.object.netHandler;
+	}
+	
 	public enum EventType {
 		UNKNOWN,
 		INVENTORY_UPDATE,
+		FLAGS_UPDATE,
 		;
 	}
 	
@@ -51,6 +57,13 @@ public class NetworkEventHandler {
 	
 	public void sendInventoryUpdate(TileEntity entity, int slotIndex, ItemStack itemStack) {
 		EventInventoryUpdate event = new EventInventoryUpdate(new ChunkCoords(entity), slotIndex, itemStack);
+		FMLProxyPacket packet = event.getPacket();
+		
+		sendPacket(packet);
+	}
+	
+	public void sendFlagsUpdate(TileEntity entity, int[] flags) {
+		EventFlagsUpdate event = new EventFlagsUpdate(new ChunkCoords(entity), flags);
 		FMLProxyPacket packet = event.getPacket();
 		
 		sendPacket(packet);
@@ -83,6 +96,10 @@ public class NetworkEventHandler {
 		
 		if (eventId == EventType.INVENTORY_UPDATE.ordinal()) {
 			EventInventoryUpdate eventData = new EventInventoryUpdate(data);
+			eventData.process(player);
+		}
+		else if (eventId == EventType.FLAGS_UPDATE.ordinal()) {
+			EventFlagsUpdate eventData = new EventFlagsUpdate(data);
 			eventData.process(player);
 		}
 		else {

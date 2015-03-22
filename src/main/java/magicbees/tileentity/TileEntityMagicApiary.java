@@ -7,6 +7,8 @@ import magicbees.main.MagicBees;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.ItemStackUtils;
 import magicbees.main.utils.LogHelper;
+import magicbees.main.utils.net.EventFlagsUpdate;
+import magicbees.main.utils.net.NetworkEventHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -33,7 +35,7 @@ import forestry.api.core.IErrorState;
 import forestry.api.genetics.IIndividual;
 import forestry.core.utils.Utils;
 
-public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing {
+public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing, ITileEntityFlags {
 
     public static final String tileEntityName = CommonProxy.DOMAIN + ".magicApiary";
     private GameProfile ownerProfile;
@@ -47,9 +49,11 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private static final int SLOT_PRODUCTS_COUNT = 7;
     
     private static final int AURAPROVIDER_SEARCH_RADIUS = 6;
+    private static int CHARGE_TIME_MUTATION = 240;
+    private static int CHARGE_TIME_DEATH = 80;
+    private static int CHARGE_TIME_PRODUCTION = 60;
     
     private IBeekeepingLogic logic;
-    private boolean hasAuraProvider = false;
     private IMagicApiaryAuraProvider auraProvider;
     private ChunkCoords auraProviderPosition;
     private BiomeGenBase biome;
@@ -57,9 +61,13 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private int displayHealth = 0;
     private boolean init = false;
     
-    private static final int FLAG_MUTATIONCHARGE = 1 << 0;
-    private static final int FLAG_DEATHCHARGE = 1 << 1;
-    private static final int FLAG_PRODUCTION = 1 << 2;
+    private static final int OFFSET_MUTATION = 0;
+    private static final int OFFSET_DEATH = 1;
+    private static final int OFFSET_PRODUCTION = 2;    
+    private static final int FLAG_MUTATIONCHARGE = 1 << OFFSET_MUTATION;
+    private static final int FLAG_DEATHCHARGE = 1 << OFFSET_DEATH;
+    private static final int FLAG_PRODUCTIONCHARGE = 1 << OFFSET_PRODUCTION;
+    private long[] chargeTimestamps = new long[3];
     private int flags;
     
     private IErrorState errorState = ErrorStateRegistry.getErrorState("ok");
@@ -196,7 +204,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
                 mod *= ((IHiveFrame) getStackInSlot(slotIndex).getItem()).getProductionModifier(genome, mod);
             }
         }
-        if (this.isWorkBoosted()) {
+        if (this.isProductionBoosted()) {
         	mod = mod * 2f;
         }
         return mod;
@@ -506,6 +514,9 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         ChunkCoords.writeToNBT(this.auraProviderPosition, compound);
         
         compound.setInteger("flags", this.flags);
+        compound.setLong("timestamp0", chargeTimestamps[0]);
+        compound.setLong("timestamp1", chargeTimestamps[1]);
+        compound.setLong("timestamp2", chargeTimestamps[2]);
     }
 
     @Override
@@ -529,6 +540,9 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         
         this.auraProviderPosition = ChunkCoords.readFromNBT(compound);
         this.flags = compound.getInteger("flags");
+        this.chargeTimestamps[0] = compound.getLong("timestamp0");
+        this.chargeTimestamps[1] = compound.getLong("timestamp1");
+        this.chargeTimestamps[2] = compound.getLong("timestamp2");
     }
 
     public float getExactTemperature() {
@@ -576,7 +590,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     }
 
     public void updateServerSide() {
-   		if (!this.hasAuraProvider) {
+   		if (this.auraProvider == null) {
    			findAuraProvider();
    		}
    		else {
@@ -618,20 +632,65 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         iCrafting.sendProgressBarUpdate(container, 1, logic.getTotalBreedingTime());
     }
     
-    public boolean isWorkBoosted() {
-    	return false;
+    public boolean isProductionBoosted() {
+    	return (flags & FLAG_PRODUCTIONCHARGE) == FLAG_PRODUCTIONCHARGE;
     }
     
     public boolean isDeathRateBoosted() {
-    	return false;
+    	return (flags & FLAG_DEATHCHARGE) == FLAG_DEATHCHARGE;
     }
     
     public boolean isMutationBoosted() {
-    	return false;
+    	return (flags & FLAG_MUTATIONCHARGE) == FLAG_MUTATIONCHARGE;
     }
     
     private void updateAuraProvider() {
+    	int oldFlags = flags;
+    	if (!isMutationBoosted()) {
+    		if (this.auraProvider.getMutationCharge()) {
+    			flags |= FLAG_MUTATIONCHARGE;
+    			chargeTimestamps[OFFSET_MUTATION] = worldObj.getTotalWorldTime();
+    		}
+    	}
+    	else {
+    		if (chargeTimestamps[OFFSET_MUTATION] + CHARGE_TIME_MUTATION <= worldObj.getTotalWorldTime()) {
+    			if (!this.auraProvider.getMutationCharge()) {
+    				flags = flags & ~FLAG_MUTATIONCHARGE;
+    			}
+    		}
+    	}
+
+    	if (!isDeathRateBoosted()) {
+    		if (this.auraProvider.getDeathRateCharge()) {
+    			flags |= FLAG_DEATHCHARGE;
+    			chargeTimestamps[OFFSET_DEATH] = worldObj.getTotalWorldTime();
+    		}
+    	}
+    	else {
+    		if (chargeTimestamps[OFFSET_DEATH] + CHARGE_TIME_DEATH <= worldObj.getTotalWorldTime()) {
+    			if (!this.auraProvider.getDeathRateCharge()) {
+    				flags = flags & ~FLAG_DEATHCHARGE;
+    			}
+    		}
+    	}
+
+    	if (!isProductionBoosted()) {
+    		if (this.auraProvider.getProductionCharge()) {
+    			flags |= FLAG_PRODUCTIONCHARGE;
+    			chargeTimestamps[OFFSET_PRODUCTION] = worldObj.getTotalWorldTime();
+    		}
+    	}
+    	else {
+    		if (chargeTimestamps[OFFSET_PRODUCTION] + CHARGE_TIME_PRODUCTION <= worldObj.getTotalWorldTime()) {
+    			if (!this.auraProvider.getProductionCharge()) {
+    				flags = flags & ~FLAG_PRODUCTIONCHARGE;
+    			}
+    		}
+    	}
     	
+    	if (oldFlags != flags) {
+    		NetworkEventHandler.getInstance().sendFlagsUpdate(this, new int[] {flags});
+    	}
     }
     
     private static final int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 2;
@@ -650,10 +709,13 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     	else {
     		// Will end up here after loading from save with a valid auraProvider.
     		if (locationHasAuraProvider(auraProviderPosition.x, auraProviderPosition.y, auraProviderPosition.z)) {
-    			this.auraProvider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(auraProviderPosition.x,
+    			IMagicApiaryAuraProvider provider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(auraProviderPosition.x,
     																				auraProviderPosition.y,
     																				auraProviderPosition.x));
-    			this.hasAuraProvider = true;
+    			if (provider == null) {
+    				// ... well, it WAS here...
+    				this.auraProviderPosition = null;
+    			}
     			return;
     		}
     	}
@@ -668,7 +730,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     	    		if (locationHasAuraProvider(x, y, z)) {
     	    			LogHelper.info("Apiary found aura provider!");
     	    			this.auraProvider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(x, y, z));
-    	    			this.hasAuraProvider = true;
     	    	    	saveAuraProviderPosition(x, y, z);
     	    	    	return;
     	    		}    				
@@ -710,5 +771,12 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void setFlags(int[] flagArray) {
+		if (flagArray.length == 1) {
+			this.flags = flagArray[0];
+		}
 	}
 }
