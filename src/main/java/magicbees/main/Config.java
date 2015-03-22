@@ -136,6 +136,7 @@ public class Config
 	//----- Forestry Blocks ------------------------------------
 	public static Block fHiveBlock;
 	public static Block fAlvearyBlock;
+	public static Block fApicultureBlock;
 	//----- Forestry Items -------------------------------------
 	public static Item fBeeComb;
 	public static Item fHoneydew;

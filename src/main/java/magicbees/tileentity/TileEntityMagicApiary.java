@@ -49,9 +49,9 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private static final int SLOT_PRODUCTS_COUNT = 7;
     
     private static final int AURAPROVIDER_SEARCH_RADIUS = 6;
-    private static int CHARGE_TIME_MUTATION = 240;
-    private static int CHARGE_TIME_DEATH = 80;
-    private static int CHARGE_TIME_PRODUCTION = 60;
+    private static int CHARGE_TIME_MUTATION = 1200;
+    private static int CHARGE_TIME_DEATH = 400;
+    private static int CHARGE_TIME_PRODUCTION = 300;
     
     private IBeekeepingLogic logic;
     private IMagicApiaryAuraProvider auraProvider;
@@ -645,6 +645,10 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     }
     
     private void updateAuraProvider() {
+    	if (worldObj.getTotalWorldTime() % 15 == 0 && locationHasAuraProvider(auraProviderPosition)) {
+    		
+    	}
+    	
     	int oldFlags = flags;
     	if (!isMutationBoosted()) {
     		if (this.auraProvider.getMutationCharge()) {
@@ -692,8 +696,8 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     		NetworkEventHandler.getInstance().sendFlagsUpdate(this, new int[] {flags});
     	}
     }
-    
-    private static final int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 2;
+
+	private static final int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 2;
     private void findAuraProvider() {
     	if (worldObj.getTotalWorldTime() % 10 != 0) {
     		return;
@@ -708,7 +712,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     	}
     	else {
     		// Will end up here after loading from save with a valid auraProvider.
-    		if (locationHasAuraProvider(auraProviderPosition.x, auraProviderPosition.y, auraProviderPosition.z)) {
+    		if (locationHasAuraProvider(auraProviderPosition)) {
     			IMagicApiaryAuraProvider provider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(auraProviderPosition.x,
     																				auraProviderPosition.y,
     																				auraProviderPosition.x));
@@ -765,6 +769,10 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 		auraProviderPosition = new ChunkCoords(auraProviderPosition.dimension, x, y, z);
 	}
 
+    private boolean locationHasAuraProvider(ChunkCoords coords) {
+		return locationHasAuraProvider(coords.x, coords.y, coords.z);
+	}
+    
 	private boolean locationHasAuraProvider(int x, int y, int z) {
 		TileEntity entity = worldObj.getTileEntity(x, y, z);
 		if (entity != null && entity instanceof IMagicApiaryAuraProvider) {

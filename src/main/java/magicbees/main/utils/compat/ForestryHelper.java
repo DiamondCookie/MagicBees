@@ -93,6 +93,11 @@ public class ForestryHelper
 		APATITE,
 		LAPIS,;
 	}
+	
+	public enum ApicultureBlock {
+		APIARY,
+		;
+	}
 
 	public static final String Name = "Forestry";
 
@@ -138,6 +143,7 @@ public class ForestryHelper
 			Class c = Class.forName("forestry.core.config.ForestryBlock");
 			Config.fAlvearyBlock = BlockInterface.getBlock("alveary");
 			Config.fHiveBlock = BlockInterface.getBlock("beehives");
+			Config.fApicultureBlock = BlockInterface.getBlock("apiculture");
 		}
 		catch (Exception e)
 		{
