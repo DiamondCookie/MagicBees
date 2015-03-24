@@ -269,8 +269,7 @@ public class Config
 		setupThaumcraftItems();		
 		setupFrames();
 		setupJellyBaby();		
-		voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);
-		setupThaumcraftTools();		
+		voidCapsule = new ItemCapsule(CapsuleType.VOID, capsuleStackSizeMax);	
 		moonDial = new ItemMoonDial();
 		
 		setupNuggets();
@@ -518,25 +517,11 @@ public class Config
 		if (ThaumcraftHelper.isActive())
 		{
             // Items
-		}
-	}
-
-	private void setupThaumcraftTools() {
-		if (ThaumcraftHelper.isActive())
-		{
-			try
-			{
-				thaumiumScoop = new ItemThaumiumScoop();
-				GameRegistry.registerItem(thaumiumScoop, thaumiumScoop.getUnlocalizedName(), CommonProxy.DOMAIN);
-				
-				thaumiumGrafter = new ItemThaumiumGrafter();
-				GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
-			}
-			catch (Exception e)
-			{
-				LogHelper.warn("Couldn't register Thaumium tools!");
-				LogHelper.debug(e);
-			}
+			thaumiumScoop = new ItemThaumiumScoop();
+			GameRegistry.registerItem(thaumiumScoop, thaumiumScoop.getUnlocalizedName(), CommonProxy.DOMAIN);
+			
+			thaumiumGrafter = new ItemThaumiumGrafter();
+			GameRegistry.registerItem(thaumiumGrafter, thaumiumGrafter.getUnlocalizedName(), CommonProxy.DOMAIN);
 		}
 	}
 
