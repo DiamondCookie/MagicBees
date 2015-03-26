@@ -9,11 +9,12 @@ import magicbees.main.Config;
 import magicbees.main.utils.BlockInterface;
 import magicbees.main.utils.ItemInterface;
 import magicbees.main.utils.VersionInfo;
-
 import forestry.api.apiculture.hives.HiveManager;
 import forestry.api.apiculture.hives.IHiveRegistry;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 
 public class ForestryHelper
@@ -173,5 +174,10 @@ public class ForestryHelper
 	public static EnumHumidity getEnumHumidityFromValue(float rawHumidity)
 	{
 		return EnumHumidity.getFromValue(rawHumidity);
+	}
+
+	public static boolean isHumidityWithinTolerance(EnumHumidity humid, EnumHumidity beeHumidityBase, EnumTolerance value) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

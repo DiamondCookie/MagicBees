@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
 import magicbees.item.types.NuggetType;
@@ -32,6 +29,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -42,7 +44,9 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
@@ -1250,7 +1254,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		int highest = 0;
 		excludeSpecies.add(species);
 		
-		for (IMutation mutation : getRoot().getPaths(species, EnumBeeChromosome.SPECIES.ordinal()))
+		for (IMutation mutation : getRoot().getPaths(species, EnumBeeChromosome.SPECIES))
 		{
 			if (!excludeSpecies.contains(mutation.getAllele0()))
 			{
@@ -1416,6 +1420,20 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider
 		}
 		
 		return value;
+	}
+	
+	public boolean canWorkInTemperature(EnumTemperature temp) {
+		IAlleleTolerance tolerance = (IAlleleTolerance)genomeTemplate[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()];
+		return AlleleManager.climateHelper.isWithinLimits(temp, EnumHumidity.NORMAL,
+															temperature, tolerance.getValue(),
+															EnumHumidity.NORMAL, EnumTolerance.NONE);
+	}
+	
+	public boolean canWorkInHumidity(EnumHumidity humid) {
+		IAlleleTolerance tolerance = (IAlleleTolerance)genomeTemplate[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()];
+		return AlleleManager.climateHelper.isWithinLimits(EnumTemperature.NORMAL, humid,
+															EnumTemperature.NORMAL, EnumTolerance.NONE,
+															humidity, tolerance.getValue());
 	}
 
 	/// --------- Unused Functions ---------------------------------------------

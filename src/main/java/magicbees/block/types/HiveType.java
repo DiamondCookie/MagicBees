@@ -2,17 +2,6 @@ package magicbees.block.types;
 
 import java.util.ArrayList;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import forestry.api.apiculture.IHiveDrop;
-
 import magicbees.bees.BeeGenomeManager;
 import magicbees.bees.BeeSpecies;
 import magicbees.bees.HiveDrop;
@@ -20,20 +9,29 @@ import magicbees.item.types.CombType;
 import magicbees.main.CommonProxy;
 import magicbees.main.Config;
 import magicbees.main.utils.compat.ForestryHelper;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.IHiveDrop;
 
 public enum HiveType
 {
-	CURIOUS("curious", 12, true),
-	UNUSUAL("unusual", 12, true),
-	RESONANT("resonant", 12, true),
-	DEEP("deep", 4, false),
-	INFERNAL("infernal", 15, false),
-	OBLIVION("oblivion", 7, false),
+	CURIOUS("curious", BeeSpecies.MYSTICAL, 12, true),
+	UNUSUAL("unusual", BeeSpecies.UNUSUAL, 12, true),
+	RESONANT("resonant", BeeSpecies.SORCEROUS, 12, true),
+	DEEP("deep", BeeSpecies.ATTUNED, 4, false),
+	INFERNAL("infernal", BeeSpecies.INFERNAL, 15, false),
+	OBLIVION("oblivion", BeeSpecies.OBLIVION, 7, false),
 	;
 	
 	private static String[] nameList;
 	
 	private String name;
+	private BeeSpecies occupant;
 	public boolean show;
 	private int lightLevel;
 	private ArrayList<IHiveDrop> drops;
@@ -85,9 +83,10 @@ public enum HiveType
 		OBLIVION.drops.add(new HiveDrop(ForestryHelper.getTemplateForestryForSpecies("Steadfast"), combs, 9));
 	}
 	
-	private HiveType(String hiveName, int light, boolean visible)
+	private HiveType(String hiveName, BeeSpecies occupant, int light, boolean visible)
 	{
 		this.name = hiveName;
+		this.occupant = occupant;
 		this.lightLevel = light;
 		this.show = visible;
 		this.drops = new ArrayList<IHiveDrop>();
@@ -171,6 +170,10 @@ public enum HiveType
 	public static String[] getAllNames()
 	{
 		return (nameList == null) ? nameList = generateNames() : nameList;
+	}
+	
+	public BeeSpecies getOccupant() {
+		return this.occupant;
 	}
 	
 	private static String[] generateNames()

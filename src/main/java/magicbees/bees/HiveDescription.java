@@ -185,13 +185,13 @@ public enum HiveDescription implements IHiveDescription {
 	@Override
 	public boolean isGoodHumidity(EnumHumidity humidity)
 	{
-		return true;
+		return hiveType.getOccupant().canWorkInHumidity(humidity);
 	}
 
 	@Override
 	public boolean isGoodTemperature(EnumTemperature temperature)
 	{
-		return true;
+		return hiveType.getOccupant().canWorkInTemperature(temperature);
 	}
 
 	@Override
