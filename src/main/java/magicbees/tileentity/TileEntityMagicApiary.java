@@ -7,7 +7,6 @@ import magicbees.main.MagicBees;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.ItemStackUtils;
 import magicbees.main.utils.LogHelper;
-import magicbees.main.utils.net.EventFlagsUpdate;
 import magicbees.main.utils.net.NetworkEventHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -17,8 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.Constants;
 
 import com.mojang.authlib.GameProfile;
@@ -697,7 +698,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     	}
     }
 
-	private static final int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 2;
+	private static int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 12;
     private void findAuraProvider() {
     	if (worldObj.getTotalWorldTime() % 10 != 0) {
     		return;
@@ -774,7 +775,17 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 	}
     
 	private boolean locationHasAuraProvider(int x, int y, int z) {
-		TileEntity entity = worldObj.getTileEntity(x, y, z);
+		Chunk chunk = worldObj.getChunkFromBlockCoords(x, z);
+		x %= 16;
+		z %= 16;
+		if (x < 0) {
+			x += 16;
+		}
+		if (z < 0) {
+			z += 16;
+		}
+		ChunkPosition cPos = new ChunkPosition(x, y, z);
+		TileEntity entity = (TileEntity)chunk.chunkTileEntityMap.get(cPos);
 		if (entity != null && entity instanceof IMagicApiaryAuraProvider) {
 			return true;
 		}
