@@ -9,9 +9,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-public class EffectJarRenderer extends TileEntitySpecialRenderer implements IItemRenderer
+public class RendererEffectJar extends TileEntitySpecialRenderer implements IItemRenderer
 {
-	public static EffectJarRenderer instance = new EffectJarRenderer();
+	public static RendererEffectJar instance = new RendererEffectJar();
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick)

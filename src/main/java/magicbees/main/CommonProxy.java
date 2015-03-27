@@ -30,6 +30,7 @@ public class CommonProxy
 	public static final String GUI_PATH = TEXTURE_PATH + "gui/";
 	
 	public static int RenderIdEffectJar;
+	public static int RenderIdVisAuraProvider;
 	
 	public void registerRenderers() { }
 

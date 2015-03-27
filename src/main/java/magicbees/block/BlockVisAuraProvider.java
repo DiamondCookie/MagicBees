@@ -1,5 +1,6 @@
 package magicbees.block;
 
+import magicbees.main.CommonProxy;
 import magicbees.main.utils.TabMagicBees;
 import magicbees.tileentity.TileEntityVisAuraProvider;
 import net.minecraft.block.BlockContainer;
@@ -19,7 +20,7 @@ public class BlockVisAuraProvider extends BlockContainer {
 		this.setBlockName("visAuraProvider");
 		this.setHardness(0.5f);
 		this.setResistance(1.5f);
-		this.setBlockBounds(0.25f, 0f, 0.25f, 0.75f, 0.5f, 0.75f);
+		this.setLightLevel(8);
 	}
 
 	@Override
@@ -34,9 +35,15 @@ public class BlockVisAuraProvider extends BlockContainer {
 	}
 	
 	@Override
+	public int getRenderType()
+	{
+		return CommonProxy.RenderIdVisAuraProvider;
+	}
+	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.blockIcon = Blocks.glass.getIcon(0, 0);
+		this.blockIcon = Blocks.planks.getIcon(0, 5);
 	}
 
 }

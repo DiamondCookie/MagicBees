@@ -50,7 +50,8 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private static final int SLOT_PRODUCTS_COUNT = 7;
     
     private static final int AURAPROVIDER_SEARCH_RADIUS = 6;
-    private static int CHARGE_TIME_MUTATION = 1200;
+	private static int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 8;
+    private static int CHARGE_TIME_MUTATION = 850;
     private static int CHARGE_TIME_DEATH = 400;
     private static int CHARGE_TIME_PRODUCTION = 300;
     
@@ -698,7 +699,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     	}
     }
 
-	private static int MAX_BLOCKS_SEARCH_PER_CHECK = (AURAPROVIDER_SEARCH_RADIUS * 2 + 1) * 12;
     private void findAuraProvider() {
     	if (worldObj.getTotalWorldTime() % 10 != 0) {
     		return;

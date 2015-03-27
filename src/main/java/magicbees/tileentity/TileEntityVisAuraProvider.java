@@ -16,7 +16,7 @@ public class TileEntityVisAuraProvider extends TileEntity implements IMagicApiar
 	int currentDeathCharges;
 	int currentProductionCharges;
 	
-	private static final int VIS_PER_CHARGE = 10;
+	private static final int VIS_PER_CHARGE = 8;
 	private static Aspect ASPECT_MUTATION = Aspect.WATER;
 	private static Aspect ASPECT_DEATH = Aspect.ENTROPY;
 	private static Aspect ASPECT_PRODUCTION = Aspect.AIR;

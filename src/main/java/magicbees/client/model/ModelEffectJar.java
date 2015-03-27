@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class ModelEffectJar
 {
-	public static final String objFile = CommonProxy.MODEL_PATH + "effectJar.obj";
+	public static final ResourceLocation objFile = new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.MODEL + "effectJar.obj");
 	public static final ResourceLocation textureLocation = new ResourceLocation(CommonProxy.DOMAIN, CommonProxy.MODEL + "jarTexture.png");
 	
 	public static final ModelEffectJar model = new ModelEffectJar();
@@ -20,7 +20,7 @@ public class ModelEffectJar
 	
 	public ModelEffectJar()
 	{
-		this.effectJarObj = AdvancedModelLoader.loadModel(new ResourceLocation("magicbees", "model/effectJar.obj"));
+		this.effectJarObj = AdvancedModelLoader.loadModel(objFile);
 	}
 	
 	public void render()
