@@ -1,12 +1,15 @@
 package magicbees.tileentity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import magicbees.api.bees.IMagicApiaryAuraProvider;
 import magicbees.bees.BeeManager;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.ItemStackUtils;
-import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.net.NetworkEventHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -16,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -704,14 +708,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     		return;
     	}
     	
-    	if (this.auraProviderPosition == null) {
-    		this.auraProviderPosition = new ChunkCoords(0,
-    				xCoord - AURAPROVIDER_SEARCH_RADIUS,
-    				(yCoord - AURAPROVIDER_SEARCH_RADIUS >= 0) ? yCoord - AURAPROVIDER_SEARCH_RADIUS : 0,
-    				zCoord - AURAPROVIDER_SEARCH_RADIUS);
-    		LogHelper.info("Apiary starting search");
-    	}
-    	else {
+    	if (this.auraProviderPosition != null) {
     		// Will end up here after loading from save with a valid auraProvider.
     		if (locationHasAuraProvider(auraProviderPosition)) {
     			IMagicApiaryAuraProvider provider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(auraProviderPosition.x,
@@ -724,50 +721,51 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     			return;
     		}
     	}
-    	
-    	int blocksCounted = 0;
-    	int x = auraProviderPosition.x;
-    	int y = auraProviderPosition.y;
-    	int z = auraProviderPosition.z;
-    	while ((y < yCoord + AURAPROVIDER_SEARCH_RADIUS) && blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
-    		while ((z < zCoord + AURAPROVIDER_SEARCH_RADIUS) && blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
-    			while ((x < xCoord + AURAPROVIDER_SEARCH_RADIUS) && blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
-    	    		if (locationHasAuraProvider(x, y, z)) {
-    	    			LogHelper.info("Apiary found aura provider!");
-    	    			this.auraProvider = (IMagicApiaryAuraProvider)(worldObj.getTileEntity(x, y, z));
-    	    	    	saveAuraProviderPosition(x, y, z);
-    	    	    	return;
-    	    		}    				
-
-    				++blocksCounted;
-    	    		++x;
-    			}
-	    		if (blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
-	    			++z;
-	    			x = xCoord - AURAPROVIDER_SEARCH_RADIUS;
+    	else {    		
+    		List<Chunk> chunks = getChunksInSearchRange();    		
+    		for (Chunk chunk : chunks) {
+    			if (searchChunkForBooster(chunk)) {
+    				break;
     			}
     		}
-    		if (blocksCounted < MAX_BLOCKS_SEARCH_PER_CHECK) {
-    			++y;
-    			z = zCoord - AURAPROVIDER_SEARCH_RADIUS;
-    		}
-    	}
-
-    	LogHelper.info("Apiary suspending search");
-    	
-    	if (auraProvider == null) {
-	    	saveAuraProviderPosition(x, y, z);
-	    	
-	    	if (auraProviderPosition.y >= yCoord + AURAPROVIDER_SEARCH_RADIUS) {
-	    		LogHelper.info("Apiary finished scanning blocks; did not find aura provider.");
-	    		this.auraProviderPosition = null;
-	    		return;
-	    	}
     	}
     }
-
+    
+	private List<Chunk> getChunksInSearchRange() {
+		List<Chunk> chunks = new ArrayList<Chunk>(4);
+		chunks.add(worldObj.getChunkFromBlockCoords(xCoord - AURAPROVIDER_SEARCH_RADIUS, zCoord - AURAPROVIDER_SEARCH_RADIUS));
+		Chunk chunk = worldObj.getChunkFromBlockCoords(xCoord + AURAPROVIDER_SEARCH_RADIUS, zCoord - AURAPROVIDER_SEARCH_RADIUS);
+		if (!chunks.contains(chunk)) {
+			chunks.add(chunk);
+		}
+		chunk = worldObj.getChunkFromBlockCoords(xCoord - AURAPROVIDER_SEARCH_RADIUS, zCoord + AURAPROVIDER_SEARCH_RADIUS);
+		if (!chunks.contains(chunk)) {
+			chunks.add(chunk);
+		}
+		chunk = worldObj.getChunkFromBlockCoords(xCoord + AURAPROVIDER_SEARCH_RADIUS, zCoord + AURAPROVIDER_SEARCH_RADIUS);
+		if (!chunks.contains(chunk)) {
+			chunks.add(chunk);
+		}
+		return chunks;
+	}
+	
+	private boolean searchChunkForBooster(Chunk chunk) {
+		Vec3 apiaryPos = Vec3.createVectorHelper(xCoord, yCoord, zCoord);
+		for (Map.Entry<ChunkPosition, TileEntity> entry : ((Map<ChunkPosition, TileEntity>)chunk.chunkTileEntityMap).entrySet()) {
+			TileEntity entity = entry.getValue();
+			if (entity instanceof IMagicApiaryAuraProvider) {
+				Vec3 tePos = Vec3.createVectorHelper(entity.xCoord, entity.yCoord, entity.zCoord);
+				Vec3 result = apiaryPos.subtract(tePos);
+				if (result.lengthVector() <= AURAPROVIDER_SEARCH_RADIUS) {
+					saveAuraProviderPosition(entity.xCoord, entity.yCoord, entity.zCoord);
+				}
+			}
+		}
+		return false;
+	}
+	
 	private void saveAuraProviderPosition(int x, int y, int z) {
-		auraProviderPosition = new ChunkCoords(auraProviderPosition.dimension, x, y, z);
+		auraProviderPosition = new ChunkCoords(worldObj.provider.dimensionId, x, y, z);
 	}
 
     private boolean locationHasAuraProvider(ChunkCoords coords) {

@@ -152,6 +152,8 @@ public class Config
 	public static Block tcLog;
 	public static Block tcLeaf;
 	public static Block tcWarded;
+	public static Block tcWooden;
+	public static Block tcMetal;
 	//----- Thaumcraft Items -----------------------------------
 	public static Item tcFilledJar;
 	public static Item tcMiscResource;

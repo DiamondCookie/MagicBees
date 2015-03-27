@@ -1,6 +1,5 @@
 package magicbees.main.utils;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import magicbees.item.ItemCapsule;
 import magicbees.item.types.CombType;
 import magicbees.item.types.DropType;
@@ -23,6 +22,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
 public class CraftingManager
@@ -379,13 +379,13 @@ public class CraftingManager
 				});
 			}
 			
-			// TODO: Finalize recipe.
 			output = new ItemStack(Config.visAuraProvider);
 			GameRegistry.addRecipe(output, new Object[] {
-					" p ", "igi", "iii",
-					'p', Config.pollen.getStackForType(PollenType.UNUSUAL),
-					'i', Items.iron_ingot,
-					'g', Blocks.glass
+					"ngn", "gvg", "npn",
+					'n', Items.gold_nugget,
+					'g', new ItemStack(Config.tcWooden, 1, ThaumcraftHelper.WoodenDeviceType.PLANKS_GREATWOOD.ordinal()),
+					'v', new ItemStack(Config.tcMetal, 1, ThaumcraftHelper.MetalDeviceType.VIS_RELAY.ordinal()),
+					'p', Config.pollen.getStackForType(PollenType.UNUSUAL)
 			});
 		}
 
