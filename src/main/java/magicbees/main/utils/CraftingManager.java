@@ -378,15 +378,6 @@ public class CraftingManager
 						'C', Blocks.chest
 				});
 			}
-			
-			output = new ItemStack(Config.visAuraProvider);
-			GameRegistry.addRecipe(output, new Object[] {
-					"ngn", "gvg", "npn",
-					'n', Items.gold_nugget,
-					'g', new ItemStack(Config.tcWooden, 1, ThaumcraftHelper.WoodenDeviceType.PLANKS_GREATWOOD.ordinal()),
-					'v', new ItemStack(Config.tcMetal, 1, ThaumcraftHelper.MetalDeviceType.VIS_RELAY.ordinal()),
-					'p', Config.pollen.getStackForType(PollenType.UNUSUAL)
-			});
 		}
 
 		if (ArsMagicaHelper.isActive())
