@@ -15,23 +15,32 @@ public interface IMagicApiaryAuraProvider {
 	 * 
 	 * @return True if a charge is given; false otherwise.
 	 */
-	public boolean getMutationCharge();
-	
+	boolean getMutationCharge();
+
 	/**
 	 * Requests a mutation charge from the aura provider. If true is returned, the
 	 * aura provider should decrement its internal charge by one. If there are no
 	 * charges remaining, it should return false.
-	 * 
+	 *
 	 * @return True if a charge is given; false otherwise.
 	 */
-	public boolean getDeathRateCharge();
-	
+	boolean getDeathRateCharge();
+
 	/**
 	 * Requests a mutation charge from the aura provider. If true is returned, the
 	 * aura provider should decrement its internal charge by one. If there are no
 	 * charges remaining, it should return false.
-	 * 
+	 *
 	 * @return True if a charge is given; false otherwise.
 	 */
-	public boolean getProductionCharge();
+	boolean getProductionCharge();
+
+	/**
+	 * Requests a mutation charge from the aura provider. If true is returned, the
+	 * aura provider should decrement its internal charge by one. If there are no
+	 * charges remaining, it should return false.
+	 *
+	 * @return True if a charge is given; false otherwise.
+	 */
+	boolean getCharge(IAuraChargeType auraChargeType);
 }

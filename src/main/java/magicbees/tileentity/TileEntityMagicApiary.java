@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import magicbees.bees.AuraChargeType;
 import magicbees.api.bees.IMagicApiaryAuraProvider;
 import magicbees.bees.BeeManager;
 import magicbees.main.CommonProxy;
 import magicbees.main.MagicBees;
 import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.ItemStackUtils;
-import magicbees.main.utils.LogHelper;
+import magicbees.main.utils.net.EventAuraChargeUpdate;
 import magicbees.main.utils.net.NetworkEventHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -19,6 +20,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
@@ -41,7 +43,7 @@ import forestry.api.core.IErrorState;
 import forestry.api.genetics.IIndividual;
 import forestry.core.utils.Utils;
 
-public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing, ITileEntityFlags {
+public class TileEntityMagicApiary extends TileEntity implements ISidedInventory, IBeeHousing, ITileEntityAuraCharged {
 
     public static final String tileEntityName = CommonProxy.DOMAIN + ".magicApiary";
     private GameProfile ownerProfile;
@@ -55,9 +57,6 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private static final int SLOT_PRODUCTS_COUNT = 7;
     
     private static final int AURAPROVIDER_SEARCH_RADIUS = 6;
-    private static int CHARGE_TIME_MUTATION = 850;
-    private static int CHARGE_TIME_DEATH = 400;
-    private static int CHARGE_TIME_PRODUCTION = 300;
     
     private IBeekeepingLogic logic;
     private IMagicApiaryAuraProvider auraProvider;
@@ -66,22 +65,14 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     private int displayHealthMax = 0;
     private int displayHealth = 0;
     private boolean init = false;
-    
-    private static final int OFFSET_MUTATION = 0;
-    private static final int OFFSET_DEATH = 1;
-    private static final int OFFSET_PRODUCTION = 2;    
-    private static final int FLAG_MUTATIONCHARGE = 1 << OFFSET_MUTATION;
-    private static final int FLAG_DEATHCHARGE = 1 << OFFSET_DEATH;
-    private static final int FLAG_PRODUCTIONCHARGE = 1 << OFFSET_PRODUCTION;
-    private long[] chargeTimestamps = new long[3];
-    private int flags;
-    
+
+    private final AuraCharges auraCharges = new AuraCharges();
+
     private IErrorState errorState = ErrorStateRegistry.getErrorState("ok");
 
     private ItemStack[] items;
 
     public TileEntityMagicApiary(){
-    	flags = 0;
         items = new ItemStack[12];
         logic = BeeManager.beeRoot.createBeekeepingLogic(this);
     }
@@ -518,11 +509,8 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         }
 
         ChunkCoords.writeToNBT(this.auraProviderPosition, compound);
-        
-        compound.setInteger("flags", this.flags);
-        compound.setLong("timestamp0", chargeTimestamps[0]);
-        compound.setLong("timestamp1", chargeTimestamps[1]);
-        compound.setLong("timestamp2", chargeTimestamps[2]);
+
+        auraCharges.writeToNBT(compound);
     }
 
     @Override
@@ -532,7 +520,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
         for (int i = 0; i < items.tagCount(); i++) {
-            NBTTagCompound item = (NBTTagCompound)items.getCompoundTagAt(i);
+            NBTTagCompound item = items.getCompoundTagAt(i);
             int slot = item.getByte("Slot");
 
             if (slot >= 0 && slot < getSizeInventory()) {
@@ -543,12 +531,16 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
         int biomeId = compound.getInteger("BiomeId");
         biome = BiomeGenBase.getBiome(biomeId);
         logic.readFromNBT(compound);
-        
+
         this.auraProviderPosition = ChunkCoords.readFromNBT(compound);
-        this.flags = compound.getInteger("flags");
-        this.chargeTimestamps[0] = compound.getLong("timestamp0");
-        this.chargeTimestamps[1] = compound.getLong("timestamp1");
-        this.chargeTimestamps[2] = compound.getLong("timestamp2");
+
+        auraCharges.readFromNBT(compound);
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        EventAuraChargeUpdate event = new EventAuraChargeUpdate(new ChunkCoords(this), auraCharges);
+        return event.getPacket();
     }
 
     public float getExactTemperature() {
@@ -561,7 +553,7 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 
     @Override
     public void updateEntity() {
-        if (init == false) {
+        if (!init) {
             init = true;
             updateBiome();
         }
@@ -640,81 +632,52 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     }
     
     public boolean isProductionBoosted() {
-    	return (flags & FLAG_PRODUCTIONCHARGE) == FLAG_PRODUCTIONCHARGE;
+        return auraCharges.isActive(AuraChargeType.PRODUCTION);
     }
     
     public boolean isDeathRateBoosted() {
-    	return (flags & FLAG_DEATHCHARGE) == FLAG_DEATHCHARGE;
+        return auraCharges.isActive(AuraChargeType.DEATH);
     }
     
     public boolean isMutationBoosted() {
-    	return (flags & FLAG_MUTATIONCHARGE) == FLAG_MUTATIONCHARGE;
+        return auraCharges.isActive(AuraChargeType.MUTATION);
     }
-
-	@Override
-	public void validate() {
-		super.validate();
-		if (!worldObj.isRemote) {
-			NetworkEventHandler.getInstance().sendFlagsUpdate(this, new int[] {flags});
-		}
-	}
     
     private void updateAuraProvider() {
     	if (worldObj.getTotalWorldTime() % 10 != 0) {
     		return;
     	}
-    	if (!locationHasAuraProvider(auraProviderPosition)) {
+    	if (getAuraProvider(auraProviderPosition) == null) {
     		this.auraProvider = null;
     		this.auraProviderPosition = null;
     		return;
     	}
     	
-    	int oldFlags = flags;
-    	if (!isMutationBoosted() && this.auraProvider.getMutationCharge()) {
-    		flags |= FLAG_MUTATIONCHARGE;
-    		chargeTimestamps[OFFSET_MUTATION] = worldObj.getTotalWorldTime();
-    	}
-
-    	if (!isDeathRateBoosted() && this.auraProvider.getDeathRateCharge()) {
-    		flags |= FLAG_DEATHCHARGE;
-    		chargeTimestamps[OFFSET_DEATH] = worldObj.getTotalWorldTime();
-    	}
-
-    	if (!isProductionBoosted() && this.auraProvider.getProductionCharge()) {
-    		flags |= FLAG_PRODUCTIONCHARGE;
-    		chargeTimestamps[OFFSET_PRODUCTION] = worldObj.getTotalWorldTime();
-    	}
+    	boolean auraChargesChanged = false;
+        for (AuraChargeType chargeType : AuraChargeType.values()) {
+            if (!auraCharges.isActive(chargeType) && auraProvider.getCharge(chargeType)) {
+                auraCharges.start(chargeType, worldObj);
+                auraChargesChanged = true;
+            }
+        }
     	
-    	if (oldFlags != flags) {
-    		NetworkEventHandler.getInstance().sendFlagsUpdate(this, new int[] {flags});
+    	if (auraChargesChanged) {
+            NetworkEventHandler.getInstance().sendAuraChargeUpdate(this, auraCharges);
     	}
     }
     
     private void tickCharges() {
-    	int oldFlags = flags;
-    	if (isMutationBoosted()) {
-    		if (chargeTimestamps[OFFSET_MUTATION] + CHARGE_TIME_MUTATION <= worldObj.getTotalWorldTime()) {
-    			if (auraProvider == null || !this.auraProvider.getMutationCharge()) {
-    				flags = flags & ~FLAG_MUTATIONCHARGE;
-    			}
-    		}
-    	}
-    	if (isDeathRateBoosted()) {
-    		if (chargeTimestamps[OFFSET_DEATH] + CHARGE_TIME_DEATH <= worldObj.getTotalWorldTime()) {
-    			if (auraProvider == null || !this.auraProvider.getDeathRateCharge()) {
-    				flags = flags & ~FLAG_DEATHCHARGE;
-    			}
-    		}
-    	}
-    	if (isProductionBoosted()) {
-    		if (chargeTimestamps[OFFSET_PRODUCTION] + CHARGE_TIME_PRODUCTION <= worldObj.getTotalWorldTime()) {
-    			if (auraProvider == null || !this.auraProvider.getProductionCharge()) {
-    				flags = flags & ~FLAG_PRODUCTIONCHARGE;
-    			}
-    		}
-    	}
-    	if (oldFlags != flags) {
-    		NetworkEventHandler.getInstance().sendFlagsUpdate(this, new int[] {flags});
+        boolean auraChargesChanged = false;
+
+        for (AuraChargeType chargeType : AuraChargeType.values()) {
+            if (auraCharges.isActive(chargeType) && auraCharges.isExpired(chargeType, worldObj) && (auraProvider == null || !auraProvider.getCharge(chargeType))) {
+                auraCharges.stop(chargeType);
+                auraChargesChanged = true;
+            }
+        }
+
+    	if (auraChargesChanged) {
+    		NetworkEventHandler.getInstance().sendAuraChargeUpdate(this, auraCharges);
     	}
     }
 
@@ -722,20 +685,20 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
     	if (worldObj.getTotalWorldTime() % 5 != 0) {
     		return;
     	}
-    	
-    	if (this.auraProviderPosition == null) {
-    		List<Chunk> chunks = getChunksInSearchRange();    		
-    		for (Chunk chunk : chunks) {
-    			if (searchChunkForBooster(chunk)) {
-    				break;
-    			}
-    		}
-    	}
-    	else {
-    		if (!locationHasAuraProvider(auraProviderPosition)) {
-    			this.auraProviderPosition = null;
-    		}
-    	}
+
+        if (this.auraProviderPosition == null) {
+            List<Chunk> chunks = getChunksInSearchRange();
+            for (Chunk chunk : chunks) {
+                if (searchChunkForBooster(chunk)) {
+                    break;
+                }
+            }
+        } else {
+            this.auraProvider = getAuraProvider(auraProviderPosition);
+            if (auraProvider == null) {
+                this.auraProviderPosition = null;
+            }
+        }
     }
     
 	private List<Chunk> getChunksInSearchRange() {
@@ -777,11 +740,11 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 		auraProviderPosition = new ChunkCoords(worldObj.provider.dimensionId, x, y, z);
 	}
 
-    private boolean locationHasAuraProvider(ChunkCoords coords) {
-		return locationHasAuraProvider(coords.x, coords.y, coords.z);
+    private IMagicApiaryAuraProvider getAuraProvider(ChunkCoords coords) {
+		return getAuraProvider(coords.x, coords.y, coords.z);
 	}
     
-	private boolean locationHasAuraProvider(int x, int y, int z) {
+	private IMagicApiaryAuraProvider getAuraProvider(int x, int y, int z) {
 		Chunk chunk = worldObj.getChunkFromBlockCoords(x, z);
 		x %= 16;
 		z %= 16;
@@ -793,16 +756,14 @@ public class TileEntityMagicApiary extends TileEntity implements ISidedInventory
 		}
 		ChunkPosition cPos = new ChunkPosition(x, y, z);
 		TileEntity entity = (TileEntity)chunk.chunkTileEntityMap.get(cPos);
-		if (entity != null && entity instanceof IMagicApiaryAuraProvider) {
-			return true;
-		}
-		return false;
-	}
+        if (!(entity instanceof IMagicApiaryAuraProvider)) {
+            return null;
+        }
+        return (IMagicApiaryAuraProvider)entity;
+    }
 
-	@Override
-	public void setFlags(int[] flagArray) {
-		if (flagArray.length == 1) {
-			this.flags = flagArray[0];
-		}
-	}
+    @Override
+    public AuraCharges getAuraCharges() {
+        return auraCharges;
+    }
 }

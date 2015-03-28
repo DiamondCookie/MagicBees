@@ -11,6 +11,9 @@ import magicbees.main.utils.ChunkCoords;
 import magicbees.main.utils.LogHelper;
 import magicbees.main.utils.VersionInfo;
 import magicbees.main.utils.error.InvalidEventTypeIndexException;
+import magicbees.tileentity.AuraCharges;
+import magicbees.tileentity.ITileEntityAuraCharged;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.NetHandlerPlayServer;
@@ -35,6 +38,7 @@ public class NetworkEventHandler {
 		UNKNOWN,
 		INVENTORY_UPDATE,
 		FLAGS_UPDATE,
+		AURA_CHARGE_UPDATE
 		;
 	}
 	
@@ -66,6 +70,13 @@ public class NetworkEventHandler {
 		EventFlagsUpdate event = new EventFlagsUpdate(new ChunkCoords(entity), flags);
 		FMLProxyPacket packet = event.getPacket();
 		
+		sendPacket(packet);
+	}
+
+	public <T extends TileEntity & ITileEntityAuraCharged> void sendAuraChargeUpdate(T entity, AuraCharges auraCharges) {
+		EventAuraChargeUpdate event = new EventAuraChargeUpdate(new ChunkCoords(entity), auraCharges);
+		FMLProxyPacket packet = event.getPacket();
+
 		sendPacket(packet);
 	}
 	
@@ -101,6 +112,10 @@ public class NetworkEventHandler {
 		else if (eventId == EventType.FLAGS_UPDATE.ordinal()) {
 			EventFlagsUpdate eventData = new EventFlagsUpdate(data);
 			eventData.process(player);
+		}
+		else if (eventId == EventType.AURA_CHARGE_UPDATE.ordinal()) {
+			EventAuraChargeUpdate evenData = new EventAuraChargeUpdate(data);
+			evenData.process(player);
 		}
 		else {
 			throw new InvalidEventTypeIndexException("");

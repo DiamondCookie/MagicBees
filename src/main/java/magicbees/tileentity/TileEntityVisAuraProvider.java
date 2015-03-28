@@ -1,5 +1,10 @@
 package magicbees.tileentity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import magicbees.api.bees.IAuraChargeType;
+import magicbees.bees.AuraChargeType;
 import magicbees.api.bees.IMagicApiaryAuraProvider;
 import magicbees.main.CommonProxy;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,45 +17,51 @@ public class TileEntityVisAuraProvider extends TileEntity implements IMagicApiar
 	public static final String tileEntityName = CommonProxy.DOMAIN + ".visAuraProvider";
 	
 	private static final int MAX_CHARGES = 10;
-	int currentMutationCharges;
-	int currentDeathCharges;
-	int currentProductionCharges;
-	
 	private static final int VIS_PER_CHARGE = 8;
-	private static Aspect ASPECT_MUTATION = Aspect.WATER;
-	private static Aspect ASPECT_DEATH = Aspect.ENTROPY;
-	private static Aspect ASPECT_PRODUCTION = Aspect.AIR;
-	int currentMutationVis;
-	int currentDeathVis;
-	int currentProductionVis;
-	
+
+	private static class AuraCharge {
+		int charges;
+		int vis;
+
+		public int[] toArray() {
+			return new int[]{charges, vis};
+		}
+
+		public void fromArray(int[] array) {
+			if (array.length == 2) {
+				charges = array[0];
+				vis = array[1];
+			}
+		}
+	}
+
+	private final Map<AuraChargeType, AuraCharge> currentCharges;
+
 	public TileEntityVisAuraProvider() {
 		super();
+
+		AuraChargeType[] auraChargeTypes = AuraChargeType.values();
+		currentCharges = new HashMap<AuraChargeType, AuraCharge>(auraChargeTypes.length);
+		for (AuraChargeType auraChargeType : auraChargeTypes) {
+			currentCharges.put(auraChargeType, new AuraCharge());
+		}
 	}
 	
 	@Override
 	public void updateEntity() {
 		
-		long modTickRate = worldObj.getTotalWorldTime();
-		if (currentProductionCharges < MAX_CHARGES && modTickRate % 3 == 0) {
-			currentProductionVis += getVisFromNet(ASPECT_PRODUCTION);
-			if (currentProductionVis >= VIS_PER_CHARGE) {
-				currentProductionVis -= VIS_PER_CHARGE;
-				++currentProductionCharges;
-			}
-		}
-		if (currentDeathCharges < MAX_CHARGES && modTickRate % 5 == 0) {
-			currentDeathVis += getVisFromNet(ASPECT_DEATH);
-			if (currentDeathVis >= VIS_PER_CHARGE) {
-				currentDeathVis -= VIS_PER_CHARGE;
-				++currentDeathCharges;
-			}
-		}
-		if (currentMutationCharges < MAX_CHARGES && modTickRate % 11 == 0) {
-			currentMutationCharges += getVisFromNet(ASPECT_MUTATION);
-			if (currentMutationCharges >= VIS_PER_CHARGE) {
-				currentMutationCharges -= VIS_PER_CHARGE;
-				++currentMutationCharges;
+		long tick = worldObj.getTotalWorldTime();
+
+		for (Map.Entry<AuraChargeType, AuraCharge> currentCharge : currentCharges.entrySet()) {
+			AuraChargeType type = currentCharge.getKey();
+			AuraCharge auraCharge = currentCharge.getValue();
+
+			if (auraCharge.charges < MAX_CHARGES && (tick % type.tickRate) == 0) {
+				auraCharge.vis += getVisFromNet(type.aspect);
+				if (auraCharge.vis >= VIS_PER_CHARGE) {
+					auraCharge.vis -= VIS_PER_CHARGE;
+					auraCharge.charges++;
+				}
 			}
 		}
 	}
@@ -61,52 +72,54 @@ public class TileEntityVisAuraProvider extends TileEntity implements IMagicApiar
 
 	@Override
 	public boolean getMutationCharge() {
-		if (this.currentMutationCharges > 0) {
-			--this.currentMutationCharges;
-			return true;
-		}
-		return false;
+		return getCharge(AuraChargeType.MUTATION);
 	}
 
 	@Override
 	public boolean getDeathRateCharge() {
-		if (this.currentDeathCharges > 0) {
-			--this.currentDeathCharges;
-			return true;
-		}
-		return false;
+		return getCharge(AuraChargeType.DEATH);
 	}
 
 	@Override
 	public boolean getProductionCharge() {
-		if (this.currentProductionCharges > 0) {
-			--this.currentProductionCharges;
+		return getCharge(AuraChargeType.PRODUCTION);
+	}
+
+	@Override
+	public boolean getCharge(IAuraChargeType auraChargeType) {
+		AuraCharge auraCharge = currentCharges.get(auraChargeType);
+		if (auraCharge == null) {
+			return false;
+		}
+		if (auraCharge.charges > 0) {
+			auraCharge.charges--;
 			return true;
 		}
+
 		return false;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		
-		this.currentMutationCharges = tag.getInteger("mutationCharges");
-		this.currentMutationVis = tag.getInteger("mutationVis");
-		this.currentDeathCharges = tag.getInteger("deathCharges");
-		this.currentDeathVis = tag.getInteger("deathVis");
-		this.currentProductionCharges = tag.getInteger("productionCharges");
-		this.currentProductionVis = tag.getInteger("productionVis");
+
+		for (Map.Entry<AuraChargeType, AuraCharge> charge : currentCharges.entrySet()) {
+			String auraName = charge.getKey().toString();
+			int[] array = tag.getIntArray(auraName);
+			AuraCharge auraCharge = charge.getValue();
+			auraCharge.fromArray(array);
+		}
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
-		
-		tag.setInteger("mutationCharges", currentMutationCharges);
-		tag.setInteger("mutationVis", currentMutationVis);
-		tag.setInteger("deathCharges", currentDeathCharges);
-		tag.setInteger("deathVis", currentDeathVis);
-		tag.setInteger("productionCharges", currentProductionCharges);
-		tag.setInteger("productionVis", currentProductionVis);
+
+		for (Map.Entry<AuraChargeType, AuraCharge> charge : currentCharges.entrySet()) {
+			String auraName = charge.getKey().toString();
+			AuraCharge auraCharge = charge.getValue();
+			int[] array = auraCharge.toArray();
+			tag.setIntArray(auraName, array);
+		}
 	}
 }
